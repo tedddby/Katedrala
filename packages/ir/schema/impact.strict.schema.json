@@ -1,0 +1,916 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:katedrala:schema:impact:1.0.0:strict",
+  "title": "Katedrala impact (strict, schema 1.0.0)",
+  "description": "A Katedrala change impact report (katedrala impact). Strict producer schema for exactly this version.",
+  "$ref": "#/$defs/ImpactReport",
+  "$defs": {
+    "ImpactReport": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "URI of the JSON Schema the document conforms to."
+        },
+        "schemaVersion": {
+          "type": "string",
+          "description": "Semantic version of the IR schema (not of Katedrala).",
+          "const": "1.0.0"
+        },
+        "generator": {
+          "$ref": "#/$defs/GeneratorInfo"
+        },
+        "kind": {
+          "type": "string",
+          "const": "katedrala.impact"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/SnapshotInfo"
+        },
+        "analysis": {
+          "$ref": "#/$defs/AnalysisCompleteness"
+        },
+        "query": {
+          "type": "string",
+          "description": "The query as given by the user (name, path or id)."
+        },
+        "target": {
+          "$ref": "#/$defs/EntityRef"
+        },
+        "options": {
+          "$ref": "#/$defs/ImpactOptionsInfo"
+        },
+        "summary": {
+          "$ref": "#/$defs/ImpactSummary"
+        },
+        "impacted": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImpactedEntity"
+          },
+          "description": "Impacted files and symbols, sorted by distance, then id."
+        },
+        "modules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImpactedGroup"
+          },
+          "description": "Impact grouped by module, sorted by minimum distance, then id."
+        },
+        "endpoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImpactedEndpoint"
+          },
+          "description": "Endpoints whose handlers are impacted, sorted by distance, then id."
+        },
+        "externalIntegrations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ExternalIntegration"
+          },
+          "description": "External systems involved, sorted by external id, then relation."
+        },
+        "risk": {
+          "$ref": "#/$defs/RiskAssessment",
+          "description": "Overall change risk, decomposed."
+        },
+        "riskNotes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RiskNote"
+          },
+          "description": "Qualitative risk notes, sorted by id."
+        }
+      },
+      "required": [
+        "analysis",
+        "endpoints",
+        "externalIntegrations",
+        "generator",
+        "impacted",
+        "kind",
+        "modules",
+        "options",
+        "query",
+        "risk",
+        "riskNotes",
+        "schemaVersion",
+        "snapshot",
+        "summary",
+        "target"
+      ],
+      "additionalProperties": false,
+      "description": "Change impact (\"blast radius\"). Impacted entities form a shortest-path tree toward the target: each entry names its next step (`next`); following `next` from any entry reaches the target. When several shortest paths exist, the step with the highest confidence is chosen, then the smallest entity id."
+    },
+    "GeneratorInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "katedrala"
+        },
+        "version": {
+          "type": "string",
+          "description": "Katedrala version (semver)."
+        },
+        "adapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Language adapters that processed files, sorted by id."
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Plugins that contributed to the result, sorted by id. Omitted when none."
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "adapters"
+      ],
+      "additionalProperties": false,
+      "description": "The tool that produced a document or report."
+    },
+    "ToolVersion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "additionalProperties": false,
+      "description": "Name and version of a tool component (an adapter or a plugin)."
+    },
+    "SnapshotInfo": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/SnapshotKind"
+        },
+        "revision": {
+          "$ref": "#/$defs/RevisionInfo",
+          "description": "The analyzed commit, or the working tree's `HEAD` commit."
+        },
+        "subdirectory": {
+          "type": "string",
+          "description": "The analysis root relative to the version-control top-level directory (POSIX, \"\" when equal). Absent when the root is not inside a repository. Consumers keying caches by commit must include it."
+        },
+        "contentDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over the listed files: for each file in path order the line `<path>\\t<hash or ->\\t<size>\\n`. Identifies the analyzed content independently of how it was obtained."
+        },
+        "analysisDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over everything besides content that influences results: the effective Katedrala configuration and options, and the versions of Katedrala, its adapters and plugins. Documents with equal content and analysis digests are identical."
+        },
+        "projectConfigurationDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over the project configuration files adapters read (e.g. `tsconfig.json`, `package.json`), already part of the content; reported separately to explain resolution changes."
+        }
+      },
+      "required": [
+        "kind",
+        "contentDigest",
+        "analysisDigest",
+        "projectConfigurationDigest"
+      ],
+      "additionalProperties": false,
+      "description": "What exactly was analyzed."
+    },
+    "SnapshotKind": {
+      "description": "Kinds of snapshot. `working-tree`: files as they are on disk. `git-revision`: files as committed in a git revision. `in-memory`: files supplied programmatically. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "working-tree",
+            "git-revision",
+            "in-memory"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "RevisionInfo": {
+      "type": "object",
+      "properties": {
+        "commit": {
+          "type": "string",
+          "description": "Full commit hash."
+        },
+        "committedAt": {
+          "type": "string",
+          "description": "Committer date, ISO-8601 UTC.",
+          "format": "date-time"
+        },
+        "subject": {
+          "type": "string",
+          "description": "First line of the commit message."
+        },
+        "dirty": {
+          "type": "boolean",
+          "description": "For working-tree snapshots: whether analyzed files differ from `HEAD`."
+        }
+      },
+      "required": [
+        "commit"
+      ],
+      "additionalProperties": false
+    },
+    "AnalysisCompleteness": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "$ref": "#/$defs/Count"
+        },
+        "analyzedFiles": {
+          "$ref": "#/$defs/Count"
+        },
+        "failedFiles": {
+          "$ref": "#/$defs/Count"
+        },
+        "unresolvedImports": {
+          "$ref": "#/$defs/Count"
+        },
+        "unresolvedReferences": {
+          "$ref": "#/$defs/Count"
+        },
+        "diagnostics": {
+          "$ref": "#/$defs/SeverityCounts"
+        }
+      },
+      "required": [
+        "files",
+        "analyzedFiles",
+        "failedFiles",
+        "unresolvedImports",
+        "unresolvedReferences",
+        "diagnostics"
+      ],
+      "additionalProperties": false,
+      "description": "How complete the underlying analysis was. Reports carry it so a consumer (e.g. a CI gate) can refuse to trust results of a broken run."
+    },
+    "Count": {
+      "type": "integer",
+      "description": "A non-negative integer count.",
+      "minimum": 0
+    },
+    "SeverityCounts": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/$defs/Count"
+        },
+        "warning": {
+          "$ref": "#/$defs/Count"
+        },
+        "error": {
+          "$ref": "#/$defs/Count"
+        }
+      },
+      "required": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "additionalProperties": false,
+      "description": "Number of items per severity."
+    },
+    "EntityRef": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/EntityId"
+        },
+        "kind": {
+          "$ref": "#/$defs/EntityKind"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name (symbol name, file path, module name, ...)."
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "name"
+      ],
+      "additionalProperties": false,
+      "description": "A reference to an entity together with a human-readable label, used in reports."
+    },
+    "EntityId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RepositoryId"
+        },
+        {
+          "$ref": "#/$defs/DirectoryId"
+        },
+        {
+          "$ref": "#/$defs/FileId"
+        },
+        {
+          "$ref": "#/$defs/SymbolId"
+        },
+        {
+          "$ref": "#/$defs/PackageId"
+        },
+        {
+          "$ref": "#/$defs/ExternalId"
+        },
+        {
+          "$ref": "#/$defs/ComponentId"
+        },
+        {
+          "$ref": "#/$defs/ModuleId"
+        },
+        {
+          "$ref": "#/$defs/LayerId"
+        },
+        {
+          "$ref": "#/$defs/EndpointId"
+        }
+      ],
+      "description": "Any addressable architectural entity."
+    },
+    "RepositoryId": {
+      "type": "string",
+      "description": "`repo:<normalized remote>` (e.g. `repo:github.com/acme/shop`) or `repo:<name>`.",
+      "pattern": "^repo:.+$"
+    },
+    "DirectoryId": {
+      "type": "string",
+      "description": "`dir:<path>`; the analysis root is `dir:`.",
+      "pattern": "^dir:"
+    },
+    "FileId": {
+      "type": "string",
+      "description": "`file:<path>`",
+      "pattern": "^file:.+$"
+    },
+    "SymbolId": {
+      "type": "string",
+      "description": "`sym:<escaped file path>#<qualified name>[~<disambiguator>]`",
+      "pattern": "^sym:[^#]+#.+$"
+    },
+    "PackageId": {
+      "type": "string",
+      "description": "`pkg:<ecosystem>:<manifest directory>`, e.g. `pkg:npm:packages/api`; the root manifest is `pkg:npm:`.",
+      "pattern": "^pkg:[a-z0-9]+(?:-[a-z0-9]+)*:"
+    },
+    "ExternalId": {
+      "type": "string",
+      "description": "`ext:<namespace>:<name>`, e.g. `ext:npm:react`, `ext:node:fs`, `ext:env:DATABASE_URL`.",
+      "pattern": "^ext:[^:]+:.+$"
+    },
+    "ComponentId": {
+      "type": "string",
+      "description": "`cmp:<path>`; a component rooted at the analysis root is `cmp:`.",
+      "pattern": "^cmp:"
+    },
+    "ModuleId": {
+      "type": "string",
+      "description": "`mod:<module key>`: the configured name, or the anchor of an inferred module (see docs/IR.md).",
+      "pattern": "^mod:.+$"
+    },
+    "LayerId": {
+      "type": "string",
+      "description": "`layer:<name>`",
+      "pattern": "^layer:.+$"
+    },
+    "EndpointId": {
+      "type": "string",
+      "description": "`endpoint:<16 lowercase hex digits>`, derived from method, path and handler.",
+      "pattern": "^endpoint:[0-9a-f]{16}$"
+    },
+    "EntityKind": {
+      "type": "string",
+      "enum": [
+        "repository",
+        "directory",
+        "file",
+        "symbol",
+        "package",
+        "external",
+        "component",
+        "module",
+        "layer",
+        "endpoint"
+      ],
+      "description": "The kind of entity an identifier denotes; determined by the identifier's prefix."
+    },
+    "ImpactOptionsInfo": {
+      "type": "object",
+      "properties": {
+        "edgeKinds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeKind"
+          },
+          "description": "Relationship kinds followed, sorted."
+        },
+        "includeTypeOnly": {
+          "type": "boolean"
+        },
+        "includeTests": {
+          "type": "boolean"
+        },
+        "followDispatch": {
+          "type": "boolean",
+          "description": "Whether dependents of implemented interfaces / overridden base members are included (dispatch)."
+        },
+        "maxDepth": {
+          "$ref": "#/$defs/Count",
+          "description": "Maximum dependency distance followed; absent when unbounded."
+        }
+      },
+      "required": [
+        "edgeKinds",
+        "includeTypeOnly",
+        "includeTests",
+        "followDispatch"
+      ],
+      "additionalProperties": false
+    },
+    "EdgeKind": {
+      "description": "Relationship kinds. Values prefixed with `x-` are reserved for plugins. The listed endpoints are typical; in documents whose `detail.relationships` is `file`, symbol endpoints are lifted to their files.\n- `imports`: a file imports a module (file → file | external).\n- `re-exports`: a file re-exports from a module (file → file | external).\n- `calls`: code invokes a function or method (symbol | file → symbol | external).\n- `instantiates`: code creates an instance of a class or struct (symbol | file → symbol | external).\n- `extends`: inheritance or embedding (symbol → symbol | external).\n- `implements`: a type implements an interface or trait (symbol → symbol | external).\n- `references-type`: a type position names a type (symbol | file → symbol | external).\n- `uses`: any other value reference, e.g. reading a constant or rendering a JSX component.\n- `decorated-by`: a declaration is decorated or annotated by the target (symbol → symbol | external).\n- `depends-on-package`: a manifest declares a dependency (package → package | external).\n- `reads-configuration`: code reads configuration, e.g. an environment variable (→ external).\n- `calls-service`: code calls a remote service, e.g. an HTTP API (→ external).\n- `accesses-data`: code accesses a datastore or a persistence model (→ external | symbol).",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "imports",
+            "re-exports",
+            "calls",
+            "instantiates",
+            "extends",
+            "implements",
+            "references-type",
+            "uses",
+            "decorated-by",
+            "depends-on-package",
+            "reads-configuration",
+            "calls-service",
+            "accesses-data"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "ImpactSummary": {
+      "type": "object",
+      "properties": {
+        "directFiles": {
+          "$ref": "#/$defs/Count",
+          "description": "Files containing at least one direct dependent of the target."
+        },
+        "directSymbols": {
+          "$ref": "#/$defs/Count",
+          "description": "Symbols that depend on the target directly."
+        },
+        "files": {
+          "$ref": "#/$defs/Count"
+        },
+        "symbols": {
+          "$ref": "#/$defs/Count"
+        },
+        "modules": {
+          "$ref": "#/$defs/Count"
+        },
+        "components": {
+          "$ref": "#/$defs/Count"
+        },
+        "packages": {
+          "$ref": "#/$defs/Count"
+        },
+        "tests": {
+          "$ref": "#/$defs/Count",
+          "description": "Test files among the impacted files."
+        },
+        "endpoints": {
+          "$ref": "#/$defs/Count"
+        },
+        "externalIntegrations": {
+          "$ref": "#/$defs/Count"
+        },
+        "maxDistance": {
+          "$ref": "#/$defs/Count",
+          "description": "Largest dependency distance among impacted entities."
+        },
+        "unresolvedInScope": {
+          "$ref": "#/$defs/Count",
+          "description": "Unresolved imports and references inside the impacted files: the result may be incomplete if > 0."
+        }
+      },
+      "required": [
+        "directFiles",
+        "directSymbols",
+        "files",
+        "symbols",
+        "modules",
+        "components",
+        "packages",
+        "tests",
+        "endpoints",
+        "externalIntegrations",
+        "maxDistance",
+        "unresolvedInScope"
+      ],
+      "additionalProperties": false
+    },
+    "ImpactedEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FileId"
+            },
+            {
+              "$ref": "#/$defs/SymbolId"
+            }
+          ]
+        },
+        "kind": {
+          "$ref": "#/$defs/EntityKind"
+        },
+        "name": {
+          "type": "string"
+        },
+        "distance": {
+          "$ref": "#/$defs/Count",
+          "description": "Number of steps between this entity and the target (1 = direct dependent)."
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence",
+          "description": "Lowest confidence along the explanation path."
+        },
+        "next": {
+          "$ref": "#/$defs/ImpactStep",
+          "description": "Next step toward the target."
+        },
+        "file": {
+          "$ref": "#/$defs/FileId"
+        },
+        "fileRole": {
+          "$ref": "#/$defs/FileRole"
+        },
+        "module": {
+          "$ref": "#/$defs/ModuleId"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "name",
+        "distance",
+        "confidence",
+        "next",
+        "file",
+        "fileRole"
+      ],
+      "additionalProperties": false
+    },
+    "Confidence": {
+      "type": "number",
+      "description": "A value in the closed interval [0, 1] expressing how strongly evidence supports a conclusion.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "ImpactStep": {
+      "type": "object",
+      "properties": {
+        "to": {
+          "$ref": "#/$defs/EntityId",
+          "description": "The next entity toward the target."
+        },
+        "relation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EdgeKind"
+            },
+            {
+              "type": "string",
+              "const": "contains"
+            },
+            {
+              "type": "string",
+              "const": "contained-in"
+            },
+            {
+              "type": "string",
+              "const": "dispatch"
+            }
+          ],
+          "description": "An edge kind (`to` is depended upon through an edge), `contains` (the entity contains `to`, e.g. a file and its symbol), `contained-in` (the entity is a member of `to`), or `dispatch` (the entity depends on an interface or base member that `to` implements or overrides)."
+        },
+        "edge": {
+          "$ref": "#/$defs/EdgeId",
+          "description": "The underlying edge, for edge relations."
+        }
+      },
+      "required": [
+        "to",
+        "relation"
+      ],
+      "additionalProperties": false,
+      "description": "How one entity relates to the next one on its way to the target."
+    },
+    "EdgeId": {
+      "type": "string",
+      "description": "`edge:<16 lowercase hex digits>`, derived from the edge's kind, source and target.",
+      "pattern": "^edge:[0-9a-f]{16}$"
+    },
+    "FileRole": {
+      "type": "string",
+      "enum": [
+        "source",
+        "test",
+        "declaration",
+        "configuration",
+        "script",
+        "generated",
+        "vendored",
+        "documentation",
+        "asset",
+        "data",
+        "other"
+      ],
+      "description": "Broad purpose of a file. Classification is heuristic (paths, names, manifests) and configurable.\n- `source`: production code. `test`: test code. `declaration`: type declarations only (`*.d.ts`).\n- `configuration`: tool or build configuration. `script`: build/maintenance scripts.\n- `generated`: generated code. `vendored`: third-party code copied into the repository.\n- `documentation`, `asset`, `data`, `other`: non-code files."
+    },
+    "ImpactedGroup": {
+      "type": "object",
+      "properties": {
+        "module": {
+          "$ref": "#/$defs/ModuleId"
+        },
+        "name": {
+          "type": "string"
+        },
+        "files": {
+          "$ref": "#/$defs/Count"
+        },
+        "symbols": {
+          "$ref": "#/$defs/Count"
+        },
+        "minDistance": {
+          "$ref": "#/$defs/Count"
+        }
+      },
+      "required": [
+        "module",
+        "name",
+        "files",
+        "symbols",
+        "minDistance"
+      ],
+      "additionalProperties": false
+    },
+    "ImpactedEndpoint": {
+      "type": "object",
+      "properties": {
+        "endpoint": {
+          "$ref": "#/$defs/EndpointId"
+        },
+        "method": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "handler": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FileId"
+            },
+            {
+              "$ref": "#/$defs/SymbolId"
+            }
+          ]
+        },
+        "distance": {
+          "$ref": "#/$defs/Count",
+          "description": "Distance of the handler from the target."
+        }
+      },
+      "required": [
+        "endpoint",
+        "method",
+        "path",
+        "handler",
+        "distance"
+      ],
+      "additionalProperties": false
+    },
+    "ExternalIntegration": {
+      "type": "object",
+      "properties": {
+        "external": {
+          "$ref": "#/$defs/ExternalId"
+        },
+        "kind": {
+          "$ref": "#/$defs/ExternalKind"
+        },
+        "name": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "target",
+            "dependent"
+          ],
+          "description": "`target`: the target itself depends on the external system. `dependent`: an impacted entity does."
+        },
+        "via": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Entities that hold the relationship, sorted, bounded."
+        }
+      },
+      "required": [
+        "external",
+        "kind",
+        "name",
+        "relation",
+        "via"
+      ],
+      "additionalProperties": false
+    },
+    "ExternalKind": {
+      "description": "Things outside the repository that code depends on. Values prefixed with `x-` are reserved for plugins.\n- `package`: a third-party package. `builtin`: a platform built-in module.\n- `environment-variable`: configuration read from the environment.\n- `service`: a remote service addressed by code, e.g. an HTTP host.\n- `datastore`: a database or storage system. `message-channel`: a queue or topic.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "package",
+            "builtin",
+            "environment-variable",
+            "service",
+            "datastore",
+            "message-channel"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "RiskAssessment": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number"
+        },
+        "rating": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "method": {
+          "type": "string",
+          "description": "Formula identifier and version, e.g. `katedrala/change-risk@1`."
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTerm"
+          }
+        }
+      },
+      "required": [
+        "score",
+        "rating",
+        "method",
+        "terms"
+      ],
+      "additionalProperties": false
+    },
+    "ScoreTerm": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "description": "Stable kebab-case identifier of the signal, e.g. `reach`."
+        },
+        "raw": {
+          "type": "number",
+          "description": "The measurement before normalization, in its natural unit."
+        },
+        "normalized": {
+          "type": "number",
+          "description": "The measurement mapped to [0, 1] by a documented, snapshot-independent transform."
+        },
+        "weight": {
+          "type": "number",
+          "description": "Weight of the term; the weights of one score sum to 1."
+        },
+        "contribution": {
+          "type": "number",
+          "description": "`weight × normalized`."
+        },
+        "description": {
+          "type": "string",
+          "description": "Short explanation of what the raw value means."
+        }
+      },
+      "required": [
+        "signal",
+        "raw",
+        "normalized",
+        "weight",
+        "contribution"
+      ],
+      "additionalProperties": false,
+      "description": "One term of a decomposable score (Architectural Gravity, Architectural Entropy, risk scores). `contribution = weight × normalized` and `score = Σ contribution` (after rounding, within 1e-9)."
+    },
+    "RiskNote": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable kebab-case identifier, e.g. `high-fan-in`, `cross-module-dependents`."
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "description": "A qualitative, evidence-backed remark about risk."
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "description": "Stable kebab-case identifier of the signal, e.g. `internal-dependency-ratio`."
+        },
+        "description": {
+          "type": "string",
+          "description": "A complete sentence explaining the observation, e.g. \"87% of dependencies stay within the cluster\"."
+        },
+        "value": {
+          "type": "number",
+          "description": "The measured value, when the signal is numeric."
+        },
+        "weight": {
+          "type": "number",
+          "description": "The relative weight of this signal in the conclusion, when the conclusion is a weighted aggregate."
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Entities that exemplify the observation: sorted, and bounded by `limits.maxEvidenceEntities` (selection: sort by id, then truncate)."
+        }
+      },
+      "required": [
+        "signal",
+        "description"
+      ],
+      "additionalProperties": false,
+      "description": "One measurable observation supporting a conclusion. Machine-readable (`signal`, `value`) and human-readable (`description`)."
+    }
+  }
+}

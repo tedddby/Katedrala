@@ -1,0 +1,32 @@
+{
+  "name": "@katedrala/plugin-api",
+  "version": "0.1.0",
+  "description": "Contracts for extending Katedrala: language adapters, snapshot sources, framework detectors, exporters and more.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "exports": {
+    ".": {
+      "katedrala-source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.ts"
+  ],
+  "dependencies": {
+    "@katedrala/ir": "workspace:*"
+  },
+  "keywords": [
+    "katedrala",
+    "plugin",
+    "language-adapter"
+  ]
+}

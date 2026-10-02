@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Test & coverage output
+coverage/
+.vitest/
+
+# Katedrala local cache (when analyzing this repository)
+.katedrala/
+
+# Benchmark scratch data (results are committed under benchmarks/results)
+benchmarks/.work/
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*

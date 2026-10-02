@@ -1,0 +1,15 @@
+{
+  "//": "Editor and lint configuration (includes tests, never emits). Builds use tsconfig.build.json.",
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "incremental": false,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "noEmit": true,
+    "rootDir": ".",
+    "customConditions": ["katedrala-source"]
+  },
+  "include": ["src"]
+}

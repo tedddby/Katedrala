@@ -1,0 +1,3412 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:katedrala:schema:architecture:1.0.0:strict",
+  "title": "Katedrala architecture (strict, schema 1.0.0)",
+  "description": "A Katedrala architecture document (katedrala analyze). Strict producer schema for exactly this version.",
+  "$ref": "#/$defs/ArchitectureDocument",
+  "$defs": {
+    "ArchitectureDocument": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "URI of the JSON Schema the document conforms to."
+        },
+        "schemaVersion": {
+          "type": "string",
+          "description": "Semantic version of the IR schema (not of Katedrala).",
+          "const": "1.0.0"
+        },
+        "generator": {
+          "$ref": "#/$defs/GeneratorInfo"
+        },
+        "kind": {
+          "type": "string",
+          "const": "katedrala.architecture"
+        },
+        "repository": {
+          "$ref": "#/$defs/RepositoryInfo"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/SnapshotInfo"
+        },
+        "detail": {
+          "$ref": "#/$defs/DocumentDetail"
+        },
+        "limits": {
+          "$ref": "#/$defs/DocumentLimits"
+        },
+        "directories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DirectoryEntity"
+          }
+        },
+        "packages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PackageEntity"
+          }
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileEntity"
+          }
+        },
+        "symbols": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SymbolEntity"
+          }
+        },
+        "externals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ExternalEntity"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeEntity"
+          },
+          "description": "Sorted by source, then target, then kind."
+        },
+        "entryPoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntryPointEntry"
+          },
+          "description": "Sorted by entity, then kind, then source."
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ComponentEntity"
+          }
+        },
+        "modules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ModuleEntity"
+          }
+        },
+        "layers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LayerEntity"
+          },
+          "description": "Sorted by rank, then id."
+        },
+        "endpoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EndpointEntity"
+          }
+        },
+        "metrics": {
+          "$ref": "#/$defs/MetricsReport"
+        },
+        "anomalies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Anomaly"
+          }
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RuleViolation"
+          }
+        },
+        "rules": {
+          "$ref": "#/$defs/RulesSummary"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Diagnostic"
+          }
+        },
+        "run": {
+          "$ref": "#/$defs/RunInfo"
+        }
+      },
+      "required": [
+        "anomalies",
+        "components",
+        "detail",
+        "diagnostics",
+        "directories",
+        "edges",
+        "endpoints",
+        "entryPoints",
+        "externals",
+        "files",
+        "generator",
+        "kind",
+        "layers",
+        "limits",
+        "metrics",
+        "modules",
+        "packages",
+        "repository",
+        "rules",
+        "schemaVersion",
+        "snapshot",
+        "symbols",
+        "violations"
+      ],
+      "additionalProperties": false,
+      "description": "The Katedrala architecture document (`katedrala analyze --format json`).\n\nDeterminism: for identical inputs (content, configuration, Katedrala version) every field except `run` is identical, byte for byte when serialized with `serializeDocument`."
+    },
+    "GeneratorInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "katedrala"
+        },
+        "version": {
+          "type": "string",
+          "description": "Katedrala version (semver)."
+        },
+        "adapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Language adapters that processed files, sorted by id."
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Plugins that contributed to the result, sorted by id. Omitted when none."
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "adapters"
+      ],
+      "additionalProperties": false,
+      "description": "The tool that produced a document or report."
+    },
+    "ToolVersion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "additionalProperties": false,
+      "description": "Name and version of a tool component (an adapter or a plugin)."
+    },
+    "RepositoryInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/RepositoryId",
+          "description": "`repo:<normalized remote>` when the repository has an `origin` remote (e.g. `repo:github.com/acme/shop`), otherwise `repo:<name>`."
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name: the configured name, else the root package manifest's name, else the last segment of the normalized remote, else `repository`. Never derived from the checkout directory's name, so the same content analyzed from different clones yields the same document."
+        },
+        "vcs": {
+          "$ref": "#/$defs/VcsInfo",
+          "description": "Version-control metadata, when the analysis root is inside a version-controlled repository."
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LanguageSummary"
+          },
+          "description": "Languages present, sorted by descending line count, then by language id."
+        },
+        "stats": {
+          "$ref": "#/$defs/RepositoryStats"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "languages",
+        "stats"
+      ],
+      "additionalProperties": false
+    },
+    "RepositoryId": {
+      "type": "string",
+      "description": "`repo:<normalized remote>` (e.g. `repo:github.com/acme/shop`) or `repo:<name>`.",
+      "pattern": "^repo:.+$"
+    },
+    "VcsInfo": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/VcsType"
+        },
+        "remote": {
+          "type": "string",
+          "description": "The `origin` remote, normalized: scheme, credentials and a trailing `.git` removed, `git@host:path` rewritten to `host/path` (e.g. `github.com/acme/shop`)."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "VcsType": {
+      "description": "Version-control systems. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "git"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "LanguageSummary": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "$ref": "#/$defs/LanguageId"
+        },
+        "files": {
+          "$ref": "#/$defs/Count"
+        },
+        "lines": {
+          "$ref": "#/$defs/Count",
+          "description": "Lines in files of this language whose content was read."
+        },
+        "bytes": {
+          "$ref": "#/$defs/Count"
+        }
+      },
+      "required": [
+        "language",
+        "files",
+        "lines",
+        "bytes"
+      ],
+      "additionalProperties": false
+    },
+    "LanguageId": {
+      "type": "string",
+      "description": "Language identifier, e.g. `typescript`, `javascript`, `json`, `markdown`, or `unknown`."
+    },
+    "Count": {
+      "type": "integer",
+      "description": "A non-negative integer count.",
+      "minimum": 0
+    },
+    "RepositoryStats": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "$ref": "#/$defs/Count",
+          "description": "Files listed in the document."
+        },
+        "analyzedFiles": {
+          "$ref": "#/$defs/Count",
+          "description": "Files parsed by a language adapter (analysis status `parsed` or `partial`)."
+        },
+        "failedFiles": {
+          "$ref": "#/$defs/Count",
+          "description": "Files whose reading or parsing failed (analysis status `failed`)."
+        },
+        "directories": {
+          "$ref": "#/$defs/Count"
+        },
+        "packages": {
+          "$ref": "#/$defs/Count"
+        },
+        "symbols": {
+          "$ref": "#/$defs/Count"
+        },
+        "externals": {
+          "$ref": "#/$defs/Count"
+        },
+        "edges": {
+          "$ref": "#/$defs/Count"
+        },
+        "endpoints": {
+          "$ref": "#/$defs/Count"
+        },
+        "lines": {
+          "$ref": "#/$defs/Count",
+          "description": "Lines in files whose content was read."
+        },
+        "bytes": {
+          "$ref": "#/$defs/Count"
+        },
+        "unresolvedImports": {
+          "$ref": "#/$defs/Count",
+          "description": "Import entries whose specifier could not be resolved (see `diagnostics`)."
+        },
+        "unresolvedReferences": {
+          "$ref": "#/$defs/Count",
+          "description": "References recorded by adapters that the linker could not bind to a declaration. References an adapter cannot express (e.g. calls on values of unknown type) are not recorded and therefore not counted."
+        }
+      },
+      "required": [
+        "files",
+        "analyzedFiles",
+        "failedFiles",
+        "directories",
+        "packages",
+        "symbols",
+        "externals",
+        "edges",
+        "endpoints",
+        "lines",
+        "bytes",
+        "unresolvedImports",
+        "unresolvedReferences"
+      ],
+      "additionalProperties": false
+    },
+    "SnapshotInfo": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/SnapshotKind"
+        },
+        "revision": {
+          "$ref": "#/$defs/RevisionInfo",
+          "description": "The analyzed commit, or the working tree's `HEAD` commit."
+        },
+        "subdirectory": {
+          "type": "string",
+          "description": "The analysis root relative to the version-control top-level directory (POSIX, \"\" when equal). Absent when the root is not inside a repository. Consumers keying caches by commit must include it."
+        },
+        "contentDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over the listed files: for each file in path order the line `<path>\\t<hash or ->\\t<size>\\n`. Identifies the analyzed content independently of how it was obtained."
+        },
+        "analysisDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over everything besides content that influences results: the effective Katedrala configuration and options, and the versions of Katedrala, its adapters and plugins. Documents with equal content and analysis digests are identical."
+        },
+        "projectConfigurationDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over the project configuration files adapters read (e.g. `tsconfig.json`, `package.json`), already part of the content; reported separately to explain resolution changes."
+        }
+      },
+      "required": [
+        "kind",
+        "contentDigest",
+        "analysisDigest",
+        "projectConfigurationDigest"
+      ],
+      "additionalProperties": false,
+      "description": "What exactly was analyzed."
+    },
+    "SnapshotKind": {
+      "description": "Kinds of snapshot. `working-tree`: files as they are on disk. `git-revision`: files as committed in a git revision. `in-memory`: files supplied programmatically. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "working-tree",
+            "git-revision",
+            "in-memory"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "RevisionInfo": {
+      "type": "object",
+      "properties": {
+        "commit": {
+          "type": "string",
+          "description": "Full commit hash."
+        },
+        "committedAt": {
+          "type": "string",
+          "description": "Committer date, ISO-8601 UTC.",
+          "format": "date-time"
+        },
+        "subject": {
+          "type": "string",
+          "description": "First line of the commit message."
+        },
+        "dirty": {
+          "type": "boolean",
+          "description": "For working-tree snapshots: whether analyzed files differ from `HEAD`."
+        }
+      },
+      "required": [
+        "commit"
+      ],
+      "additionalProperties": false
+    },
+    "DocumentDetail": {
+      "type": "object",
+      "properties": {
+        "symbols": {
+          "type": "boolean",
+          "description": "Whether `symbols` lists declarations. When false, `symbols` is empty and file `symbols` lists are empty."
+        },
+        "relationships": {
+          "type": "string",
+          "enum": [
+            "symbol",
+            "file"
+          ],
+          "description": "`symbol`: code relationships keep symbol endpoints. `file`: symbol endpoints are lifted to their files (and aggregated), so every edge connects files, packages and externals."
+        },
+        "symbolMetrics": {
+          "type": "boolean",
+          "description": "Whether `metrics.units` includes symbol-level metrics."
+        }
+      },
+      "required": [
+        "symbols",
+        "relationships",
+        "symbolMetrics"
+      ],
+      "additionalProperties": false,
+      "description": "How much detail a document contains. Large repositories may be analyzed at file granularity to keep documents small; consumers use this to distinguish \"omitted\" from \"none\"."
+    },
+    "DocumentLimits": {
+      "type": "object",
+      "properties": {
+        "maxProvenancePerEdge": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Count"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Maximum provenance entries per edge; null means unbounded."
+        },
+        "maxLocationsPerFinding": {
+          "$ref": "#/$defs/Count",
+          "description": "Maximum `locations` per anomaly or violation."
+        },
+        "maxExamplesPerDependency": {
+          "$ref": "#/$defs/Count",
+          "description": "Maximum `examples` per aggregated dependency."
+        },
+        "maxEvidenceEntities": {
+          "$ref": "#/$defs/Count",
+          "description": "Maximum `entities` per evidence item."
+        }
+      },
+      "required": [
+        "maxProvenancePerEdge",
+        "maxLocationsPerFinding",
+        "maxExamplesPerDependency",
+        "maxEvidenceEntities"
+      ],
+      "additionalProperties": false,
+      "description": "Bounds applied to lists in the document. Every bounded list documents which bound applies."
+    },
+    "DirectoryEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/DirectoryId"
+        },
+        "path": {
+          "type": "string",
+          "description": "\"\" for the analysis root."
+        },
+        "name": {
+          "type": "string",
+          "description": "Last path segment; the repository name for the root."
+        },
+        "parent": {
+          "$ref": "#/$defs/DirectoryId",
+          "description": "Absent for the root."
+        },
+        "directories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DirectoryId"
+          },
+          "description": "Direct child directories, sorted by id."
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          },
+          "description": "Files directly inside this directory, sorted by id."
+        }
+      },
+      "required": [
+        "id",
+        "path",
+        "name",
+        "directories",
+        "files"
+      ],
+      "additionalProperties": false
+    },
+    "DirectoryId": {
+      "type": "string",
+      "description": "`dir:<path>`; the analysis root is `dir:`.",
+      "pattern": "^dir:"
+    },
+    "FileId": {
+      "type": "string",
+      "description": "`file:<path>`",
+      "pattern": "^file:.+$"
+    },
+    "PackageEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/PackageId",
+          "description": "`pkg:<ecosystem>:<path>`; stable across renames of the declared name."
+        },
+        "name": {
+          "type": "string",
+          "description": "Declared name; for unnamed manifests, the manifest directory path (\".\" for the root)."
+        },
+        "ecosystem": {
+          "type": "string",
+          "description": "Packaging ecosystem, e.g. `npm`."
+        },
+        "path": {
+          "type": "string",
+          "description": "Directory containing the manifest (\"\" for the analysis root)."
+        },
+        "manifest": {
+          "$ref": "#/$defs/FileId",
+          "description": "The manifest file."
+        },
+        "version": {
+          "type": "string"
+        },
+        "private": {
+          "type": "boolean",
+          "description": "Whether the manifest marks the package as not publishable."
+        },
+        "workspaceRoot": {
+          "type": "boolean",
+          "description": "Whether this manifest declares a workspace (monorepo root)."
+        },
+        "declaredDependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PackageDependency"
+          },
+          "description": "Dependencies declared in the manifest, sorted by name, scope, version range, then target."
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AggregatedDependency"
+          },
+          "description": "Observed code-level dependencies of the package's files on other packages and externals."
+        },
+        "dependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AggregatedDependency"
+          },
+          "description": "Packages whose files depend on this package's files."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "ecosystem",
+        "path",
+        "manifest",
+        "declaredDependencies",
+        "dependencies",
+        "dependents"
+      ],
+      "additionalProperties": false,
+      "description": "A unit declared by a package manifest (e.g. an npm `package.json`)."
+    },
+    "PackageId": {
+      "type": "string",
+      "description": "`pkg:<ecosystem>:<manifest directory>`, e.g. `pkg:npm:packages/api`; the root manifest is `pkg:npm:`.",
+      "pattern": "^pkg:[a-z0-9]+(?:-[a-z0-9]+)*:"
+    },
+    "PackageDependency": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Dependency name as declared."
+        },
+        "versionRange": {
+          "type": "string",
+          "description": "Version range or protocol as declared (e.g. `^1.2.0`, `workspace:*`)."
+        },
+        "scope": {
+          "$ref": "#/$defs/DependencyScope"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageId"
+            },
+            {
+              "$ref": "#/$defs/ExternalId"
+            }
+          ],
+          "description": "The workspace package (internal dependency) or external entity the declaration refers to."
+        }
+      },
+      "required": [
+        "name",
+        "versionRange",
+        "scope",
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "DependencyScope": {
+      "description": "Dependency scopes. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "production",
+            "development",
+            "peer",
+            "optional",
+            "build",
+            "provided"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "ExternalId": {
+      "type": "string",
+      "description": "`ext:<namespace>:<name>`, e.g. `ext:npm:react`, `ext:node:fs`, `ext:env:DATABASE_URL`.",
+      "pattern": "^ext:[^:]+:.+$"
+    },
+    "AggregatedDependency": {
+      "type": "object",
+      "properties": {
+        "entity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PackageId"
+            },
+            {
+              "$ref": "#/$defs/ComponentId"
+            },
+            {
+              "$ref": "#/$defs/ModuleId"
+            },
+            {
+              "$ref": "#/$defs/LayerId"
+            },
+            {
+              "$ref": "#/$defs/ExternalId"
+            }
+          ],
+          "description": "The unit on the other side."
+        },
+        "edgeCount": {
+          "$ref": "#/$defs/Count",
+          "description": "Distinct underlying edges."
+        },
+        "observations": {
+          "$ref": "#/$defs/Count",
+          "description": "Sum of the underlying edges' observations."
+        },
+        "runtimeEdgeCount": {
+          "$ref": "#/$defs/Count",
+          "description": "Underlying edges that are not type-only (0 means the dependency vanishes at runtime)."
+        },
+        "kindCounts": {
+          "$ref": "#/$defs/EdgeKindCounts",
+          "description": "Underlying edge count per relationship kind."
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeId"
+          },
+          "description": "Representative underlying edges: sorted by descending observations, then id; truncated to `limits.maxExamplesPerDependency`."
+        }
+      },
+      "required": [
+        "entity",
+        "edgeCount",
+        "observations",
+        "runtimeEdgeCount",
+        "kindCounts",
+        "examples"
+      ],
+      "additionalProperties": false,
+      "description": "An aggregated dependency between two units, derived by lifting the relationships between their files (including symbol-level relationships) to the units, using the metrics projection (`metrics.projection`), so that aggregated dependencies agree with unit metrics. In a `dependencies` list `entity` is the depended-upon unit; in a `dependents` list it is the depending unit."
+    },
+    "ComponentId": {
+      "type": "string",
+      "description": "`cmp:<path>`; a component rooted at the analysis root is `cmp:`.",
+      "pattern": "^cmp:"
+    },
+    "ModuleId": {
+      "type": "string",
+      "description": "`mod:<module key>`: the configured name, or the anchor of an inferred module (see docs/IR.md).",
+      "pattern": "^mod:.+$"
+    },
+    "LayerId": {
+      "type": "string",
+      "description": "`layer:<name>`",
+      "pattern": "^layer:.+$"
+    },
+    "EdgeKindCounts": {
+      "description": "Number of relationships per kind; kinds with none are omitted. Keys are serialized sorted.",
+      "type": "object",
+      "propertyNames": {
+        "anyOf": [
+          {
+            "enum": [
+              "imports",
+              "re-exports",
+              "calls",
+              "instantiates",
+              "extends",
+              "implements",
+              "references-type",
+              "uses",
+              "decorated-by",
+              "depends-on-package",
+              "reads-configuration",
+              "calls-service",
+              "accesses-data"
+            ]
+          },
+          {
+            "type": "string",
+            "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        ]
+      },
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "EdgeId": {
+      "type": "string",
+      "description": "`edge:<16 lowercase hex digits>`, derived from the edge's kind, source and target.",
+      "pattern": "^edge:[0-9a-f]{16}$"
+    },
+    "FileEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/FileId"
+        },
+        "path": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Last path segment."
+        },
+        "directory": {
+          "$ref": "#/$defs/DirectoryId"
+        },
+        "package": {
+          "$ref": "#/$defs/PackageId",
+          "description": "The package that owns the file (nearest enclosing manifest), if any."
+        },
+        "language": {
+          "$ref": "#/$defs/LanguageId"
+        },
+        "dialect": {
+          "type": "string",
+          "description": "Adapter-specific dialect, e.g. `tsx`, `jsx`, `dts`, `esm`, `cjs`."
+        },
+        "role": {
+          "$ref": "#/$defs/FileRole"
+        },
+        "size": {
+          "$ref": "#/$defs/Count",
+          "description": "Size in bytes of the file as stored (before text normalization)."
+        },
+        "lines": {
+          "$ref": "#/$defs/Count",
+          "description": "Line count of the normalized text, for files whose content was read."
+        },
+        "hash": {
+          "type": "string",
+          "description": "`sha256:<hex>` of the normalized text encoded as UTF-8, for files whose content was read. Changes in line endings alone do not change it.",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "analysis": {
+          "$ref": "#/$defs/FileAnalysis"
+        },
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Package or namespace names the file declares (e.g. Java `package`, C# `namespace`). Omitted when none."
+        },
+        "symbols": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SymbolId"
+          },
+          "description": "Symbols declared in this file, in source order."
+        },
+        "imports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImportEntry"
+          },
+          "description": "Module imports, in source order."
+        },
+        "exports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ExportEntry"
+          },
+          "description": "Exported names, sorted by name, then `from`, then `typeOnly`."
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RoleEntry"
+          },
+          "description": "Architectural roles, sorted by role. Omitted when none."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Free-form labels, sorted."
+        }
+      },
+      "required": [
+        "id",
+        "path",
+        "name",
+        "directory",
+        "language",
+        "role",
+        "size",
+        "analysis",
+        "symbols",
+        "imports",
+        "exports",
+        "tags"
+      ],
+      "additionalProperties": false
+    },
+    "FileRole": {
+      "type": "string",
+      "enum": [
+        "source",
+        "test",
+        "declaration",
+        "configuration",
+        "script",
+        "generated",
+        "vendored",
+        "documentation",
+        "asset",
+        "data",
+        "other"
+      ],
+      "description": "Broad purpose of a file. Classification is heuristic (paths, names, manifests) and configurable.\n- `source`: production code. `test`: test code. `declaration`: type declarations only (`*.d.ts`).\n- `configuration`: tool or build configuration. `script`: build/maintenance scripts.\n- `generated`: generated code. `vendored`: third-party code copied into the repository.\n- `documentation`, `asset`, `data`, `other`: non-code files."
+    },
+    "FileAnalysis": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "parsed",
+            "partial",
+            "unsupported",
+            "skipped",
+            "failed"
+          ]
+        },
+        "adapter": {
+          "type": "string",
+          "description": "`<adapter id>@<adapter version>` that processed the file."
+        },
+        "reason": {
+          "type": "string"
+        },
+        "syntaxErrors": {
+          "$ref": "#/$defs/Count",
+          "description": "Number of syntax errors reported by the parser."
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "description": "How deeply a file was analyzed. Katedrala never pretends a file was analyzed when it was not.\n- `parsed`: parsed without syntax errors. `partial`: parsed with syntax errors; extraction is best-effort.\n- `unsupported`: no language adapter handles this file (listed for completeness only).\n- `skipped`: deliberately not parsed (size limit, generated/vendored, configuration); see `reason`.\n- `failed`: reading or parsing failed; see `reason`."
+    },
+    "SymbolId": {
+      "type": "string",
+      "description": "`sym:<escaped file path>#<qualified name>[~<disambiguator>]`",
+      "pattern": "^sym:[^#]+#.+$"
+    },
+    "ImportEntry": {
+      "type": "object",
+      "properties": {
+        "specifier": {
+          "type": "string",
+          "description": "The specifier exactly as written; for non-literal specifiers, the source text."
+        },
+        "kind": {
+          "$ref": "#/$defs/ImportKind"
+        },
+        "mechanism": {
+          "$ref": "#/$defs/EdgeMechanism",
+          "description": "The syntax that expresses the import."
+        },
+        "typeOnly": {
+          "type": "boolean",
+          "description": "True when the import is used only in type positions (e.g. `import type`)."
+        },
+        "line": {
+          "$ref": "#/$defs/LineNumber"
+        },
+        "column": {
+          "$ref": "#/$defs/ColumnNumber"
+        },
+        "from": {
+          "$ref": "#/$defs/SymbolId",
+          "description": "The innermost declaration containing the import (e.g. a function with a dynamic import)."
+        },
+        "wildcard": {
+          "type": "boolean",
+          "description": "The import brings every exported name into scope (`from x import *`, Java `.*`)."
+        },
+        "global": {
+          "type": "boolean",
+          "description": "The import applies to every file of its project (C# `global using`)."
+        },
+        "optional": {
+          "type": "boolean",
+          "description": "Failure to resolve at runtime is handled (e.g. Python optional imports)."
+        },
+        "resolution": {
+          "$ref": "#/$defs/ImportResolution"
+        }
+      },
+      "required": [
+        "specifier",
+        "kind",
+        "mechanism",
+        "typeOnly",
+        "line",
+        "column",
+        "resolution"
+      ],
+      "additionalProperties": false
+    },
+    "ImportKind": {
+      "description": "The semantic kind of an import. The syntax used is recorded separately in `mechanism`.\n- `static`: a dependency resolved when the importing module loads (ES `import`, CommonJS `require`, TypeScript `import x = require()`, type-only imports, Java/Go/Python imports).\n- `dynamic`: loaded on demand (`import()`).\n- `re-export`: re-exports another module's names (`export ... from`).\n- `side-effect`: loaded only for its side effects (`import \"x\"`).\n- `include`: textual or declaration inclusion (`/// <reference path>`).\n- `module-declaration`: declares a child module rather than depending on it (e.g. Rust `mod x;`).",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "static",
+            "dynamic",
+            "re-export",
+            "side-effect",
+            "include",
+            "module-declaration"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "EdgeMechanism": {
+      "description": "The syntactic construct that expresses a relationship. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "import-declaration",
+            "side-effect-import",
+            "dynamic-import",
+            "require-call",
+            "import-equals",
+            "export-from",
+            "export-all",
+            "triple-slash-reference",
+            "type-import",
+            "call-expression",
+            "new-expression",
+            "tagged-template",
+            "extends-clause",
+            "implements-clause",
+            "type-annotation",
+            "jsx-element",
+            "decorator",
+            "value-reference",
+            "manifest-dependency",
+            "environment-read",
+            "http-request",
+            "data-access",
+            "framework-convention"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "LineNumber": {
+      "type": "integer",
+      "description": "A 1-based line number.",
+      "minimum": 1
+    },
+    "ColumnNumber": {
+      "type": "integer",
+      "description": "A 1-based column number in UTF-16 code units.",
+      "minimum": 1
+    },
+    "ImportResolution": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "const": "resolved",
+              "description": "Points to one or more files in the document (several for package- or namespace-level imports)."
+            },
+            "targets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FileId"
+              },
+              "description": "Sorted."
+            },
+            "method": {
+              "$ref": "#/$defs/ResolutionMethod"
+            },
+            "unit": {
+              "type": "string",
+              "description": "The imported unit when it is not a single file (a Go package path, a Java package, a namespace)."
+            }
+          },
+          "required": [
+            "status",
+            "targets",
+            "method"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "const": "external",
+              "description": "A third-party package."
+            },
+            "target": {
+              "$ref": "#/$defs/ExternalId"
+            },
+            "method": {
+              "$ref": "#/$defs/ResolutionMethod"
+            }
+          },
+          "required": [
+            "status",
+            "target",
+            "method"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "const": "builtin",
+              "description": "A platform built-in module."
+            },
+            "target": {
+              "$ref": "#/$defs/ExternalId"
+            }
+          },
+          "required": [
+            "status",
+            "target"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "const": "unresolved",
+              "description": "Expected to resolve but did not."
+            },
+            "reason": {
+              "type": "string"
+            },
+            "method": {
+              "$ref": "#/$defs/ResolutionMethod"
+            }
+          },
+          "required": [
+            "status",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "const": "non-literal",
+              "description": "The specifier is not statically known (e.g. `import(variable)`)."
+            }
+          },
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "description": "Outcome of resolving an import specifier."
+    },
+    "ResolutionMethod": {
+      "description": "How the target of a relationship was determined. Values prefixed with `x-` are reserved for plugins.\n- `relative-path`: a relative or absolute path specifier.\n- `tsconfig-paths`: a `paths` mapping from a tsconfig. `base-url`: resolved against a tsconfig `baseUrl`.\n- `package-imports`: a `#subpath` from the `imports` field of package.json.\n- `workspace-package`: a bare specifier naming a package of the same repository.\n- `package-self-reference`: a package importing itself by name.\n- `external-package`: a bare specifier naming a third-party package.\n- `builtin-module`: a platform built-in (e.g. `node:fs`).\n- `ambient-module`: a `declare module \"x\"` declaration.\n- `local-declaration`: an identifier bound to a declaration in the same file.\n- `import-binding`: an identifier bound by an import, followed to the exporting declaration.\n- `namespace-member`: a member access on a namespace import or namespace declaration.\n- `re-export-chain`: followed through one or more `export ... from` statements (see `Provenance.via`).\n- `global-scope`: an unbound identifier found among global declarations of other files.\n- `package-scope`: an unbound identifier found in the same language-level package (e.g. Go, Java).\n- `declared-type`: a member access on a value whose declared type names a class or interface.\n- `constructor-type`: a member access on a value created with `new` / a constructor.\n- `return-type`: a member access on the result of a call whose declared return type is known.\n- `inherited-member`: a member found on a base type.\n- `manifest`: declared in a package manifest.\n- `framework-convention`: established by a framework detector (e.g. dependency injection).",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "relative-path",
+            "tsconfig-paths",
+            "base-url",
+            "package-imports",
+            "workspace-package",
+            "package-self-reference",
+            "external-package",
+            "builtin-module",
+            "ambient-module",
+            "local-declaration",
+            "import-binding",
+            "namespace-member",
+            "re-export-chain",
+            "global-scope",
+            "package-scope",
+            "declared-type",
+            "constructor-type",
+            "return-type",
+            "inherited-member",
+            "manifest",
+            "framework-convention"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "ExportEntry": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Exported name; `default` for default exports; `=` for an export assignment (`export =`, `module.exports =`); `*` for `export * from`."
+        },
+        "symbols": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SymbolId"
+          },
+          "description": "The declarations the name denotes, resolved through re-exports (several when one name denotes both a value and a type, e.g. `const User` and `type User`). Sorted. Omitted when unknown."
+        },
+        "from": {
+          "type": "string",
+          "description": "For re-exports: the specifier being re-exported from."
+        },
+        "target": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FileId"
+            },
+            {
+              "$ref": "#/$defs/ExternalId"
+            }
+          ],
+          "description": "For re-exports: the resolved module."
+        },
+        "typeOnly": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "typeOnly"
+      ],
+      "additionalProperties": false
+    },
+    "RoleEntry": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/ArchitecturalRole"
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence"
+        },
+        "source": {
+          "type": "string",
+          "description": "The producer: a framework detector id (e.g. `nestjs`), `naming`, `location` or `configuration`."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        }
+      },
+      "required": [
+        "role",
+        "confidence",
+        "source",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "description": "An architectural role with the evidence behind it."
+    },
+    "ArchitecturalRole": {
+      "description": "Architectural roles assigned by framework detectors, naming conventions or configuration. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "http-controller",
+            "route-definition",
+            "middleware",
+            "service",
+            "repository",
+            "data-model",
+            "data-transfer-object",
+            "module-definition",
+            "external-client",
+            "configuration-provider",
+            "ui-component",
+            "ui-page",
+            "state-store",
+            "utility"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "Confidence": {
+      "type": "number",
+      "description": "A value in the closed interval [0, 1] expressing how strongly evidence supports a conclusion.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "description": "Stable kebab-case identifier of the signal, e.g. `internal-dependency-ratio`."
+        },
+        "description": {
+          "type": "string",
+          "description": "A complete sentence explaining the observation, e.g. \"87% of dependencies stay within the cluster\"."
+        },
+        "value": {
+          "type": "number",
+          "description": "The measured value, when the signal is numeric."
+        },
+        "weight": {
+          "type": "number",
+          "description": "The relative weight of this signal in the conclusion, when the conclusion is a weighted aggregate."
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Entities that exemplify the observation: sorted, and bounded by `limits.maxEvidenceEntities` (selection: sort by id, then truncate)."
+        }
+      },
+      "required": [
+        "signal",
+        "description"
+      ],
+      "additionalProperties": false,
+      "description": "One measurable observation supporting a conclusion. Machine-readable (`signal`, `value`) and human-readable (`description`)."
+    },
+    "EntityId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RepositoryId"
+        },
+        {
+          "$ref": "#/$defs/DirectoryId"
+        },
+        {
+          "$ref": "#/$defs/FileId"
+        },
+        {
+          "$ref": "#/$defs/SymbolId"
+        },
+        {
+          "$ref": "#/$defs/PackageId"
+        },
+        {
+          "$ref": "#/$defs/ExternalId"
+        },
+        {
+          "$ref": "#/$defs/ComponentId"
+        },
+        {
+          "$ref": "#/$defs/ModuleId"
+        },
+        {
+          "$ref": "#/$defs/LayerId"
+        },
+        {
+          "$ref": "#/$defs/EndpointId"
+        }
+      ],
+      "description": "Any addressable architectural entity."
+    },
+    "EndpointId": {
+      "type": "string",
+      "description": "`endpoint:<16 lowercase hex digits>`, derived from method, path and handler.",
+      "pattern": "^endpoint:[0-9a-f]{16}$"
+    },
+    "SymbolEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/SymbolId"
+        },
+        "name": {
+          "type": "string",
+          "description": "Simple name, e.g. `charge`; `default` for anonymous default exports."
+        },
+        "qualifiedName": {
+          "type": "string",
+          "description": "Dot-separated path from the file scope, e.g. `PaymentService.charge`. Within each segment `%`, `.` and `~` are percent-encoded (`%25`, `%2E`, `%7E`), so the dots are unambiguous separators."
+        },
+        "kind": {
+          "$ref": "#/$defs/SymbolKind"
+        },
+        "category": {
+          "$ref": "#/$defs/SymbolCategory"
+        },
+        "file": {
+          "$ref": "#/$defs/FileId"
+        },
+        "parent": {
+          "$ref": "#/$defs/SymbolId",
+          "description": "Lexically enclosing symbol (class of a method, namespace of a function)."
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SymbolId"
+            },
+            {
+              "$ref": "#/$defs/ExternalId"
+            }
+          ],
+          "description": "Semantic owner when it differs from the lexical parent: the type a member belongs to although it is declared elsewhere (Go methods, Rust `impl` blocks, extension methods, module augmentation)."
+        },
+        "partOf": {
+          "$ref": "#/$defs/SymbolId",
+          "description": "For partial declarations (e.g. C# `partial class`): the canonical declaration."
+        },
+        "range": {
+          "$ref": "#/$defs/Range",
+          "description": "The implementation declaration when one exists (e.g. the overload with a body), else the first."
+        },
+        "declarations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SymbolDeclaration"
+          },
+          "description": "Every merged declaration (overloads, declaration merging), when there is more than one, in source order."
+        },
+        "exported": {
+          "type": "boolean",
+          "description": "Whether the symbol is visible outside its language-level module unit: its file for ECMAScript and Python (exported), its package for Go and Java."
+        },
+        "visibility": {
+          "$ref": "#/$defs/Visibility"
+        },
+        "abstract": {
+          "type": "boolean",
+          "description": "For types: whether the type is abstract in Martin's sense — an interface or trait declaring behaviour (methods), or an abstract class. Data-only interfaces are not abstract."
+        },
+        "modifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SymbolModifier"
+          },
+          "description": "Sorted. Omitted when empty."
+        },
+        "decorators": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DecoratorEntry"
+          },
+          "description": "Decorators / annotations in source order. Omitted when empty."
+        },
+        "signature": {
+          "type": "string",
+          "description": "Single-line declaration signature, at most 200 characters."
+        },
+        "role": {
+          "$ref": "#/$defs/FileRole",
+          "description": "The symbol's role when it differs from its file's (e.g. an in-file test module)."
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RoleEntry"
+          },
+          "description": "Architectural roles, sorted by role. Omitted when none."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Free-form labels, sorted. Omitted when empty."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "qualifiedName",
+        "kind",
+        "category",
+        "file",
+        "range",
+        "exported"
+      ],
+      "additionalProperties": false
+    },
+    "SymbolKind": {
+      "description": "Kind of a declared symbol. Values prefixed with `x-` are reserved for plugins (which must also give a `SymbolCategory`).\n- `module`: a module declaration (`declare module \"x\" {}`). `namespace`: a namespace / internal module.\n- `type-alias`: an alias of another type. `type`: a distinct named type (e.g. Go `type Celsius float64`).\n- `field`: a data member; `property`: a data member with accessor semantics (TS class fields are `property`).\n- `constant`: an immutable binding whose value is not a function or class.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "module",
+            "namespace",
+            "class",
+            "struct",
+            "record",
+            "interface",
+            "trait",
+            "type-alias",
+            "type",
+            "enum",
+            "enum-member",
+            "function",
+            "method",
+            "constructor",
+            "property",
+            "field",
+            "accessor",
+            "event",
+            "variable",
+            "constant",
+            "macro"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "SymbolCategory": {
+      "type": "string",
+      "enum": [
+        "type",
+        "callable",
+        "value",
+        "namespace"
+      ],
+      "description": "A closed, coarse classification of every symbol kind, for consumers that do not know a kind: `type` (declares a type), `callable` (can be invoked), `value` (holds data), `namespace` (groups names)."
+    },
+    "Range": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/Position"
+        },
+        "end": {
+          "$ref": "#/$defs/Position"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "additionalProperties": false,
+      "description": "A contiguous region of a source file. `end` is exclusive."
+    },
+    "Position": {
+      "type": "object",
+      "properties": {
+        "line": {
+          "$ref": "#/$defs/LineNumber"
+        },
+        "column": {
+          "$ref": "#/$defs/ColumnNumber"
+        }
+      },
+      "required": [
+        "line",
+        "column"
+      ],
+      "additionalProperties": false,
+      "description": "A position in a source file."
+    },
+    "SymbolDeclaration": {
+      "type": "object",
+      "properties": {
+        "range": {
+          "$ref": "#/$defs/Range"
+        },
+        "signature": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "range"
+      ],
+      "additionalProperties": false
+    },
+    "Visibility": {
+      "type": "string",
+      "enum": [
+        "private",
+        "file",
+        "protected",
+        "package",
+        "module",
+        "public"
+      ],
+      "description": "Language-neutral visibility, from narrowest to widest: `private` (own declaration), `file`, `protected` (declaration and subtypes), `package` (language-level package, e.g. Java package-private, Go unexported), `module` (compilation unit, e.g. C# `internal`, Rust `pub(crate)`), `public`."
+    },
+    "SymbolModifier": {
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "abstract",
+            "static",
+            "async",
+            "generator",
+            "readonly",
+            "declare",
+            "override",
+            "optional",
+            "final",
+            "sealed",
+            "virtual",
+            "partial",
+            "extension",
+            "const",
+            "default",
+            "unsafe"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "DecoratorEntry": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Decorator name as written, without `@` (e.g. `Controller`, `nest.Injectable`)."
+        },
+        "invoked": {
+          "type": "boolean",
+          "description": "Whether the decorator is invoked (`@Foo()`) rather than referenced (`@Foo`)."
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Source text of each argument (line endings normalized), each truncated to at most 200 characters."
+        }
+      },
+      "required": [
+        "name",
+        "invoked",
+        "arguments"
+      ],
+      "additionalProperties": false
+    },
+    "ExternalEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ExternalId"
+        },
+        "kind": {
+          "$ref": "#/$defs/ExternalKind"
+        },
+        "namespace": {
+          "type": "string",
+          "description": "The identifier namespace (e.g. `npm`, `node`, `pypi`, `env`, `http`). Equal to the second segment of the id. See docs/IR.md for the registry of namespaces."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name within the namespace. For packages, the distribution name used by the package manager (the name a manifest declares), not necessarily the name used in imports."
+        },
+        "declared": {
+          "type": "boolean",
+          "description": "For packages: whether every package whose files use this package declares it (in its own manifest or in its workspace root's). `false` indicates at least one undeclared (\"phantom\") usage."
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "namespace",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "ExternalKind": {
+      "description": "Things outside the repository that code depends on. Values prefixed with `x-` are reserved for plugins.\n- `package`: a third-party package. `builtin`: a platform built-in module.\n- `environment-variable`: configuration read from the environment.\n- `service`: a remote service addressed by code, e.g. an HTTP host.\n- `datastore`: a database or storage system. `message-channel`: a queue or topic.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "package",
+            "builtin",
+            "environment-variable",
+            "service",
+            "datastore",
+            "message-channel"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "EdgeEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/EdgeId",
+          "description": "`edge:` + the first 16 hex digits of SHA-256 of `\"<kind>\\n<source>\\n<target>\"`. See docs/IR.md."
+        },
+        "kind": {
+          "$ref": "#/$defs/EdgeKind"
+        },
+        "source": {
+          "$ref": "#/$defs/NodeId"
+        },
+        "target": {
+          "$ref": "#/$defs/NodeId"
+        },
+        "observations": {
+          "$ref": "#/$defs/Count",
+          "description": "Total number of observations of this relationship (independent of how many are listed)."
+        },
+        "typeOnly": {
+          "type": "boolean",
+          "description": "True when every observation is in a type-only position (no use as a value)."
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence",
+          "description": "Confidence that the relationship exists: the maximum confidence over its observations."
+        },
+        "provenance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Provenance"
+          },
+          "description": "Observations in canonical order (file, line, column, ...), truncated to `limits.maxProvenancePerEdge`. The list is complete if and only if its length equals `observations`."
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "source",
+        "target",
+        "observations",
+        "typeOnly",
+        "confidence",
+        "provenance"
+      ],
+      "additionalProperties": false
+    },
+    "EdgeKind": {
+      "description": "Relationship kinds. Values prefixed with `x-` are reserved for plugins. The listed endpoints are typical; in documents whose `detail.relationships` is `file`, symbol endpoints are lifted to their files.\n- `imports`: a file imports a module (file → file | external).\n- `re-exports`: a file re-exports from a module (file → file | external).\n- `calls`: code invokes a function or method (symbol | file → symbol | external).\n- `instantiates`: code creates an instance of a class or struct (symbol | file → symbol | external).\n- `extends`: inheritance or embedding (symbol → symbol | external).\n- `implements`: a type implements an interface or trait (symbol → symbol | external).\n- `references-type`: a type position names a type (symbol | file → symbol | external).\n- `uses`: any other value reference, e.g. reading a constant or rendering a JSX component.\n- `decorated-by`: a declaration is decorated or annotated by the target (symbol → symbol | external).\n- `depends-on-package`: a manifest declares a dependency (package → package | external).\n- `reads-configuration`: code reads configuration, e.g. an environment variable (→ external).\n- `calls-service`: code calls a remote service, e.g. an HTTP API (→ external).\n- `accesses-data`: code accesses a datastore or a persistence model (→ external | symbol).",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "imports",
+            "re-exports",
+            "calls",
+            "instantiates",
+            "extends",
+            "implements",
+            "references-type",
+            "uses",
+            "decorated-by",
+            "depends-on-package",
+            "reads-configuration",
+            "calls-service",
+            "accesses-data"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "NodeId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/FileId"
+        },
+        {
+          "$ref": "#/$defs/SymbolId"
+        },
+        {
+          "$ref": "#/$defs/PackageId"
+        },
+        {
+          "$ref": "#/$defs/ExternalId"
+        }
+      ],
+      "description": "Entities that can be the endpoint of a relationship (`EdgeEntity`)."
+    },
+    "Provenance": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "$ref": "#/$defs/FileId",
+          "description": "File containing the observation."
+        },
+        "line": {
+          "$ref": "#/$defs/LineNumber"
+        },
+        "column": {
+          "$ref": "#/$defs/ColumnNumber"
+        },
+        "mechanism": {
+          "$ref": "#/$defs/EdgeMechanism"
+        },
+        "resolution": {
+          "$ref": "#/$defs/ResolutionMethod",
+          "description": "How the target was identified from the construct (the final step when several applied)."
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence",
+          "description": "Confidence that this particular observation denotes the target."
+        },
+        "specifier": {
+          "type": "string",
+          "description": "The module specifier involved, for import-like mechanisms."
+        },
+        "typeOnly": {
+          "type": "boolean",
+          "description": "True when the observation is in a type-only position."
+        },
+        "via": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          },
+          "description": "Re-exporting files traversed between the reference and the declaration, in order."
+        },
+        "detector": {
+          "type": "string",
+          "description": "The framework detector that established the relationship, for `framework-convention`."
+        },
+        "detail": {
+          "type": "string",
+          "description": "Additional explanation, e.g. the member path that could not be resolved further."
+        }
+      },
+      "required": [
+        "file",
+        "line",
+        "column",
+        "mechanism",
+        "resolution",
+        "confidence"
+      ],
+      "additionalProperties": false,
+      "description": "One observation of a relationship."
+    },
+    "EntryPointEntry": {
+      "type": "object",
+      "properties": {
+        "entity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FileId"
+            },
+            {
+              "$ref": "#/$defs/SymbolId"
+            }
+          ]
+        },
+        "kind": {
+          "$ref": "#/$defs/EntryPointKind"
+        },
+        "source": {
+          "type": "string",
+          "description": "What declared it, e.g. `package.json#bin.katedrala`, `nestjs`, `katedrala.config.yaml`."
+        },
+        "package": {
+          "$ref": "#/$defs/PackageId"
+        },
+        "mappedFrom": {
+          "type": "string",
+          "description": "The build output path the entry point was mapped from (e.g. `dist/index.js` → `src/index.ts`)."
+        }
+      },
+      "required": [
+        "entity",
+        "kind",
+        "source"
+      ],
+      "additionalProperties": false,
+      "description": "A declared way into the code: manifest entry points, framework conventions, configuration. Used, among others, to avoid reporting entry points as orphans."
+    },
+    "EntryPointKind": {
+      "description": "Kinds of entry point. Values prefixed with `x-` are reserved for plugins.\n- `main`, `module`, `exports`, `bin`, `types`: package manifest fields.\n- `script`: a manifest script runs the file.\n- `framework`: a framework convention (e.g. a Next.js page, a serverless handler).\n- `configuration`: declared in Katedrala configuration.\n- `convention`: a language convention (e.g. a `main` function).",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "main",
+            "module",
+            "exports",
+            "bin",
+            "types",
+            "script",
+            "framework",
+            "configuration",
+            "convention"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "ComponentEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ComponentId"
+        },
+        "name": {
+          "type": "string",
+          "description": "Directory name, or package name for package components."
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "package",
+            "directory"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "description": "Directory of the component (\"\" for the analysis root)."
+        },
+        "packages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PackageId"
+          },
+          "description": "Packages declared in this directory or owning it, sorted (usually one)."
+        },
+        "parent": {
+          "$ref": "#/$defs/ComponentId"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ComponentId"
+          }
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          },
+          "description": "Files owned directly by this component (not by a descendant component), sorted."
+        },
+        "totals": {
+          "$ref": "#/$defs/UnitTotals",
+          "description": "Totals over the whole subtree (this component and all descendants)."
+        },
+        "modules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ModuleId"
+          },
+          "description": "Modules owning at least one file of the subtree, sorted."
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AggregatedDependency"
+          },
+          "description": "Dependencies of directly owned files on files directly owned by other components."
+        },
+        "dependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AggregatedDependency"
+          },
+          "description": "Components whose directly owned files depend on this component's directly owned files."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "kind",
+        "path",
+        "packages",
+        "children",
+        "files",
+        "totals",
+        "modules",
+        "dependencies",
+        "dependents"
+      ],
+      "additionalProperties": false,
+      "description": "A physical architectural unit: a package root or a source directory."
+    },
+    "UnitTotals": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "$ref": "#/$defs/Count"
+        },
+        "symbols": {
+          "$ref": "#/$defs/Count"
+        },
+        "lines": {
+          "$ref": "#/$defs/Count"
+        }
+      },
+      "required": [
+        "files",
+        "symbols",
+        "lines"
+      ],
+      "additionalProperties": false
+    },
+    "ModuleEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ModuleId",
+          "description": "`mod:<configured name>` for declared modules; `mod:<anchor directory>` or `mod:<anchor directory>#<stem>` for inferred modules."
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name, e.g. `payments`. Unique among declared modules; inferred names may repeat."
+        },
+        "origin": {
+          "type": "string",
+          "enum": [
+            "inferred",
+            "declared"
+          ],
+          "description": "`declared` modules come from configuration; `inferred` modules from evidence."
+        },
+        "anchor": {
+          "$ref": "#/$defs/ModuleAnchor",
+          "description": "Present for inferred modules."
+        },
+        "packages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PackageId"
+          },
+          "description": "Packages owning member files, sorted. Modules may span packages."
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          },
+          "description": "Member files, sorted. Every analyzed source file belongs to at most one module."
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ComponentId"
+          },
+          "description": "Components owning at least one member file, sorted."
+        },
+        "entryPoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          },
+          "description": "Intended public surface: entry files declared in configuration, or barrel/index files at the module's anchor. Sorted."
+        },
+        "publicApi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          },
+          "description": "Member files that files of other modules import or re-export from (actual usage). Sorted."
+        },
+        "inference": {
+          "$ref": "#/$defs/InferenceInfo",
+          "description": "Present for inferred modules."
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AggregatedDependency"
+          }
+        },
+        "dependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AggregatedDependency"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "origin",
+        "packages",
+        "files",
+        "components",
+        "entryPoints",
+        "publicApi",
+        "dependencies",
+        "dependents"
+      ],
+      "additionalProperties": false,
+      "description": "A logical architectural grouping of files."
+    },
+    "ModuleAnchor": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string",
+          "description": "The directory most member files share (see docs/ALGORITHMS.md)."
+        },
+        "stem": {
+          "type": "string",
+          "description": "The common file-name stem, for modules that cut across directories (e.g. `payment`)."
+        }
+      },
+      "required": [
+        "directory"
+      ],
+      "additionalProperties": false,
+      "description": "What an inferred module's identity and name derive from."
+    },
+    "InferenceInfo": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "$ref": "#/$defs/Confidence"
+        },
+        "method": {
+          "type": "string",
+          "description": "Identifier and version of the inference method, e.g. `katedrala/module-clustering@1`."
+        },
+        "reason": {
+          "type": "string",
+          "description": "One-sentence summary of why the conclusion was reached."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "description": "The observations the conclusion is based on, strongest first (ties broken by `signal`)."
+        }
+      },
+      "required": [
+        "confidence",
+        "method",
+        "reason",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "description": "Explanation attached to every inferred (as opposed to directly observed) conclusion. Inference is heuristic: `confidence` expresses how strongly the evidence supports the conclusion."
+    },
+    "LayerEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/LayerId"
+        },
+        "name": {
+          "type": "string"
+        },
+        "origin": {
+          "type": "string",
+          "enum": [
+            "inferred",
+            "declared"
+          ]
+        },
+        "rank": {
+          "$ref": "#/$defs/Count",
+          "description": "Position in the expected dependency order; 0 is the outermost/top layer. Ties are allowed."
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          },
+          "description": "Member files, sorted."
+        },
+        "inference": {
+          "$ref": "#/$defs/InferenceInfo",
+          "description": "Present for inferred layers."
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AggregatedDependency"
+          }
+        },
+        "dependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AggregatedDependency"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "origin",
+        "rank",
+        "files",
+        "dependencies",
+        "dependents"
+      ],
+      "additionalProperties": false,
+      "description": "A horizontal architectural role. Layers partition files: a file belongs to at most one layer.\n\nDependencies are expected to point from a layer to layers of higher `rank` (e.g. `controller` (0) → `service` (1) → `repository` (2)); a dependency toward a lower rank is an \"upward\" dependency."
+    },
+    "EndpointEntity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/EndpointId",
+          "description": "`endpoint:` + 16 hex digits of SHA-256 of `\"<protocol>\\n<method>\\n<path>\\n<handler>\"`."
+        },
+        "protocol": {
+          "$ref": "#/$defs/EndpointProtocol"
+        },
+        "method": {
+          "type": "string",
+          "description": "Upper-case method (e.g. `GET`), or `*` when the endpoint accepts every method."
+        },
+        "path": {
+          "type": "string",
+          "description": "Normalized path template, e.g. `/users/:id`."
+        },
+        "pathComplete": {
+          "type": "boolean",
+          "description": "False when part of the path (e.g. a router prefix) could not be determined statically."
+        },
+        "framework": {
+          "type": "string",
+          "description": "The framework detector that found the endpoint, e.g. `express`."
+        },
+        "handler": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FileId"
+            },
+            {
+              "$ref": "#/$defs/SymbolId"
+            }
+          ],
+          "description": "The code that handles requests."
+        },
+        "location": {
+          "$ref": "#/$defs/SourceLocation",
+          "description": "Where the endpoint is registered or declared."
+        },
+        "inference": {
+          "$ref": "#/$defs/InferenceInfo"
+        }
+      },
+      "required": [
+        "id",
+        "protocol",
+        "method",
+        "path",
+        "pathComplete",
+        "framework",
+        "handler",
+        "location",
+        "inference"
+      ],
+      "additionalProperties": false,
+      "description": "An externally reachable entry into the running system, e.g. an HTTP route."
+    },
+    "EndpointProtocol": {
+      "description": "Endpoint protocols. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "http"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "SourceLocation": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "$ref": "#/$defs/FileId"
+        },
+        "line": {
+          "$ref": "#/$defs/LineNumber"
+        },
+        "column": {
+          "$ref": "#/$defs/ColumnNumber"
+        }
+      },
+      "required": [
+        "file",
+        "line",
+        "column"
+      ],
+      "additionalProperties": false,
+      "description": "A point in a specific file."
+    },
+    "MetricsReport": {
+      "type": "object",
+      "properties": {
+        "projection": {
+          "$ref": "#/$defs/ProjectionInfo"
+        },
+        "definitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MetricDefinition"
+          },
+          "description": "Descriptions of every metric reported, sorted by key."
+        },
+        "system": {
+          "$ref": "#/$defs/SystemMetrics"
+        },
+        "entropy": {
+          "$ref": "#/$defs/EntropyReport"
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UnitMetrics"
+          },
+          "description": "Per-unit metrics for packages, modules, layers, components, files and symbols in the projection (symbols only when `detail.symbolMetrics`), sorted by entity id."
+        }
+      },
+      "required": [
+        "projection",
+        "definitions",
+        "system",
+        "entropy",
+        "units"
+      ],
+      "additionalProperties": false
+    },
+    "ProjectionInfo": {
+      "type": "object",
+      "properties": {
+        "edgeKinds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeKind"
+          },
+          "description": "Relationship kinds counted as dependencies, sorted."
+        },
+        "includeTypeOnly": {
+          "type": "boolean",
+          "description": "Whether type-only relationships count as dependencies."
+        },
+        "fileRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileRole"
+          },
+          "description": "File roles whose files are nodes of the projection (tests are excluded by default), sorted."
+        }
+      },
+      "required": [
+        "edgeKinds",
+        "includeTypeOnly",
+        "fileRoles"
+      ],
+      "additionalProperties": false,
+      "description": "The dependency graph projection that metrics and aggregated dependencies were computed on."
+    },
+    "MetricDefinition": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Key as used in `UnitMetrics` (e.g. `instability`) or in `UnitMetrics.extensions` (`<provider>.<name>`)."
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of the raw value, e.g. `count`, `ratio`, `score`."
+        },
+        "minimum": {
+          "type": "number",
+          "description": "Lower bound of the value range, when bounded."
+        },
+        "maximum": {
+          "type": "number",
+          "description": "Upper bound of the value range, when bounded."
+        },
+        "higherIs": {
+          "type": "string",
+          "enum": [
+            "better",
+            "worse",
+            "neutral"
+          ],
+          "description": "How to read the value for architectural quality."
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AnalysisLevel"
+          },
+          "description": "Levels at which the metric is reported, sorted."
+        },
+        "provider": {
+          "type": "string",
+          "description": "`katedrala` or the id of the metric provider plugin."
+        },
+        "method": {
+          "type": "string",
+          "description": "Formula identifier and version for composite or approximated metrics, e.g. `katedrala/gravity@1`."
+        },
+        "origin": {
+          "type": "string",
+          "enum": [
+            "established",
+            "katedrala-heuristic",
+            "plugin"
+          ],
+          "description": "Whether the metric is an established measure (with a reference) or a Katedrala heuristic."
+        },
+        "reference": {
+          "type": "string",
+          "description": "Literature reference for established measures."
+        }
+      },
+      "required": [
+        "key",
+        "name",
+        "description",
+        "unit",
+        "higherIs",
+        "levels",
+        "provider",
+        "origin"
+      ],
+      "additionalProperties": false,
+      "description": "Self-description of one metric, so consumers can present metrics they do not know."
+    },
+    "AnalysisLevel": {
+      "type": "string",
+      "enum": [
+        "system",
+        "package",
+        "module",
+        "layer",
+        "component",
+        "file",
+        "symbol"
+      ],
+      "description": "Granularity at which a conclusion or a measurement applies. `system` denotes the whole analyzed snapshot."
+    },
+    "SystemMetrics": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "$ref": "#/$defs/Count",
+          "description": "Nodes of the file-level projection."
+        },
+        "dependencies": {
+          "$ref": "#/$defs/Count",
+          "description": "Distinct file → file dependencies in the projection."
+        },
+        "density": {
+          "type": "number",
+          "description": "`dependencies / (files × (files − 1))`; 0 when there are fewer than two files."
+        },
+        "averageFanOut": {
+          "type": "number",
+          "description": "`dependencies / files`; 0 when there are no files."
+        },
+        "cycles": {
+          "type": "object",
+          "properties": {
+            "system": {
+              "$ref": "#/$defs/CycleSummary"
+            },
+            "package": {
+              "$ref": "#/$defs/CycleSummary"
+            },
+            "module": {
+              "$ref": "#/$defs/CycleSummary"
+            },
+            "layer": {
+              "$ref": "#/$defs/CycleSummary"
+            },
+            "component": {
+              "$ref": "#/$defs/CycleSummary"
+            },
+            "file": {
+              "$ref": "#/$defs/CycleSummary"
+            },
+            "symbol": {
+              "$ref": "#/$defs/CycleSummary"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Cycle summaries per level (keys: `package`, `module`, `component`, `file`, ...)."
+        },
+        "propagationCost": {
+          "type": "number",
+          "description": "Propagation cost (MacCormack, Rusnak & Baldwin, 2006): density of the transitive-closure (\"visibility\") matrix including self-visibility; the average share of files a change could reach."
+        },
+        "reachabilityExact": {
+          "type": "boolean",
+          "description": "Whether reachability-based values are exact (false when estimated on very large graphs)."
+        },
+        "cumulativeComponentDependency": {
+          "$ref": "#/$defs/Count",
+          "description": "Lakos (1996): sum over files of the number of files each depends on transitively, including itself."
+        },
+        "averageComponentDependency": {
+          "type": "number",
+          "description": "Lakos (1996): `cumulativeComponentDependency / files`; 0 when there are no files."
+        },
+        "normalizedCumulativeComponentDependency": {
+          "type": "number",
+          "description": "Lakos (1996): cumulative component dependency divided by that of a balanced binary tree with the same number of files; values well above 1 indicate tangled dependency structure. 0 when there are no files."
+        },
+        "maxDepth": {
+          "$ref": "#/$defs/Count",
+          "description": "Length (in dependencies) of the longest dependency chain in the condensed (acyclic) file graph."
+        },
+        "modules": {
+          "$ref": "#/$defs/Count",
+          "description": "Number of modules."
+        },
+        "modularity": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Newman–Girvan modularity of the module partition on the undirected file graph; null when there are no dependencies or no modules."
+        },
+        "crossModuleDependencyRatio": {
+          "type": "number",
+          "description": "Share of file dependencies whose endpoints belong to different modules; 0 when there are none."
+        }
+      },
+      "required": [
+        "files",
+        "dependencies",
+        "density",
+        "averageFanOut",
+        "cycles",
+        "propagationCost",
+        "reachabilityExact",
+        "cumulativeComponentDependency",
+        "averageComponentDependency",
+        "normalizedCumulativeComponentDependency",
+        "maxDepth",
+        "modules",
+        "modularity",
+        "crossModuleDependencyRatio"
+      ],
+      "additionalProperties": false
+    },
+    "CycleSummary": {
+      "type": "object",
+      "properties": {
+        "groups": {
+          "$ref": "#/$defs/Count",
+          "description": "Strongly connected components with more than one unit, or a unit depending on itself."
+        },
+        "unitsInCycles": {
+          "$ref": "#/$defs/Count",
+          "description": "Units belonging to such a component."
+        },
+        "largestGroup": {
+          "$ref": "#/$defs/Count",
+          "description": "Size of the largest such component."
+        },
+        "ratio": {
+          "type": "number",
+          "description": "`unitsInCycles / units`; 0 when there are no units."
+        }
+      },
+      "required": [
+        "groups",
+        "unitsInCycles",
+        "largestGroup",
+        "ratio"
+      ],
+      "additionalProperties": false,
+      "description": "Summary of directed cycles (strongly connected components) at one level."
+    },
+    "EntropyReport": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number"
+        },
+        "rating": {
+          "type": "string",
+          "enum": [
+            "low",
+            "moderate",
+            "high",
+            "severe"
+          ],
+          "description": "Banding of `score` (thresholds documented in docs/ALGORITHMS.md)."
+        },
+        "method": {
+          "type": "string",
+          "description": "Formula identifier and version, e.g. `katedrala/entropy@1`."
+        },
+        "factors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntropyFactor"
+          }
+        }
+      },
+      "required": [
+        "score",
+        "rating",
+        "method",
+        "factors"
+      ],
+      "additionalProperties": false,
+      "description": "Architectural Entropy (a Katedrala heuristic, not an established metric): a decomposable index of structural disorder in [0, 1]. `score = Σ factors[i].contribution`. See docs/ALGORITHMS.md."
+    },
+    "EntropyFactor": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "description": "Stable kebab-case identifier of the signal, e.g. `reach`."
+        },
+        "raw": {
+          "type": "number",
+          "description": "The measurement before normalization, in its natural unit."
+        },
+        "normalized": {
+          "type": "number",
+          "description": "The measurement mapped to [0, 1] by a documented, snapshot-independent transform."
+        },
+        "weight": {
+          "type": "number",
+          "description": "Weight of the term; the weights of one score sum to 1."
+        },
+        "contribution": {
+          "type": "number",
+          "description": "`weight × normalized`."
+        },
+        "description": {
+          "type": "string",
+          "description": "Short explanation of what the raw value means."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "description": "Observations explaining the factor's raw value."
+        },
+        "contributions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entity": {
+                "$ref": "#/$defs/EntityId"
+              },
+              "share": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "entity",
+              "share"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Where the factor comes from: the units contributing most to its raw value, with their share of it (sorted by descending share, then id; bounded). Omitted when the factor is not attributable to units."
+        }
+      },
+      "required": [
+        "contribution",
+        "evidence",
+        "normalized",
+        "raw",
+        "signal",
+        "weight"
+      ],
+      "additionalProperties": false
+    },
+    "UnitMetrics": {
+      "type": "object",
+      "properties": {
+        "entity": {
+          "$ref": "#/$defs/EntityId"
+        },
+        "level": {
+          "$ref": "#/$defs/AnalysisLevel"
+        },
+        "size": {
+          "type": "object",
+          "properties": {
+            "files": {
+              "$ref": "#/$defs/Count"
+            },
+            "symbols": {
+              "$ref": "#/$defs/Count"
+            },
+            "lines": {
+              "$ref": "#/$defs/Count"
+            }
+          },
+          "required": [
+            "files",
+            "symbols",
+            "lines"
+          ],
+          "additionalProperties": false,
+          "description": "Size of the unit (for components: its directly owned files)."
+        },
+        "fanIn": {
+          "$ref": "#/$defs/Count",
+          "description": "Distinct units that depend directly on this unit (Martin's afferent coupling, Ca)."
+        },
+        "fanOut": {
+          "$ref": "#/$defs/Count",
+          "description": "Distinct units this unit depends on directly (Martin's efferent coupling, Ce)."
+        },
+        "instability": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Martin's instability `Ce / (Ca + Ce)`; null when the unit has no dependencies and no dependents."
+        },
+        "types": {
+          "$ref": "#/$defs/Count",
+          "description": "Types declared in the unit (symbols of category `type`, except type aliases; merged declarations count once)."
+        },
+        "abstractTypes": {
+          "$ref": "#/$defs/Count",
+          "description": "Declared types that are abstract (`SymbolEntity.abstract`)."
+        },
+        "abstractness": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Martin's abstractness `abstractTypes / types`; null when `types` is 0."
+        },
+        "distance": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Martin's distance from the main sequence `|A + I − 1|`; null when A or I is null."
+        },
+        "transitiveDependents": {
+          "type": "number",
+          "description": "Units that depend on this unit directly or transitively, excluding itself (estimated when not exact)."
+        },
+        "transitiveDependencies": {
+          "type": "number",
+          "description": "Units this unit depends on directly or transitively, excluding itself (estimated when not exact)."
+        },
+        "depth": {
+          "$ref": "#/$defs/Count",
+          "description": "Length of the longest dependency chain starting at this unit in the condensed graph (0 for leaves)."
+        },
+        "betweenness": {
+          "type": "number",
+          "description": "Normalized betweenness centrality (Freeman 1977, computed with Brandes 2001) in [0, 1]."
+        },
+        "pageRank": {
+          "type": "number",
+          "description": "Relative PageRank on the dependency graph (ComponentRank, Inoue et al. 2005): PageRank × number of units, so the mean is 1 independently of system size."
+        },
+        "structuralRole": {
+          "$ref": "#/$defs/StructuralRole"
+        },
+        "cohesion": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "For components, modules, layers and packages: share of the dependency weight of member files that stays inside the unit, `internal / (internal + outgoing)`; null when member files have no dependencies. Absent for files and symbols."
+        },
+        "cycleGroup": {
+          "$ref": "#/$defs/AnomalyId",
+          "description": "The `dependency-cycle` anomaly of the strongly connected component containing the unit, if any."
+        },
+        "gravity": {
+          "$ref": "#/$defs/GravityScore"
+        },
+        "extensions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "Measurements contributed by metric plugins, keyed `<provider id>.<metric name>`. Omitted when empty."
+        }
+      },
+      "required": [
+        "entity",
+        "level",
+        "size",
+        "fanIn",
+        "fanOut",
+        "instability",
+        "types",
+        "abstractTypes",
+        "abstractness",
+        "distance",
+        "transitiveDependents",
+        "transitiveDependencies",
+        "depth",
+        "betweenness",
+        "pageRank",
+        "structuralRole",
+        "gravity"
+      ],
+      "additionalProperties": false,
+      "description": "Metrics of one unit in its level's projection."
+    },
+    "StructuralRole": {
+      "type": "string",
+      "enum": [
+        "core",
+        "shared",
+        "control",
+        "periphery",
+        "isolated"
+      ],
+      "description": "Core–periphery role of a unit (Baldwin, MacCormack & Rusnak, 2014), from visibility fan-in (VFI) and visibility fan-out (VFO):\n- `core`: high VFI and high VFO (typically members of the largest cyclic group).\n- `shared`: high VFI, low VFO — widely used, depends on little.\n- `control`: low VFI, high VFO — orchestrates many others.\n- `periphery`: low VFI and low VFO. `isolated`: no dependencies and no dependents."
+    },
+    "AnomalyId": {
+      "type": "string",
+      "description": "`anomaly:<type>:<16 lowercase hex digits>`",
+      "pattern": "^anomaly:(?:x-)?[a-z0-9]+(?:-[a-z0-9]+)*:[0-9a-f]{16}$"
+    },
+    "GravityScore": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number"
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTerm"
+          }
+        }
+      },
+      "required": [
+        "score",
+        "terms"
+      ],
+      "additionalProperties": false,
+      "description": "Architectural Gravity (a Katedrala heuristic, not an established metric): how structurally important a unit is to the rest of the system. `score = Σ terms[i].contribution`. Method and normalization are described in `MetricsReport.definitions` (key `gravity`) and docs/ALGORITHMS.md."
+    },
+    "ScoreTerm": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "description": "Stable kebab-case identifier of the signal, e.g. `reach`."
+        },
+        "raw": {
+          "type": "number",
+          "description": "The measurement before normalization, in its natural unit."
+        },
+        "normalized": {
+          "type": "number",
+          "description": "The measurement mapped to [0, 1] by a documented, snapshot-independent transform."
+        },
+        "weight": {
+          "type": "number",
+          "description": "Weight of the term; the weights of one score sum to 1."
+        },
+        "contribution": {
+          "type": "number",
+          "description": "`weight × normalized`."
+        },
+        "description": {
+          "type": "string",
+          "description": "Short explanation of what the raw value means."
+        }
+      },
+      "required": [
+        "signal",
+        "raw",
+        "normalized",
+        "weight",
+        "contribution"
+      ],
+      "additionalProperties": false,
+      "description": "One term of a decomposable score (Architectural Gravity, Architectural Entropy, risk scores). `contribution = weight × normalized` and `score = Σ contribution` (after rounding, within 1e-9)."
+    },
+    "Anomaly": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/AnomalyId",
+          "description": "Directional types: `anomaly:<type>:` + hash of `\"<source>\\n<target>\"`. Other types: hash of the sorted subject ids joined by `\"\\n\"`. See docs/IR.md."
+        },
+        "type": {
+          "$ref": "#/$defs/AnomalyType"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "level": {
+          "$ref": "#/$defs/AnalysisLevel"
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Every entity involved, sorted by id."
+        },
+        "source": {
+          "$ref": "#/$defs/EntityId",
+          "description": "For directional types: the depending unit."
+        },
+        "target": {
+          "$ref": "#/$defs/EntityId",
+          "description": "For directional types: the depended-upon unit."
+        },
+        "title": {
+          "type": "string",
+          "description": "Short title, e.g. \"Dependency cycle between 3 modules\"."
+        },
+        "description": {
+          "type": "string",
+          "description": "Explanation in complete sentences."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "description": "Strongest first (ties broken by signal). For cycles, includes representative cycle paths."
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence",
+          "description": "How strongly the evidence supports the anomaly."
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeId"
+          },
+          "description": "Relationships that constitute the anomaly (e.g. the edges inside a cycle), sorted."
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SourceLocation"
+          },
+          "description": "Places to look at, sorted, truncated to `limits.maxLocationsPerFinding`."
+        },
+        "suggestion": {
+          "type": "string",
+          "description": "A concrete, evidence-based suggestion, when one exists."
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "severity",
+        "level",
+        "subjects",
+        "title",
+        "description",
+        "evidence",
+        "confidence",
+        "edges",
+        "locations"
+      ],
+      "additionalProperties": false
+    },
+    "AnomalyType": {
+      "description": "Anomaly types. Values prefixed with `x-` are reserved for plugins. Directional types (marked →) set `source` and `target`; the others describe a set of `subjects`.\n- `dependency-cycle`: one strongly connected component (subjects: its members).\n- `god-component`: a unit with outlying size, fan-in and/or fan-out (subjects: the unit).\n- `hub`: a unit with outlying centrality (subjects: the unit).\n- `boundary-bypass` →: a unit uses another module's internals although the module declares entry points.\n- `upward-dependency` →: a dependency against the expected layer direction.\n- `unstable-dependency` →: a dependency on a less stable unit (Stable Dependencies Principle).\n- `coupled-cluster`: a group of units with outlying mutual dependency density (subjects: the group).\n- `orphan`: a unit with no meaningful connectivity that is not a known entry point (subjects: the unit).\n- `zone-of-pain`: concrete and stable with many dependents (subjects: the unit).\n- `zone-of-uselessness`: abstract and unstable (subjects: the unit).\n- `undeclared-dependency` →: a package used by code but not declared by the owning manifest.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "dependency-cycle",
+            "god-component",
+            "hub",
+            "boundary-bypass",
+            "upward-dependency",
+            "unstable-dependency",
+            "coupled-cluster",
+            "orphan",
+            "zone-of-pain",
+            "zone-of-uselessness",
+            "undeclared-dependency"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "Severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "description": "Severity shared by diagnostics, anomalies and rule violations. Ordered `info` < `warning` < `error`."
+    },
+    "RuleViolation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ViolationId",
+          "description": "`violation:<rule id>:` + hash of `\"<rule>\\n<source>\\n<target or empty>\\n<discriminator or empty>\"`; the discriminator is a stable identity component (e.g. the cycle's anomaly id), never a measured value."
+        },
+        "rule": {
+          "type": "string"
+        },
+        "ruleType": {
+          "$ref": "#/$defs/RuleType"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "source": {
+          "$ref": "#/$defs/EntityId",
+          "description": "The violating unit."
+        },
+        "target": {
+          "$ref": "#/$defs/EntityId",
+          "description": "The depended-upon unit, for dependency rules."
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Every entity involved, for rules about groups (e.g. the members of a forbidden cycle), sorted."
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable explanation, e.g. \"OrderController depends on OrderRepository\"."
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeId"
+          },
+          "description": "Relationships that constitute the violation, sorted."
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SourceLocation"
+          },
+          "description": "Source locations of the violating relationships, sorted, truncated to `limits.maxLocationsPerFinding`."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "rule",
+        "ruleType",
+        "severity",
+        "source",
+        "message",
+        "edges",
+        "locations",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "description": "A breach of a configured rule. Dependency rules are evaluated on the file-level graph by default and yield one violation per (rule, source file, target file) carrying every underlying edge."
+    },
+    "ViolationId": {
+      "type": "string",
+      "description": "`violation:<rule id>:<16 lowercase hex digits>`",
+      "pattern": "^violation:.+:[0-9a-f]{16}$"
+    },
+    "RuleType": {
+      "description": "Rule types (see docs/RULES.md). Values prefixed with `x-` are reserved for plugins.\n- `forbidden-dependency`: sources must not depend on targets.\n- `allowed-dependency`: sources may only depend on the listed targets.\n- `layer-order`: dependencies must follow the declared layer order.\n- `module-isolation`: a module must not depend on (or be depended on by) other modules.\n- `dependency-direction`: dependencies between two groups may only point one way.\n- `max-fan-out` / `max-fan-in`: upper bounds on direct dependencies / dependents.\n- `no-cycles`: no dependency cycles within the scope.\n- `public-api`: other units may only depend on a unit through its declared entry points.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "forbidden-dependency",
+            "allowed-dependency",
+            "layer-order",
+            "module-isolation",
+            "dependency-direction",
+            "max-fan-out",
+            "max-fan-in",
+            "no-cycles",
+            "public-api"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "RulesSummary": {
+      "type": "object",
+      "properties": {
+        "configuration": {
+          "type": "string",
+          "description": "Path of the configuration file the rules came from, relative to the analysis root."
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RuleResult"
+          },
+          "description": "One entry per configured rule, in configuration order."
+        }
+      },
+      "required": [
+        "results"
+      ],
+      "additionalProperties": false
+    },
+    "RuleResult": {
+      "type": "object",
+      "properties": {
+        "rule": {
+          "type": "string"
+        },
+        "ruleType": {
+          "$ref": "#/$defs/RuleType"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "description": {
+          "type": "string"
+        },
+        "digest": {
+          "type": "string",
+          "description": "`sha256:<hex>` of the normalized rule definition; changes when the rule is edited."
+        },
+        "violations": {
+          "$ref": "#/$defs/Count",
+          "description": "Number of violations of this rule."
+        },
+        "matchedSources": {
+          "$ref": "#/$defs/Count",
+          "description": "Units matched by the rule's source selector (0 usually indicates a misconfigured selector)."
+        },
+        "matchedTargets": {
+          "$ref": "#/$defs/Count",
+          "description": "Units matched by the rule's target selector, for dependency rules."
+        },
+        "problems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RuleProblem"
+          },
+          "description": "Configuration problems, e.g. selectors that match nothing. Omitted when none."
+        }
+      },
+      "required": [
+        "rule",
+        "ruleType",
+        "severity",
+        "digest",
+        "violations",
+        "matchedSources"
+      ],
+      "additionalProperties": false,
+      "description": "Outcome of evaluating one configured rule."
+    },
+    "RuleProblem": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/RuleProblemCode"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "additionalProperties": false,
+      "description": "A configuration problem detected while evaluating a rule."
+    },
+    "RuleProblemCode": {
+      "description": "Codes of rule configuration problems. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "no-matching-sources",
+            "no-matching-targets",
+            "unknown-selector"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "Diagnostic": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/DiagnosticCode"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "message": {
+          "type": "string"
+        },
+        "file": {
+          "$ref": "#/$defs/FileId"
+        },
+        "line": {
+          "$ref": "#/$defs/LineNumber"
+        },
+        "column": {
+          "$ref": "#/$defs/ColumnNumber"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "additionalProperties": false,
+      "description": "A problem encountered while analyzing, sorted by file, line, column, code, then message."
+    },
+    "DiagnosticCode": {
+      "description": "Diagnostic codes. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "syntax-error",
+            "read-failed",
+            "parse-failed",
+            "file-too-large",
+            "unresolved-import",
+            "invalid-manifest",
+            "invalid-project-configuration",
+            "configuration-warning",
+            "duplicate-package-name",
+            "symlink-skipped",
+            "limit-reached",
+            "approximation-used",
+            "plugin-error"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "RunInfo": {
+      "type": "object",
+      "properties": {
+        "startedAt": {
+          "type": "string",
+          "description": "ISO-8601 UTC timestamp.",
+          "format": "date-time"
+        },
+        "durationMs": {
+          "type": "number"
+        },
+        "timings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "Wall-clock milliseconds per pipeline stage."
+        },
+        "cache": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "hits": {
+              "$ref": "#/$defs/Count"
+            },
+            "misses": {
+              "$ref": "#/$defs/Count"
+            }
+          },
+          "required": [
+            "enabled",
+            "hits",
+            "misses"
+          ],
+          "additionalProperties": false
+        },
+        "workers": {
+          "$ref": "#/$defs/Count",
+          "description": "Number of parallel workers used for parsing (1 = in-process)."
+        },
+        "platform": {
+          "type": "object",
+          "properties": {
+            "node": {
+              "type": "string"
+            },
+            "os": {
+              "type": "string"
+            },
+            "arch": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "node",
+            "os",
+            "arch"
+          ],
+          "additionalProperties": false
+        },
+        "requestedRevisions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Revisions as the user wrote them (e.g. `HEAD~1`), when the run analyzed git revisions."
+        }
+      },
+      "required": [
+        "startedAt",
+        "durationMs",
+        "timings",
+        "cache",
+        "workers",
+        "platform"
+      ],
+      "additionalProperties": false,
+      "description": "Information about one run that is not determined by the inputs (timings, timestamps, cache usage, the command line). Excluded from determinism guarantees and from serialization unless requested."
+    }
+  }
+}

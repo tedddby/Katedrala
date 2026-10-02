@@ -1,0 +1,41 @@
+{
+  "name": "katedrala-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Katedrala: a deterministic, explainable software architecture intelligence engine.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@11.21.0",
+  "scripts": {
+    "build": "tsc -b tsconfig.build.json",
+    "clean": "node scripts/clean.mjs",
+    "typecheck": "tsc -b tsconfig.build.json && tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "schema": "tsc -b tsconfig.build.json && node scripts/generate-schema.mjs",
+    "schema:check": "tsc -b tsconfig.build.json && node scripts/generate-schema.mjs --check",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm schema:check && pnpm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.13.6",
+    "@vitest/coverage-v8": "5.0.3",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "eslint": "10.11.0",
+    "eslint-config-prettier": "10.1.8",
+    "fast-check": "4.10.2",
+    "prettier": "3.9.9",
+    "ts-json-schema-generator": "2.9.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.0",
+    "vitest": "5.0.3"
+  }
+}

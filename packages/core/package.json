@@ -1,0 +1,40 @@
+{
+  "name": "@katedrala/core",
+  "version": "0.1.0",
+  "description": "Katedrala core pipeline: configuration, discovery, extraction, caching and linking.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "exports": {
+    ".": {
+      "katedrala-source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.ts"
+  ],
+  "dependencies": {
+    "@katedrala/ir": "workspace:*",
+    "@katedrala/plugin-api": "workspace:*",
+    "ignore": "7.0.11",
+    "picomatch": "4.0.7",
+    "yaml": "2.9.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/picomatch": "4.0.3"
+  },
+  "keywords": [
+    "katedrala",
+    "architecture",
+    "pipeline"
+  ]
+}

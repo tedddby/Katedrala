@@ -1,0 +1,705 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:katedrala:schema:health:1",
+  "title": "Katedrala health (schema 1.x)",
+  "description": "A Katedrala architecture health report (katedrala health). Tolerant consumer schema for every 1.x version: unknown properties and enumeration values are accepted.",
+  "$ref": "#/$defs/HealthReport",
+  "$defs": {
+    "HealthReport": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "URI of the JSON Schema the document conforms to."
+        },
+        "schemaVersion": {
+          "type": "string",
+          "description": "Semantic version of the IR schema (not of Katedrala).",
+          "pattern": "^1\\.[0-9]+\\.[0-9]+"
+        },
+        "generator": {
+          "$ref": "#/$defs/GeneratorInfo"
+        },
+        "kind": {
+          "type": "string",
+          "const": "katedrala.health"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/SnapshotInfo"
+        },
+        "analysis": {
+          "$ref": "#/$defs/AnalysisCompleteness"
+        },
+        "entropy": {
+          "$ref": "#/$defs/EntropyReport"
+        },
+        "baseline": {
+          "type": "object",
+          "properties": {
+            "snapshot": {
+              "$ref": "#/$defs/SnapshotInfo"
+            },
+            "entropy": {
+              "$ref": "#/$defs/EntropyReport"
+            },
+            "delta": {
+              "$ref": "#/$defs/ScoreDelta"
+            }
+          },
+          "required": [
+            "snapshot",
+            "entropy",
+            "delta"
+          ],
+          "description": "Comparison against an earlier snapshot, when one was requested."
+        },
+        "indicators": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HealthIndicator"
+          }
+        },
+        "hotspots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Hotspot"
+          },
+          "description": "Units with the highest gravity, highest first (ties by id), bounded."
+        },
+        "findings": {
+          "type": "object",
+          "properties": {
+            "anomalies": {
+              "$ref": "#/$defs/SeverityCounts"
+            },
+            "violations": {
+              "$ref": "#/$defs/SeverityCounts"
+            }
+          },
+          "required": [
+            "anomalies",
+            "violations"
+          ]
+        }
+      },
+      "required": [
+        "analysis",
+        "entropy",
+        "findings",
+        "generator",
+        "hotspots",
+        "indicators",
+        "kind",
+        "schemaVersion",
+        "snapshot"
+      ]
+    },
+    "GeneratorInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "katedrala"
+        },
+        "version": {
+          "type": "string",
+          "description": "Katedrala version (semver)."
+        },
+        "adapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Language adapters that processed files, sorted by id."
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Plugins that contributed to the result, sorted by id. Omitted when none."
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "adapters"
+      ],
+      "description": "The tool that produced a document or report."
+    },
+    "ToolVersion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "description": "Name and version of a tool component (an adapter or a plugin)."
+    },
+    "SnapshotInfo": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/SnapshotKind"
+        },
+        "revision": {
+          "$ref": "#/$defs/RevisionInfo",
+          "description": "The analyzed commit, or the working tree's `HEAD` commit."
+        },
+        "subdirectory": {
+          "type": "string",
+          "description": "The analysis root relative to the version-control top-level directory (POSIX, \"\" when equal). Absent when the root is not inside a repository. Consumers keying caches by commit must include it."
+        },
+        "contentDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over the listed files: for each file in path order the line `<path>\\t<hash or ->\\t<size>\\n`. Identifies the analyzed content independently of how it was obtained."
+        },
+        "analysisDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over everything besides content that influences results: the effective Katedrala configuration and options, and the versions of Katedrala, its adapters and plugins. Documents with equal content and analysis digests are identical."
+        },
+        "projectConfigurationDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over the project configuration files adapters read (e.g. `tsconfig.json`, `package.json`), already part of the content; reported separately to explain resolution changes."
+        }
+      },
+      "required": [
+        "kind",
+        "contentDigest",
+        "analysisDigest",
+        "projectConfigurationDigest"
+      ],
+      "description": "What exactly was analyzed."
+    },
+    "SnapshotKind": {
+      "description": "Kinds of snapshot. `working-tree`: files as they are on disk. `git-revision`: files as committed in a git revision. `in-memory`: files supplied programmatically. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "working-tree",
+            "git-revision",
+            "in-memory"
+          ]
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "RevisionInfo": {
+      "type": "object",
+      "properties": {
+        "commit": {
+          "type": "string",
+          "description": "Full commit hash."
+        },
+        "committedAt": {
+          "type": "string",
+          "description": "Committer date, ISO-8601 UTC.",
+          "format": "date-time"
+        },
+        "subject": {
+          "type": "string",
+          "description": "First line of the commit message."
+        },
+        "dirty": {
+          "type": "boolean",
+          "description": "For working-tree snapshots: whether analyzed files differ from `HEAD`."
+        }
+      },
+      "required": [
+        "commit"
+      ]
+    },
+    "AnalysisCompleteness": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "$ref": "#/$defs/Count"
+        },
+        "analyzedFiles": {
+          "$ref": "#/$defs/Count"
+        },
+        "failedFiles": {
+          "$ref": "#/$defs/Count"
+        },
+        "unresolvedImports": {
+          "$ref": "#/$defs/Count"
+        },
+        "unresolvedReferences": {
+          "$ref": "#/$defs/Count"
+        },
+        "diagnostics": {
+          "$ref": "#/$defs/SeverityCounts"
+        }
+      },
+      "required": [
+        "files",
+        "analyzedFiles",
+        "failedFiles",
+        "unresolvedImports",
+        "unresolvedReferences",
+        "diagnostics"
+      ],
+      "description": "How complete the underlying analysis was. Reports carry it so a consumer (e.g. a CI gate) can refuse to trust results of a broken run."
+    },
+    "Count": {
+      "type": "integer",
+      "description": "A non-negative integer count.",
+      "minimum": 0
+    },
+    "SeverityCounts": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/$defs/Count"
+        },
+        "warning": {
+          "$ref": "#/$defs/Count"
+        },
+        "error": {
+          "$ref": "#/$defs/Count"
+        }
+      },
+      "required": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "description": "Number of items per severity."
+    },
+    "EntropyReport": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number"
+        },
+        "rating": {
+          "type": "string",
+          "description": "Banding of `score` (thresholds documented in docs/ALGORITHMS.md).",
+          "anyOf": [
+            {
+              "enum": [
+                "low",
+                "moderate",
+                "high",
+                "severe"
+              ]
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "method": {
+          "type": "string",
+          "description": "Formula identifier and version, e.g. `katedrala/entropy@1`."
+        },
+        "factors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntropyFactor"
+          }
+        }
+      },
+      "required": [
+        "score",
+        "rating",
+        "method",
+        "factors"
+      ],
+      "description": "Architectural Entropy (a Katedrala heuristic, not an established metric): a decomposable index of structural disorder in [0, 1]. `score = Σ factors[i].contribution`. See docs/ALGORITHMS.md."
+    },
+    "EntropyFactor": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "description": "Stable kebab-case identifier of the signal, e.g. `reach`."
+        },
+        "raw": {
+          "type": "number",
+          "description": "The measurement before normalization, in its natural unit."
+        },
+        "normalized": {
+          "type": "number",
+          "description": "The measurement mapped to [0, 1] by a documented, snapshot-independent transform."
+        },
+        "weight": {
+          "type": "number",
+          "description": "Weight of the term; the weights of one score sum to 1."
+        },
+        "contribution": {
+          "type": "number",
+          "description": "`weight × normalized`."
+        },
+        "description": {
+          "type": "string",
+          "description": "Short explanation of what the raw value means."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "description": "Observations explaining the factor's raw value."
+        },
+        "contributions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entity": {
+                "$ref": "#/$defs/EntityId"
+              },
+              "share": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "entity",
+              "share"
+            ]
+          },
+          "description": "Where the factor comes from: the units contributing most to its raw value, with their share of it (sorted by descending share, then id; bounded). Omitted when the factor is not attributable to units."
+        }
+      },
+      "required": [
+        "contribution",
+        "evidence",
+        "normalized",
+        "raw",
+        "signal",
+        "weight"
+      ]
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "description": "Stable kebab-case identifier of the signal, e.g. `internal-dependency-ratio`."
+        },
+        "description": {
+          "type": "string",
+          "description": "A complete sentence explaining the observation, e.g. \"87% of dependencies stay within the cluster\"."
+        },
+        "value": {
+          "type": "number",
+          "description": "The measured value, when the signal is numeric."
+        },
+        "weight": {
+          "type": "number",
+          "description": "The relative weight of this signal in the conclusion, when the conclusion is a weighted aggregate."
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Entities that exemplify the observation: sorted, and bounded by `limits.maxEvidenceEntities` (selection: sort by id, then truncate)."
+        }
+      },
+      "required": [
+        "signal",
+        "description"
+      ],
+      "description": "One measurable observation supporting a conclusion. Machine-readable (`signal`, `value`) and human-readable (`description`)."
+    },
+    "EntityId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RepositoryId"
+        },
+        {
+          "$ref": "#/$defs/DirectoryId"
+        },
+        {
+          "$ref": "#/$defs/FileId"
+        },
+        {
+          "$ref": "#/$defs/SymbolId"
+        },
+        {
+          "$ref": "#/$defs/PackageId"
+        },
+        {
+          "$ref": "#/$defs/ExternalId"
+        },
+        {
+          "$ref": "#/$defs/ComponentId"
+        },
+        {
+          "$ref": "#/$defs/ModuleId"
+        },
+        {
+          "$ref": "#/$defs/LayerId"
+        },
+        {
+          "$ref": "#/$defs/EndpointId"
+        }
+      ],
+      "description": "Any addressable architectural entity."
+    },
+    "RepositoryId": {
+      "type": "string",
+      "description": "`repo:<normalized remote>` (e.g. `repo:github.com/acme/shop`) or `repo:<name>`.",
+      "pattern": "^repo:.+$"
+    },
+    "DirectoryId": {
+      "type": "string",
+      "description": "`dir:<path>`; the analysis root is `dir:`.",
+      "pattern": "^dir:"
+    },
+    "FileId": {
+      "type": "string",
+      "description": "`file:<path>`",
+      "pattern": "^file:.+$"
+    },
+    "SymbolId": {
+      "type": "string",
+      "description": "`sym:<escaped file path>#<qualified name>[~<disambiguator>]`",
+      "pattern": "^sym:[^#]+#.+$"
+    },
+    "PackageId": {
+      "type": "string",
+      "description": "`pkg:<ecosystem>:<manifest directory>`, e.g. `pkg:npm:packages/api`; the root manifest is `pkg:npm:`.",
+      "pattern": "^pkg:[a-z0-9]+(?:-[a-z0-9]+)*:"
+    },
+    "ExternalId": {
+      "type": "string",
+      "description": "`ext:<namespace>:<name>`, e.g. `ext:npm:react`, `ext:node:fs`, `ext:env:DATABASE_URL`.",
+      "pattern": "^ext:[^:]+:.+$"
+    },
+    "ComponentId": {
+      "type": "string",
+      "description": "`cmp:<path>`; a component rooted at the analysis root is `cmp:`.",
+      "pattern": "^cmp:"
+    },
+    "ModuleId": {
+      "type": "string",
+      "description": "`mod:<module key>`: the configured name, or the anchor of an inferred module (see docs/IR.md).",
+      "pattern": "^mod:.+$"
+    },
+    "LayerId": {
+      "type": "string",
+      "description": "`layer:<name>`",
+      "pattern": "^layer:.+$"
+    },
+    "EndpointId": {
+      "type": "string",
+      "description": "`endpoint:<16 lowercase hex digits>`, derived from method, path and handler.",
+      "pattern": "^endpoint:[0-9a-f]{16}$"
+    },
+    "ScoreDelta": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "object",
+          "properties": {
+            "base": {
+              "type": "string"
+            },
+            "head": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "base",
+            "head"
+          ]
+        },
+        "base": {
+          "type": "number"
+        },
+        "head": {
+          "type": "number"
+        },
+        "delta": {
+          "type": "number"
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TermDelta"
+          }
+        }
+      },
+      "required": [
+        "method",
+        "base",
+        "head",
+        "delta",
+        "terms"
+      ]
+    },
+    "TermDelta": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string"
+        },
+        "base": {
+          "type": "number",
+          "description": "Contribution in the base snapshot."
+        },
+        "head": {
+          "type": "number",
+          "description": "Contribution in the head snapshot."
+        },
+        "delta": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "signal",
+        "base",
+        "head",
+        "delta"
+      ]
+    },
+    "HealthIndicator": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable kebab-case identifier, e.g. `propagation-cost`."
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of `value`, e.g. `ratio`, `count`."
+        },
+        "status": {
+          "type": "string",
+          "description": "Interpretation band.",
+          "anyOf": [
+            {
+              "enum": [
+                "ok",
+                "watch",
+                "concern"
+              ]
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "thresholds": {
+          "type": "object",
+          "properties": {
+            "watch": {
+              "type": "number"
+            },
+            "concern": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "watch",
+            "concern"
+          ],
+          "description": "Values at or above which the indicator is `watch` / `concern` (for indicators where higher is worse)."
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "value",
+        "unit",
+        "status",
+        "thresholds",
+        "description"
+      ]
+    },
+    "Hotspot": {
+      "type": "object",
+      "properties": {
+        "entity": {
+          "$ref": "#/$defs/EntityId"
+        },
+        "level": {
+          "$ref": "#/$defs/AnalysisLevel"
+        },
+        "name": {
+          "type": "string"
+        },
+        "gravity": {
+          "type": "number"
+        },
+        "structuralRole": {
+          "$ref": "#/$defs/StructuralRole"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "entity",
+        "level",
+        "name",
+        "gravity",
+        "structuralRole",
+        "reasons"
+      ]
+    },
+    "AnalysisLevel": {
+      "type": "string",
+      "description": "Granularity at which a conclusion or a measurement applies. `system` denotes the whole analyzed snapshot.",
+      "anyOf": [
+        {
+          "enum": [
+            "system",
+            "package",
+            "module",
+            "layer",
+            "component",
+            "file",
+            "symbol"
+          ]
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "StructuralRole": {
+      "type": "string",
+      "description": "Core–periphery role of a unit (Baldwin, MacCormack & Rusnak, 2014), from visibility fan-in (VFI) and visibility fan-out (VFO):\n- `core`: high VFI and high VFO (typically members of the largest cyclic group).\n- `shared`: high VFI, low VFO — widely used, depends on little.\n- `control`: low VFI, high VFO — orchestrates many others.\n- `periphery`: low VFI and low VFO. `isolated`: no dependencies and no dependents.",
+      "anyOf": [
+        {
+          "enum": [
+            "core",
+            "shared",
+            "control",
+            "periphery",
+            "isolated"
+          ]
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  }
+}

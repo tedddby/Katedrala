@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+pnpm-lock.yaml
+*.tsbuildinfo
+# Fixture repositories are inputs to the analyzer; their exact bytes matter.
+fixtures/
+# Generated artifacts are formatted by their generators.
+packages/ir/schema/
+benchmarks/results/
+benchmarks/.work/

@@ -1,0 +1,330 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:katedrala:schema:history:1",
+  "title": "Katedrala history (schema 1.x)",
+  "description": "A Katedrala architecture history report (katedrala history). Tolerant consumer schema for every 1.x version: unknown properties and enumeration values are accepted.",
+  "$ref": "#/$defs/HistoryReport",
+  "$defs": {
+    "HistoryReport": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "URI of the JSON Schema the document conforms to."
+        },
+        "schemaVersion": {
+          "type": "string",
+          "description": "Semantic version of the IR schema (not of Katedrala).",
+          "pattern": "^1\\.[0-9]+\\.[0-9]+"
+        },
+        "generator": {
+          "$ref": "#/$defs/GeneratorInfo"
+        },
+        "kind": {
+          "type": "string",
+          "const": "katedrala.history"
+        },
+        "selection": {
+          "$ref": "#/$defs/HistorySelection"
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HistoryPoint"
+          },
+          "description": "Analyzed revisions, oldest first."
+        }
+      },
+      "required": [
+        "generator",
+        "kind",
+        "points",
+        "schemaVersion",
+        "selection"
+      ]
+    },
+    "GeneratorInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "katedrala"
+        },
+        "version": {
+          "type": "string",
+          "description": "Katedrala version (semver)."
+        },
+        "adapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Language adapters that processed files, sorted by id."
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Plugins that contributed to the result, sorted by id. Omitted when none."
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "adapters"
+      ],
+      "description": "The tool that produced a document or report."
+    },
+    "ToolVersion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "description": "Name and version of a tool component (an adapter or a plugin)."
+    },
+    "HistorySelection": {
+      "type": "object",
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "description": "How commits were walked, e.g. `first-parent`."
+        },
+        "from": {
+          "type": "string",
+          "description": "Oldest revision considered, as a commit hash, when bounded."
+        },
+        "to": {
+          "type": "string",
+          "description": "Newest revision considered, as a commit hash."
+        },
+        "step": {
+          "$ref": "#/$defs/Count",
+          "description": "Every n-th commit was analyzed."
+        },
+        "maxPoints": {
+          "$ref": "#/$defs/Count"
+        }
+      },
+      "required": [
+        "strategy",
+        "to",
+        "step",
+        "maxPoints"
+      ]
+    },
+    "Count": {
+      "type": "integer",
+      "description": "A non-negative integer count.",
+      "minimum": 0
+    },
+    "HistoryPoint": {
+      "type": "object",
+      "properties": {
+        "revision": {
+          "$ref": "#/$defs/RevisionInfo"
+        },
+        "analysisDigest": {
+          "type": "string"
+        },
+        "stats": {
+          "type": "object",
+          "properties": {
+            "files": {
+              "$ref": "#/$defs/Count"
+            },
+            "symbols": {
+              "$ref": "#/$defs/Count"
+            },
+            "edges": {
+              "$ref": "#/$defs/Count"
+            },
+            "modules": {
+              "$ref": "#/$defs/Count"
+            },
+            "packages": {
+              "$ref": "#/$defs/Count"
+            }
+          },
+          "required": [
+            "files",
+            "symbols",
+            "edges",
+            "modules",
+            "packages"
+          ]
+        },
+        "entropy": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "type": "string"
+            },
+            "score": {
+              "type": "number"
+            },
+            "factors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TermValue"
+              }
+            }
+          },
+          "required": [
+            "method",
+            "score",
+            "factors"
+          ]
+        },
+        "cycles": {
+          "type": "object",
+          "properties": {
+            "system": {
+              "$ref": "#/$defs/Count"
+            },
+            "package": {
+              "$ref": "#/$defs/Count"
+            },
+            "module": {
+              "$ref": "#/$defs/Count"
+            },
+            "layer": {
+              "$ref": "#/$defs/Count"
+            },
+            "component": {
+              "$ref": "#/$defs/Count"
+            },
+            "file": {
+              "$ref": "#/$defs/Count"
+            },
+            "symbol": {
+              "$ref": "#/$defs/Count"
+            }
+          },
+          "description": "Number of cyclic groups per level."
+        },
+        "anomalies": {
+          "$ref": "#/$defs/SeverityCounts"
+        },
+        "violations": {
+          "$ref": "#/$defs/SeverityCounts"
+        },
+        "changes": {
+          "type": "object",
+          "properties": {
+            "filesAdded": {
+              "$ref": "#/$defs/Count"
+            },
+            "filesRemoved": {
+              "$ref": "#/$defs/Count"
+            },
+            "filesModified": {
+              "$ref": "#/$defs/Count"
+            },
+            "filesRenamed": {
+              "$ref": "#/$defs/Count"
+            },
+            "moduleDependenciesAdded": {
+              "$ref": "#/$defs/Count"
+            },
+            "moduleDependenciesRemoved": {
+              "$ref": "#/$defs/Count"
+            }
+          },
+          "required": [
+            "filesAdded",
+            "filesRemoved",
+            "filesModified",
+            "filesRenamed",
+            "moduleDependenciesAdded",
+            "moduleDependenciesRemoved"
+          ],
+          "description": "Changes relative to the previous point; absent for the first point."
+        }
+      },
+      "required": [
+        "revision",
+        "analysisDigest",
+        "stats",
+        "entropy",
+        "cycles",
+        "anomalies",
+        "violations"
+      ]
+    },
+    "RevisionInfo": {
+      "type": "object",
+      "properties": {
+        "commit": {
+          "type": "string",
+          "description": "Full commit hash."
+        },
+        "committedAt": {
+          "type": "string",
+          "description": "Committer date, ISO-8601 UTC.",
+          "format": "date-time"
+        },
+        "subject": {
+          "type": "string",
+          "description": "First line of the commit message."
+        },
+        "dirty": {
+          "type": "boolean",
+          "description": "For working-tree snapshots: whether analyzed files differ from `HEAD`."
+        }
+      },
+      "required": [
+        "commit"
+      ]
+    },
+    "TermValue": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string"
+        },
+        "normalized": {
+          "type": "number"
+        },
+        "contribution": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "signal",
+        "normalized",
+        "contribution"
+      ],
+      "description": "A compact snapshot of one score term."
+    },
+    "SeverityCounts": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/$defs/Count"
+        },
+        "warning": {
+          "$ref": "#/$defs/Count"
+        },
+        "error": {
+          "$ref": "#/$defs/Count"
+        }
+      },
+      "required": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "description": "Number of items per severity."
+    }
+  }
+}

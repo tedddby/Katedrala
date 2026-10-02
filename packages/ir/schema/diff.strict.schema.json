@@ -1,0 +1,1467 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:katedrala:schema:diff:1.0.0:strict",
+  "title": "Katedrala diff (strict, schema 1.0.0)",
+  "description": "A Katedrala architecture diff report (katedrala diff). Strict producer schema for exactly this version.",
+  "$ref": "#/$defs/DiffReport",
+  "$defs": {
+    "DiffReport": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "URI of the JSON Schema the document conforms to."
+        },
+        "schemaVersion": {
+          "type": "string",
+          "description": "Semantic version of the IR schema (not of Katedrala).",
+          "const": "1.0.0"
+        },
+        "generator": {
+          "$ref": "#/$defs/GeneratorInfo"
+        },
+        "kind": {
+          "type": "string",
+          "const": "katedrala.diff"
+        },
+        "base": {
+          "$ref": "#/$defs/DiffSide"
+        },
+        "head": {
+          "$ref": "#/$defs/DiffSide"
+        },
+        "comparability": {
+          "type": "object",
+          "properties": {
+            "comparable": {
+              "type": "boolean"
+            },
+            "differences": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Human-readable differences (e.g. \"entropy method differs: katedrala/entropy@1 vs"
+            }
+          },
+          "required": [
+            "comparable",
+            "differences"
+          ],
+          "additionalProperties": false,
+          "description": "Whether the two documents were produced comparably; metric deltas are unreliable when not."
+        },
+        "summary": {
+          "$ref": "#/$defs/DiffSummary"
+        },
+        "files": {
+          "type": "object",
+          "properties": {
+            "added": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FileId"
+              }
+            },
+            "removed": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FileId"
+              }
+            },
+            "modified": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FileId"
+              },
+              "description": "Present in both (after renames) with a different content digest."
+            },
+            "renamed": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FileRename"
+              }
+            }
+          },
+          "required": [
+            "added",
+            "removed",
+            "modified",
+            "renamed"
+          ],
+          "additionalProperties": false
+        },
+        "symbols": {
+          "type": "object",
+          "properties": {
+            "added": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SymbolId"
+              }
+            },
+            "removed": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SymbolId"
+              }
+            },
+            "moved": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "$ref": "#/$defs/SymbolId"
+                  },
+                  "to": {
+                    "$ref": "#/$defs/SymbolId"
+                  }
+                },
+                "required": [
+                  "from",
+                  "to"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Same qualified name and kind in a renamed file."
+            },
+            "changed": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SymbolChange"
+              }
+            }
+          },
+          "required": [
+            "added",
+            "removed",
+            "moved",
+            "changed"
+          ],
+          "additionalProperties": false
+        },
+        "modules": {
+          "type": "object",
+          "properties": {
+            "added": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ModuleSnapshotRef"
+              }
+            },
+            "removed": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ModuleSnapshotRef"
+              }
+            },
+            "matched": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ModuleMatch"
+              },
+              "description": "Modules present in both snapshots (same id, or matched by member similarity)."
+            }
+          },
+          "required": [
+            "added",
+            "removed",
+            "matched"
+          ],
+          "additionalProperties": false
+        },
+        "dependencies": {
+          "type": "object",
+          "properties": {
+            "system": {
+              "$ref": "#/$defs/DependencyDelta"
+            },
+            "package": {
+              "$ref": "#/$defs/DependencyDelta"
+            },
+            "module": {
+              "$ref": "#/$defs/DependencyDelta"
+            },
+            "layer": {
+              "$ref": "#/$defs/DependencyDelta"
+            },
+            "component": {
+              "$ref": "#/$defs/DependencyDelta"
+            },
+            "file": {
+              "$ref": "#/$defs/DependencyDelta"
+            },
+            "symbol": {
+              "$ref": "#/$defs/DependencyDelta"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Dependency changes per level (keys: `package`, `module`, `component`, `file`, ...)."
+        },
+        "cycles": {
+          "type": "object",
+          "properties": {
+            "added": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CycleRef"
+              }
+            },
+            "removed": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CycleRef"
+              }
+            },
+            "changed": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CycleChange"
+              }
+            }
+          },
+          "required": [
+            "added",
+            "removed",
+            "changed"
+          ],
+          "additionalProperties": false
+        },
+        "entropy": {
+          "$ref": "#/$defs/ScoreDelta"
+        },
+        "gravity": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/GravityChange"
+          },
+          "description": "Units whose gravity changed by at least `gravityThreshold`, by descending |delta|, then id."
+        },
+        "gravityThreshold": {
+          "type": "number",
+          "description": "Minimum absolute gravity change reported."
+        },
+        "violations": {
+          "type": "object",
+          "properties": {
+            "added": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RuleViolation"
+              }
+            },
+            "resolved": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ResolvedViolation"
+              }
+            }
+          },
+          "required": [
+            "added",
+            "resolved"
+          ],
+          "additionalProperties": false
+        },
+        "anomalies": {
+          "type": "object",
+          "properties": {
+            "added": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Anomaly"
+              }
+            },
+            "resolved": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Anomaly"
+              }
+            },
+            "changed": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/AnomalyChange"
+              },
+              "description": "Same type with overlapping subjects but a different identity (e.g. a growing cycle)."
+            }
+          },
+          "required": [
+            "added",
+            "resolved",
+            "changed"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "anomalies",
+        "base",
+        "comparability",
+        "cycles",
+        "dependencies",
+        "entropy",
+        "files",
+        "generator",
+        "gravity",
+        "gravityThreshold",
+        "head",
+        "kind",
+        "modules",
+        "schemaVersion",
+        "summary",
+        "symbols",
+        "violations"
+      ],
+      "additionalProperties": false,
+      "description": "Comparison of two architecture documents. Entities are matched before comparison: files through renames (identical digests or version-control rename detection), symbols through their files' renames, modules by id and otherwise by similarity of member files. Every added/removed/resolved list excludes matched entities, and identifiers of the base are mapped through the matches before relationships, cycles, anomalies and violations are compared."
+    },
+    "GeneratorInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "katedrala"
+        },
+        "version": {
+          "type": "string",
+          "description": "Katedrala version (semver)."
+        },
+        "adapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Language adapters that processed files, sorted by id."
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Plugins that contributed to the result, sorted by id. Omitted when none."
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "adapters"
+      ],
+      "additionalProperties": false,
+      "description": "The tool that produced a document or report."
+    },
+    "ToolVersion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "additionalProperties": false,
+      "description": "Name and version of a tool component (an adapter or a plugin)."
+    },
+    "DiffSide": {
+      "type": "object",
+      "properties": {
+        "snapshot": {
+          "$ref": "#/$defs/SnapshotInfo"
+        },
+        "generator": {
+          "$ref": "#/$defs/GeneratorInfo"
+        },
+        "schemaVersion": {
+          "type": "string",
+          "const": "1.0.0"
+        }
+      },
+      "required": [
+        "snapshot",
+        "generator",
+        "schemaVersion"
+      ],
+      "additionalProperties": false
+    },
+    "SnapshotInfo": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/SnapshotKind"
+        },
+        "revision": {
+          "$ref": "#/$defs/RevisionInfo",
+          "description": "The analyzed commit, or the working tree's `HEAD` commit."
+        },
+        "subdirectory": {
+          "type": "string",
+          "description": "The analysis root relative to the version-control top-level directory (POSIX, \"\" when equal). Absent when the root is not inside a repository. Consumers keying caches by commit must include it."
+        },
+        "contentDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over the listed files: for each file in path order the line `<path>\\t<hash or ->\\t<size>\\n`. Identifies the analyzed content independently of how it was obtained."
+        },
+        "analysisDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over everything besides content that influences results: the effective Katedrala configuration and options, and the versions of Katedrala, its adapters and plugins. Documents with equal content and analysis digests are identical."
+        },
+        "projectConfigurationDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over the project configuration files adapters read (e.g. `tsconfig.json`, `package.json`), already part of the content; reported separately to explain resolution changes."
+        }
+      },
+      "required": [
+        "kind",
+        "contentDigest",
+        "analysisDigest",
+        "projectConfigurationDigest"
+      ],
+      "additionalProperties": false,
+      "description": "What exactly was analyzed."
+    },
+    "SnapshotKind": {
+      "description": "Kinds of snapshot. `working-tree`: files as they are on disk. `git-revision`: files as committed in a git revision. `in-memory`: files supplied programmatically. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "working-tree",
+            "git-revision",
+            "in-memory"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "RevisionInfo": {
+      "type": "object",
+      "properties": {
+        "commit": {
+          "type": "string",
+          "description": "Full commit hash."
+        },
+        "committedAt": {
+          "type": "string",
+          "description": "Committer date, ISO-8601 UTC.",
+          "format": "date-time"
+        },
+        "subject": {
+          "type": "string",
+          "description": "First line of the commit message."
+        },
+        "dirty": {
+          "type": "boolean",
+          "description": "For working-tree snapshots: whether analyzed files differ from `HEAD`."
+        }
+      },
+      "required": [
+        "commit"
+      ],
+      "additionalProperties": false
+    },
+    "DiffSummary": {
+      "type": "object",
+      "properties": {
+        "filesAdded": {
+          "$ref": "#/$defs/Count"
+        },
+        "filesRemoved": {
+          "$ref": "#/$defs/Count"
+        },
+        "filesModified": {
+          "$ref": "#/$defs/Count"
+        },
+        "filesRenamed": {
+          "$ref": "#/$defs/Count"
+        },
+        "modulesAdded": {
+          "$ref": "#/$defs/Count"
+        },
+        "modulesRemoved": {
+          "$ref": "#/$defs/Count"
+        },
+        "modulesChanged": {
+          "$ref": "#/$defs/Count"
+        },
+        "moduleDependenciesAdded": {
+          "$ref": "#/$defs/Count"
+        },
+        "moduleDependenciesRemoved": {
+          "$ref": "#/$defs/Count"
+        },
+        "cyclesAdded": {
+          "$ref": "#/$defs/Count"
+        },
+        "cyclesRemoved": {
+          "$ref": "#/$defs/Count"
+        },
+        "cyclesChanged": {
+          "$ref": "#/$defs/Count"
+        },
+        "violationsAdded": {
+          "$ref": "#/$defs/Count"
+        },
+        "violationsResolved": {
+          "$ref": "#/$defs/Count"
+        },
+        "anomaliesAdded": {
+          "$ref": "#/$defs/Count"
+        },
+        "anomaliesResolved": {
+          "$ref": "#/$defs/Count"
+        },
+        "entropyDelta": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "filesAdded",
+        "filesRemoved",
+        "filesModified",
+        "filesRenamed",
+        "modulesAdded",
+        "modulesRemoved",
+        "modulesChanged",
+        "moduleDependenciesAdded",
+        "moduleDependenciesRemoved",
+        "cyclesAdded",
+        "cyclesRemoved",
+        "cyclesChanged",
+        "violationsAdded",
+        "violationsResolved",
+        "anomaliesAdded",
+        "anomaliesResolved",
+        "entropyDelta"
+      ],
+      "additionalProperties": false
+    },
+    "Count": {
+      "type": "integer",
+      "description": "A non-negative integer count.",
+      "minimum": 0
+    },
+    "FileId": {
+      "type": "string",
+      "description": "`file:<path>`",
+      "pattern": "^file:.+$"
+    },
+    "FileRename": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/$defs/FileId"
+        },
+        "to": {
+          "$ref": "#/$defs/FileId"
+        },
+        "similarity": {
+          "type": "number",
+          "description": "1 for identical content."
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "content-digest",
+            "version-control",
+            "symbol-similarity"
+          ]
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "similarity",
+        "method"
+      ],
+      "additionalProperties": false
+    },
+    "SymbolId": {
+      "type": "string",
+      "description": "`sym:<escaped file path>#<qualified name>[~<disambiguator>]`",
+      "pattern": "^sym:[^#]+#.+$"
+    },
+    "SymbolChange": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/SymbolId"
+        },
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "kind",
+              "exported",
+              "visibility",
+              "signature",
+              "abstract"
+            ]
+          },
+          "description": "What changed, sorted."
+        }
+      },
+      "required": [
+        "id",
+        "changes"
+      ],
+      "additionalProperties": false
+    },
+    "ModuleSnapshotRef": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ModuleId"
+        },
+        "name": {
+          "type": "string"
+        },
+        "files": {
+          "$ref": "#/$defs/Count"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "files"
+      ],
+      "additionalProperties": false
+    },
+    "ModuleId": {
+      "type": "string",
+      "description": "`mod:<module key>`: the configured name, or the anchor of an inferred module (see docs/IR.md).",
+      "pattern": "^mod:.+$"
+    },
+    "ModuleMatch": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "$ref": "#/$defs/ModuleId"
+        },
+        "head": {
+          "$ref": "#/$defs/ModuleId"
+        },
+        "similarity": {
+          "type": "number",
+          "description": "Jaccard similarity of the member file sets (after renames)."
+        },
+        "filesAdded": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          }
+        },
+        "filesRemoved": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          }
+        },
+        "publicApiAdded": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          }
+        },
+        "publicApiRemoved": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileId"
+          }
+        }
+      },
+      "required": [
+        "base",
+        "head",
+        "similarity",
+        "filesAdded",
+        "filesRemoved",
+        "publicApiAdded",
+        "publicApiRemoved"
+      ],
+      "additionalProperties": false
+    },
+    "DependencyDelta": {
+      "type": "object",
+      "properties": {
+        "added": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DependencyChange"
+          }
+        },
+        "removed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DependencyChange"
+          }
+        },
+        "changed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DependencyModification"
+          }
+        }
+      },
+      "required": [
+        "added",
+        "removed",
+        "changed"
+      ],
+      "additionalProperties": false
+    },
+    "DependencyChange": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/EntityId"
+        },
+        "target": {
+          "$ref": "#/$defs/EntityId"
+        },
+        "kinds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeKind"
+          },
+          "description": "Relationship kinds present (in head for added, in base for removed), sorted."
+        },
+        "edgeCount": {
+          "$ref": "#/$defs/Count"
+        },
+        "typeOnly": {
+          "type": "boolean",
+          "description": "True when every underlying edge is type-only."
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "kinds",
+        "edgeCount",
+        "typeOnly"
+      ],
+      "additionalProperties": false
+    },
+    "EntityId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RepositoryId"
+        },
+        {
+          "$ref": "#/$defs/DirectoryId"
+        },
+        {
+          "$ref": "#/$defs/FileId"
+        },
+        {
+          "$ref": "#/$defs/SymbolId"
+        },
+        {
+          "$ref": "#/$defs/PackageId"
+        },
+        {
+          "$ref": "#/$defs/ExternalId"
+        },
+        {
+          "$ref": "#/$defs/ComponentId"
+        },
+        {
+          "$ref": "#/$defs/ModuleId"
+        },
+        {
+          "$ref": "#/$defs/LayerId"
+        },
+        {
+          "$ref": "#/$defs/EndpointId"
+        }
+      ],
+      "description": "Any addressable architectural entity."
+    },
+    "RepositoryId": {
+      "type": "string",
+      "description": "`repo:<normalized remote>` (e.g. `repo:github.com/acme/shop`) or `repo:<name>`.",
+      "pattern": "^repo:.+$"
+    },
+    "DirectoryId": {
+      "type": "string",
+      "description": "`dir:<path>`; the analysis root is `dir:`.",
+      "pattern": "^dir:"
+    },
+    "PackageId": {
+      "type": "string",
+      "description": "`pkg:<ecosystem>:<manifest directory>`, e.g. `pkg:npm:packages/api`; the root manifest is `pkg:npm:`.",
+      "pattern": "^pkg:[a-z0-9]+(?:-[a-z0-9]+)*:"
+    },
+    "ExternalId": {
+      "type": "string",
+      "description": "`ext:<namespace>:<name>`, e.g. `ext:npm:react`, `ext:node:fs`, `ext:env:DATABASE_URL`.",
+      "pattern": "^ext:[^:]+:.+$"
+    },
+    "ComponentId": {
+      "type": "string",
+      "description": "`cmp:<path>`; a component rooted at the analysis root is `cmp:`.",
+      "pattern": "^cmp:"
+    },
+    "LayerId": {
+      "type": "string",
+      "description": "`layer:<name>`",
+      "pattern": "^layer:.+$"
+    },
+    "EndpointId": {
+      "type": "string",
+      "description": "`endpoint:<16 lowercase hex digits>`, derived from method, path and handler.",
+      "pattern": "^endpoint:[0-9a-f]{16}$"
+    },
+    "EdgeKind": {
+      "description": "Relationship kinds. Values prefixed with `x-` are reserved for plugins. The listed endpoints are typical; in documents whose `detail.relationships` is `file`, symbol endpoints are lifted to their files.\n- `imports`: a file imports a module (file → file | external).\n- `re-exports`: a file re-exports from a module (file → file | external).\n- `calls`: code invokes a function or method (symbol | file → symbol | external).\n- `instantiates`: code creates an instance of a class or struct (symbol | file → symbol | external).\n- `extends`: inheritance or embedding (symbol → symbol | external).\n- `implements`: a type implements an interface or trait (symbol → symbol | external).\n- `references-type`: a type position names a type (symbol | file → symbol | external).\n- `uses`: any other value reference, e.g. reading a constant or rendering a JSX component.\n- `decorated-by`: a declaration is decorated or annotated by the target (symbol → symbol | external).\n- `depends-on-package`: a manifest declares a dependency (package → package | external).\n- `reads-configuration`: code reads configuration, e.g. an environment variable (→ external).\n- `calls-service`: code calls a remote service, e.g. an HTTP API (→ external).\n- `accesses-data`: code accesses a datastore or a persistence model (→ external | symbol).",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "imports",
+            "re-exports",
+            "calls",
+            "instantiates",
+            "extends",
+            "implements",
+            "references-type",
+            "uses",
+            "decorated-by",
+            "depends-on-package",
+            "reads-configuration",
+            "calls-service",
+            "accesses-data"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "DependencyModification": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/EntityId"
+        },
+        "target": {
+          "$ref": "#/$defs/EntityId"
+        },
+        "kindsAdded": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeKind"
+          }
+        },
+        "kindsRemoved": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeKind"
+          }
+        },
+        "typeOnly": {
+          "type": "object",
+          "properties": {
+            "base": {
+              "type": "boolean"
+            },
+            "head": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "base",
+            "head"
+          ],
+          "additionalProperties": false
+        },
+        "edgeCount": {
+          "type": "object",
+          "properties": {
+            "base": {
+              "$ref": "#/$defs/Count"
+            },
+            "head": {
+              "$ref": "#/$defs/Count"
+            }
+          },
+          "required": [
+            "base",
+            "head"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "kindsAdded",
+        "kindsRemoved",
+        "typeOnly",
+        "edgeCount"
+      ],
+      "additionalProperties": false
+    },
+    "CycleRef": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "$ref": "#/$defs/AnalysisLevel"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Members, sorted by id."
+        },
+        "anomaly": {
+          "$ref": "#/$defs/AnomalyId"
+        }
+      },
+      "required": [
+        "level",
+        "members"
+      ],
+      "additionalProperties": false
+    },
+    "AnalysisLevel": {
+      "type": "string",
+      "enum": [
+        "system",
+        "package",
+        "module",
+        "layer",
+        "component",
+        "file",
+        "symbol"
+      ],
+      "description": "Granularity at which a conclusion or a measurement applies. `system` denotes the whole analyzed snapshot."
+    },
+    "AnomalyId": {
+      "type": "string",
+      "description": "`anomaly:<type>:<16 lowercase hex digits>`",
+      "pattern": "^anomaly:(?:x-)?[a-z0-9]+(?:-[a-z0-9]+)*:[0-9a-f]{16}$"
+    },
+    "CycleChange": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "$ref": "#/$defs/AnalysisLevel"
+        },
+        "base": {
+          "$ref": "#/$defs/AnomalyId"
+        },
+        "head": {
+          "$ref": "#/$defs/AnomalyId"
+        },
+        "membersAdded": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          }
+        },
+        "membersRemoved": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          }
+        }
+      },
+      "required": [
+        "level",
+        "base",
+        "head",
+        "membersAdded",
+        "membersRemoved"
+      ],
+      "additionalProperties": false
+    },
+    "ScoreDelta": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "object",
+          "properties": {
+            "base": {
+              "type": "string"
+            },
+            "head": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "base",
+            "head"
+          ],
+          "additionalProperties": false
+        },
+        "base": {
+          "type": "number"
+        },
+        "head": {
+          "type": "number"
+        },
+        "delta": {
+          "type": "number"
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TermDelta"
+          }
+        }
+      },
+      "required": [
+        "method",
+        "base",
+        "head",
+        "delta",
+        "terms"
+      ],
+      "additionalProperties": false
+    },
+    "TermDelta": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string"
+        },
+        "base": {
+          "type": "number",
+          "description": "Contribution in the base snapshot."
+        },
+        "head": {
+          "type": "number",
+          "description": "Contribution in the head snapshot."
+        },
+        "delta": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "signal",
+        "base",
+        "head",
+        "delta"
+      ],
+      "additionalProperties": false
+    },
+    "GravityChange": {
+      "type": "object",
+      "properties": {
+        "entity": {
+          "$ref": "#/$defs/EntityId"
+        },
+        "level": {
+          "$ref": "#/$defs/AnalysisLevel"
+        },
+        "name": {
+          "type": "string"
+        },
+        "base": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "null when the unit does not exist in that snapshot."
+        },
+        "head": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "delta": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "entity",
+        "level",
+        "name",
+        "base",
+        "head",
+        "delta"
+      ],
+      "additionalProperties": false
+    },
+    "RuleViolation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ViolationId",
+          "description": "`violation:<rule id>:` + hash of `\"<rule>\\n<source>\\n<target or empty>\\n<discriminator or empty>\"`; the discriminator is a stable identity component (e.g. the cycle's anomaly id), never a measured value."
+        },
+        "rule": {
+          "type": "string"
+        },
+        "ruleType": {
+          "$ref": "#/$defs/RuleType"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "source": {
+          "$ref": "#/$defs/EntityId",
+          "description": "The violating unit."
+        },
+        "target": {
+          "$ref": "#/$defs/EntityId",
+          "description": "The depended-upon unit, for dependency rules."
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Every entity involved, for rules about groups (e.g. the members of a forbidden cycle), sorted."
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable explanation, e.g. \"OrderController depends on OrderRepository\"."
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeId"
+          },
+          "description": "Relationships that constitute the violation, sorted."
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SourceLocation"
+          },
+          "description": "Source locations of the violating relationships, sorted, truncated to `limits.maxLocationsPerFinding`."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "rule",
+        "ruleType",
+        "severity",
+        "source",
+        "message",
+        "edges",
+        "locations",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "description": "A breach of a configured rule. Dependency rules are evaluated on the file-level graph by default and yield one violation per (rule, source file, target file) carrying every underlying edge."
+    },
+    "ViolationId": {
+      "type": "string",
+      "description": "`violation:<rule id>:<16 lowercase hex digits>`",
+      "pattern": "^violation:.+:[0-9a-f]{16}$"
+    },
+    "RuleType": {
+      "description": "Rule types (see docs/RULES.md). Values prefixed with `x-` are reserved for plugins.\n- `forbidden-dependency`: sources must not depend on targets.\n- `allowed-dependency`: sources may only depend on the listed targets.\n- `layer-order`: dependencies must follow the declared layer order.\n- `module-isolation`: a module must not depend on (or be depended on by) other modules.\n- `dependency-direction`: dependencies between two groups may only point one way.\n- `max-fan-out` / `max-fan-in`: upper bounds on direct dependencies / dependents.\n- `no-cycles`: no dependency cycles within the scope.\n- `public-api`: other units may only depend on a unit through its declared entry points.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "forbidden-dependency",
+            "allowed-dependency",
+            "layer-order",
+            "module-isolation",
+            "dependency-direction",
+            "max-fan-out",
+            "max-fan-in",
+            "no-cycles",
+            "public-api"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "Severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "description": "Severity shared by diagnostics, anomalies and rule violations. Ordered `info` < `warning` < `error`."
+    },
+    "EdgeId": {
+      "type": "string",
+      "description": "`edge:<16 lowercase hex digits>`, derived from the edge's kind, source and target.",
+      "pattern": "^edge:[0-9a-f]{16}$"
+    },
+    "SourceLocation": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "$ref": "#/$defs/FileId"
+        },
+        "line": {
+          "$ref": "#/$defs/LineNumber"
+        },
+        "column": {
+          "$ref": "#/$defs/ColumnNumber"
+        }
+      },
+      "required": [
+        "file",
+        "line",
+        "column"
+      ],
+      "additionalProperties": false,
+      "description": "A point in a specific file."
+    },
+    "LineNumber": {
+      "type": "integer",
+      "description": "A 1-based line number.",
+      "minimum": 1
+    },
+    "ColumnNumber": {
+      "type": "integer",
+      "description": "A 1-based column number in UTF-16 code units.",
+      "minimum": 1
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "description": "Stable kebab-case identifier of the signal, e.g. `internal-dependency-ratio`."
+        },
+        "description": {
+          "type": "string",
+          "description": "A complete sentence explaining the observation, e.g. \"87% of dependencies stay within the cluster\"."
+        },
+        "value": {
+          "type": "number",
+          "description": "The measured value, when the signal is numeric."
+        },
+        "weight": {
+          "type": "number",
+          "description": "The relative weight of this signal in the conclusion, when the conclusion is a weighted aggregate."
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Entities that exemplify the observation: sorted, and bounded by `limits.maxEvidenceEntities` (selection: sort by id, then truncate)."
+        }
+      },
+      "required": [
+        "signal",
+        "description"
+      ],
+      "additionalProperties": false,
+      "description": "One measurable observation supporting a conclusion. Machine-readable (`signal`, `value`) and human-readable (`description`)."
+    },
+    "ResolvedViolation": {
+      "type": "object",
+      "properties": {
+        "violation": {
+          "$ref": "#/$defs/RuleViolation"
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "fixed",
+            "rule-removed",
+            "rule-changed",
+            "entity-removed"
+          ],
+          "description": "`fixed`: the rule is unchanged and the violation is gone. `rule-removed` / `rule-changed`: the rule was deleted or edited. `entity-removed`: the violating code no longer exists."
+        }
+      },
+      "required": [
+        "violation",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "Anomaly": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/AnomalyId",
+          "description": "Directional types: `anomaly:<type>:` + hash of `\"<source>\\n<target>\"`. Other types: hash of the sorted subject ids joined by `\"\\n\"`. See docs/IR.md."
+        },
+        "type": {
+          "$ref": "#/$defs/AnomalyType"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "level": {
+          "$ref": "#/$defs/AnalysisLevel"
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Every entity involved, sorted by id."
+        },
+        "source": {
+          "$ref": "#/$defs/EntityId",
+          "description": "For directional types: the depending unit."
+        },
+        "target": {
+          "$ref": "#/$defs/EntityId",
+          "description": "For directional types: the depended-upon unit."
+        },
+        "title": {
+          "type": "string",
+          "description": "Short title, e.g. \"Dependency cycle between 3 modules\"."
+        },
+        "description": {
+          "type": "string",
+          "description": "Explanation in complete sentences."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "description": "Strongest first (ties broken by signal). For cycles, includes representative cycle paths."
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence",
+          "description": "How strongly the evidence supports the anomaly."
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeId"
+          },
+          "description": "Relationships that constitute the anomaly (e.g. the edges inside a cycle), sorted."
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SourceLocation"
+          },
+          "description": "Places to look at, sorted, truncated to `limits.maxLocationsPerFinding`."
+        },
+        "suggestion": {
+          "type": "string",
+          "description": "A concrete, evidence-based suggestion, when one exists."
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "severity",
+        "level",
+        "subjects",
+        "title",
+        "description",
+        "evidence",
+        "confidence",
+        "edges",
+        "locations"
+      ],
+      "additionalProperties": false
+    },
+    "AnomalyType": {
+      "description": "Anomaly types. Values prefixed with `x-` are reserved for plugins. Directional types (marked →) set `source` and `target`; the others describe a set of `subjects`.\n- `dependency-cycle`: one strongly connected component (subjects: its members).\n- `god-component`: a unit with outlying size, fan-in and/or fan-out (subjects: the unit).\n- `hub`: a unit with outlying centrality (subjects: the unit).\n- `boundary-bypass` →: a unit uses another module's internals although the module declares entry points.\n- `upward-dependency` →: a dependency against the expected layer direction.\n- `unstable-dependency` →: a dependency on a less stable unit (Stable Dependencies Principle).\n- `coupled-cluster`: a group of units with outlying mutual dependency density (subjects: the group).\n- `orphan`: a unit with no meaningful connectivity that is not a known entry point (subjects: the unit).\n- `zone-of-pain`: concrete and stable with many dependents (subjects: the unit).\n- `zone-of-uselessness`: abstract and unstable (subjects: the unit).\n- `undeclared-dependency` →: a package used by code but not declared by the owning manifest.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "dependency-cycle",
+            "god-component",
+            "hub",
+            "boundary-bypass",
+            "upward-dependency",
+            "unstable-dependency",
+            "coupled-cluster",
+            "orphan",
+            "zone-of-pain",
+            "zone-of-uselessness",
+            "undeclared-dependency"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      ]
+    },
+    "Confidence": {
+      "type": "number",
+      "description": "A value in the closed interval [0, 1] expressing how strongly evidence supports a conclusion.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "AnomalyChange": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "base": {
+          "$ref": "#/$defs/AnomalyId"
+        },
+        "head": {
+          "$ref": "#/$defs/AnomalyId"
+        },
+        "subjectsAdded": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          }
+        },
+        "subjectsRemoved": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          }
+        },
+        "severity": {
+          "type": "object",
+          "properties": {
+            "base": {
+              "$ref": "#/$defs/Severity"
+            },
+            "head": {
+              "$ref": "#/$defs/Severity"
+            }
+          },
+          "required": [
+            "base",
+            "head"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "base",
+        "head",
+        "subjectsAdded",
+        "subjectsRemoved",
+        "severity"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

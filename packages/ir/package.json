@@ -1,0 +1,32 @@
+{
+  "name": "@katedrala/ir",
+  "version": "0.1.0",
+  "description": "The Katedrala Architecture Intermediate Representation: types, stable identifiers and JSON Schemas.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "exports": {
+    ".": {
+      "katedrala-source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./schema/*.json": "./schema/*.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.ts",
+    "schema"
+  ],
+  "keywords": [
+    "katedrala",
+    "architecture",
+    "intermediate-representation",
+    "json-schema"
+  ]
+}

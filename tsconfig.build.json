@@ -1,0 +1,24 @@
+{
+  "//": "Solution file for `tsc -b`: builds every package in dependency order. Package order is resolved by TypeScript from each package's own references.",
+  "files": [],
+  "references": [
+    {
+      "path": "packages/ir/tsconfig.build.json"
+    },
+    {
+      "path": "packages/plugin-api/tsconfig.build.json"
+    },
+    {
+      "path": "packages/graph/tsconfig.build.json"
+    },
+    {
+      "path": "packages/model/tsconfig.build.json"
+    },
+    {
+      "path": "packages/adapter-typescript/tsconfig.build.json"
+    },
+    {
+      "path": "packages/core/tsconfig.build.json"
+    }
+  ]
+}

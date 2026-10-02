@@ -1,0 +1,653 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:katedrala:schema:validation:1",
+  "title": "Katedrala validation (schema 1.x)",
+  "description": "A Katedrala rule validation report (katedrala validate). Tolerant consumer schema for every 1.x version: unknown properties and enumeration values are accepted.",
+  "$ref": "#/$defs/ValidationReport",
+  "$defs": {
+    "ValidationReport": {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "URI of the JSON Schema the document conforms to."
+        },
+        "schemaVersion": {
+          "type": "string",
+          "description": "Semantic version of the IR schema (not of Katedrala).",
+          "pattern": "^1\\.[0-9]+\\.[0-9]+"
+        },
+        "generator": {
+          "$ref": "#/$defs/GeneratorInfo"
+        },
+        "kind": {
+          "type": "string",
+          "const": "katedrala.validation"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/SnapshotInfo"
+        },
+        "analysis": {
+          "$ref": "#/$defs/AnalysisCompleteness"
+        },
+        "failOn": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Severity"
+            },
+            {
+              "type": "string",
+              "const": "never"
+            }
+          ],
+          "description": "Lowest violation severity that fails validation; `never` reports without failing."
+        },
+        "failOnIncomplete": {
+          "type": "boolean",
+          "description": "Whether an incomplete analysis (failed files, unresolved imports) fails validation."
+        },
+        "complete": {
+          "type": "boolean",
+          "description": "Whether the analysis was complete (no failed files and no unresolved imports)."
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "rules": {
+              "$ref": "#/$defs/Count"
+            },
+            "violations": {
+              "$ref": "#/$defs/Count"
+            },
+            "bySeverity": {
+              "$ref": "#/$defs/SeverityCounts"
+            },
+            "rulesWithProblems": {
+              "$ref": "#/$defs/Count",
+              "description": "Rules with configuration problems (e.g. selectors matching nothing)."
+            }
+          },
+          "required": [
+            "rules",
+            "violations",
+            "bySeverity",
+            "rulesWithProblems"
+          ]
+        },
+        "rules": {
+          "$ref": "#/$defs/RulesSummary"
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RuleViolation"
+          }
+        }
+      },
+      "required": [
+        "analysis",
+        "complete",
+        "failOn",
+        "failOnIncomplete",
+        "generator",
+        "kind",
+        "passed",
+        "rules",
+        "schemaVersion",
+        "snapshot",
+        "summary",
+        "violations"
+      ]
+    },
+    "GeneratorInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "katedrala"
+        },
+        "version": {
+          "type": "string",
+          "description": "Katedrala version (semver)."
+        },
+        "adapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Language adapters that processed files, sorted by id."
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ToolVersion"
+          },
+          "description": "Plugins that contributed to the result, sorted by id. Omitted when none."
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "adapters"
+      ],
+      "description": "The tool that produced a document or report."
+    },
+    "ToolVersion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "description": "Name and version of a tool component (an adapter or a plugin)."
+    },
+    "SnapshotInfo": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/SnapshotKind"
+        },
+        "revision": {
+          "$ref": "#/$defs/RevisionInfo",
+          "description": "The analyzed commit, or the working tree's `HEAD` commit."
+        },
+        "subdirectory": {
+          "type": "string",
+          "description": "The analysis root relative to the version-control top-level directory (POSIX, \"\" when equal). Absent when the root is not inside a repository. Consumers keying caches by commit must include it."
+        },
+        "contentDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over the listed files: for each file in path order the line `<path>\\t<hash or ->\\t<size>\\n`. Identifies the analyzed content independently of how it was obtained."
+        },
+        "analysisDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over everything besides content that influences results: the effective Katedrala configuration and options, and the versions of Katedrala, its adapters and plugins. Documents with equal content and analysis digests are identical."
+        },
+        "projectConfigurationDigest": {
+          "type": "string",
+          "description": "`sha256:<hex>` over the project configuration files adapters read (e.g. `tsconfig.json`, `package.json`), already part of the content; reported separately to explain resolution changes."
+        }
+      },
+      "required": [
+        "kind",
+        "contentDigest",
+        "analysisDigest",
+        "projectConfigurationDigest"
+      ],
+      "description": "What exactly was analyzed."
+    },
+    "SnapshotKind": {
+      "description": "Kinds of snapshot. `working-tree`: files as they are on disk. `git-revision`: files as committed in a git revision. `in-memory`: files supplied programmatically. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "working-tree",
+            "git-revision",
+            "in-memory"
+          ]
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "RevisionInfo": {
+      "type": "object",
+      "properties": {
+        "commit": {
+          "type": "string",
+          "description": "Full commit hash."
+        },
+        "committedAt": {
+          "type": "string",
+          "description": "Committer date, ISO-8601 UTC.",
+          "format": "date-time"
+        },
+        "subject": {
+          "type": "string",
+          "description": "First line of the commit message."
+        },
+        "dirty": {
+          "type": "boolean",
+          "description": "For working-tree snapshots: whether analyzed files differ from `HEAD`."
+        }
+      },
+      "required": [
+        "commit"
+      ]
+    },
+    "AnalysisCompleteness": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "$ref": "#/$defs/Count"
+        },
+        "analyzedFiles": {
+          "$ref": "#/$defs/Count"
+        },
+        "failedFiles": {
+          "$ref": "#/$defs/Count"
+        },
+        "unresolvedImports": {
+          "$ref": "#/$defs/Count"
+        },
+        "unresolvedReferences": {
+          "$ref": "#/$defs/Count"
+        },
+        "diagnostics": {
+          "$ref": "#/$defs/SeverityCounts"
+        }
+      },
+      "required": [
+        "files",
+        "analyzedFiles",
+        "failedFiles",
+        "unresolvedImports",
+        "unresolvedReferences",
+        "diagnostics"
+      ],
+      "description": "How complete the underlying analysis was. Reports carry it so a consumer (e.g. a CI gate) can refuse to trust results of a broken run."
+    },
+    "Count": {
+      "type": "integer",
+      "description": "A non-negative integer count.",
+      "minimum": 0
+    },
+    "SeverityCounts": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/$defs/Count"
+        },
+        "warning": {
+          "$ref": "#/$defs/Count"
+        },
+        "error": {
+          "$ref": "#/$defs/Count"
+        }
+      },
+      "required": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "description": "Number of items per severity."
+    },
+    "Severity": {
+      "type": "string",
+      "description": "Severity shared by diagnostics, anomalies and rule violations. Ordered `info` < `warning` < `error`.",
+      "anyOf": [
+        {
+          "enum": [
+            "info",
+            "warning",
+            "error"
+          ]
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "RulesSummary": {
+      "type": "object",
+      "properties": {
+        "configuration": {
+          "type": "string",
+          "description": "Path of the configuration file the rules came from, relative to the analysis root."
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RuleResult"
+          },
+          "description": "One entry per configured rule, in configuration order."
+        }
+      },
+      "required": [
+        "results"
+      ]
+    },
+    "RuleResult": {
+      "type": "object",
+      "properties": {
+        "rule": {
+          "type": "string"
+        },
+        "ruleType": {
+          "$ref": "#/$defs/RuleType"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "description": {
+          "type": "string"
+        },
+        "digest": {
+          "type": "string",
+          "description": "`sha256:<hex>` of the normalized rule definition; changes when the rule is edited."
+        },
+        "violations": {
+          "$ref": "#/$defs/Count",
+          "description": "Number of violations of this rule."
+        },
+        "matchedSources": {
+          "$ref": "#/$defs/Count",
+          "description": "Units matched by the rule's source selector (0 usually indicates a misconfigured selector)."
+        },
+        "matchedTargets": {
+          "$ref": "#/$defs/Count",
+          "description": "Units matched by the rule's target selector, for dependency rules."
+        },
+        "problems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RuleProblem"
+          },
+          "description": "Configuration problems, e.g. selectors that match nothing. Omitted when none."
+        }
+      },
+      "required": [
+        "rule",
+        "ruleType",
+        "severity",
+        "digest",
+        "violations",
+        "matchedSources"
+      ],
+      "description": "Outcome of evaluating one configured rule."
+    },
+    "RuleType": {
+      "description": "Rule types (see docs/RULES.md). Values prefixed with `x-` are reserved for plugins.\n- `forbidden-dependency`: sources must not depend on targets.\n- `allowed-dependency`: sources may only depend on the listed targets.\n- `layer-order`: dependencies must follow the declared layer order.\n- `module-isolation`: a module must not depend on (or be depended on by) other modules.\n- `dependency-direction`: dependencies between two groups may only point one way.\n- `max-fan-out` / `max-fan-in`: upper bounds on direct dependencies / dependents.\n- `no-cycles`: no dependency cycles within the scope.\n- `public-api`: other units may only depend on a unit through its declared entry points.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "forbidden-dependency",
+            "allowed-dependency",
+            "layer-order",
+            "module-isolation",
+            "dependency-direction",
+            "max-fan-out",
+            "max-fan-in",
+            "no-cycles",
+            "public-api"
+          ]
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "RuleProblem": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/RuleProblemCode"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "description": "A configuration problem detected while evaluating a rule."
+    },
+    "RuleProblemCode": {
+      "description": "Codes of rule configuration problems. Values prefixed with `x-` are reserved for plugins.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "no-matching-sources",
+            "no-matching-targets",
+            "unknown-selector"
+          ]
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "RuleViolation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ViolationId",
+          "description": "`violation:<rule id>:` + hash of `\"<rule>\\n<source>\\n<target or empty>\\n<discriminator or empty>\"`; the discriminator is a stable identity component (e.g. the cycle's anomaly id), never a measured value."
+        },
+        "rule": {
+          "type": "string"
+        },
+        "ruleType": {
+          "$ref": "#/$defs/RuleType"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "source": {
+          "$ref": "#/$defs/EntityId",
+          "description": "The violating unit."
+        },
+        "target": {
+          "$ref": "#/$defs/EntityId",
+          "description": "The depended-upon unit, for dependency rules."
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Every entity involved, for rules about groups (e.g. the members of a forbidden cycle), sorted."
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable explanation, e.g. \"OrderController depends on OrderRepository\"."
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EdgeId"
+          },
+          "description": "Relationships that constitute the violation, sorted."
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SourceLocation"
+          },
+          "description": "Source locations of the violating relationships, sorted, truncated to `limits.maxLocationsPerFinding`."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "rule",
+        "ruleType",
+        "severity",
+        "source",
+        "message",
+        "edges",
+        "locations",
+        "evidence"
+      ],
+      "description": "A breach of a configured rule. Dependency rules are evaluated on the file-level graph by default and yield one violation per (rule, source file, target file) carrying every underlying edge."
+    },
+    "ViolationId": {
+      "type": "string",
+      "description": "`violation:<rule id>:<16 lowercase hex digits>`",
+      "pattern": "^violation:.+:[0-9a-f]{16}$"
+    },
+    "EntityId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RepositoryId"
+        },
+        {
+          "$ref": "#/$defs/DirectoryId"
+        },
+        {
+          "$ref": "#/$defs/FileId"
+        },
+        {
+          "$ref": "#/$defs/SymbolId"
+        },
+        {
+          "$ref": "#/$defs/PackageId"
+        },
+        {
+          "$ref": "#/$defs/ExternalId"
+        },
+        {
+          "$ref": "#/$defs/ComponentId"
+        },
+        {
+          "$ref": "#/$defs/ModuleId"
+        },
+        {
+          "$ref": "#/$defs/LayerId"
+        },
+        {
+          "$ref": "#/$defs/EndpointId"
+        }
+      ],
+      "description": "Any addressable architectural entity."
+    },
+    "RepositoryId": {
+      "type": "string",
+      "description": "`repo:<normalized remote>` (e.g. `repo:github.com/acme/shop`) or `repo:<name>`.",
+      "pattern": "^repo:.+$"
+    },
+    "DirectoryId": {
+      "type": "string",
+      "description": "`dir:<path>`; the analysis root is `dir:`.",
+      "pattern": "^dir:"
+    },
+    "FileId": {
+      "type": "string",
+      "description": "`file:<path>`",
+      "pattern": "^file:.+$"
+    },
+    "SymbolId": {
+      "type": "string",
+      "description": "`sym:<escaped file path>#<qualified name>[~<disambiguator>]`",
+      "pattern": "^sym:[^#]+#.+$"
+    },
+    "PackageId": {
+      "type": "string",
+      "description": "`pkg:<ecosystem>:<manifest directory>`, e.g. `pkg:npm:packages/api`; the root manifest is `pkg:npm:`.",
+      "pattern": "^pkg:[a-z0-9]+(?:-[a-z0-9]+)*:"
+    },
+    "ExternalId": {
+      "type": "string",
+      "description": "`ext:<namespace>:<name>`, e.g. `ext:npm:react`, `ext:node:fs`, `ext:env:DATABASE_URL`.",
+      "pattern": "^ext:[^:]+:.+$"
+    },
+    "ComponentId": {
+      "type": "string",
+      "description": "`cmp:<path>`; a component rooted at the analysis root is `cmp:`.",
+      "pattern": "^cmp:"
+    },
+    "ModuleId": {
+      "type": "string",
+      "description": "`mod:<module key>`: the configured name, or the anchor of an inferred module (see docs/IR.md).",
+      "pattern": "^mod:.+$"
+    },
+    "LayerId": {
+      "type": "string",
+      "description": "`layer:<name>`",
+      "pattern": "^layer:.+$"
+    },
+    "EndpointId": {
+      "type": "string",
+      "description": "`endpoint:<16 lowercase hex digits>`, derived from method, path and handler.",
+      "pattern": "^endpoint:[0-9a-f]{16}$"
+    },
+    "EdgeId": {
+      "type": "string",
+      "description": "`edge:<16 lowercase hex digits>`, derived from the edge's kind, source and target.",
+      "pattern": "^edge:[0-9a-f]{16}$"
+    },
+    "SourceLocation": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "$ref": "#/$defs/FileId"
+        },
+        "line": {
+          "$ref": "#/$defs/LineNumber"
+        },
+        "column": {
+          "$ref": "#/$defs/ColumnNumber"
+        }
+      },
+      "required": [
+        "file",
+        "line",
+        "column"
+      ],
+      "description": "A point in a specific file."
+    },
+    "LineNumber": {
+      "type": "integer",
+      "description": "A 1-based line number.",
+      "minimum": 1
+    },
+    "ColumnNumber": {
+      "type": "integer",
+      "description": "A 1-based column number in UTF-16 code units.",
+      "minimum": 1
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "description": "Stable kebab-case identifier of the signal, e.g. `internal-dependency-ratio`."
+        },
+        "description": {
+          "type": "string",
+          "description": "A complete sentence explaining the observation, e.g. \"87% of dependencies stay within the cluster\"."
+        },
+        "value": {
+          "type": "number",
+          "description": "The measured value, when the signal is numeric."
+        },
+        "weight": {
+          "type": "number",
+          "description": "The relative weight of this signal in the conclusion, when the conclusion is a weighted aggregate."
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityId"
+          },
+          "description": "Entities that exemplify the observation: sorted, and bounded by `limits.maxEvidenceEntities` (selection: sort by id, then truncate)."
+        }
+      },
+      "required": [
+        "signal",
+        "description"
+      ],
+      "description": "One measurable observation supporting a conclusion. Machine-readable (`signal`, `value`) and human-readable (`description`)."
+    }
+  }
+}
