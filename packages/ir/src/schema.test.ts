@@ -74,6 +74,19 @@ function sampleDocument(): ArchitectureDocument {
           column: 1,
           resolution: { status: "resolved", targets: [b], method: "relative-path" },
         },
+        {
+          specifier: "./generated/api",
+          kind: "static",
+          mechanism: "import-declaration",
+          typeOnly: false,
+          line: 2,
+          column: 1,
+          resolution: {
+            status: "excluded",
+            paths: ["src/generated/api.ts"],
+            method: "relative-path",
+          },
+        },
       ],
     },
     {

@@ -1,0 +1,224 @@
+{
+  "description": "TypeScript language-coverage library (@acme/shop-core): chained barrels with an export * cycle, export * as ns, named and default exports, export = with import-equals, namespaces (nested and merged), declaration merging, overloads, enums and const enums, abstract generic classes, legacy decorators, import type and inline type imports, dynamic import, a triple-slash reference to a .d.ts, @/ path aliases and a baseUrl import, .js-suffixed specifiers that resolve to .ts files, a JSON import, TSX components and one file with a syntax error.",
+  "files": 27,
+  "imports": [
+    ["src/billing/index.ts", "src/billing/invoice.ts", "re-export"],
+    ["src/billing/index.ts", "src/billing/tax.ts", "re-export"],
+    ["src/billing/invoice.ts", "src/billing/tax.ts", "static"],
+    ["src/billing/invoice.ts", "src/orders/order.ts", "static"],
+    ["src/billing/invoice.ts", "src/utils/money.ts", "static"],
+    ["src/broken.ts", "src/orders/order.ts", "static"],
+    ["src/broken.ts", "src/utils/money.ts", "static"],
+    ["src/cli.ts", "src/index.ts", "static"],
+    ["src/config.ts", "src/data.json", "static"],
+    ["src/config.ts", "src/utils/money.ts", "type"],
+    ["src/customers/index.ts", "src/customers/customer.ts", "re-export"],
+    ["src/customers/index.ts", "src/orders/index.ts", "re-export"],
+    ["src/index.ts", "src/billing/index.ts", "re-export"],
+    ["src/index.ts", "src/orders/index.ts", "re-export"],
+    ["src/index.ts", "src/shop.ts", "re-export"],
+    ["src/index.ts", "src/utils/money.ts", "re-export"],
+    ["src/lazy.ts", "src/orders/order.ts", "static"],
+    ["src/lazy.ts", "src/utils/collections.ts", "static"],
+    ["src/lazy.ts", "src/utils/money.ts", "static"],
+    ["src/orders/index.ts", "src/customers/index.ts", "re-export"],
+    ["src/orders/index.ts", "src/orders/order-repository.ts", "re-export"],
+    ["src/orders/index.ts", "src/orders/order-service.ts", "re-export"],
+    ["src/orders/index.ts", "src/orders/order.ts", "re-export"],
+    ["src/orders/order-repository.ts", "src/orders/order.ts", "type"],
+    ["src/orders/order-repository.ts", "src/shared/repository.ts", "static"],
+    ["src/orders/order-service.ts", "src/decorators.ts", "static"],
+    ["src/orders/order-service.ts", "src/orders/order-repository.ts", "static"],
+    ["src/orders/order-service.ts", "src/orders/order.ts", "static"],
+    ["src/orders/order-service.ts", "src/orders/order.ts", "type"],
+    ["src/orders/order-service.ts", "src/utils/money.ts", "type"],
+    ["src/orders/order.ts", "src/utils/money.ts", "static"],
+    ["src/orders/order.ts", "src/utils/money.ts", "type"],
+    ["src/shop.ts", "src/billing/invoice.ts", "static"],
+    ["src/shop.ts", "src/config.ts", "static"],
+    ["src/shop.ts", "src/globals.d.ts", "triple-slash"],
+    ["src/shop.ts", "src/lazy.ts", "dynamic"],
+    ["src/shop.ts", "src/legacy.ts", "import-equals"],
+    ["src/shop.ts", "src/orders/order-repository.ts", "static"],
+    ["src/shop.ts", "src/orders/order-service.ts", "static"],
+    ["src/shop.ts", "src/orders/order.ts", "type"],
+    ["src/shop.ts", "src/polyfills.ts", "side-effect"],
+    ["src/ui/App.tsx", "src/customers/index.ts", "static"],
+    ["src/ui/App.tsx", "src/ui/OrderList.tsx", "static"],
+    ["src/ui/OrderList.tsx", "src/orders/order.ts", "static"],
+    ["src/ui/OrderList.tsx", "src/utils/money.ts", "static"]
+  ],
+  "externals": ["node:crypto", "react"],
+  "unresolved": [],
+  "fileCycles": [
+    ["src/customers/index.ts", "src/orders/index.ts"]
+  ],
+  "expectations": {
+    "exports": {
+      "src/billing/index.ts": ["Invoice", "Tax"],
+      "src/customers/index.ts": [
+        "Customer",
+        "CustomerTier",
+        "Order",
+        "OrderInput",
+        "OrderLine",
+        "OrderRepository",
+        "OrderService",
+        "OrderStatus",
+        "PlacedOrder",
+        "Priority",
+        "calculateTotal",
+        "customerDisplayName",
+        "isOpen",
+        "lineTotal"
+      ],
+      "src/index.ts": [
+        "Customer",
+        "CustomerTier",
+        "Money",
+        "Order",
+        "OrderInput",
+        "OrderLine",
+        "OrderRepository",
+        "OrderService",
+        "OrderStatus",
+        "PlacedOrder",
+        "Priority",
+        "Shop",
+        "ShopOptions",
+        "billing",
+        "calculateTotal",
+        "createShop",
+        "customerDisplayName",
+        "formatMoney",
+        "isOpen",
+        "lineTotal"
+      ],
+      "src/orders/index.ts": [
+        "Customer",
+        "CustomerTier",
+        "Order",
+        "OrderInput",
+        "OrderLine",
+        "OrderRepository",
+        "OrderService",
+        "OrderStatus",
+        "PlacedOrder",
+        "Priority",
+        "calculateTotal",
+        "customerDisplayName",
+        "isOpen",
+        "lineTotal"
+      ],
+      "src/shop.ts": ["ShopOptions", "createShop", "default", "shopsCreated"],
+      "src/ui/App.tsx": ["App", "AppProps", "default"]
+    },
+    "symbolsSample": [
+      { "file": "src/billing/invoice.ts", "qualifiedName": "Invoice", "kind": "class" },
+      { "file": "src/billing/invoice.ts", "qualifiedName": "Invoice", "kind": "namespace" },
+      { "file": "src/billing/invoice.ts", "qualifiedName": "Invoice.Format", "kind": "type-alias" },
+      { "file": "src/billing/invoice.ts", "qualifiedName": "Invoice.fromOrder", "kind": "function" },
+      { "file": "src/billing/invoice.ts", "qualifiedName": "Invoice.gross", "kind": "accessor" },
+      { "file": "src/billing/tax.ts", "qualifiedName": "Tax", "kind": "namespace" },
+      { "file": "src/billing/tax.ts", "qualifiedName": "Tax.DEFAULT_RATE", "kind": "constant" },
+      { "file": "src/billing/tax.ts", "qualifiedName": "Tax.EU", "kind": "namespace" },
+      { "file": "src/billing/tax.ts", "qualifiedName": "Tax.EU.vatFor", "kind": "function" },
+      { "file": "src/broken.ts", "qualifiedName": "statusLabel", "kind": "function" },
+      { "file": "src/config.ts", "qualifiedName": "settings", "kind": "constant" },
+      { "file": "src/decorators.ts", "qualifiedName": "Injectable", "kind": "function" },
+      { "file": "src/globals.d.ts", "qualifiedName": "ShopGlobals", "kind": "namespace" },
+      { "file": "src/globals.d.ts", "qualifiedName": "ShopGlobals.BuildInfo", "kind": "interface" },
+      { "file": "src/globals.d.ts", "qualifiedName": "__APP_VERSION__", "kind": "constant" },
+      { "file": "src/globals.d.ts", "qualifiedName": "__SHOP_FLAGS__", "kind": "variable" },
+      { "file": "src/legacy.ts", "qualifiedName": "legacyFormat", "kind": "function" },
+      { "file": "src/legacy.ts", "qualifiedName": "legacyFormat", "kind": "namespace" },
+      { "file": "src/legacy.ts", "qualifiedName": "legacyFormat.parse", "kind": "function" },
+      { "file": "src/orders/order-repository.ts", "qualifiedName": "OrderRepository.findBy", "kind": "method" },
+      { "file": "src/orders/order-repository.ts", "qualifiedName": "OrderRepository.save", "kind": "method" },
+      { "file": "src/orders/order-repository.ts", "qualifiedName": "OrderRepository.size", "kind": "accessor" },
+      { "file": "src/orders/order-service.ts", "qualifiedName": "OrderService", "kind": "class" },
+      { "file": "src/orders/order-service.ts", "qualifiedName": "OrderService.constructor", "kind": "constructor" },
+      { "file": "src/orders/order-service.ts", "qualifiedName": "OrderService.currency", "kind": "property" },
+      { "file": "src/orders/order-service.ts", "qualifiedName": "OrderService.place", "kind": "method" },
+      { "file": "src/orders/order-service.ts", "qualifiedName": "OrderService.repo", "kind": "property" },
+      { "file": "src/orders/order-service.ts", "qualifiedName": "PlacedOrder", "kind": "interface" },
+      { "file": "src/orders/order.ts", "qualifiedName": "Order", "kind": "interface" },
+      { "file": "src/orders/order.ts", "qualifiedName": "OrderInput", "kind": "type-alias" },
+      { "file": "src/orders/order.ts", "qualifiedName": "OrderStatus", "kind": "enum" },
+      { "file": "src/orders/order.ts", "qualifiedName": "Priority", "kind": "enum" },
+      { "file": "src/orders/order.ts", "qualifiedName": "calculateTotal", "kind": "function" },
+      { "file": "src/shared/repository.ts", "qualifiedName": "Repository", "kind": "class" },
+      { "file": "src/shared/repository.ts", "qualifiedName": "Repository.entityName", "kind": "property" },
+      { "file": "src/shared/repository.ts", "qualifiedName": "Repository.findById", "kind": "method" },
+      { "file": "src/shop.ts", "qualifiedName": "Shop", "kind": "class" },
+      { "file": "src/shop.ts", "qualifiedName": "Shop.version", "kind": "property" },
+      { "file": "src/shop.ts", "qualifiedName": "createdShops", "kind": "variable" },
+      { "file": "src/ui/OrderList.tsx", "qualifiedName": "OrderList", "kind": "function" },
+      { "file": "src/utils/collections.ts", "qualifiedName": "groupBy", "kind": "function" },
+      { "file": "src/utils/money.ts", "qualifiedName": "formatMoney", "kind": "function" }
+    ],
+    "mergedSymbols": [
+      {
+        "file": "src/orders/order-repository.ts",
+        "qualifiedName": "OrderRepository.findBy",
+        "kind": "method",
+        "declarations": 3
+      },
+      { "file": "src/orders/order.ts", "qualifiedName": "Order", "kind": "interface", "declarations": 2 },
+      { "file": "src/utils/money.ts", "qualifiedName": "formatMoney", "kind": "function", "declarations": 3 }
+    ],
+    "symbolIds": {
+      "src/billing/invoice.ts#Invoice": "class",
+      "src/billing/invoice.ts#Invoice~namespace": "namespace",
+      "src/legacy.ts#legacyFormat": "function",
+      "src/legacy.ts#legacyFormat~namespace": "namespace"
+    },
+    "decorators": {
+      "src/orders/order-service.ts#OrderService": [
+        { "name": "Injectable", "arguments": ["\"orders\""] }
+      ],
+      "src/orders/order-service.ts#OrderService.cancel": [
+        { "name": "Log", "arguments": [] }
+      ],
+      "src/orders/order-service.ts#OrderService.currency": [
+        { "name": "Required", "arguments": [] }
+      ],
+      "src/orders/order-service.ts#OrderService.place": [
+        { "name": "Log", "arguments": ["\"orders.place\""] }
+      ]
+    },
+    "calls": [
+      ["src/billing/invoice.ts#Invoice.fromOrder", "src/billing/tax.ts#Tax.rateFor"],
+      ["src/billing/invoice.ts#Invoice.render", "src/utils/money.ts#formatMoney"],
+      ["src/billing/tax.ts#Tax.rateFor", "src/billing/tax.ts#Tax.EU.vatFor"],
+      ["src/cli.ts#main", "src/billing/tax.ts#Tax.rateFor"],
+      ["src/cli.ts#main", "src/shop.ts#createShop"],
+      ["src/lazy.ts#buildSalesReport", "src/utils/collections.ts#groupBy"],
+      ["src/orders/order-service.ts#OrderService.cancel", "src/shared/repository.ts#Repository.getOrThrow"],
+      ["src/orders/order-service.ts#OrderService.history", "src/orders/order-repository.ts#OrderRepository.findBy"],
+      ["src/orders/order-service.ts#OrderService.place", "src/orders/order-repository.ts#OrderRepository.save"],
+      ["src/orders/order-service.ts#OrderService.place", "src/orders/order.ts#calculateTotal"],
+      ["src/orders/order.ts#calculateTotal", "src/orders/order.ts#lineTotal"],
+      ["src/shop.ts#Shop.checkout", "src/billing/invoice.ts#Invoice.fromOrder"],
+      ["src/shop.ts#Shop.checkout", "src/orders/order-service.ts#OrderService.place"],
+      ["src/shop.ts#Shop.describe", "src/legacy.ts#legacyFormat"],
+      ["src/ui/App.tsx#App", "src/customers/customer.ts#customerDisplayName"]
+    ],
+    "instantiates": [
+      ["src/billing/invoice.ts#Invoice.fromOrder", "src/billing/invoice.ts#Invoice"],
+      ["src/shop.ts#createShop", "src/orders/order-service.ts#OrderService"]
+    ],
+    "uses": [
+      ["src/ui/App.tsx#App", "src/ui/OrderList.tsx#OrderList"],
+      ["src/ui/OrderList.tsx#OrderList", "src/ui/OrderList.tsx#OrderRow"]
+    ],
+    "runtimeCycles": [
+      ["src/customers/index.ts", "src/orders/index.ts"]
+    ],
+    "partialFiles": {
+      "src/broken.ts": { "firstSyntaxErrorLine": 10 }
+    },
+    "scriptFiles": ["src/globals.d.ts", "src/polyfills.ts"],
+    "entryPoints": ["src/cli.ts", "src/index.ts"]
+  }
+}

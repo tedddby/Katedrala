@@ -1,0 +1,19 @@
+{
+  "name": "coffee-shop",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Online shop for coffee beans and brewing equipment",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "description": "Fastify 5 + TypeScript order API: a module-scope fastify() instance with shorthand routes, an encapsulated plugin registered with prefix /v1 that adds an onRequest hook and registers routes on its instance (including instance.route), a root-level app.route declaration, a functional service layer over MongoDB and an outgoing ShipEngine call.",
+  "files": 18,
+  "imports": [
+    ["src/app.ts", "src/config.ts", "static"],
+    ["src/app.ts", "src/handlers/orders.ts", "static"],
+    ["src/app.ts", "src/hooks/auth.ts", "static"],
+    ["src/app.ts", "src/plugins/orders.ts", "static"],
+    ["src/app.ts", "src/routes/health.ts", "static"],
+    ["src/app.ts", "src/schemas/order.schema.ts", "static"],
+    ["src/clients/shipping.client.ts", "src/config.ts", "static"],
+    ["src/clients/shipping.client.ts", "src/errors.ts", "static"],
+    ["src/db.ts", "src/config.ts", "static"],
+    ["src/db.ts", "src/types.ts", "type"],
+    ["src/handlers/orders.ts", "src/schemas/order.schema.ts", "type"],
+    ["src/handlers/orders.ts", "src/services/orders.service.ts", "static"],
+    ["src/handlers/orders.ts", "src/types.ts", "type"],
+    ["src/hooks/auth.ts", "src/config.ts", "static"],
+    ["src/plugins/orders.ts", "src/handlers/orders.ts", "static"],
+    ["src/plugins/orders.ts", "src/hooks/auth.ts", "static"],
+    ["src/plugins/orders.ts", "src/schemas/order.schema.ts", "static"],
+    ["src/repositories/orders.repository.ts", "src/db.ts", "static"],
+    ["src/repositories/orders.repository.ts", "src/types.ts", "type"],
+    ["src/routes/health.ts", "src/db.ts", "static"],
+    ["src/schemas/order.schema.ts", "src/types.ts", "type"],
+    ["src/server.ts", "src/app.ts", "static"],
+    ["src/server.ts", "src/config.ts", "static"],
+    ["src/server.ts", "src/db.ts", "static"],
+    ["src/services/orders.service.ts", "src/clients/shipping.client.ts", "static"],
+    ["src/services/orders.service.ts", "src/errors.ts", "static"],
+    ["src/services/orders.service.ts", "src/repositories/orders.repository.ts", "static"],
+    ["src/services/orders.service.ts", "src/schemas/order.schema.ts", "type"],
+    ["src/services/orders.service.ts", "src/services/pricing.ts", "static"],
+    ["src/services/orders.service.ts", "src/types.ts", "type"],
+    ["src/services/pricing.ts", "src/types.ts", "type"],
+    ["test/orders.test.ts", "src/app.ts", "static"]
+  ],
+  "externals": ["@fastify/cors", "fastify", "mongodb", "node:assert", "node:test"],
+  "unresolved": [],
+  "fileCycles": [],
+  "expectations": {
+    "framework": "fastify",
+    "routes": [
+      ["DELETE", "/v1/orders/:id", "src/handlers/orders.ts#cancelOrderHandler"],
+      ["GET", "/health", "src/routes/health.ts#healthHandler"],
+      ["GET", "/v1/orders", "src/handlers/orders.ts#listOrdersHandler"],
+      ["GET", "/v1/orders/:id", "src/handlers/orders.ts#getOrderHandler"],
+      ["POST", "/orders", "src/handlers/orders.ts#createOrderHandler"],
+      ["POST", "/v1/orders", "src/handlers/orders.ts#createOrderHandler"]
+    ],
+    "plugins": [["src/plugins/orders.ts#ordersPlugin", "/v1"]],
+    "hooks": [
+      ["onClose", "src/db.ts#closeDatabase"],
+      ["onRequest", "src/hooks/auth.ts#verifyApiKey"]
+    ],
+    "routeHooks": [
+      ["DELETE", "/v1/orders/:id", "onRequest", "src/hooks/auth.ts#verifyApiKey"],
+      ["GET", "/v1/orders", "onRequest", "src/hooks/auth.ts#verifyApiKey"],
+      ["GET", "/v1/orders/:id", "onRequest", "src/hooks/auth.ts#verifyApiKey"],
+      ["POST", "/orders", "onRequest", "src/hooks/auth.ts#verifyApiKey"],
+      ["POST", "/v1/orders", "onRequest", "src/hooks/auth.ts#verifyApiKey"]
+    ],
+    "envVars": ["API_KEYS", "CORS_ORIGINS", "HOST", "LOG_LEVEL", "MONGO_DB", "MONGO_URL", "PORT", "SHIPENGINE_API_KEY"],
+    "envReads": [
+      ["src/config.ts", "API_KEYS"],
+      ["src/config.ts", "CORS_ORIGINS"],
+      ["src/config.ts", "HOST"],
+      ["src/config.ts", "LOG_LEVEL"],
+      ["src/config.ts", "MONGO_DB"],
+      ["src/config.ts", "MONGO_URL"],
+      ["src/config.ts", "PORT"],
+      ["src/config.ts", "SHIPENGINE_API_KEY"]
+    ],
+    "httpHosts": ["api.shipengine.com"],
+    "httpCalls": [["src/clients/shipping.client.ts", "POST", "https://api.shipengine.com/v1/rates/estimate"]],
+    "datastores": ["mongodb"],
+    "manifestMain": [["src/server.ts", "dist/server.js"]]
+  }
+}

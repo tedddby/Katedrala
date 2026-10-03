@@ -171,15 +171,15 @@
         },
         "contentDigest": {
           "type": "string",
-          "description": "`sha256:<hex>` over the listed files: for each file in path order the line `<path>\\t<hash or ->\\t<size>\\n`. Identifies the analyzed content independently of how it was obtained."
+          "description": "`sha256:<hex>` over the document's files: for each file in path order the line `<path>\\t<hash or ->\\t<size>\\n`. Identifies the analyzed content independently of how it was obtained."
         },
         "analysisDigest": {
           "type": "string",
-          "description": "`sha256:<hex>` over everything besides content that influences results: the effective Katedrala configuration and options, and the versions of Katedrala, its adapters and plugins. Documents with equal content and analysis digests are identical."
+          "description": "`sha256:<hex>` over everything besides the content of the document's files that influences results: the effective configuration and options, the versions of Katedrala (and of this schema), its adapters and plugins, and what the analysis saw outside the document's files: paths of listed files that are not document files, skipped links, and the content (or absence) of project configuration files read outside the document's files (excluded by `include` / `exclude`, or above the analysis root). Documents with equal content and analysis digests are identical."
         },
         "projectConfigurationDigest": {
           "type": "string",
-          "description": "`sha256:<hex>` over the project configuration files adapters read (e.g. `tsconfig.json`, `package.json`), already part of the content; reported separately to explain resolution changes."
+          "description": "`sha256:<hex>` over the project configuration files adapters read (e.g. `tsconfig.json`, `package.json`), including files above the analysis root; reported separately to explain resolution changes. Configuration outside the document's files is also covered by `analysisDigest`."
         }
       },
       "required": [

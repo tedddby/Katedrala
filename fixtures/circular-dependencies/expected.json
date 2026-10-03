@@ -1,0 +1,48 @@
+{
+  "description": "Kanban domain library with a 3-file runtime cycle, a 2-file runtime cycle and a 2-file cycle formed only by import type, surrounded by acyclic files.",
+  "files": 14,
+  "imports": [
+    ["src/api/project-dto.ts", "src/api/task-dto.ts", "type"],
+    ["src/api/serializer.ts", "src/api/project-dto.ts", "type"],
+    ["src/api/serializer.ts", "src/api/task-dto.ts", "type"],
+    ["src/api/serializer.ts", "src/workflow/board.ts", "type"],
+    ["src/api/task-dto.ts", "src/api/project-dto.ts", "type"],
+    ["src/demo/seed.ts", "src/people/team.ts", "static"],
+    ["src/demo/seed.ts", "src/workflow/board.ts", "static"],
+    ["src/index.ts", "src/api/serializer.ts", "re-export"],
+    ["src/index.ts", "src/demo/seed.ts", "dynamic"],
+    ["src/index.ts", "src/notifications/digest.ts", "re-export"],
+    ["src/index.ts", "src/people/member.ts", "re-export"],
+    ["src/index.ts", "src/people/team.ts", "re-export"],
+    ["src/index.ts", "src/workflow/board.ts", "re-export"],
+    ["src/index.ts", "src/workflow/board.ts", "type"],
+    ["src/notifications/digest.ts", "src/people/member.ts", "type"],
+    ["src/notifications/digest.ts", "src/workflow/board.ts", "static"],
+    ["src/people/member.ts", "src/people/team.ts", "static"],
+    ["src/people/member.ts", "src/shared/id.ts", "static"],
+    ["src/people/team.ts", "src/people/member.ts", "static"],
+    ["src/people/team.ts", "src/shared/id.ts", "static"],
+    ["src/workflow/board.ts", "src/shared/id.ts", "static"],
+    ["src/workflow/board.ts", "src/workflow/column.ts", "static"],
+    ["src/workflow/card.ts", "src/shared/id.ts", "static"],
+    ["src/workflow/card.ts", "src/workflow/board.ts", "static"],
+    ["src/workflow/column.ts", "src/shared/id.ts", "static"],
+    ["src/workflow/column.ts", "src/workflow/card.ts", "static"]
+  ],
+  "externals": ["node:crypto"],
+  "unresolved": [],
+  "fileCycles": [
+    ["src/api/project-dto.ts", "src/api/task-dto.ts"],
+    ["src/people/member.ts", "src/people/team.ts"],
+    ["src/workflow/board.ts", "src/workflow/card.ts", "src/workflow/column.ts"]
+  ],
+  "expectations": {
+    "typeOnlyCycles": [
+      ["src/api/project-dto.ts", "src/api/task-dto.ts"]
+    ],
+    "runtimeCycles": [
+      ["src/people/member.ts", "src/people/team.ts"],
+      ["src/workflow/board.ts", "src/workflow/card.ts", "src/workflow/column.ts"]
+    ]
+  }
+}

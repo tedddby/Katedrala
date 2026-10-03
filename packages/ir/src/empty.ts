@@ -32,6 +32,7 @@ export function emptyRepositoryStats(): RepositoryStats {
     bytes: 0,
     unresolvedImports: 0,
     unresolvedReferences: 0,
+    untypedReferences: 0,
   };
 }
 

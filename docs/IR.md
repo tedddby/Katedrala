@@ -93,11 +93,16 @@ should include their own name. The extensible enumerations are listed in `EXTENS
 - **Line count**: the number of `\n` characters, plus one if the text is non-empty and does not end with `\n`.
 - **Digests** are self-describing: `sha256:<64 lowercase hex digits>`.
   - `FileEntity.hash`: SHA-256 of the normalized text encoded as UTF-8.
-  - `snapshot.contentDigest`: SHA-256 over the line `<path>\t<hash or ->\t<size>\n` of every listed file in
-    path order.
-  - `snapshot.analysisDigest`: SHA-256 over the effective configuration and options and the versions of
-    Katedrala, its adapters and plugins.
-  - `snapshot.projectConfigurationDigest`: SHA-256 over the project configuration files adapters read.
+  - `snapshot.contentDigest`: SHA-256 over the line `<path>\t<hash or ->\t<size>\n` of every file of the
+    document in path order.
+  - `snapshot.analysisDigest`: SHA-256 over the effective configuration and options, the versions of
+    Katedrala (and of the schema), its adapters and plugins, and what the analysis saw outside the
+    document's files: paths of listed files that are not document files, skipped links, and the content (or
+    absence) of project configuration files read outside the document's files (excluded by `include` /
+    `exclude`, or above the analysis root). Documents with equal content and analysis digests are identical.
+  - `snapshot.projectConfigurationDigest`: SHA-256 over the project configuration files adapters read,
+    including files above the analysis root; reported separately to explain resolution changes.
+    Configuration outside the document's files is also covered by `analysisDigest`.
 - **Numbers**: counts are integers ≥ 0; confidence values are in `[0, 1]` and express strength of support,
   not a calibrated probability; real-valued measurements are rounded to 9 significant digits; non-finite
   numbers never appear. In a decomposed score, `contribution = weight × normalized` and the score is the sum
@@ -195,7 +200,9 @@ consumer can recompute them (all strings UTF-8, SHA-256, first 16 lowercase hex 
 - **`ImportEntry`**: specifier, semantic `kind` (`static`, `dynamic`, `re-export`, `side-effect`, `include`,
   `module-declaration`), syntax `mechanism`, `typeOnly`, the enclosing symbol for nested imports, flags
   (`wildcard`, `global`, `optional`) and a `resolution` — resolved to one or more files (several for
-  package-level imports), external, builtin, unresolved (with a reason) or non-literal.
+  package-level imports), excluded (resolved to files the configuration excludes from the analysis, given by
+  path; neither counted as unresolved nor reported as a diagnostic), external, builtin, unresolved (with a
+  reason) or non-literal. `typeOnly` is syntactic (`import type`, every specifier marked `type`).
 - **`ExportEntry`**: exported name (`default`; `=` for an export assignment such as `export =` and
   `module.exports =`; `*` for `export * from`), the declarations it denotes (several when one name denotes a
   value and a type) and, for re-exports, the resolved module.
@@ -208,7 +215,8 @@ consumer can recompute them (all strings UTF-8, SHA-256, first 16 lowercase hex 
 - **`EntryPointEntry`**: declared ways into the code (manifest fields, scripts, framework conventions,
   configuration), mapped back from build output to sources (`mappedFrom`).
 - **`ExternalEntity`**: things outside the repository, with their namespace and, for packages, whether every
-  using package declares them (`declared`).
+  importing package declares them (`declared`; a package that imports an npm package only with type-only
+  imports may declare its `@types` package instead).
 
 ## Relationships
 
@@ -257,7 +265,8 @@ the syntactic reference kind and the kind of the resolved target (a call of a cl
 
 Aggregated dependencies (`AggregatedDependency`) lift every relationship between member files (including
 symbol-level ones) to the units, on the metrics projection, and report distinct edges (`edgeCount`), total
-observations, runtime (non-type-only) edges and counts per kind.
+observations, runtime (non-type-only) edges and counts per kind. Package-level dependencies also include
+the externals the package's files use (`PackageEntity.dependencies`).
 
 ## Metrics and findings
 

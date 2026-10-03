@@ -11,6 +11,18 @@ importers:
       '@eslint/js':
         specifier: 10.0.1
         version: 10.0.1(eslint@10.11.0)
+      '@katedrala/core':
+        specifier: workspace:*
+        version: link:packages/core
+      '@katedrala/engine':
+        specifier: workspace:*
+        version: link:packages/engine
+      '@katedrala/graph':
+        specifier: workspace:*
+        version: link:packages/graph
+      '@katedrala/ir':
+        specifier: workspace:*
+        version: link:packages/ir
       '@types/node':
         specifier: 24.13.6
         version: 24.13.6
@@ -85,6 +97,33 @@ importers:
         specifier: 4.0.3
         version: 4.0.3
 
+  packages/engine:
+    dependencies:
+      '@katedrala/adapter-typescript':
+        specifier: workspace:*
+        version: link:../adapter-typescript
+      '@katedrala/core':
+        specifier: workspace:*
+        version: link:../core
+      '@katedrala/graph':
+        specifier: workspace:*
+        version: link:../graph
+      '@katedrala/ir':
+        specifier: workspace:*
+        version: link:../ir
+      '@katedrala/linker':
+        specifier: workspace:*
+        version: link:../linker
+      '@katedrala/model':
+        specifier: workspace:*
+        version: link:../model
+      '@katedrala/plugin-api':
+        specifier: workspace:*
+        version: link:../plugin-api
+      zod:
+        specifier: 4.6.5
+        version: 4.6.5
+
   packages/graph:
     devDependencies:
       graphology:
@@ -107,6 +146,15 @@ importers:
         version: 0.24.8
 
   packages/ir: {}
+
+  packages/linker:
+    dependencies:
+      '@katedrala/ir':
+        specifier: workspace:*
+        version: link:../ir
+      '@katedrala/plugin-api':
+        specifier: workspace:*
+        version: link:../plugin-api
 
   packages/model:
     dependencies:

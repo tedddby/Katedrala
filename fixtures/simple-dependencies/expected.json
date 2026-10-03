@@ -1,0 +1,24 @@
+{
+  "description": "Six-file TypeScript CLI whose imports form a tree (index -> app -> services -> utils); no cycles, no externals.",
+  "files": 8,
+  "imports": [
+    ["src/app.ts", "src/services/expense-service.ts", "static"],
+    ["src/app.ts", "src/utils/logger.ts", "static"],
+    ["src/index.ts", "src/app.ts", "static"],
+    ["src/services/expense-service.ts", "src/utils/currency.ts", "static"],
+    ["src/utils/currency.ts", "src/utils/math.ts", "static"]
+  ],
+  "externals": [],
+  "unresolved": [],
+  "fileCycles": [],
+  "expectations": {
+    "maxDepth": 4,
+    "longestChain": [
+      "src/index.ts",
+      "src/app.ts",
+      "src/services/expense-service.ts",
+      "src/utils/currency.ts",
+      "src/utils/math.ts"
+    ]
+  }
+}

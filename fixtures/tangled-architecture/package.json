@@ -1,0 +1,18 @@
+{
+  "name": "corner-shop",
+  "version": "0.9.0",
+  "description": "Online shop backend that grew feature by feature.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "generate:payments": "openapi-typescript https://payments.example.com/v2/openapi.yaml -o src/generated/payment-provider.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "openapi-typescript": "^7.4.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

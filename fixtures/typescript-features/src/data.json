@@ -1,0 +1,6 @@
+{
+  "shopName": "Acme Coffee Supply",
+  "defaultCountry": "DE",
+  "currency": "EUR",
+  "countries": ["AT", "DE", "FR", "IE", "NL", "US"]
+}

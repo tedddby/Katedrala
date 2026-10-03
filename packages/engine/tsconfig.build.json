@@ -1,0 +1,33 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/.tsbuildinfo"
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"],
+  "references": [
+    {
+      "path": "../ir/tsconfig.build.json"
+    },
+    {
+      "path": "../plugin-api/tsconfig.build.json"
+    },
+    {
+      "path": "../graph/tsconfig.build.json"
+    },
+    {
+      "path": "../model/tsconfig.build.json"
+    },
+    {
+      "path": "../adapter-typescript/tsconfig.build.json"
+    },
+    {
+      "path": "../core/tsconfig.build.json"
+    },
+    {
+      "path": "../linker/tsconfig.build.json"
+    }
+  ]
+}

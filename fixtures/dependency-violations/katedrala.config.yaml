@@ -1,0 +1,22 @@
+groups:
+  controllers: ["src/controllers/**"]
+  repositories: ["src/repositories/**"]
+modules:
+  payments: ["src/payments/**"]
+  analytics: ["src/analytics/**"]
+rules:
+  - id: controllers-no-database
+    description: Controllers cannot directly access repositories
+    severity: error
+    from: controllers
+    cannot_depend_on: [repositories]
+  - id: payments-isolation
+    description: Payments cannot depend on analytics
+    severity: error
+    module: payments
+    cannot_depend_on: [analytics]
+  - id: no-module-cycles
+    description: Modules must not depend on each other cyclically
+    severity: warning
+    no_cycles: true
+    scope: modules

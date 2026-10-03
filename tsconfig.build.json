@@ -19,6 +19,12 @@
     },
     {
       "path": "packages/core/tsconfig.build.json"
+    },
+    {
+      "path": "packages/linker/tsconfig.build.json"
+    },
+    {
+      "path": "packages/engine/tsconfig.build.json"
     }
   ]
 }

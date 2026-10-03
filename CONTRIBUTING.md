@@ -56,6 +56,8 @@ need a prior build.
   workspace package only if it declares it in `package.json` and references it in `tsconfig.build.json`.
 - **Tests are required.** New behavior comes with unit tests; algorithms with property-based tests
   (fast-check) where a reference implementation or invariant exists; analyzer features with fixtures.
+  Test-only helpers that are not `*.test.ts` files (such as `test-support.ts`) are excluded in the package's
+  `tsconfig.build.json` so they never ship in `dist`.
 - **Honesty.** Do not ship placeholder behavior. If something cannot be implemented correctly yet, define the
   interface, return a clear "not supported" error and document the limitation.
 - **Documentation.** Update the relevant document in `docs/` in the same change. Cite the source of any
@@ -75,7 +77,12 @@ The IR (`packages/ir`) is a public contract. Any change must:
 
 Fixture repositories under `fixtures/` are analyzer inputs. Their bytes matter (hashes, line counts), so they
 are excluded from formatting and normalized to LF by `.gitattributes`. Each fixture has a `README.md`
-describing the architecture it models and the conclusions Katedrala is expected to reach.
+describing the architecture it models and the conclusions Katedrala is expected to reach, and an
+`expected.json` with machine-readable ground truth (format in [fixtures/README.md](fixtures/README.md)).
+
+`tests/fixtures/structure.test.ts` analyzes every fixture end to end and compares the result with its
+`expected.json`. Expectation keys that belong to a pipeline stage not implemented yet appear as `todo` tests;
+when you implement a stage, turn its keys into real checks.
 
 ## Commits
 

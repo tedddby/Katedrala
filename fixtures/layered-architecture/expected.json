@@ -1,0 +1,113 @@
+{
+  "description": "Layer-organized backend (controllers/services/repositories/models + shared) whose logical feature modules payments, orders and users cut across the layer directories.",
+  "files": 22,
+  "imports": [
+    ["src/controllers/order.controller.ts", "src/services/order.service.ts", "static"],
+    ["src/controllers/order.controller.ts", "src/shared/http.ts", "static"],
+    ["src/controllers/payment.controller.ts", "src/services/payment.service.ts", "static"],
+    ["src/controllers/payment.controller.ts", "src/shared/http.ts", "static"],
+    ["src/controllers/user.controller.ts", "src/services/user.service.ts", "static"],
+    ["src/controllers/user.controller.ts", "src/shared/http.ts", "static"],
+    ["src/main.ts", "src/controllers/order.controller.ts", "static"],
+    ["src/main.ts", "src/controllers/payment.controller.ts", "static"],
+    ["src/main.ts", "src/controllers/user.controller.ts", "static"],
+    ["src/main.ts", "src/repositories/order.repository.ts", "static"],
+    ["src/main.ts", "src/repositories/payment.repository.ts", "static"],
+    ["src/main.ts", "src/repositories/user.repository.ts", "static"],
+    ["src/main.ts", "src/services/order.service.ts", "static"],
+    ["src/main.ts", "src/services/payment-gateway.ts", "static"],
+    ["src/main.ts", "src/services/payment.service.ts", "static"],
+    ["src/main.ts", "src/services/user.service.ts", "static"],
+    ["src/main.ts", "src/shared/config.ts", "static"],
+    ["src/main.ts", "src/shared/database.ts", "static"],
+    ["src/main.ts", "src/shared/http.ts", "static"],
+    ["src/main.ts", "src/shared/logger.ts", "static"],
+    ["src/models/order.ts", "src/models/order-line.ts", "static"],
+    ["src/models/order.ts", "src/models/user.ts", "type"],
+    ["src/models/payment.ts", "src/models/user.ts", "type"],
+    ["src/repositories/order.repository.ts", "src/models/order-line.ts", "type"],
+    ["src/repositories/order.repository.ts", "src/models/order.ts", "type"],
+    ["src/repositories/order.repository.ts", "src/shared/database.ts", "type"],
+    ["src/repositories/payment.repository.ts", "src/models/payment.ts", "type"],
+    ["src/repositories/payment.repository.ts", "src/shared/database.ts", "type"],
+    ["src/repositories/user.repository.ts", "src/models/user.ts", "type"],
+    ["src/repositories/user.repository.ts", "src/shared/database.ts", "type"],
+    ["src/services/order.service.ts", "src/models/order-line.ts", "static"],
+    ["src/services/order.service.ts", "src/models/order.ts", "static"],
+    ["src/services/order.service.ts", "src/repositories/order.repository.ts", "static"],
+    ["src/services/order.service.ts", "src/services/payment.service.ts", "static"],
+    ["src/services/order.service.ts", "src/services/user.service.ts", "static"],
+    ["src/services/order.service.ts", "src/shared/errors.ts", "static"],
+    ["src/services/payment-gateway.ts", "src/shared/config.ts", "type"],
+    ["src/services/payment-gateway.ts", "src/shared/errors.ts", "static"],
+    ["src/services/payment.service.ts", "src/models/payment.ts", "static"],
+    ["src/services/payment.service.ts", "src/repositories/payment.repository.ts", "static"],
+    ["src/services/payment.service.ts", "src/services/payment-gateway.ts", "static"],
+    ["src/services/payment.service.ts", "src/services/user.service.ts", "static"],
+    ["src/services/payment.service.ts", "src/shared/errors.ts", "static"],
+    ["src/services/payment.service.ts", "src/shared/logger.ts", "type"],
+    ["src/services/user.service.ts", "src/models/user.ts", "static"],
+    ["src/services/user.service.ts", "src/repositories/user.repository.ts", "static"],
+    ["src/services/user.service.ts", "src/shared/errors.ts", "static"],
+    ["src/services/user.service.ts", "src/shared/logger.ts", "type"],
+    ["src/shared/http.ts", "src/shared/errors.ts", "static"],
+    ["src/shared/http.ts", "src/shared/logger.ts", "type"],
+    ["src/shared/logger.ts", "src/shared/config.ts", "type"]
+  ],
+  "externals": ["node:crypto", "node:http", "pg"],
+  "unresolved": [],
+  "fileCycles": [],
+  "expectations": {
+    "logicalModules": {
+      "payments": [
+        "src/controllers/payment.controller.ts",
+        "src/models/payment.ts",
+        "src/repositories/payment.repository.ts",
+        "src/services/payment-gateway.ts",
+        "src/services/payment.service.ts"
+      ],
+      "orders": [
+        "src/controllers/order.controller.ts",
+        "src/models/order-line.ts",
+        "src/models/order.ts",
+        "src/repositories/order.repository.ts",
+        "src/services/order.service.ts"
+      ],
+      "users": [
+        "src/controllers/user.controller.ts",
+        "src/models/user.ts",
+        "src/repositories/user.repository.ts",
+        "src/services/user.service.ts"
+      ],
+      "shared": [
+        "src/shared/config.ts",
+        "src/shared/database.ts",
+        "src/shared/errors.ts",
+        "src/shared/http.ts",
+        "src/shared/logger.ts"
+      ]
+    },
+    "notInAnyExpectedModule": ["src/main.ts"],
+    "moduleDependencies": [
+      ["orders", "payments"],
+      ["orders", "shared"],
+      ["orders", "users"],
+      ["payments", "shared"],
+      ["payments", "users"],
+      ["users", "shared"]
+    ],
+    "layers": ["controllers", "services", "repositories", "models"],
+    "layerDirectories": {
+      "controllers": "src/controllers",
+      "services": "src/services",
+      "repositories": "src/repositories",
+      "models": "src/models"
+    },
+    "layerDependencies": [
+      ["controllers", "services"],
+      ["repositories", "models"],
+      ["services", "models"],
+      ["services", "repositories"]
+    ]
+  }
+}

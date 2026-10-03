@@ -46,8 +46,8 @@ evaluating whether Katedrala's conclusions can be trusted.
   IR             │  @katedrala/ir  (types, ids, JSON Schema)  │   the contract
                  └───────────────────────▲───────────────────┘
                  ┌───────────────────────┴───────────────────┐
-  extraction     │  @katedrala/core: discovery → extraction → │   cache, worker pool, linker
-                 │  project setup → linking                   │
+  extraction     │  @katedrala/core: discovery → extraction → │   cache, worker pool
+                 │  project setup;  @katedrala/linker         │   resolution, binding
                  └───────▲───────────────▲──────────▲────────┘
                  ┌───────┴──────┐ ┌──────┴──────┐ ┌─┴─────────────┐
   plugins        │ language     │ │ framework   │ │ snapshot      │   @katedrala/plugin-api contracts
@@ -58,25 +58,26 @@ evaluating whether Katedrala's conclusions can be trusted.
 
 ## Packages
 
-| Package                         | Responsibility                                                                                               | Depends on                |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| `@katedrala/ir`                 | IR types, stable identifiers, canonical ordering/serialization, document index, JSON Schemas                 | —                         |
-| `@katedrala/graph`              | Compact directed (multi)graphs and standard algorithms (SCC, reachability, centrality, PageRank, clustering) | —                         |
-| `@katedrala/plugin-api`         | Contracts: language adapters, snapshot sources, framework detectors, exporters, metric/anomaly/rule plugins  | ir                        |
-| `@katedrala/model`              | In-memory architecture model: entity indexes and graph projections at symbol/file/component/module level     | ir, graph                 |
-| `@katedrala/core`               | Configuration, file discovery and classification, extraction (cache, workers), module linking                | ir, plugin-api            |
-| `@katedrala/adapter-typescript` | TypeScript and JavaScript adapter (TypeScript compiler API), tsconfig/package.json-aware module resolution   | ir, plugin-api            |
-| `@katedrala/frameworks`         | Framework detectors (Express, NestJS, Fastify)                                                               | ir, plugin-api            |
-| `@katedrala/git`                | Git snapshot sources (commits without checkout), history sampling                                            | ir, plugin-api            |
-| `@katedrala/inference`          | Components, modules and layers                                                                               | ir, graph, model          |
-| `@katedrala/metrics`            | Established metrics plus Architectural Gravity and Architectural Entropy                                     | ir, graph, model          |
-| `@katedrala/anomalies`          | Deterministic anomaly detection                                                                              | ir, graph, model, metrics |
-| `@katedrala/rules`              | Rule configuration, selectors and evaluation                                                                 | ir, graph, model          |
-| `@katedrala/impact`             | Change impact (blast radius) with explanation paths                                                          | ir, graph, model          |
-| `@katedrala/diff`               | Comparison of two documents                                                                                  | ir, model                 |
-| `@katedrala/engine`             | Orchestration and the public programmatic API                                                                | all of the above          |
-| `katedrala`                     | Command-line interface (re-exports the engine API)                                                           | engine                    |
-| `@katedrala/codeverse`          | Converts documents into a visualization model for CodeVerse                                                  | ir                        |
+| Package                         | Responsibility                                                                                                         | Depends on                |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| `@katedrala/ir`                 | IR types, stable identifiers, canonical ordering/serialization, document index, JSON Schemas                           | —                         |
+| `@katedrala/graph`              | Compact directed (multi)graphs and standard algorithms (SCC, reachability, centrality, PageRank, clustering)           | —                         |
+| `@katedrala/plugin-api`         | Contracts: language adapters, snapshot sources, framework detectors, exporters, metric/anomaly/rule plugins            | ir                        |
+| `@katedrala/model`              | In-memory architecture model: entity indexes and graph projections at symbol/file/component/module/layer/package level | ir, graph                 |
+| `@katedrala/core`               | Configuration, snapshot sources, file discovery and classification, extraction (cache, workers), project preparation   | ir, plugin-api            |
+| `@katedrala/linker`             | Module resolution and cross-file binding: files, symbols, typed edges with provenance, packages, externals             | ir, plugin-api            |
+| `@katedrala/adapter-typescript` | TypeScript and JavaScript adapter (TypeScript compiler API), tsconfig/package.json-aware module resolution             | ir, plugin-api            |
+| `@katedrala/frameworks`         | Framework detectors (Express, NestJS, Fastify)                                                                         | ir, plugin-api            |
+| `@katedrala/git`                | Git snapshot sources (commits without checkout), history sampling                                                      | ir, plugin-api            |
+| `@katedrala/inference`          | Components, modules and layers                                                                                         | ir, graph, model          |
+| `@katedrala/metrics`            | Established metrics plus Architectural Gravity and Architectural Entropy                                               | ir, graph, model          |
+| `@katedrala/anomalies`          | Deterministic anomaly detection                                                                                        | ir, graph, model, metrics |
+| `@katedrala/rules`              | Rule configuration, selectors and evaluation                                                                           | ir, graph, model          |
+| `@katedrala/impact`             | Change impact (blast radius) with explanation paths                                                                    | ir, graph, model          |
+| `@katedrala/diff`               | Comparison of two documents                                                                                            | ir, model                 |
+| `@katedrala/engine`             | Orchestration and the public programmatic API                                                                          | all of the above          |
+| `katedrala`                     | Command-line interface (re-exports the engine API)                                                                     | engine                    |
+| `@katedrala/codeverse`          | Converts documents into a visualization model for CodeVerse                                                            | ir                        |
 
 Packages are introduced milestone by milestone (see [ROADMAP.md](ROADMAP.md)); the table describes the target.
 
@@ -108,8 +109,12 @@ SnapshotSource ──list()──► discovery ──► extraction ──► pr
                      impact · diff · health · explain · validate · history · exporters
 ```
 
-1. **Discovery.** The snapshot source lists files (honouring `.gitignore`); configuration `include`/`exclude`
+1. **Discovery.** The snapshot source lists files (honouring `.gitignore`). The configuration is read from
+   the snapshot itself (the first of `katedrala.config.yaml`, `.yml`, `.json`, `.katedrala.yaml`, `.yml` at its
+   root), so a git revision is analyzed with the configuration it contained. Configuration `include`/`exclude`
    globs narrow the set; each file gets a role (`source`, `test`, `declaration`, `configuration`, ...).
+   Reserved configuration sections whose stage is not installed are accepted, not evaluated, and reported with
+   a `configuration-warning`.
 2. **Extraction.** For each file an adapter claims, the file is parsed and reduced to a language-neutral
    `FileExtraction`: declarations, imports, exports, unresolved references (with local binding information)
    and facts (environment reads, HTTP calls). Extraction depends only on the file's content and dialect, so
@@ -117,14 +122,25 @@ SnapshotSource ──list()──► discovery ──► extraction ──► pr
 3. **Project setup.** Each adapter reads project configuration (e.g. `package.json`, `tsconfig.json`) and
    returns package descriptors and a module resolver for the snapshot.
 4. **Linking.** The linker resolves import specifiers to files or external entities, follows imports and
-   re-export chains to declarations, binds references (including members reached through declared types and
-   `new` expressions) and aggregates observations into typed edges with provenance.
+   re-export chains to declarations, binds references (including members reached through declared types,
+   `new` expressions and declared return types) and aggregates observations into typed edges with provenance.
+   References that cannot be bound are counted in `repository.stats`: `unresolvedReferences` when a binding
+   should exist but does not, `untypedReferences` when the referenced value's type cannot be known without a
+   type checker (for example a member of the result of a function that declares no return type).
 5. **Framework detection.** Detectors add roles (controller, service, repository, route, ...), edges
    (e.g. dependency injection) and external integrations.
 6. **Inference, metrics, anomalies, rules.** Each stage reads the model and contributes one section of the
    document. Stages never mutate earlier sections.
 7. **Canonicalization.** All arrays are put in canonical order and real values are rounded, so documents are
    byte-identical across runs and machines.
+
+`@katedrala/engine` runs steps 1–4 as `analyzeStructure()`: it returns the observed structure (the structural
+sections of the document, already canonical), an `ArchitectureModel` over it for projections and graph
+algorithms, and run information (timings, cache hits, workers) that is kept out of the document. The repository
+is identified by its `origin` remote or its configured or declared name, never by the checkout directory, and
+`snapshot` records the content, analysis and project-configuration digests. The later stages build on this
+result. The end-to-end test in `tests/fixtures/structure.test.ts` runs it on every fixture and compares the
+result with the fixture's ground truth.
 
 ## Truth levels: observed, derived, inferred
 
@@ -247,6 +263,46 @@ version is independent of the Katedrala version (see [IR.md](IR.md)).
 JSON fields are camelCase (native to the TypeScript API and to consumers such as CodeVerse); enumeration
 values are kebab-case; configuration files (`katedrala.config.yaml`) use snake_case keys, as is customary
 for YAML configuration.
+
+### ADR-011 — Nesting limits: the same extraction in every thread
+
+- **Decision.** The TypeScript/JavaScript adapter measures the nesting of every parsed file before binding
+  it, with a walk that keeps its own stack: each edge of the syntax tree weighs about the stack TypeScript's
+  parser (respectively binder) uses to descend it, in units of about 0.3 KB, and the heaviest path from the
+  root is the file's nesting. Beyond the limit for binding (1,000 units) the file is extracted without scopes
+  (`partial`, with a diagnostic that says so). Beyond the limit for parsing (1,000 units) the file is not
+  analyzed (`failed`, reason "the file is nested beyond the limit for parsing"), whether or not the parser
+  managed to read it. A parse that exhausts the stack only happens beyond that limit and ends the same way;
+  TypeScript's parser state is cleared after it, so that it cannot change how the next file is parsed.
+- **Why.** TypeScript's parser and binder recurse along the tree, and the stack differs between threads:
+  984 KB on the main thread, 4 MB in a worker thread (Node.js defaults), and per level it also varies with
+  the Node.js version and with what the JIT has optimized. Without limits, a file with a 700-link call chain
+  was bound in a worker but not in the main thread, and a file with 600 levels of nested type arguments
+  parsed in a worker but not in the main thread: the document depended on the worker count (a 2-vCPU
+  machine parses in the main thread) and on the batch a file landed in. Determinism is part of the contract
+  (ADR-007).
+- **Margins.** The weights were measured per construct (76 constructs, cold JIT, Node.js 22 and 25);
+  constructs not measured get the heaviest weight. At the limits, parsing, binding and extraction need at
+  most 328 KB of stack, a margin of 3.0 or more on the main thread and of 12 or more in a worker thread.
+  Within the limits: 200 `||` operands, 166 links of a call chain, 125 levels of nested arrays, call
+  arguments or type arguments, 500 levels of `? :`, 1,000 `else if` branches (500 of them bound); chains the
+  parser and the binder iterate over (`+`, `,`, and member accesses for the parser) cost nothing. The weights
+  and measurements are in `packages/adapter-typescript/src/extract/nesting.ts`.
+- **Residual risk.** Two cases are not covered:
+  1. _Discarded speculative parses._ The measure sees the tree the parser builds. TypeScript's parser also
+     tries readings it discards when they fail: in TypeScript files, type arguments after `<` (`f<T>(x)`),
+     arrow-function parameters after an ambiguous `(`, and a few lookaheads in type positions. Chains of `<`
+     comparisons are weighed for the first. Otherwise, a file constructed so that a discarded attempt nests
+     far deeper than the final tree (for example thousands of chained `keyof` operators or conditional types
+     inside parentheses that turn out not to hold an arrow function's parameters) can still exhaust the
+     parser's stack in the main thread and not in a worker, and so be `failed` in one and analyzed in the
+     other. Neither people nor common code generators write such code.
+  2. _Other runtimes and settings._ The weights are measurements of TypeScript 6.0.3 on the V8 of Node.js 22
+     and 25 (x64). A runtime with much larger stack frames, or a main-thread stack reduced with
+     `--stack-size` (or `NODE_OPTIONS`) below about a third of the default, could still exhaust the stack
+     within the limits. Last-resort fallbacks keep the analysis going (a binder failure, or a stack overflow
+     during name resolution, extracts the file without scopes and reports the error), but their outcome
+     depends on the thread again.
 
 ## Performance strategy
 

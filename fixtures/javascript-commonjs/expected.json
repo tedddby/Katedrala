@@ -1,0 +1,82 @@
+{
+  "description": "Plain JavaScript Express to-do server in CommonJS: require/module.exports/exports.x, destructured require, a directory require resolved to index.js, an explicit .json require, a non-literal require(pluginPath), Node built-ins with and without the node: prefix, a .cjs module imported by an .mjs ES module (itself loaded with a dynamic import), and JSX in both a .jsx and a .js file.",
+  "files": 16,
+  "imports": [
+    ["src/config.js", "src/defaults.json", "require"],
+    ["src/lib/dates.mjs", "src/lib/html.cjs", "static"],
+    ["src/routes/index.js", "src/lib/dates.mjs", "dynamic"],
+    ["src/routes/index.js", "src/routes/health.js", "require"],
+    ["src/routes/index.js", "src/services/todo-service.js", "require"],
+    ["src/routes/index.js", "src/views/todo-page.js", "require"],
+    ["src/server.js", "src/config.js", "require"],
+    ["src/server.js", "src/plugins/loader.js", "require"],
+    ["src/server.js", "src/routes/index.js", "require"],
+    ["src/server.js", "src/store/memory-store.js", "require"],
+    ["src/services/todo-service.js", "src/lib/validation.js", "require"],
+    ["src/views/layout.jsx", "src/lib/html.cjs", "require"],
+    ["src/views/todo-page.js", "src/lib/html.cjs", "require"],
+    ["src/views/todo-page.js", "src/views/layout.jsx", "require"]
+  ],
+  "externals": ["express", "node:crypto", "node:fs", "node:path"],
+  "unresolved": [
+    ["src/plugins/loader.js", "pluginPath"]
+  ],
+  "fileCycles": [],
+  "expectations": {
+    "exports": {
+      "src/config.js": ["loadConfig", "resolveDataFile"],
+      "src/lib/dates.mjs": ["default", "dueBadge", "formatDue", "isOverdue"],
+      "src/lib/html.cjs": ["Fragment", "escapeHtml", "h", "renderToString"],
+      "src/lib/validation.js": ["MAX_TITLE_LENGTH", "validateTitle"],
+      "src/plugins/audit-log.js": ["default"],
+      "src/plugins/loader.js": ["loadPlugin", "loadPlugins"],
+      "src/routes/health.js": ["liveness", "readiness"],
+      "src/routes/index.js": ["default"],
+      "src/server.js": ["createServer"],
+      "src/services/todo-service.js": ["completeTodo", "createTodo", "listTodos"],
+      "src/store/memory-store.js": ["default"],
+      "src/views/layout.jsx": ["Layout"],
+      "src/views/todo-page.js": ["TodoItem", "renderTodoPage"]
+    },
+    "moduleFormats": {
+      "src/config.js": "commonjs",
+      "src/lib/dates.mjs": "esm",
+      "src/lib/html.cjs": "commonjs",
+      "src/lib/validation.js": "commonjs",
+      "src/plugins/audit-log.js": "commonjs",
+      "src/plugins/loader.js": "commonjs",
+      "src/routes/health.js": "commonjs",
+      "src/routes/index.js": "commonjs",
+      "src/server.js": "commonjs",
+      "src/services/todo-service.js": "commonjs",
+      "src/store/memory-store.js": "commonjs",
+      "src/views/layout.jsx": "commonjs",
+      "src/views/todo-page.js": "commonjs"
+    },
+    "jsxFiles": ["src/views/layout.jsx", "src/views/todo-page.js"],
+    "nonLiteralSpecifiers": [
+      { "file": "src/plugins/loader.js", "specifier": "pluginPath", "kind": "require", "line": 13 }
+    ],
+    "codeFilesWithoutImporters": ["src/plugins/audit-log.js", "src/server.js"],
+    "entryPoints": ["src/server.js"],
+    "calls": [
+      ["src/config.js#loadConfig", "src/config.js#resolveDataFile"],
+      ["src/plugins/loader.js#loadPlugins", "src/plugins/loader.js#loadPlugin"],
+      ["src/routes/index.js#registerRoutes", "src/services/todo-service.js#completeTodo"],
+      ["src/routes/index.js#registerRoutes", "src/services/todo-service.js#createTodo"],
+      ["src/routes/index.js#registerRoutes", "src/services/todo-service.js#listTodos"],
+      ["src/routes/index.js#registerRoutes", "src/views/todo-page.js#renderTodoPage"],
+      ["src/server.js#createServer", "src/plugins/loader.js#loadPlugins"],
+      ["src/server.js#createServer", "src/routes/index.js#registerRoutes"],
+      ["src/services/todo-service.js#createTodo", "src/lib/validation.js#validateTitle"],
+      ["src/views/todo-page.js#renderTodoPage", "src/lib/html.cjs#renderToString"]
+    ],
+    "instantiates": [
+      ["src/server.js#createServer", "src/store/memory-store.js#MemoryStore"]
+    ],
+    "uses": [
+      ["src/views/todo-page.js#renderTodoPage", "src/views/layout.jsx#Layout"],
+      ["src/views/todo-page.js#renderTodoPage", "src/views/todo-page.js#TodoItem"]
+    ]
+  }
+}

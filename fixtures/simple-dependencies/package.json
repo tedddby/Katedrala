@@ -1,0 +1,20 @@
+{
+  "name": "expense-report",
+  "version": "1.2.0",
+  "description": "Command-line tool that summarizes expenses by category.",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "expense-report": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  }
+}

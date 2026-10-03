@@ -87,7 +87,11 @@ export interface ExtractedSymbol {
   declarations?: Array<{ range: Range; signature?: string }>;
   /**
    * Visibility outside the language-level module unit, for languages without explicit export lists (e.g. Go
-   * capitalization). For ECMAScript the linker derives it from `exports`.
+   * capitalization). For ECMAScript the linker derives it from `exports`, except for members of namespaces
+   * and modules: ECMAScript/TypeScript adapters state it for those (the inner `export`: `true` for
+   * `namespace N { export function f() {} }`, `false` for a member without it, unless the body exports
+   * implicitly, as ambient bodies without export declarations do), and the linker combines it with the
+   * namespace's own visibility: a member is visible outside only through an exported namespace.
    */
   exported?: boolean;
   visibility?: Visibility;
@@ -152,7 +156,11 @@ export interface ExtractedImport {
   kind: ImportKind;
   /** The syntax used (e.g. `import-declaration`, `require-call`, `import-equals`, `triple-slash-reference`). */
   mechanism: EdgeMechanism;
-  /** True when the whole import is used only in type positions. */
+  /**
+   * True when the import is type-only by its syntax: `import type` / `export type`, or every specifier
+   * marked `type` (and forms that only exist in types, such as `import("m")` types). Consumers needing "used
+   * only in type positions" derive it from the references' `typeOnly`.
+   */
   typeOnly: boolean;
   line: number;
   column: number;

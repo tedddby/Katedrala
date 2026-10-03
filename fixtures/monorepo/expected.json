@@ -1,0 +1,74 @@
+{
+  "description": "pnpm workspace with four packages (shared, core, api, web): workspace-name imports mapped to src because dist does not exist, a tsconfig-paths deep import, a JSON import, React TSX, and a phantom lodash dependency.",
+  "files": 28,
+  "imports": [
+    ["packages/api/src/handlers/orders.ts", "packages/core/src/index.ts", "type"],
+    ["packages/api/src/handlers/orders.ts", "packages/shared/src/index.ts", "static"],
+    ["packages/api/src/handlers/products.ts", "packages/core/src/index.ts", "type"],
+    ["packages/api/src/handlers/products.ts", "packages/shared/src/strings.ts", "static"],
+    ["packages/api/src/routes.ts", "packages/api/src/handlers/orders.ts", "static"],
+    ["packages/api/src/routes.ts", "packages/api/src/handlers/products.ts", "static"],
+    ["packages/api/src/routes.ts", "packages/core/src/index.ts", "static"],
+    ["packages/api/src/server.ts", "packages/api/package.json", "static"],
+    ["packages/api/src/server.ts", "packages/api/src/routes.ts", "static"],
+    ["packages/core/src/catalog/catalog.ts", "packages/core/src/catalog/product.ts", "static"],
+    ["packages/core/src/catalog/product.ts", "packages/shared/src/index.ts", "static"],
+    ["packages/core/src/index.ts", "packages/core/src/catalog/catalog.ts", "re-export"],
+    ["packages/core/src/index.ts", "packages/core/src/catalog/product.ts", "re-export"],
+    ["packages/core/src/index.ts", "packages/core/src/orders/order-service.ts", "re-export"],
+    ["packages/core/src/index.ts", "packages/core/src/orders/order.ts", "re-export"],
+    ["packages/core/src/orders/order-service.ts", "packages/core/src/catalog/catalog.ts", "type"],
+    ["packages/core/src/orders/order-service.ts", "packages/core/src/orders/order.ts", "static"],
+    ["packages/core/src/orders/order-service.ts", "packages/shared/src/index.ts", "static"],
+    ["packages/core/src/orders/order.ts", "packages/core/src/catalog/product.ts", "type"],
+    ["packages/core/src/orders/order.ts", "packages/shared/src/index.ts", "static"],
+    ["packages/shared/src/index.ts", "packages/shared/src/money.ts", "re-export"],
+    ["packages/shared/src/index.ts", "packages/shared/src/result.ts", "re-export"],
+    ["packages/shared/src/index.ts", "packages/shared/src/strings.ts", "re-export"],
+    ["packages/web/src/App.tsx", "packages/web/src/components/ProductCard.tsx", "static"],
+    ["packages/web/src/components/PriceTag.tsx", "packages/shared/src/index.ts", "static"],
+    ["packages/web/src/components/ProductCard.tsx", "packages/shared/src/index.ts", "static"],
+    ["packages/web/src/components/ProductCard.tsx", "packages/web/src/components/PriceTag.tsx", "static"],
+    ["packages/web/src/main.tsx", "packages/web/src/App.tsx", "static"]
+  ],
+  "externals": ["lodash", "node:http", "react", "react-dom"],
+  "unresolved": [],
+  "fileCycles": [],
+  "expectations": {
+    "packages": ["@acme/api", "@acme/core", "@acme/shared", "@acme/web"],
+    "rootPackage": "acme-monorepo",
+    "packageDependencies": [
+      ["@acme/api", "@acme/core"],
+      ["@acme/api", "@acme/shared"],
+      ["@acme/core", "@acme/shared"],
+      ["@acme/web", "@acme/shared"]
+    ],
+    "manifestDependencies": [
+      ["@acme/api", "@acme/core"],
+      ["@acme/api", "@acme/shared"],
+      ["@acme/core", "@acme/shared"],
+      ["@acme/web", "@acme/core"],
+      ["@acme/web", "@acme/shared"]
+    ],
+    "declaredButUnused": [["@acme/web", "@acme/core"]],
+    "undeclaredExternal": [["@acme/api", "lodash"]],
+    "packageEntryPoints": {
+      "@acme/api": [],
+      "@acme/core": ["packages/core/src/index.ts"],
+      "@acme/shared": ["packages/shared/src/index.ts"],
+      "@acme/web": []
+    },
+    "resolutionMethods": [
+      ["packages/api/src/handlers/orders.ts", "@acme/core", "workspace-package"],
+      ["packages/api/src/handlers/orders.ts", "@acme/shared", "workspace-package"],
+      ["packages/api/src/handlers/products.ts", "@acme/core", "workspace-package"],
+      ["packages/api/src/handlers/products.ts", "@acme/shared/strings", "tsconfig-paths"],
+      ["packages/api/src/routes.ts", "@acme/core", "workspace-package"],
+      ["packages/core/src/catalog/product.ts", "@acme/shared", "workspace-package"],
+      ["packages/core/src/orders/order-service.ts", "@acme/shared", "workspace-package"],
+      ["packages/core/src/orders/order.ts", "@acme/shared", "workspace-package"],
+      ["packages/web/src/components/PriceTag.tsx", "@acme/shared", "workspace-package"],
+      ["packages/web/src/components/ProductCard.tsx", "@acme/shared", "workspace-package"]
+    ]
+  }
+}

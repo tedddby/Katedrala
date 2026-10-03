@@ -1,0 +1,155 @@
+{
+  "description": "NestJS 11 + TypeORM service: AppModule importing a global ConfigModule, PaymentsModule and OrdersModule; decorated controllers and routes, constructor-parameter-property injection, @InjectRepository repositories, two related @Entity models forming an import cycle, a guard, environment configuration and an outgoing Stripe call.",
+  "files": 24,
+  "imports": [
+    ["src/app.controller.ts", "src/config/config.service.ts", "static"],
+    ["src/app.module.ts", "src/app.controller.ts", "static"],
+    ["src/app.module.ts", "src/config/config.module.ts", "static"],
+    ["src/app.module.ts", "src/config/config.service.ts", "static"],
+    ["src/app.module.ts", "src/orders/orders.module.ts", "static"],
+    ["src/app.module.ts", "src/payments/payments.module.ts", "static"],
+    ["src/common/guards/api-key.guard.ts", "src/config/config.service.ts", "static"],
+    ["src/config/config.module.ts", "src/config/config.service.ts", "static"],
+    ["src/main.ts", "src/app.module.ts", "static"],
+    ["src/main.ts", "src/common/interceptors/logging.interceptor.ts", "static"],
+    ["src/main.ts", "src/config/config.service.ts", "static"],
+    ["src/orders/dto/create-order.dto.ts", "src/common/currency.ts", "static"],
+    ["src/orders/entities/order.entity.ts", "src/payments/entities/payment.entity.ts", "static"],
+    ["src/orders/orders.controller.ts", "src/orders/dto/create-order.dto.ts", "static"],
+    ["src/orders/orders.controller.ts", "src/orders/dto/pay-order.dto.ts", "static"],
+    ["src/orders/orders.controller.ts", "src/orders/entities/order.entity.ts", "type"],
+    ["src/orders/orders.controller.ts", "src/orders/orders.service.ts", "static"],
+    ["src/orders/orders.controller.ts", "src/payments/entities/payment.entity.ts", "type"],
+    ["src/orders/orders.module.ts", "src/orders/entities/order.entity.ts", "static"],
+    ["src/orders/orders.module.ts", "src/orders/orders.controller.ts", "static"],
+    ["src/orders/orders.module.ts", "src/orders/orders.service.ts", "static"],
+    ["src/orders/orders.module.ts", "src/payments/payments.module.ts", "static"],
+    ["src/orders/orders.service.spec.ts", "src/orders/entities/order.entity.ts", "static"],
+    ["src/orders/orders.service.spec.ts", "src/orders/orders.service.ts", "static"],
+    ["src/orders/orders.service.spec.ts", "src/payments/entities/payment.entity.ts", "static"],
+    ["src/orders/orders.service.spec.ts", "src/payments/payments.service.ts", "static"],
+    ["src/orders/orders.service.ts", "src/orders/dto/create-order.dto.ts", "type"],
+    ["src/orders/orders.service.ts", "src/orders/entities/order.entity.ts", "static"],
+    ["src/orders/orders.service.ts", "src/payments/entities/payment.entity.ts", "static"],
+    ["src/orders/orders.service.ts", "src/payments/payments.service.ts", "static"],
+    ["src/payments/dto/create-payment.dto.ts", "src/common/currency.ts", "static"],
+    ["src/payments/entities/payment.entity.ts", "src/orders/entities/order.entity.ts", "static"],
+    ["src/payments/payments.controller.ts", "src/common/guards/api-key.guard.ts", "static"],
+    ["src/payments/payments.controller.ts", "src/payments/dto/create-payment.dto.ts", "static"],
+    ["src/payments/payments.controller.ts", "src/payments/entities/payment.entity.ts", "type"],
+    ["src/payments/payments.controller.ts", "src/payments/payments.service.ts", "static"],
+    ["src/payments/payments.module.ts", "src/payments/entities/payment.entity.ts", "static"],
+    ["src/payments/payments.module.ts", "src/payments/payments.controller.ts", "static"],
+    ["src/payments/payments.module.ts", "src/payments/payments.service.ts", "static"],
+    ["src/payments/payments.module.ts", "src/payments/stripe.client.ts", "static"],
+    ["src/payments/payments.service.ts", "src/payments/dto/create-payment.dto.ts", "type"],
+    ["src/payments/payments.service.ts", "src/payments/entities/payment.entity.ts", "static"],
+    ["src/payments/payments.service.ts", "src/payments/stripe.client.ts", "static"],
+    ["src/payments/stripe.client.ts", "src/config/config.service.ts", "static"]
+  ],
+  "externals": ["@nestjs/common", "@nestjs/core", "@nestjs/testing", "@nestjs/typeorm", "class-validator", "node:crypto", "rxjs", "typeorm"],
+  "unresolved": [],
+  "fileCycles": [
+    ["src/orders/entities/order.entity.ts", "src/payments/entities/payment.entity.ts"]
+  ],
+  "expectations": {
+    "framework": "nestjs",
+    "modules": [
+      "src/app.module.ts#AppModule",
+      "src/config/config.module.ts#ConfigModule",
+      "src/orders/orders.module.ts#OrdersModule",
+      "src/payments/payments.module.ts#PaymentsModule"
+    ],
+    "globalModules": ["src/config/config.module.ts#ConfigModule"],
+    "moduleImports": [
+      ["src/app.module.ts#AppModule", "src/config/config.module.ts#ConfigModule"],
+      ["src/app.module.ts#AppModule", "src/orders/orders.module.ts#OrdersModule"],
+      ["src/app.module.ts#AppModule", "src/payments/payments.module.ts#PaymentsModule"],
+      ["src/orders/orders.module.ts#OrdersModule", "src/payments/payments.module.ts#PaymentsModule"]
+    ],
+    "moduleControllers": [
+      ["src/app.module.ts#AppModule", "src/app.controller.ts#AppController"],
+      ["src/orders/orders.module.ts#OrdersModule", "src/orders/orders.controller.ts#OrdersController"],
+      ["src/payments/payments.module.ts#PaymentsModule", "src/payments/payments.controller.ts#PaymentsController"]
+    ],
+    "providers": [
+      ["src/config/config.module.ts#ConfigModule", "src/config/config.service.ts#ConfigService"],
+      ["src/orders/orders.module.ts#OrdersModule", "src/orders/orders.service.ts#OrdersService"],
+      ["src/payments/payments.module.ts#PaymentsModule", "src/payments/payments.service.ts#PaymentsService"],
+      ["src/payments/payments.module.ts#PaymentsModule", "src/payments/stripe.client.ts#StripeClient"]
+    ],
+    "moduleExports": [
+      ["src/config/config.module.ts#ConfigModule", "src/config/config.service.ts#ConfigService"],
+      ["src/payments/payments.module.ts#PaymentsModule", "src/payments/payments.service.ts#PaymentsService"]
+    ],
+    "moduleEntities": [
+      ["src/orders/orders.module.ts#OrdersModule", "src/orders/entities/order.entity.ts#Order"],
+      ["src/payments/payments.module.ts#PaymentsModule", "src/payments/entities/payment.entity.ts#Payment"]
+    ],
+    "controllers": [
+      "src/app.controller.ts#AppController",
+      "src/orders/orders.controller.ts#OrdersController",
+      "src/payments/payments.controller.ts#PaymentsController"
+    ],
+    "injectables": [
+      "src/common/guards/api-key.guard.ts#ApiKeyGuard",
+      "src/common/interceptors/logging.interceptor.ts#LoggingInterceptor",
+      "src/config/config.service.ts#ConfigService",
+      "src/orders/orders.service.ts#OrdersService",
+      "src/payments/payments.service.ts#PaymentsService",
+      "src/payments/stripe.client.ts#StripeClient"
+    ],
+    "routes": [
+      ["DELETE", "/orders/:id", "src/orders/orders.controller.ts#OrdersController.cancel"],
+      ["GET", "/health", "src/app.controller.ts#AppController.health"],
+      ["GET", "/orders", "src/orders/orders.controller.ts#OrdersController.findAll"],
+      ["GET", "/orders/:id", "src/orders/orders.controller.ts#OrdersController.findOne"],
+      ["GET", "/payments", "src/payments/payments.controller.ts#PaymentsController.findByOrder"],
+      ["GET", "/payments/:id", "src/payments/payments.controller.ts#PaymentsController.findOne"],
+      ["POST", "/orders", "src/orders/orders.controller.ts#OrdersController.create"],
+      ["POST", "/orders/:id/pay", "src/orders/orders.controller.ts#OrdersController.pay"],
+      ["POST", "/payments", "src/payments/payments.controller.ts#PaymentsController.create"]
+    ],
+    "injections": [
+      ["src/app.controller.ts#AppController", "src/config/config.service.ts#ConfigService"],
+      ["src/common/guards/api-key.guard.ts#ApiKeyGuard", "src/config/config.service.ts#ConfigService"],
+      ["src/orders/orders.controller.ts#OrdersController", "src/orders/orders.service.ts#OrdersService"],
+      ["src/orders/orders.service.ts#OrdersService", "src/payments/payments.service.ts#PaymentsService"],
+      ["src/payments/payments.controller.ts#PaymentsController", "src/payments/payments.service.ts#PaymentsService"],
+      ["src/payments/payments.service.ts#PaymentsService", "src/payments/stripe.client.ts#StripeClient"],
+      ["src/payments/stripe.client.ts#StripeClient", "src/config/config.service.ts#ConfigService"]
+    ],
+    "repositoryInjections": [
+      ["src/orders/orders.service.ts#OrdersService", "src/orders/entities/order.entity.ts#Order"],
+      ["src/payments/payments.service.ts#PaymentsService", "src/payments/entities/payment.entity.ts#Payment"]
+    ],
+    "entities": [
+      "src/orders/entities/order.entity.ts#Order",
+      "src/payments/entities/payment.entity.ts#Payment"
+    ],
+    "entityRelations": [
+      ["src/orders/entities/order.entity.ts#Order.payments", "one-to-many", "src/payments/entities/payment.entity.ts#Payment"],
+      ["src/payments/entities/payment.entity.ts#Payment.order", "many-to-one", "src/orders/entities/order.entity.ts#Order"]
+    ],
+    "dtos": [
+      "src/orders/dto/create-order.dto.ts#CreateOrderDto",
+      "src/orders/dto/pay-order.dto.ts#PayOrderDto",
+      "src/payments/dto/create-payment.dto.ts#CreatePaymentDto"
+    ],
+    "guards": [
+      ["src/payments/payments.controller.ts#PaymentsController", "src/common/guards/api-key.guard.ts#ApiKeyGuard"]
+    ],
+    "frameworkEntryPoints": ["src/main.ts"],
+    "manifestMain": [],
+    "envVars": ["DATABASE_URL", "INTERNAL_API_KEY", "NODE_ENV", "PORT", "STRIPE_API_KEY"],
+    "envReads": [
+      ["src/config/config.service.ts", "DATABASE_URL"],
+      ["src/config/config.service.ts", "INTERNAL_API_KEY"],
+      ["src/config/config.service.ts", "NODE_ENV"],
+      ["src/config/config.service.ts", "PORT"],
+      ["src/config/config.service.ts", "STRIPE_API_KEY"]
+    ],
+    "httpHosts": ["api.stripe.com"],
+    "httpCalls": [["src/payments/stripe.client.ts", "POST", "https://api.stripe.com/v1/payment_intents"]]
+  }
+}

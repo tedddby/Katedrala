@@ -76,13 +76,24 @@ export interface RepositoryStats {
   /** Lines in files whose content was read. */
   lines: Count;
   bytes: Count;
-  /** Import entries whose specifier could not be resolved (see `diagnostics`). */
+  /**
+   * Import entries whose specifier could not be resolved (status `unresolved`, see `diagnostics`). Imports
+   * of files excluded from the analysis (status `excluded`) resolved and are not counted.
+   */
   unresolvedImports: Count;
   /**
-   * References recorded by adapters that the linker could not bind to a declaration. References an adapter
-   * cannot express (e.g. calls on values of unknown type) are not recorded and therefore not counted.
+   * References recorded by adapters that the linker could not bind although a binding should exist (an
+   * unknown name, a member a module does not export). References an adapter cannot express are not recorded
+   * and therefore not counted, nor are references through imports of files excluded from the analysis
+   * (status `excluded`), whose names are unknown.
    */
   unresolvedReferences: Count;
+  /**
+   * References to members of values whose type cannot be determined without type checking (e.g. a member of
+   * the result of a function that declares no return type, or of a built-in result such as a promise). They
+   * are not errors, but relationships through them are missing from the document.
+   */
+  untypedReferences: Count;
 }
 
 /**
@@ -102,19 +113,23 @@ export interface SnapshotInfo {
    */
   subdirectory?: string;
   /**
-   * `sha256:<hex>` over the listed files: for each file in path order the line `<path>\t<hash or ->\t<size>\n`.
-   * Identifies the analyzed content independently of how it was obtained.
+   * `sha256:<hex>` over the document's files: for each file in path order the line
+   * `<path>\t<hash or ->\t<size>\n`. Identifies the analyzed content independently of how it was obtained.
    */
   contentDigest: string;
   /**
-   * `sha256:<hex>` over everything besides content that influences results: the effective Katedrala
-   * configuration and options, and the versions of Katedrala, its adapters and plugins. Documents with equal
-   * content and analysis digests are identical.
+   * `sha256:<hex>` over everything besides the content of the document's files that influences results: the
+   * effective configuration and options, the versions of Katedrala (and of this schema), its adapters and
+   * plugins, and what the analysis saw outside the document's files: paths of listed files that are not
+   * document files, skipped links, and the content (or absence) of project configuration files read outside
+   * the document's files (excluded by `include` / `exclude`, or above the analysis root). Documents with
+   * equal content and analysis digests are identical.
    */
   analysisDigest: string;
   /**
    * `sha256:<hex>` over the project configuration files adapters read (e.g. `tsconfig.json`,
-   * `package.json`), already part of the content; reported separately to explain resolution changes.
+   * `package.json`), including files above the analysis root; reported separately to explain resolution
+   * changes. Configuration outside the document's files is also covered by `analysisDigest`.
    */
   projectConfigurationDigest: string;
 }
@@ -354,7 +369,12 @@ export interface ImportEntry {
   kind: ImportKind;
   /** The syntax that expresses the import. */
   mechanism: EdgeMechanism;
-  /** True when the import is used only in type positions (e.g. `import type`). */
+  /**
+   * True when the import is type-only by its syntax: `import type` / `export type`, every specifier marked
+   * `type`, or a form that only exists in types (`import("m")` types, JSDoc `@import`, `/// <reference>`).
+   * An ordinary import whose bindings happen to be used only in type positions is not type-only; the
+   * `typeOnly` flags of the edges and provenance of its references say so.
+   */
   typeOnly: boolean;
   line: LineNumber;
   column: ColumnNumber;
@@ -376,6 +396,19 @@ export type ImportResolution =
       status: "resolved";
       /** Sorted. */
       targets: FileId[];
+      method: ResolutionMethod;
+      /** The imported unit when it is not a single file (a Go package path, a Java package, a namespace). */
+      unit?: string;
+    }
+  | {
+      /**
+       * Points to files of the snapshot that are excluded from the analysis (by `include` / `exclude`), so
+       * they are not files of the document. The import resolved: it is neither counted in
+       * `RepositoryStats.unresolvedImports` nor reported as a diagnostic.
+       */
+      status: "excluded";
+      /** The files, by path relative to the analysis root (they have no identifiers). Sorted. */
+      paths: string[];
       method: ResolutionMethod;
       /** The imported unit when it is not a single file (a Go package path, a Java package, a namespace). */
       unit?: string;
@@ -583,8 +616,11 @@ export interface ExternalEntity {
    */
   name: string;
   /**
-   * For packages: whether every package whose files use this package declares it (in its own manifest or in
-   * its workspace root's). `false` indicates at least one undeclared ("phantom") usage.
+   * For packages: whether every package whose files import this package declares it (in its own manifest or
+   * in its workspace root's). For npm, a package whose imports of it are all type-only (`ImportEntry.typeOnly`)
+   * may declare its DefinitelyTyped package instead (`@types/<name>`, or `@types/<scope>__<name>` for
+   * `@<scope>/<name>`). `false` indicates at least one undeclared ("phantom") usage. Absent when no file of a
+   * package of the external's ecosystem imports it.
    */
   declared?: boolean;
 }

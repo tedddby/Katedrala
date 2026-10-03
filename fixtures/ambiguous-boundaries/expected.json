@@ -1,0 +1,190 @@
+{
+  "description": "Coffee web shop with three features in src/catalog, src/cart and src/checkout plus a src/common grab-bag. Three files sit in a misleading directory: catalog/price-calculator.ts and cart/shipping-estimator.ts belong to checkout, and checkout/stock-availability.ts belongs to catalog. Every other feature file is clearly placed.",
+  "files": 30,
+  "imports": [
+    ["src/cart/cart-rules.ts", "src/cart/cart.ts", "static"],
+    ["src/cart/cart-service.ts", "src/cart/cart-rules.ts", "static"],
+    ["src/cart/cart-service.ts", "src/cart/cart-store.ts", "static"],
+    ["src/cart/cart-service.ts", "src/cart/cart.ts", "static"],
+    ["src/cart/cart-service.ts", "src/catalog/product-repository.ts", "static"],
+    ["src/cart/cart-service.ts", "src/common/session.ts", "static"],
+    ["src/cart/cart-store.ts", "src/cart/cart.ts", "static"],
+    ["src/cart/cart-view.ts", "src/cart/cart-rules.ts", "static"],
+    ["src/cart/cart-view.ts", "src/cart/cart.ts", "static"],
+    ["src/cart/cart-view.ts", "src/common/format.ts", "static"],
+    ["src/cart/shipping-estimator.ts", "src/checkout/address.ts", "static"],
+    ["src/cart/shipping-estimator.ts", "src/checkout/shipping-rates.ts", "static"],
+    ["src/catalog/category-tree.ts", "src/catalog/inventory.ts", "static"],
+    ["src/catalog/category-tree.ts", "src/catalog/product-repository.ts", "static"],
+    ["src/catalog/category-tree.ts", "src/common/slug.ts", "static"],
+    ["src/catalog/price-calculator.ts", "src/checkout/discounts.ts", "static"],
+    ["src/catalog/price-calculator.ts", "src/checkout/tax-rules.ts", "static"],
+    ["src/catalog/product-repository.ts", "src/catalog/product.ts", "static"],
+    ["src/catalog/product-view.ts", "src/catalog/inventory.ts", "static"],
+    ["src/catalog/product-view.ts", "src/catalog/price-calculator.ts", "static"],
+    ["src/catalog/product-view.ts", "src/catalog/product.ts", "static"],
+    ["src/catalog/product-view.ts", "src/checkout/stock-availability.ts", "static"],
+    ["src/catalog/product-view.ts", "src/common/format.ts", "static"],
+    ["src/catalog/search.ts", "src/catalog/category-tree.ts", "static"],
+    ["src/catalog/search.ts", "src/catalog/product-repository.ts", "static"],
+    ["src/catalog/search.ts", "src/catalog/product.ts", "static"],
+    ["src/catalog/search.ts", "src/checkout/stock-availability.ts", "static"],
+    ["src/catalog/search.ts", "src/common/slug.ts", "static"],
+    ["src/checkout/checkout-service.ts", "src/catalog/price-calculator.ts", "static"],
+    ["src/checkout/checkout-service.ts", "src/checkout/address.ts", "static"],
+    ["src/checkout/checkout-service.ts", "src/checkout/delivery.ts", "static"],
+    ["src/checkout/checkout-service.ts", "src/checkout/discounts.ts", "static"],
+    ["src/checkout/checkout-service.ts", "src/checkout/invoice.ts", "static"],
+    ["src/checkout/checkout-service.ts", "src/checkout/order-summary.ts", "static"],
+    ["src/checkout/checkout-service.ts", "src/checkout/payment.ts", "static"],
+    ["src/checkout/checkout-service.ts", "src/common/validation.ts", "static"],
+    ["src/checkout/delivery.ts", "src/cart/shipping-estimator.ts", "static"],
+    ["src/checkout/delivery.ts", "src/checkout/address.ts", "static"],
+    ["src/checkout/delivery.ts", "src/checkout/shipping-rates.ts", "static"],
+    ["src/checkout/invoice.ts", "src/catalog/price-calculator.ts", "static"],
+    ["src/checkout/invoice.ts", "src/checkout/address.ts", "static"],
+    ["src/checkout/invoice.ts", "src/checkout/discounts.ts", "static"],
+    ["src/checkout/invoice.ts", "src/checkout/tax-rules.ts", "static"],
+    ["src/checkout/invoice.ts", "src/common/format.ts", "static"],
+    ["src/checkout/order-summary.ts", "src/cart/shipping-estimator.ts", "static"],
+    ["src/checkout/order-summary.ts", "src/catalog/price-calculator.ts", "static"],
+    ["src/checkout/order-summary.ts", "src/checkout/address.ts", "static"],
+    ["src/checkout/order-summary.ts", "src/checkout/discounts.ts", "static"],
+    ["src/checkout/order-summary.ts", "src/checkout/shipping-rates.ts", "static"],
+    ["src/checkout/order-summary.ts", "src/checkout/tax-rules.ts", "static"],
+    ["src/checkout/order-summary.ts", "src/common/format.ts", "static"],
+    ["src/checkout/shipping-rates.ts", "src/checkout/address.ts", "type"],
+    ["src/checkout/stock-availability.ts", "src/catalog/inventory.ts", "static"],
+    ["src/checkout/stock-availability.ts", "src/catalog/product.ts", "type"],
+    ["src/server.ts", "src/cart/cart-service.ts", "static"],
+    ["src/server.ts", "src/cart/cart-view.ts", "static"],
+    ["src/server.ts", "src/catalog/category-tree.ts", "static"],
+    ["src/server.ts", "src/catalog/product-repository.ts", "static"],
+    ["src/server.ts", "src/catalog/product-view.ts", "static"],
+    ["src/server.ts", "src/catalog/search.ts", "static"],
+    ["src/server.ts", "src/checkout/checkout-service.ts", "static"]
+  ],
+  "externals": ["express", "node:crypto"],
+  "unresolved": [],
+  "fileCycles": [],
+  "expectations": {
+    "features": ["cart", "catalog", "checkout"],
+    "misplaced": [
+      {
+        "file": "src/cart/shipping-estimator.ts",
+        "locatedIn": "cart",
+        "usedMostlyBy": "checkout",
+        "dependsMostlyOn": "checkout"
+      },
+      {
+        "file": "src/catalog/price-calculator.ts",
+        "locatedIn": "catalog",
+        "usedMostlyBy": "checkout",
+        "dependsMostlyOn": "checkout"
+      },
+      {
+        "file": "src/checkout/stock-availability.ts",
+        "locatedIn": "checkout",
+        "usedMostlyBy": "catalog",
+        "dependsMostlyOn": "catalog"
+      }
+    ],
+    "misplacementEvidence": {
+      "src/cart/shipping-estimator.ts": {
+        "dependents": { "checkout": 2 },
+        "dependencies": { "checkout": 2 }
+      },
+      "src/catalog/price-calculator.ts": {
+        "dependents": { "catalog": 1, "checkout": 3 },
+        "dependencies": { "checkout": 2 }
+      },
+      "src/checkout/stock-availability.ts": {
+        "dependents": { "catalog": 2 },
+        "dependencies": { "catalog": 2 }
+      }
+    },
+    "wellPlaced": [
+      "src/cart/cart-rules.ts",
+      "src/cart/cart-service.ts",
+      "src/cart/cart-store.ts",
+      "src/cart/cart-view.ts",
+      "src/cart/cart.ts",
+      "src/catalog/category-tree.ts",
+      "src/catalog/inventory.ts",
+      "src/catalog/product-repository.ts",
+      "src/catalog/product-view.ts",
+      "src/catalog/product.ts",
+      "src/catalog/search.ts",
+      "src/checkout/address.ts",
+      "src/checkout/checkout-service.ts",
+      "src/checkout/delivery.ts",
+      "src/checkout/discounts.ts",
+      "src/checkout/invoice.ts",
+      "src/checkout/order-summary.ts",
+      "src/checkout/payment.ts",
+      "src/checkout/shipping-rates.ts",
+      "src/checkout/tax-rules.ts"
+    ],
+    "grabBag": {
+      "directory": "src/common",
+      "usedBy": {
+        "src/common/format.ts": ["cart", "catalog", "checkout"],
+        "src/common/session.ts": ["cart"],
+        "src/common/slug.ts": ["catalog"],
+        "src/common/validation.ts": ["checkout"]
+      }
+    },
+    "logicalModules": {
+      "cart": [
+        "src/cart/cart-rules.ts",
+        "src/cart/cart-service.ts",
+        "src/cart/cart-store.ts",
+        "src/cart/cart-view.ts",
+        "src/cart/cart.ts"
+      ],
+      "catalog": [
+        "src/catalog/category-tree.ts",
+        "src/catalog/inventory.ts",
+        "src/catalog/product-repository.ts",
+        "src/catalog/product-view.ts",
+        "src/catalog/product.ts",
+        "src/catalog/search.ts",
+        "src/checkout/stock-availability.ts"
+      ],
+      "checkout": [
+        "src/cart/shipping-estimator.ts",
+        "src/catalog/price-calculator.ts",
+        "src/checkout/address.ts",
+        "src/checkout/checkout-service.ts",
+        "src/checkout/delivery.ts",
+        "src/checkout/discounts.ts",
+        "src/checkout/invoice.ts",
+        "src/checkout/order-summary.ts",
+        "src/checkout/payment.ts",
+        "src/checkout/shipping-rates.ts",
+        "src/checkout/tax-rules.ts"
+      ]
+    },
+    "directoryDependencies": [
+      ["src", "src/cart"],
+      ["src", "src/catalog"],
+      ["src", "src/checkout"],
+      ["src/cart", "src/catalog"],
+      ["src/cart", "src/checkout"],
+      ["src/cart", "src/common"],
+      ["src/catalog", "src/checkout"],
+      ["src/catalog", "src/common"],
+      ["src/checkout", "src/cart"],
+      ["src/checkout", "src/catalog"],
+      ["src/checkout", "src/common"]
+    ],
+    "directoryCycles": [
+      ["src/cart", "src/catalog", "src/checkout"]
+    ],
+    "featureDependenciesAfterRelocation": [
+      ["cart", "catalog"],
+      ["catalog", "checkout"]
+    ],
+    "featureCyclesAfterRelocation": []
+  }
+}

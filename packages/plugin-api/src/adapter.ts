@@ -64,8 +64,10 @@ export interface LanguageAdapter<TParsed = unknown> {
   readonly displayName: string;
   readonly languages: readonly LanguageInfo[];
   /**
-   * Module specifier that exports `createAdapter(options: unknown)` (a {@link LanguageAdapterFactory}) for
-   * parsing in worker threads. When absent, the adapter runs in the main thread only.
+   * Absolute `file:` URL of a module that exports `createAdapter(options: unknown)` (a
+   * {@link LanguageAdapterFactory}) for parsing in worker threads — compute it in the adapter package with
+   * `new URL("./worker.js", import.meta.url).href` so workers can load it regardless of who depends on the
+   * adapter. When absent, the adapter runs in the main thread only.
    */
   readonly workerModule?: string;
   /** Options this adapter was created with; passed to `createAdapter` in workers. Must be cloneable. */
