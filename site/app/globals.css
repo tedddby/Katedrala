@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/*
+ * Katedrala visual system: a structural drawing on a dark sheet. Tokens and base rules live in styles/base.css;
+ * every other file styles one area of the page and is owned with that area's components.
+ */
+@import "./styles/base.css";
+@import "./styles/drawing.css";
+@import "./styles/nav.css";
+@import "./styles/sections.css";
+@import "./styles/status.css";
+@import "./styles/code.css";
+@import "./styles/pipeline.css";
+@import "./styles/explorer.css";
+@import "./styles/gravity.css";
+@import "./styles/entropy.css";
+@import "./styles/impact.css";
+@import "./styles/rules-evidence.css";
+@import "./styles/history.css";
+@import "./styles/developers.css";
+@import "./styles/open-source.css";
+@import "./styles/ecosystem.css";

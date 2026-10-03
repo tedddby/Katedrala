@@ -1,0 +1,67 @@
+/* ------------------------------------------------------------------------------------------------
+ * Impact: command bar, counts and paths.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .command-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid var(--color-rule-strong);
+    background: var(--color-sheet-deep);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    max-width: 36rem;
+  }
+  .command-select {
+    appearance: none;
+    border: 1px solid var(--color-rule-strong);
+    background:
+      linear-gradient(45deg, transparent 50%, var(--color-ink-soft) 50%) calc(100% - 15px) 55% / 5px
+        5px no-repeat,
+      linear-gradient(135deg, var(--color-ink-soft) 50%, transparent 50%) calc(100% - 10px) 55% /
+        5px 5px no-repeat,
+      var(--color-sheet);
+    color: var(--color-ink);
+    padding: 0.375rem 2rem 0.375rem 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-variation-settings: "wdth" 87.5;
+    cursor: pointer;
+    transition: border-color 150ms ease;
+  }
+  .command-select:hover {
+    border-color: var(--color-ink-faint);
+  }
+  .command-select option {
+    background: var(--color-sheet-raised);
+    color: var(--color-ink);
+  }
+  .impact-counts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--color-rule-strong);
+  }
+  .impact-counts > div {
+    padding: 0.875rem 1rem 0 0;
+  }
+  .impact-counts dt {
+    font-size: 0.8125rem;
+    color: var(--color-ink-faint);
+  }
+  .impact-counts dd {
+    margin-top: 0.25rem;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--color-ink);
+  }
+  .impact-path {
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    gap: 0.5rem;
+    transition: opacity 200ms ease;
+  }
+  .impact-path[data-visible="false"] {
+    opacity: 0.18;
+  }
+}

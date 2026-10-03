@@ -1,0 +1,40 @@
+/* ------------------------------------------------------------------------------------------------
+ * Rules and evidence.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .violation {
+    border: 1px solid var(--color-rule-strong);
+    background: var(--color-sheet);
+    padding: 1rem 1rem 1.25rem;
+  }
+  .violation-report {
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--color-rule);
+    padding-top: 1rem;
+  }
+  .rules-violation {
+    fill: none;
+    stroke: var(--color-load);
+    stroke-width: 1.8;
+    stroke-dasharray: 6 4;
+  }
+  .rules-break {
+    fill: none;
+    stroke: var(--color-load);
+    stroke-width: 2;
+    stroke-linejoin: round;
+  }
+  .rules-label {
+    fill: var(--color-load);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .evidence-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--color-rule);
+    padding-bottom: 1rem;
+    color: var(--color-load);
+  }
+}

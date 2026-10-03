@@ -1,0 +1,167 @@
+{
+  "title": "Choose Katedrala's visual world",
+  "question": "The roll assigned The Construction Grid. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Construction Grid",
+      "kicker": "THE ROLL",
+      "lineage": "International Typographic Style: Müller-Brockmann's grid systems",
+      "thesis": "The page is a construction grid: every part of the architecture sits on one module, and order becomes visible the moment things lock to it.",
+      "palette": ["#0D0E0F", "#ECEAE4", "#6E7176", "#24272A", "#FF4A26"],
+      "materials": [
+        "a visible 12-column construction grid on a baseline module",
+        "flush-left neo-grotesk at dramatic scale contrasts",
+        "hairline rules that only exist where they align content"
+      ],
+      "viewport": "Flush-left headline in the top-left fields; across the right columns the dependency graph assembles: scattered nodes snap onto grid intersections, edges route orthogonally, module fields fill in; the primary action sits flush-left under the headline.",
+      "risk": "If a single grid line turns decorative it reads as one more dark developer page; every line must carry content.",
+      "raised": [
+        { "from": "challenger-dumbar", "raise": "Snap to module: parts may start far apart, but everything locks to one invisible module; the hero's reconstruction is that snap." },
+        { "from": "challenger-streaming-wall", "raise": "Focus reveal: any unit you focus grows and states what it is while everything else recedes." },
+        { "from": "challenger-weather-sun", "raise": "One light: the accent is the only light in the scene and appears only on active architecture." },
+        { "from": "challenger-miura", "raise": "Linked propagation: one change visibly travels along every connected line." },
+        { "from": "challenger-minihompy", "raise": "Honest chrome: counts and labels sit small and exact on the element they describe." }
+      ],
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "nav on the top rule", "x": 0, "y": 0, "w": 12, "h": 1 },
+          { "label": "headline", "x": 0, "y": 1, "w": 6, "h": 3 },
+          { "label": "one line + actions", "x": 0, "y": 4, "w": 4, "h": 2 },
+          { "label": "graph assembling on the grid", "x": 5, "y": 1, "w": 7, "h": 8, "accent": true },
+          { "label": "module legend", "x": 0, "y": 8, "w": 4, "h": 1 }
+        ]
+      }
+    },
+    {
+      "id": "model-pick",
+      "label": "Load Path",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "graphic statics and Gaudí's hanging-chain models",
+      "thesis": "The architecture drawn as a structure under load: dependencies are forces, and the parts carrying the most weight are drawn heaviest.",
+      "palette": ["#0E1012", "#E9E6DF", "#5D6166", "#3EA6FF"],
+      "materials": ["force polygons and funicular lines", "a hanging chain inverted into an arch"],
+      "viewport": "The dependency graph hangs from its entry points like a chain model; the heaviest components sag deepest, and inverting it shows the system's arch.",
+      "risk": "Physics can overpromise precision; if the forces don't map to real measurements it becomes an engineering costume.",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "nav", "x": 0, "y": 0, "w": 12, "h": 1 },
+          { "label": "headline", "x": 0, "y": 1, "w": 7, "h": 2 },
+          { "label": "one line + actions", "x": 0, "y": 3, "w": 5, "h": 2 },
+          { "label": "chain model of the graph", "x": 2, "y": 4, "w": 10, "h": 6, "accent": true }
+        ]
+      }
+    },
+    {
+      "id": "challenger-vu-meter",
+      "label": "Meter Bridge",
+      "verdict": "competitive",
+      "lineage": "recording-desk VU meter bridges",
+      "thesis": "Architecture read like a mixing desk: every module a calibrated meter whose needle leans toward the red as structural pressure rises.",
+      "palette": ["#121314", "#E8E1CF", "#8A8F94", "#D8402B"],
+      "materials": ["meter faces behind glass", "needles with real ballistics"],
+      "viewport": "A row of identical meters across the top, one per module, settling as the analysis completes; the graph sits on the desk below.",
+      "case": "Fuses well for Gravity, Entropy and risk readouts and speaks to engineers; loses on product clarity because structure, the product's core, is not a needle.",
+      "risk": "Turns into a skeuomorphic gimmick unless every needle is a real measurement.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-vu-meter-bridge-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/signals-instruments-vu-meter-bridge.webp",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "nav", "x": 0, "y": 0, "w": 12, "h": 1 },
+          { "label": "meter row, one per module", "x": 0, "y": 1, "w": 12, "h": 2, "accent": true },
+          { "label": "headline", "x": 0, "y": 3, "w": 6, "h": 2 },
+          { "label": "one line + actions", "x": 0, "y": 5, "w": 4, "h": 2 },
+          { "label": "graph on the desk", "x": 5, "y": 4, "w": 7, "h": 6 }
+        ]
+      }
+    },
+    {
+      "id": "challenger-dumbar",
+      "label": "Modular Bars",
+      "verdict": "declined",
+      "lineage": "modular identity systems of saturated bars",
+      "thesis": "Loose parts thrown across the page snap into one loud modular grammar.",
+      "palette": ["#00A3E0", "#E6007E", "#FFD500", "#3BB54A"],
+      "materials": ["saturated vector bars", "staged photography"],
+      "viewport": "Bars and fragments scatter, then lock to the module around the headline.",
+      "case": "Its snap mechanic fits, but the saturated palette breaks the brief's restraint and reads as an agency, not infrastructure.",
+      "kept": "Snap to module: however far the parts are thrown, everything locks to one invisible module.",
+      "risk": "Loud enough to bury the product.",
+      "hero": "https://impeccable.style/worlds/cards/studio-dumbar-identity-hero.webp"
+    },
+    {
+      "id": "challenger-miura",
+      "label": "Deployable Sheet",
+      "verdict": "declined",
+      "lineage": "Miura-ori deployable arrays",
+      "thesis": "A compact packet that unfolds into the full crease graph in one pull.",
+      "palette": ["#F4F2EC", "#C8A951", "#8E8A80", "#7FA8C9"],
+      "materials": ["scored creases", "foil packet"],
+      "viewport": "A small packet in the corner unfolds across the viewport into a tessellated sheet.",
+      "case": "Its propagation mechanic suits impact analysis, but a folded sheet hides nodes, edges and modules, and the paper palette breaks the brief.",
+      "kept": "Linked propagation: one change visibly travels along every connected line.",
+      "risk": "Beautiful, but about folding, not software.",
+      "hero": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-miura-orbit-sheet-hero.webp"
+    },
+    {
+      "id": "challenger-streaming-wall",
+      "label": "Title Card Wall",
+      "verdict": "declined",
+      "lineage": "streaming catalog walls",
+      "thesis": "Rows of tiles where the focused one grows and tells you what it is.",
+      "palette": ["#121212", "#DADADA", "#3D8BFF"],
+      "materials": ["fixed-ratio tiles", "focus expansion"],
+      "viewport": "Horizontal rows of module tiles, one row lifted.",
+      "case": "A wall of tiles hides the structure Katedrala exists to show.",
+      "kept": "Focus reveal: the focused unit grows and states what it is while everything else recedes.",
+      "risk": "Reads as a media catalog.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-streaming-title-card-wall-hero.webp"
+    },
+    {
+      "id": "challenger-weather-sun",
+      "label": "Indoor Sun",
+      "verdict": "declined",
+      "lineage": "a monofrequency indoor-sun installation",
+      "thesis": "One vast hazed hall lit by a single amber light.",
+      "palette": ["#E8A33D", "#1A1208", "#F5C66B"],
+      "materials": ["haze", "mirrored ceiling"],
+      "viewport": "A half sun on the far wall completed by its reflection.",
+      "case": "A mood, not a mechanism: it shows atmosphere, not architecture.",
+      "kept": "One light: the accent is the only light in the scene.",
+      "risk": "Atmosphere with nothing to inspect.",
+      "hero": "https://impeccable.style/worlds/cards/light-shadow-caustics-indoor-weather-sun-hero.webp"
+    },
+    {
+      "id": "challenger-minihompy",
+      "label": "Isometric Room",
+      "verdict": "declined",
+      "lineage": "decoratable isometric home pages",
+      "thesis": "Identity as a small room you furnish.",
+      "palette": ["#F7D6E0", "#C9E4F2", "#FFF4C2", "#5A4E63"],
+      "materials": ["pastel isometric room", "sticker furnishings"],
+      "viewport": "A furnished room with counters and a guest ledger.",
+      "case": "Personal and playful; developers evaluating infrastructure won't identify with it.",
+      "kept": "Honest chrome: counts and labels sit small on the element they describe.",
+      "risk": "Wrong register entirely.",
+      "hero": "https://impeccable.style/worlds/cards/cyworld-minihompy-room-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": false },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A dark developer-tool landing page, executed at full craft.",
+    "palette": ["#0A0A0A", "#FAFAFA", "#3B82F6"],
+    "materials": ["clean grid", "product screenshot"],
+    "viewport": "Headline and two buttons beside a product visual, feature rows below.",
+    "risk": "Indistinguishable from every developer tool, by design."
+  },
+  "steer": true
+}

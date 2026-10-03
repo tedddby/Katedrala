@@ -1,0 +1,75 @@
+/* ------------------------------------------------------------------------------------------------
+ * Entropy: module drawing with added dependencies, and the commit log.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .entropy-edge {
+    fill: none;
+    stroke-width: 1.4;
+    transition:
+      stroke 220ms ease,
+      opacity 220ms ease;
+  }
+  .entropy-edge-base {
+    stroke: var(--color-ink-faint);
+    opacity: 0.55;
+  }
+  .entropy-edge-added {
+    stroke: var(--color-ink);
+    stroke-width: 1.8;
+    stroke-dasharray: 6 4;
+  }
+  .entropy-edge-cycle {
+    stroke: var(--color-load);
+    stroke-width: 1.8;
+  }
+  .entropy-arrow-base {
+    stroke: var(--color-ink-faint);
+  }
+  .entropy-arrow-added {
+    stroke: var(--color-ink);
+  }
+  .entropy-arrow-cycle {
+    stroke: var(--color-load);
+  }
+  .entropy-joint {
+    fill: var(--color-sheet);
+    stroke: var(--color-ink);
+    stroke-width: 1.5;
+    transition:
+      fill 220ms ease,
+      stroke 220ms ease;
+  }
+  .entropy-joint.is-cyclic {
+    stroke: var(--color-load);
+    stroke-width: 2.2;
+  }
+
+  .commit-log {
+    border-left: 1px solid var(--color-rule-strong);
+  }
+  .commit {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-size: 0.875rem;
+    color: var(--color-ink-faint);
+    transition:
+      color 150ms ease,
+      background-color 150ms ease;
+  }
+  .commit[data-applied="true"] {
+    color: var(--color-ink-soft);
+  }
+  .commit:hover {
+    color: var(--color-ink);
+    background: var(--color-sheet-raised);
+  }
+  .commit[aria-pressed="true"] {
+    color: var(--color-ink);
+    background: var(--color-sheet-raised);
+    box-shadow: inset 2px 0 0 var(--color-load);
+  }
+}

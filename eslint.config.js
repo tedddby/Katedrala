@@ -13,6 +13,8 @@ export default defineConfig([
     "packages/ir/schema/**",
     "benchmarks/.work/**",
     "benchmarks/results/**",
+    // The website is a separate Next.js workspace with its own toolchain; it is type-checked by its own build.
+    "site/**",
   ]),
   js.configs.recommended,
   tseslint.configs.strictTypeChecked,

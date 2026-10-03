@@ -1,0 +1,59 @@
+/* ------------------------------------------------------------------------------------------------
+ * History: five versions as small multiples.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .history {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .history-version {
+    border-top: 1px solid var(--color-rule-strong);
+    padding-top: 0.875rem;
+  }
+  .history-version[data-finding="true"] {
+    border-top-color: var(--color-load);
+  }
+  .history-edge {
+    stroke-width: 2.2;
+  }
+  .history-edge-old {
+    stroke: var(--color-ink-faint);
+    opacity: 0.6;
+  }
+  .history-edge-new {
+    stroke: var(--color-ink);
+    stroke-dasharray: 6 5;
+  }
+  .history-edge-cycle {
+    stroke: var(--color-load);
+  }
+  .history-absent {
+    fill: none;
+    stroke: var(--color-rule-strong);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 4;
+  }
+  .history-finding {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-load);
+  }
+  @media (max-width: 1023px) {
+    .history {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(13rem, 60%);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 0.75rem;
+    }
+    .history-version {
+      scroll-snap-align: start;
+    }
+  }
+  .history-edge-cycle.is-new {
+    stroke-dasharray: 6 5;
+  }
+}

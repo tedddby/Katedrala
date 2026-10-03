@@ -1,0 +1,277 @@
+/* ------------------------------------------------------------------------------------------------
+ * Architecture explorer: a plan view with module bays.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .explorer-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .segmented {
+    display: inline-flex;
+    border: 1px solid var(--color-rule-strong);
+  }
+  .segmented > button {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 560;
+    color: var(--color-ink-faint);
+    transition:
+      color 150ms ease,
+      background-color 150ms ease;
+  }
+  .segmented > button[aria-pressed="true"] {
+    background: var(--color-ink);
+    color: var(--color-sheet);
+  }
+  .segmented > button[aria-pressed="false"]:hover {
+    color: var(--color-ink);
+  }
+  .kind-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-rule-strong);
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8125rem;
+    color: var(--color-ink-soft);
+    transition:
+      color 150ms ease,
+      border-color 150ms ease,
+      opacity 150ms ease;
+  }
+  .kind-toggle[aria-pressed="false"] {
+    color: var(--color-ink-faint);
+    border-style: dashed;
+  }
+  .kind-toggle[aria-pressed="false"] svg {
+    opacity: 0.35;
+  }
+  .kind-toggle:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .zoom-button {
+    min-width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--color-rule-strong);
+    font-size: 0.9375rem;
+    color: var(--color-ink-soft);
+    transition:
+      color 150ms ease,
+      border-color 150ms ease,
+      transform 120ms var(--ease-out);
+  }
+  .zoom-button:hover {
+    color: var(--color-ink);
+    border-color: var(--color-ink-faint);
+  }
+  .zoom-button:active {
+    transform: scale(0.95);
+  }
+  .explorer-sheet {
+    border: 1px solid var(--color-rule);
+    background:
+      linear-gradient(var(--color-sheet), var(--color-sheet)) padding-box,
+      var(--color-rule);
+    overflow: hidden;
+  }
+  .plan-content {
+    transform-origin: 0 0;
+  }
+  .plan-content.is-animated {
+    transition: transform 280ms var(--ease-out);
+  }
+  .plan-bay rect {
+    fill: color-mix(in oklab, var(--color-sheet-raised) 70%, transparent);
+    stroke: var(--color-rule-strong);
+    stroke-dasharray: 5 4;
+    transition: opacity 320ms ease;
+  }
+  .plan-bay-label {
+    fill: var(--color-ink-faint);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-variation-settings: "wdth" 87.5;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    /* A halo in the bay's own tone, so an edge that crosses the label passes behind it. */
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--color-sheet-raised) 70%, var(--color-sheet));
+    stroke-width: 5px;
+    stroke-linejoin: round;
+  }
+  .plan-bay-label {
+    transition: opacity 240ms ease;
+  }
+  .plan-bay[data-mode="modules"] rect {
+    opacity: 0.35;
+  }
+  .plan-bay[data-mode="modules"] .plan-bay-label {
+    opacity: 0;
+  }
+  .plan-edges {
+    transition: opacity 320ms ease;
+  }
+  .plan-edges[data-visible="false"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .plan-edge,
+  .plan-edge-sample {
+    stroke: var(--color-ink-soft);
+    stroke-width: 1.4;
+    fill: none;
+    transition:
+      stroke 180ms ease,
+      opacity 180ms ease;
+  }
+  .kind-instantiates {
+    stroke-dasharray: 7 4;
+  }
+  .kind-accesses-data {
+    stroke-dasharray: 1.5 3.5;
+    stroke-linecap: round;
+    stroke-width: 2;
+  }
+  .plan-edge[data-state="dependency"] {
+    stroke: var(--color-load);
+  }
+  .plan-edge[data-state="dependent"] {
+    stroke: var(--color-ink);
+  }
+  .plan-edge[data-state="dim"] {
+    opacity: 0.12;
+  }
+  .plan-arrow {
+    stroke: var(--color-ink-soft);
+  }
+  .plan-arrow-dependency {
+    stroke: var(--color-load);
+  }
+  .plan-arrow-dependent {
+    stroke: var(--color-ink);
+  }
+  .plan-count {
+    fill: var(--color-ink-faint);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .plan-member {
+    cursor: pointer;
+    outline: none;
+    transition:
+      transform 420ms var(--ease-in-out),
+      opacity 260ms ease;
+  }
+  .plan-member[data-collapsed="true"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .plan-member[data-state="dim"] {
+    opacity: 0.22;
+  }
+  .plan-hit {
+    fill: transparent;
+  }
+  .plan-joint {
+    fill: var(--color-sheet);
+    stroke: var(--color-ink);
+    stroke-width: 1.5;
+    transition:
+      fill 180ms ease,
+      stroke 180ms ease;
+  }
+  .plan-member[data-state="selected"] .plan-joint {
+    fill: var(--color-load);
+    stroke: var(--color-load);
+  }
+  .plan-member[data-state="dependency"] .plan-joint {
+    stroke: var(--color-load);
+  }
+  .plan-member:focus-visible .plan-joint {
+    stroke: var(--color-load);
+    stroke-width: 2.6;
+  }
+  .plan-label {
+    fill: var(--color-ink-soft);
+    font-size: 12.5px;
+    font-weight: 520;
+    font-variation-settings: "wdth" 84;
+    paint-order: stroke;
+    stroke: var(--color-sheet);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+  }
+  .plan-member:is([data-state="selected"], [data-state="dependency"], [data-state="dependent"])
+    .plan-label {
+    fill: var(--color-ink);
+  }
+  .plan-module {
+    pointer-events: none;
+    transition: opacity 320ms ease 140ms;
+  }
+  .plan-module[data-visible="false"] {
+    opacity: 0;
+    transition-delay: 0ms;
+  }
+
+  .table-alternative > summary {
+    cursor: pointer;
+    width: fit-content;
+    font-size: 0.875rem;
+    color: var(--color-ink-soft);
+    text-decoration: underline;
+    text-decoration-color: var(--color-rule-strong);
+    text-underline-offset: 0.3em;
+  }
+  .table-alternative > summary:hover {
+    color: var(--color-ink);
+  }
+  .table-alternative th,
+  .table-alternative td {
+    padding: 0.5rem 1rem 0.5rem 0;
+    border-bottom: 1px solid var(--color-rule);
+    vertical-align: top;
+    color: var(--color-ink-soft);
+  }
+  .table-alternative thead th {
+    color: var(--color-ink-faint);
+    font-weight: 500;
+  }
+}
+
+/* Explorer: module edges weigh what they aggregate; on phones the module scale is set to be read at full width. */
+@layer components {
+  .plan-module-edge {
+    stroke-width: calc(1px + var(--count, 1) * 0.7px);
+  }
+  .hint-touch {
+    display: none;
+  }
+  @media (pointer: coarse) {
+    .hint-touch {
+      display: inline;
+    }
+    .hint-mouse {
+      display: none;
+    }
+  }
+  @media (max-width: 639px) {
+    .plan-module .plan-label {
+      font-size: 34px;
+      stroke-width: 8px;
+    }
+    .plan-module .plan-joint {
+      stroke-width: 3.5px;
+    }
+    .plan-module-edge {
+      stroke-width: calc(2.5px + var(--count, 1) * 1.6px);
+    }
+    .plan-count {
+      font-size: 30px;
+    }
+  }
+}

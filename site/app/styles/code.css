@@ -1,0 +1,53 @@
+/* Code blocks and terminals. */
+@layer components {
+  .code-block {
+    border: 1px solid var(--color-rule-strong);
+    background: var(--color-sheet-deep);
+    min-width: 0;
+  }
+  .code-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--color-rule);
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    color: var(--color-ink-faint);
+  }
+  .code-copy {
+    border: 1px solid var(--color-rule-strong);
+    padding: 0.25rem 0.625rem;
+    color: var(--color-ink-soft);
+    transition:
+      color 150ms ease,
+      border-color 150ms ease,
+      transform 120ms var(--ease-out);
+  }
+  .code-copy:hover {
+    color: var(--color-ink);
+    border-color: var(--color-ink-faint);
+  }
+  .code-copy:active {
+    transform: scale(0.96);
+  }
+  .code-block-body {
+    overflow-x: auto;
+    padding: 1rem 1.125rem 1.125rem;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    tab-size: 2;
+  }
+}
+
+/* Code reads slightly smaller on phones, so more of each line fits before it scrolls. */
+@layer components {
+  @media (max-width: 639px) {
+    .code-block-body {
+      font-size: 0.75rem;
+      padding-inline: 0.875rem;
+    }
+  }
+}

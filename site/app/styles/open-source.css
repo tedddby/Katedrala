@@ -1,0 +1,47 @@
+/* ------------------------------------------------------------------------------------------------
+ * Open source: the construction sequence of v1.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .milestone-beam {
+    stroke: var(--color-rule-strong);
+    stroke-width: 1;
+  }
+  .milestone-joint circle {
+    fill: var(--color-sheet);
+    stroke: var(--color-ink-faint);
+    stroke-width: 1.5;
+  }
+  .milestone-joint[data-state="done"] circle {
+    fill: var(--color-ink);
+    stroke: var(--color-ink);
+  }
+  .milestone-joint-half {
+    fill: var(--color-ink-soft);
+  }
+  .milestones {
+    border-top: 1px solid var(--color-rule);
+  }
+  .milestone {
+    display: grid;
+    grid-template-columns: 2rem 1fr auto;
+    column-gap: 0.75rem;
+    align-items: baseline;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid var(--color-rule);
+    font-size: 0.9375rem;
+  }
+  .milestone-name {
+    color: var(--color-ink-soft);
+  }
+  .milestone-state {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-faint);
+  }
+  .milestone:is([data-state="done"], [data-state="in-progress"])
+    :is(.milestone-name, .milestone-state) {
+    color: var(--color-ink);
+  }
+}

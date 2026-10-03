@@ -9,3 +9,10 @@ fixtures/
 packages/ir/schema/
 benchmarks/results/
 benchmarks/.work/
+# Claude Code skills and settings: third-party content and tool-written files.
+.claude/
+# Site build output and tool-written design records.
+site/.next/
+site/out/
+site/next-env.d.ts
+site/.impeccable/

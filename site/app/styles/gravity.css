@@ -1,0 +1,76 @@
+/* ------------------------------------------------------------------------------------------------
+ * Choices, tributary drawings and term bars.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .choice {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.625rem;
+    border: 1px solid var(--color-rule-strong);
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    color: var(--color-ink-soft);
+    transition:
+      color 150ms ease,
+      border-color 150ms ease,
+      background-color 150ms ease,
+      transform 120ms var(--ease-out);
+  }
+  .choice:hover {
+    color: var(--color-ink);
+    border-color: var(--color-ink-faint);
+  }
+  .choice:active {
+    transform: scale(0.97);
+  }
+  .choice[aria-checked="true"],
+  .choice[aria-pressed="true"] {
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+    background: var(--color-sheet-raised);
+  }
+  .choice[aria-checked="true"] .data,
+  .choice[aria-pressed="true"] .data {
+    color: var(--color-load);
+  }
+
+  .tributary-edge {
+    stroke: var(--color-ink-faint);
+    stroke-width: 1.2;
+    opacity: 0.7;
+  }
+  .tributary-edge.is-into {
+    stroke: var(--color-load);
+    stroke-width: 2;
+    opacity: 1;
+  }
+  .tributary-member {
+    transition: transform 380ms var(--ease-out);
+  }
+  .tributary-joint {
+    fill: var(--color-sheet);
+    stroke: var(--color-ink);
+    stroke-width: 1.4;
+  }
+  .tributary-joint.is-selected {
+    fill: var(--color-load);
+    stroke: var(--color-load);
+  }
+  .tributary-empty {
+    fill: var(--color-ink-faint);
+    font-size: 15px;
+  }
+
+  .term-track {
+    display: block;
+    flex: 1;
+    height: 6px;
+  }
+  .term-bar {
+    display: block;
+    height: 100%;
+    background: var(--color-load);
+    transform-origin: left center;
+    transition: transform 360ms var(--ease-out);
+  }
+}

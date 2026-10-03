@@ -1,0 +1,203 @@
+/*
+ * Katedrala visual system: a structural drawing on a dark sheet.
+ * One light: --color-load appears only on architecture that is active right now
+ * (a member under test, a load path, a focused control). Everything else is chalk and graphite.
+ */
+@theme {
+  --color-sheet: #0e1012;
+  --color-sheet-raised: #14171a;
+  --color-sheet-deep: #0a0b0d;
+  --color-ink: #e9e6df;
+  --color-ink-soft: #b4b1a9;
+  --color-ink-faint: #8b8e92;
+  --color-graphite: #5d6166;
+  --color-rule: #24282c;
+  --color-rule-strong: #353a3f;
+  --color-load: #3ea6ff;
+  --color-load-deep: #1f6fb5;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-martian), ui-monospace, "SFMono-Regular", monospace;
+
+  --text-display: clamp(2.75rem, 1.15rem + 4.4vw, 5.5rem);
+  --text-heading: clamp(2.125rem, 1.2rem + 2.6vw, 3.5rem);
+  --text-subheading: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem);
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+  --text-data: 0.8125rem;
+  --text-micro: 0.6875rem;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --radius-none: 0;
+}
+
+:root {
+  color-scheme: dark;
+  --page-gutter: clamp(1rem, 4vw, 3rem);
+  --page-max: 82.5rem;
+}
+
+@layer base {
+  html {
+    background: var(--color-sheet);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    scrollbar-color: var(--color-graphite) var(--color-sheet);
+    caret-color: var(--color-load);
+  }
+
+  body {
+    min-height: 100dvh;
+    font-size: var(--text-body);
+    line-height: 1.6;
+    font-variation-settings: "wdth" 100;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-load) 38%, transparent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-load);
+    outline-offset: 3px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-mono);
+    font-variation-settings: "wdth" 87.5;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-sheet);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-rule-strong);
+    border: 2px solid var(--color-sheet);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-graphite);
+  }
+}
+
+@layer components {
+  /* Page frame: one 12-column construction grid shared by every section. */
+  .frame {
+    width: 100%;
+    max-width: calc(var(--page-max) + 2 * var(--page-gutter));
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+  }
+
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .display {
+    font-size: var(--text-display);
+    font-weight: 640;
+    font-variation-settings: "wdth" 78;
+    line-height: 0.96;
+    letter-spacing: -0.022em;
+    word-spacing: 0.04em;
+  }
+
+  .heading {
+    font-size: var(--text-heading);
+    font-weight: 620;
+    font-variation-settings: "wdth" 80;
+    line-height: 1.02;
+    letter-spacing: -0.026em;
+  }
+
+  .subheading {
+    font-size: var(--text-subheading);
+    font-weight: 560;
+    font-variation-settings: "wdth" 88;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+  }
+
+  .lede {
+    font-size: clamp(1.125rem, 1rem + 0.35vw, 1.3125rem);
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+    max-width: 38rem;
+  }
+
+  .measure {
+    max-width: 68ch;
+  }
+
+  /* Measured values and identifiers: monospace only where something is measured or named in code. */
+  .data {
+    font-family: var(--font-mono);
+    font-size: var(--text-data);
+    font-variation-settings: "wdth" 87.5;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .micro {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* Hatched ground: the engineering symbol for a fixed support, used only under foundations. */
+  .ground-hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--color-graphite) 0 1px,
+      transparent 1px 7px
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}

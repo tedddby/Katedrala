@@ -1,0 +1,115 @@
+/* ------------------------------------------------------------------------------------------------
+ * Pipeline: five passes as joints along one beam.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .pipeline-stage {
+    position: relative;
+    outline: none;
+  }
+  @media (min-width: 1024px) {
+    .pipeline {
+      grid-template-rows: repeat(6, auto);
+    }
+    /* Every stage shares the same rows, so statuses and artifacts line up across the beam. */
+    .pipeline-stage {
+      display: grid;
+      grid-row: span 6;
+      grid-template-rows: subgrid;
+      align-content: start;
+    }
+  }
+  .pipeline-beam {
+    position: relative;
+    height: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .pipeline-beam::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: calc(-1 * clamp(1rem, 2vw, 1.5rem));
+    top: 50%;
+    height: 1.5px;
+    background: var(--color-ink-faint);
+  }
+  .pipeline-stage:last-child .pipeline-beam::before {
+    right: 0;
+  }
+  .pipeline-joint {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0.875rem;
+    height: 0.875rem;
+    translate: 0 -50%;
+    border-radius: 999px;
+    border: 1.5px solid var(--color-ink);
+    background: var(--color-sheet);
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease;
+  }
+  .pipeline-stage:is(:hover, :focus-visible) .pipeline-joint {
+    background: var(--color-load);
+    border-color: var(--color-load);
+  }
+  .pipeline-stage:focus-visible {
+    outline: 2px solid var(--color-load);
+    outline-offset: 6px;
+  }
+  .pipeline-artifact {
+    margin-top: 1.25rem;
+    display: grid;
+    gap: 0.25rem;
+    border: 1px solid var(--color-rule);
+    background: var(--color-sheet-deep);
+    padding: 0.625rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-variation-settings: "wdth" 87.5;
+    line-height: 1.6;
+  }
+  .pipeline-stage:is(:hover, :focus-visible) .pipeline-artifact {
+    border-color: var(--color-rule-strong);
+  }
+
+  @media (max-width: 1023px) {
+    .pipeline {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 2.75rem;
+      padding-left: 2rem;
+    }
+    .pipeline-beam {
+      position: absolute;
+      left: -2rem;
+      top: 0;
+      bottom: -2.75rem;
+      height: auto;
+      width: 1rem;
+      margin: 0;
+    }
+    .pipeline-beam::before {
+      left: calc(0.4375rem - 0.75px);
+      right: auto;
+      top: 0.4rem;
+      bottom: 0;
+      width: 1.5px;
+      height: auto;
+    }
+    .pipeline-stage:last-child .pipeline-beam::before {
+      display: none;
+    }
+    .pipeline-joint {
+      top: 0.4rem;
+      translate: 0 0;
+    }
+    .pipeline-artifact {
+      max-width: 22rem;
+    }
+  }
+}

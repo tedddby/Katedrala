@@ -1,0 +1,108 @@
+/* ------------------------------------------------------------------------------------------------
+ * Load drawings: the structural drawing of a system. States come from data attributes set by
+ * LoadDrawing: the member under test, its load path below, the members resting on it above.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .drawing-level {
+    stroke: var(--color-rule);
+    stroke-width: 1;
+    pointer-events: none;
+  }
+  .drawing-level-label {
+    fill: var(--color-ink-faint);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-variation-settings: "wdth" 87.5;
+  }
+  .drawing-ground {
+    stroke: var(--color-graphite);
+    stroke-width: 1.25;
+  }
+  .drawing-edge {
+    stroke: var(--color-ink-soft);
+    stroke-linecap: round;
+    opacity: 0.62;
+    transition:
+      stroke 180ms ease,
+      opacity 180ms ease;
+  }
+  .drawing-edge[data-relation="below"] {
+    stroke: var(--color-load);
+    opacity: 1;
+  }
+  .drawing-edge[data-relation="above"] {
+    stroke: var(--color-ink);
+    opacity: 0.9;
+  }
+  .drawing-edge[data-relation="dim"] {
+    opacity: 0.1;
+  }
+
+  .drawing[data-interactive="false"] .drawing-member {
+    cursor: default;
+  }
+  .drawing-member {
+    cursor: pointer;
+    outline: none;
+    transition: opacity 180ms ease;
+  }
+  .drawing-hit {
+    fill: transparent;
+  }
+  .drawing-joint {
+    fill: var(--color-sheet);
+    stroke: var(--color-ink);
+    stroke-width: 1.4;
+    transition:
+      fill 180ms ease,
+      stroke 180ms ease;
+  }
+  .drawing-support {
+    fill: var(--color-sheet);
+    stroke: var(--color-ink-faint);
+    stroke-width: 1.2;
+    stroke-linejoin: round;
+  }
+  .drawing-label {
+    fill: var(--color-ink-soft);
+    font-family: var(--font-sans);
+    font-weight: 520;
+    font-variation-settings: "wdth" 84;
+    letter-spacing: -0.005em;
+    paint-order: stroke;
+    stroke: var(--color-sheet);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+    transition: fill 180ms ease;
+  }
+  .drawing-member[data-relation="active"] .drawing-joint {
+    fill: var(--color-load);
+    stroke: var(--color-load);
+  }
+  .drawing-member[data-relation="active"] .drawing-label,
+  .drawing-member[data-relation="below"] .drawing-label,
+  .drawing-member[data-relation="above"] .drawing-label {
+    fill: var(--color-ink);
+  }
+  .drawing-member[data-relation="below"] .drawing-joint {
+    stroke: var(--color-load);
+  }
+  .drawing-member[data-relation="dim"] {
+    opacity: 0.24;
+  }
+  .drawing-member:focus-visible .drawing-joint {
+    stroke: var(--color-load);
+    stroke-width: 2.4;
+  }
+
+  /* With JavaScript, members wait (hidden) for the settle; without it the server-drawn final state shows. */
+  :root[data-js] .drawing[data-settle="pending"] :is(.drawing-member, .drawing-edge) {
+    opacity: 0;
+    animation: drawing-failsafe 1ms 3.5s forwards;
+  }
+  @keyframes drawing-failsafe {
+    to {
+      opacity: 1;
+    }
+  }
+}
