@@ -1,0 +1,15 @@
+import { readFileSync } from "node:fs";
+const S = "/home/user/Katedrala/site/components/stage";
+const M = await import(`${S}/model.ts`);
+const data = JSON.parse(readFileSync("/home/user/Katedrala/site/public/data/codeverse-graph.json", "utf8"));
+const model = M.buildModel(data);
+console.log("heaviest", model.heaviest.slice(0, 6).map((v) => [model.paths[v], model.reach[v], model.lines[v]]));
+console.log("crown", model.paths[model.crown], "spine", model.spine.length);
+const s = M.summarize(model, data);
+console.log(JSON.stringify(s.heaviest), s.crown);
+const a = model.paths.indexOf("src/analysis/analysis-service.ts");
+console.log("a level", model.level[a], "lines", model.lines[a], "row", data.files.find((f) => f[0] === "src/analysis/analysis-service.ts"));
+console.log("b row", data.files.find((f) => f[0] === "src/analysis/cache-key.ts"));
+console.log("edge", data.edges.filter((e) => data.files[e[0]][0] === "src/analysis/analysis-service.ts" && data.files[e[1]][0] === "src/analysis/cache-key.ts"));
+console.log("groups", data.groups);
+console.log("counts", data.counts);

@@ -7,7 +7,7 @@ import { createHash } from "node:crypto";
 import { isDeepStrictEqual } from "node:util";
 import { pathToFileURL } from "node:url";
 
-const SITE = "/katedrala/site";
+const SITE = "/home/user/Katedrala/site";
 const DOC = `${process.env.TEMP}/codeverse-structure-2.json`;
 const OUT = `${SITE}/public/data/codeverse-evidence.json`;
 const sha = () => createHash("sha256").update(readFileSync(OUT)).digest("hex");

@@ -203,8 +203,8 @@ class HangOverlay implements ActOverlay {
       });
     };
     const carries = (v: number) => `carries ${formatCount(model.reach[v]!)} files`;
-    add(first!, -1, 0.034, carries(first!), false);
-    add(second!, -1, 0.034, carries(second!), false, { wideOnly: true });
+    add(first!, -1, BEAT.heroEnd, carries(first!), false);
+    add(second!, -1, BEAT.heroEnd, carries(second!), false, { wideOnly: true });
     add(
       model.crown,
       0.418,
@@ -247,7 +247,7 @@ class HangOverlay implements ActOverlay {
     const ctx = this.ctx;
     const film = this.film;
     // The hero steps out of the picture once the film runs; it stays in the page (and comes back on focus).
-    const heroOn = !film || t < 0.034;
+    const heroOn = !film || t < BEAT.heroEnd;
     if (heroOn !== this.heroOn && this.hero !== null) {
       this.heroOn = heroOn;
       setOn(this.hero, heroOn);

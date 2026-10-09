@@ -4,7 +4,7 @@ import { createRequire } from "node:module";
 import { readFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 
-const SITE = "/katedrala/site";
+const SITE = "/home/user/Katedrala/site";
 const require = createRequire(`${SITE}/package.json`);
 const ts = require("typescript");
 const nextDir = require.resolve("next/package.json").replace(/package\.json$/, "");

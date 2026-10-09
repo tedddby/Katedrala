@@ -14,6 +14,8 @@ import { LEVEL_HEIGHT, type HangingModel } from "./model";
  * ---------------------------------------------------------------------------------------------------------- */
 
 export const BEAT = {
+  /** The hero frame (headline, lede, actions over the plan) holds until here, then steps out of the picture. */
+  heroEnd: 0.034,
   /** The plan on the board: the hero frame. */
   plan: 0.04,
   /** The first level is released here; the last one at dropEnd. */

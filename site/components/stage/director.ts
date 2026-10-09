@@ -30,6 +30,7 @@ import type { Stage } from "./stage";
 import { filmActs } from "./registry";
 import type { FilmOptions } from "./still";
 import {
+  ACTS,
   BEAT,
   cameraFrom,
   clamp01,
@@ -52,8 +53,16 @@ interface Trigger {
 
 type ScrollTriggerClass = typeof import("gsap/ScrollTrigger").ScrollTrigger;
 
+/**
+ * Whether the film has turned GSAP's ScrollTrigger off (it keeps requestAnimationFrame busy while enabled). Module
+ * state, like ScrollTrigger's own: a film mounted after another one was disposed turns it on again.
+ */
+let scrollClockOff = false;
+
 /** After this long without input the hanging model stops breathing, so a page left open comes to rest. */
 const CALM_AFTER = 14;
+/** How long the film stays off screen before its scroll clock is turned off (ms): no toggling at its edge. */
+const CLOCK_OFF_AFTER = 1200;
 /** A jump longer than this, in viewports of pinned scroll, moves the camera at once rather than with its mass. */
 const SNAP = 1.32;
 /** Controls that keep Space and the page keys for themselves. */
@@ -117,6 +126,11 @@ export class Director {
   private data: GraphData | null = null;
   private stage: Stage | null = null;
   private trigger: Trigger | null = null;
+  /** GSAP's ScrollTrigger once loaded: the scroll clock, turned off while the film is off screen. */
+  private scrollClock: ScrollTriggerClass | null = null;
+  private clockOffTimer = 0;
+  /** A reveal is landing: the hero skips its transitions until the frame that shows it has been drawn. */
+  private instant = false;
   /** Windows framed tall (phones and tablets in portrait): the stylesheet's split, which sets the track's length. */
   private readonly tall = window.matchMedia(TALL_MEDIA);
   private framing: Framing;
@@ -204,6 +218,7 @@ export class Director {
     this.clock = clockOf(this.framing);
     this.cleanups.push(bindNavigationMark(this.stageEl));
     this.cleanups.push(bindFilmLinks(root, () => (this.still === null ? "film" : "still")));
+    this.bindFocus();
     void this.start();
   }
 
@@ -277,6 +292,7 @@ export class Director {
     const io = new IntersectionObserver(
       (entries) => {
         this.visible = entries.some((e) => e.isIntersecting);
+        this.syncScrollClock();
         if (this.visible) this.wake();
       },
       { rootMargin: "100px 0px" },
@@ -308,6 +324,18 @@ export class Director {
     if (this.disposed) return;
     const [{ gsap }, { ScrollTrigger }] = gsapModules;
     gsap.registerPlugin(ScrollTrigger);
+    // Turned off when an earlier film left the page (dispose): on again, measured afresh.
+    if (scrollClockOff) {
+      scrollClockOff = false;
+      ScrollTrigger.enable();
+    }
+    // Address-bar resizes: GSAP 3.15 registers ScrollTrigger with ignoreMobileResize already on wherever the pointer
+    // is coarse or cannot hover (Observer.isTouch 1), which is all that ScrollTrigger.config({ ignoreMobileResize:
+    // true }) can set. The call is left out on purpose: config() without a syncInterval overwrites the handle of
+    // ScrollTrigger's 250 ms sync timer, which then can never be cleared, so its frame requests would outlive
+    // ScrollTrigger.disable() and the film could not go quiet off screen (syncScrollClock). bindResize holds the film
+    // through height-only resizes on touch screens as well.
+    this.scrollClock = ScrollTrigger;
     const trigger = ScrollTrigger.create({
       trigger: this.track,
       start: "top top",
@@ -330,7 +358,54 @@ export class Director {
     this.cleanups.push(() => trigger.kill());
     this.bindResize(trigger, ScrollTrigger);
     this.bindKeys();
+    // The page may already be past the film (a deep link below it, a restored position).
+    this.syncScrollClock();
     this.wake();
+  }
+
+  /**
+   * GSAP's ScrollTrigger keeps requestAnimationFrame busy for as long as it is enabled (an empty frame loop that
+   * works around a repaint bug, and a 250 ms timer that asks for frames). While the film is off screen nothing needs
+   * its clock: it is turned off after a moment's grace (a visitor at the film's edge does not toggle it), so the page
+   * runs no frames for the film at all, and on again, measured afresh, as the film comes back. Only while the film's
+   * trigger is the only one: anyone else's keeps the clock on.
+   */
+  private syncScrollClock(): void {
+    const ST = this.scrollClock;
+    const trigger = this.trigger;
+    if (ST === null || trigger === null || this.disposed) return;
+    window.clearTimeout(this.clockOffTimer);
+    if (this.visible) {
+      if (!scrollClockOff) return;
+      scrollClockOff = false;
+      // Every trigger is enabled and measured again; ours reports its progress through onRefresh.
+      ST.enable();
+      // A resize while the clock was off may have crossed the framings' split (no refresh told the film then).
+      this.updateFraming();
+      this.pRaw = trigger.progress;
+      return;
+    }
+    if (scrollClockOff) return;
+    this.clockOffTimer = window.setTimeout(() => {
+      if (this.visible || this.disposed || this.trigger !== trigger) return;
+      if (ST.getAll().some((t) => (t as unknown) !== trigger)) return;
+      scrollClockOff = true;
+      // Disabled, not reverted: the trigger keeps its measurements until it is enabled again.
+      ST.disable(false);
+    }, CLOCK_OFF_AFTER);
+  }
+
+  /**
+   * The film's trigger is gone (dispose, or the still layout took over): with nothing else on the page running on
+   * the scroll clock, it is turned off, or its frame loop would outlive the film (the next film turns it on again).
+   */
+  private releaseScrollClock(): void {
+    const ST = this.scrollClock;
+    this.scrollClock = null;
+    window.clearTimeout(this.clockOffTimer);
+    if (ST === null || scrollClockOff || ST.getAll().length > 0) return;
+    scrollClockOff = true;
+    ST.disable(false);
   }
 
   /* ---------------------------------------------------------------------------------------------------------
@@ -440,17 +515,53 @@ export class Director {
     };
   }
 
-  /** Brings the film to act `index` at local time t at once (focus reveal). */
+  /**
+   * Brings the film to act `index` at local time t at once (focus reveal): an instant scroll to that moment of the
+   * track (read from the layout, so it works before the scroll clock has loaded) and a camera that is already there.
+   * Keyboard-initiated, so nothing glides: the hero's own transitions are skipped too.
+   */
   private reveal(index: number, t: number): void {
-    const trigger = this.trigger;
-    if (trigger === null) return;
+    if (this.disposed || this.still !== null) return;
     const P = this.clock.progressOf(index, t);
-    const top = trigger.start + P * (trigger.end - trigger.start);
+    const r = this.track.getBoundingClientRect();
+    const top = r.top + window.scrollY + P * Math.max(0, r.height - window.innerHeight);
     if (Math.abs(window.scrollY - top) > 1) window.scrollTo({ top, behavior: "instant" });
     this.pRaw = P;
     this.p = P;
+    // The film may have been off screen (focus coming back from the sections below): it is on screen now.
+    this.visible = true;
+    this.syncScrollClock();
+    this.instant = true;
+    this.root.setAttribute("data-instant", "");
     this.relayout = true;
     this.wake();
+  }
+
+  /**
+   * Focus reveal. A control in the film that takes focus (Tab, Shift+Tab, a script) brings the film to where it is
+   * seen: the hero's actions to the hero frame; a control in an act's block or layer to that act's anchor (its first
+   * caption in full view), unless the film is already in that act. An act that knows a better beat for one of its
+   * controls calls ActContext.reveal(t) from its own focus listener: whichever runs first, the act's beat wins (this
+   * one does nothing once the film is in the act). Nothing moves in the still layout, which is in normal flow.
+   */
+  private bindFocus(): void {
+    const onFocus = (e: FocusEvent) => {
+      if (this.disposed || this.still !== null || !(e.target instanceof Element)) return;
+      const target = e.target;
+      const now = this.clock.at(this.pRaw);
+      if (target.closest("[data-film-hero]") !== null) {
+        if (now.index !== 0 || now.t >= BEAT.heroEnd) this.reveal(0, 0);
+        return;
+      }
+      const host = target.closest<HTMLElement>("[data-act-slot], [data-act-layer]");
+      if (host === null) return;
+      const id = host.dataset.actSlot ?? host.dataset.actLayer;
+      const index = this.acts.findIndex((a) => a.id === id);
+      if (index < 0 || now.index === index) return;
+      this.reveal(index, ACTS[index]!.anchor);
+    };
+    this.root.addEventListener("focusin", onFocus);
+    this.cleanups.push(() => this.root.removeEventListener("focusin", onFocus));
   }
 
   /* ---------------------------------------------------------------------------------------------------------
@@ -539,8 +650,9 @@ export class Director {
    * The frame loop.
    * ------------------------------------------------------------------------------------------------------- */
 
+  /** Asks for a frame, unless one is coming or the film is off screen (it wakes again as it comes back). */
   private wake(): void {
-    if (this.disposed || this.raf !== 0 || this.stage === null) return;
+    if (this.disposed || this.raf !== 0 || this.stage === null || !this.visible) return;
     this.last = performance.now();
     this.raf = requestAnimationFrame(this.tick);
   }
@@ -595,6 +707,11 @@ export class Director {
       this.updateOverlays(P);
       this.refreshObstacles();
       this.placeLabels();
+    }
+    if (this.instant) {
+      // This frame shows what a reveal brought in, styled without transitions; they apply again from the next one.
+      this.instant = false;
+      requestAnimationFrame(() => this.root.removeAttribute("data-instant"));
     }
 
     const settling = target !== this.p;
@@ -941,6 +1058,7 @@ export class Director {
     this.actLabels.length = 0;
     this.trigger?.kill();
     this.trigger = null;
+    this.releaseScrollClock();
     this.stageEl.removeAttribute("data-shade");
     this.stageEl.style.cursor = "";
     this.html.dataset.kfilm = "still";
@@ -977,11 +1095,14 @@ export class Director {
     this.disposed = true;
     if (this.raf !== 0) cancelAnimationFrame(this.raf);
     this.raf = 0;
+    window.clearTimeout(this.clockOffTimer);
     for (const overlay of this.overlays) overlay?.dispose();
     this.overlays = [];
     for (const c of this.cleanups) c();
     this.cleanups.length = 0;
     this.trigger = null;
+    this.releaseScrollClock();
+    this.root.removeAttribute("data-instant");
     this.stage?.dispose();
     this.stage = null;
     this.still?.dispose();

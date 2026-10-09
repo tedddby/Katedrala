@@ -7,7 +7,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { performance } from "node:perf_hooks";
 
-const SITE = "/katedrala/site";
+const SITE = "/home/user/Katedrala/site";
 const T = await import(pathToFileURL(`${SITE}/components/stage/acts/trace.ts`).href);
 const modelPath = existsSync(`${SITE}/components/stage/model.ts`)
   ? `${SITE}/components/stage/model.ts`
