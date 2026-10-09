@@ -77,7 +77,12 @@ export function ChangeAct() {
 /** The counter of files reached, set like the level gauge, with a tick per step. */
 function Counter({ value, steps, done = false }: { value: number; steps: number; done?: boolean }) {
   return (
-    <div className={styles.counter} data-ch-counter="" data-obstacle="" data-done={done ? "" : undefined}>
+    <div
+      className={styles.counter}
+      data-ch-counter=""
+      data-obstacle=""
+      data-done={done ? "" : undefined}
+    >
       <span className={styles.counterValue} data-ch-value="">
         {formatCount(done ? value : 0)}
       </span>

@@ -40,9 +40,7 @@ export function EvidenceAct() {
   return (
     <div className={styles.block}>
       <div className={styles.read}>
-        <h2 className={styles.title}>
-          {EVIDENCE_TITLE}
-        </h2>
+        <h2 className={styles.title}>{EVIDENCE_TITLE}</h2>
         <p className={styles.lede}>
           <Sentence parts={ends.title} /> <Sentence parts={ends.body} />{" "}
           {ends.more !== undefined && <Sentence parts={ends.more} />}

@@ -60,8 +60,7 @@
     - text: "real output: CodeVerse at 6b942bc"
     - 'button "Copy real output: CodeVerse at 6b942bc"'
     - status
-    - 'region "real output: CodeVerse at 6b942bc"':
-      - code: "{ \"id\": \"edge:68b8718fedaa1a19\", \"kind\": \"calls\", \"source\": \"sym:src/analysis/analysis-service.ts#createAnalysisService\", \"target\": \"sym:src/analysis/cache-key.ts#graphCacheKey\", \"observations\": 2, \"typeOnly\": false, \"confidence\": 1, \"provenance\": [ { \"file\": \"file:src/analysis/analysis-service.ts\", \"line\": 219, \"column\": 17, \"mechanism\": \"call-expression\", \"resolution\": \"import-binding\", \"confidence\": 1 }, { \"file\": \"file:src/analysis/analysis-service.ts\", \"line\": 273, \"column\": 19, \"mechanism\": \"call-expression\", \"resolution\": \"import-binding\", \"confidence\": 1 } ] }"
+    - code: "{ \"id\": \"edge:68b8718fedaa1a19\", \"kind\": \"calls\", \"source\": \"sym:src/analysis/analysis-service.ts#createAnalysisService\", \"target\": \"sym:src/analysis/cache-key.ts#graphCacheKey\", \"observations\": 2, \"typeOnly\": false, \"confidence\": 1, \"provenance\": [ { \"file\": \"file:src/analysis/analysis-service.ts\", \"line\": 219, \"column\": 17, \"mechanism\": \"call-expression\", \"resolution\": \"import-binding\", \"confidence\": 1 }, { \"file\": \"file:src/analysis/analysis-service.ts\", \"line\": 273, \"column\": 19, \"mechanism\": \"call-expression\", \"resolution\": \"import-binding\", \"confidence\": 1 } ] }"
   - paragraph: "From Katedrala’s analysis of the open-source CodeVerse repository: a call from createAnalysisService to graphCacheKey, observed twice, each observation with its file, line, column, syntax and the rule that resolved it."
   - paragraph: 14,233 relationships, each recorded like this one.
   - paragraph:
@@ -83,7 +82,6 @@
   - paragraph: A foundation of 471 lines. 48 files depend on it directly at runtime.
   - paragraph: The change travels up through everything that rests on it.
   - paragraph: 48 directly, 78 through one other file, 17 through two, 4 through three.
-  - paragraph: Traced by this page over the dependencies in Katedrala’s analysis of CodeVerse.
   - paragraph: 147 of the 404 source files rest on it.
   - paragraph: Count type-only dependencies too and it is 265 source files; with the tests, 409 files. From the crown, the shortest path down to it runs from src/app/page.tsx through src/components/landing/landing-page.tsx, src/components/landing/features.tsx and src/components/landing/feature-mockups.tsx to src/graph/model/types.ts.
   - paragraph: Traced by this page over the dependencies in Katedrala’s analysis of CodeVerse.
@@ -101,10 +99,10 @@
     - option "Choose a file" [selected]
   - group "Start from":
     - text: Start from
-    - button "page.tsx"
-    - button "types.ts"
-    - button "registry.ts"
-    - button "cn.ts"
+    - button "src/app/page.tsx": page.tsx
+    - button "src/graph/model/types.ts": types.ts
+    - button "src/lib/languages/registry.ts": registry.ts
+    - button "src/lib/utils/cn.ts": cn.ts
   - status: Choose a file to trace it.
   - paragraph: Traced by this page over the dependencies in Katedrala’s analysis of CodeVerse.
   - status

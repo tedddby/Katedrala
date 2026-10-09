@@ -3,6 +3,10 @@
  * hero's member cards and title block.
  * ---------------------------------------------------------------------------------------------- */
 @layer components {
+  /*
+   * The bar. On a page without the film it takes its ground and rule as the page scrolls (a scroll-driven
+   * animation; a browser without one keeps the solid bar).
+   */
   .site-nav {
     border-bottom: 1px solid transparent;
     background: transparent;
@@ -25,6 +29,26 @@
       background: color-mix(in oklab, var(--color-sheet) 96%, transparent);
       border-bottom-color: var(--color-rule);
     }
+  }
+
+  /*
+   * Over the film the bar stays clear while the film's frame lies under it, so the drawing runs to the top of
+   * the window, and takes its ground and rule once the film has scrolled away, so the next plate never slides
+   * under clear lettering. The film keeps html[data-kfilm-under] current, and the mode script in the head sets it
+   * before the first paint (components/stage: links.ts, mode.ts). A scroll-linked fade would turn the bar solid
+   * 96px into a film many thousands of pixels long. The same in the film's still layout, over its hero frame.
+   */
+  html[data-kfilm] .site-nav {
+    animation: none;
+    background: color-mix(in oklab, var(--color-sheet) 96%, transparent);
+    border-bottom-color: var(--color-rule);
+    transition:
+      background-color 240ms ease,
+      border-color 240ms ease;
+  }
+  html[data-kfilm][data-kfilm-under] .site-nav {
+    background: transparent;
+    border-bottom-color: transparent;
   }
 
   .nav-link {
@@ -173,9 +197,15 @@
   }
 }
 
-/* Forced colors: the open menu keeps a visible state once its border colors are replaced. */
+/*
+ * Forced colors: the open menu keeps a visible state once its border colors are replaced, and over the film the
+ * bar keeps the system's ground: the drawing keeps its own colors, which the system's text may not read on.
+ */
 @media (forced-colors: active) {
   .nav-menu[open] > summary {
     border-color: Highlight;
+  }
+  html[data-kfilm][data-kfilm-under] .site-nav {
+    background: Canvas;
   }
 }

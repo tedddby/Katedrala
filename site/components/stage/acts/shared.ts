@@ -37,7 +37,10 @@ export function modelGraph(model: HangingModel): TraceGraph {
     for (let v = 0; v < model.n; v++) if (model.foundation[v] === 1) foundations.push(v);
     g = traceGraph({
       files: model.paths.map((path) => [path, 0, 0] as const),
-      edges: Array.from({ length: model.m }, (_, k) => [model.edgeA[k]!, model.edgeB[k]!, 1, 1] as const),
+      edges: Array.from(
+        { length: model.m },
+        (_, k) => [model.edgeA[k]!, model.edgeB[k]!, 1, 1] as const,
+      ),
       foundations,
     });
     modelGraphs.set(model, g);
@@ -117,7 +120,10 @@ export function chainPoints(
 
 /** 0 before the span, 1 after it, eased in between (a fade that the scroll scrubs). */
 export function shown(t: number, span: Span, fade = 0.015): number {
-  return Math.min(ramp(t, span.from - fade, span.from + fade), 1 - ramp(t, span.to - fade, span.to + fade));
+  return Math.min(
+    ramp(t, span.from - fade, span.from + fade),
+    1 - ramp(t, span.to - fade, span.to + fade),
+  );
 }
 
 /** 0 at a, 1 at b, smoothstepped. */

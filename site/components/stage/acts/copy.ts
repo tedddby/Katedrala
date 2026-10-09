@@ -98,7 +98,9 @@ function declared(e: EvidencePayload): string {
 /** The observations by what they bind: the imports (bound to the file), and the symbols the others bind to. */
 function bindings(e: EvidencePayload) {
   const imports = e.observations.filter((o) => o.target === null);
-  const targets = [...new Set(e.observations.flatMap((o) => (o.target === null ? [] : [o.target])))];
+  const targets = [
+    ...new Set(e.observations.flatMap((o) => (o.target === null ? [] : [o.target]))),
+  ];
   return { imports, targets };
 }
 
@@ -208,8 +210,7 @@ export function unboundLines(s: EvidenceStats): string[] {
 export function recordNote(e: EvidencePayload): string {
   const recorded = e.observations.filter((o) => o.recorded);
   const target = recorded[0]?.target ?? baseName(e.dependency.path);
-  const source =
-    e.symbols.find((s) => s.side === "dependent")?.name ?? baseName(e.dependent.path);
+  const source = e.symbols.find((s) => s.side === "dependent")?.name ?? baseName(e.dependent.path);
   return `From Katedrala’s analysis of the open-source CodeVerse repository: a call from ${source} to ${target}, observed ${times(recorded.length)}, each observation with its file, line, column, syntax and the rule that resolved it.`;
 }
 

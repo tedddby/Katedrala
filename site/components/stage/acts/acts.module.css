@@ -924,29 +924,55 @@
   pointer-events: auto;
 }
 
-/* Short wide windows (a laptop at 1280 x 720, a phone turned): the legend folds into a disclosure. */
-@media (max-height: 819px) and (min-aspect-ratio: 19/20) {
-  :global(html[data-kfilm="film"]) .legendToggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 2.75rem;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: var(--k-ink);
-    font-size: 0.875rem;
-    font-weight: 600;
-    font-variation-settings: "wdth" 92;
-    cursor: pointer;
+/*
+ * Laptop windows (wide, under 880px tall: 1280 x 720, 1366 x 768): the column set closer, so the legend stays in view
+ * beside the controls on every desktop window. The controls' labels are read, not shown: the segments, the select's
+ * own "Choose a file" and the file names say what each control is.
+ */
+@media (max-height: 879px) and (min-aspect-ratio: 19/20) {
+  :global(html[data-kfilm="film"]) .panel {
+    gap: 0.75rem;
   }
 
-  :global(html[data-kfilm="film"]) .legendToggle[aria-expanded="true"] .chevron {
-    transform: rotate(180deg);
+  :global(html[data-kfilm="film"]) .controls {
+    gap: 0.625rem;
   }
 
-  :global(html[data-kfilm="film"]) .legend:not([data-open]) {
+  :global(html[data-kfilm="film"]) .controlLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  :global(html[data-kfilm="film"]) .readout {
+    min-height: 0;
+    margin: 0;
+  }
+}
+
+/*
+ * The files to start from in one row, by name, wherever the column is short of room (laptops, phones, a phone
+ * turned); two by two where the column is narrower than the row (it measures 336px).
+ */
+@media (max-aspect-ratio: 949/1000), (max-height: 879px) and (min-aspect-ratio: 19/20) {
+  :global(html[data-kfilm="film"]) .pick {
+    padding-inline: 0.375rem;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  :global(html[data-kfilm="film"]) .pickDir {
     display: none;
+  }
+
+  @container (min-width: 340px) {
+    :global(html[data-kfilm="film"]) .pickList {
+      grid-template-columns: repeat(4, auto);
+    }
   }
 }
 
@@ -980,8 +1006,8 @@
 
 /*
  * The landing compact: on a phone's sheet, and beside the structure on a wide frame too short for the full column (a
- * phone turned). The controls speak for themselves: their labels are read, not shown; the files to start from sit in
- * one row, by name; the legend folds into a disclosure.
+ * phone turned). The controls speak for themselves: their labels are read, not shown; the legend folds into a
+ * disclosure.
  */
 @media (max-aspect-ratio: 949/1000), (max-height: 599px) and (min-aspect-ratio: 19/20) {
   :global(html[data-kfilm="film"]) .panel {
@@ -1014,23 +1040,6 @@
     overflow: hidden;
     clip-path: inset(50%);
     white-space: nowrap;
-  }
-
-  /* Two by two where one row would not hold the four names (the row measures 336px). */
-  :global(html[data-kfilm="film"]) .pick {
-    padding-inline: 0.375rem;
-    font-size: 0.75rem;
-    text-align: center;
-  }
-
-  @container (min-width: 340px) {
-    :global(html[data-kfilm="film"]) .pickList {
-      grid-template-columns: repeat(4, auto);
-    }
-  }
-
-  :global(html[data-kfilm="film"]) .pickDir {
-    display: none;
   }
 
   :global(html[data-kfilm="film"]) .legendToggle {

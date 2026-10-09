@@ -26,7 +26,11 @@ function Words({ parts }: { parts: readonly CaptionPart[] }) {
           w === "" ? null : /^\s+$/.test(w) ? (
             " "
           ) : (
-            <span key={`${i}-${j}`} className={film.word} style={{ "--w": word++ } as CSSProperties}>
+            <span
+              key={`${i}-${j}`}
+              className={film.word}
+              style={{ "--w": word++ } as CSSProperties}
+            >
               {w}
             </span>
           ),

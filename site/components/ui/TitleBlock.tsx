@@ -22,7 +22,8 @@ interface TitleBlockProps {
 
 /**
  * A drawing's title block, set as the film sets its own: mono micro type on a ground that knocks the drawing out
- * behind it, the subject a step brighter than the lines under it. Each line is phrasing content.
+ * behind it, the subject a step brighter than the lines under it. Each line is phrasing content. Between lines a
+ * full stop is spoken but not shown, so the block is read as its three statements, never as one run of words.
  */
 export function TitleBlock({
   subject,
@@ -38,9 +39,22 @@ export function TitleBlock({
       className={className === undefined ? "titleblock" : `titleblock ${className}`}
       data-place={place === "auto" ? undefined : place}
     >
-      <span>{subject}</span>
-      {fact !== undefined && <span>{fact}</span>}
+      <span>
+        {subject}
+        {(fact !== undefined || status !== undefined) && <Stop />}
+      </span>
+      {fact !== undefined && (
+        <span>
+          {fact}
+          {status !== undefined && <Stop />}
+        </span>
+      )}
       {status}
     </p>
   );
+}
+
+/** The end of a line, for assistive technology only: in the line's own run of text, taking no room. */
+function Stop() {
+  return <span className="titleblock-stop">. </span>;
 }

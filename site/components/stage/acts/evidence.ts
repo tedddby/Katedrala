@@ -10,7 +10,14 @@
  * as a detail at four times that scale with the scale written on it. Wide windows set them upright beside their rings;
  * tall ones set them across the frame under the dependency, so every name and line number keeps at least 11 px.
  */
-import type { ActContext, ActDefinition, ActLabel, ActOverlay, CameraKey, ScreenPoint } from "../act";
+import type {
+  ActContext,
+  ActDefinition,
+  ActLabel,
+  ActOverlay,
+  CameraKey,
+  ScreenPoint,
+} from "../act";
 import type { HangingModel } from "../model";
 import { cameraFrom, emptyCamera, standingOf, type CameraState, type Framing } from "../timeline";
 import { countOf } from "../model";
@@ -178,7 +185,10 @@ class EvidenceOverlay implements ActOverlay {
   private readonly root: HTMLElement;
   private readonly ends: [ActLabel, ActLabel];
   private readonly heads: [Word, Word];
-  private readonly symbols: { readonly word: Word; readonly sym: EvidencePayload["symbols"][number] }[];
+  private readonly symbols: {
+    readonly word: Word;
+    readonly sym: EvidencePayload["symbols"][number];
+  }[];
   private readonly numbers: Word[];
   private readonly lines: {
     readonly main: SVGPathElement;
@@ -202,8 +212,13 @@ class EvidenceOverlay implements ActOverlay {
   private wordsFor: boolean | null = null;
   private on = false;
   private drawnKey = "";
-  /** Where the record's "line" entries are on the frame, by line (measured once each time the record shows). */
+  /**
+   * Where the record's "line" entries are, by line: on the frame for the full record (fixed over the frame, so they
+   * do not move with the drawing), within their box for the condensed one (placed with the detail). Measured once per
+   * size and each time the act comes back, never while the camera drifts.
+   */
   private rows: Map<number, [number, number]> | null = null;
+  private rowOffsets: Map<number, [number, number]> | null = null;
 
   constructor(ctx: ActContext) {
     this.ctx = ctx;
@@ -213,7 +228,9 @@ class EvidenceOverlay implements ActOverlay {
     this.titleSwap = layer.querySelector<HTMLElement>("[data-ev-titleblock]");
     this.condensed = layer.querySelector<HTMLElement>("[data-ev-condensed]");
     this.record =
-      ctx.mode === "film" ? (ctx.slot?.querySelector<HTMLElement>("[data-ev-record]") ?? null) : null;
+      ctx.mode === "film"
+        ? (ctx.slot?.querySelector<HTMLElement>("[data-ev-record]") ?? null)
+        : null;
 
     // E1: the two ends named on the drawing, leaders in load blue (the dependency is what is active).
     this.ends = [ctx.label({ active: true }), ctx.label({ active: true })];
@@ -272,6 +289,7 @@ class EvidenceOverlay implements ActOverlay {
       this.geometryKey = "";
       this.wordsFor = null;
       this.rows = null;
+      this.rowOffsets = null;
     };
     window.addEventListener("resize", onResize);
     this.cleanups.push(() => window.removeEventListener("resize", onResize));
@@ -369,17 +387,28 @@ class EvidenceOverlay implements ActOverlay {
       const top = Math.max(pa.y, pb.y) + 76;
       const step = (W - 2 * edge - 8) / (dependent.lines - 1);
       main = { upright: false, x: edge + 4, y: top, step, lines: dependent.lines };
-      detail = { upright: false, x: edge + 4, y: top + 86, step: step * DETAIL_SCALE, lines: dependency.lines };
+      detail = {
+        upright: false,
+        x: edge + 4,
+        y: top + 86,
+        step: step * DETAIL_SCALE,
+        lines: dependency.lines,
+      };
     } else {
       // Across a short wide frame (a phone turned): right of the captions, from a third of the way down.
       const left = this.captionsRight() + 28;
       const step = (W - edge - 8 - left) / (dependent.lines - 1);
       const top = Math.max(H * 0.34, 96);
       main = { upright: false, x: left, y: top, step, lines: dependent.lines };
-      detail = { upright: false, x: left, y: top + 86, step: step * DETAIL_SCALE, lines: dependency.lines };
+      detail = {
+        upright: false,
+        x: left,
+        y: top + 86,
+        step: step * DETAIL_SCALE,
+        lines: dependency.lines,
+      };
     }
     this.geometry = { across, width: W, main, detail };
-    this.rows = null;
     return this.geometry;
   }
 
@@ -391,13 +420,18 @@ class EvidenceOverlay implements ActOverlay {
     const spans = ramp(t, EVIDENCE.rulers.from + 0.05, EVIDENCE.rulers.from + 0.12) * out;
     const linked = ramp(t, EVIDENCE.leaders.from - 0.01, EVIDENCE.leaders.from + 0.075) * out;
     const recorded = film ? ramp(t, EVIDENCE.record.from, EVIDENCE.record.from + 0.035) * out : 0;
-    const tied = film ? ramp(t, EVIDENCE.record.from + 0.025, EVIDENCE.record.from + 0.07) * out : 0;
+    const tied = film
+      ? ramp(t, EVIDENCE.record.from + 0.025, EVIDENCE.record.from + 0.07) * out
+      : 0;
     const visible = open > 0.001;
     this.root.toggleAttribute("data-on", visible);
     const recordOn = recorded > 0.5;
-    if (this.condensed !== null) setOn(this.condensed, film && g.across && recordOn);
+    if (this.condensed !== null) {
+      setOn(this.condensed, film && g.across && recordOn);
+      // The condensed record stands where the detail stood (it gives way to it).
+      if (film && g.across && recorded > 0) place(this.condensed, g.detail.x - 4, g.detail.y - 18);
+    }
     if (this.record !== null) this.record.toggleAttribute("data-shown", film && recordOn);
-    if (!recordOn) this.rows = null;
     if (!visible) return;
     const state = [open, spans, linked, recorded, tied].map((v) => v.toFixed(3)).join(",");
     const drawnKey = `${this.geometryKey}|${state}`;
@@ -422,7 +456,8 @@ class EvidenceOverlay implements ActOverlay {
 
     // Short leaders from the rings to the rulers' heads: the rulers open beside the rings they stand for.
     const joins: string[] = [];
-    if (this.pa.visible) joins.push(this.join([this.pa.x, this.pa.y], at(main, 1), up ? "left" : "down"));
+    if (this.pa.visible)
+      joins.push(this.join([this.pa.x, this.pa.y], at(main, 1), up ? "left" : "down"));
     if (this.pb.visible && detailAlpha > 0.01) {
       joins.push(this.join([this.pb.x, this.pb.y], at(detail, 1), up ? "right" : "down"));
     }
@@ -503,7 +538,8 @@ class EvidenceOverlay implements ActOverlay {
       }
       let end = this.targetOf(detail, o.target);
       const row = o.recorded ? rows?.get(o.line) : undefined;
-      if (row !== undefined) end = [end[0] + (row[0] - end[0]) * tied, end[1] + (row[1] - end[1]) * tied];
+      if (row !== undefined)
+        end = [end[0] + (row[0] - end[0]) * tied, end[1] + (row[1] - end[1]) * tied];
       const leader = L.leaders[i]!;
       leader.setAttribute(
         "d",
@@ -550,10 +586,18 @@ class EvidenceOverlay implements ActOverlay {
   }
 
   /** A dotted leader from a ring to a ruler's head. */
-  private join(from: [number, number], to: [number, number], side: "left" | "right" | "down"): string {
+  private join(
+    from: [number, number],
+    to: [number, number],
+    side: "left" | "right" | "down",
+  ): string {
     const [x0, y0] = from;
     const end: [number, number] =
-      side === "left" ? [to[0] + 8, to[1]] : side === "right" ? [to[0] - 8, to[1]] : [to[0], to[1] - 8];
+      side === "left"
+        ? [to[0] + 8, to[1]]
+        : side === "right"
+          ? [to[0] - 8, to[1]]
+          : [to[0], to[1] - 8];
     const dx = end[0] - x0;
     const dy = end[1] - y0;
     const l = Math.hypot(dx, dy);
@@ -614,37 +658,44 @@ class EvidenceOverlay implements ActOverlay {
    * the record's resting place, not its arriving transform), the condensed rows on a tall one.
    */
   private recordRows(g: Geometry): Map<number, [number, number]> | null {
-    if (this.rows !== null) return this.rows;
-    const base = this.ctx.frame.getBoundingClientRect();
-    const rows = new Map<number, [number, number]>();
     if (g.across) {
       const box = this.condensed;
       if (box === null) return null;
-      place(box, g.detail.x - 4, g.detail.y - 18);
-      const boxRect = box.getBoundingClientRect();
-      for (const el of box.querySelectorAll<HTMLElement>("[data-ev-row]")) {
-        const code = el.querySelector("code") ?? el;
-        const r = code.getBoundingClientRect();
-        if (r.width < 1) return null;
-        // Against the box's resting place: its rows' offsets within it, added to where it was put.
-        const x = g.detail.x - 4 + (r.left - boxRect.left) + r.width / 2;
-        const y = g.detail.y - 18 + (r.top - boxRect.top);
-        rows.set(Number(el.dataset.evRow), [x, y]);
+      let offsets = this.rowOffsets;
+      if (offsets === null) {
+        // Each row's place within the box, measured once: the box itself moves with the detail.
+        const boxRect = box.getBoundingClientRect();
+        offsets = new Map();
+        for (const el of box.querySelectorAll<HTMLElement>("[data-ev-row]")) {
+          const r = (el.querySelector("code") ?? el).getBoundingClientRect();
+          if (r.width < 1) return null;
+          offsets.set(Number(el.dataset.evRow), [
+            r.left - boxRect.left + r.width / 2,
+            r.top - boxRect.top,
+          ]);
+        }
+        this.rowOffsets = offsets;
       }
-    } else {
-      const record = this.record;
-      if (record === null) return null;
-      const recRect = record.getBoundingClientRect();
-      if (recRect.width < 1) return null;
-      // The record may still be arriving (a short rise): measure against where it comes to rest.
-      const shift = new DOMMatrixReadOnly(getComputedStyle(record).transform);
-      for (const { line, at: n } of this.e.recordLines) {
-        const el = record.querySelector<HTMLElement>(`[id="${RECORD_LINES}-${n}"]`);
-        const r = el?.getBoundingClientRect();
-        if (r === undefined || r.width < 1) return null;
-        const y = r.top - shift.m42 + r.height / 2 - base.top;
-        rows.set(line, [recRect.left - shift.m41 - base.left - 2, y]);
-      }
+      const rows = new Map<number, [number, number]>();
+      for (const [line, [x, y]] of offsets)
+        rows.set(line, [g.detail.x - 4 + x, g.detail.y - 18 + y]);
+      return rows;
+    }
+    if (this.rows !== null) return this.rows;
+    const record = this.record;
+    if (record === null) return null;
+    const base = this.ctx.frame.getBoundingClientRect();
+    const recRect = record.getBoundingClientRect();
+    if (recRect.width < 1) return null;
+    // The record may still be arriving (a short rise): measure against where it comes to rest.
+    const shift = new DOMMatrixReadOnly(getComputedStyle(record).transform);
+    const rows = new Map<number, [number, number]>();
+    for (const { line, at: n } of this.e.recordLines) {
+      const el = record.querySelector<HTMLElement>(`[id="${RECORD_LINES}-${n}"]`);
+      const r = el?.getBoundingClientRect();
+      if (r === undefined || r.width < 1) return null;
+      const y = r.top - shift.m42 + r.height / 2 - base.top;
+      rows.set(line, [recRect.left - shift.m41 - base.left - 2, y]);
     }
     this.rows = rows;
     return rows;

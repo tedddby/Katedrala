@@ -11,8 +11,9 @@ const ITEMS = [
 ] as const;
 
 /**
- * One line, 64px. As the page scrolls it gains a sheet background and a bottom rule (CSS scroll-driven
- * animation; browsers without it keep the solid variant). Below lg the same links sit in a disclosure menu.
+ * One line, 64px. Over the film it stays clear while the film's frame lies under it and takes a sheet background
+ * and a bottom rule once the film has gone (the film marks <html data-kfilm-under>); on a page without the film it
+ * takes them as the page scrolls. Below lg the same links sit in a disclosure menu.
  */
 export function Navbar() {
   return (

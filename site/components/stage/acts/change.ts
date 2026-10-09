@@ -7,7 +7,15 @@
  * Impact analysis is planned for v1 (milestone 9): the act's caption and its title block say so from start to end, and
  * the trace is this page's, computed over Katedrala's dependencies (trace.ts), as the scope line beside the counter says.
  */
-import type { ActContext, ActDefinition, ActLabel, ActOverlay, CameraKey, LitMask, ScreenPoint } from "../act";
+import type {
+  ActContext,
+  ActDefinition,
+  ActLabel,
+  ActOverlay,
+  CameraKey,
+  LitMask,
+  ScreenPoint,
+} from "../act";
 import type { HangingModel } from "../model";
 import { cameraFrom, emptyCamera, type CameraState, type Framing } from "../timeline";
 import { baseName, pathNote, subjectNote } from "./copy";
@@ -105,7 +113,12 @@ function riseMask(model: HangingModel, lit: number, dim: number): LitMask {
   if (m === undefined) {
     const c = changeOf(model);
     const files = c.order.slice(0, lit);
-    m = maskOf(model, [c.subject, ...files], files.map((v) => c.trace.via[v]!), dim);
+    m = maskOf(
+      model,
+      [c.subject, ...files],
+      files.map((v) => c.trace.via[v]!),
+      dim,
+    );
     byCount.set(k, m);
   }
   return m;
@@ -175,7 +188,9 @@ class ChangeOverlay implements ActOverlay {
   private on = false;
   private shownLit = -1;
   private shownStep = -1;
-  private boldKey = "";
+  private boldFor: string | null = null;
+  private boldPoints: [number, number, number][][] = [];
+  private boldD = "";
 
   constructor(ctx: ActContext) {
     this.ctx = ctx;
@@ -231,7 +246,8 @@ class ChangeOverlay implements ActOverlay {
     if (this.titleSwap !== null) setOn(this.titleSwap, film);
 
     // The subject named from C1 until the path takes over.
-    const subjectOn = !tracing && tt < CHANGE.path.from && shown(tt, { from: CHANGE.c1.from, to: 1 }) > 0.5;
+    const subjectOn =
+      !tracing && tt < CHANGE.path.from && shown(tt, { from: CHANGE.c1.from, to: 1 }) > 0.5;
     if (subjectOn) this.subjectLabel.at(c.subject);
     else this.subjectLabel.hide();
 
@@ -268,29 +284,37 @@ class ChangeOverlay implements ActOverlay {
     this.drawPath(pathOn ? ramp(tt, CHANGE.path.from, CHANGE.path.from + 0.08) : 0, tracing);
   }
 
-  /** The path as the chains draw it, traced over in load blue at a heavier weight. */
+  /**
+   * The path as the chains draw it, traced over in load blue at a heavier weight. Projected again on every update
+   * while it shows (the camera keeps moving through C4; the director updates only when the drawing changed): four
+   * chains of thirteen points, a few microseconds. Their points on the standing structure are kept per framing.
+   */
   private drawPath(k: number, tracing: boolean): void {
     const bold = this.bold;
     if (bold === null) return;
     const { ctx, c } = this;
-    const { width, height } = ctx.size();
     const visible = k > 0.001 && !tracing;
-    const keyNow = `${visible ? 1 : 0}:${width}x${height}:${ctx.framing}`;
-    if (visible && keyNow !== this.boldKey) {
-      this.boldKey = keyNow;
+    if (visible) {
+      if (this.boldFor !== ctx.framing) {
+        this.boldFor = ctx.framing;
+        this.boldPoints = c.pathChains
+          .filter((chain) => chain >= 0)
+          .map((chain) => chainPoints(ctx.model, ctx.framing, chain, 12));
+      }
       let d = "";
-      for (const chain of c.pathChains) {
-        if (chain < 0) continue;
-        const pts = chainPoints(ctx.model, ctx.framing, chain, 12);
+      for (const pts of this.boldPoints) {
         pts.forEach((p, i) => {
           ctx.screenOfWorld(p[0], p[1], p[2], this.pt);
           d += `${i === 0 ? "M" : "L"}${this.pt.x.toFixed(1)} ${this.pt.y.toFixed(1)}`;
         });
       }
-      bold.setAttribute("d", d);
+      if (d !== this.boldD) {
+        this.boldD = d;
+        bold.setAttribute("d", d);
+      }
     }
-    if (!visible) this.boldKey = keyNow;
-    bold.style.opacity = String(visible ? k : 0);
+    const opacity = String(visible ? k : 0);
+    if (bold.style.opacity !== opacity) bold.style.opacity = opacity;
   }
 
   private hide(): void {
@@ -300,7 +324,6 @@ class ChangeOverlay implements ActOverlay {
     if (this.counter !== null) setOn(this.counter, false);
     if (this.titleSwap !== null) setOn(this.titleSwap, false);
     if (this.bold !== null) this.bold.style.opacity = "0";
-    this.boldKey = "";
   }
 
   dispose(): void {

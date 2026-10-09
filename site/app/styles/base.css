@@ -257,6 +257,22 @@
   }
 }
 
+/*
+ * Forced colors drop background images, and with them the hatching that marks a fixed support. It is drawn again
+ * in the system's text color; the ground's own line takes that color too, and whatever sits on the ground (a
+ * label) keeps the system's colors.
+ */
+@media (forced-colors: active) {
+  .ground-hatch {
+    forced-color-adjust: none;
+    border-color: CanvasText;
+    background-image: repeating-linear-gradient(-45deg, CanvasText 0 1px, transparent 1px 7px);
+  }
+  .ground-hatch > * {
+    forced-color-adjust: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

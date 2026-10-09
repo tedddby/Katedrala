@@ -82,7 +82,6 @@
   - paragraph: A foundation of 471 lines. 48 files depend on it directly at runtime.
   - paragraph: The change travels up through everything that rests on it.
   - paragraph: 48 directly, 78 through one other file, 17 through two, 4 through three.
-  - paragraph: Traced by this page over the dependencies in Katedrala’s analysis of CodeVerse.
   - paragraph: 147 of the 404 source files rest on it.
   - paragraph: Count type-only dependencies too and it is 265 source files; with the tests, 409 files. From the crown, the shortest path down to it runs from src/app/page.tsx through src/components/landing/landing-page.tsx, src/components/landing/features.tsx and src/components/landing/feature-mockups.tsx to src/graph/model/types.ts.
   - paragraph: Traced by this page over the dependencies in Katedrala’s analysis of CodeVerse.
@@ -99,10 +98,10 @@
     - option "Choose a file" [selected]
   - group "Start from":
     - text: Start from
-    - button "src/app/ page.tsx"
-    - button "src/graph/model/ types.ts"
-    - button "src/lib/languages/ registry.ts"
-    - button "src/lib/utils/ cn.ts"
+    - button "src/app/page.tsx": src/app/ page.tsx
+    - button "src/graph/model/types.ts": src/graph/model/ types.ts
+    - button "src/lib/languages/registry.ts": src/lib/languages/ registry.ts
+    - button "src/lib/utils/cn.ts": src/lib/utils/ cn.ts
   - status: Choose a file to trace it.
   - paragraph: Traced by this page over the dependencies in Katedrala’s analysis of CodeVerse.
   - term: Source file

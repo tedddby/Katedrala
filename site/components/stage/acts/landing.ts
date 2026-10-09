@@ -7,33 +7,13 @@
  *
  * The traces are this page's, computed over Katedrala's dependencies (trace.ts); the block says so under the readout.
  */
-import type {
-  ActContext,
-  ActDefinition,
-  ActOverlay,
-  CameraKey,
-  LitMask,
-  TraceView,
-} from "../act";
+import type { ActContext, ActDefinition, ActOverlay, CameraKey, LitMask, TraceView } from "../act";
 import type { HangingModel } from "../model";
 import { cameraFrom, emptyCamera, type CameraState, type Framing } from "../timeline";
-import {
-  pathToNote,
-  READOUT_NONE,
-  restsOnSentence,
-  standsOnSentence,
-  traceNote,
-} from "./copy";
+import { pathToNote, READOUT_NONE, restsOnSentence, standsOnSentence, traceNote } from "./copy";
 import { graphOf, key, modelGraph, nearestYaw, valuesOf } from "./shared";
 import { ACT_TIMINGS, LANDING } from "./timing";
-import {
-  pathMask,
-  reachOf,
-  trace,
-  traceMask,
-  type Reach,
-  type TraceDirection,
-} from "./trace";
+import { pathMask, reachOf, trace, traceMask, type Reach, type TraceDirection } from "./trace";
 
 /** What the landing traces: the file chosen (from the controls or the drawing) and the direction. */
 const state: { subject: number; direction: TraceDirection } = { subject: -1, direction: "down" };
@@ -135,9 +115,11 @@ class LandingOverlay implements ActOverlay {
     this.ctx = ctx;
     const slot = ctx.slot;
     this.slot = slot;
-    this.radios = slot === null ? [] : [...slot.querySelectorAll<HTMLInputElement>("[data-ld-show] input")];
+    this.radios =
+      slot === null ? [] : [...slot.querySelectorAll<HTMLInputElement>("[data-ld-show] input")];
     this.select = slot?.querySelector<HTMLSelectElement>("[data-ld-file]") ?? null;
-    this.picks = slot === null ? [] : [...slot.querySelectorAll<HTMLButtonElement>("[data-ld-pick]")];
+    this.picks =
+      slot === null ? [] : [...slot.querySelectorAll<HTMLButtonElement>("[data-ld-pick]")];
     this.readout = slot?.querySelector<HTMLElement>("[data-ld-readout]") ?? null;
     this.panel = slot?.querySelector<HTMLElement>("[data-ld-panel]") ?? null;
     this.scopeLine = slot?.querySelector<HTMLElement>("[data-ld-scope]") ?? null;
@@ -245,7 +227,9 @@ class LandingOverlay implements ActOverlay {
     const panel = this.panel;
     const last = this.scopeLine ?? this.readout;
     if (panel === null || last === null || panel.scrollHeight <= panel.clientHeight + 1) return;
-    const bottom = panel.getBoundingClientRect().bottom - (parseFloat(getComputedStyle(panel).paddingBottom) || 0);
+    const bottom =
+      panel.getBoundingClientRect().bottom -
+      (parseFloat(getComputedStyle(panel).paddingBottom) || 0);
     const over = last.getBoundingClientRect().bottom - bottom;
     if (over > 0.5) panel.scrollTop += Math.ceil(over);
   }

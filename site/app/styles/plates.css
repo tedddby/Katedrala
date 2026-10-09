@@ -122,6 +122,19 @@
   .titleblock > :first-child {
     color: var(--color-ink-soft);
   }
+  /*
+   * The full stop spoken between lines: inline in the line's run of text (so it is read with the line, never as a
+   * lone mark), clipped to nothing, and taking no room, so every line stays flush right.
+   */
+  .titleblock-stop {
+    display: inline-block;
+    width: 1px;
+    height: 1px;
+    margin-inline-end: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
   .sheet > .titleblock {
     margin-top: 0.75rem;
     margin-inline-end: -0.4rem;

@@ -34,7 +34,9 @@ export function actFacts(): Facts {
   if (cached !== null) return cached;
   const { data, model, summary } = codeverse();
   const graph = traceGraph(data);
-  const kinds = Object.entries(evidence.edgeKinds).sort((p, q) => q[1] - p[1] || (p[0] < q[0] ? -1 : 1));
+  const kinds = Object.entries(evidence.edgeKinds).sort(
+    (p, q) => q[1] - p[1] || (p[0] < q[0] ? -1 : 1),
+  );
   const stats: EvidenceStats = {
     ...evidence.stats,
     named: kinds.slice(0, NAMED_KINDS),

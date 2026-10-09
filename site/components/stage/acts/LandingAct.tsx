@@ -105,7 +105,9 @@ export function LandingAct() {
                     aria-pressed="false"
                     aria-label={path}
                   >
-                    <span className={styles.pickDir}>{path.slice(0, path.length - name.length)}</span>
+                    <span className={styles.pickDir}>
+                      {path.slice(0, path.length - name.length)}
+                    </span>
                     <span className={styles.pickName}>{name}</span>
                   </button>
                 );

@@ -75,6 +75,27 @@ check("ArrowRight moves and selects", radio.checked === "up" && radio.active ===
 await page.keyboard.press("Tab");
 const afterTab = await page.evaluate(() => document.activeElement.id || document.activeElement.tagName);
 check("Tab leaves the group for the select", afterTab === "kfilm-file", afterTab);
+// The select: every source file, by folder, themed from the palette; the readout a polite atomic status.
+const sel = await page.evaluate(() => {
+  const el = document.querySelector("[data-ld-file]");
+  const cs = getComputedStyle(el);
+  const opt = el.querySelector("optgroup option");
+  const ocs = getComputedStyle(opt);
+  const groups = el.querySelectorAll("optgroup");
+  const readout = document.querySelector("[data-ld-readout]");
+  return {
+    options: el.querySelectorAll("optgroup option").length,
+    groups: groups.length,
+    labels: [...groups].map((g) => g.label).join(" "),
+    bg: cs.backgroundColor, color: cs.color, scheme: cs.colorScheme, font: cs.fontFamily.split(",")[0], appearance: cs.appearance,
+    optBg: ocs.backgroundColor, optColor: ocs.color,
+    role: readout.getAttribute("role"), atomic: readout.getAttribute("aria-atomic"),
+    label: document.querySelector('label[for="kfilm-file"]')?.textContent,
+  };
+});
+check("select: 404 files in 14 folder groups", sel.options === 404 && sel.groups === 14, `${sel.options} options, ${sel.groups} groups: ${sel.labels}`);
+check("select themed (dark ground, palette ink, dark color-scheme, mono)", sel.scheme === "dark" && sel.appearance === "none" && sel.bg !== "rgba(0, 0, 0, 0)" && sel.optBg !== "rgba(0, 0, 0, 0)", `select ${sel.bg} on ${sel.color}, scheme ${sel.scheme}, ${sel.font}; option ${sel.optBg} on ${sel.optColor}`);
+check("readout role=status aria-atomic=true, select labelled", sel.role === "status" && sel.atomic === "true" && sel.label === "File", `${sel.role} ${sel.atomic} label ${sel.label}`);
 console.log(results.join("\n"));
 if (errors.length) console.log("errors:", errors.join("\n"));
 await browser.close();

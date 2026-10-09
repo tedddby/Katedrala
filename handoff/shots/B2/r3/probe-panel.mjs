@@ -23,7 +23,7 @@ const measure = () => page.evaluate(() => {
   return {
     panel: `x=${pr.left.toFixed(0)} y=${pr.top.toFixed(0)}-${pr.bottom.toFixed(0)} w=${pr.width.toFixed(0)} client=${panel.clientHeight} scroll=${panel.scrollHeight} scrollTop=${panel.scrollTop}`,
     title: box("[data-act-slot='trace'] h2"), toggle: box("[data-ld-legend-toggle]"), show: box("[data-ld-show]"), select: box("[data-ld-file]"),
-    readout: box("[data-ld-readout]"), scope: box("[data-ld-scope]"), picks,
+    readout: box("[data-ld-readout]"), scope: box("[data-ld-scope]"), legend: box("[data-ld-legend]"), picks,
     readoutText: document.querySelector("[data-ld-readout]").textContent,
     pointer: matchMedia("(pointer: coarse)").matches ? "coarse" : "fine",
   };
