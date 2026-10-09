@@ -1,0 +1,273 @@
+{
+  "context": {
+    "touch": false
+  },
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout": "beam across (one column per pass)",
+  "sectionHeight": 904.6,
+  "docScrollWidth": 1440,
+  "gutters": [
+    24,
+    24,
+    24,
+    24
+  ],
+  "overlapsBetweenPasses": [],
+  "overlapsWithinPass": [],
+  "rows": [
+    {
+      "pass": 1,
+      "verb": "Parse",
+      "box": {
+        "x": 60,
+        "y": 1168,
+        "w": 244.8,
+        "h": 414.2
+      },
+      "parts": {
+        "number": {
+          "x": 60,
+          "y": 1216,
+          "w": 244.8,
+          "h": 20.8
+        },
+        "verb": {
+          "x": 60,
+          "y": 1240.8,
+          "w": 244.8,
+          "h": 33.6
+        },
+        "text": {
+          "x": 60,
+          "y": 1286.4,
+          "w": 244.8,
+          "h": 121.9
+        },
+        "status": {
+          "x": 60,
+          "y": 1424.3,
+          "w": 244.8,
+          "h": 27.2
+        },
+        "artifact": {
+          "x": 60,
+          "y": 1471.5,
+          "w": 244.8,
+          "h": 110.8
+        }
+      },
+      "paintsPastRight": 0,
+      "paintsPastLeft": 0,
+      "clipped": [],
+      "artifactLines": [
+        "file=payment.service.ts one line",
+        "class=PaymentService one line",
+        "import=StripeClient one line"
+      ]
+    },
+    {
+      "pass": 2,
+      "verb": "Link",
+      "box": {
+        "x": 328.8,
+        "y": 1168,
+        "w": 244.8,
+        "h": 414.2
+      },
+      "parts": {
+        "number": {
+          "x": 328.8,
+          "y": 1216,
+          "w": 244.8,
+          "h": 20.8
+        },
+        "verb": {
+          "x": 328.8,
+          "y": 1240.8,
+          "w": 244.8,
+          "h": 33.6
+        },
+        "text": {
+          "x": 328.8,
+          "y": 1286.4,
+          "w": 244.8,
+          "h": 121.9
+        },
+        "status": {
+          "x": 328.8,
+          "y": 1424.3,
+          "w": 244.8,
+          "h": 27.2
+        },
+        "artifact": {
+          "x": 328.8,
+          "y": 1471.5,
+          "w": 244.8,
+          "h": 110.8
+        }
+      },
+      "paintsPastRight": 0,
+      "paintsPastLeft": 0,
+      "clipped": [],
+      "artifactLines": [
+        "edge=instantiates one line",
+        "from=PaymentService one line",
+        "to=StripeClient one line"
+      ]
+    },
+    {
+      "pass": 3,
+      "verb": "Infer",
+      "box": {
+        "x": 597.6,
+        "y": 1168,
+        "w": 244.8,
+        "h": 414.2
+      },
+      "parts": {
+        "number": {
+          "x": 597.6,
+          "y": 1216,
+          "w": 244.8,
+          "h": 20.8
+        },
+        "verb": {
+          "x": 597.6,
+          "y": 1240.8,
+          "w": 244.8,
+          "h": 33.6
+        },
+        "text": {
+          "x": 597.6,
+          "y": 1286.4,
+          "w": 244.8,
+          "h": 121.9
+        },
+        "status": {
+          "x": 597.6,
+          "y": 1424.3,
+          "w": 244.8,
+          "h": 27.2
+        },
+        "artifact": {
+          "x": 597.6,
+          "y": 1471.5,
+          "w": 244.8,
+          "h": 110.8
+        }
+      },
+      "paintsPastRight": 0,
+      "paintsPastLeft": 0,
+      "clipped": [],
+      "artifactLines": [
+        "module=payments one line",
+        "members=3 one line",
+        "layer=service one line"
+      ]
+    },
+    {
+      "pass": 4,
+      "verb": "Analyze",
+      "box": {
+        "x": 866.4,
+        "y": 1168,
+        "w": 244.8,
+        "h": 414.2
+      },
+      "parts": {
+        "number": {
+          "x": 866.4,
+          "y": 1216,
+          "w": 244.8,
+          "h": 20.8
+        },
+        "verb": {
+          "x": 866.4,
+          "y": 1240.8,
+          "w": 244.8,
+          "h": 33.6
+        },
+        "text": {
+          "x": 866.4,
+          "y": 1286.4,
+          "w": 244.8,
+          "h": 121.9
+        },
+        "status": {
+          "x": 866.4,
+          "y": 1424.3,
+          "w": 244.8,
+          "h": 27.2
+        },
+        "artifact": {
+          "x": 866.4,
+          "y": 1471.5,
+          "w": 244.8,
+          "h": 110.8
+        }
+      },
+      "paintsPastRight": 0,
+      "paintsPastLeft": 0,
+      "clipped": [],
+      "artifactLines": [
+        "gravity=0.58 one line",
+        "reach=6 of 15 one line",
+        "fan-in=3 one line"
+      ]
+    },
+    {
+      "pass": 5,
+      "verb": "Explain",
+      "box": {
+        "x": 1135.2,
+        "y": 1168,
+        "w": 244.8,
+        "h": 414.2
+      },
+      "parts": {
+        "number": {
+          "x": 1135.2,
+          "y": 1216,
+          "w": 244.8,
+          "h": 20.8
+        },
+        "verb": {
+          "x": 1135.2,
+          "y": 1240.8,
+          "w": 244.8,
+          "h": 33.6
+        },
+        "text": {
+          "x": 1135.2,
+          "y": 1286.4,
+          "w": 244.8,
+          "h": 121.9
+        },
+        "status": {
+          "x": 1135.2,
+          "y": 1424.3,
+          "w": 244.8,
+          "h": 27.2
+        },
+        "artifact": {
+          "x": 1135.2,
+          "y": 1471.5,
+          "w": 244.8,
+          "h": 110.8
+        }
+      },
+      "paintsPastRight": 0,
+      "paintsPastLeft": 0,
+      "clipped": [],
+      "artifactLines": [
+        "reach=+0.28 one line",
+        "fan-in=+0.10 one line",
+        "spread=+0.13 one line",
+        "brokerage=+0.07 one line"
+      ]
+    }
+  ]
+}

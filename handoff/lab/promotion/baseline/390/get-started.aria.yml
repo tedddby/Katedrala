@@ -1,0 +1,7 @@
+- region "Understand your system before you change it.":
+  - heading "Understand your system before you change it." [level=2]
+  - paragraph: Katedrala is open source and being built toward v1. Start with the README, follow the roadmap, or help build it.
+  - link "Get started on GitHub":
+    - /url: https://github.com/tedddby/Katedrala#get-started
+  - link "View on GitHub":
+    - /url: https://github.com/tedddby/Katedrala

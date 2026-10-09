@@ -1,0 +1,47 @@
+{
+  "media": {
+    "(pointer: coarse)": true,
+    "(pointer: fine)": false,
+    "(any-pointer: coarse)": true,
+    "(hover: hover)": false,
+    "(hover: none)": true,
+    "(prefers-reduced-motion: reduce)": false,
+    "(prefers-color-scheme: dark)": true
+  },
+  "toggleBox": {
+    "width": 70,
+    "height": 44
+  },
+  "opensOnTap": true,
+  "menuLinkBoxes": [
+    "How it works 206x47",
+    "Architecture 206x47",
+    "Concepts 206x47",
+    "Developers 206x47",
+    "GitHub 206x47",
+    "Get started on GitHub 206x47"
+  ],
+  "escape": {
+    "focusWasInside": true,
+    "closed": true,
+    "focusReturnedToToggle": true
+  },
+  "outsidePress": {
+    "reopened": true,
+    "closed": true
+  },
+  "linkChoice": {
+    "href": "#how-it-works",
+    "closed": true,
+    "hash": "#how-it-works",
+    "targetTopInViewport": 80,
+    "headerBottom": 65
+  },
+  "tabAway": {
+    "openedByKeyboard": true,
+    "linksInMenu": 6,
+    "tabPressesToLeave": 7,
+    "closed": true,
+    "focusLandedOn": "a Explore Katedrala"
+  }
+}

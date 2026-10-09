@@ -1,0 +1,3097 @@
+{
+  "sealed": "2026-10-08T17:10:09+03:00",
+  "files": 436,
+  "bytes": 27886121,
+  "groups": {
+    "390": {
+      "files": 98,
+      "bytes": 7310909,
+      "firstCreated": "2026-10-08T02:23:02+03:00",
+      "lastCreated": "2026-10-08T02:23:50+03:00"
+    },
+    "1440": {
+      "files": 92,
+      "bytes": 6138563,
+      "firstCreated": "2026-10-08T02:22:22+03:00",
+      "lastCreated": "2026-10-08T02:22:59+03:00"
+    },
+    "extra": {
+      "files": 136,
+      "bytes": 3166469,
+      "firstCreated": "2026-10-08T17:04:18+03:00",
+      "lastCreated": "2026-10-08T17:05:42+03:00"
+    },
+    "(root)": {
+      "files": 3,
+      "bytes": 20021,
+      "firstCreated": "2026-10-08T02:12:57+03:00",
+      "lastCreated": "2026-10-08T17:09:50+03:00"
+    },
+    "review": {
+      "files": 32,
+      "bytes": 10817717,
+      "firstCreated": "2026-10-08T02:12:48+03:00",
+      "lastCreated": "2026-10-08T02:12:48+03:00"
+    },
+    "source": {
+      "files": 75,
+      "bytes": 432442,
+      "firstCreated": "2026-10-08T02:12:48+03:00",
+      "lastCreated": "2026-10-08T02:12:57+03:00"
+    }
+  },
+  "rows": [
+    {
+      "path": "1440/architecture.aria.yml",
+      "bytes": 1989,
+      "sha256": "ce420b6226ccf3fd3dc7061578d8c0f0751d6b0d703a0a16cb57affdadd7edf2",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/architecture.controls.json",
+      "bytes": 16441,
+      "sha256": "f10458f02c44d44704495aec0a818f7feeafdd79cde4309961ae2aded08b4200",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/architecture.controls.txt",
+      "bytes": 3222,
+      "sha256": "06f14b301f88b66f6f602493d7cfe5d4df2ac368f1ed965084dcccfe14252150",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/architecture.png",
+      "bytes": 216437,
+      "sha256": "102d924d5bc27dcaac03a33bc5d90261104124b96b6892c8889b6b410d7ddc5f",
+      "created": "2026-10-08T02:22:31+03:00",
+      "modified": "2026-10-08T02:22:31+03:00"
+    },
+    {
+      "path": "1440/architecture.txt",
+      "bytes": 868,
+      "sha256": "9a389112762767deb75ad3a9a2164b5df5a8bbf19bd169bd4bee0bcef42ad834",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/console.txt",
+      "bytes": 24,
+      "sha256": "d7cccd637397a9be132c748b354a39d2cf4178e643c43ae6f8804210d5f8cce0",
+      "created": "2026-10-08T02:22:46+03:00",
+      "modified": "2026-10-08T02:22:46+03:00"
+    },
+    {
+      "path": "1440/controls-all.json",
+      "bytes": 59059,
+      "sha256": "57cc898568a3655db15a9aa058cefa4cd1d15fd4817745c858f3a744d205ea75",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/developers.aria.yml",
+      "bytes": 2537,
+      "sha256": "2a9c7ff4ec3a948d650287c22347489649336e7d4748660a4895383363da07a5",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/developers.controls.json",
+      "bytes": 5643,
+      "sha256": "6d962369aaa53b8ef6ec9f6b9a8759e2fcf5c2e77008f3b26b0ca76d0a36f17c",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/developers.controls.txt",
+      "bytes": 841,
+      "sha256": "56ae370e3ecf18ed4251c7f085e666e3f4d03eb212f30bb7aa6a2c026fd0e1de",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/developers.png",
+      "bytes": 270850,
+      "sha256": "95cbeb9cb82b91f4dbd58a7ad1b89dc64b998759fdc6f3d8371abd4faa74caa3",
+      "created": "2026-10-08T02:22:37+03:00",
+      "modified": "2026-10-08T02:22:37+03:00"
+    },
+    {
+      "path": "1440/developers.txt",
+      "bytes": 2063,
+      "sha256": "1c811ef8e3e70c9a0d7ea035bc7d28cf0cb49129d0ee0b3308fc747c6652cc34",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/ecosystem.aria.yml",
+      "bytes": 2763,
+      "sha256": "649971e6b44352425357b46d1ee77a3442f6c61b6b9ef831b688ef21cdb8da50",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/ecosystem.controls.json",
+      "bytes": 988,
+      "sha256": "af5839836023fd034397a5d7beadd4dbd3e605dcc4ebbcc1dfb7a79933523fde",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/ecosystem.controls.txt",
+      "bytes": 173,
+      "sha256": "a71994532c678c6052dac8714536992ea76b15338cea9dd688e15dd59edd9f8c",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/ecosystem.png",
+      "bytes": 254444,
+      "sha256": "61509ea569ab67e48d9f1a07c50d826e6174e742e4ce9e2c177baa543fae99ae",
+      "created": "2026-10-08T02:22:39+03:00",
+      "modified": "2026-10-08T02:22:39+03:00"
+    },
+    {
+      "path": "1440/ecosystem.txt",
+      "bytes": 1680,
+      "sha256": "4202c757ea989dfb8b12cbdc91a352519321dbefa8975708e7f44c1039746e16",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/entropy.aria.yml",
+      "bytes": 2311,
+      "sha256": "be5bcb76532344a87b2b667fe55345928dd1a6f04fc151b8b6293f38252acf98",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/entropy.controls.json",
+      "bytes": 3726,
+      "sha256": "07070fca39c5cd288f1f6538e933f4104533d1aa4e545909e844734ab95b2dcd",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/entropy.controls.txt",
+      "bytes": 508,
+      "sha256": "9f05860d0fe8eb60a4ab93fdb40d58ddfb2c4d299f9a066935978d9ce4d5d00e",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/entropy.png",
+      "bytes": 286941,
+      "sha256": "dce4f2f3c16f996e1f8190083ab5a3ba65b55cd474beff21fa7ac9366a5a31c5",
+      "created": "2026-10-08T02:22:32+03:00",
+      "modified": "2026-10-08T02:22:32+03:00"
+    },
+    {
+      "path": "1440/entropy.txt",
+      "bytes": 1523,
+      "sha256": "b3e8bf390101bc89b50b43c1499f93701c72e78b2afb1b3397e535cf06851429",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/evidence.aria.yml",
+      "bytes": 2362,
+      "sha256": "e881af7dd1f843495d0b86fa026d244cdaec826c139da6970072f10ef646035b",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/evidence.controls.json",
+      "bytes": 448,
+      "sha256": "7ff5e91f1dded545b835b631db17026b79db07cfa5823b04411894ad8b187882",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/evidence.controls.txt",
+      "bytes": 78,
+      "sha256": "ff1933a32617c7174090c36f1af4afa77db0fe1f26d34e1d2415233f860476cd",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/evidence.png",
+      "bytes": 259352,
+      "sha256": "f4557fdd83cb8dd84f46af8528bc98c6ea1771d003c713d2981dd2540f1c2eb4",
+      "created": "2026-10-08T02:22:35+03:00",
+      "modified": "2026-10-08T02:22:35+03:00"
+    },
+    {
+      "path": "1440/evidence.txt",
+      "bytes": 2015,
+      "sha256": "cfbeaa98394a2a01c89c92971e9d0bf23b997816252faced8c8220e034bf6a80",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/first-viewport.png",
+      "bytes": 146915,
+      "sha256": "ce6e3a570bb9d02f92b9d95fb1f30bc0874cd00d43c02430e5f67a93fb2c4d14",
+      "created": "2026-10-08T02:22:22+03:00",
+      "modified": "2026-10-08T02:22:22+03:00"
+    },
+    {
+      "path": "1440/footer.aria.yml",
+      "bytes": 1295,
+      "sha256": "be0a2b178f868766154b49565de7ffb8b01d4c86d824de6d5f198e2f854919de",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/footer.controls.json",
+      "bytes": 4178,
+      "sha256": "cbcc0399ae5b149fc69001a6c2190c91f332a26bed2845d03243e974c8489718",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/footer.controls.txt",
+      "bytes": 815,
+      "sha256": "d157247810e748d91479c847a0e6a2aade518cb7d5407fc4306c659695992fae",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/footer.png",
+      "bytes": 29344,
+      "sha256": "4eeee7c0e42dc64cee9878b6e0c6cd4aca90ab95b270df3c5deac1a07404e4f6",
+      "created": "2026-10-08T02:22:40+03:00",
+      "modified": "2026-10-08T02:22:40+03:00"
+    },
+    {
+      "path": "1440/footer.txt",
+      "bytes": 203,
+      "sha256": "cd07a61ac8cabcddbce61ef3510997473ba87e545f9f0e0054b6693882c4f1a0",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/full-page.png",
+      "bytes": 2851815,
+      "sha256": "52bd70745193dfcdecce4b5833a9ec3e0edd6b5db5340d0705e4f8afdbd26ad6",
+      "created": "2026-10-08T02:22:46+03:00",
+      "modified": "2026-10-08T02:22:46+03:00"
+    },
+    {
+      "path": "1440/geometry.json",
+      "bytes": 1751,
+      "sha256": "46d41abc955f2cc2963b1ef468f1f23b23c8eebabe3d560b94600cc4c46f30d2",
+      "created": "2026-10-08T02:22:27+03:00",
+      "modified": "2026-10-08T02:22:27+03:00"
+    },
+    {
+      "path": "1440/get-started.aria.yml",
+      "bytes": 425,
+      "sha256": "bccdd494bdd5f3d0bce44179483452fbb313ef06ed047b647ea43df55fe733db",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/get-started.controls.json",
+      "bytes": 1039,
+      "sha256": "7cc1465531e6dc44228da838fb28166675d84b8edb2ff1e515826a3f47d6de3f",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/get-started.controls.txt",
+      "bytes": 195,
+      "sha256": "1afc8f76a3f2996f3fb731b41bcaae992d436b45c276f4faa620c6f541fbf86a",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/get-started.png",
+      "bytes": 75035,
+      "sha256": "713d52c4b4bf8e5888a2ba997448bd8a23fbddff8c003e18eb2e8a92f5f3d500",
+      "created": "2026-10-08T02:22:39+03:00",
+      "modified": "2026-10-08T02:22:39+03:00"
+    },
+    {
+      "path": "1440/get-started.txt",
+      "bytes": 197,
+      "sha256": "2c0d348c892f2ddbe6c76b3231148ace39af11d5447ba7a5bf787aa4c8de6360",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/gravity.aria.yml",
+      "bytes": 2487,
+      "sha256": "13555ff13566a827a065110c9b171e256e6217034221c4c2e8986a7c597020a8",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/gravity.controls.json",
+      "bytes": 3103,
+      "sha256": "ac66da7980f51a939bcd79d8484d91b37b2e05d21d31601b7eeda269c8c0a97f",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/gravity.controls.txt",
+      "bytes": 348,
+      "sha256": "dff70091650eeffc256d489f37f8f30faaed7e549dedebb00fe50495d8760e9b",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/gravity.png",
+      "bytes": 301914,
+      "sha256": "70854432c44d9441099d6d4452574681f1ae451e56e72f1734021bc182a9ded1",
+      "created": "2026-10-08T02:22:31+03:00",
+      "modified": "2026-10-08T02:22:31+03:00"
+    },
+    {
+      "path": "1440/gravity.txt",
+      "bytes": 1927,
+      "sha256": "84eb75cd56f9631668edf0c8ca436ca3320234149e028b671f702601e5daaa65",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/header-scrolled.png",
+      "bytes": 18754,
+      "sha256": "4cdaca5e08ae9e081c9e2c58db0ad189252c64e29353c9d6019a158aa0b87641",
+      "created": "2026-10-08T02:22:46+03:00",
+      "modified": "2026-10-08T02:22:46+03:00"
+    },
+    {
+      "path": "1440/header.aria.yml",
+      "bytes": 636,
+      "sha256": "c295e742dfd7e0b4fcf4616b3b55a334278cb072f191e6c8ad8d0b9c2657b6a7",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/header.controls.json",
+      "bytes": 3103,
+      "sha256": "2db363b72f5025ff81c3a2b3693054069866c3543ce721e2d5fe279a64504ab7",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/header.controls.txt",
+      "bytes": 495,
+      "sha256": "32e969b2bd72dfc72a2e955a38d142f46e270a9d820997c20fe91979a6870907",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/header.png",
+      "bytes": 14031,
+      "sha256": "e831a29737ea75a9ed8860f50cc0824750a82ed7d2d9b1e5202b0326110240f0",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/header.txt",
+      "bytes": 85,
+      "sha256": "538994cd5b20b029c8c4c94eb3eca1d178c9b6c2528da9ec7e1298cc726fb5b2",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/history.aria.yml",
+      "bytes": 1680,
+      "sha256": "d6abadab07955f117f28921f5efa0f8eb057a049972eeaa5ce89a048786b7b60",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/history.controls.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/history.controls.txt",
+      "bytes": 14,
+      "sha256": "faecf29187816509603edba4c9cf9e5ac53ff0e622ddb75333a0bc66a7e27681",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/history.png",
+      "bytes": 176390,
+      "sha256": "b01981060b87a0f0fde3c96f04aecc1bab5cbdea651c5c609df46510cf48f439",
+      "created": "2026-10-08T02:22:36+03:00",
+      "modified": "2026-10-08T02:22:36+03:00"
+    },
+    {
+      "path": "1440/history.txt",
+      "bytes": 702,
+      "sha256": "b45d068c8a38f69953a532e4e2a71b2a40e30a06af756fc8ea7d66cdd5abcf8a",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/how-it-works.aria.yml",
+      "bytes": 2341,
+      "sha256": "70651afdca5b8a2dbbef0778ae68cb32ce0c3269ff4b9908586bb16ffb6fd3b5",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/how-it-works.controls.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/how-it-works.controls.txt",
+      "bytes": 14,
+      "sha256": "faecf29187816509603edba4c9cf9e5ac53ff0e622ddb75333a0bc66a7e27681",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/how-it-works.png",
+      "bytes": 183703,
+      "sha256": "86c2ae87b6717ad4959c713f60621babf65891eb173897c4b15bb059809c0eff",
+      "created": "2026-10-08T02:22:30+03:00",
+      "modified": "2026-10-08T02:22:30+03:00"
+    },
+    {
+      "path": "1440/how-it-works.txt",
+      "bytes": 1205,
+      "sha256": "83326615d871ea868fe5b97d1395b7e49fbdddee16d166300505baaf07cba8ae",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/impact.aria.yml",
+      "bytes": 1956,
+      "sha256": "606ad2fdeb8d813ac47d28c69829588335dd504ea7055284be71bbe83236d1b1",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/impact.controls.json",
+      "bytes": 6125,
+      "sha256": "56f5296f44f2955e37ac40cbbb6f6428324bc6252c7694fae18393932e5cb3b6",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/impact.controls.txt",
+      "bytes": 1110,
+      "sha256": "ba745070290a9573427f77757341aab8be107b8220585438267beb043dd6c64b",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/impact.png",
+      "bytes": 226372,
+      "sha256": "55952b9934427ce4067e3bcc63b681a0cec1d834c1a7937c3159c2ee9e683d23",
+      "created": "2026-10-08T02:22:33+03:00",
+      "modified": "2026-10-08T02:22:33+03:00"
+    },
+    {
+      "path": "1440/impact.txt",
+      "bytes": 1337,
+      "sha256": "0a3984a8e6f341401017c830f9651aece13f54205851dc8da00608934896bb06",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/nav-states.json",
+      "bytes": 1450,
+      "sha256": "20cfa1097ba75cb7c65b85f1cedded6df9b9c3be36291979633ea5d575df9a20",
+      "created": "2026-10-08T02:22:46+03:00",
+      "modified": "2026-10-08T02:22:46+03:00"
+    },
+    {
+      "path": "1440/open-source.aria.yml",
+      "bytes": 1996,
+      "sha256": "612dec1ae06d8e4d05de99ec3b292cd6d76230cd134b4d91b764fe5acf9c502e",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/open-source.controls.json",
+      "bytes": 1603,
+      "sha256": "7c82e293112df786553b01477cd72287b32a240c27837aaba92739b19b43776e",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/open-source.controls.txt",
+      "bytes": 305,
+      "sha256": "84893183553db9fe9d4f58b7d56dd00e1740e9ee93bf0df3f9f516c603da237c",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/open-source.png",
+      "bytes": 181809,
+      "sha256": "294d66c2d4ad4d90f266dec29bb86451c57db6a57779f0d7d47a30995e3b4fe7",
+      "created": "2026-10-08T02:22:38+03:00",
+      "modified": "2026-10-08T02:22:38+03:00"
+    },
+    {
+      "path": "1440/open-source.txt",
+      "bytes": 1201,
+      "sha256": "f9f1e2b7a29c81f6864d3c3d88bea073caa26f9269ad26df831a30144f3b02bb",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/page.aria.yml",
+      "bytes": 29710,
+      "sha256": "3c966c98c6c23309765ee1893dfa5409d1fca3640cc3a9c2c03441e2e270e252",
+      "created": "2026-10-08T02:22:27+03:00",
+      "modified": "2026-10-08T02:22:27+03:00"
+    },
+    {
+      "path": "1440/page.json",
+      "bytes": 4388,
+      "sha256": "6fa3034410e6a8b28353ea179799d8d51641d49424b1ecbbe00182770f11e59e",
+      "created": "2026-10-08T02:22:46+03:00",
+      "modified": "2026-10-08T02:22:46+03:00"
+    },
+    {
+      "path": "1440/page.txt",
+      "bytes": 16998,
+      "sha256": "b46ebd5160cdfd6216ca6e5388f06810222e209c2856ac5780e61bf4c77017a1",
+      "created": "2026-10-08T02:22:27+03:00",
+      "modified": "2026-10-08T02:22:27+03:00"
+    },
+    {
+      "path": "1440/rules.aria.yml",
+      "bytes": 1901,
+      "sha256": "c325dc0fded8005f1d3f69254d1c7d0f859fd959f910134bc75e8f2fff823948",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/rules.controls.json",
+      "bytes": 429,
+      "sha256": "780576a59221932a3daae266d43c7fac38d4ee7825ca55a5944016bd649557c5",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/rules.controls.txt",
+      "bytes": 66,
+      "sha256": "9861494c22a13de4de3141c9123562dedf713ca67435544e68ef4c27b7b403df",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/rules.png",
+      "bytes": 200564,
+      "sha256": "8ef36cc44337bcb4b134c60194a9dc3edeebf5d6990405339a88e191716f5a8e",
+      "created": "2026-10-08T02:22:34+03:00",
+      "modified": "2026-10-08T02:22:34+03:00"
+    },
+    {
+      "path": "1440/rules.txt",
+      "bytes": 1233,
+      "sha256": "b6f4f3123596f6ab40946ebd6280fe1b9a603b832064065040740f94236f93e6",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/skip-link-focused.png",
+      "bytes": 12002,
+      "sha256": "1484bf83233666d4b6d554a734f6b30f2cf2f09b3ab51455a8639c052ac902f9",
+      "created": "2026-10-08T02:22:49+03:00",
+      "modified": "2026-10-08T02:22:49+03:00"
+    },
+    {
+      "path": "1440/skip-link.aria.yml",
+      "bytes": 44,
+      "sha256": "05812dae1a68d36ae7c448fb6ee8052cf05f2d2b2075e9b25526c3cb1f6b60ae",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/skip-link.controls.json",
+      "bytes": 414,
+      "sha256": "bf697138d63746c285226eaa5ef57eaeb3e8a66081d6dfa6e0be7663b81c2104",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/skip-link.controls.txt",
+      "bytes": 59,
+      "sha256": "6f9f0127b8d9328cd983d0417c4197778f330f1cf39a615da54fe55d3fb14f73",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/skip-link.txt",
+      "bytes": 16,
+      "sha256": "1b01ab62a7d5dff9394550ee6e7304d4b70857c2beaf1c2afa2ab725cd9085fc",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/tab-order.json",
+      "bytes": 17758,
+      "sha256": "9bed223a214095094405fb902f8af4d2b317ab6de1800200f8c16f5872fdbd30",
+      "created": "2026-10-08T02:22:59+03:00",
+      "modified": "2026-10-08T02:22:59+03:00"
+    },
+    {
+      "path": "1440/tab-order.txt",
+      "bytes": 2338,
+      "sha256": "7d09b662c7f88b953fa8ac0da8b85f19184767d8b1699b5fae0fd8e22c8a7e72",
+      "created": "2026-10-08T02:22:59+03:00",
+      "modified": "2026-10-08T02:22:59+03:00"
+    },
+    {
+      "path": "1440/top.aria.yml",
+      "bytes": 2103,
+      "sha256": "c95315eafead2e31cc855906b9dfac819d972a51b73590d1a2fc36a4f6566a69",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/top.controls.json",
+      "bytes": 11858,
+      "sha256": "6c8a1d5c367ff17847938746ea302d2581917c5766b6404da902dcc325002b5f",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/top.controls.txt",
+      "bytes": 2797,
+      "sha256": "51c088a6bcfd5e6487a33caa98366c03ecac6c19fb68fbdd330af6089eae3018",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "1440/top.png",
+      "bytes": 182457,
+      "sha256": "a41266950d1da190a034112a8909fbb3a8e723b67ea0ae4affb3ac573f2e8fb7",
+      "created": "2026-10-08T02:22:29+03:00",
+      "modified": "2026-10-08T02:22:29+03:00"
+    },
+    {
+      "path": "1440/top.txt",
+      "bytes": 733,
+      "sha256": "41cffe1ce8ec2781a9775c00138a4992dcd3a7b2ca6c93352eaaeb6709f1b805",
+      "created": "2026-10-08T02:22:28+03:00",
+      "modified": "2026-10-08T02:22:28+03:00"
+    },
+    {
+      "path": "390/architecture.aria.yml",
+      "bytes": 1314,
+      "sha256": "516acc2e657618c2648cd757e81d05fd59bb0756555082c890b6fb3cf7d9a566",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/architecture.controls.json",
+      "bytes": 9722,
+      "sha256": "ea71faf530794495e073d6b0da7a15cd61163e8a3691f42a0087078bf65dfa04",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/architecture.controls.txt",
+      "bytes": 2012,
+      "sha256": "fc38d5317b58526daa6c07067bd7ce1ee543a5e42a1d1d2aa5da8eb9fddc34a7",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/architecture.png",
+      "bytes": 216429,
+      "sha256": "980e072ab1e1a7eeaf4e688b34e70e8e3b2b01c3ad305424de720d4c3c871ebe",
+      "created": "2026-10-08T02:23:13+03:00",
+      "modified": "2026-10-08T02:23:13+03:00"
+    },
+    {
+      "path": "390/architecture.txt",
+      "bytes": 850,
+      "sha256": "b94005158f7d3076d6c00bde4d6bdcfed7def53d94e3722d93bb77470e83ab76",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/console.txt",
+      "bytes": 24,
+      "sha256": "d7cccd637397a9be132c748b354a39d2cf4178e643c43ae6f8804210d5f8cce0",
+      "created": "2026-10-08T02:23:31+03:00",
+      "modified": "2026-10-08T02:23:31+03:00"
+    },
+    {
+      "path": "390/controls-all.json",
+      "bytes": 45816,
+      "sha256": "cec5eace92bf43cdf701fa4cdef24a8ea44502d3c2e5159d61e7f5be28d11673",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/developers.aria.yml",
+      "bytes": 2428,
+      "sha256": "9c7ee421abbbd3610fc7e3f29012e097eab11892e005bd88db9aa3d8039d2f5c",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/developers.controls.json",
+      "bytes": 5887,
+      "sha256": "3942f1846d7a84770a5ff8d457aab21ca69272a9c641f148a4a56c9013a30317",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/developers.controls.txt",
+      "bytes": 709,
+      "sha256": "f8e5ad63fb573c8cb982e3e50054c7c1f79f010874f13565a806191d6d5e99e7",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/developers.png",
+      "bytes": 500569,
+      "sha256": "3b84541d542ec845b96451fb9a096364917afdc3509b5fbe9a76b6ff7111f1e7",
+      "created": "2026-10-08T02:23:21+03:00",
+      "modified": "2026-10-08T02:23:21+03:00"
+    },
+    {
+      "path": "390/developers.txt",
+      "bytes": 1939,
+      "sha256": "09c2ff9183fb6bfe2dda92f92ffdf5bbcd5bb598348768e414ee27546d9a6905",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/ecosystem.aria.yml",
+      "bytes": 2763,
+      "sha256": "649971e6b44352425357b46d1ee77a3442f6c61b6b9ef831b688ef21cdb8da50",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/ecosystem.controls.json",
+      "bytes": 988,
+      "sha256": "180cb6d579db9e0467b189d21f1047c87a13bbf49251fe33129df77377dc3a26",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/ecosystem.controls.txt",
+      "bytes": 173,
+      "sha256": "a71994532c678c6052dac8714536992ea76b15338cea9dd688e15dd59edd9f8c",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/ecosystem.png",
+      "bytes": 503027,
+      "sha256": "a0e8aebef47b3105bcaf0fdd6031c21c20d8541b4861bb1cf897b96f4059f20f",
+      "created": "2026-10-08T02:23:24+03:00",
+      "modified": "2026-10-08T02:23:24+03:00"
+    },
+    {
+      "path": "390/ecosystem.txt",
+      "bytes": 1680,
+      "sha256": "4202c757ea989dfb8b12cbdc91a352519321dbefa8975708e7f44c1039746e16",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/entropy.aria.yml",
+      "bytes": 2311,
+      "sha256": "be5bcb76532344a87b2b667fe55345928dd1a6f04fc151b8b6293f38252acf98",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/entropy.controls.json",
+      "bytes": 3719,
+      "sha256": "a013b6632baaaf3c3e97e87c23ee9195808ec41f16ed394b9aee6464994b738b",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/entropy.controls.txt",
+      "bytes": 508,
+      "sha256": "9f05860d0fe8eb60a4ab93fdb40d58ddfb2c4d299f9a066935978d9ce4d5d00e",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/entropy.png",
+      "bytes": 478363,
+      "sha256": "58ccda2987e686934f763195767afaf48391573d013b254546ed2ab2e50d1e55",
+      "created": "2026-10-08T02:23:16+03:00",
+      "modified": "2026-10-08T02:23:16+03:00"
+    },
+    {
+      "path": "390/entropy.txt",
+      "bytes": 1523,
+      "sha256": "b3e8bf390101bc89b50b43c1499f93701c72e78b2afb1b3397e535cf06851429",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/evidence.aria.yml",
+      "bytes": 2416,
+      "sha256": "36321a84974eb301f161f5a7a430102c95e0dc6b0a32a84d275b4427fcc8cf4b",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/evidence.controls.json",
+      "bytes": 942,
+      "sha256": "c5f8e3761ffe6fa526d897e7445d69b5f3f29f75b4575f547341c805b208cc37",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/evidence.controls.txt",
+      "bytes": 148,
+      "sha256": "516792383340e0cddf41bc419d316776d81536f072641de82fe3ebf32a0a0414",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/evidence.png",
+      "bytes": 509931,
+      "sha256": "f6a135f04c47a3c58ffcaf9062b7f898b1b33a43b21b44e39da06cc1178d9fb3",
+      "created": "2026-10-08T02:23:19+03:00",
+      "modified": "2026-10-08T02:23:19+03:00"
+    },
+    {
+      "path": "390/evidence.txt",
+      "bytes": 2015,
+      "sha256": "cfbeaa98394a2a01c89c92971e9d0bf23b997816252faced8c8220e034bf6a80",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/first-viewport.png",
+      "bytes": 140275,
+      "sha256": "0d46ce4d9dd6359f0e13fb366e762a1071abd1785055d9b9e117d98583b12a5c",
+      "created": "2026-10-08T02:23:02+03:00",
+      "modified": "2026-10-08T02:23:02+03:00"
+    },
+    {
+      "path": "390/footer.aria.yml",
+      "bytes": 1295,
+      "sha256": "be0a2b178f868766154b49565de7ffb8b01d4c86d824de6d5f198e2f854919de",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/footer.controls.json",
+      "bytes": 4173,
+      "sha256": "b02f40a0c2d6bce31119acde19e70915718a108892ba3ea5659ffc25525cdd98",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/footer.controls.txt",
+      "bytes": 815,
+      "sha256": "d157247810e748d91479c847a0e6a2aade518cb7d5407fc4306c659695992fae",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/footer.png",
+      "bytes": 64486,
+      "sha256": "24ffae4cfafe07ad9ece5c7d2323d47e45463ec8107f995cd2a698271ba10ecd",
+      "created": "2026-10-08T02:23:25+03:00",
+      "modified": "2026-10-08T02:23:25+03:00"
+    },
+    {
+      "path": "390/footer.txt",
+      "bytes": 203,
+      "sha256": "cd07a61ac8cabcddbce61ef3510997473ba87e545f9f0e0054b6693882c4f1a0",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/full-page.png",
+      "bytes": 2102213,
+      "sha256": "917b569313fcf79781e502e33618c217277de5cb9df06ab45fed9007bd7df943",
+      "created": "2026-10-08T02:23:30+03:00",
+      "modified": "2026-10-08T02:23:30+03:00"
+    },
+    {
+      "path": "390/geometry.json",
+      "bytes": 1756,
+      "sha256": "5e09a114f1357bf89155bff544879de49bd002a39182007a5e6c392c1e76cfd2",
+      "created": "2026-10-08T02:23:09+03:00",
+      "modified": "2026-10-08T02:23:09+03:00"
+    },
+    {
+      "path": "390/get-started.aria.yml",
+      "bytes": 425,
+      "sha256": "bccdd494bdd5f3d0bce44179483452fbb313ef06ed047b647ea43df55fe733db",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/get-started.controls.json",
+      "bytes": 1039,
+      "sha256": "3c3f2631da2638485b45ca552391c890ca3b7f4ba7391e06a33b8c9b0bc8e445",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/get-started.controls.txt",
+      "bytes": 195,
+      "sha256": "1afc8f76a3f2996f3fb731b41bcaae992d436b45c276f4faa620c6f541fbf86a",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/get-started.png",
+      "bytes": 94601,
+      "sha256": "00c32d3fbd9db6db2a892b471da408b4c8ac7f34f4896fd7209b12f209647f34",
+      "created": "2026-10-08T02:23:25+03:00",
+      "modified": "2026-10-08T02:23:25+03:00"
+    },
+    {
+      "path": "390/get-started.txt",
+      "bytes": 197,
+      "sha256": "2c0d348c892f2ddbe6c76b3231148ace39af11d5447ba7a5bf787aa4c8de6360",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/gravity.aria.yml",
+      "bytes": 3170,
+      "sha256": "d570542a451f90b43f117439567bfc6569744f8b5b5e835cd9dda1ca84cc252d",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/gravity.controls.json",
+      "bytes": 3101,
+      "sha256": "581a1b68bb4374a3cdaf314996cdaea1e80e7462a4e5ad5f3450b124738ab35b",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/gravity.controls.txt",
+      "bytes": 348,
+      "sha256": "dff70091650eeffc256d489f37f8f30faaed7e549dedebb00fe50495d8760e9b",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/gravity.png",
+      "bytes": 508113,
+      "sha256": "a809912c545b4b4da1d3331781b2f9b7aa462818f50d04338b1e8b2ead0a189f",
+      "created": "2026-10-08T02:23:14+03:00",
+      "modified": "2026-10-08T02:23:14+03:00"
+    },
+    {
+      "path": "390/gravity.txt",
+      "bytes": 1953,
+      "sha256": "d315e43fa5768179f3ceb36be5572930a7776b200f75efa88ed53399f6e29763",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/header-scrolled.png",
+      "bytes": 15525,
+      "sha256": "d9ee081d40fa8a01e5361a2c4d692a6cc22d86673a285a1f90519d3d02e58f67",
+      "created": "2026-10-08T02:23:30+03:00",
+      "modified": "2026-10-08T02:23:30+03:00"
+    },
+    {
+      "path": "390/header.aria.yml",
+      "bytes": 130,
+      "sha256": "732008ceb1e97cda7af02283b44ae4764baabc2ab4c81e4b21dd20c4e4f8d4c1",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/header.controls.json",
+      "bytes": 839,
+      "sha256": "13844bc68f70f429b655f3b28fc07fd38f43d8c2e587bbc3682b35662124236b",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/header.controls.txt",
+      "bytes": 122,
+      "sha256": "bd04482aec9b3071543c35a163642568661e9f6a374e549c7e9162085d67ec11",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/header.png",
+      "bytes": 8742,
+      "sha256": "62c0207df4feaf06fcc281f4b9098e885a9b73048fa222a3754c1c2855f7d76f",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/header.txt",
+      "bytes": 15,
+      "sha256": "f14bf3360b7b36cb5cdaa16e5f7bfa9519d7908e516ef34f855381dfe7429343",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/history.aria.yml",
+      "bytes": 1680,
+      "sha256": "d6abadab07955f117f28921f5efa0f8eb057a049972eeaa5ce89a048786b7b60",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/history.controls.json",
+      "bytes": 481,
+      "sha256": "f98b1df187c6b51ab035399964269d1cebb6fb81f26f9549e21b1ef96b6e7b1f",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/history.controls.txt",
+      "bytes": 75,
+      "sha256": "24bf5ca76143f27b2f0c47aca500fbdf7f79890e0eae57eb785d83ae6520a72e",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/history.png",
+      "bytes": 164998,
+      "sha256": "234f6ea5ac05420023d471487847dea64d505dfbee0317d11a046639fbc258b5",
+      "created": "2026-10-08T02:23:20+03:00",
+      "modified": "2026-10-08T02:23:20+03:00"
+    },
+    {
+      "path": "390/history.txt",
+      "bytes": 702,
+      "sha256": "b45d068c8a38f69953a532e4e2a71b2a40e30a06af756fc8ea7d66cdd5abcf8a",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/how-it-works.aria.yml",
+      "bytes": 2341,
+      "sha256": "70651afdca5b8a2dbbef0778ae68cb32ce0c3269ff4b9908586bb16ffb6fd3b5",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/how-it-works.controls.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/how-it-works.controls.txt",
+      "bytes": 14,
+      "sha256": "faecf29187816509603edba4c9cf9e5ac53ff0e622ddb75333a0bc66a7e27681",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/how-it-works.png",
+      "bytes": 383902,
+      "sha256": "ab7bcff0d7dec88663cc01757d03a0529e5f2ebce2f71b7a472dd80dd2ad88c1",
+      "created": "2026-10-08T02:23:12+03:00",
+      "modified": "2026-10-08T02:23:12+03:00"
+    },
+    {
+      "path": "390/how-it-works.txt",
+      "bytes": 1205,
+      "sha256": "83326615d871ea868fe5b97d1395b7e49fbdddee16d166300505baaf07cba8ae",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/impact.aria.yml",
+      "bytes": 1909,
+      "sha256": "3b304172adb73f393b5219d6da00cc6e56e62f8a8ed0686d06ae9cb10dbbf272",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/impact.controls.json",
+      "bytes": 6122,
+      "sha256": "993a4e12a10d5ef1fa8ef640c1e66e315e55868d2ec2097232c5db23940c9e7c",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/impact.controls.txt",
+      "bytes": 1110,
+      "sha256": "ba745070290a9573427f77757341aab8be107b8220585438267beb043dd6c64b",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/impact.png",
+      "bytes": 331758,
+      "sha256": "8076c92396bdc2f82d180317f85ad977b17bcb5fb202134cf66f5bf24373811d",
+      "created": "2026-10-08T02:23:17+03:00",
+      "modified": "2026-10-08T02:23:17+03:00"
+    },
+    {
+      "path": "390/impact.txt",
+      "bytes": 1187,
+      "sha256": "afcbf1feb73bf9507f099f0af6224b87fe0194f5ea5a60a07a1ced873fb2e40b",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/menu-behavior.json",
+      "bytes": 1008,
+      "sha256": "132337bf0951826ea841c1dcaa846d0008d9761e42778574a48832514dc14a9a",
+      "created": "2026-10-08T02:23:50+03:00",
+      "modified": "2026-10-08T02:23:50+03:00"
+    },
+    {
+      "path": "390/menu-open.aria.yml",
+      "bytes": 736,
+      "sha256": "62fc6f6aaeefb94625495fc61a0289e39a4b8ebd82f30d3b0e5e42e3e75959e5",
+      "created": "2026-10-08T02:23:48+03:00",
+      "modified": "2026-10-08T02:23:48+03:00"
+    },
+    {
+      "path": "390/menu-open.controls.json",
+      "bytes": 3513,
+      "sha256": "93326b8bad7b1b4d39ee7f758a75b83613cdc57e9268ba5c05b1080d3bbf036b",
+      "created": "2026-10-08T02:23:48+03:00",
+      "modified": "2026-10-08T02:23:48+03:00"
+    },
+    {
+      "path": "390/menu-open.controls.txt",
+      "bytes": 561,
+      "sha256": "4891d4af9a5a04892b10b7047376936923106947b2fad31daefbd35091e10a73",
+      "created": "2026-10-08T02:23:48+03:00",
+      "modified": "2026-10-08T02:23:48+03:00"
+    },
+    {
+      "path": "390/menu-open.png",
+      "bytes": 68645,
+      "sha256": "ef8bbd3838a1595aad98fb176e05efd9dec12add34f93abe80d7144d5d1ec058",
+      "created": "2026-10-08T02:23:49+03:00",
+      "modified": "2026-10-08T02:23:49+03:00"
+    },
+    {
+      "path": "390/menu-open.txt",
+      "bytes": 90,
+      "sha256": "9d7ab349f5d4191d62b7d686e9b6ed76d6939d5fca2b49d226065bf8faac293f",
+      "created": "2026-10-08T02:23:48+03:00",
+      "modified": "2026-10-08T02:23:48+03:00"
+    },
+    {
+      "path": "390/nav-states.json",
+      "bytes": 1451,
+      "sha256": "cee90a5ba27f06c26858e1284faa91cfb6fdf368984459cd288cb1915e1ccee5",
+      "created": "2026-10-08T02:23:31+03:00",
+      "modified": "2026-10-08T02:23:31+03:00"
+    },
+    {
+      "path": "390/open-source.aria.yml",
+      "bytes": 1996,
+      "sha256": "612dec1ae06d8e4d05de99ec3b292cd6d76230cd134b4d91b764fe5acf9c502e",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/open-source.controls.json",
+      "bytes": 1602,
+      "sha256": "ae94f17b1623f994945ccc61e52c01c99c9f8bfc5f26613c3ca9bb5bd1381eb1",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/open-source.controls.txt",
+      "bytes": 305,
+      "sha256": "84893183553db9fe9d4f58b7d56dd00e1740e9ee93bf0df3f9f516c603da237c",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/open-source.png",
+      "bytes": 370919,
+      "sha256": "19d14954422e70afd66352aab1275f9cd8da53541fb77cdff23e0872081e6e09",
+      "created": "2026-10-08T02:23:23+03:00",
+      "modified": "2026-10-08T02:23:23+03:00"
+    },
+    {
+      "path": "390/open-source.txt",
+      "bytes": 1201,
+      "sha256": "f9f1e2b7a29c81f6864d3c3d88bea073caa26f9269ad26df831a30144f3b02bb",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/page.aria.yml",
+      "bytes": 28348,
+      "sha256": "37d86a860bbac68426b7e5ddfebd9b70963af0de00a3f7c45bf89867f44a3dee",
+      "created": "2026-10-08T02:23:09+03:00",
+      "modified": "2026-10-08T02:23:09+03:00"
+    },
+    {
+      "path": "390/page.json",
+      "bytes": 4488,
+      "sha256": "3385b371bbcfebe14253937684f70147baa40a3005243e0ce02c7a903672e865",
+      "created": "2026-10-08T02:23:31+03:00",
+      "modified": "2026-10-08T02:23:31+03:00"
+    },
+    {
+      "path": "390/page.txt",
+      "bytes": 16472,
+      "sha256": "5127b33f0e9cad7d6ce5655da5c190225298cb2e80b6d2e96c021b5a34ec14df",
+      "created": "2026-10-08T02:23:09+03:00",
+      "modified": "2026-10-08T02:23:09+03:00"
+    },
+    {
+      "path": "390/rules.aria.yml",
+      "bytes": 1901,
+      "sha256": "c325dc0fded8005f1d3f69254d1c7d0f859fd959f910134bc75e8f2fff823948",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/rules.controls.json",
+      "bytes": 429,
+      "sha256": "3f8115ead8d956ff7b62d57f401ede894150a76733f1220458f15073f6ce2da6",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/rules.controls.txt",
+      "bytes": 66,
+      "sha256": "9861494c22a13de4de3141c9123562dedf713ca67435544e68ef4c27b7b403df",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/rules.png",
+      "bytes": 379025,
+      "sha256": "eabc547e26657891860603d84331b68f0fe948120273031bbd75cc765326437d",
+      "created": "2026-10-08T02:23:18+03:00",
+      "modified": "2026-10-08T02:23:18+03:00"
+    },
+    {
+      "path": "390/rules.txt",
+      "bytes": 1232,
+      "sha256": "a063e233ac0293d8f102d5bff7cf5d83b3ab51e26b7d9deddca9dea8043c8cb2",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/skip-link-focused.png",
+      "bytes": 20361,
+      "sha256": "aecfb9f195bca00272b72ea668c1a8fa58220faba32f0463d3ace0bcd0ead7e2",
+      "created": "2026-10-08T02:23:33+03:00",
+      "modified": "2026-10-08T02:23:33+03:00"
+    },
+    {
+      "path": "390/skip-link.aria.yml",
+      "bytes": 44,
+      "sha256": "05812dae1a68d36ae7c448fb6ee8052cf05f2d2b2075e9b25526c3cb1f6b60ae",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/skip-link.controls.json",
+      "bytes": 414,
+      "sha256": "bf697138d63746c285226eaa5ef57eaeb3e8a66081d6dfa6e0be7663b81c2104",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/skip-link.controls.txt",
+      "bytes": 59,
+      "sha256": "6f9f0127b8d9328cd983d0417c4197778f330f1cf39a615da54fe55d3fb14f73",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/skip-link.txt",
+      "bytes": 16,
+      "sha256": "1b01ab62a7d5dff9394550ee6e7304d4b70857c2beaf1c2afa2ab725cd9085fc",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/tab-order.json",
+      "bytes": 15893,
+      "sha256": "1bf47641650bc2af6f881e48f15922ea6976cc8286001a69292a9529692f6124",
+      "created": "2026-10-08T02:23:45+03:00",
+      "modified": "2026-10-08T02:23:45+03:00"
+    },
+    {
+      "path": "390/tab-order.txt",
+      "bytes": 2143,
+      "sha256": "8cf136406a1f02adb5c921d7ec1c53f6a442e54d279b61e9b685b8b12a814dbb",
+      "created": "2026-10-08T02:23:45+03:00",
+      "modified": "2026-10-08T02:23:45+03:00"
+    },
+    {
+      "path": "390/top.aria.yml",
+      "bytes": 1301,
+      "sha256": "227fe694fb9e897d7949781dd61ef7db9f157185d7e4e1c6735935e0ecdd8117",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/top.controls.json",
+      "bytes": 6400,
+      "sha256": "d62ffcf838d41d9ffe953194f1c91be6430602b44c04048f5c5aa5a45a5c26ae",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/top.controls.txt",
+      "bytes": 1422,
+      "sha256": "243d7036624be2b7b9c0d1fee199dd25ea67325de55df1a53c91ece63d24a740",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "390/top.png",
+      "bytes": 228900,
+      "sha256": "6b6cba07dc7d5e159d2188b1e87cf91896d4d9f63b9f0cadd3537a3d75e40e9c",
+      "created": "2026-10-08T02:23:11+03:00",
+      "modified": "2026-10-08T02:23:11+03:00"
+    },
+    {
+      "path": "390/top.txt",
+      "bytes": 544,
+      "sha256": "eb1a00fffa32cf4d41dd99025999c589c8429cc9bbea5a27b77837d1b5c9ddb0",
+      "created": "2026-10-08T02:23:10+03:00",
+      "modified": "2026-10-08T02:23:10+03:00"
+    },
+    {
+      "path": "extra/anchors.json",
+      "bytes": 13109,
+      "sha256": "154c3127e5ccbbd3201188bc5630c2f145aeef7f228d1882693add95ad65327f",
+      "created": "2026-10-08T17:04:18+03:00",
+      "modified": "2026-10-08T17:09:23+03:00"
+    },
+    {
+      "path": "extra/header-320/normal.json",
+      "bytes": 656,
+      "sha256": "da91ad72cedae3ef9dce0a9f51ed95437841b1c474d63909d8f6641a3f79d61e",
+      "created": "2026-10-08T17:05:41+03:00",
+      "modified": "2026-10-08T17:05:41+03:00"
+    },
+    {
+      "path": "extra/header-320/normal.png",
+      "bytes": 64221,
+      "sha256": "7a809d289887e667eac8cd2489d96bc2d276e07eb0f1ae20edea21ffba94d254",
+      "created": "2026-10-08T17:05:41+03:00",
+      "modified": "2026-10-08T17:05:41+03:00"
+    },
+    {
+      "path": "extra/header-320/text-spacing.json",
+      "bytes": 1409,
+      "sha256": "fdb74827576408877748b1ea66439e704c29647846b81d0ae6a9350fa9816c50",
+      "created": "2026-10-08T17:05:42+03:00",
+      "modified": "2026-10-08T17:05:42+03:00"
+    },
+    {
+      "path": "extra/header-320/text-spacing.png",
+      "bytes": 6739,
+      "sha256": "41c05e8ba4b3c23ed25fb25fc3ccca2eb5c7873b93a68899b84c963b818955e1",
+      "created": "2026-10-08T17:05:42+03:00",
+      "modified": "2026-10-08T17:05:42+03:00"
+    },
+    {
+      "path": "extra/hinge/1024x768.json",
+      "bytes": 5166,
+      "sha256": "bcca24d71dac0595594cbab932828c3aea5acc90a50f26889223500ab2de023d",
+      "created": "2026-10-08T17:04:37+03:00",
+      "modified": "2026-10-08T17:04:37+03:00"
+    },
+    {
+      "path": "extra/hinge/1024x768.png",
+      "bytes": 179589,
+      "sha256": "76069fffc52b703e1526365470f85c58a8ee85bc7dc58831ff263f8d668ca1b6",
+      "created": "2026-10-08T17:04:37+03:00",
+      "modified": "2026-10-08T17:04:37+03:00"
+    },
+    {
+      "path": "extra/hinge/1180x820.json",
+      "bytes": 5225,
+      "sha256": "e05b186b7e8c8209f3814e2055405a22888f81dc3d1983f2249465cbfd5bfe3b",
+      "created": "2026-10-08T17:04:40+03:00",
+      "modified": "2026-10-08T17:04:40+03:00"
+    },
+    {
+      "path": "extra/hinge/1180x820.png",
+      "bytes": 186782,
+      "sha256": "514745d9d3766c95b39f8cbe0add13343cd687e734ae69791e6e228c65f29b82",
+      "created": "2026-10-08T17:04:41+03:00",
+      "modified": "2026-10-08T17:04:41+03:00"
+    },
+    {
+      "path": "extra/hinge/1280x720.json",
+      "bytes": 5285,
+      "sha256": "86d091ea6356659cd63c0312a64332df9c027e8c9f91d2012ba75ac99523bcb5",
+      "created": "2026-10-08T17:04:44+03:00",
+      "modified": "2026-10-08T17:04:44+03:00"
+    },
+    {
+      "path": "extra/hinge/1280x720.png",
+      "bytes": 179833,
+      "sha256": "077ac223cfab0f1d68d387fc964dc5f1730011fe35638ca7c77e6e3bc94e4ae2",
+      "created": "2026-10-08T17:04:45+03:00",
+      "modified": "2026-10-08T17:04:45+03:00"
+    },
+    {
+      "path": "extra/hinge/1350x900.json",
+      "bytes": 5287,
+      "sha256": "4b092538a3270cee993bd6534ac8684551c82788b70d237c34f8924ad1a54435",
+      "created": "2026-10-08T17:04:48+03:00",
+      "modified": "2026-10-08T17:04:48+03:00"
+    },
+    {
+      "path": "extra/hinge/1350x900.png",
+      "bytes": 181162,
+      "sha256": "729f1913ba121e584e46850edf372862ea0d40bdc632735d27f560168300413a",
+      "created": "2026-10-08T17:04:48+03:00",
+      "modified": "2026-10-08T17:04:48+03:00"
+    },
+    {
+      "path": "extra/hinge/1440x900.json",
+      "bytes": 5267,
+      "sha256": "c1df6538c4671afae33d05ab6aec3b7a32d878e0ff0bd60a031b9a35a649207f",
+      "created": "2026-10-08T17:04:51+03:00",
+      "modified": "2026-10-08T17:04:51+03:00"
+    },
+    {
+      "path": "extra/hinge/1440x900.png",
+      "bytes": 183703,
+      "sha256": "86c2ae87b6717ad4959c713f60621babf65891eb173897c4b15bb059809c0eff",
+      "created": "2026-10-08T17:04:52+03:00",
+      "modified": "2026-10-08T17:04:52+03:00"
+    },
+    {
+      "path": "extra/hinge/390x844.json",
+      "bytes": 5121,
+      "sha256": "cc1596a5b40626ae1b356ea696f318b03045777095954a758b67cbcb222b4135",
+      "created": "2026-10-08T17:04:29+03:00",
+      "modified": "2026-10-08T17:04:29+03:00"
+    },
+    {
+      "path": "extra/hinge/390x844.png",
+      "bytes": 169161,
+      "sha256": "76e4e8b4ae2a7feb81e367114a1ade3daf42a36b876cea8fc05061c9dd612edd",
+      "created": "2026-10-08T17:04:30+03:00",
+      "modified": "2026-10-08T17:04:30+03:00"
+    },
+    {
+      "path": "extra/hinge/768x1024.json",
+      "bytes": 5214,
+      "sha256": "51739608252949a3f937a9fce2afd5a6da3ca3f9c54a8c5e6c48f0a29af3a63c",
+      "created": "2026-10-08T17:04:33+03:00",
+      "modified": "2026-10-08T17:04:33+03:00"
+    },
+    {
+      "path": "extra/hinge/768x1024.png",
+      "bytes": 172647,
+      "sha256": "5db085b0f8526e4ebb2f041f70e4ef5bf15a97e4fe8b6b0bbe6f292b42ffb2e7",
+      "created": "2026-10-08T17:04:34+03:00",
+      "modified": "2026-10-08T17:04:34+03:00"
+    },
+    {
+      "path": "extra/record.json",
+      "bytes": 2871,
+      "sha256": "f81e9af89018416b1b51b36d5b85b70e3b6806137f61a1dad3eae821a959c4e1",
+      "created": "2026-10-08T17:05:42+03:00",
+      "modified": "2026-10-08T17:09:42+03:00"
+    },
+    {
+      "path": "extra/typography-1440.json",
+      "bytes": 41957,
+      "sha256": "a058f4846b309464e9a744c87639d509abf3b3bfa2bf61717916aeea7e5d5b23",
+      "created": "2026-10-08T17:04:18+03:00",
+      "modified": "2026-10-08T17:09:23+03:00"
+    },
+    {
+      "path": "extra/typography-390.json",
+      "bytes": 42891,
+      "sha256": "96d8dd8d3cb856b12e9d1842715ef4c0ec0fc39011750a177fac562aa40bf70e",
+      "created": "2026-10-08T17:04:26+03:00",
+      "modified": "2026-10-08T17:09:32+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/console.txt",
+      "bytes": 24,
+      "sha256": "d7cccd637397a9be132c748b354a39d2cf4178e643c43ae6f8804210d5f8cce0",
+      "created": "2026-10-08T17:05:12+03:00",
+      "modified": "2026-10-08T17:05:12+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/first-viewport.png",
+      "bytes": 129030,
+      "sha256": "98040a1f1a332fd7e5316fa3ff5946b5eb2645e3187ce32e4e993617bd6c2b0a",
+      "created": "2026-10-08T17:05:06+03:00",
+      "modified": "2026-10-08T17:05:06+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/footer.aria.yml",
+      "bytes": 1295,
+      "sha256": "be0a2b178f868766154b49565de7ffb8b01d4c86d824de6d5f198e2f854919de",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/footer.controls.json",
+      "bytes": 3184,
+      "sha256": "68e0b59c0dc34b1a6b0a1a9de3367ab2cadbefaeedd893adee387ccb1b6cb8de",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/footer.controls.txt",
+      "bytes": 877,
+      "sha256": "ea766c5906c6a3ddfe878196521e786c93559491d83d0641a2bb9cb0b06619ad",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/footer.png",
+      "bytes": 28777,
+      "sha256": "5fe9ebb917841ed84196b66cddf015cd6903dc848ffe0251fdb0e2c63e774297",
+      "created": "2026-10-08T17:05:12+03:00",
+      "modified": "2026-10-08T17:05:12+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/footer.txt",
+      "bytes": 203,
+      "sha256": "cd07a61ac8cabcddbce61ef3510997473ba87e545f9f0e0054b6693882c4f1a0",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/geometry.json",
+      "bytes": 1543,
+      "sha256": "0077c534793a26205410301288183805b912b61e5e6f0b72aa7a53b633819553",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/get-started.aria.yml",
+      "bytes": 425,
+      "sha256": "bccdd494bdd5f3d0bce44179483452fbb313ef06ed047b647ea43df55fe733db",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/get-started.controls.json",
+      "bytes": 1253,
+      "sha256": "b7b202083d90b087dbe4d705402af250099fc361cccfccac9d43b62b1a7b86d6",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/get-started.controls.txt",
+      "bytes": 300,
+      "sha256": "b4295b8c7b27acbb1d0cc5576b10650a1337d2fa27a3081be5d3e2b5a52d074d",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/get-started.png",
+      "bytes": 63508,
+      "sha256": "55257d364c249b11718438ba18349f283c5865632a598738bf6aab027b280ef5",
+      "created": "2026-10-08T17:05:12+03:00",
+      "modified": "2026-10-08T17:05:12+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/get-started.txt",
+      "bytes": 197,
+      "sha256": "2c0d348c892f2ddbe6c76b3231148ace39af11d5447ba7a5bf787aa4c8de6360",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/header.aria.yml",
+      "bytes": 636,
+      "sha256": "c295e742dfd7e0b4fcf4616b3b55a334278cb072f191e6c8ad8d0b9c2657b6a7",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/header.controls.json",
+      "bytes": 2552,
+      "sha256": "370fb3bc87babbc43b759991671ce7a0a83a703ca529cdac4cb56c7bfe71b223",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/header.controls.txt",
+      "bytes": 555,
+      "sha256": "d01ded080215f7ee253fa50af11f0e41daa2b7c5713f233f9b006d3c83585ffc",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/header.png",
+      "bytes": 13753,
+      "sha256": "49eda91c963f60939ea58cf31872271a728959926ccbf2a61f1ec59e2a9b93f7",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/header.txt",
+      "bytes": 85,
+      "sha256": "538994cd5b20b029c8c4c94eb3eca1d178c9b6c2528da9ec7e1298cc726fb5b2",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/how-it-works.aria.yml",
+      "bytes": 2341,
+      "sha256": "70651afdca5b8a2dbbef0778ae68cb32ce0c3269ff4b9908586bb16ffb6fd3b5",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/how-it-works.controls.json",
+      "bytes": 424,
+      "sha256": "ec1e16139bb5f0fe021f9bae33c016af1fb3ac09365b4831bc7d30506226d544",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/how-it-works.controls.txt",
+      "bytes": 77,
+      "sha256": "44cc6b2a7a0099ab3f6261bb606ce566a9dc315dfb0d62e0af23e5ec3ba4318a",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/how-it-works.png",
+      "bytes": 179589,
+      "sha256": "76069fffc52b703e1526365470f85c58a8ee85bc7dc58831ff263f8d668ca1b6",
+      "created": "2026-10-08T17:05:12+03:00",
+      "modified": "2026-10-08T17:05:12+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/how-it-works.txt",
+      "bytes": 1205,
+      "sha256": "83326615d871ea868fe5b97d1395b7e49fbdddee16d166300505baaf07cba8ae",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/skip-link.aria.yml",
+      "bytes": 44,
+      "sha256": "05812dae1a68d36ae7c448fb6ee8052cf05f2d2b2075e9b25526c3cb1f6b60ae",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/skip-link.controls.json",
+      "bytes": 364,
+      "sha256": "8da0b08a098187ae282b34e858cc7e6003770a6d3f0d82729c0d5f7e1e2af140",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/skip-link.controls.txt",
+      "bytes": 70,
+      "sha256": "67df7aa676eda078470191f5c88d68e6c61bfefcdd2daeb887da2aff924d2751",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1024x768/skip-link.txt",
+      "bytes": 16,
+      "sha256": "1b01ab62a7d5dff9394550ee6e7304d4b70857c2beaf1c2afa2ab725cd9085fc",
+      "created": "2026-10-08T17:05:11+03:00",
+      "modified": "2026-10-08T17:05:11+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/console.txt",
+      "bytes": 24,
+      "sha256": "d7cccd637397a9be132c748b354a39d2cf4178e643c43ae6f8804210d5f8cce0",
+      "created": "2026-10-08T17:05:23+03:00",
+      "modified": "2026-10-08T17:05:23+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/first-viewport.png",
+      "bytes": 139373,
+      "sha256": "6f8b50af87b969a5f590a728f9b586c153cbc8e61f11586a61181e6800e6a59c",
+      "created": "2026-10-08T17:05:16+03:00",
+      "modified": "2026-10-08T17:05:16+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/footer.aria.yml",
+      "bytes": 1295,
+      "sha256": "be0a2b178f868766154b49565de7ffb8b01d4c86d824de6d5f198e2f854919de",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/footer.controls.json",
+      "bytes": 3186,
+      "sha256": "1981fb0f73ac7c09ed3d5b28ddd40434b8d4e4652fb235904f03ecc74b3cf9ee",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/footer.controls.txt",
+      "bytes": 879,
+      "sha256": "004f6789b650fde7b84be28ffeefa41e7ce8b81ca9c4a7347b52f45d9a596525",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/footer.png",
+      "bytes": 29149,
+      "sha256": "7c0d385d12b3a9ac4f676e3124017ac232d0f2e7f08387d43b21de4215eca52b",
+      "created": "2026-10-08T17:05:22+03:00",
+      "modified": "2026-10-08T17:05:22+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/footer.txt",
+      "bytes": 203,
+      "sha256": "cd07a61ac8cabcddbce61ef3510997473ba87e545f9f0e0054b6693882c4f1a0",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/geometry.json",
+      "bytes": 1544,
+      "sha256": "57486b47e6e6812a0e939c44f3604209157b51b97782d8e9ae5c6eb44eca2088",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/get-started.aria.yml",
+      "bytes": 425,
+      "sha256": "bccdd494bdd5f3d0bce44179483452fbb313ef06ed047b647ea43df55fe733db",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/get-started.controls.json",
+      "bytes": 1253,
+      "sha256": "67d4e7c032f42e2435370144efaf62867b474f6a15527ba982bb9783817bbb15",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/get-started.controls.txt",
+      "bytes": 300,
+      "sha256": "6b40e86cfad9a9bd2545ff02156a4561573f33df7b73386fb664e2365b77a9db",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/get-started.png",
+      "bytes": 70529,
+      "sha256": "075a67527e6165fb30e0ff67845ad9db373b310f4a5dd4d1c79566d7675b4995",
+      "created": "2026-10-08T17:05:22+03:00",
+      "modified": "2026-10-08T17:05:22+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/get-started.txt",
+      "bytes": 197,
+      "sha256": "2c0d348c892f2ddbe6c76b3231148ace39af11d5447ba7a5bf787aa4c8de6360",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/header.aria.yml",
+      "bytes": 636,
+      "sha256": "c295e742dfd7e0b4fcf4616b3b55a334278cb072f191e6c8ad8d0b9c2657b6a7",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/header.controls.json",
+      "bytes": 2553,
+      "sha256": "49de25cf0e950a684211bfc51ea37d621bec737288ff1f55d3047c0f55b9ddf8",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/header.controls.txt",
+      "bytes": 555,
+      "sha256": "d01ded080215f7ee253fa50af11f0e41daa2b7c5713f233f9b006d3c83585ffc",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/header.png",
+      "bytes": 13916,
+      "sha256": "0d96c074ba92c87b74aad4be4fa815349906a6f63183c7bd20c98b98814269e1",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/header.txt",
+      "bytes": 85,
+      "sha256": "538994cd5b20b029c8c4c94eb3eca1d178c9b6c2528da9ec7e1298cc726fb5b2",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/how-it-works.aria.yml",
+      "bytes": 2341,
+      "sha256": "70651afdca5b8a2dbbef0778ae68cb32ce0c3269ff4b9908586bb16ffb6fd3b5",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/how-it-works.controls.json",
+      "bytes": 421,
+      "sha256": "29f87eec668b2646cac9fafc182674b1010eae3d310e80dfec75f3bffcd63952",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/how-it-works.controls.txt",
+      "bytes": 74,
+      "sha256": "35ce9b15290775f8efed98d3453548337c71ff8faf3b8cbb929e1b5f8bbb93db",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/how-it-works.png",
+      "bytes": 179833,
+      "sha256": "077ac223cfab0f1d68d387fc964dc5f1730011fe35638ca7c77e6e3bc94e4ae2",
+      "created": "2026-10-08T17:05:22+03:00",
+      "modified": "2026-10-08T17:05:22+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/how-it-works.txt",
+      "bytes": 1205,
+      "sha256": "83326615d871ea868fe5b97d1395b7e49fbdddee16d166300505baaf07cba8ae",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/skip-link.aria.yml",
+      "bytes": 44,
+      "sha256": "05812dae1a68d36ae7c448fb6ee8052cf05f2d2b2075e9b25526c3cb1f6b60ae",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/skip-link.controls.json",
+      "bytes": 364,
+      "sha256": "8da0b08a098187ae282b34e858cc7e6003770a6d3f0d82729c0d5f7e1e2af140",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/skip-link.controls.txt",
+      "bytes": 70,
+      "sha256": "67df7aa676eda078470191f5c88d68e6c61bfefcdd2daeb887da2aff924d2751",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/1280x720/skip-link.txt",
+      "bytes": 16,
+      "sha256": "1b01ab62a7d5dff9394550ee6e7304d4b70857c2beaf1c2afa2ab725cd9085fc",
+      "created": "2026-10-08T17:05:21+03:00",
+      "modified": "2026-10-08T17:05:21+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/console.txt",
+      "bytes": 24,
+      "sha256": "d7cccd637397a9be132c748b354a39d2cf4178e643c43ae6f8804210d5f8cce0",
+      "created": "2026-10-08T17:05:02+03:00",
+      "modified": "2026-10-08T17:05:02+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/first-viewport.png",
+      "bytes": 117782,
+      "sha256": "e4f6bbe6fee5c25736eafeb95c63eb95b9c704c0cdb2440899e74484bdad9524",
+      "created": "2026-10-08T17:04:55+03:00",
+      "modified": "2026-10-08T17:04:55+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/footer.aria.yml",
+      "bytes": 1295,
+      "sha256": "be0a2b178f868766154b49565de7ffb8b01d4c86d824de6d5f198e2f854919de",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/footer.controls.json",
+      "bytes": 3186,
+      "sha256": "00db7becdecd0cfabca47e024e31fcd90066cef3f1a5afecce53efe93f6c4f6a",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/footer.controls.txt",
+      "bytes": 879,
+      "sha256": "fe2fa82f050b064ac350cca0744e18c2ffb354cadeb03e5ed791d3fae03442b1",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/footer.png",
+      "bytes": 28690,
+      "sha256": "2c7bb03e883afdd54321fb265864c79a3e284076326f5ed0a02b31612896d021",
+      "created": "2026-10-08T17:05:01+03:00",
+      "modified": "2026-10-08T17:05:01+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/footer.txt",
+      "bytes": 203,
+      "sha256": "cd07a61ac8cabcddbce61ef3510997473ba87e545f9f0e0054b6693882c4f1a0",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/geometry.json",
+      "bytes": 1547,
+      "sha256": "9c4c89e7645c66ac3873c1574ff6d585d48f48adc77b5f883675eb195ebceb5f",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/get-started.aria.yml",
+      "bytes": 425,
+      "sha256": "bccdd494bdd5f3d0bce44179483452fbb313ef06ed047b647ea43df55fe733db",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/get-started.controls.json",
+      "bytes": 1252,
+      "sha256": "cfc3b8199767d9a31f5157e4a73d382aec8baf47d6160b377ca2691821ae61a6",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/get-started.controls.txt",
+      "bytes": 299,
+      "sha256": "7021fe102c0d51c0954006bfb3ce40fc62446756be16cbd6f87ca157830008b3",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/get-started.png",
+      "bytes": 53699,
+      "sha256": "369ada5dffa065d62308662d3b0b00749c99d73bb5c4f82dda45b827857434c9",
+      "created": "2026-10-08T17:05:01+03:00",
+      "modified": "2026-10-08T17:05:01+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/get-started.txt",
+      "bytes": 197,
+      "sha256": "2c0d348c892f2ddbe6c76b3231148ace39af11d5447ba7a5bf787aa4c8de6360",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/header.aria.yml",
+      "bytes": 225,
+      "sha256": "f5411be0b3e884578d4ff9bd9395b1afe050c34694788eebc40756ffefde2517",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/header.controls.json",
+      "bytes": 1125,
+      "sha256": "52d1cfee8ceb666be55b1535929fffe01f5b6a2ff0f2aa08bdd24e77daec180d",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/header.controls.txt",
+      "bytes": 255,
+      "sha256": "2d4c8da6bfe24388974bab9831f084b38878ba252c3fa595030e9e242d23f663",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/header.png",
+      "bytes": 13973,
+      "sha256": "2d01d872b154be8a63e5ea0fae9146c06bcbdf881e15af35044655968dfacd3f",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/header.txt",
+      "bytes": 37,
+      "sha256": "36cf5aa4482d15b5dcf63a1623dd18be6a5761cd09d80be877665f6cec9f8dc6",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/how-it-works.aria.yml",
+      "bytes": 2341,
+      "sha256": "70651afdca5b8a2dbbef0778ae68cb32ce0c3269ff4b9908586bb16ffb6fd3b5",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/how-it-works.controls.json",
+      "bytes": 424,
+      "sha256": "899b9bf8a55d3cc4487d1570de0af6a1c85e5289c44717f6c0f3bce06f80487a",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/how-it-works.controls.txt",
+      "bytes": 76,
+      "sha256": "10fe2be21336cdfd5611b09694fc70e77f3f7690da72a6fc674996aed0a43a51",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/how-it-works.png",
+      "bytes": 172647,
+      "sha256": "5db085b0f8526e4ebb2f041f70e4ef5bf15a97e4fe8b6b0bbe6f292b42ffb2e7",
+      "created": "2026-10-08T17:05:01+03:00",
+      "modified": "2026-10-08T17:05:01+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/how-it-works.txt",
+      "bytes": 1205,
+      "sha256": "83326615d871ea868fe5b97d1395b7e49fbdddee16d166300505baaf07cba8ae",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/menu-open.aria.yml",
+      "bytes": 700,
+      "sha256": "7e9340535ecb95e36f378d24edaf5217b61af712140764f837043ea635922dec",
+      "created": "2026-10-08T17:05:02+03:00",
+      "modified": "2026-10-08T17:05:02+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/menu-open.controls.txt",
+      "bytes": 632,
+      "sha256": "a59f25034921aac0980dd0c2de14c1d5ca9d216ff1533e391854d7f0b1f931ce",
+      "created": "2026-10-08T17:05:02+03:00",
+      "modified": "2026-10-08T17:05:02+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/menu-open.png",
+      "bytes": 45890,
+      "sha256": "c813f666b259885f8db2988813187a95a6056f95d2c35b1382d46569ff291b98",
+      "created": "2026-10-08T17:05:02+03:00",
+      "modified": "2026-10-08T17:05:02+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/skip-link.aria.yml",
+      "bytes": 44,
+      "sha256": "05812dae1a68d36ae7c448fb6ee8052cf05f2d2b2075e9b25526c3cb1f6b60ae",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/skip-link.controls.json",
+      "bytes": 364,
+      "sha256": "8da0b08a098187ae282b34e858cc7e6003770a6d3f0d82729c0d5f7e1e2af140",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/skip-link.controls.txt",
+      "bytes": 70,
+      "sha256": "67df7aa676eda078470191f5c88d68e6c61bfefcdd2daeb887da2aff924d2751",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/768x1024/skip-link.txt",
+      "bytes": 16,
+      "sha256": "1b01ab62a7d5dff9394550ee6e7304d4b70857c2beaf1c2afa2ab725cd9085fc",
+      "created": "2026-10-08T17:05:00+03:00",
+      "modified": "2026-10-08T17:05:00+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/console.txt",
+      "bytes": 24,
+      "sha256": "d7cccd637397a9be132c748b354a39d2cf4178e643c43ae6f8804210d5f8cce0",
+      "created": "2026-10-08T17:05:38+03:00",
+      "modified": "2026-10-08T17:05:38+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/first-viewport.png",
+      "bytes": 36124,
+      "sha256": "08b9f50d8598006c79f543a8fff72f90712db14ab82fd01bcab3d7038dbe8b05",
+      "created": "2026-10-08T17:05:26+03:00",
+      "modified": "2026-10-08T17:05:26+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/footer.aria.yml",
+      "bytes": 1295,
+      "sha256": "be0a2b178f868766154b49565de7ffb8b01d4c86d824de6d5f198e2f854919de",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/footer.controls.json",
+      "bytes": 3186,
+      "sha256": "50c10116904ac7770d10bd5a29bbe3e4e3f55ba3ddd1e2ce0299103ff4cb3695",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/footer.controls.txt",
+      "bytes": 879,
+      "sha256": "9b93e5efe58d495d4b0ae7605fa866f1f5d385f9c8ec25d54ccc4c82c3410751",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/footer.png",
+      "bytes": 28834,
+      "sha256": "f48f458fb59f97d406241b3b11836722a3b81b39dcae886b42bda1012181a7ca",
+      "created": "2026-10-08T17:05:37+03:00",
+      "modified": "2026-10-08T17:05:37+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/footer.txt",
+      "bytes": 203,
+      "sha256": "cd07a61ac8cabcddbce61ef3510997473ba87e545f9f0e0054b6693882c4f1a0",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/geometry.json",
+      "bytes": 1546,
+      "sha256": "5a7652b87602d373ee92cf281516571d84034367df9cd455ec670772f5c8a08d",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/get-started.aria.yml",
+      "bytes": 425,
+      "sha256": "bccdd494bdd5f3d0bce44179483452fbb313ef06ed047b647ea43df55fe733db",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/get-started.controls.json",
+      "bytes": 1252,
+      "sha256": "d94d6bb05f2f0c5ed62dbd2c4829fc69f728ca56604a951458cccbeeca2f2778",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/get-started.controls.txt",
+      "bytes": 299,
+      "sha256": "f229ac51a84e76f4d59ca4e79830e2ffe8b1276010b40db7ec92571e6a834fd5",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/get-started.png",
+      "bytes": 56411,
+      "sha256": "4a571831ec774d5b4abda6c807c61d1cdb38966900a60ef73e888a9f4978f0d2",
+      "created": "2026-10-08T17:05:37+03:00",
+      "modified": "2026-10-08T17:05:37+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/get-started.txt",
+      "bytes": 197,
+      "sha256": "2c0d348c892f2ddbe6c76b3231148ace39af11d5447ba7a5bf787aa4c8de6360",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/header.aria.yml",
+      "bytes": 225,
+      "sha256": "f5411be0b3e884578d4ff9bd9395b1afe050c34694788eebc40756ffefde2517",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/header.controls.json",
+      "bytes": 1125,
+      "sha256": "16cfa7944998d69f57b2c099f8d1e7f7b46a13c8893ebd80f5236f9eb1eedc89",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/header.controls.txt",
+      "bytes": 255,
+      "sha256": "2d4c8da6bfe24388974bab9831f084b38878ba252c3fa595030e9e242d23f663",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/header.png",
+      "bytes": 14027,
+      "sha256": "e14451aeb472f98460a4470f1b7d5936fc7c7c3c0a837ef5dea841604d1a1af5",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/header.txt",
+      "bytes": 37,
+      "sha256": "36cf5aa4482d15b5dcf63a1623dd18be6a5761cd09d80be877665f6cec9f8dc6",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/how-it-works.aria.yml",
+      "bytes": 2341,
+      "sha256": "70651afdca5b8a2dbbef0778ae68cb32ce0c3269ff4b9908586bb16ffb6fd3b5",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/how-it-works.controls.json",
+      "bytes": 424,
+      "sha256": "00b9166d674f1341cf8234540608d1bb1c29fd1e6693e678e2be9f051b355120",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/how-it-works.controls.txt",
+      "bytes": 76,
+      "sha256": "8cf17143a85782755fa05f2ec4b37b7bc9aef045ad2b22e934d0eeae374a4035",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/how-it-works.png",
+      "bytes": 174989,
+      "sha256": "a75ba873aad2cf3ceff55904fb6a6d6311712598d30e1d669ea95994c818bbaa",
+      "created": "2026-10-08T17:05:37+03:00",
+      "modified": "2026-10-08T17:05:37+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/how-it-works.txt",
+      "bytes": 1205,
+      "sha256": "83326615d871ea868fe5b97d1395b7e49fbdddee16d166300505baaf07cba8ae",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/menu-open.aria.yml",
+      "bytes": 700,
+      "sha256": "7e9340535ecb95e36f378d24edaf5217b61af712140764f837043ea635922dec",
+      "created": "2026-10-08T17:05:38+03:00",
+      "modified": "2026-10-08T17:05:38+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/menu-open.controls.txt",
+      "bytes": 632,
+      "sha256": "a59f25034921aac0980dd0c2de14c1d5ca9d216ff1533e391854d7f0b1f931ce",
+      "created": "2026-10-08T17:05:38+03:00",
+      "modified": "2026-10-08T17:05:38+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/menu-open.png",
+      "bytes": 43670,
+      "sha256": "2655cda12abed440e2349d16ce96de4b29d28ca9fdb9b74a741ab6c04f00e364",
+      "created": "2026-10-08T17:05:38+03:00",
+      "modified": "2026-10-08T17:05:38+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/skip-link.aria.yml",
+      "bytes": 44,
+      "sha256": "05812dae1a68d36ae7c448fb6ee8052cf05f2d2b2075e9b25526c3cb1f6b60ae",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/skip-link.controls.json",
+      "bytes": 364,
+      "sha256": "8da0b08a098187ae282b34e858cc7e6003770a6d3f0d82729c0d5f7e1e2af140",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/skip-link.controls.txt",
+      "bytes": 70,
+      "sha256": "67df7aa676eda078470191f5c88d68e6c61bfefcdd2daeb887da2aff924d2751",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "extra/widths/844x390/skip-link.txt",
+      "bytes": 16,
+      "sha256": "1b01ab62a7d5dff9394550ee6e7304d4b70857c2beaf1c2afa2ab725cd9085fc",
+      "created": "2026-10-08T17:05:36+03:00",
+      "modified": "2026-10-08T17:05:36+03:00"
+    },
+    {
+      "path": "index.json",
+      "bytes": 8521,
+      "sha256": "b3a53c2f097a8eb896f14311ad449cb6b6c9d547c3f0b1fdf768ce1a8473ac91",
+      "created": "2026-10-08T17:09:50+03:00",
+      "modified": "2026-10-08T17:09:50+03:00"
+    },
+    {
+      "path": "record.json",
+      "bytes": 2680,
+      "sha256": "a07ea006122729aa1aa12baabc84058d73ef963cefe209bc7b2ceec946862971",
+      "created": "2026-10-08T02:23:50+03:00",
+      "modified": "2026-10-08T02:23:50+03:00"
+    },
+    {
+      "path": "review/desktop-architecture.png",
+      "bytes": 165947,
+      "sha256": "d15cc29e49cadd350c322a82f9a7b190a0c0953962c5d7018528427b4cb006dd",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:12+03:00"
+    },
+    {
+      "path": "review/desktop-developers.png",
+      "bytes": 203828,
+      "sha256": "84083056d488ae4dc089052be561a1bc74c541ebfdcf441894c3bf3481273684",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:15+03:00"
+    },
+    {
+      "path": "review/desktop-ecosystem.png",
+      "bytes": 175747,
+      "sha256": "a7245a5f7d0d009eaf5ab78238bd6fdc49c0006e8ed66f5f4e168c8c04eb7862",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:15+03:00"
+    },
+    {
+      "path": "review/desktop-entropy.png",
+      "bytes": 181284,
+      "sha256": "f9ad49b8de40311eb2529ddc3ebba81ff9b57f4f5616c6f270178debb578b9da",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:13+03:00"
+    },
+    {
+      "path": "review/desktop-evidence.png",
+      "bytes": 185773,
+      "sha256": "e6e6016529cb4b949a9044ae17116999b1bbe3d9d596839fbf0b0563a6740448",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:14+03:00"
+    },
+    {
+      "path": "review/desktop-first-viewport.png",
+      "bytes": 146915,
+      "sha256": "ce6e3a570bb9d02f92b9d95fb1f30bc0874cd00d43c02430e5f67a93fb2c4d14",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:02+03:00"
+    },
+    {
+      "path": "review/desktop-footer.png",
+      "bytes": 23069,
+      "sha256": "3a43079049a85c2f411b10eb93c78ddbacf7ff0eb9c46837a3a8de4516cc245c",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:16+03:00"
+    },
+    {
+      "path": "review/desktop-get-started.png",
+      "bytes": 52698,
+      "sha256": "0b8dd2aac818ef1ba1b6794a8e745b9e1f7adc9151539b6c0732e2db891fdff9",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:16+03:00"
+    },
+    {
+      "path": "review/desktop-gravity.png",
+      "bytes": 217392,
+      "sha256": "5b78de285f19c08bb926061ff7dece1741f666617e5bfd40d36fcb0088a4cae3",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:13+03:00"
+    },
+    {
+      "path": "review/desktop-history.png",
+      "bytes": 118958,
+      "sha256": "600bf1cad4ee41e42a8b4bd54a869e754ded207d8bd0716dbd80958ede6565fa",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:14+03:00"
+    },
+    {
+      "path": "review/desktop-how-it-works.png",
+      "bytes": 115233,
+      "sha256": "c7645ed4551b97bb1e133adedccb7e6513c62da5e845810316c2ec010d1b5b0a",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:12+03:00"
+    },
+    {
+      "path": "review/desktop-impact.png",
+      "bytes": 169661,
+      "sha256": "efde1a7bc63f7103f3c83f74454d2d15767370ab6f3815531654d5a86d9d13a0",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:13+03:00"
+    },
+    {
+      "path": "review/desktop-open-source.png",
+      "bytes": 129657,
+      "sha256": "1ada349cdfb9fbfc302a5d141bded29c462264a1db8f20a4bb10e1566d40155a",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:15+03:00"
+    },
+    {
+      "path": "review/desktop-rules.png",
+      "bytes": 150359,
+      "sha256": "42fe97445a538af58fc42fdc72d403a2121f7c23edb1ade0d510c513c0ec898d",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:14+03:00"
+    },
+    {
+      "path": "review/desktop-top.png",
+      "bytes": 135850,
+      "sha256": "6cb47f4da0ff69efc6ce06424ba35a4d752f9e1e50e62739e76166052d89151d",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:12+03:00"
+    },
+    {
+      "path": "review/desktop.png",
+      "bytes": 2841852,
+      "sha256": "550e3d602057d82618be42a284b3808dc245861a8748600efcdc52fd15cfa81c",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:11+03:00"
+    },
+    {
+      "path": "review/mobile-architecture.png",
+      "bytes": 167579,
+      "sha256": "92567e944ebab0bf7aa05a692180b1fcdcde270f6a4773b1de2c24f6fe518f07",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:28+03:00"
+    },
+    {
+      "path": "review/mobile-developers.png",
+      "bytes": 377317,
+      "sha256": "ae7c677706e99a9f585d94907de76e6449872e2d181679a12a68e6b73be962e4",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:31+03:00"
+    },
+    {
+      "path": "review/mobile-ecosystem.png",
+      "bytes": 367067,
+      "sha256": "4fff01210c23c0bf8cdc38b61e3ba9be7fe17f5652bb5ab4d94938314353d0aa",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:32+03:00"
+    },
+    {
+      "path": "review/mobile-entropy.png",
+      "bytes": 353018,
+      "sha256": "b77b09dd037b37d98d6736f9773d424d28f3d523b4e4a916f40a1fd1fa10f6fc",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:29+03:00"
+    },
+    {
+      "path": "review/mobile-evidence.png",
+      "bytes": 380983,
+      "sha256": "d1e72dc307338646713b610d89d31a2da64ced3a200d9992b26d6075d3953b36",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:31+03:00"
+    },
+    {
+      "path": "review/mobile-first-viewport.png",
+      "bytes": 140276,
+      "sha256": "4143327096b5c0ac75d699329a98a8c2cf7eaf7821323756dbc4bacbcb3d1486",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:18+03:00"
+    },
+    {
+      "path": "review/mobile-footer.png",
+      "bytes": 52278,
+      "sha256": "ac8966b74d5e6573c4f25f158ad363701c80654a4c8c59e41e01f7d259cac5e5",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:32+03:00"
+    },
+    {
+      "path": "review/mobile-get-started.png",
+      "bytes": 70375,
+      "sha256": "b6f76672b8746d7593d1412904edb6054ced9a0dc1406111cdcf2b76669e32f8",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:32+03:00"
+    },
+    {
+      "path": "review/mobile-gravity.png",
+      "bytes": 367249,
+      "sha256": "3eb351f32f225e1406f434c9f335c3a6a2ee624df8b891661e26a7962b3eb51c",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:29+03:00"
+    },
+    {
+      "path": "review/mobile-history.png",
+      "bytes": 119395,
+      "sha256": "3c753c91e6046215cb6b8af8cd4f8fb9e3dd1a78066b2c53a63730ba91dcbdb4",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:31+03:00"
+    },
+    {
+      "path": "review/mobile-how-it-works.png",
+      "bytes": 297331,
+      "sha256": "493de45378a8730bd3a32c528b97b3027b4c4affd911555170027f2ed4971597",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:28+03:00"
+    },
+    {
+      "path": "review/mobile-impact.png",
+      "bytes": 254723,
+      "sha256": "aaa1f1dab03520f7fdfc93b7d40e2538a22c3fc0a89ca0dc825bc646f4a2ca6c",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:30+03:00"
+    },
+    {
+      "path": "review/mobile-open-source.png",
+      "bytes": 282481,
+      "sha256": "e43a58f3e13b0d9591acc975ea829ce39deb86744fcc24b55100c1447933cbb6",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:32+03:00"
+    },
+    {
+      "path": "review/mobile-rules.png",
+      "bytes": 295125,
+      "sha256": "cbe32abc81718588de4dd5604c2153cd09fa370fe413d91e839de50dfd342d53",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:30+03:00"
+    },
+    {
+      "path": "review/mobile-top.png",
+      "bytes": 176333,
+      "sha256": "e5771dd53bcccc3769855aa88a8f1d08f35323f7287c4cb7e728df00f7ad1def",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:28+03:00"
+    },
+    {
+      "path": "review/mobile.png",
+      "bytes": 2101964,
+      "sha256": "4bb6986bda4b9fa6392ec9606a9beb2c8c370600bcdf387ae983b04434c9e094",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-08T00:48:27+03:00"
+    },
+    {
+      "path": "source-sha256.txt",
+      "bytes": 8820,
+      "sha256": "394b941419184016c89fe718e50577184eff5f999a14731be945185e82d2052a",
+      "created": "2026-10-08T02:12:57+03:00",
+      "modified": "2026-10-08T02:13:04+03:00"
+    },
+    {
+      "path": "source/.impeccable/config.json",
+      "bytes": 619,
+      "sha256": "789fbdb8b136edc64e4e4e9529161c7f29be7fb42f044f23888a29d5319e16ec",
+      "created": "2026-10-08T02:12:57+03:00",
+      "modified": "2026-10-08T01:25:51+03:00"
+    },
+    {
+      "path": "source/.impeccable/decision/brief-body.md",
+      "bytes": 3013,
+      "sha256": "3d36ac88e0aa03fdf9e77736cdaf14dc0f1fff8623a764bbcd9c9b00259877d1",
+      "created": "2026-10-08T02:12:57+03:00",
+      "modified": "2026-10-03T15:00:52+03:00"
+    },
+    {
+      "path": "source/.impeccable/decision/direction.json",
+      "bytes": 9784,
+      "sha256": "50729f445eca3757cae9adef709b96ce1eb9eb50cbc0db88be8cab053e7cf81a",
+      "created": "2026-10-08T02:12:57+03:00",
+      "modified": "2026-10-03T01:48:51+03:00"
+    },
+    {
+      "path": "source/.impeccable/surfaces/app-page-tsx.md",
+      "bytes": 3105,
+      "sha256": "59b453519eb860b7da2ddda4c486865eb186acbc381622bd4e375485e024fc88",
+      "created": "2026-10-08T02:12:57+03:00",
+      "modified": "2026-10-03T15:00:52+03:00"
+    },
+    {
+      "path": "source/PRODUCT.md",
+      "bytes": 5589,
+      "sha256": "a09ae7f754c15d311398df7ca185f690c97d4654533eddc6ad638d17e0ad8b48",
+      "created": "2026-10-08T02:12:56+03:00",
+      "modified": "2026-10-07T15:53:03+03:00"
+    },
+    {
+      "path": "source/README.md",
+      "bytes": 1884,
+      "sha256": "bc51b3e1984cb47d3dde28478e0ba3d55b6c7a75d99b978d0274536499949ae3",
+      "created": "2026-10-08T02:12:56+03:00",
+      "modified": "2026-10-07T15:52:49+03:00"
+    },
+    {
+      "path": "source/app/globals.css",
+      "bytes": 753,
+      "sha256": "2fecc376c15c667c9a5e53eec81ccb020b31368e048dd1face510fe5994428ee",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-03T15:33:15+03:00"
+    },
+    {
+      "path": "source/app/icon.svg",
+      "bytes": 385,
+      "sha256": "19e1ca69ca73eb72ef5fe35b4a5c3fc98d9bdc235dcac492f37beee217caf369",
+      "created": "2026-10-08T02:12:48+03:00",
+      "modified": "2026-10-03T02:22:32+03:00"
+    },
+    {
+      "path": "source/app/layout.tsx",
+      "bytes": 1414,
+      "sha256": "7e1f705849c512a5e7296ba998b2a993718a7e53d59ae131fee188219187e295",
+      "created": "2026-10-08T02:12:49+03:00",
+      "modified": "2026-10-03T16:33:02+03:00"
+    },
+    {
+      "path": "source/app/page.tsx",
+      "bytes": 1267,
+      "sha256": "61482826a69c4eb96dc4ad24a926fcdd7a48b9bbe9d5e67b4d112aedbbee2ae1",
+      "created": "2026-10-08T02:12:49+03:00",
+      "modified": "2026-10-03T04:53:19+03:00"
+    },
+    {
+      "path": "source/app/styles/base.css",
+      "bytes": 5215,
+      "sha256": "f312de425b37a549aaa6ec2b85f760eac0748f71212293367c66361c3b2ed041",
+      "created": "2026-10-08T02:12:49+03:00",
+      "modified": "2026-10-07T15:54:05+03:00"
+    },
+    {
+      "path": "source/app/styles/code.css",
+      "bytes": 2386,
+      "sha256": "1698e6e477ceaa1ee0f562311e410aad6a2a689fa424bb9d8cc74f68fe8d89ee",
+      "created": "2026-10-08T02:12:49+03:00",
+      "modified": "2026-10-05T15:35:11+03:00"
+    },
+    {
+      "path": "source/app/styles/developers.css",
+      "bytes": 4927,
+      "sha256": "afd25aa1205d8c03989f881e169209e23749a0c681773316d2e8045c0ddc18c4",
+      "created": "2026-10-08T02:12:49+03:00",
+      "modified": "2026-10-03T20:16:32+03:00"
+    },
+    {
+      "path": "source/app/styles/drawing.css",
+      "bytes": 4916,
+      "sha256": "582a908f4326f6aeed3d38cc21011cee084af560300cd6999b549e7085fc4482",
+      "created": "2026-10-08T02:12:49+03:00",
+      "modified": "2026-10-03T19:08:08+03:00"
+    },
+    {
+      "path": "source/app/styles/ecosystem.css",
+      "bytes": 3962,
+      "sha256": "f702d0bb136cf254a552e2d77be479fea087b263c81592c3f6aa145549051d07",
+      "created": "2026-10-08T02:12:49+03:00",
+      "modified": "2026-10-03T20:16:32+03:00"
+    },
+    {
+      "path": "source/app/styles/entropy.css",
+      "bytes": 5085,
+      "sha256": "e8903d7510db66b6efb6f5f723dc2aa2263aef3c9e9186acaeba6f3a0ec4dd2b",
+      "created": "2026-10-08T02:12:49+03:00",
+      "modified": "2026-10-05T15:36:13+03:00"
+    },
+    {
+      "path": "source/app/styles/explorer.css",
+      "bytes": 12881,
+      "sha256": "eab3ceb25b16ac5ecc67904ccd6874adbd612dc1d15eff55a4b880b80fbdf9f5",
+      "created": "2026-10-08T02:12:49+03:00",
+      "modified": "2026-10-07T15:21:57+03:00"
+    },
+    {
+      "path": "source/app/styles/gravity.css",
+      "bytes": 7244,
+      "sha256": "0007e9200373a20da5e66fe3f804667f36e1dd4bf8496cd9a194d4318e4212a3",
+      "created": "2026-10-08T02:12:49+03:00",
+      "modified": "2026-10-07T15:26:35+03:00"
+    },
+    {
+      "path": "source/app/styles/history.css",
+      "bytes": 2814,
+      "sha256": "4ae4b65ec6f28103a2c7506bb010044f2a87e7a6392e752761132705f589cf86",
+      "created": "2026-10-08T02:12:50+03:00",
+      "modified": "2026-10-03T20:12:39+03:00"
+    },
+    {
+      "path": "source/app/styles/impact.css",
+      "bytes": 2350,
+      "sha256": "33e7d694971880c4af865a9ea42075f6f8c68a6568b71dcddb6fda8fdeb483b6",
+      "created": "2026-10-08T02:12:50+03:00",
+      "modified": "2026-10-03T18:57:34+03:00"
+    },
+    {
+      "path": "source/app/styles/nav.css",
+      "bytes": 3295,
+      "sha256": "48c92f70147083db62068b3b1e32a0deb8ba1290d8945938aa27adae9510d718",
+      "created": "2026-10-08T02:12:50+03:00",
+      "modified": "2026-10-03T19:20:53+03:00"
+    },
+    {
+      "path": "source/app/styles/open-source.css",
+      "bytes": 1711,
+      "sha256": "ef29af373d612b40ceb0425deb72311d156e47c73790472b068733e244c4594b",
+      "created": "2026-10-08T02:12:50+03:00",
+      "modified": "2026-10-03T20:16:32+03:00"
+    },
+    {
+      "path": "source/app/styles/pipeline.css",
+      "bytes": 3536,
+      "sha256": "dd37e28922f42f2f96b2b207c3c3fa07de562fbe46827d8670b00d0ba44ab522",
+      "created": "2026-10-08T02:12:50+03:00",
+      "modified": "2026-10-03T18:47:14+03:00"
+    },
+    {
+      "path": "source/app/styles/rules-evidence.css",
+      "bytes": 5053,
+      "sha256": "2dee4976add8b62eb8414820df5e0297db6f3a25f77fbba623b0a25a856883d9",
+      "created": "2026-10-08T02:12:50+03:00",
+      "modified": "2026-10-05T15:38:04+03:00"
+    },
+    {
+      "path": "source/app/styles/sections.css",
+      "bytes": 456,
+      "sha256": "acd7baffb61e2f430a8994cdb3d43afcc62ac38a9750fcd446dc94f9c45c7a9a",
+      "created": "2026-10-08T02:12:50+03:00",
+      "modified": "2026-10-03T15:33:54+03:00"
+    },
+    {
+      "path": "source/app/styles/status.css",
+      "bytes": 534,
+      "sha256": "1ceeb30ae61e0016d2d231b3b760672d8bcb8a2e384bc785bff6e4116b0b5a13",
+      "created": "2026-10-08T02:12:50+03:00",
+      "modified": "2026-10-03T18:47:54+03:00"
+    },
+    {
+      "path": "source/components/drawing/LoadDrawing.tsx",
+      "bytes": 23825,
+      "sha256": "41eaf4a146247289a96f8315646ef846842da9ce53464584a1d37e067391fcd3",
+      "created": "2026-10-08T02:12:50+03:00",
+      "modified": "2026-10-03T19:37:30+03:00"
+    },
+    {
+      "path": "source/components/hero/Hero.tsx",
+      "bytes": 1203,
+      "sha256": "7f5642b4d25f1a637fd43c8e65f5b5ca7b1b861e6b9e7c141be84c4b311ae803",
+      "created": "2026-10-08T02:12:50+03:00",
+      "modified": "2026-10-03T20:15:01+03:00"
+    },
+    {
+      "path": "source/components/hero/HeroDrawing.tsx",
+      "bytes": 5190,
+      "sha256": "789aba689c2539d5042507ae170139e84a20932528a99c18c63c1119afe0ae76",
+      "created": "2026-10-08T02:12:51+03:00",
+      "modified": "2026-10-03T19:48:52+03:00"
+    },
+    {
+      "path": "source/components/hero/MemberCard.tsx",
+      "bytes": 8056,
+      "sha256": "941c7f7504e651271ba623a46b90e80f81222b0249d9fca2fdc0ab5fb49a7ad4",
+      "created": "2026-10-08T02:12:51+03:00",
+      "modified": "2026-10-03T19:48:52+03:00"
+    },
+    {
+      "path": "source/components/sections/Architecture.tsx",
+      "bytes": 2183,
+      "sha256": "749e7b12b4ddfecc3311b816650155283d63e26b0fdcb2302465c59f49906d0a",
+      "created": "2026-10-08T02:12:51+03:00",
+      "modified": "2026-10-07T15:21:29+03:00"
+    },
+    {
+      "path": "source/components/sections/ArchitectureExplorer.tsx",
+      "bytes": 40376,
+      "sha256": "a3ec77f7d171b25b09a56c4096375ac871a8fe2f60e3d0a166a04b2934b0f456",
+      "created": "2026-10-08T02:12:51+03:00",
+      "modified": "2026-10-07T15:55:00+03:00"
+    },
+    {
+      "path": "source/components/sections/CommandShowcase.tsx",
+      "bytes": 6256,
+      "sha256": "25a63941a14c4962ef4d7968ce2990941ea1d0e43b51b3668f0ffef60335f400",
+      "created": "2026-10-08T02:12:51+03:00",
+      "modified": "2026-10-07T15:55:18+03:00"
+    },
+    {
+      "path": "source/components/sections/Developers.tsx",
+      "bytes": 4234,
+      "sha256": "9b59e26657e769fe6bd89e436ee10ef972726283c4364b6631045b7c6469cdad",
+      "created": "2026-10-08T02:12:51+03:00",
+      "modified": "2026-10-07T15:55:09+03:00"
+    },
+    {
+      "path": "source/components/sections/Ecosystem.tsx",
+      "bytes": 5940,
+      "sha256": "af10b4aa3e485da7ae5fecdb8ff64e33d0915e4902167fd0fa25edb49cc0b26a",
+      "created": "2026-10-08T02:12:51+03:00",
+      "modified": "2026-10-07T15:55:03+03:00"
+    },
+    {
+      "path": "source/components/sections/Entropy.tsx",
+      "bytes": 1056,
+      "sha256": "8f3a29ea199f7dbba59137f5af6db92d738d66b5e8536b10b8854a04ed580935",
+      "created": "2026-10-08T02:12:51+03:00",
+      "modified": "2026-10-07T15:54:30+03:00"
+    },
+    {
+      "path": "source/components/sections/EntropyStage.tsx",
+      "bytes": 17758,
+      "sha256": "9e9fc9f3bc0ee47883d9ecb41b4041266e395d269baa44f2fd6f45ea88a699f6",
+      "created": "2026-10-08T02:12:52+03:00",
+      "modified": "2026-10-07T15:55:46+03:00"
+    },
+    {
+      "path": "source/components/sections/Evidence.tsx",
+      "bytes": 5108,
+      "sha256": "940d6984f2bcfa7257ff3c39687b519acf4a011d159c44e729ebb713b0a08725",
+      "created": "2026-10-08T02:12:52+03:00",
+      "modified": "2026-10-07T15:57:00+03:00"
+    },
+    {
+      "path": "source/components/sections/FinalCta.tsx",
+      "bytes": 1111,
+      "sha256": "8840cf8fb428ed3bf0c3c5f8292c29a675895611031c6b4a14b5c41a6c0ca117",
+      "created": "2026-10-08T02:12:52+03:00",
+      "modified": "2026-10-03T18:47:16+03:00"
+    },
+    {
+      "path": "source/components/sections/Gravity.tsx",
+      "bytes": 1212,
+      "sha256": "52546446c579fcc0f0feeaa3dbe28d68807eb8c8162b1bdb3c8a3c91d099896d",
+      "created": "2026-10-08T02:12:52+03:00",
+      "modified": "2026-10-07T15:54:30+03:00"
+    },
+    {
+      "path": "source/components/sections/GravityStage.tsx",
+      "bytes": 9756,
+      "sha256": "562635a3c3b57514b741abf99f83cde406dd177b45d78e6d3d5debfdd61d2177",
+      "created": "2026-10-08T02:12:52+03:00",
+      "modified": "2026-10-07T15:55:46+03:00"
+    },
+    {
+      "path": "source/components/sections/History.tsx",
+      "bytes": 5227,
+      "sha256": "be285f264090149f47ccb55e1c845fa5d3b8de01180745a782f085eafa8937c2",
+      "created": "2026-10-08T02:12:52+03:00",
+      "modified": "2026-10-07T15:54:53+03:00"
+    },
+    {
+      "path": "source/components/sections/Impact.tsx",
+      "bytes": 602,
+      "sha256": "3f9dc251528d72033942b5b17bebbbb5e123d1eef601fbbf886f98a3b02b950d",
+      "created": "2026-10-08T02:12:52+03:00",
+      "modified": "2026-10-03T18:55:04+03:00"
+    },
+    {
+      "path": "source/components/sections/ImpactStage.tsx",
+      "bytes": 9598,
+      "sha256": "7ea4afaf7a2b3ec4a7397ad0b9b0cb596daad75107933fed66fb5bba591bc1d6",
+      "created": "2026-10-08T02:12:52+03:00",
+      "modified": "2026-10-07T15:54:51+03:00"
+    },
+    {
+      "path": "source/components/sections/OpenSource.tsx",
+      "bytes": 4595,
+      "sha256": "e212df14d5bf8b4c161eed0d4901763b4c8f29efb32880a4035ea45bc38323e2",
+      "created": "2026-10-08T02:12:52+03:00",
+      "modified": "2026-10-08T00:42:50+03:00"
+    },
+    {
+      "path": "source/components/sections/Pipeline.tsx",
+      "bytes": 4672,
+      "sha256": "509ff2ace7253331de8eb630c084c241404a9ad9a0dae74f3045be38af0dd1fd",
+      "created": "2026-10-08T02:12:53+03:00",
+      "modified": "2026-10-07T15:54:16+03:00"
+    },
+    {
+      "path": "source/components/sections/Rules.tsx",
+      "bytes": 9390,
+      "sha256": "f4dd1983d2698320e745f92c4d277d6d1f542ee0e8d6f9edce26feb9d24754e3",
+      "created": "2026-10-08T02:12:53+03:00",
+      "modified": "2026-10-07T15:54:52+03:00"
+    },
+    {
+      "path": "source/components/site/Footer.tsx",
+      "bytes": 1863,
+      "sha256": "d6493ce0b2d946b6a29ec96ac5ded27b09f7cc37e782f13658d5de1d203acfeb",
+      "created": "2026-10-08T02:12:53+03:00",
+      "modified": "2026-10-03T16:33:01+03:00"
+    },
+    {
+      "path": "source/components/site/MenuDisclosure.tsx",
+      "bytes": 3240,
+      "sha256": "9e405255f56cffc73ae316f7cc7b7b33bdb2106306d763c4ec82e2d3ccd0ba4e",
+      "created": "2026-10-08T02:12:53+03:00",
+      "modified": "2026-10-07T15:55:34+03:00"
+    },
+    {
+      "path": "source/components/site/Navbar.tsx",
+      "bytes": 1806,
+      "sha256": "c9fd37171ad14b471cade6abbe0e077e6514db85de19d056214ab44fb457cb25",
+      "created": "2026-10-08T02:12:53+03:00",
+      "modified": "2026-10-07T15:55:40+03:00"
+    },
+    {
+      "path": "source/components/site/Wordmark.tsx",
+      "bytes": 956,
+      "sha256": "7644ec7535c8924f60473a82e6e42a53b57f77dbe967e66cd69c8e579935d7c0",
+      "created": "2026-10-08T02:12:53+03:00",
+      "modified": "2026-10-03T04:48:31+03:00"
+    },
+    {
+      "path": "source/components/ui/Button.tsx",
+      "bytes": 1881,
+      "sha256": "fdd18e8b15f0e3ebd393ac376464d7e40a42b1f5622825e7fb7fe4e0b0507790",
+      "created": "2026-10-08T02:12:53+03:00",
+      "modified": "2026-10-03T16:34:15+03:00"
+    },
+    {
+      "path": "source/components/ui/CodeBlock.tsx",
+      "bytes": 5323,
+      "sha256": "548a0f17430b7bf911d753df5d527a88f09fec09586c64c79114da27a34ddee8",
+      "created": "2026-10-08T02:12:53+03:00",
+      "modified": "2026-10-03T19:06:42+03:00"
+    },
+    {
+      "path": "source/components/ui/Section.tsx",
+      "bytes": 1320,
+      "sha256": "fdc2eaaab2c9d1d2e9c69e787aa90b18e0a2e5e5f061b7516050564b24fbe953",
+      "created": "2026-10-08T02:12:54+03:00",
+      "modified": "2026-10-03T02:26:27+03:00"
+    },
+    {
+      "path": "source/components/ui/Status.tsx",
+      "bytes": 1185,
+      "sha256": "9f0f95dcf8676808facb4ff386b6b1d95d386ee0dab6fc658c8d60a4ab43aa5b",
+      "created": "2026-10-08T02:12:54+03:00",
+      "modified": "2026-10-03T16:39:11+03:00"
+    },
+    {
+      "path": "source/components/ui/TermLedger.tsx",
+      "bytes": 4132,
+      "sha256": "6ee054cd206fa057505549410e6538982a7e6eff63d64e11b27d3a07677027d9",
+      "created": "2026-10-08T02:12:54+03:00",
+      "modified": "2026-10-07T15:26:27+03:00"
+    },
+    {
+      "path": "source/lib/demo/commands.ts",
+      "bytes": 8643,
+      "sha256": "7785a9a1845d90376d3041a71a63dbfab9d25464a56a1189528dbee75afa2404",
+      "created": "2026-10-08T02:12:54+03:00",
+      "modified": "2026-10-03T19:25:15+03:00"
+    },
+    {
+      "path": "source/lib/demo/entropy.ts",
+      "bytes": 9752,
+      "sha256": "1fd0943846b7cf73a615f16b71bb4dfabd1c8b337a3e87cf89b81991c23632a7",
+      "created": "2026-10-08T02:12:54+03:00",
+      "modified": "2026-10-03T20:08:25+03:00"
+    },
+    {
+      "path": "source/lib/demo/history.ts",
+      "bytes": 7107,
+      "sha256": "4e7ef9182f1b7da44ee90c2874ed985696c32e8a1bc8992da8c4b95c6bca7d88",
+      "created": "2026-10-08T02:12:54+03:00",
+      "modified": "2026-10-03T20:34:27+03:00"
+    },
+    {
+      "path": "source/lib/demo/impact.ts",
+      "bytes": 3004,
+      "sha256": "f179a82634177eae435244a0c731c6250cbc84396de1b83f6b9e8eab5a07be7f",
+      "created": "2026-10-08T02:12:54+03:00",
+      "modified": "2026-10-03T20:08:25+03:00"
+    },
+    {
+      "path": "source/lib/demo/layout.ts",
+      "bytes": 3104,
+      "sha256": "5960fb917c346208dd157b6ad43dd637fd0bdbfa8c98e608b930ba17e10e8ead",
+      "created": "2026-10-08T02:12:55+03:00",
+      "modified": "2026-10-03T18:50:00+03:00"
+    },
+    {
+      "path": "source/lib/demo/metrics.ts",
+      "bytes": 10787,
+      "sha256": "685663d0e0b94d08f1a69e7342fa8d3c7b775eda48acd75880e5350a41996dfb",
+      "created": "2026-10-08T02:12:55+03:00",
+      "modified": "2026-10-03T18:41:41+03:00"
+    },
+    {
+      "path": "source/lib/demo/plan.ts",
+      "bytes": 12944,
+      "sha256": "147243d80ad5000f06ed0a033eee813a7628dc821baae499f307d03aa1d710fb",
+      "created": "2026-10-08T02:12:55+03:00",
+      "modified": "2026-10-07T15:33:39+03:00"
+    },
+    {
+      "path": "source/lib/demo/system.ts",
+      "bytes": 8575,
+      "sha256": "6733ee857bc2f17b4e105a2f307d6b63ed39a42dc59c8b3c5cb8b02722f3e98c",
+      "created": "2026-10-08T02:12:55+03:00",
+      "modified": "2026-10-03T20:08:25+03:00"
+    },
+    {
+      "path": "source/lib/site.ts",
+      "bytes": 3837,
+      "sha256": "98b977501affea6df9576ebee2d3d28f23d1eff6a6e1e3624310dc896733c1f7",
+      "created": "2026-10-08T02:12:55+03:00",
+      "modified": "2026-10-03T16:32:32+03:00"
+    },
+    {
+      "path": "source/lib/text.ts",
+      "bytes": 623,
+      "sha256": "99d63eef6423db028b2ee6585de8abba53168eeeadeeb8da3ce6f60eb038e13d",
+      "created": "2026-10-08T02:12:55+03:00",
+      "modified": "2026-10-03T16:31:42+03:00"
+    },
+    {
+      "path": "source/next.config.ts",
+      "bytes": 421,
+      "sha256": "f280fb4625bde1537e97810491c9fdc27709d540e13da9488837c1d50a4ae8b3",
+      "created": "2026-10-08T02:12:56+03:00",
+      "modified": "2026-10-03T02:22:31+03:00"
+    },
+    {
+      "path": "source/package.json",
+      "bytes": 791,
+      "sha256": "791d9ed21f337fab177d32d57a72fccd92bf05e67a8aef3413d3c6d088aea07d",
+      "created": "2026-10-08T02:12:56+03:00",
+      "modified": "2026-10-03T19:53:40+03:00"
+    },
+    {
+      "path": "source/pnpm-workspace.yaml",
+      "bytes": 99,
+      "sha256": "310e2f020f05ecc6c3c993d077b476bf7310d1d69e04eb031041a47e6af1acf3",
+      "created": "2026-10-08T02:12:57+03:00",
+      "modified": "2026-10-02T21:56:03+03:00"
+    },
+    {
+      "path": "source/postcss.config.mjs",
+      "bytes": 60,
+      "sha256": "a1a188221f064d964dd9958c3d48b0c23252fabbeb6099d95ee8e15c764718b0",
+      "created": "2026-10-08T02:12:57+03:00",
+      "modified": "2026-10-02T21:56:03+03:00"
+    },
+    {
+      "path": "source/public/data/codeverse-graph.json",
+      "bytes": 67920,
+      "sha256": "3e56571401e17aeb7c54179c3aa7c738ee6be552d763ca65380d4378e85a975b",
+      "created": "2026-10-08T02:12:55+03:00",
+      "modified": "2026-10-03T19:51:11+03:00"
+    },
+    {
+      "path": "source/scripts/build-codeverse-graph.mjs",
+      "bytes": 7780,
+      "sha256": "951f70985bdcd668fe440aca170a59cdad2aeaa1a373fd72659e7f832e93d127",
+      "created": "2026-10-08T02:12:56+03:00",
+      "modified": "2026-10-03T19:48:49+03:00"
+    },
+    {
+      "path": "source/scripts/check-links.mjs",
+      "bytes": 1153,
+      "sha256": "d9c4e4c539f7b78735f1ed8a3eb5e6d506d2e835488ee00f2941059666045369",
+      "created": "2026-10-08T02:12:56+03:00",
+      "modified": "2026-10-07T15:57:57+03:00"
+    },
+    {
+      "path": "source/scripts/serve.mjs",
+      "bytes": 1840,
+      "sha256": "e01328ab55088720a125867bc98d1e4d49f8534a7fb44ff9dec68fd31d6e01c8",
+      "created": "2026-10-08T02:12:56+03:00",
+      "modified": "2026-10-03T05:18:19+03:00"
+    },
+    {
+      "path": "source/tsconfig.json",
+      "bytes": 770,
+      "sha256": "f4c70a7e27c90b6aa7b2703179b7b8139d2f1e631067d2c8641527bb3348b2af",
+      "created": "2026-10-08T02:12:56+03:00",
+      "modified": "2026-10-03T04:48:31+03:00"
+    }
+  ]
+}

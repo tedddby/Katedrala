@@ -1,0 +1,173 @@
+[
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Katedrala, back to top",
+    "states": {
+      "focusable": true,
+      "url": "/#top"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#top",
+        "aria-label": "Katedrala, back to top"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 52,
+        "y": 10,
+        "w": 193.7,
+        "h": 43.2
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Get started on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala#get-started"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala#get-started",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1257,
+        "y": 14,
+        "w": 122.9,
+        "h": 36
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "How it works",
+    "states": {
+      "focusable": true,
+      "url": "/#how-it-works"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#how-it-works"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 507,
+        "y": 24,
+        "w": 83.8,
+        "h": 16
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Architecture",
+    "states": {
+      "focusable": true,
+      "url": "/#architecture"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#architecture"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 623,
+        "y": 24,
+        "w": 81.1,
+        "h": 16
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Concepts",
+    "states": {
+      "focusable": true,
+      "url": "/#gravity"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#gravity"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 736,
+        "y": 24,
+        "w": 64.5,
+        "h": 16
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Developers",
+    "states": {
+      "focusable": true,
+      "url": "/#developers"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#developers"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 832,
+        "y": 24,
+        "w": 76.2,
+        "h": 16
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 940,
+        "y": 24,
+        "w": 47.8,
+        "h": 16
+      }
+    }
+  }
+]

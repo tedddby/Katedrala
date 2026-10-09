@@ -1,0 +1,611 @@
+{
+  "sectionIds": [
+    "top",
+    "how-it-works",
+    "architecture",
+    "gravity",
+    "entropy",
+    "impact",
+    "rules",
+    "evidence",
+    "history",
+    "developers",
+    "open-source",
+    "ecosystem",
+    "get-started"
+  ],
+  "inPageTargets": [
+    "#main",
+    "#top",
+    "#how-it-works",
+    "#architecture",
+    "#gravity",
+    "#developers"
+  ],
+  "externalFragments": [
+    "https://github.com/tedddby/Katedrala#get-started"
+  ],
+  "duplicateIds": [],
+  "ids": [
+    {
+      "id": "main",
+      "tag": "main",
+      "unit": "(outside)"
+    },
+    {
+      "id": "top",
+      "tag": "section",
+      "unit": "top"
+    },
+    {
+      "id": "hero-title",
+      "tag": "h1",
+      "unit": "top"
+    },
+    {
+      "id": "_R_1gqatqlb_",
+      "tag": "pattern",
+      "unit": "top"
+    },
+    {
+      "id": "_R_2gqatqlb_",
+      "tag": "pattern",
+      "unit": "top"
+    },
+    {
+      "id": "how-it-works",
+      "tag": "section",
+      "unit": "how-it-works"
+    },
+    {
+      "id": "how-it-works-title",
+      "tag": "h2",
+      "unit": "how-it-works"
+    },
+    {
+      "id": "architecture",
+      "tag": "section",
+      "unit": "architecture"
+    },
+    {
+      "id": "architecture-title",
+      "tag": "h2",
+      "unit": "architecture"
+    },
+    {
+      "id": "arrow-rest",
+      "tag": "marker",
+      "unit": "architecture"
+    },
+    {
+      "id": "arrow-dependency",
+      "tag": "marker",
+      "unit": "architecture"
+    },
+    {
+      "id": "arrow-dependent",
+      "tag": "marker",
+      "unit": "architecture"
+    },
+    {
+      "id": "arrow-module-rest",
+      "tag": "marker",
+      "unit": "architecture"
+    },
+    {
+      "id": "arrow-module-dependency",
+      "tag": "marker",
+      "unit": "architecture"
+    },
+    {
+      "id": "arrow-module-dependent",
+      "tag": "marker",
+      "unit": "architecture"
+    },
+    {
+      "id": "_R_1pqatqlb_",
+      "tag": "span",
+      "unit": "architecture"
+    },
+    {
+      "id": "gravity",
+      "tag": "section",
+      "unit": "gravity"
+    },
+    {
+      "id": "gravity-title",
+      "tag": "h2",
+      "unit": "gravity"
+    },
+    {
+      "id": "_R_2pqaatqlb_",
+      "tag": "pattern",
+      "unit": "gravity"
+    },
+    {
+      "id": "entropy",
+      "tag": "section",
+      "unit": "entropy"
+    },
+    {
+      "id": "entropy-title",
+      "tag": "h2",
+      "unit": "entropy"
+    },
+    {
+      "id": "_R_1qqatqlb_-arrow-base",
+      "tag": "marker",
+      "unit": "entropy"
+    },
+    {
+      "id": "_R_1qqatqlb_-arrow-added",
+      "tag": "marker",
+      "unit": "entropy"
+    },
+    {
+      "id": "_R_1qqatqlb_-arrow-cycle",
+      "tag": "marker",
+      "unit": "entropy"
+    },
+    {
+      "id": "_R_1qqatqlb_-hatch",
+      "tag": "pattern",
+      "unit": "entropy"
+    },
+    {
+      "id": "impact",
+      "tag": "section",
+      "unit": "impact"
+    },
+    {
+      "id": "impact-title",
+      "tag": "h2",
+      "unit": "impact"
+    },
+    {
+      "id": "_R_raatqlb_",
+      "tag": "select",
+      "unit": "impact"
+    },
+    {
+      "id": "_R_1draatqlb_",
+      "tag": "pattern",
+      "unit": "impact"
+    },
+    {
+      "id": "_R_2draatqlb_",
+      "tag": "pattern",
+      "unit": "impact"
+    },
+    {
+      "id": "rules",
+      "tag": "section",
+      "unit": "rules"
+    },
+    {
+      "id": "rules-title",
+      "tag": "h2",
+      "unit": "rules"
+    },
+    {
+      "id": "_R_5rqatqlb_",
+      "tag": "span",
+      "unit": "rules"
+    },
+    {
+      "id": "rules-arrow",
+      "tag": "marker",
+      "unit": "rules"
+    },
+    {
+      "id": "rules-arrow-violation",
+      "tag": "marker",
+      "unit": "rules"
+    },
+    {
+      "id": "rules-arrow-portrait",
+      "tag": "marker",
+      "unit": "rules"
+    },
+    {
+      "id": "rules-arrow-violation-portrait",
+      "tag": "marker",
+      "unit": "rules"
+    },
+    {
+      "id": "evidence",
+      "tag": "section",
+      "unit": "evidence"
+    },
+    {
+      "id": "evidence-title",
+      "tag": "h2",
+      "unit": "evidence"
+    },
+    {
+      "id": "_R_asaatqlb_",
+      "tag": "span",
+      "unit": "evidence"
+    },
+    {
+      "id": "history",
+      "tag": "section",
+      "unit": "history"
+    },
+    {
+      "id": "history-title",
+      "tag": "h2",
+      "unit": "history"
+    },
+    {
+      "id": "developers",
+      "tag": "section",
+      "unit": "developers"
+    },
+    {
+      "id": "developers-title",
+      "tag": "h2",
+      "unit": "developers"
+    },
+    {
+      "id": "_R_1taatqlb_-tab-analyze",
+      "tag": "button",
+      "unit": "developers"
+    },
+    {
+      "id": "_R_1taatqlb_-tab-health",
+      "tag": "button",
+      "unit": "developers"
+    },
+    {
+      "id": "_R_1taatqlb_-tab-impact",
+      "tag": "button",
+      "unit": "developers"
+    },
+    {
+      "id": "_R_1taatqlb_-tab-validate",
+      "tag": "button",
+      "unit": "developers"
+    },
+    {
+      "id": "_R_1taatqlb_-tab-diff",
+      "tag": "button",
+      "unit": "developers"
+    },
+    {
+      "id": "_R_1taatqlb_-panel",
+      "tag": "div",
+      "unit": "developers"
+    },
+    {
+      "id": "_R_16taatqlb_",
+      "tag": "span",
+      "unit": "developers"
+    },
+    {
+      "id": "open-source",
+      "tag": "section",
+      "unit": "open-source"
+    },
+    {
+      "id": "open-source-title",
+      "tag": "h2",
+      "unit": "open-source"
+    },
+    {
+      "id": "ecosystem",
+      "tag": "section",
+      "unit": "ecosystem"
+    },
+    {
+      "id": "ecosystem-title",
+      "tag": "h2",
+      "unit": "ecosystem"
+    },
+    {
+      "id": "get-started",
+      "tag": "section",
+      "unit": "get-started"
+    },
+    {
+      "id": "get-started-title",
+      "tag": "h2",
+      "unit": "get-started"
+    },
+    {
+      "id": "_R_",
+      "tag": "script",
+      "unit": "(outside)"
+    }
+  ],
+  "links": [
+    {
+      "unit": "skip-link",
+      "text": "Skip to content",
+      "href": "#main",
+      "sameDocument": true,
+      "fragment": "#main",
+      "targetExists": true,
+      "rendered": true
+    },
+    {
+      "unit": "header",
+      "text": "Katedrala, back to top",
+      "href": "#top",
+      "sameDocument": true,
+      "fragment": "#top",
+      "targetExists": true,
+      "rendered": true
+    },
+    {
+      "unit": "header",
+      "text": "How it works",
+      "href": "#how-it-works",
+      "sameDocument": true,
+      "fragment": "#how-it-works",
+      "targetExists": true,
+      "rendered": true
+    },
+    {
+      "unit": "header",
+      "text": "Architecture",
+      "href": "#architecture",
+      "sameDocument": true,
+      "fragment": "#architecture",
+      "targetExists": true,
+      "rendered": true
+    },
+    {
+      "unit": "header",
+      "text": "Concepts",
+      "href": "#gravity",
+      "sameDocument": true,
+      "fragment": "#gravity",
+      "targetExists": true,
+      "rendered": true
+    },
+    {
+      "unit": "header",
+      "text": "Developers",
+      "href": "#developers",
+      "sameDocument": true,
+      "fragment": "#developers",
+      "targetExists": true,
+      "rendered": true
+    },
+    {
+      "unit": "header",
+      "text": "GitHub",
+      "href": "https://github.com/tedddby/Katedrala",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "header",
+      "text": "Get started on GitHub",
+      "href": "https://github.com/tedddby/Katedrala#get-started",
+      "sameDocument": false,
+      "fragment": "#get-started",
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "header",
+      "text": "How it works",
+      "href": "#how-it-works",
+      "sameDocument": true,
+      "fragment": "#how-it-works",
+      "targetExists": true,
+      "rendered": false
+    },
+    {
+      "unit": "header",
+      "text": "Architecture",
+      "href": "#architecture",
+      "sameDocument": true,
+      "fragment": "#architecture",
+      "targetExists": true,
+      "rendered": false
+    },
+    {
+      "unit": "header",
+      "text": "Concepts",
+      "href": "#gravity",
+      "sameDocument": true,
+      "fragment": "#gravity",
+      "targetExists": true,
+      "rendered": false
+    },
+    {
+      "unit": "header",
+      "text": "Developers",
+      "href": "#developers",
+      "sameDocument": true,
+      "fragment": "#developers",
+      "targetExists": true,
+      "rendered": false
+    },
+    {
+      "unit": "header",
+      "text": "GitHub",
+      "href": "https://github.com/tedddby/Katedrala",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": false
+    },
+    {
+      "unit": "header",
+      "text": "Get started on GitHub",
+      "href": "https://github.com/tedddby/Katedrala#get-started",
+      "sameDocument": false,
+      "fragment": "#get-started",
+      "targetExists": null,
+      "rendered": false
+    },
+    {
+      "unit": "top",
+      "text": "Explore Katedrala",
+      "href": "#how-it-works",
+      "sameDocument": true,
+      "fragment": "#how-it-works",
+      "targetExists": true,
+      "rendered": true
+    },
+    {
+      "unit": "top",
+      "text": "View on GitHub",
+      "href": "https://github.com/tedddby/Katedrala",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "developers",
+      "text": "from a clone of the repository",
+      "href": "https://github.com/tedddby/Katedrala#get-started",
+      "sameDocument": false,
+      "fragment": "#get-started",
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "open-source",
+      "text": "View on GitHub",
+      "href": "https://github.com/tedddby/Katedrala",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "open-source",
+      "text": "Contribute",
+      "href": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "open-source",
+      "text": "roadmap",
+      "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "ecosystem",
+      "text": "Open CodeVerse",
+      "href": "https://codeverse.awab.tech",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "ecosystem",
+      "text": "CodeVerse on GitHub",
+      "href": "https://github.com/tedddby/CodeVerse",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "get-started",
+      "text": "Get started on GitHub",
+      "href": "https://github.com/tedddby/Katedrala#get-started",
+      "sameDocument": false,
+      "fragment": "#get-started",
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "get-started",
+      "text": "View on GitHub",
+      "href": "https://github.com/tedddby/Katedrala",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "footer",
+      "text": "GitHub",
+      "href": "https://github.com/tedddby/Katedrala",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "footer",
+      "text": "Roadmap",
+      "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "footer",
+      "text": "Contributing",
+      "href": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "footer",
+      "text": "MIT license",
+      "href": "https://github.com/tedddby/Katedrala/blob/main/LICENSE",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "footer",
+      "text": "Architecture document",
+      "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ARCHITECTURE.md",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "footer",
+      "text": "The IR contract",
+      "href": "https://github.com/tedddby/Katedrala/blob/main/docs/IR.md",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "footer",
+      "text": "All documents",
+      "href": "https://github.com/tedddby/Katedrala/tree/main/docs",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    },
+    {
+      "unit": "footer",
+      "text": "CodeVerse",
+      "href": "https://codeverse.awab.tech",
+      "sameDocument": false,
+      "fragment": null,
+      "targetExists": null,
+      "rendered": true
+    }
+  ]
+}

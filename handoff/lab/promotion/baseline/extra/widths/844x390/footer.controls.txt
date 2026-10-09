@@ -1,0 +1,8 @@
+link "GitHub" url=https://github.com/tedddby/Katedrala focusable <a tabindex=0> 47.8x44
+link "Roadmap" url=https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md focusable <a tabindex=0> 65.6x44
+link "Contributing" url=https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md focusable <a tabindex=0> 82.3x44
+link "MIT license" url=https://github.com/tedddby/Katedrala/blob/main/LICENSE focusable <a tabindex=0> 76x44
+link "Architecture document" url=https://github.com/tedddby/Katedrala/blob/main/docs/ARCHITECTURE.md focusable <a tabindex=0> 115.4x68
+link "The IR contract" url=https://github.com/tedddby/Katedrala/blob/main/docs/IR.md focusable <a tabindex=0> 101.4x44
+link "All documents" url=https://github.com/tedddby/Katedrala/tree/main/docs focusable <a tabindex=0> 95.1x44
+link "CodeVerse" url=https://codeverse.awab.tech/ focusable <a tabindex=0> 74.3x44

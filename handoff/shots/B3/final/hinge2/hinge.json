@@ -1,0 +1,1154 @@
+{
+ "768x1024": {
+  "vw": 768,
+  "scrollW": 768,
+  "section": {
+   "l": 0,
+   "t": 1150.171875,
+   "r": 768,
+   "b": 2838.546875,
+   "w": 768,
+   "h": 1688.375
+  },
+  "board": {
+   "l": 0,
+   "t": 1190.171875,
+   "r": 768,
+   "b": 1218.171875,
+   "w": 768,
+   "h": 28
+  },
+  "hangWidth": "3px",
+  "hangMeetsBoard": 0,
+  "hangMeetsFirstWeight": 0,
+  "hangX": 52.8,
+  "weightX": [
+   52.8,
+   52.8,
+   52.8,
+   52.8,
+   52.8
+  ],
+  "h2": {
+   "size": "52.192px",
+   "wdth": "\"wdth\" 78",
+   "lines": 2,
+   "left": 91
+  },
+  "ledeLines": 3,
+  "passes": [
+   {
+    "n": 1,
+    "top": 1533,
+    "height": 194,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "2.5px",
+     "paint": "rgb(180, 177, 169)"
+    },
+    "weight": {
+     "bg": "rgb(233, 230, 223)",
+     "border": "0px",
+     "size": "16px"
+    },
+    "text": [
+     91,
+     557
+    ],
+    "artifact": [
+     91,
+     557,
+     108
+    ],
+    "artifactRows": [
+     [
+      "file",
+      "cache-key.ts"
+     ],
+     [
+      "symbols",
+      "4"
+     ],
+     [
+      "function",
+      "graphCacheKey"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 2,
+    "top": 1767,
+    "height": 240,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "2px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(233, 230, 223)",
+     "border": "0px",
+     "size": "16px"
+    },
+    "text": [
+     91,
+     557
+    ],
+    "artifact": [
+     91,
+     557,
+     133
+    ],
+    "artifactRows": [
+     [
+      "edge",
+      "calls"
+     ],
+     [
+      "from",
+      "createAnalysisService"
+     ],
+     [
+      "to",
+      "graphCacheKey"
+     ],
+     [
+      "at",
+      "analysis-service.ts:219"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 3,
+    "top": 2046,
+    "height": 194,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "1.5px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     91,
+     557
+    ],
+    "artifact": [
+     91,
+     557,
+     108
+    ],
+    "artifactRows": [
+     [
+      "module",
+      "payments"
+     ],
+     [
+      "members",
+      "3"
+     ],
+     [
+      "layer",
+      "service"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 4,
+    "top": 2280,
+    "height": 194,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "1px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     91,
+     557
+    ],
+    "artifact": [
+     91,
+     557,
+     108
+    ],
+    "artifactRows": [
+     [
+      "gravity",
+      "0.58"
+     ],
+     [
+      "reach",
+      "6 of 15"
+     ],
+     [
+      "fan-in",
+      "3"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 5,
+    "top": 2513,
+    "height": 215,
+    "weightOffVerb": 0,
+    "segToNext": null,
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     91,
+     557
+    ],
+    "artifact": [
+     91,
+     557,
+     108
+    ],
+    "artifactRows": [
+     [
+      "reach",
+      "+0.28"
+     ],
+     [
+      "fan-in",
+      "+0.10"
+     ],
+     [
+      "spread",
+      "+0.13"
+     ],
+     [
+      "brokerage",
+      "+0.07"
+     ]
+    ],
+    "overflowing": []
+   }
+  ],
+  "overlaps": [],
+  "partOverlaps": [],
+  "maxRight": 768,
+  "minLeft": 0,
+  "expected": {
+   "1": [
+    [
+     "file",
+     "cache-key.ts"
+    ],
+    [
+     "symbols",
+     "4"
+    ],
+    [
+     "function",
+     "graphCacheKey"
+    ]
+   ],
+   "2": [
+    [
+     "edge",
+     "calls"
+    ],
+    [
+     "from",
+     "createAnalysisService"
+    ],
+    [
+     "to",
+     "graphCacheKey"
+    ],
+    [
+     "at",
+     "analysis-service.ts:219"
+    ]
+   ]
+  },
+  "artifactsMatchEvidence": true,
+  "errors": []
+ },
+ "1023x768": {
+  "vw": 1023,
+  "scrollW": 1023,
+  "section": {
+   "l": 0,
+   "t": 1209.46875,
+   "r": 1023,
+   "b": 2900.296875,
+   "w": 1023,
+   "h": 1690.828125
+  },
+  "board": {
+   "l": 0,
+   "t": 1260.609375,
+   "r": 1023,
+   "b": 1288.609375,
+   "w": 1023,
+   "h": 28
+  },
+  "hangWidth": "3px",
+  "hangMeetsBoard": 0,
+  "hangMeetsFirstWeight": 0,
+  "hangX": 70.7,
+  "weightX": [
+   70.7,
+   70.7,
+   70.7,
+   70.7,
+   70.7
+  ],
+  "h2": {
+   "size": "63.412px",
+   "wdth": "\"wdth\" 78",
+   "lines": 2,
+   "left": 121
+  },
+  "ledeLines": 2,
+  "passes": [
+   {
+    "n": 1,
+    "top": 1604,
+    "height": 196,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "2.5px",
+     "paint": "rgb(180, 177, 169)"
+    },
+    "weight": {
+     "bg": "rgb(233, 230, 223)",
+     "border": "0px",
+     "size": "16px"
+    },
+    "text": [
+     121,
+     697
+    ],
+    "artifact": [
+     121,
+     742,
+     110
+    ],
+    "artifactRows": [
+     [
+      "file",
+      "cache-key.ts"
+     ],
+     [
+      "symbols",
+      "4"
+     ],
+     [
+      "function",
+      "graphCacheKey"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 2,
+    "top": 1840,
+    "height": 217,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "2px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(233, 230, 223)",
+     "border": "0px",
+     "size": "16px"
+    },
+    "text": [
+     121,
+     697
+    ],
+    "artifact": [
+     121,
+     742,
+     110
+    ],
+    "artifactRows": [
+     [
+      "edge",
+      "calls"
+     ],
+     [
+      "from",
+      "createAnalysisService"
+     ],
+     [
+      "to",
+      "graphCacheKey"
+     ],
+     [
+      "at",
+      "analysis-service.ts:219"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 3,
+    "top": 2098,
+    "height": 196,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "1.5px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     121,
+     697
+    ],
+    "artifact": [
+     121,
+     742,
+     110
+    ],
+    "artifactRows": [
+     [
+      "module",
+      "payments"
+     ],
+     [
+      "members",
+      "3"
+     ],
+     [
+      "layer",
+      "service"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 4,
+    "top": 2334,
+    "height": 196,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "1px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     121,
+     697
+    ],
+    "artifact": [
+     121,
+     742,
+     110
+    ],
+    "artifactRows": [
+     [
+      "gravity",
+      "0.58"
+     ],
+     [
+      "reach",
+      "6 of 15"
+     ],
+     [
+      "fan-in",
+      "3"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 5,
+    "top": 2570,
+    "height": 217,
+    "weightOffVerb": 0,
+    "segToNext": null,
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     121,
+     697
+    ],
+    "artifact": [
+     121,
+     742,
+     110
+    ],
+    "artifactRows": [
+     [
+      "reach",
+      "+0.28"
+     ],
+     [
+      "fan-in",
+      "+0.10"
+     ],
+     [
+      "spread",
+      "+0.13"
+     ],
+     [
+      "brokerage",
+      "+0.07"
+     ]
+    ],
+    "overflowing": []
+   }
+  ],
+  "overlaps": [],
+  "partOverlaps": [],
+  "maxRight": 1023,
+  "minLeft": 0,
+  "expected": {
+   "1": [
+    [
+     "file",
+     "cache-key.ts"
+    ],
+    [
+     "symbols",
+     "4"
+    ],
+    [
+     "function",
+     "graphCacheKey"
+    ]
+   ],
+   "2": [
+    [
+     "edge",
+     "calls"
+    ],
+    [
+     "from",
+     "createAnalysisService"
+    ],
+    [
+     "to",
+     "graphCacheKey"
+    ],
+    [
+     "at",
+     "analysis-service.ts:219"
+    ]
+   ]
+  },
+  "artifactsMatchEvidence": true,
+  "errors": []
+ },
+ "1024x768": {
+  "vw": 1024,
+  "scrollW": 1024,
+  "section": {
+   "l": 0,
+   "t": 762.8125,
+   "r": 1024,
+   "b": 2028.53125,
+   "w": 1024,
+   "h": 1265.71875
+  },
+  "board": {
+   "l": 0,
+   "t": 814,
+   "r": 1024,
+   "b": 842,
+   "w": 1024,
+   "h": 28
+  },
+  "hangWidth": "3px",
+  "hangMeetsBoard": 0,
+  "hangMeetsFirstWeight": 0,
+  "hangX": 70.8,
+  "weightX": [
+   70.8,
+   70.8,
+   70.8,
+   70.8,
+   70.8
+  ],
+  "h2": {
+   "size": "63.456px",
+   "wdth": "\"wdth\" 78",
+   "lines": 2,
+   "left": 121
+  },
+  "ledeLines": 2,
+  "passes": [
+   {
+    "n": 1,
+    "top": 1158,
+    "height": 114,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "2.5px",
+     "paint": "rgb(180, 177, 169)"
+    },
+    "weight": {
+     "bg": "rgb(233, 230, 223)",
+     "border": "0px",
+     "size": "16px"
+    },
+    "text": [
+     121,
+     582
+    ],
+    "artifact": [
+     683,
+     983,
+     2
+    ],
+    "artifactRows": [
+     [
+      "file",
+      "cache-key.ts"
+     ],
+     [
+      "symbols",
+      "4"
+     ],
+     [
+      "function",
+      "graphCacheKey"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 2,
+    "top": 1312,
+    "height": 139,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "2px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(233, 230, 223)",
+     "border": "0px",
+     "size": "16px"
+    },
+    "text": [
+     121,
+     582
+    ],
+    "artifact": [
+     683,
+     983,
+     2
+    ],
+    "artifactRows": [
+     [
+      "edge",
+      "calls"
+     ],
+     [
+      "from",
+      "createAnalysisService"
+     ],
+     [
+      "to",
+      "graphCacheKey"
+     ],
+     [
+      "at",
+      "analysis-service.ts:219"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 3,
+    "top": 1492,
+    "height": 114,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "1.5px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     121,
+     582
+    ],
+    "artifact": [
+     683,
+     983,
+     2
+    ],
+    "artifactRows": [
+     [
+      "module",
+      "payments"
+     ],
+     [
+      "members",
+      "3"
+     ],
+     [
+      "layer",
+      "service"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 4,
+    "top": 1646,
+    "height": 114,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "1px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     121,
+     582
+    ],
+    "artifact": [
+     683,
+     983,
+     2
+    ],
+    "artifactRows": [
+     [
+      "gravity",
+      "0.58"
+     ],
+     [
+      "reach",
+      "6 of 15"
+     ],
+     [
+      "fan-in",
+      "3"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 5,
+    "top": 1801,
+    "height": 114,
+    "weightOffVerb": 0,
+    "segToNext": null,
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     121,
+     582
+    ],
+    "artifact": [
+     683,
+     983,
+     2
+    ],
+    "artifactRows": [
+     [
+      "reach",
+      "+0.28"
+     ],
+     [
+      "fan-in",
+      "+0.10"
+     ],
+     [
+      "spread",
+      "+0.13"
+     ],
+     [
+      "brokerage",
+      "+0.07"
+     ]
+    ],
+    "overflowing": []
+   }
+  ],
+  "overlaps": [],
+  "partOverlaps": [],
+  "maxRight": 1024,
+  "minLeft": 0,
+  "expected": {
+   "1": [
+    [
+     "file",
+     "cache-key.ts"
+    ],
+    [
+     "symbols",
+     "4"
+    ],
+    [
+     "function",
+     "graphCacheKey"
+    ]
+   ],
+   "2": [
+    [
+     "edge",
+     "calls"
+    ],
+    [
+     "from",
+     "createAnalysisService"
+    ],
+    [
+     "to",
+     "graphCacheKey"
+    ],
+    [
+     "at",
+     "analysis-service.ts:219"
+    ]
+   ]
+  },
+  "artifactsMatchEvidence": true,
+  "errors": []
+ },
+ "1440x900": {
+  "vw": 1440,
+  "scrollW": 1440,
+  "section": {
+   "l": 0,
+   "t": 751.234375,
+   "r": 1440,
+   "b": 2145.15625,
+   "w": 1440,
+   "h": 1393.921875
+  },
+  "board": {
+   "l": 0,
+   "t": 823.234375,
+   "r": 1440,
+   "b": 851.234375,
+   "w": 1440,
+   "h": 28
+  },
+  "hangWidth": "3px",
+  "hangMeetsBoard": 0,
+  "hangMeetsFirstWeight": 0,
+  "hangX": 104,
+  "weightX": [
+   104,
+   104,
+   104,
+   104,
+   104
+  ],
+  "h2": {
+   "size": "81.76px",
+   "wdth": "\"wdth\" 78",
+   "lines": 2,
+   "left": 172
+  },
+  "ledeLines": 2,
+  "passes": [
+   {
+    "n": 1,
+    "top": 1241,
+    "height": 117,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "2.5px",
+     "paint": "rgb(180, 177, 169)"
+    },
+    "weight": {
+     "bg": "rgb(233, 230, 223)",
+     "border": "0px",
+     "size": "16px"
+    },
+    "text": [
+     172,
+     748
+    ],
+    "artifact": [
+     956,
+     1380,
+     2
+    ],
+    "artifactRows": [
+     [
+      "file",
+      "cache-key.ts"
+     ],
+     [
+      "symbols",
+      "4"
+     ],
+     [
+      "function",
+      "graphCacheKey"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 2,
+    "top": 1406,
+    "height": 117,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "2px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(233, 230, 223)",
+     "border": "0px",
+     "size": "16px"
+    },
+    "text": [
+     172,
+     748
+    ],
+    "artifact": [
+     956,
+     1380,
+     2
+    ],
+    "artifactRows": [
+     [
+      "edge",
+      "calls"
+     ],
+     [
+      "from",
+      "createAnalysisService"
+     ],
+     [
+      "to",
+      "graphCacheKey"
+     ],
+     [
+      "at",
+      "analysis-service.ts:219"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 3,
+    "top": 1571,
+    "height": 117,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "1.5px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     172,
+     748
+    ],
+    "artifact": [
+     956,
+     1380,
+     2
+    ],
+    "artifactRows": [
+     [
+      "module",
+      "payments"
+     ],
+     [
+      "members",
+      "3"
+     ],
+     [
+      "layer",
+      "service"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 4,
+    "top": 1737,
+    "height": 117,
+    "weightOffVerb": 0,
+    "segToNext": {
+     "fromWeight": 0,
+     "toNextWeight": 0,
+     "width": "1px",
+     "paint": "dashed"
+    },
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     172,
+     748
+    ],
+    "artifact": [
+     956,
+     1380,
+     2
+    ],
+    "artifactRows": [
+     [
+      "gravity",
+      "0.58"
+     ],
+     [
+      "reach",
+      "6 of 15"
+     ],
+     [
+      "fan-in",
+      "3"
+     ]
+    ],
+    "overflowing": []
+   },
+   {
+    "n": 5,
+    "top": 1902,
+    "height": 117,
+    "weightOffVerb": 0,
+    "segToNext": null,
+    "weight": {
+     "bg": "rgb(14, 16, 18)",
+     "border": "1px",
+     "size": "16px"
+    },
+    "text": [
+     172,
+     748
+    ],
+    "artifact": [
+     956,
+     1380,
+     2
+    ],
+    "artifactRows": [
+     [
+      "reach",
+      "+0.28"
+     ],
+     [
+      "fan-in",
+      "+0.10"
+     ],
+     [
+      "spread",
+      "+0.13"
+     ],
+     [
+      "brokerage",
+      "+0.07"
+     ]
+    ],
+    "overflowing": []
+   }
+  ],
+  "overlaps": [],
+  "partOverlaps": [],
+  "maxRight": 1440,
+  "minLeft": 0,
+  "expected": {
+   "1": [
+    [
+     "file",
+     "cache-key.ts"
+    ],
+    [
+     "symbols",
+     "4"
+    ],
+    [
+     "function",
+     "graphCacheKey"
+    ]
+   ],
+   "2": [
+    [
+     "edge",
+     "calls"
+    ],
+    [
+     "from",
+     "createAnalysisService"
+    ],
+    [
+     "to",
+     "graphCacheKey"
+    ],
+    [
+     "at",
+     "analysis-service.ts:219"
+    ]
+   ]
+  },
+  "artifactsMatchEvidence": true,
+  "errors": []
+ }
+}

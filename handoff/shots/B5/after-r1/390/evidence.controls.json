@@ -1,0 +1,51 @@
+[
+  {
+    "unit": "evidence",
+    "role": "button",
+    "name": "Copy real output: CodeVerse at 6b942bc",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "evidence",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 314,
+        "y": 12875,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "evidence",
+    "role": "region",
+    "name": "real output: CodeVerse at 6b942bc",
+    "states": {
+      "focusable": true
+    },
+    "dom": {
+      "unit": "evidence",
+      "tag": "pre",
+      "tabIndex": 0,
+      "attrs": {
+        "tabindex": "0",
+        "role": "region",
+        "aria-label": "real output: CodeVerse at 6b942bc"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 12911,
+        "w": 356,
+        "h": 584.5
+      }
+    }
+  }
+]

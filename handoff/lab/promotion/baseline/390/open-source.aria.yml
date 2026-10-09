@@ -1,0 +1,39 @@
+- region "Read every line of it.":
+  - heading "Read every line of it." [level=2]
+  - paragraph: Katedrala is MIT licensed. Its engine, document contract, design decisions and roadmap all live in the repository.
+  - term: MIT licensed
+  - definition: Use it, change it and build on it, in open-source and commercial work alike.
+  - term: A formal contract
+  - definition: The architecture document is specified in the repository, as TypeScript types and the JSON Schema generated from them.
+  - term: Recorded decisions
+  - definition: Architecture decision records explain how the engine is built, and why.
+  - term: Built to extend
+  - definition: Languages plug in through a typed adapter contract. TypeScript and JavaScript come first.
+  - link "View on GitHub":
+    - /url: https://github.com/tedddby/Katedrala
+  - link "Contribute":
+    - /url: https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md
+  - heading "The road to v1." [level=3]
+  - paragraph: 4 of 15 milestones done, 1 in progress. Everything this page marks as planned for v1 is on this list.
+  - img "4 milestones done, 1 in progress, 10 planned"
+  - list:
+    - listitem: 01 Foundation, architecture, IR Done
+    - listitem: 02 TypeScript/JavaScript parsing Done
+    - listitem: 03 Dependency graph Done
+    - listitem: 04 Graph algorithms Done
+    - listitem: 05 Architectural inference Planned
+    - listitem: 06 Metrics Planned
+    - listitem: 07 Anomaly detection Planned
+    - listitem: 08 Rules engine Planned
+    - listitem: 09 Impact analysis Planned
+    - listitem: 10 Architecture diff Planned
+    - listitem: 11 CLI Planned
+    - listitem: 12 Git and CI integration Planned
+    - listitem: 13 Performance and caching In progress
+    - listitem: 14 CodeVerse adapter Planned
+    - listitem: 15 Documentation and release preparation Planned
+  - paragraph:
+    - text: From the
+    - link "roadmap":
+      - /url: https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md
+    - text: in the repository.

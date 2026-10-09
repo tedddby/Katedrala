@@ -1,0 +1,67 @@
+Write down the architecture you intend.
+
+Rules in katedrala.config.yaml will check every change for forbidden dependencies, layering, isolation, cycles and fan-out.
+
+Planned for v1
+katedrala.config.yaml
+Copy
+katedrala.config.yaml
+1groups:
+
+2  controllers: ["src/**/*.controller.ts"]
+
+3  repositories: ["src/**/*.repository.ts"]
+
+4
+
+5modules:
+
+6  payments: ["src/payments/**"]
+
+7  analytics: ["src/analytics/**"]
+
+8
+
+9rules:
+
+10  - id: controllers-no-database
+
+11    severity: error
+
+12    from: controllers
+
+13    cannot_depend_on: [repositories]
+
+14
+
+15  - id: payments-isolation
+
+16    severity: error
+
+17    module: payments
+
+18    cannot_depend_on: [analytics]
+
+hypothetical change
++ OrderController → OrderRepository
+Remove the hypothetical import
+CONTROLLERS
+SERVICES
+REPOSITORIES
+OrderController
+OrderService
+OrderRepository
+prohibited:controllers → repositories
+
+error  controllers-no-database
+, lines 10 to 13 of katedrala.config.yaml
+
+OrderController now depends on OrderRepository.
+
+Controllers cannot depend on repositories. The path through OrderService is allowed; the new import skips it.
+
+src/orders/order.controller.ts
+
+1 error, 2 rules checked
+
+Demonstration system, with one hypothetical import added. The configuration syntax is the one Katedrala's rule fixtures use today; the report layout is a preview.

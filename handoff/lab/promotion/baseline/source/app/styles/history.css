@@ -1,0 +1,93 @@
+/* ------------------------------------------------------------------------------------------------
+ * History: five versions as small multiples.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .history {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .history-version {
+    border-top: 1px solid var(--color-rule-strong);
+    padding-top: 0.875rem;
+  }
+  .history-version[data-finding="true"] {
+    border-top-color: var(--color-load);
+  }
+  .history-edge {
+    stroke-width: 2.2;
+  }
+  /* 0.8 keeps an existing dependency above 3:1 on the sheet, as the Entropy drawing's base edges. */
+  .history-edge-old {
+    stroke: var(--color-ink-faint);
+    opacity: 0.8;
+  }
+  .history-edge-new {
+    stroke: var(--color-ink);
+    stroke-dasharray: 6 5;
+  }
+  /* The dependencies a finding is about: the cycle a new dependency closed, or one that runs up the load path. */
+  .history-edge-flagged {
+    stroke: var(--color-load);
+  }
+  .history-edge-flagged.is-new {
+    stroke-dasharray: 6 5;
+  }
+  .history-absent {
+    fill: none;
+    stroke: var(--color-rule-strong);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 4;
+  }
+  .history-finding {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-load);
+  }
+  /* Below lg the versions become a strip that scrolls sideways. It runs out to the screen edges, so the next
+     version peeks in from beyond the frame (most of it on a phone) instead of being sliced inside the gutter,
+     and fades over the gutters; versions still snap to the frame edge. */
+  @media (max-width: 1023px) {
+    .history {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 13rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      margin-inline: calc(-1 * var(--page-gutter));
+      padding: 0 var(--page-gutter) 0.75rem;
+      scroll-padding-inline: var(--page-gutter);
+    }
+    .history:not(:focus-visible) {
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        #000 var(--page-gutter),
+        #000 calc(100% - var(--page-gutter)),
+        transparent
+      );
+    }
+    .history:focus-visible {
+      outline-offset: -2px;
+    }
+    .history-version {
+      scroll-snap-align: start;
+    }
+  }
+}
+
+/* Forced colors: SVG paint is not forced, so the small multiples restate themselves in system colors, with what
+   a finding is about in Highlight (the joints are restated with the Entropy drawing they share). */
+@media (forced-colors: active) {
+  .history-edge-old,
+  .history-edge-new {
+    stroke: CanvasText;
+  }
+  .history-edge-flagged {
+    stroke: Highlight;
+  }
+  .history-absent {
+    stroke: GrayText;
+  }
+}

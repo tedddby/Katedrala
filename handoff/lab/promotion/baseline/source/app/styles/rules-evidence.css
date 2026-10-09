@@ -1,0 +1,200 @@
+/* ------------------------------------------------------------------------------------------------
+ * Rules and evidence.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  /* The violation panel: a header naming the hypothetical change, the drawing, then the report. */
+  .violation {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-rule-strong);
+    background: var(--color-sheet);
+  }
+  .violation-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    min-height: 2.6875rem;
+    border-bottom: 1px solid var(--color-rule);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    color: var(--color-ink-faint);
+  }
+  .violation-body {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: 1.5rem 1rem 1rem;
+  }
+  .violation-report {
+    margin-inline: 1rem;
+    border-top: 1px solid var(--color-rule);
+    padding-block: 1rem 1.25rem;
+  }
+  .rules-violation {
+    fill: none;
+    stroke: var(--color-load);
+    stroke-width: 1.8;
+    stroke-dasharray: 6 4;
+  }
+  .rules-break {
+    fill: none;
+    stroke: var(--color-load);
+    stroke-width: 2;
+    stroke-linejoin: round;
+  }
+  .rules-label {
+    fill: var(--color-load);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-variation-settings: "wdth" 87.5;
+  }
+
+  /*
+   * The landscape drawing's type, in drawing units. It renders between about 510 and 730 CSS pixels wide, so
+   * the units step up where it renders small and no label drops under 11 pixels.
+   */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .violation-landscape .plan-bay-label,
+    .violation-landscape .rules-label {
+      font-size: 12.5px;
+    }
+    .violation-landscape .plan-label {
+      font-size: 13.5px;
+    }
+  }
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .violation-landscape .plan-bay-label,
+    .violation-landscape .rules-label {
+      font-size: 13.5px;
+    }
+    .violation-landscape .plan-label {
+      font-size: 14.5px;
+    }
+  }
+  /* The portrait drawing is drawn for phones: about 300 units across 260 to 330 pixels. */
+  .violation-portrait .plan-bay-label,
+  .violation-portrait .rules-label {
+    font-size: 12.5px;
+  }
+  .violation-portrait .plan-label {
+    font-size: 14.5px;
+  }
+  @media (max-width: 379px) {
+    .violation-portrait .plan-bay-label,
+    .violation-portrait .rules-label {
+      font-size: 13.5px;
+    }
+  }
+  @media (max-width: 639px) {
+    .violation-body {
+      padding: 1.25rem 0.75rem 0.75rem;
+    }
+    .violation-report {
+      margin-inline: 0.75rem;
+    }
+  }
+
+  /*
+   * Evidence: each reason with its arithmetic in mono columns, closed by the score they add up to. As in the
+   * ledger, the value column is exactly "= 0.00" wide and the gap before it one mono space.
+   */
+  .evidence-item,
+  .evidence-sum {
+    display: grid;
+    grid-template-columns: 0.75rem minmax(0, 1fr) auto 3.125rem;
+    column-gap: 0.5rem;
+    align-items: baseline;
+  }
+  .evidence-item {
+    border-bottom: 1px solid var(--color-rule);
+    padding-bottom: 1rem;
+  }
+  .evidence-mark {
+    align-self: start;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-top: 0.4375rem;
+    color: var(--color-ink-faint);
+  }
+  .evidence-text {
+    padding-left: 0.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+  }
+  .evidence-product {
+    padding-left: 0.5rem;
+    white-space: nowrap;
+    text-align: right;
+    color: var(--color-ink-faint);
+  }
+  .evidence-value {
+    grid-column: 4;
+    white-space: nowrap;
+    text-align: right;
+    color: var(--color-ink);
+  }
+  .evidence-sum {
+    margin-top: 1rem;
+  }
+  .evidence-sum-label {
+    grid-column: 2 / 4;
+    padding-left: 0.25rem;
+    font-size: 0.9375rem;
+    color: var(--color-ink-soft);
+  }
+  /* Phones: the arithmetic moves under its reason, so the reason keeps the full measure. */
+  @media (max-width: 639px) {
+    .evidence-text {
+      grid-column: 2 / -1;
+    }
+    .evidence-product {
+      grid-row: 2;
+      grid-column: 3;
+      margin-top: 0.375rem;
+    }
+    .evidence-item > .evidence-value {
+      grid-row: 2;
+      margin-top: 0.375rem;
+    }
+  }
+}
+
+/*
+ * Forced colors: SVG paint is not forced, so the violation drawing restates itself in system colors, the
+ * violating import in Highlight.
+ */
+@media (forced-colors: active) {
+  .violation .plan-bay rect {
+    fill: Canvas;
+    stroke: GrayText;
+  }
+  .violation .plan-bay-label {
+    fill: GrayText;
+    stroke: Canvas;
+  }
+  .violation .plan-edge,
+  .violation .plan-arrow {
+    stroke: CanvasText;
+  }
+  .violation .plan-joint {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+  .violation .plan-label {
+    fill: CanvasText;
+    stroke: Canvas;
+  }
+  .rules-violation,
+  .rules-break,
+  .violation .plan-arrow-dependency {
+    stroke: Highlight;
+  }
+  .rules-label {
+    fill: Highlight;
+  }
+}

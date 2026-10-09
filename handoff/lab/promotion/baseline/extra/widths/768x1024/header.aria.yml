@@ -1,0 +1,8 @@
+- banner:
+  - link "Katedrala, back to top":
+    - /url: "#top"
+    - text: KATEDRALA
+  - link "Get started on GitHub":
+    - /url: https://github.com/tedddby/Katedrala#get-started
+  - navigation "Primary":
+    - group: Menu

@@ -1,0 +1,9 @@
+tablist "Commands" orientation=vertical <div tabindex=-1>
+tabpanel "analyze What is in this repository?" <div tabindex=-1>
+tab "analyze What is in this repository?" selected controls=[#«id»-panel] focusable <button tabindex=0>
+tab "health Where is the structure weak?" controls=[#«id»-panel] focusable <button tabindex=-1>
+tab "impact What will this change touch?" controls=[#«id»-panel] focusable <button tabindex=-1>
+tab "validate Does the code follow our rules?" controls=[#«id»-panel] focusable <button tabindex=-1>
+tab "diff What changed between two revisions?" controls=[#«id»-panel] focusable <button tabindex=-1>
+button "Copy analyze.mjs" focusable <button tabindex=0>
+link "from a clone of the repository" url=https://github.com/tedddby/Katedrala#get-started focusable <a tabindex=0>

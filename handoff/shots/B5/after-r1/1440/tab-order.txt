@@ -1,0 +1,23 @@
+  1 skip-link     link "Skip to content" <a>
+  2 header        link "Katedrala, back to top" <a>
+  3 header        link "How it works" <a>
+  4 header        link "Architecture" <a>
+  5 header        link "Concepts" <a>
+  6 header        link "Developers" <a>
+  7 header        link "GitHub" <a>
+  8 header        link "Get started on GitHub" <a>
+  9 top           link "Explore Katedrala" <a>
+ 10 top           link "View on GitHub" <a>
+ 11 top           radio "Database, Platform module, gravity 0.64" <g>
+ 12 architecture  radio "Members" <button>
+ 13 architecture  button "Zoom in" <button>
+ 14 architecture  button "Zoom out" <button>
+ 15 architecture  button "Fit the plan" <button>
+ 16 architecture  radio "ApiGateway, Gateway module" <g>
+ 17 architecture  button "calls" <button>
+ 18 architecture  button "instantiates" <button>
+ 19 architecture  button "accesses data" <button>
+ 20 architecture  DisclosureTriangle "Read the graph as a table" <summary>
+ 21 (outside)     generic "" <nextjs-portal> (no :focus-visible) (OFF SCREEN)
+ 22 (outside)     generic "" <nextjs-portal> (no :focus-visible) (OFF SCREEN)
+ 23 (outside)     generic "" <nextjs-portal> (no :focus-visible) (OFF SCREEN)

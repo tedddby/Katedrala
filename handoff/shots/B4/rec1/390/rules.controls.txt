@@ -1,0 +1,4 @@
+button "Copy katedrala.config.yaml" focusable <button tabindex=0>
+region "katedrala.config.yaml" focusable <pre tabindex=0>
+button "Remove the hypothetical import" focusable <button tabindex=0>
+link "controllers-no-database , lines 10 to 13 of katedrala.config.yaml" url=/#rules-config-10 focusable <a tabindex=0>

@@ -1,0 +1,445 @@
+[
+  {
+    "unit": "architecture",
+    "role": "radiogroup",
+    "name": "Scale",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Scale"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 3539,
+        "w": 165.4,
+        "h": 46
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radiogroup",
+    "name": "Architecture plan of the demonstration system, by module",
+    "description": "Arrow keys select modules, + and − zoom, 0 fits, Escape clears.",
+    "states": {
+      "required": false,
+      "describedby": [
+        "#«id»"
+      ]
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "svg",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Architecture plan of the demonstration system, by module",
+        "aria-describedby": "_R_1pqatqlb_"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 3602,
+        "w": 356,
+        "h": 255.6
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Members",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 3540,
+        "w": 84.2,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Modules",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 101,
+        "y": 3540,
+        "w": 79.2,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Zoom in",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Zoom in",
+        "aria-disabled": "false"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 234,
+        "y": 3540,
+        "w": 44,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Zoom out",
+    "states": {
+      "disabled": true,
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Zoom out",
+        "aria-disabled": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 282,
+        "y": 3540,
+        "w": 44,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Fit the plan",
+    "states": {
+      "disabled": true,
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Fit the plan",
+        "aria-disabled": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 330,
+        "y": 3540,
+        "w": 44,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Gateway module, 1 member",
+    "description": "Members: ApiGateway. Depends on Auth, Checkout and Orders. No module depends on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": 0,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "0",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Gateway module, 1 member"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 126,
+        "y": 3605,
+        "w": 74.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Checkout module, 2 members",
+    "description": "Members: CheckoutController and CheckoutService. Depends on Orders, Payments and Users. Depended on by Gateway.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Checkout module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 213,
+        "y": 3647,
+        "w": 79.6,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Orders module, 3 members",
+    "description": "Members: OrderController, OrderService and OrderRepository. Depends on Billing, Payments and Platform. Depended on by Gateway and Checkout.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Orders module, 3 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 73,
+        "y": 3689,
+        "w": 66.9,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Auth module, 2 members",
+    "description": "Members: AuthService and SessionStore. Depends on Users and Platform. Depended on by Gateway.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Auth module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 180,
+        "y": 3731,
+        "w": 56.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Billing module, 1 member",
+    "description": "Members: InvoiceService. Depends on Payments and Users. Depended on by Orders.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Billing module, 1 member"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 256,
+        "y": 3731,
+        "w": 63.2,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Payments module, 3 members",
+    "description": "Members: PaymentService, PaymentRepository and StripeClient. Depends on Platform. Depended on by Checkout, Orders and Billing.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Payments module, 3 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 59,
+        "y": 3773,
+        "w": 81.6,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Users module, 2 members",
+    "description": "Members: UserService and UserRepository. Depends on Platform. Depended on by Checkout, Billing and Auth.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Users module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 220,
+        "y": 3773,
+        "w": 61.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Platform module, 2 members",
+    "description": "Members: EventBus and Database. Depends on no other module. Depended on by Orders, Payments, Users and Auth.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Platform module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 183,
+        "y": 3815,
+        "w": 73.9,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "DisclosureTriangle",
+    "name": "Read the graph as a table",
+    "states": {
+      "focusable": true,
+      "expanded": false
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "summary",
+      "tabIndex": 0,
+      "attrs": {},
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 4096,
+        "w": 171.1,
+        "h": 46.4
+      }
+    }
+  }
+]

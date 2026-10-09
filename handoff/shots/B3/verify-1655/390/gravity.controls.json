@@ -1,0 +1,166 @@
+[
+  {
+    "unit": "gravity",
+    "role": "radiogroup",
+    "name": "Member to measure",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Member to measure"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 4579,
+        "w": 358,
+        "h": 155.2
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "Database 0.64",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 4579,
+        "w": 130.8,
+        "h": 46.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "PaymentService 0.58",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 155,
+        "y": 4579,
+        "w": 173.2,
+        "h": 46.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "OrderService 0.46",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 4633,
+        "w": 153.4,
+        "h": 46.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "CheckoutController 0.25",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 177,
+        "y": 4633,
+        "w": 191.8,
+        "h": 46.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "ApiGateway 0.00",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 4687,
+        "w": 146.7,
+        "h": 46.4
+      }
+    }
+  }
+]

@@ -1,0 +1,194 @@
+[
+  {
+    "unit": "entropy",
+    "role": "radiogroup",
+    "name": "Commits applied",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Commits applied"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 5607,
+        "w": 640,
+        "h": 230.3
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "base Clean structure , entropy 0.22",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 5607,
+        "w": 640,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+1 Send order confirmations from the user repository , entropy +0.23",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 5646,
+        "w": 640,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+2 Check permissions before charging , entropy +0.07",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 5684,
+        "w": 640,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+3 Recalculate invoices from orders , entropy +0.05",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 5722,
+        "w": 640,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+4 Show unpaid invoices on profiles , entropy +0.03",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 5761,
+        "w": 640,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+5 Audit order access from auth , entropy +0.03",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 5799,
+        "w": 640,
+        "h": 38.4
+      }
+    }
+  }
+]

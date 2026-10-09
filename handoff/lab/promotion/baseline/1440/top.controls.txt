@@ -1,0 +1,19 @@
+link "Explore Katedrala" url=/#how-it-works focusable <a tabindex=0>
+link "View on GitHub" url=https://github.com/tedddby/Katedrala focusable <a tabindex=0>
+radiogroup "Load drawing of the demonstration system: 16 members on 8 load levels, each resting on what it depends on" <svg tabindex=-1>
+radio "ApiGateway, Gateway module, gravity 0.00" description="Depends on AuthService, CheckoutController, OrderController. 0 of 15 members rest on it." focusable <g tabindex=-1>
+radio "CheckoutController, Checkout module, gravity 0.25" description="Depends on CheckoutService. 1 of 15 members rests on it." focusable <g tabindex=-1>
+radio "CheckoutService, Checkout module, gravity 0.28" description="Depends on OrderService, PaymentService, UserService. 2 of 15 members rest on it." focusable <g tabindex=-1>
+radio "OrderController, Orders module, gravity 0.26" description="Depends on OrderService. 1 of 15 members rests on it." focusable <g tabindex=-1>
+radio "OrderService, Orders module, gravity 0.46" description="Depends on InvoiceService, PaymentService, OrderRepository, EventBus. 4 of 15 members rest on it." focusable <g tabindex=-1>
+radio "InvoiceService, Billing module, gravity 0.42" description="Depends on PaymentService, UserService. 5 of 15 members rest on it." focusable <g tabindex=-1>
+radio "PaymentService, Payments module, gravity 0.58" description="Depends on StripeClient, PaymentRepository. 6 of 15 members rest on it." focusable <g tabindex=-1>
+radio "UserService, Users module, gravity 0.52" description="Depends on UserRepository. 6 of 15 members rest on it." focusable <g tabindex=-1>
+radio "AuthService, Auth module, gravity 0.25" description="Depends on SessionStore, UserRepository. 1 of 15 members rests on it." focusable <g tabindex=-1>
+radio "PaymentRepository, Payments module, gravity 0.38" description="Depends on Database. 7 of 15 members rest on it." focusable <g tabindex=-1>
+radio "OrderRepository, Orders module, gravity 0.34" description="Depends on Database. 5 of 15 members rest on it." focusable <g tabindex=-1>
+radio "UserRepository, Users module, gravity 0.50" description="Depends on Database. 8 of 15 members rest on it." focusable <g tabindex=-1>
+radio "SessionStore, Auth module, gravity 0.23" description="Depends on Database. 2 of 15 members rest on it." focusable <g tabindex=-1>
+radio "StripeClient, Payments module, gravity 0.35" description="Depends on nothing inside the system. 7 of 15 members rest on it." focusable <g tabindex=-1>
+radio "Database, Platform module, gravity 0.64" description="Depends on nothing inside the system. 13 of 15 members rest on it." focusable <g tabindex=0>
+radio "EventBus, Platform module, gravity 0.37" description="Depends on nothing inside the system. 5 of 15 members rest on it." focusable <g tabindex=-1>

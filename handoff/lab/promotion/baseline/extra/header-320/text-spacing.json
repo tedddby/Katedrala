@@ -1,0 +1,72 @@
+{
+  "screenWidth": 320,
+  "layoutViewportWidth": 342,
+  "visualViewport": {
+    "width": 320,
+    "scale": 1
+  },
+  "docScrollWidth": 342,
+  "header": {
+    "left": 0,
+    "right": 342,
+    "top": 0,
+    "bottom": 65,
+    "w": 342,
+    "h": 65
+  },
+  "frame": {
+    "left": 0,
+    "right": 342,
+    "top": 0,
+    "bottom": 64,
+    "w": 342,
+    "h": 64
+  },
+  "wordmarkLink": {
+    "left": 8,
+    "right": 198.7,
+    "top": 11.3,
+    "bottom": 52.8,
+    "w": 190.7,
+    "h": 41.5
+  },
+  "menuButton": {
+    "left": 249.3,
+    "right": 326,
+    "top": 10,
+    "bottom": 54,
+    "w": 76.7,
+    "h": 44
+  },
+  "menuButtonCutAtRight": 6,
+  "widerThanScreen": [
+    {
+      "unit": "rules",
+      "element": "figure.violation.flex-1",
+      "text": "hypothetical change+ OrderController → OrderRepositoryCONTRO",
+      "right": 342.3,
+      "width": 326.3
+    },
+    {
+      "unit": "header",
+      "element": "header.site-nav.fixed.inset-x-0.top-0",
+      "text": "KATEDRALAHow it worksArchitectureConceptsDevelopersGitHubGet",
+      "right": 342,
+      "width": 342
+    },
+    {
+      "unit": "gravity",
+      "element": "span.status",
+      "text": "Katedrala heuristic, planned for v1",
+      "right": 335.5,
+      "width": 319.5
+    },
+    {
+      "unit": "entropy",
+      "element": "span.status",
+      "text": "Katedrala heuristic, planned for v1",
+      "right": 335.5,
+      "width": 319.5
+    }
+  ]
+}

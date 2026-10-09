@@ -1,0 +1,2466 @@
+[
+  {
+    "unit": "skip-link",
+    "role": "link",
+    "name": "Skip to content",
+    "states": {
+      "focusable": true,
+      "url": "/#main"
+    },
+    "dom": {
+      "unit": "skip-link",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#main"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": -78,
+        "w": 148.8,
+        "h": 47.2
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Katedrala, back to top",
+    "states": {
+      "focusable": true,
+      "url": "/#top"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#top",
+        "aria-label": "Katedrala, back to top"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 8,
+        "y": 10,
+        "w": 193.7,
+        "h": 43.2
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "link",
+    "name": "Explore Katedrala",
+    "states": {
+      "focusable": true,
+      "url": "/#how-it-works"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#how-it-works"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 328,
+        "w": 156.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "link",
+    "name": "View on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 185,
+        "y": 328,
+        "w": 163.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radiogroup",
+    "name": "Scale",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Scale"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 3539,
+        "w": 165.4,
+        "h": 46
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radiogroup",
+    "name": "Architecture plan of the demonstration system, by module",
+    "description": "Arrow keys select modules, + and − zoom, 0 fits, Escape clears.",
+    "states": {
+      "required": false,
+      "describedby": [
+        "#«id»"
+      ]
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "svg",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Architecture plan of the demonstration system, by module",
+        "aria-describedby": "_R_1pqatqlb_"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 3602,
+        "w": 356,
+        "h": 255.6
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radiogroup",
+    "name": "Member to measure",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Member to measure"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 4602,
+        "w": 358,
+        "h": 155.2
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radiogroup",
+    "name": "Commits applied",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Commits applied"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 7428,
+        "w": 358,
+        "h": 311.1
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "combobox",
+    "name": "katedrala impact",
+    "value": "PaymentService",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "hasPopup": "menu",
+      "expanded": false,
+      "labelledby": [
+        "katedrala impact"
+      ]
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "select",
+      "tabIndex": 0,
+      "attrs": {},
+      "rendered": true,
+      "rect": {
+        "x": 33,
+        "y": 8916,
+        "w": 197,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tablist",
+    "name": "Commands",
+    "states": {
+      "multiselectable": false,
+      "orientation": "horizontal"
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "tablist",
+        "aria-label": "Commands",
+        "aria-orientation": "horizontal"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 14874,
+        "w": 358,
+        "h": 97
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tabpanel",
+    "name": "analyze",
+    "states": {
+      "labelledby": [
+        "analyze"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "tabpanel",
+        "aria-labelledby": "_R_1taatqlb_-tab-analyze"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 15031,
+        "w": 358,
+        "h": 356.1
+      }
+    }
+  },
+  {
+    "unit": "open-source",
+    "role": "link",
+    "name": "View on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "open-source",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 17275,
+        "w": 163.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "open-source",
+    "role": "link",
+    "name": "Contribute",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md"
+    },
+    "dom": {
+      "unit": "open-source",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 191,
+        "y": 17275,
+        "w": 132.5,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "ecosystem",
+    "role": "link",
+    "name": "Open CodeVerse",
+    "states": {
+      "focusable": true,
+      "url": "https://codeverse.awab.tech/"
+    },
+    "dom": {
+      "unit": "ecosystem",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://codeverse.awab.tech",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 19738,
+        "w": 173.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "ecosystem",
+    "role": "link",
+    "name": "CodeVerse on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/CodeVerse"
+    },
+    "dom": {
+      "unit": "ecosystem",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/CodeVerse",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 214,
+        "y": 19738,
+        "w": 145.3,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "get-started",
+    "role": "link",
+    "name": "Get started on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala#get-started"
+    },
+    "dom": {
+      "unit": "get-started",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala#get-started",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 20662,
+        "w": 135.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "get-started",
+    "role": "link",
+    "name": "View on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "get-started",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 164,
+        "y": 20662,
+        "w": 163.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "DisclosureTriangle",
+    "name": "Menu",
+    "states": {
+      "focusable": true,
+      "expanded": false
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "summary",
+      "tabIndex": 0,
+      "attrs": {},
+      "rendered": true,
+      "rect": {
+        "x": 304,
+        "y": 10,
+        "w": 70,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radiogroup",
+    "name": "Load drawing of the demonstration system by module: 8 modules on 6 load levels, each resting on what it depends on",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "svg",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Load drawing of the demonstration system by module: 8 modules on 6 load levels, each resting on what it depends on"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 412,
+        "w": 358,
+        "h": 337.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Members",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 3540,
+        "w": 84.2,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Modules",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 101,
+        "y": 3540,
+        "w": 79.2,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Zoom in",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Zoom in",
+        "aria-disabled": "false"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 234,
+        "y": 3540,
+        "w": 44,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Zoom out",
+    "states": {
+      "disabled": true,
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Zoom out",
+        "aria-disabled": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 282,
+        "y": 3540,
+        "w": 44,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Fit the plan",
+    "states": {
+      "disabled": true,
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Fit the plan",
+        "aria-disabled": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 330,
+        "y": 3540,
+        "w": 44,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Gateway module, 1 member",
+    "description": "Members: ApiGateway. Depends on Auth, Checkout and Orders. No module depends on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": 0,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "0",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Gateway module, 1 member"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 126,
+        "y": 3605,
+        "w": 74.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Checkout module, 2 members",
+    "description": "Members: CheckoutController and CheckoutService. Depends on Orders, Payments and Users. Depended on by Gateway.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Checkout module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 213,
+        "y": 3647,
+        "w": 79.6,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Orders module, 3 members",
+    "description": "Members: OrderController, OrderService and OrderRepository. Depends on Billing, Payments and Platform. Depended on by Gateway and Checkout.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Orders module, 3 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 73,
+        "y": 3689,
+        "w": 66.9,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Auth module, 2 members",
+    "description": "Members: AuthService and SessionStore. Depends on Users and Platform. Depended on by Gateway.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Auth module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 180,
+        "y": 3731,
+        "w": 56.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Billing module, 1 member",
+    "description": "Members: InvoiceService. Depends on Payments and Users. Depended on by Orders.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Billing module, 1 member"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 256,
+        "y": 3731,
+        "w": 63.2,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Payments module, 3 members",
+    "description": "Members: PaymentService, PaymentRepository and StripeClient. Depends on Platform. Depended on by Checkout, Orders and Billing.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Payments module, 3 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 59,
+        "y": 3773,
+        "w": 81.6,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Users module, 2 members",
+    "description": "Members: UserService and UserRepository. Depends on Platform. Depended on by Checkout, Billing and Auth.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Users module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 220,
+        "y": 3773,
+        "w": 61.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Platform module, 2 members",
+    "description": "Members: EventBus and Database. Depends on no other module. Depended on by Orders, Payments, Users and Auth.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Platform module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 183,
+        "y": 3815,
+        "w": 73.9,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "DisclosureTriangle",
+    "name": "Read the graph as a table",
+    "states": {
+      "focusable": true,
+      "expanded": false
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "summary",
+      "tabIndex": 0,
+      "attrs": {},
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 4096,
+        "w": 171.1,
+        "h": 46.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "Database 0.64",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 4602,
+        "w": 130.8,
+        "h": 46.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "PaymentService 0.58",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 155,
+        "y": 4602,
+        "w": 173.2,
+        "h": 46.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "OrderService 0.46",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 4657,
+        "w": 153.4,
+        "h": 46.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "CheckoutController 0.25",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 177,
+        "y": 4657,
+        "w": 191.8,
+        "h": 46.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "ApiGateway 0.00",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 4711,
+        "w": 146.7,
+        "h": 46.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "base Clean structure , entropy 0.22",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 7428,
+        "w": 358,
+        "h": 44.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+1 Send order confirmations from the user repository , entropy +0.23",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 7472,
+        "w": 358,
+        "h": 66.8
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+2 Check permissions before charging , entropy +0.07",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 7539,
+        "w": 358,
+        "h": 66.8
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+3 Recalculate invoices from orders , entropy +0.05",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 7606,
+        "w": 358,
+        "h": 44.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+4 Show unpaid invoices on profiles , entropy +0.03",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 7650,
+        "w": 358,
+        "h": 44.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+5 Audit order access from auth , entropy +0.03",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 7694,
+        "w": 358,
+        "h": 44.4
+      }
+    }
+  },
+  {
+    "unit": "evidence",
+    "role": "button",
+    "name": "Copy real output: CodeVerse at 6b942bc",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "evidence",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 314,
+        "y": 12875,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "evidence",
+    "role": "region",
+    "name": "real output: CodeVerse at 6b942bc",
+    "states": {
+      "focusable": true
+    },
+    "dom": {
+      "unit": "evidence",
+      "tag": "pre",
+      "tabIndex": 0,
+      "attrs": {
+        "tabindex": "0",
+        "role": "region",
+        "aria-label": "real output: CodeVerse at 6b942bc"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 12911,
+        "w": 356,
+        "h": 584.5
+      }
+    }
+  },
+  {
+    "unit": "history",
+    "role": "list",
+    "name": "Five versions of the demonstration system",
+    "states": {
+      "focusable": true
+    },
+    "dom": {
+      "unit": "history",
+      "tag": "ol",
+      "tabIndex": 0,
+      "attrs": {
+        "tabindex": "0",
+        "aria-label": "Five versions of the demonstration system"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 0,
+        "y": 14029,
+        "w": 390,
+        "h": 409.1
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "analyze",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": true,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "true",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 14874,
+        "w": 111.3,
+        "h": 48
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "health",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 139,
+        "y": 14874,
+        "w": 111.3,
+        "h": 48
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "impact",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 263,
+        "y": 14874,
+        "w": 111.3,
+        "h": 48
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "validate",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 14922,
+        "w": 111.3,
+        "h": 48
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "diff",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 139,
+        "y": 14922,
+        "w": 111.3,
+        "h": 48
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "button",
+    "name": "Copy analyze.mjs",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 314,
+        "y": 15668,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "region",
+    "name": "analyze.mjs",
+    "states": {
+      "focusable": true
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "pre",
+      "tabIndex": 0,
+      "attrs": {
+        "tabindex": "0",
+        "role": "region",
+        "aria-label": "analyze.mjs"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 15705,
+        "w": 356,
+        "h": 136
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "link",
+    "name": "from a clone of the repository",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala#get-started"
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala#get-started",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 56,
+        "y": 15882,
+        "w": 164.2,
+        "h": 14
+      }
+    }
+  },
+  {
+    "unit": "open-source",
+    "role": "link",
+    "name": "roadmap",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md"
+    },
+    "dom": {
+      "unit": "open-source",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 70,
+        "y": 18124,
+        "w": 51.7,
+        "h": 14
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Gateway module, 1 member",
+    "description": "Members: ApiGateway. 0 of 7 modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Gateway module, 1 member"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 182,
+        "y": 430,
+        "w": 75.5,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Checkout module, 2 members",
+    "description": "Members: CheckoutController, CheckoutService. 1 of 7 modules rests on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Checkout module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 63,
+        "y": 480,
+        "w": 79,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Orders module, 3 members",
+    "description": "Members: OrderController, OrderService, OrderRepository. 2 of 7 modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Orders module, 3 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 189,
+        "y": 529,
+        "w": 66.1,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Billing module, 1 member",
+    "description": "Members: InvoiceService. 3 of 7 modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Billing module, 1 member"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 218,
+        "y": 578,
+        "w": 63.2,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Auth module, 2 members",
+    "description": "Members: AuthService, SessionStore. 1 of 7 modules rests on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Auth module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 310,
+        "y": 578,
+        "w": 55.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Payments module, 3 members",
+    "description": "Members: PaymentService, PaymentRepository, StripeClient. 4 of 7 modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Payments module, 3 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 86,
+        "y": 627,
+        "w": 81.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Users module, 2 members",
+    "description": "Members: UserService, UserRepository. 5 of 7 modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Users module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 217,
+        "y": 627,
+        "w": 61.3,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Platform module, 2 members",
+    "description": "Members: EventBus, Database. all 7 other modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": 0,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "0",
+        "aria-checked": "false",
+        "aria-label": "Platform module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 189,
+        "y": 677,
+        "w": 44,
+        "h": 58.5
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "button",
+    "name": "Show reach in the drawing",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "true"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "true",
+        "aria-label": "Show reach in the drawing"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 295,
+        "y": 5553,
+        "w": 78.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "button",
+    "name": "Show fan-in in the drawing",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "false",
+        "aria-label": "Show fan-in in the drawing"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 295,
+        "y": 5684,
+        "w": 78.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "button",
+    "name": "Show cross-module spread in the drawing",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "false",
+        "aria-label": "Show cross-module spread in the drawing"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 295,
+        "y": 5836,
+        "w": 78.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "button",
+    "name": "Show brokerage in the drawing",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "false",
+        "aria-label": "Show brokerage in the drawing"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 295,
+        "y": 5967,
+        "w": 78.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "AuthService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "CheckoutController",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "CheckoutService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "Database",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "EventBus",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "InvoiceService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "OrderController",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "OrderRepository",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "OrderService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "PaymentRepository",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "PaymentService",
+    "states": {
+      "focusable": true,
+      "selected": true
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "SessionStore",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "StripeClient",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "UserRepository",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "UserService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "rules",
+    "role": "button",
+    "name": "Copy katedrala.config.yaml",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 314,
+        "y": 10350,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "rules",
+    "role": "region",
+    "name": "katedrala.config.yaml",
+    "states": {
+      "focusable": true
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "pre",
+      "tabIndex": 0,
+      "attrs": {
+        "tabindex": "0",
+        "role": "region",
+        "aria-label": "katedrala.config.yaml"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 10387,
+        "w": 356,
+        "h": 401
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 21136,
+        "w": 47.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Roadmap",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 21180,
+        "w": 65.6,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Contributing",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 21224,
+        "w": 82.3,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "MIT license",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/LICENSE"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/LICENSE",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 21268,
+        "w": 76,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Architecture document",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ARCHITECTURE.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ARCHITECTURE.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 203,
+        "y": 21136,
+        "w": 151.5,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "The IR contract",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/IR.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/IR.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 203,
+        "y": 21180,
+        "w": 101.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "All documents",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/tree/main/docs"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/tree/main/docs",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 203,
+        "y": 21224,
+        "w": 95.1,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "CodeVerse",
+    "states": {
+      "focusable": true,
+      "url": "https://codeverse.awab.tech/"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://codeverse.awab.tech",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 21383,
+        "w": 74.3,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "rules",
+    "role": "button",
+    "name": "Remove the hypothetical import",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 29,
+        "y": 10894,
+        "w": 226.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "rules",
+    "role": "link",
+    "name": "controllers-no-database , lines 10 to 13 of katedrala.config.yaml",
+    "states": {
+      "focusable": true,
+      "url": "/#rules-config-10"
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#rules-config-10"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 87,
+        "y": 11407,
+        "w": 191.4,
+        "h": 16
+      }
+    }
+  }
+]

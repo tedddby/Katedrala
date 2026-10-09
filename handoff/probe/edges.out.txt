@@ -1,0 +1,108 @@
+=== ambiguous-boundaries: file pairs all-kinds 63, imports 61, extra (no import) 2
+   src/cart/cart-service.ts -> src/catalog/product.ts  {"uses":1} runtime=1
+   src/server.ts -> src/cart/cart.ts  {"uses":1} runtime=1
+   low-confidence edges: 0
+   roles {"configuration":2,"source":28} packages pkg:npm:=coffee-shop entryPoints file:src/server.ts:main file:src/server.ts:script
+=== circular-dependencies: file pairs all-kinds 27, imports 25, extra (no import) 2
+   src/demo/seed.ts -> src/people/member.ts  {"uses":1} runtime=1
+   src/demo/seed.ts -> src/workflow/column.ts  {"calls":1} runtime=1
+   low-confidence edges: 0
+   roles {"configuration":2,"source":12} packages pkg:npm:=@kanban/board-core entryPoints file:src/index.ts:exports file:src/index.ts:exports
+=== clean-architecture: file pairs all-kinds 76, imports 57, extra (no import) 19
+   src/application/borrow-book.ts -> src/domain/model/errors.ts  {"instantiates":1} runtime=1
+   src/application/borrow-book.ts -> src/domain/model/loan.ts  {"calls":1} runtime=1
+   src/application/borrow-book.ts -> src/domain/ports/book-repository.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/borrow-book.ts -> src/domain/ports/clock.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/borrow-book.ts -> src/domain/ports/loan-repository.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/borrow-book.ts -> src/domain/ports/member-repository.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/borrow-book.ts -> src/domain/ports/notifier.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/dto.ts -> src/domain/model/loan.ts  {"calls":3,"references-type":1,"uses":3} runtime=6
+   src/application/return-book.ts -> src/domain/model/errors.ts  {"instantiates":1} runtime=1
+   src/application/return-book.ts -> src/domain/ports/book-repository.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/return-book.ts -> src/domain/ports/clock.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/return-book.ts -> src/domain/ports/loan-repository.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/send-overdue-reminders.ts -> src/domain/model/loan.ts  {"references-type":1} runtime=0
+   src/application/send-overdue-reminders.ts -> src/domain/ports/clock.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/send-overdue-reminders.ts -> src/domain/ports/loan-repository.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/send-overdue-reminders.ts -> src/domain/ports/member-repository.ts  {"calls":1,"references-type":1} runtime=1
+   src/application/send-overdue-reminders.ts -> src/domain/ports/notifier.ts  {"calls":1,"references-type":1} runtime=1
+   src/infrastructure/persistence/sql-member-repository.ts -> src/domain/model/member.ts  {"instantiates":1,"references-type":3} runtime=1
+   src/infrastructure/persistence/sql-member-repository.ts -> src/domain/ports/member-repository.ts  {"implements":1} runtime=0
+   low-confidence edges: 0
+   roles {"configuration":2,"source":25} packages pkg:npm:=library-lending entryPoints file:src/main.ts:main file:src/main.ts:script
+=== dependency-violations: file pairs all-kinds 40, imports 40, extra (no import) 0
+   low-confidence edges: 0
+   roles {"configuration":3,"source":18} packages pkg:npm:=order-backend entryPoints file:src/main.ts:main file:src/main.ts:script file:src/main.ts:script
+=== express-app: file pairs all-kinds 57, imports 53, extra (no import) 4
+   src/app.ts -> src/controllers/health.controller.ts  {"uses":1} runtime=1
+   src/controllers/orders.controller.ts -> src/services/order.service.ts  {"calls":2} runtime=2
+   src/controllers/users.controller.ts -> src/services/user.service.ts  {"calls":2} runtime=2
+   src/routes/users.routes.ts -> src/controllers/users.controller.ts  {"uses":2} runtime=2
+   low-confidence edges: 0
+   roles {"configuration":2,"source":24,"declaration":1} packages pkg:npm:=orders-api entryPoints file:src/server.ts:main file:src/server.ts:script file:src/server.ts:script
+=== fastify-app: file pairs all-kinds 31, imports 31, extra (no import) 0
+   low-confidence edges: 0
+   roles {"configuration":2,"source":15,"test":1} packages pkg:npm:=fulfillment-api entryPoints file:src/server.ts:main file:src/server.ts:script file:src/server.ts:script
+=== high-fan-in: file pairs all-kinds 70, imports 70, extra (no import) 0
+   low-confidence edges: 0
+   roles {"configuration":2,"source":24} packages pkg:npm:=shop-service entryPoints file:src/main.ts:main file:src/main.ts:script
+=== high-fan-out: file pairs all-kinds 38, imports 38, extra (no import) 0
+   low-confidence edges: 0
+   roles {"configuration":2,"source":23} packages pkg:npm:=fulfillment-worker entryPoints file:src/main.ts:main
+=== javascript-commonjs: file pairs all-kinds 13, imports 13, extra (no import) 0
+   low-confidence edges: 0
+   roles {"configuration":2,"source":13,"data":1} packages pkg:npm:=todo-server entryPoints file:src/server.js:main file:src/server.js:script
+=== layered-architecture: file pairs all-kinds 51, imports 51, extra (no import) 0
+   low-confidence edges: 0
+   roles {"configuration":2,"source":20} packages pkg:npm:=shop-backend entryPoints file:src/main.ts:script file:src/main.ts:script
+=== monorepo: file pairs all-kinds 43, imports 27, extra (no import) 16
+   packages/api/src/handlers/orders.ts -> packages/core/src/orders/order-service.ts  {"calls":1,"references-type":2} runtime=1
+   packages/api/src/handlers/orders.ts -> packages/shared/src/money.ts  {"calls":1} runtime=1
+   packages/api/src/handlers/orders.ts -> packages/shared/src/result.ts  {"uses":1} runtime=1
+   packages/api/src/handlers/products.ts -> packages/core/src/catalog/catalog.ts  {"calls":1,"references-type":1} runtime=1
+   packages/api/src/handlers/products.ts -> packages/core/src/catalog/product.ts  {"references-type":2,"uses":1} runtime=1
+   packages/api/src/routes.ts -> packages/core/src/catalog/catalog.ts  {"calls":1,"instantiates":1} runtime=2
+   packages/api/src/routes.ts -> packages/core/src/catalog/product.ts  {"calls":1} runtime=1
+   packages/api/src/routes.ts -> packages/core/src/orders/order-service.ts  {"instantiates":1} runtime=1
+   packages/core/src/catalog/product.ts -> packages/shared/src/money.ts  {"calls":1,"references-type":1} runtime=1
+   packages/core/src/catalog/product.ts -> packages/shared/src/strings.ts  {"calls":1} runtime=1
+   packages/core/src/orders/order-service.ts -> packages/core/src/catalog/product.ts  {"uses":1} runtime=1
+   packages/core/src/orders/order-service.ts -> packages/shared/src/result.ts  {"calls":2,"references-type":1} runtime=2
+   packages/core/src/orders/order.ts -> packages/shared/src/money.ts  {"calls":3,"references-type":3} runtime=3
+   packages/web/src/components/PriceTag.tsx -> packages/shared/src/money.ts  {"calls":1,"references-type":1} runtime=1
+   packages/web/src/components/ProductCard.tsx -> packages/shared/src/money.ts  {"references-type":1} runtime=0
+   packages/web/src/components/ProductCard.tsx -> packages/shared/src/strings.ts  {"calls":1} runtime=1
+   low-confidence edges: 0
+   roles {"configuration":11,"source":17} packages pkg:npm:=acme-monorepo pkg:npm:packages/api=@acme/api pkg:npm:packages/core=@acme/core pkg:npm:packages/shared=@acme/shared pkg:npm:packages/web=@acme/web entryPoints file:packages/api/src/server.ts:script file:packages/api/src/server.ts:script file:packages/core/src/index.ts:exports file:packages/core/src/index.ts:exports file:packages/core/src/index.ts:main file:packages/core/src/index.ts:types file:packages/shared/src/index.ts:exports file:packages/shared/src/index.ts:exports file:packages/shared/src/index.ts:main file:packages/shared/src/index.ts:types
+=== nestjs-app: file pairs all-kinds 40, imports 40, extra (no import) 0
+   low-confidence edges: 0
+   roles {"configuration":3,"source":20,"test":1} packages pkg:npm:=payments-service entryPoints file:src/main.ts:script
+=== simple-dependencies: file pairs all-kinds 5, imports 5, extra (no import) 0
+   low-confidence edges: 0
+   roles {"configuration":2,"source":6} packages pkg:npm:=expense-report entryPoints file:src/index.ts:bin file:src/index.ts:script
+=== tangled-architecture: file pairs all-kinds 107, imports 94, extra (no import) 13
+   src/cart/abandonment.ts -> src/customers/customer.ts  {"uses":1} runtime=1
+   src/cart/cart-service.ts -> src/catalog/pricing.ts  {"calls":1} runtime=1
+   src/cart/cart-service.ts -> src/catalog/product-service.ts  {"calls":1} runtime=1
+   src/cart/cart-service.ts -> src/catalog/product.ts  {"uses":1} runtime=1
+   src/checkout/checkout-service.ts -> src/customers/customer.ts  {"uses":1} runtime=1
+   src/checkout/payment.ts -> src/checkout/order.ts  {"uses":1} runtime=1
+   src/checkout/receipts.ts -> src/catalog/product.ts  {"uses":1} runtime=1
+   src/customers/customer-service.ts -> src/cart/cart.ts  {"uses":1} runtime=1
+   src/customers/segments.ts -> src/cart/cart.ts  {"uses":1} runtime=1
+   src/inventory/subscribers.ts -> src/checkout/order.ts  {"uses":1} runtime=1
+   src/main.ts -> src/cart/cart.ts  {"uses":1} runtime=1
+   src/main.ts -> src/catalog/product-service.ts  {"calls":2} runtime=2
+   src/main.ts -> src/customers/customer.ts  {"uses":1} runtime=1
+   low-confidence edges: 0
+   roles {"configuration":3,"source":29} packages pkg:npm:=corner-shop entryPoints file:src/main.ts:script
+=== typescript-features: file pairs all-kinds 49, imports 42, extra (no import) 7
+   src/cli.ts -> src/billing/tax.ts  {"calls":1} runtime=1
+   src/cli.ts -> src/shop.ts  {"calls":2} runtime=2
+   src/cli.ts -> src/utils/money.ts  {"calls":1} runtime=1
+   src/orders/order-service.ts -> src/shared/repository.ts  {"calls":1} runtime=1
+   src/ui/App.tsx -> src/customers/customer.ts  {"calls":1,"references-type":1} runtime=1
+   src/ui/App.tsx -> src/orders/order.ts  {"references-type":2} runtime=0
+   src/ui/OrderList.tsx -> src/globals.d.ts  {"uses":1} runtime=1
+   low-confidence edges: 0
+   roles {"configuration":2,"source":23,"data":1,"declaration":1} packages pkg:npm:=@acme/shop-core entryPoints file:src/cli.ts:bin file:src/index.ts:exports file:src/index.ts:exports file:src/index.ts:main file:src/index.ts:types

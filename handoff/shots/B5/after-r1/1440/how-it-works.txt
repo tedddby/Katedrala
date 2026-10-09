@@ -1,0 +1,80 @@
+Source code
+From source code to architecture.
+
+Katedrala is designed as five passes. Each adds to the document and never rewrites what an earlier pass produced.
+
+01
+
+Parse
+
+Each TypeScript and JavaScript file becomes symbols, imports, exports and references.
+
+Available today
+file
+cache-key.ts
+symbols
+4
+function
+graphCacheKey
+
+02
+
+Link
+
+Imports resolve through tsconfig paths, workspaces and package exports; references bind to their declarations. What cannot be bound is counted, never guessed.
+
+Available today
+edge
+calls
+from
+createAnalysisService
+to
+graphCacheKey
+at
+analysis-service.ts:219
+
+03
+
+Infer
+
+Components will be derived from directories and packages; modules and layers will be inferred, each with a confidence and its evidence.
+
+Planned for v1
+module
+payments
+members
+3
+layer
+service
+
+04
+
+Analyze
+
+The dependency graph will be measured for coupling, cycles, centrality, Gravity and Entropy.
+
+Planned for v1
+gravity
+0.58
+reach
+6 of 15
+fan-in
+3
+
+05
+
+Explain
+
+Every conclusion will decompose into the measurements and the lines of code it came from.
+
+Planned for v1
+reach
++0.28
+fan-in
++0.10
+spread
++0.13
+brokerage
++0.07
+
+Parse and Link show Katedrala’s real output for CodeVerse, the relationship traced in the film above. Infer, Analyze and Explain preview v1 on the demonstration system the rest of this page uses.

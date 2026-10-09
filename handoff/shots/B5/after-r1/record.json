@@ -1,0 +1,81 @@
+{
+  "url": "http://localhost:3100/",
+  "started": "2026-10-09T13:10:01.985Z",
+  "finished": "2026-10-09T13:11:31.198Z",
+  "browser": "msedge 154.0.4258.62",
+  "playwright": "playwright-core 1.63.0",
+  "viewports": [
+    {
+      "tag": "1440",
+      "units": [
+        "skip-link",
+        "header",
+        "top",
+        "how-it-works",
+        "architecture",
+        "gravity",
+        "entropy",
+        "impact",
+        "rules",
+        "evidence",
+        "history",
+        "developers",
+        "open-source",
+        "ecosystem",
+        "get-started",
+        "footer"
+      ],
+      "contextOptions": {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "deviceScaleFactor": 1,
+        "isMobile": false,
+        "hasTouch": false,
+        "reducedMotion": "no-preference",
+        "colorScheme": "dark"
+      }
+    },
+    {
+      "tag": "390",
+      "units": [
+        "skip-link",
+        "header",
+        "top",
+        "how-it-works",
+        "architecture",
+        "gravity",
+        "entropy",
+        "impact",
+        "rules",
+        "evidence",
+        "history",
+        "developers",
+        "open-source",
+        "ecosystem",
+        "get-started",
+        "footer"
+      ],
+      "contextOptions": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "deviceScaleFactor": 2,
+        "isMobile": true,
+        "hasTouch": true,
+        "reducedMotion": "no-preference",
+        "colorScheme": "dark"
+      }
+    }
+  ],
+  "log": [
+    "[1440] full page 1440x16058",
+    "[1440] Tab walk stuck at (outside)|generic||0,0",
+    "[1440] Tab walk: 23 stops; under the header: 0; off screen: 3; without :focus-visible: 3",
+    "[390] full page 390x21483",
+    "[390] Tab walk: 45 stops; under the header: 0; off screen: 0; without :focus-visible: 0",
+    "[390] menu: {\"media\":{\"(pointer: coarse)\":true,\"(pointer: fine)\":false,\"(any-pointer: coarse)\":true,\"(hover: hover)\":false,\"(hover: none)\":true,\"(prefers-reduced-motion: reduce)\":false,\"(prefers-color-scheme: dark)\":true},\"toggleBox\":{\"width\":70,\"height\":44},\"opensOnTap\":true,\"menuLinkBoxes\":[\"How it works 206x47\",\"Architecture 206x47\",\"Concepts 206x47\",\"Developers 206x47\",\"GitHub 206x47\",\"Get started on GitHub 206x47\"],\"escape\":{\"focusWasInside\":true,\"closed\":true,\"focusReturnedToToggle\":true},\"outsidePress\":{\"reopened\":true,\"closed\":true},\"linkChoice\":{\"href\":\"#how-it-works\",\"closed\":true,\"hash\":\"#how-it-works\",\"targetTopInViewport\":80,\"headerBottom\":65},\"tabAway\":{\"openedByKeyboard\":true,\"linksInMenu\":6,\"tabPressesToLeave\":7,\"closed\":true,\"focusLandedOn\":\"a Explore Katedrala\"}}"
+  ]
+}

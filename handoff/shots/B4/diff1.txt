@@ -1,0 +1,446 @@
+=== 1440 architecture.txt
+=== 1440 architecture.aria.yml
+=== 1440 architecture.controls.txt
+=== 1440 gravity.txt
+42c42
+< Database: gravity 0.64, 13 of 15 members rest on it.
+---
+> Database: gravity 0.64. Reach lights 13 members: ApiGateway, AuthService, CheckoutController, CheckoutService, InvoiceService, OrderController, OrderRepository, OrderService, PaymentRepository, PaymentService, SessionStore, UserRepository and UserService.
+46a47,48
+> Why does Database score 0.64?
+> 
+55a58,61
+> 
+> 13 of 15 members rest on it, directly or through other members.
+> 
+> Show
+62a69,72
+> 
+> 4 members access data in it directly: OrderRepository, PaymentRepository, SessionStore and UserRepository.
+> 
+> Show
+69a80,83
+> 
+> 4 other modules access data in it: Auth, Orders, Payments and Users.
+> 
+> Show
+76a91,94
+> 
+> No shortest dependency path between two other members passes through it.
+> 
+> Show
+=== 1440 gravity.aria.yml
+15c15
+<   - status: "Database: gravity 0.64, 13 of 15 members rest on it."
+---
+>   - status: "Database: gravity 0.64. Reach lights 13 members: ApiGateway, AuthService, CheckoutController, CheckoutService, InvoiceService, OrderController, OrderRepository, OrderService, PaymentRepository, PaymentService, SessionStore, UserRepository and UserService."
+16a17
+>   - heading "Why does Database score 0.64?" [level=3]
+18,21c19,34
+<     - listitem: "Reach 13 of 15 rest on it : normalized 0.95 × weight 0.40 = 0.38"
+<     - listitem: "Fan-in 4 direct : normalized 0.58 × weight 0.20 = 0.12"
+<     - listitem: "Cross-module spread 4 other modules : normalized 0.57 × weight 0.25 = 0.14"
+<     - listitem: "Brokerage betweenness 0.0 : normalized 0.00 × weight 0.15 = 0.00"
+---
+>     - listitem:
+>       - text: "Reach 13 of 15 rest on it : normalized 0.95 × weight 0.40 = 0.38"
+>       - paragraph: 13 of 15 members rest on it, directly or through other members.
+>       - button "Show reach in the drawing" [pressed]: Show
+>     - listitem:
+>       - text: "Fan-in 4 direct : normalized 0.58 × weight 0.20 = 0.12"
+>       - paragraph: "4 members access data in it directly: OrderRepository, PaymentRepository, SessionStore and UserRepository."
+>       - button "Show fan-in in the drawing": Show
+>     - listitem:
+>       - text: "Cross-module spread 4 other modules : normalized 0.57 × weight 0.25 = 0.14"
+>       - paragraph: "4 other modules access data in it: Auth, Orders, Payments and Users."
+>       - button "Show cross-module spread in the drawing": Show
+>     - listitem:
+>       - text: "Brokerage betweenness 0.0 : normalized 0.00 × weight 0.15 = 0.00"
+>       - paragraph: No shortest dependency path between two other members passes through it.
+>       - button "Show brokerage in the drawing": Show
+=== 1440 gravity.controls.txt
+6a7,10
+> button "Show reach in the drawing" pressed=true focusable <button tabindex=0>
+> button "Show fan-in in the drawing" focusable <button tabindex=0>
+> button "Show cross-module spread in the drawing" focusable <button tabindex=0>
+> button "Show brokerage in the drawing" focusable <button tabindex=0>
+=== 1440 entropy.txt
+19a20,21
+> , entropy
+> 0.22
+21a24,25
+> , entropy
+> +0.23
+23a28,29
+> , entropy
+> +0.07
+25a32,33
+> , entropy
+> +0.05
+27a36,37
+> , entropy
+> +0.03
+29a40,41
+> , entropy
+> +0.03
+=== 1440 entropy.aria.yml
+10,15c10,15
+<     - radio "base Clean structure" [checked]
+<     - radio "+1 Send order confirmations from the user repository"
+<     - radio "+2 Check permissions before charging"
+<     - radio "+3 Recalculate invoices from orders"
+<     - radio "+4 Show unpaid invoices on profiles"
+<     - radio "+5 Audit order access from auth"
+---
+>     - radio "base Clean structure , entropy 0.22" [checked]
+>     - radio "+1 Send order confirmations from the user repository , entropy +0.23"
+>     - radio "+2 Check permissions before charging , entropy +0.07"
+>     - radio "+3 Recalculate invoices from orders , entropy +0.05"
+>     - radio "+4 Show unpaid invoices on profiles , entropy +0.03"
+>     - radio "+5 Audit order access from auth , entropy +0.03"
+=== 1440 entropy.controls.txt
+2,7c2,7
+< radio "base Clean structure" checked=true focusable <button tabindex=0>
+< radio "+1 Send order confirmations from the user repository" focusable <button tabindex=-1>
+< radio "+2 Check permissions before charging" focusable <button tabindex=-1>
+< radio "+3 Recalculate invoices from orders" focusable <button tabindex=-1>
+< radio "+4 Show unpaid invoices on profiles" focusable <button tabindex=-1>
+< radio "+5 Audit order access from auth" focusable <button tabindex=-1>
+---
+> radio "base Clean structure , entropy 0.22" checked=true focusable <button tabindex=0>
+> radio "+1 Send order confirmations from the user repository , entropy +0.23" focusable <button tabindex=-1>
+> radio "+2 Check permissions before charging , entropy +0.07" focusable <button tabindex=-1>
+> radio "+3 Recalculate invoices from orders , entropy +0.05" focusable <button tabindex=-1>
+> radio "+4 Show unpaid invoices on profiles , entropy +0.03" focusable <button tabindex=-1>
+> radio "+5 Audit order access from auth , entropy +0.03" focusable <button tabindex=-1>
+=== 1440 rules.txt
+9c9
+< groups:
+---
+> 1groups:
+11c11
+<   controllers: ["src/**/*.controller.ts"]
+---
+> 2  controllers: ["src/**/*.controller.ts"]
+13c13
+<   repositories: ["src/**/*.repository.ts"]
+---
+> 3  repositories: ["src/**/*.repository.ts"]
+14a15
+> 4
+15a17
+> 5modules:
+17c19
+< modules:
+---
+> 6  payments: ["src/payments/**"]
+19c21
+<   payments: ["src/payments/**"]
+---
+> 7  analytics: ["src/analytics/**"]
+21c23
+<   analytics: ["src/analytics/**"]
+---
+> 8
+22a25
+> 9rules:
+23a27
+> 10  - id: controllers-no-database
+25c29
+< rules:
+---
+> 11    severity: error
+27c31
+<   - id: controllers-no-database
+---
+> 12    from: controllers
+29c33
+<     severity: error
+---
+> 13    cannot_depend_on: [repositories]
+31c35
+<     from: controllers
+---
+> 14
+33c37
+<     cannot_depend_on: [repositories]
+---
+> 15  - id: payments-isolation
+34a39
+> 16    severity: error
+35a41
+> 17    module: payments
+37,43c43
+<   - id: payments-isolation
+< 
+<     severity: error
+=== 1440 rules.aria.yml
+11a12
+>     - button "Remove the hypothetical import"
+17c18
+<     - paragraph: 1 error, 2 rules checked
+---
+>     - status: 1 error, 2 rules checked
+=== 1440 rules.controls.txt
+1a2
+> button "Remove the hypothetical import" focusable <button tabindex=0>
+=== 390 architecture.txt
+=== 390 architecture.aria.yml
+=== 390 architecture.controls.txt
+=== 390 gravity.txt
+18a19
+> (lit)
+21a23
+> (lit)
+24a27
+> (lit)
+25a29
+> (lit)
+28a33
+> (lit)
+31a37
+> (lit)
+34a41
+> (lit)
+35a43
+> (lit)
+36a45
+> (lit)
+39a49
+> (lit)
+40a51
+> (lit)
+41a53
+> (lit)
+42a55
+> (lit)
+48c61
+< Database: gravity 0.64, 13 of 15 members rest on it.
+---
+> Database: gravity 0.64. Reach lights 13 members: ApiGateway, AuthService, CheckoutController, CheckoutService, InvoiceService, OrderController, OrderRepository, OrderService, PaymentRepository, PaymentService, SessionStore, UserRepository and UserService.
+52a66,67
+> Why does Database score 0.64?
+> 
+61a77,80
+> 
+> 13 of 15 members rest on it, directly or through other members.
+> 
+> Show
+68a88,91
+> 
+> 4 members access data in it directly: OrderRepository, PaymentRepository, SessionStore and UserRepository.
+> 
+> Show
+75a99,102
+> 
+> 4 other modules access data in it: Auth, Orders, Payments and Users.
+> 
+> Show
+82a110,113
+> 
+> No shortest dependency path between two other members passes through it.
+> 
+> Show
+=== 390 gravity.aria.yml
+16c16
+<           - listitem: ApiGateway
+---
+>           - listitem: ApiGateway (lit)
+20c20
+<           - listitem: CheckoutController
+---
+>           - listitem: CheckoutController (lit)
+24,25c24,25
+<           - listitem: CheckoutService
+<           - listitem: OrderController
+---
+>           - listitem: CheckoutService (lit)
+>           - listitem: OrderController (lit)
+29c29
+<           - listitem: OrderService
+---
+>           - listitem: OrderService (lit)
+33c33
+<           - listitem: InvoiceService
+---
+>           - listitem: InvoiceService (lit)
+37,39c37,39
+<           - listitem: AuthService
+<           - listitem: PaymentService
+<           - listitem: UserService
+---
+>           - listitem: AuthService (lit)
+>           - listitem: PaymentService (lit)
+>           - listitem: UserService (lit)
+43,46c43,46
+<           - listitem: OrderRepository
+<           - listitem: PaymentRepository
+<           - listitem: SessionStore
+<           - listitem: UserRepository
+---
+>           - listitem: OrderRepository (lit)
+>           - listitem: PaymentRepository (lit)
+>           - listitem: SessionStore (lit)
+>           - listitem: UserRepository (lit)
+52c52
+<   - status: "Database: gravity 0.64, 13 of 15 members rest on it."
+---
+>   - status: "Database: gravity 0.64. Reach lights 13 members: ApiGateway, AuthService, CheckoutController, CheckoutService, InvoiceService, OrderController, OrderRepository, OrderService, PaymentRepository, PaymentService, SessionStore, UserRepository and UserService."
+53a54
+>   - heading "Why does Database score 0.64?" [level=3]
+55,58c56,71
+<     - listitem: "Reach 13 of 15 rest on it : normalized 0.95 × weight 0.40 = 0.38"
+<     - listitem: "Fan-in 4 direct : normalized 0.58 × weight 0.20 = 0.12"
+<     - listitem: "Cross-module spread 4 other modules : normalized 0.57 × weight 0.25 = 0.14"
+<     - listitem: "Brokerage betweenness 0.0 : normalized 0.00 × weight 0.15 = 0.00"
+---
+>     - listitem:
+>       - text: "Reach 13 of 15 rest on it : normalized 0.95 × weight 0.40 = 0.38"
+>       - paragraph: 13 of 15 members rest on it, directly or through other members.
+>       - button "Show reach in the drawing" [pressed]: Show
+>     - listitem:
+>       - text: "Fan-in 4 direct : normalized 0.58 × weight 0.20 = 0.12"
+>       - paragraph: "4 members access data in it directly: OrderRepository, PaymentRepository, SessionStore and UserRepository."
+>       - button "Show fan-in in the drawing": Show
+=== 390 gravity.controls.txt
+6a7,10
+> button "Show reach in the drawing" pressed=true focusable <button tabindex=0>
+> button "Show fan-in in the drawing" focusable <button tabindex=0>
+> button "Show cross-module spread in the drawing" focusable <button tabindex=0>
+> button "Show brokerage in the drawing" focusable <button tabindex=0>
+=== 390 entropy.txt
+19a20,21
+> , entropy
+> 0.22
+21a24,25
+> , entropy
+> +0.23
+23a28,29
+> , entropy
+> +0.07
+25a32,33
+> , entropy
+> +0.05
+27a36,37
+> , entropy
+> +0.03
+29a40,41
+> , entropy
+> +0.03
+=== 390 entropy.aria.yml
+10,15c10,15
+<     - radio "base Clean structure" [checked]
+<     - radio "+1 Send order confirmations from the user repository"
+<     - radio "+2 Check permissions before charging"
+<     - radio "+3 Recalculate invoices from orders"
+<     - radio "+4 Show unpaid invoices on profiles"
+<     - radio "+5 Audit order access from auth"
+---
+>     - radio "base Clean structure , entropy 0.22" [checked]
+>     - radio "+1 Send order confirmations from the user repository , entropy +0.23"
+>     - radio "+2 Check permissions before charging , entropy +0.07"
+>     - radio "+3 Recalculate invoices from orders , entropy +0.05"
+>     - radio "+4 Show unpaid invoices on profiles , entropy +0.03"
+>     - radio "+5 Audit order access from auth , entropy +0.03"
+=== 390 entropy.controls.txt
+2,7c2,7
+< radio "base Clean structure" checked=true focusable <button tabindex=0>
+< radio "+1 Send order confirmations from the user repository" focusable <button tabindex=-1>
+< radio "+2 Check permissions before charging" focusable <button tabindex=-1>
+< radio "+3 Recalculate invoices from orders" focusable <button tabindex=-1>
+< radio "+4 Show unpaid invoices on profiles" focusable <button tabindex=-1>
+< radio "+5 Audit order access from auth" focusable <button tabindex=-1>
+---
+> radio "base Clean structure , entropy 0.22" checked=true focusable <button tabindex=0>
+> radio "+1 Send order confirmations from the user repository , entropy +0.23" focusable <button tabindex=-1>
+> radio "+2 Check permissions before charging , entropy +0.07" focusable <button tabindex=-1>
+> radio "+3 Recalculate invoices from orders , entropy +0.05" focusable <button tabindex=-1>
+> radio "+4 Show unpaid invoices on profiles , entropy +0.03" focusable <button tabindex=-1>
+> radio "+5 Audit order access from auth , entropy +0.03" focusable <button tabindex=-1>
+=== 390 rules.txt
+9c9
+< groups:
+---
+> 1groups:
+11c11
+<   controllers: ["src/**/*.controller.ts"]
+---
+> 2  controllers: ["src/**/*.controller.ts"]
+13c13
+<   repositories: ["src/**/*.repository.ts"]
+---
+> 3  repositories: ["src/**/*.repository.ts"]
+14a15
+> 4
+15a17
+> 5modules:
+17c19
+< modules:
+---
+> 6  payments: ["src/payments/**"]
+19c21
+<   payments: ["src/payments/**"]
+---
+> 7  analytics: ["src/analytics/**"]
+21c23
+<   analytics: ["src/analytics/**"]
+---
+> 8
+22a25
+> 9rules:
+23a27
+> 10  - id: controllers-no-database
+25c29
+< rules:
+---
+> 11    severity: error
+27c31
+<   - id: controllers-no-database
+---
+> 12    from: controllers
+29c33
+<     severity: error
+---
+> 13    cannot_depend_on: [repositories]
+31c35
+<     from: controllers
+---
+> 14
+33c37
+<     cannot_depend_on: [repositories]
+---
+> 15  - id: payments-isolation
+34a39
+> 16    severity: error
+35a41
+> 17    module: payments
+37,43c43
+<   - id: payments-isolation
+< 
+<     severity: error
+=== 390 rules.aria.yml
+9,10c9,11
+<     - code: "groups: controllers: [\"src/**/*.controller.ts\"] repositories: [\"src/**/*.repository.ts\"] modules: payments: [\"src/payments/**\"] analytics: [\"src/analytics/**\"] rules: - id: controllers-no-database severity: error from: controllers cannot_depend_on: [repositories] - id: payments-isolation severity: error module: payments cannot_depend_on: [analytics]"
+<   - figure "error controllers-no-database OrderController now depends on OrderRepository. Controllers cannot depend on repositories. The path through OrderService is allowed; the new import skips it. src/orders/order.controller.ts 1 error, 2 rules checked":
+---
+>     - region "katedrala.config.yaml":
+>       - code: "groups: controllers: [\"src/**/*.controller.ts\"] repositories: [\"src/**/*.repository.ts\"] modules: payments: [\"src/payments/**\"] analytics: [\"src/analytics/**\"] rules: - id: controllers-no-database severity: error from: controllers cannot_depend_on: [repositories] - id: payments-isolation severity: error module: payments cannot_depend_on: [analytics]"
+>   - figure "error controllers-no-database , lines 10 to 13 of katedrala.config.yaml OrderController now depends on OrderRepository. Controllers cannot depend on repositories. The path through OrderService is allowed; the new import skips it. src/orders/order.controller.ts 1 error, 2 rules checked":
+11a13
+>     - button "Remove the hypothetical import"
+13c15,18
+<     - paragraph: error controllers-no-database
+---
+>     - paragraph:
+>       - text: error
+>       - link "controllers-no-database , lines 10 to 13 of katedrala.config.yaml":
+>         - /url: "#rules-config-10"
+17c22
+<     - paragraph: 1 error, 2 rules checked
+---
+>     - status: 1 error, 2 rules checked
+=== 390 rules.controls.txt
+1a2,4
+> region "katedrala.config.yaml" focusable <pre tabindex=0>
+> button "Remove the hypothetical import" focusable <button tabindex=0>
+> link "controllers-no-database , lines 10 to 13 of katedrala.config.yaml" url=/#rules-config-10 focusable <a tabindex=0>

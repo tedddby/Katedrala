@@ -1,0 +1,13 @@
+import { chromium } from "playwright-core";
+const browser = await chromium.launch({ channel: "msedge", headless: true });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+const msgs = [];
+page.on("console", (m) => msgs.push(`${m.type()}: ${m.text().slice(0, 200)}`));
+const reqs = [];
+page.on("request", (r) => { if (r.url().includes("codeverse-graph")) reqs.push(r.url()); });
+await page.goto("http://localhost:3100/lab/cinematic/", { waitUntil: "load" });
+await page.waitForSelector("canvas[data-ready]", { timeout: 30000 });
+await page.waitForTimeout(4000);
+console.log("graph requests:", reqs.length);
+console.log(msgs.filter((m) => /preload|error|warn/i.test(m)).join("\n") || "no preload warnings or errors");
+await browser.close();

@@ -1,0 +1,56 @@
+[
+  {
+    "scrollY": 0,
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "borderBottomColor": "rgba(0, 0, 0, 0)",
+    "height": 65
+  },
+  {
+    "scrollY": 24,
+    "backgroundColor": "oklab(0.17169 -0.00195783 -0.00489479 / 0.24)",
+    "borderBottomColor": "rgba(36, 40, 44, 0.25)",
+    "height": 65
+  },
+  {
+    "scrollY": 48,
+    "backgroundColor": "oklab(0.17169 -0.00195783 -0.00489479 / 0.48)",
+    "borderBottomColor": "rgba(36, 40, 44, 0.5)",
+    "height": 65
+  },
+  {
+    "scrollY": 72,
+    "backgroundColor": "oklab(0.17169 -0.00195783 -0.00489479 / 0.72)",
+    "borderBottomColor": "rgba(36, 40, 44, 0.75)",
+    "height": 65
+  },
+  {
+    "scrollY": 96,
+    "backgroundColor": "oklab(0.17169 -0.00195783 -0.00489479 / 0.96)",
+    "borderBottomColor": "rgb(36, 40, 44)",
+    "height": 65
+  },
+  {
+    "scrollY": 200,
+    "backgroundColor": "oklab(0.17169 -0.00195783 -0.00489479 / 0.96)",
+    "borderBottomColor": "rgb(36, 40, 44)",
+    "height": 65
+  },
+  {
+    "scrollY": 900,
+    "backgroundColor": "oklab(0.17169 -0.00195783 -0.00489479 / 0.96)",
+    "borderBottomColor": "rgb(36, 40, 44)",
+    "height": 65
+  },
+  {
+    "scrollY": 10527,
+    "backgroundColor": "oklab(0.17169 -0.00195783 -0.00489479 / 0.96)",
+    "borderBottomColor": "rgb(36, 40, 44)",
+    "height": 65
+  },
+  {
+    "scrollY": 20210,
+    "backgroundColor": "oklab(0.17169 -0.00195783 -0.00489479 / 0.96)",
+    "borderBottomColor": "rgb(36, 40, 44)",
+    "height": 65
+  }
+]

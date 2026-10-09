@@ -1,0 +1,578 @@
+{
+ "1440x900": {
+  "vw": 1440,
+  "scrollW": 1440,
+  "frameContent": [
+   60,
+   1380
+  ],
+  "sheets": [
+   {
+    "left": 0,
+    "right": 820,
+    "width": 820,
+    "top": 513.734375,
+    "bleedVar": "60px",
+    "marks": [
+     {
+      "corner": "top-start",
+      "x": 0,
+      "y": 513.734375,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "top-end",
+      "x": 808,
+      "y": 513.734375,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-end",
+      "x": 808,
+      "y": 920.109375,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-start",
+      "x": 0,
+      "y": 920.109375,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     }
+    ],
+    "titleblock": {
+     "left": 588.734375,
+     "right": 794.40625,
+     "bottom": 904.921875,
+     "sheetBottom": 932.109375,
+     "position": "absolute",
+     "font": "\"Martian Mono\"",
+     "size": "11px",
+     "color": "rgb(139, 142, 146)",
+     "firstColor": "rgb(180, 177, 169)",
+     "text": "Demonstration system\n3 members, 1 foundation\nSpecimen, planned for v1"
+    }
+   },
+   {
+    "left": 60,
+    "right": 1380,
+    "width": 1320,
+    "top": 1413.296875,
+    "bleedVar": "60px",
+    "marks": [
+     {
+      "corner": "top-start",
+      "x": 60,
+      "y": 1413.296875,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "top-end",
+      "x": 1368,
+      "y": 1413.296875,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-end",
+      "x": 1368,
+      "y": 2108.515625,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-start",
+      "x": 60,
+      "y": 2108.515625,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     }
+    ],
+    "titleblock": {
+     "left": 1131.0625,
+     "right": 1354.390625,
+     "bottom": 2088.515625,
+     "sheetBottom": 2120.515625,
+     "position": "static",
+     "font": "\"Martian Mono\"",
+     "size": "11px",
+     "color": "rgb(139, 142, 146)",
+     "firstColor": "rgb(180, 177, 169)",
+     "text": "Demonstration system\na sheet that bleeds on phones"
+    }
+   }
+  ],
+  "statusLine": {
+   "gapAbove": 18,
+   "gapBelow": 20,
+   "height": 17.59375,
+   "items": [
+    "Typed graph, available today",
+    "Module inference, planned for v1"
+   ]
+  },
+  "gauge": {
+   "size": "86.4px",
+   "weight": "300",
+   "tracking": "-3.456px",
+   "family": "\"Martian Mono\"",
+   "numeric": "tabular-nums",
+   "color": "rgb(62, 166, 255)"
+  },
+  "sectionPadTop": "158.4px",
+  "container": "inline-size",
+  "errors": []
+ },
+ "1024x768": {
+  "vw": 1024,
+  "scrollW": 1024,
+  "frameContent": [
+   40.96,
+   983.04
+  ],
+  "sheets": [
+   {
+    "left": 0,
+    "right": 581.96875,
+    "width": 581.96875,
+    "top": 432.421875,
+    "bleedVar": "40.96px",
+    "marks": [
+     {
+      "corner": "top-start",
+      "x": 0,
+      "y": 432.421875,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "top-end",
+      "x": 569.96875,
+      "y": 432.421875,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-end",
+      "x": 569.96875,
+      "y": 720.40625,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-start",
+      "x": 0,
+      "y": 720.40625,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     }
+    ],
+    "titleblock": {
+     "left": 357.109375,
+     "right": 562.78125,
+     "bottom": 711.609375,
+     "sheetBottom": 732.40625,
+     "position": "absolute",
+     "font": "\"Martian Mono\"",
+     "size": "11px",
+     "color": "rgb(139, 142, 146)",
+     "firstColor": "rgb(180, 177, 169)",
+     "text": "Demonstration system\n3 members, 1 foundation\nSpecimen, planned for v1"
+    }
+   },
+   {
+    "left": 40.953125,
+    "right": 983.046875,
+    "width": 942.09375,
+    "top": 1134.484375,
+    "bleedVar": "40.96px",
+    "marks": [
+     {
+      "corner": "top-start",
+      "x": 40.953125,
+      "y": 1134.484375,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "top-end",
+      "x": 971.046875,
+      "y": 1134.484375,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-end",
+      "x": 971.046875,
+      "y": 1645.75,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-start",
+      "x": 40.953125,
+      "y": 1645.75,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     }
+    ],
+    "titleblock": {
+     "left": 740.515625,
+     "right": 963.84375,
+     "bottom": 1632.15625,
+     "sheetBottom": 1657.75,
+     "position": "static",
+     "font": "\"Martian Mono\"",
+     "size": "11px",
+     "color": "rgb(139, 142, 146)",
+     "firstColor": "rgb(180, 177, 169)",
+     "text": "Demonstration system\na sheet that bleeds on phones"
+    }
+   }
+  ],
+  "statusLine": {
+   "gapAbove": 18,
+   "gapBelow": 20,
+   "height": 17.59375,
+   "items": [
+    "Typed graph, available today",
+    "Module inference, planned for v1"
+   ]
+  },
+  "gauge": {
+   "size": "69.76px",
+   "weight": "300",
+   "tracking": "-2.7904px",
+   "family": "\"Martian Mono\"",
+   "numeric": "tabular-nums",
+   "color": "rgb(62, 166, 255)"
+  },
+  "sectionPadTop": "112.64px",
+  "container": "inline-size",
+  "errors": []
+ },
+ "390x844": {
+  "vw": 390,
+  "scrollW": 390,
+  "frameContent": [
+   16,
+   374
+  ],
+  "sheets": [
+   {
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "top": 428.421875,
+    "bleedVar": "16px",
+    "marks": [
+     {
+      "corner": "top-start",
+      "x": 16,
+      "y": 428.421875,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "top-end",
+      "x": 362,
+      "y": 428.421875,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-end",
+      "x": 362,
+      "y": 673.734375,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-start",
+      "x": 16,
+      "y": 673.734375,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     }
+    ],
+    "titleblock": {
+     "left": 158.71875,
+     "right": 364.390625,
+     "bottom": 669.734375,
+     "sheetBottom": 685.734375,
+     "position": "static",
+     "font": "\"Martian Mono\"",
+     "size": "11px",
+     "color": "rgb(139, 142, 146)",
+     "firstColor": "rgb(180, 177, 169)",
+     "text": "Demonstration system\n3 members, 1 foundation\nSpecimen, planned for v1"
+    }
+   },
+   {
+    "left": 0,
+    "right": 390,
+    "width": 390,
+    "top": 1299.734375,
+    "bleedVar": "16px",
+    "marks": [
+     {
+      "corner": "top-start",
+      "x": 0,
+      "y": 1299.734375,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "top-end",
+      "x": 378,
+      "y": 1299.734375,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-end",
+      "x": 378,
+      "y": 1542.015625,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-start",
+      "x": 0,
+      "y": 1542.015625,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     }
+    ],
+    "titleblock": {
+     "left": 157.0625,
+     "right": 380.390625,
+     "bottom": 1538.015625,
+     "sheetBottom": 1554.015625,
+     "position": "static",
+     "font": "\"Martian Mono\"",
+     "size": "11px",
+     "color": "rgb(139, 142, 146)",
+     "firstColor": "rgb(180, 177, 169)",
+     "text": "Demonstration system\na sheet that bleeds on phones"
+    }
+   }
+  ],
+  "statusLine": {
+   "gapAbove": 18,
+   "gapBelow": 20,
+   "height": 43.1875,
+   "items": [
+    "Typed graph, available today",
+    "Module inference, planned for v1"
+   ]
+  },
+  "gauge": {
+   "size": "52px",
+   "weight": "300",
+   "tracking": "-2.08px",
+   "family": "\"Martian Mono\"",
+   "numeric": "tabular-nums",
+   "color": "rgb(62, 166, 255)"
+  },
+  "sectionPadTop": "104px",
+  "container": "inline-size",
+  "errors": []
+ },
+ "320x640": {
+  "vw": 320,
+  "scrollW": 326,
+  "frameContent": [
+   16,
+   304
+  ],
+  "sheets": [
+   {
+    "left": 16,
+    "right": 304,
+    "width": 288,
+    "top": 490.984375,
+    "bleedVar": "16px",
+    "marks": [
+     {
+      "corner": "top-start",
+      "x": 16,
+      "y": 490.984375,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "top-end",
+      "x": 292,
+      "y": 490.984375,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-end",
+      "x": 292,
+      "y": 703.484375,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-start",
+      "x": 16,
+      "y": 703.484375,
+      "w": 12,
+      "h": 12,
+      "visible": "visible",
+      "color": "rgb(139, 142, 146)"
+     }
+    ],
+    "titleblock": {
+     "left": 88.71875,
+     "right": 294.390625,
+     "bottom": 699.484375,
+     "sheetBottom": 715.484375,
+     "position": "static",
+     "font": "\"Martian Mono\"",
+     "size": "11px",
+     "color": "rgb(139, 142, 146)",
+     "firstColor": "rgb(180, 177, 169)",
+     "text": "Demonstration system\n3 members, 1 foundation\nSpecimen, planned for v1"
+    }
+   },
+   {
+    "left": 0,
+    "right": 320,
+    "width": 320,
+    "top": 1378.171875,
+    "bleedVar": "16px",
+    "marks": [
+     {
+      "corner": "top-start",
+      "x": 0,
+      "y": 1378.171875,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "top-end",
+      "x": 308,
+      "y": 1378.171875,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-end",
+      "x": 308,
+      "y": 1587.640625,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     },
+     {
+      "corner": "bottom-start",
+      "x": 0,
+      "y": 1587.640625,
+      "w": 12,
+      "h": 12,
+      "visible": "hidden",
+      "color": "rgb(139, 142, 146)"
+     }
+    ],
+    "titleblock": {
+     "left": 87.0625,
+     "right": 310.390625,
+     "bottom": 1583.640625,
+     "sheetBottom": 1599.640625,
+     "position": "static",
+     "font": "\"Martian Mono\"",
+     "size": "11px",
+     "color": "rgb(139, 142, 146)",
+     "firstColor": "rgb(180, 177, 169)",
+     "text": "Demonstration system\na sheet that bleeds on phones"
+    }
+   }
+  ],
+  "statusLine": {
+   "gapAbove": 18,
+   "gapBelow": 20,
+   "height": 43.1875,
+   "items": [
+    "Typed graph, available today",
+    "Module inference, planned for v1"
+   ]
+  },
+  "gauge": {
+   "size": "52px",
+   "weight": "300",
+   "tracking": "-2.08px",
+   "family": "\"Martian Mono\"",
+   "numeric": "tabular-nums",
+   "color": "rgb(62, 166, 255)"
+  },
+  "sectionPadTop": "104px",
+  "container": "inline-size",
+  "errors": []
+ }
+}

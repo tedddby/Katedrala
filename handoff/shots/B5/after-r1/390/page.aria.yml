@@ -1,0 +1,519 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Katedrala, back to top":
+    - /url: "#top"
+    - text: KATEDRALA
+  - navigation "Primary":
+    - group: Menu
+- main:
+  - region "See what holds your system up.":
+    - heading "See what holds your system up." [level=1]
+    - paragraph: Katedrala reconstructs the architecture of TypeScript and JavaScript, with evidence for every dependency it finds.
+    - link "Explore Katedrala":
+      - /url: "#how-it-works"
+    - link "View on GitHub":
+      - /url: https://github.com/tedddby/Katedrala
+    - figure:
+      - 'radiogroup "Load drawing of the demonstration system by module: 8 modules on 6 load levels, each resting on what it depends on"':
+        - radio "Gateway module, 1 member": Gateway
+        - radio "Checkout module, 2 members": Checkout
+        - radio "Orders module, 3 members": Orders
+        - radio "Billing module, 1 member": Billing
+        - radio "Auth module, 2 members": Auth
+        - radio "Payments module, 3 members": Payments
+        - radio "Users module, 2 members": Users
+        - radio "Platform module, 2 members": Platform
+    - paragraph: Platform
+    - paragraph: "Carries the most load: all 7 other modules rest on it."
+    - term: Members
+    - definition: EventBus, Database
+    - term: Depended on by
+    - definition: Orders, Payments, Users, Auth
+    - paragraph: Select any module to light the load path it carries.
+    - paragraph: "Demonstration system Line weight: load carried Gravity: draft method, planned for v1"
+  - region "From source code to architecture.":
+    - heading "From source code to architecture." [level=2]
+    - paragraph: Katedrala is designed as five passes. Each adds to the document and never rewrites what an earlier pass produced.
+    - list:
+      - listitem:
+        - paragraph: "01"
+        - heading "Parse" [level=3]
+        - paragraph: Each TypeScript and JavaScript file becomes symbols, imports, exports and references.
+        - text: Available today
+        - term: file
+        - definition: cache-key.ts
+        - term: symbols
+        - definition: "4"
+        - term: function
+        - definition: graphCacheKey
+      - listitem:
+        - paragraph: "02"
+        - heading "Link" [level=3]
+        - paragraph: Imports resolve through tsconfig paths, workspaces and package exports; references bind to their declarations. What cannot be bound is counted, never guessed.
+        - text: Available today
+        - term: edge
+        - definition: calls
+        - term: from
+        - definition: createAnalysisService
+        - term: to
+        - definition: graphCacheKey
+        - term: at
+        - definition: analysis-service.ts:219
+      - listitem:
+        - paragraph: "03"
+        - heading "Infer" [level=3]
+        - paragraph: Components will be derived from directories and packages; modules and layers will be inferred, each with a confidence and its evidence.
+        - text: Planned for v1
+        - term: module
+        - definition: payments
+        - term: members
+        - definition: "3"
+        - term: layer
+        - definition: service
+      - listitem:
+        - paragraph: "04"
+        - heading "Analyze" [level=3]
+        - paragraph: The dependency graph will be measured for coupling, cycles, centrality, Gravity and Entropy.
+        - text: Planned for v1
+        - term: gravity
+        - definition: "0.58"
+        - term: reach
+        - definition: 6 of 15
+        - term: fan-in
+        - definition: "3"
+      - listitem:
+        - paragraph: "05"
+        - heading "Explain" [level=3]
+        - paragraph: Every conclusion will decompose into the measurements and the lines of code it came from.
+        - text: Planned for v1
+        - term: reach
+        - definition: "+0.28"
+        - term: fan-in
+        - definition: "+0.10"
+        - term: spread
+        - definition: "+0.13"
+        - term: brokerage
+        - definition: "+0.07"
+    - paragraph: Parse and Link show Katedrala’s real output for CodeVerse, the relationship traced in the film above. Infer, Analyze and Explain preview v1 on the demonstration system the rest of this page uses.
+  - region "The whole structure, at every scale.":
+    - heading "The whole structure, at every scale." [level=2]
+    - paragraph: Katedrala links files and symbols into one typed graph today; inferring the modules within it is planned for v1.
+    - text: Typed graph, available today Module inference, planned for v1
+    - radiogroup "Scale":
+      - radio "Members"
+      - radio "Modules" [checked]
+    - group "Zoom":
+      - button "Zoom in": +
+      - button "Zoom out" [disabled]: −
+      - button "Fit the plan" [disabled]: Fit
+    - radiogroup "Architecture plan of the demonstration system, by module":
+      - radio "Gateway module, 1 member": Gateway
+      - radio "Checkout module, 2 members": Checkout
+      - radio "Orders module, 3 members": Orders
+      - radio "Auth module, 2 members": Auth
+      - radio "Billing module, 1 member": Billing
+      - radio "Payments module, 3 members": Payments
+      - radio "Users module, 2 members": Users
+      - radio "Platform module, 2 members": Platform
+    - paragraph: Pinch or use + and − to zoom, then drag to pan. Demonstration system.
+    - complementary:
+      - paragraph: 8 modules
+      - paragraph: 15 dependencies between modules. Line weight and the numbers show how many member dependencies each one aggregates. Select a module to see its members.
+    - group: Read the graph as a table
+  - region "Some members hold up more of the system than others.":
+    - heading "Some members hold up more of the system than others." [level=2]
+    - paragraph: Architectural Gravity will measure how much rests on each member, from the dependency graph and module boundaries.
+    - text: Katedrala heuristic, planned for v1
+    - radiogroup "Member to measure":
+      - radio "Database 0.64" [checked]
+      - radio "PaymentService 0.58"
+      - radio "OrderService 0.46"
+      - radio "CheckoutController 0.25"
+      - radio "ApiGateway 0.00"
+    - figure "Everything that rests on Database, directly or through other members. Demonstration system.":
+      - list "Database and what rests on it, by load level":
+        - listitem:
+          - text: Level +7
+          - list:
+            - listitem: ApiGateway (lit)
+        - listitem:
+          - text: Level +6
+          - list:
+            - listitem: CheckoutController (lit)
+        - listitem:
+          - text: Level +5
+          - list:
+            - listitem: CheckoutService (lit)
+            - listitem: OrderController (lit)
+        - listitem:
+          - text: Level +4
+          - list:
+            - listitem: OrderService (lit)
+        - listitem:
+          - text: Level +3
+          - list:
+            - listitem: InvoiceService (lit)
+        - listitem:
+          - text: Level +2
+          - list:
+            - listitem: AuthService (lit)
+            - listitem: PaymentService (lit)
+            - listitem: UserService (lit)
+        - listitem:
+          - text: Level +1
+          - list:
+            - listitem: OrderRepository (lit)
+            - listitem: PaymentRepository (lit)
+            - listitem: SessionStore (lit)
+            - listitem: UserRepository (lit)
+        - listitem:
+          - text: Level ±0
+          - list:
+            - listitem: Database
+      - text: Everything that rests on Database, directly or through other members. Demonstration system.
+    - status: "Database: gravity 0.64. Reach lights 13 members: ApiGateway, AuthService, CheckoutController, CheckoutService, InvoiceService, OrderController, OrderRepository, OrderService, PaymentRepository, PaymentService, SessionStore, UserRepository and UserService."
+    - paragraph: 0.64 Gravity of Database
+    - heading "Why does Database score 0.64?" [level=3]
+    - list:
+      - listitem:
+        - text: "Reach 13 of 15 rest on it : normalized 0.95 × weight 0.40 = 0.38"
+        - paragraph: 13 of 15 members rest on it, directly or through other members.
+        - button "Show reach in the drawing" [pressed]: Show
+      - listitem:
+        - text: "Fan-in 4 direct : normalized 0.58 × weight 0.20 = 0.12"
+        - paragraph: "4 members access data in it directly: OrderRepository, PaymentRepository, SessionStore and UserRepository."
+        - button "Show fan-in in the drawing": Show
+      - listitem:
+        - text: "Cross-module spread 4 other modules : normalized 0.57 × weight 0.25 = 0.14"
+        - paragraph: "4 other modules access data in it: Auth, Orders, Payments and Users."
+        - button "Show cross-module spread in the drawing": Show
+      - listitem:
+        - text: "Brokerage betweenness 0.0 : normalized 0.00 × weight 0.15 = 0.00"
+        - paragraph: No shortest dependency path between two other members passes through it.
+        - button "Show brokerage in the drawing": Show
+    - text: Sum 0.64
+    - paragraph: "Each term adds its normalized value times its weight, rounded so the terms add up to the score. Reach, fan-in and brokerage are log shares, ln(1 + x) / ln(1 + max), against the most a system of 16 members allows: 15 for reach and fan-in, 210 for brokerage. Spread saturates as x / (x + 3). No term depends on the largest value observed, so a score moves with what rests on the member and only slightly as the system grows."
+    - paragraph: "Gravity is a Katedrala heuristic, not an established metric. Three of its four terms are established measures: reach is the visibility fan-in behind the propagation cost of MacCormack, Rusnak and Baldwin (2006), fan-in is afferent coupling (Martin 1994), and brokerage is betweenness centrality (Freeman 1977; computed with Brandes 2001). Cross-module spread is Katedrala's own. The weights are design choices and will be documented with the method in milestone 6."
+  - region "Structure decays one dependency at a time.":
+    - heading "Structure decays one dependency at a time." [level=2]
+    - paragraph: "Architectural Entropy will score disorder: cycles, dependencies against the grain, scattered coupling and propagation."
+    - text: Katedrala heuristic, planned for v1
+    - figure "Modules of the demonstration system. Arcs are dependencies added by the commits; lit modules are tangled in a cycle. No module is in a cycle.":
+      - 'img "Modules of the demonstration system on their load levels, Platform the foundation, after 0 of 5 commits: no dependency added; no module cycles."': Gateway Auth Checkout Orders Billing Payments Users Platform
+      - text: Modules of the demonstration system. Arcs are dependencies added by the commits; lit modules are tangled in a cycle. No module is in a cycle.
+    - text: 0.22 low entropy
+    - radiogroup "Commits applied":
+      - radio "base Clean structure , entropy 0.22" [checked]
+      - radio "+1 Send order confirmations from the user repository , entropy +0.23"
+      - radio "+2 Check permissions before charging , entropy +0.07"
+      - radio "+3 Recalculate invoices from orders , entropy +0.05"
+      - radio "+4 Show unpaid invoices on profiles , entropy +0.03"
+      - radio "+5 Audit order access from auth , entropy +0.03"
+    - list:
+      - listitem:
+        - text: "Cycles : normalized 0.00 × weight 0.30 = 0.00"
+        - paragraph: No member is part of a cycle.
+      - listitem:
+        - text: "Against the grain : normalized 0.00 × weight 0.25 = 0.00"
+        - paragraph: Cross-module dependencies all flow one way.
+      - listitem:
+        - text: "Scatter : normalized 0.49 × weight 0.25 = 0.12"
+        - paragraph: A module's dependencies spread over 2.9 modules on average, its own included.
+      - listitem:
+        - text: "Propagation : normalized 0.47 × weight 0.20 = 0.10"
+        - paragraph: 30% of member pairs are joined by a dependency path.
+    - text: Sum 0.22
+    - paragraph: Each factor adds its normalized value times its weight, rounded so the factors add up to the score.
+    - paragraph: "Entropy is a Katedrala heuristic. Its factors come from established ideas: acyclic dependencies (Martin 2003), propagation cost (MacCormack, Rusnak and Baldwin 2006) and Shannon entropy (Shannon 1948). Their selection, normalization and weights are design choices, and the score has not been validated against maintenance outcomes."
+  - region "Know what a change will touch before you make it.":
+    - heading "Know what a change will touch before you make it." [level=2]
+    - paragraph: Katedrala will trace dependency paths out from a change to estimate its structural blast radius, path by path.
+    - text: Planned for v1 katedrala impact
+    - combobox "katedrala impact":
+      - option "AuthService"
+      - option "CheckoutController"
+      - option "CheckoutService"
+      - option "Database"
+      - option "EventBus"
+      - option "InvoiceService"
+      - option "OrderController"
+      - option "OrderRepository"
+      - option "OrderService"
+      - option "PaymentRepository"
+      - option "PaymentService" [selected]
+      - option "SessionStore"
+      - option "StripeClient"
+      - option "UserRepository"
+      - option "UserService"
+    - figure:
+      - 'img "Load drawing of the demonstration system by module: changing PaymentService, in Payments, reaches 4 modules: Gateway, Checkout, Orders and Billing."'
+    - paragraph: Drawn by module. Impact rises through everything that rests on the change. Demonstration system.
+    - status: Changing PaymentService affects 6 members in 4 modules, including 3 HTTP handlers.
+    - term: Members affected
+    - definition: "6"
+    - term: Modules
+    - definition: "4"
+    - term: HTTP handlers
+    - definition: "3"
+    - heading "Why each member is affected" [level=3]
+    - list:
+      - listitem: 1 CheckoutService → PaymentService
+      - listitem: 1 InvoiceService → PaymentService
+      - listitem: 1 OrderService → PaymentService
+      - listitem: 2 CheckoutController → CheckoutService → PaymentService
+      - listitem: 2 OrderController → OrderService → PaymentService
+      - listitem: 3 ApiGateway → CheckoutController → CheckoutService → PaymentService
+    - paragraph: PaymentService is in the Payments module. Paths are the shortest dependency chains, with ties broken by name, so every run gives the same answer.
+  - region "Write down the architecture you intend.":
+    - heading "Write down the architecture you intend." [level=2]
+    - paragraph: Rules in katedrala.config.yaml will check every change for forbidden dependencies, layering, isolation, cycles and fan-out.
+    - text: Planned for v1
+    - figure "katedrala.config.yaml":
+      - text: katedrala.config.yaml
+      - button "Copy katedrala.config.yaml"
+      - status
+      - region "katedrala.config.yaml":
+        - code: "groups: controllers: [\"src/**/*.controller.ts\"] repositories: [\"src/**/*.repository.ts\"] modules: payments: [\"src/payments/**\"] analytics: [\"src/analytics/**\"] rules: - id: controllers-no-database severity: error from: controllers cannot_depend_on: [repositories] - id: payments-isolation severity: error module: payments cannot_depend_on: [analytics]"
+    - figure "error controllers-no-database , lines 10 to 13 of katedrala.config.yaml OrderController now depends on OrderRepository. Controllers cannot depend on repositories. The path through OrderService is allowed; the new import skips it. src/orders/order.controller.ts 1 error, 2 rules checked":
+      - text: hypothetical change + OrderController → OrderRepository
+      - button "Remove the hypothetical import"
+      - 'img "Hypothetical change to the demonstration system: OrderController reaches OrderRepository through OrderService, which is allowed; a new direct import from OrderController to OrderRepository breaks the rule controllers-no-database. Controllers cannot depend on repositories."'
+      - paragraph:
+        - text: error
+        - link "controllers-no-database , lines 10 to 13 of katedrala.config.yaml":
+          - /url: "#rules-config-10"
+      - paragraph: OrderController now depends on OrderRepository.
+      - paragraph: Controllers cannot depend on repositories. The path through OrderService is allowed; the new import skips it.
+      - paragraph: src/orders/order.controller.ts
+      - status: 1 error, 2 rules checked
+    - paragraph: Demonstration system, with one hypothetical import added. The configuration syntax is the one Katedrala's rule fixtures use today; the report layout is a preview.
+  - region "Every conclusion has evidence.":
+    - heading "Every conclusion has evidence." [level=2]
+    - paragraph: Every relationship points to the lines of code it came from, and every score will break down into its measurements.
+    - heading "Why does PaymentService score 0.58?" [level=3]
+    - text: Planned for v1
+    - list:
+      - listitem: "6 of 15 members rest on it, directly or through other members. Reach: normalized 0.70 × weight 0.40 = 0.28"
+      - listitem: "3 members call it directly: CheckoutService, OrderService and InvoiceService. Fan-in: normalized 0.50 × weight 0.20 = 0.10"
+      - listitem: "Its callers sit in 3 other modules: Checkout, Orders and Billing. Cross-module spread: normalized 0.50 × weight 0.25 = 0.13"
+      - listitem: "Its betweenness is 13.2: summed over pairs of other members, the share of each pair's shortest dependency paths that pass through it. Brokerage: normalized 0.50 × weight 0.15 = 0.07"
+    - paragraph: Gravity 0.58
+    - paragraph: Demonstration system. Each reason adds its normalized value times its weight, rounded so the four add up to the score. Gravity is a draft Katedrala heuristic, planned for v1.
+    - heading "One relationship, as Katedrala records it." [level=3]
+    - text: Available today
+    - 'figure "real output: CodeVerse at 6b942bc"':
+      - text: "real output: CodeVerse at 6b942bc"
+      - 'button "Copy real output: CodeVerse at 6b942bc"'
+      - status
+      - 'region "real output: CodeVerse at 6b942bc"':
+        - code: "{ \"id\": \"edge:68b8718fedaa1a19\", \"kind\": \"calls\", \"source\": \"sym:src/analysis/analysis-service.ts#createAnalysisService\", \"target\": \"sym:src/analysis/cache-key.ts#graphCacheKey\", \"observations\": 2, \"typeOnly\": false, \"confidence\": 1, \"provenance\": [ { \"file\": \"file:src/analysis/analysis-service.ts\", \"line\": 219, \"column\": 17, \"mechanism\": \"call-expression\", \"resolution\": \"import-binding\", \"confidence\": 1 }, { \"file\": \"file:src/analysis/analysis-service.ts\", \"line\": 273, \"column\": 19, \"mechanism\": \"call-expression\", \"resolution\": \"import-binding\", \"confidence\": 1 } ] }"
+    - paragraph:
+      - text: "From Katedrala's analysis of the open-source CodeVerse repository: a call from"
+      - code: createAnalysisService
+      - text: to
+      - code: graphCacheKey
+      - text: ", observed twice, each observation with its file, line, column, syntax and the rule that resolved it."
+  - region "See the structure drift across commits.":
+    - heading "See the structure drift across commits." [level=2]
+    - paragraph: Compare two revisions or a range of history, and Katedrala will report new modules, new dependencies and new cycles.
+    - text: Planned for v1
+    - list "Five versions of the demonstration system":
+      - listitem:
+        - text: v1 entropy 0.20
+        - 'img "v1: 4 of 8 modules, 4 dependencies between them."'
+        - paragraph: Clean boundaries
+        - paragraph: Gateway, Auth, Users and Platform
+      - listitem:
+        - text: v2 entropy 0.16
+        - 'img "v2: 5 of 8 modules, 5 dependencies between them, 1 new."'
+        - paragraph: Payments
+        - paragraph: + Payments module, 3 members
+      - listitem:
+        - text: v3 entropy 0.22
+        - 'img "v3: all 8 modules, 15 dependencies between them, 10 new."'
+        - paragraph: Orders
+        - paragraph: + Checkout, Orders and Billing modules, 7 members
+      - listitem:
+        - text: v4 entropy 0.23
+        - 'img "v4: all 8 modules, 16 dependencies between them, 1 new. New upward dependency: Payments → Auth."'
+        - paragraph: Against the load path
+        - paragraph: + PaymentService → AuthService
+        - paragraph: "New upward dependency: Payments → Auth."
+      - listitem:
+        - text: v5 entropy 0.52
+        - 'img "v5: all 8 modules, 17 dependencies between them, 1 new. New cycle: Users → Orders → Billing → Users."'
+        - paragraph: A cycle
+        - paragraph: + UserRepository → OrderService
+        - paragraph: "New cycle: Users → Orders → Billing → Users."
+    - paragraph: Demonstration system. Entropy uses the draft Katedrala heuristic, computed for each version.
+  - region "One command per question.":
+    - heading "One command per question." [level=2]
+    - paragraph: From v1, each question below will be one command away, in your terminal or in CI.
+    - text: Planned for v1
+    - tablist "Commands":
+      - tab "analyze" [selected]
+      - tab "health"
+      - tab "impact"
+      - tab "validate"
+      - tab "diff"
+    - paragraph: What is in this repository?
+    - tabpanel "analyze":
+      - text: "terminal real counts: CodeVerse at 6b942bc"
+      - code: $ katedrala analyze . tedddby/CodeVerse at 6b942bc files 644 analyzed 594 directories 84 symbols 3,766 relationships 14,233 externals 59 npm packages 39 Node.js built-ins 8 environment variables 12 unresolved imports 0 unresolved references 155 untyped references 2,055
+    - paragraph: The command line is planned for v1, and this output previews its format. The analyze counts are real. The other values are computed from the demonstration system, with one hypothetical import added for validate, from OrderController to OrderRepository.
+    - heading "Or call the engine from code." [level=3]
+    - text: Available today
+    - figure "analyze.mjs":
+      - text: analyze.mjs
+      - button "Copy analyze.mjs"
+      - status
+      - region "analyze.mjs":
+        - code: "import { analyzeStructure } from \"@katedrala/engine\"; const { document } = await analyzeStructure({ root: \"../CodeVerse\" }); console.log(document.repository.stats); // CodeVerse at 6b942bc: 644 files, 3,766 symbols, 14,233 edges"
+    - paragraph:
+      - text: The engine runs today as a TypeScript library,
+      - link "from a clone of the repository":
+        - /url: https://github.com/tedddby/Katedrala#get-started
+      - text: . npm packages are planned for v1.
+    - term: Deterministic Available today
+    - definition: The same files, configuration and Katedrala version produce the same document, byte for byte. Two analyses of CodeVerse came out identical.
+    - term: Versioned schemas Available today
+    - definition:
+      - text: The document format is specified as JSON Schema, generated from its TypeScript types and versioned in the repository. Today,
+      - code: analyzeStructure
+      - text: returns the document's structural sections.
+    - term: Local Available today
+    - definition: Analysis runs on your machine. No network calls, no language model, nothing uploaded.
+    - term: Made for CI Planned for v1
+    - definition: Reports will be human-readable by default, with JSON or YAML for tools and an exit code that can fail a pull request.
+  - region "Read every line of it.":
+    - heading "Read every line of it." [level=2]
+    - paragraph: Katedrala is MIT licensed. Its engine, document contract, design decisions and roadmap all live in the repository.
+    - term: MIT licensed
+    - definition: Use it, change it and build on it, in open-source and commercial work alike.
+    - term: A formal contract
+    - definition: The architecture document is specified in the repository, as TypeScript types and the JSON Schema generated from them.
+    - term: Recorded decisions
+    - definition: Architecture decision records explain how the engine is built, and why.
+    - term: Built to extend
+    - definition: Languages plug in through a typed adapter contract. TypeScript and JavaScript come first.
+    - link "View on GitHub":
+      - /url: https://github.com/tedddby/Katedrala
+    - link "Contribute":
+      - /url: https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md
+    - heading "The road to v1." [level=3]
+    - paragraph: 4 of 15 milestones done, 1 in progress. Everything this page marks as planned for v1 is on this list.
+    - list "4 milestones done, 1 in progress, 10 planned":
+      - listitem: 01 Foundation, architecture, IR Done
+      - listitem: 02 TypeScript/JavaScript parsing Done
+      - listitem: 03 Dependency graph Done
+      - listitem: 04 Graph algorithms Done
+      - listitem: 05 Architectural inference Planned
+      - listitem: 06 Metrics Planned
+      - listitem: 07 Anomaly detection Planned
+      - listitem: 08 Rules engine Planned
+      - listitem: 09 Impact analysis Planned
+      - listitem: 10 Architecture diff Planned
+      - listitem: 11 CLI Planned
+      - listitem: 12 Git and CI integration Planned
+      - listitem: 13 Performance and caching In progress
+      - listitem: 14 CodeVerse adapter Planned
+      - listitem: 15 Documentation and release preparation Planned
+    - paragraph:
+      - text: From the
+      - link "roadmap":
+        - /url: https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md
+      - text: in the repository.
+  - region "Built to carry other tools.":
+    - heading "Built to carry other tools." [level=2]
+    - paragraph: "Katedrala is an engine, not a visualization product: it produces one versioned document for other tools to build on."
+    - figure "Architecture document versioned, specified as JSON Schema Katedrala parse, link, infer, analyze, explain Your repository TypeScript and JavaScript first":
+      - list:
+        - listitem:
+          - paragraph: CodeVerse
+          - paragraph: The architecture as a city you can fly through.
+          - text: Planned for v1
+        - listitem:
+          - paragraph: CI pipelines
+          - paragraph: Will fail a build when a change breaks a rule.
+          - text: Planned for v1
+        - listitem:
+          - paragraph: Editors
+          - paragraph: Impact and violations inline, as you type.
+          - text: Planned after v1
+        - listitem:
+          - paragraph: Exporters
+          - paragraph: C4 diagrams, Structurizr DSL and GraphML.
+          - text: Planned after v1
+        - listitem:
+          - paragraph: Your tools
+          - paragraph: Build on the versioned document format and its JSON Schema.
+          - text: Available today
+      - text: Architecture document versioned, specified as JSON Schema Katedrala parse, link, infer, analyze, explain Your repository TypeScript and JavaScript first
+    - heading "Katedrala will power CodeVerse." [level=3]
+    - paragraph: "CodeVerse turns a GitHub repository into a 3D city you can fly through: directories become districts, files become buildings, imports become arcs. With Katedrala underneath, the city will show the architecture as well: inferred modules, the components that carry the most load, cycles and broken rules."
+    - paragraph: "CodeVerse is a separate open-source project, and Katedrala does not depend on it. Katedrala already analyzes its source: 3,766 symbols and 14,233 relationships, the same document on every run."
+    - link "Open CodeVerse":
+      - /url: https://codeverse.awab.tech
+    - link "CodeVerse on GitHub":
+      - /url: https://github.com/tedddby/CodeVerse
+    - list "From repository to CodeVerse":
+      - listitem:
+        - text: Your repository
+        - paragraph: Any TypeScript or JavaScript codebase.
+      - listitem:
+        - text: Katedrala Available today
+        - paragraph: Files, symbols and relationships today; modules and measures next.
+      - listitem:
+        - text: Architecture document Available today
+        - paragraph: "Versioned JSON: the structure today, the full architecture in v1."
+      - listitem:
+        - text: CodeVerse adapter Planned for v1
+        - paragraph: Will turn the document into a visualization model.
+      - listitem:
+        - text: CodeVerse Planned for v1
+        - paragraph: Districts, buildings and arcs that will show the architecture.
+  - region "Understand your system before you change it.":
+    - heading "Understand your system before you change it." [level=2]
+    - paragraph: Katedrala is open source and being built toward v1. Start with the README, follow the roadmap, or help build it.
+    - link "Get started on GitHub":
+      - /url: https://github.com/tedddby/Katedrala#get-started
+    - link "View on GitHub":
+      - /url: https://github.com/tedddby/Katedrala
+- contentinfo:
+  - text: KATEDRALA
+  - paragraph: An open-source software architecture engine. MIT licensed.
+  - navigation "Project":
+    - heading "Project" [level=2]
+    - list:
+      - listitem:
+        - link "GitHub":
+          - /url: https://github.com/tedddby/Katedrala
+      - listitem:
+        - link "Roadmap":
+          - /url: https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md
+      - listitem:
+        - link "Contributing":
+          - /url: https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md
+      - listitem:
+        - link "MIT license":
+          - /url: https://github.com/tedddby/Katedrala/blob/main/LICENSE
+  - navigation "Documentation":
+    - heading "Documentation" [level=2]
+    - list:
+      - listitem:
+        - link "Architecture document":
+          - /url: https://github.com/tedddby/Katedrala/blob/main/docs/ARCHITECTURE.md
+      - listitem:
+        - link "The IR contract":
+          - /url: https://github.com/tedddby/Katedrala/blob/main/docs/IR.md
+      - listitem:
+        - link "All documents":
+          - /url: https://github.com/tedddby/Katedrala/tree/main/docs
+  - navigation "Related":
+    - heading "Related" [level=2]
+    - list:
+      - listitem:
+        - link "CodeVerse":
+          - /url: https://codeverse.awab.tech
+- alert

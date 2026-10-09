@@ -1,0 +1,27 @@
+radiogroup "Scale" <div tabindex=-1>
+radiogroup "Architecture plan of the demonstration system, by member" description="Arrow keys select members, + and − zoom, 0 fits, Escape clears." describedby=[#«id»] <svg tabindex=-1>
+radio "Members" checked=true focusable <button tabindex=0>
+radio "Modules" focusable <button tabindex=-1>
+button "Zoom in" focusable <button tabindex=0>
+button "Zoom out" disabled focusable <button tabindex=0>
+button "Fit the plan" disabled focusable <button tabindex=0>
+radio "ApiGateway, Gateway module" description="Depends on AuthService, CheckoutController and OrderController. Nothing depends on it." focusable <g tabindex=0>
+radio "CheckoutController, Checkout module" description="Depends on CheckoutService. Depended on by ApiGateway." focusable <g tabindex=-1>
+radio "CheckoutService, Checkout module" description="Depends on OrderService, PaymentService and UserService. Depended on by CheckoutController." focusable <g tabindex=-1>
+radio "OrderController, Orders module" description="Depends on OrderService. Depended on by ApiGateway." focusable <g tabindex=-1>
+radio "OrderService, Orders module" description="Depends on InvoiceService, PaymentService, OrderRepository and EventBus. Depended on by OrderController and CheckoutService." focusable <g tabindex=-1>
+radio "OrderRepository, Orders module" description="Depends on Database. Depended on by OrderService." focusable <g tabindex=-1>
+radio "AuthService, Auth module" description="Depends on SessionStore and UserRepository. Depended on by ApiGateway." focusable <g tabindex=-1>
+radio "SessionStore, Auth module" description="Depends on Database. Depended on by AuthService." focusable <g tabindex=-1>
+radio "InvoiceService, Billing module" description="Depends on PaymentService and UserService. Depended on by OrderService." focusable <g tabindex=-1>
+radio "PaymentService, Payments module" description="Depends on StripeClient and PaymentRepository. Depended on by CheckoutService, OrderService and InvoiceService." focusable <g tabindex=-1>
+radio "PaymentRepository, Payments module" description="Depends on Database. Depended on by PaymentService." focusable <g tabindex=-1>
+radio "StripeClient, Payments module" description="Depends on nothing inside the system. Depended on by PaymentService." focusable <g tabindex=-1>
+radio "UserService, Users module" description="Depends on UserRepository. Depended on by CheckoutService and InvoiceService." focusable <g tabindex=-1>
+radio "UserRepository, Users module" description="Depends on Database. Depended on by AuthService and UserService." focusable <g tabindex=-1>
+radio "Database, Platform module" description="Depends on nothing inside the system. Depended on by OrderRepository, PaymentRepository, UserRepository and SessionStore." focusable <g tabindex=-1>
+radio "EventBus, Platform module" description="Depends on nothing inside the system. Depended on by OrderService." focusable <g tabindex=-1>
+button "calls" pressed=true focusable <button tabindex=0>
+button "instantiates" pressed=true focusable <button tabindex=0>
+button "accesses data" pressed=true focusable <button tabindex=0>
+DisclosureTriangle "Read the graph as a table" focusable <summary tabindex=0>

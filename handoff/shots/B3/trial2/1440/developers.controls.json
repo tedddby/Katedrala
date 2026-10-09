@@ -1,0 +1,286 @@
+[
+  {
+    "unit": "developers",
+    "role": "tablist",
+    "name": "Commands",
+    "states": {
+      "multiselectable": false,
+      "orientation": "vertical"
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "tablist",
+        "aria-label": "Commands",
+        "aria-orientation": "vertical"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10649,
+        "w": 424,
+        "h": 479.1
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tabpanel",
+    "name": "analyze What is in this repository?",
+    "states": {
+      "labelledby": [
+        "analyze What is in this repository?"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "tabpanel",
+        "aria-labelledby": "_R_1taatqlb_-tab-analyze"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 508,
+        "y": 10649,
+        "w": 872,
+        "h": 379.9
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "analyze What is in this repository?",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": true,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "true",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10649,
+        "w": 424,
+        "h": 78.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "health Where is the structure weak?",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10728,
+        "w": 424,
+        "h": 78.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "impact What will this change touch?",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10806,
+        "w": 424,
+        "h": 78.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "validate Does the code follow our rules?",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10885,
+        "w": 424,
+        "h": 78.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "diff What changed between two revisions?",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10964,
+        "w": 424,
+        "h": 79.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "generic",
+    "name": "",
+    "states": {
+      "focusable": true
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "pre",
+      "tabIndex": 0,
+      "attrs": {
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 509,
+        "y": 10685,
+        "w": 870,
+        "h": 343.3
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "button",
+    "name": "Copy analyze.mjs",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 648,
+        "y": 11267,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "link",
+    "name": "from a clone of the repository",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala#get-started"
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala#get-started",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 11488,
+        "w": 164.2,
+        "h": 14
+      }
+    }
+  }
+]

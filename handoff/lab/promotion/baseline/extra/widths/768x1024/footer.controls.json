@@ -1,0 +1,170 @@
+[
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 272,
+        "y": 18570,
+        "w": 47.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Roadmap",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 272,
+        "y": 18614,
+        "w": 65.6,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Contributing",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 272,
+        "y": 18658,
+        "w": 82.3,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "MIT license",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/LICENSE"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 272,
+        "y": 18702,
+        "w": 76,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Architecture document",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ARCHITECTURE.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 392,
+        "y": 18570,
+        "w": 104.4,
+        "h": 68
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "The IR contract",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/IR.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 392,
+        "y": 18638,
+        "w": 101.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "All documents",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/tree/main/docs"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 392,
+        "y": 18682,
+        "w": 95.1,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "CodeVerse",
+    "states": {
+      "focusable": true,
+      "url": "https://codeverse.awab.tech/"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 512,
+        "y": 18570,
+        "w": 74.3,
+        "h": 44
+      }
+    }
+  }
+]

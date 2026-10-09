@@ -1,0 +1,24 @@
+[
+  {
+    "unit": "how-it-works",
+    "role": "region",
+    "name": "From source code to architecture.",
+    "states": {
+      "labelledby": [
+        "From source code to architecture."
+      ]
+    },
+    "dom": {
+      "unit": "how-it-works",
+      "tag": "section",
+      "tabIndex": -1,
+      "rendered": true,
+      "rect": {
+        "x": 0,
+        "y": 1200,
+        "w": 844,
+        "h": 1058.1
+      }
+    }
+  }
+]

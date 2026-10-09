@@ -1,0 +1,9 @@
+{
+  "url": "http://localhost:3100/",
+  "started": "2026-10-09T13:29:29.198Z",
+  "finished": "2026-10-09T13:29:33.004Z",
+  "browser": "msedge 154.0.4258.62",
+  "log": [
+    "header 320: normal 320x65, Menu right 304 (cut 0), doc width 320; text-spacing 320x65, Menu right 304 (cut 0), doc width 320, layout viewport 320; wider than the screen: nothing"
+  ]
+}

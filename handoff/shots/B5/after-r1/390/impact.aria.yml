@@ -1,0 +1,39 @@
+- region "Know what a change will touch before you make it.":
+  - heading "Know what a change will touch before you make it." [level=2]
+  - paragraph: Katedrala will trace dependency paths out from a change to estimate its structural blast radius, path by path.
+  - text: Planned for v1 katedrala impact
+  - combobox "katedrala impact":
+    - option "AuthService"
+    - option "CheckoutController"
+    - option "CheckoutService"
+    - option "Database"
+    - option "EventBus"
+    - option "InvoiceService"
+    - option "OrderController"
+    - option "OrderRepository"
+    - option "OrderService"
+    - option "PaymentRepository"
+    - option "PaymentService" [selected]
+    - option "SessionStore"
+    - option "StripeClient"
+    - option "UserRepository"
+    - option "UserService"
+  - figure:
+    - 'img "Load drawing of the demonstration system by module: changing PaymentService, in Payments, reaches 4 modules: Gateway, Checkout, Orders and Billing."'
+  - paragraph: Drawn by module. Impact rises through everything that rests on the change. Demonstration system.
+  - status: Changing PaymentService affects 6 members in 4 modules, including 3 HTTP handlers.
+  - term: Members affected
+  - definition: "6"
+  - term: Modules
+  - definition: "4"
+  - term: HTTP handlers
+  - definition: "3"
+  - heading "Why each member is affected" [level=3]
+  - list:
+    - listitem: 1 CheckoutService → PaymentService
+    - listitem: 1 InvoiceService → PaymentService
+    - listitem: 1 OrderService → PaymentService
+    - listitem: 2 CheckoutController → CheckoutService → PaymentService
+    - listitem: 2 OrderController → OrderService → PaymentService
+    - listitem: 3 ApiGateway → CheckoutController → CheckoutService → PaymentService
+  - paragraph: PaymentService is in the Payments module. Paths are the shortest dependency chains, with ties broken by name, so every run gives the same answer.

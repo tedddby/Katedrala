@@ -1,0 +1,6 @@
+radiogroup "Member to measure" <div tabindex=-1>
+radio "Database 0.64" checked=true focusable <button tabindex=0>
+radio "PaymentService 0.58" focusable <button tabindex=-1>
+radio "OrderService 0.46" focusable <button tabindex=-1>
+radio "CheckoutController 0.25" focusable <button tabindex=-1>
+radio "ApiGateway 0.00" focusable <button tabindex=-1>

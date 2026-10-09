@@ -1,0 +1,23 @@
+[
+  {
+    "unit": "skip-link",
+    "role": "link",
+    "name": "Skip to content",
+    "states": {
+      "focusable": true,
+      "url": "/#main"
+    },
+    "dom": {
+      "unit": "skip-link",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": -78,
+        "w": 148.8,
+        "h": 47.2
+      }
+    }
+  }
+]

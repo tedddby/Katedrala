@@ -1,0 +1,110 @@
+## 1440 skip-link.txt: 1 changed lines
+    + Skip the film
+## 1440 skip-link.aria.yml: identical
+## 1440 header.txt: identical
+## 1440 header.aria.yml: identical
+## 1440 how-it-works.txt: 21 changed lines
+    + Source code
+    - payment.service.ts
+    - class
+    - PaymentService
+    - import
+    - StripeClient
+    + cache-key.ts
+    + symbols
+    + 4
+    + function
+    + graphCacheKey
+    - instantiates
+    + calls
+    - PaymentService
+    + createAnalysisService
+    - StripeClient
+    + graphCacheKey
+    + at
+    + analysis-service.ts:219
+    - The artifacts follow one member of the demonstration system, PaymentService, through every pass.
+    + Parse and Link show Katedrala’s real output for CodeVerse, the relationship traced in the film above. Infer, Analyze and Explain preview v1 on the demonstration system the rest of this page uses.
+## 1440 how-it-works.aria.yml: 20 changed lines
+    -       - definition: payment.service.ts
+    -       - term: class
+    -       - definition: PaymentService
+    -       - term: import
+    -       - definition: StripeClient
+    +       - definition: cache-key.ts
+    +       - term: symbols
+    +       - definition: "4"
+    +       - term: function
+    +       - definition: graphCacheKey
+    -       - definition: instantiates
+    +       - definition: calls
+    -       - definition: PaymentService
+    +       - definition: createAnalysisService
+    -       - definition: StripeClient
+    +       - definition: graphCacheKey
+    +       - term: at
+    +       - definition: analysis-service.ts:219
+    -   - paragraph: The artifacts follow one member of the demonstration system, PaymentService, through every pass.
+    +   - paragraph: Parse and Link show Katedrala’s real output for CodeVerse, the relationship traced in the film above. Infer, Analyze and Explain preview v1 on the demonstration system the rest of this page uses.
+## 1440 get-started.txt: identical
+## 1440 get-started.aria.yml: identical
+## 1440 footer.txt: 3 changed lines
+    - An open-source software architecture engine. MIT licensed.
+    + An open-source software architecture engine.
+    + MIT licensed.
+## 1440 footer.aria.yml: identical
+## 390 skip-link.txt: 1 changed lines
+    + Skip the film
+## 390 skip-link.aria.yml: identical
+## 390 header.txt: identical
+## 390 header.aria.yml: identical
+## 390 how-it-works.txt: 21 changed lines
+    + Source code
+    - payment.service.ts
+    - class
+    - PaymentService
+    - import
+    - StripeClient
+    + cache-key.ts
+    + symbols
+    + 4
+    + function
+    + graphCacheKey
+    - instantiates
+    + calls
+    - PaymentService
+    + createAnalysisService
+    - StripeClient
+    + graphCacheKey
+    + at
+    + analysis-service.ts:219
+    - The artifacts follow one member of the demonstration system, PaymentService, through every pass.
+    + Parse and Link show Katedrala’s real output for CodeVerse, the relationship traced in the film above. Infer, Analyze and Explain preview v1 on the demonstration system the rest of this page uses.
+## 390 how-it-works.aria.yml: 20 changed lines
+    -       - definition: payment.service.ts
+    -       - term: class
+    -       - definition: PaymentService
+    -       - term: import
+    -       - definition: StripeClient
+    +       - definition: cache-key.ts
+    +       - term: symbols
+    +       - definition: "4"
+    +       - term: function
+    +       - definition: graphCacheKey
+    -       - definition: instantiates
+    +       - definition: calls
+    -       - definition: PaymentService
+    +       - definition: createAnalysisService
+    -       - definition: StripeClient
+    +       - definition: graphCacheKey
+    +       - term: at
+    +       - definition: analysis-service.ts:219
+    -   - paragraph: The artifacts follow one member of the demonstration system, PaymentService, through every pass.
+    +   - paragraph: Parse and Link show Katedrala’s real output for CodeVerse, the relationship traced in the film above. Infer, Analyze and Explain preview v1 on the demonstration system the rest of this page uses.
+## 390 get-started.txt: identical
+## 390 get-started.aria.yml: identical
+## 390 footer.txt: 3 changed lines
+    - An open-source software architecture engine. MIT licensed.
+    + An open-source software architecture engine.
+    + MIT licensed.
+## 390 footer.aria.yml: identical

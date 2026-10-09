@@ -1,0 +1,3 @@
+region "Understand your system before you change it." <section tabindex=-1> 1024x549.3
+link "Get started on GitHub" url=https://github.com/tedddby/Katedrala#get-started focusable <a tabindex=0> 135.7x44
+link "View on GitHub" url=https://github.com/tedddby/Katedrala focusable <a tabindex=0> 163.4x44

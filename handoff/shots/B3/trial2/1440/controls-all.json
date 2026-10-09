@@ -1,0 +1,2892 @@
+[
+  {
+    "unit": "skip-link",
+    "role": "link",
+    "name": "Skip to content",
+    "states": {
+      "focusable": true,
+      "url": "/#main"
+    },
+    "dom": {
+      "unit": "skip-link",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#main"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": -78,
+        "w": 148.8,
+        "h": 47.2
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Katedrala, back to top",
+    "states": {
+      "focusable": true,
+      "url": "/#top"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#top",
+        "aria-label": "Katedrala, back to top"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 52,
+        "y": 10,
+        "w": 193.7,
+        "h": 43.2
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Get started on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala#get-started"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala#get-started",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1257,
+        "y": 14,
+        "w": 122.9,
+        "h": 36
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "link",
+    "name": "Explore Katedrala",
+    "states": {
+      "focusable": true,
+      "url": "/#how-it-works"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#how-it-works"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 446,
+        "w": 156.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "link",
+    "name": "View on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 229,
+        "y": 446,
+        "w": 163.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radiogroup",
+    "name": "Scale",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Scale"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 2073,
+        "w": 174.9,
+        "h": 37.2
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radiogroup",
+    "name": "Architecture plan of the demonstration system, by member",
+    "description": "Arrow keys select members, + and − zoom, 0 fits, Escape clears.",
+    "states": {
+      "required": false,
+      "describedby": [
+        "#«id»"
+      ]
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "svg",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Architecture plan of the demonstration system, by member",
+        "aria-describedby": "_R_1pqatqlb_"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 61,
+        "y": 2127,
+        "w": 982,
+        "h": 705.1
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radiogroup",
+    "name": "Member to measure",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Member to measure"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 3440,
+        "w": 1320,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radiogroup",
+    "name": "Commits applied",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Commits applied"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 844,
+        "y": 4854,
+        "w": 536,
+        "h": 230.3
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "combobox",
+    "name": "katedrala impact",
+    "value": "PaymentService",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "hasPopup": "menu",
+      "expanded": false,
+      "labelledby": [
+        "katedrala impact"
+      ]
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "select",
+      "tabIndex": 0,
+      "attrs": {},
+      "rendered": true,
+      "rect": {
+        "x": 239,
+        "y": 6236,
+        "w": 197,
+        "h": 34.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tablist",
+    "name": "Commands",
+    "states": {
+      "multiselectable": false,
+      "orientation": "vertical"
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "tablist",
+        "aria-label": "Commands",
+        "aria-orientation": "vertical"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10649,
+        "w": 424,
+        "h": 479.1
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tabpanel",
+    "name": "analyze What is in this repository?",
+    "states": {
+      "labelledby": [
+        "analyze What is in this repository?"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "tabpanel",
+        "aria-labelledby": "_R_1taatqlb_-tab-analyze"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 508,
+        "y": 10649,
+        "w": 872,
+        "h": 379.9
+      }
+    }
+  },
+  {
+    "unit": "open-source",
+    "role": "link",
+    "name": "View on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "open-source",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 12532,
+        "w": 163.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "open-source",
+    "role": "link",
+    "name": "Contribute",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md"
+    },
+    "dom": {
+      "unit": "open-source",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 235,
+        "y": 12532,
+        "w": 132.5,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "ecosystem",
+    "role": "link",
+    "name": "Open CodeVerse",
+    "states": {
+      "focusable": true,
+      "url": "https://codeverse.awab.tech/"
+    },
+    "dom": {
+      "unit": "ecosystem",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://codeverse.awab.tech",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 14033,
+        "w": 173.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "ecosystem",
+    "role": "link",
+    "name": "CodeVerse on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/CodeVerse"
+    },
+    "dom": {
+      "unit": "ecosystem",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/CodeVerse",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 258,
+        "y": 14033,
+        "w": 145.3,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "get-started",
+    "role": "link",
+    "name": "Get started on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala#get-started"
+    },
+    "dom": {
+      "unit": "get-started",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala#get-started",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 14591,
+        "w": 135.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "get-started",
+    "role": "link",
+    "name": "View on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "get-started",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 208,
+        "y": 14591,
+        "w": 163.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radiogroup",
+    "name": "Load drawing of the demonstration system: 16 members on 8 load levels, each resting on what it depends on",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "svg",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Load drawing of the demonstration system: 16 members on 8 load levels, each resting on what it depends on"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 620,
+        "y": 112,
+        "w": 760,
+        "h": 566
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Members",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 61,
+        "y": 2074,
+        "w": 89,
+        "h": 35.2
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Modules",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 150,
+        "y": 2074,
+        "w": 84,
+        "h": 35.2
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Zoom in",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Zoom in",
+        "aria-disabled": "false"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 921,
+        "y": 2073,
+        "w": 36,
+        "h": 36
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Zoom out",
+    "states": {
+      "disabled": true,
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Zoom out",
+        "aria-disabled": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 961,
+        "y": 2073,
+        "w": 36,
+        "h": 36
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Fit the plan",
+    "states": {
+      "disabled": true,
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Fit the plan",
+        "aria-disabled": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1001,
+        "y": 2073,
+        "w": 43,
+        "h": 36
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "ApiGateway, Gateway module",
+    "description": "Depends on AuthService, CheckoutController and OrderController. Nothing depends on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": 0,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "0",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "ApiGateway, Gateway module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 522,
+        "y": 2172,
+        "w": 60.5,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "CheckoutController, Checkout module",
+    "description": "Depends on CheckoutService. Depended on by ApiGateway.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "CheckoutController, Checkout module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 422,
+        "y": 2287,
+        "w": 94.8,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "CheckoutService, Checkout module",
+    "description": "Depends on OrderService, PaymentService and UserService. Depended on by CheckoutController.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "CheckoutService, Checkout module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 593,
+        "y": 2287,
+        "w": 82.9,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "OrderController, Orders module",
+    "description": "Depends on OrderService. Depended on by ApiGateway.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "OrderController, Orders module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 349,
+        "y": 2403,
+        "w": 76.2,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "OrderService, Orders module",
+    "description": "Depends on InvoiceService, PaymentService, OrderRepository and EventBus. Depended on by OrderController and CheckoutService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "OrderService, Orders module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 520,
+        "y": 2403,
+        "w": 64.2,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "OrderRepository, Orders module",
+    "description": "Depends on Database. Depended on by OrderService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "OrderRepository, Orders module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 677,
+        "y": 2403,
+        "w": 81,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "AuthService, Auth module",
+    "description": "Depends on SessionStore and UserRepository. Depended on by ApiGateway.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "AuthService, Auth module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 343,
+        "y": 2519,
+        "w": 60.1,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "SessionStore, Auth module",
+    "description": "Depends on Database. Depended on by AuthService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "SessionStore, Auth module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 506,
+        "y": 2519,
+        "w": 65,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "InvoiceService, Billing module",
+    "description": "Depends on PaymentService and UserService. Depended on by OrderService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "InvoiceService, Billing module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 695,
+        "y": 2519,
+        "w": 71.5,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "PaymentService, Payments module",
+    "description": "Depends on StripeClient and PaymentRepository. Depended on by CheckoutService, OrderService and InvoiceService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "PaymentService, Payments module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 169,
+        "y": 2635,
+        "w": 79.3,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "PaymentRepository, Payments module",
+    "description": "Depends on Database. Depended on by PaymentService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "PaymentRepository, Payments module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 326,
+        "y": 2635,
+        "w": 96.1,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "StripeClient, Payments module",
+    "description": "Depends on nothing inside the system. Depended on by PaymentService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "StripeClient, Payments module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 510,
+        "y": 2635,
+        "w": 57.9,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "UserService, Users module",
+    "description": "Depends on UserRepository. Depended on by CheckoutService and InvoiceService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "UserService, Users module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 701,
+        "y": 2635,
+        "w": 59.3,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "UserRepository, Users module",
+    "description": "Depends on Database. Depended on by AuthService and UserService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "UserRepository, Users module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 858,
+        "y": 2635,
+        "w": 76.1,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Database, Platform module",
+    "description": "Depends on nothing inside the system. Depended on by OrderRepository, PaymentRepository, UserRepository and SessionStore.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Database, Platform module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 446,
+        "y": 2751,
+        "w": 46.6,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "EventBus, Platform module",
+    "description": "Depends on nothing inside the system. Depended on by OrderService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "EventBus, Platform module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 611,
+        "y": 2751,
+        "w": 47.2,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "calls",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "true"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 2845,
+        "w": 86.7,
+        "h": 34
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "instantiates",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "true"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 155,
+        "y": 2845,
+        "w": 127,
+        "h": 34
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "accesses data",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "true"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 290,
+        "y": 2845,
+        "w": 143.2,
+        "h": 34
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "DisclosureTriangle",
+    "name": "Read the graph as a table",
+    "states": {
+      "focusable": true,
+      "expanded": false
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "summary",
+      "tabIndex": 0,
+      "attrs": {},
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 2944,
+        "w": 171.1,
+        "h": 22.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "Database 0.64",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 3440,
+        "w": 130.8,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "PaymentService 0.58",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 199,
+        "y": 3440,
+        "w": 173.2,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "OrderService 0.46",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 380,
+        "y": 3440,
+        "w": 153.4,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "CheckoutController 0.25",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 541,
+        "y": 3440,
+        "w": 191.8,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "ApiGateway 0.00",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 741,
+        "y": 3440,
+        "w": 146.7,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "base Clean structure",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 844,
+        "y": 4854,
+        "w": 536,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+1 Send order confirmations from the user repository",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 844,
+        "y": 4892,
+        "w": 536,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+2 Check permissions before charging",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 844,
+        "y": 4931,
+        "w": 536,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+3 Recalculate invoices from orders",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 844,
+        "y": 4969,
+        "w": 536,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+4 Show unpaid invoices on profiles",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 844,
+        "y": 5008,
+        "w": 536,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "entropy",
+    "role": "radio",
+    "name": "+5 Audit order access from auth",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "entropy",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 844,
+        "y": 5046,
+        "w": 536,
+        "h": 38.4
+      }
+    }
+  },
+  {
+    "unit": "rules",
+    "role": "button",
+    "name": "Copy katedrala.config.yaml",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 536,
+        "y": 7418,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "evidence",
+    "role": "button",
+    "name": "Copy real output: CodeVerse at 6b942bc",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "evidence",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1320,
+        "y": 8507,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "analyze What is in this repository?",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": true,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "true",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10649,
+        "w": 424,
+        "h": 78.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "health Where is the structure weak?",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10728,
+        "w": 424,
+        "h": 78.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "impact What will this change touch?",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10806,
+        "w": 424,
+        "h": 78.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "validate Does the code follow our rules?",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10885,
+        "w": 424,
+        "h": 78.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "diff What changed between two revisions?",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 10964,
+        "w": 424,
+        "h": 79.8
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "generic",
+    "name": "",
+    "states": {
+      "focusable": true
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "pre",
+      "tabIndex": 0,
+      "attrs": {
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 509,
+        "y": 10685,
+        "w": 870,
+        "h": 343.3
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "button",
+    "name": "Copy analyze.mjs",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 648,
+        "y": 11267,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "link",
+    "name": "from a clone of the repository",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala#get-started"
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala#get-started",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 11488,
+        "w": 164.2,
+        "h": 14
+      }
+    }
+  },
+  {
+    "unit": "open-source",
+    "role": "link",
+    "name": "roadmap",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md"
+    },
+    "dom": {
+      "unit": "open-source",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 786,
+        "y": 12866,
+        "w": 51.7,
+        "h": 14
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "How it works",
+    "states": {
+      "focusable": true,
+      "url": "/#how-it-works"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#how-it-works"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 507,
+        "y": 24,
+        "w": 83.8,
+        "h": 16
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Architecture",
+    "states": {
+      "focusable": true,
+      "url": "/#architecture"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#architecture"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 623,
+        "y": 24,
+        "w": 81.1,
+        "h": 16
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Concepts",
+    "states": {
+      "focusable": true,
+      "url": "/#gravity"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#gravity"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 736,
+        "y": 24,
+        "w": 64.5,
+        "h": 16
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Developers",
+    "states": {
+      "focusable": true,
+      "url": "/#developers"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#developers"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 832,
+        "y": 24,
+        "w": 76.2,
+        "h": 16
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 940,
+        "y": 24,
+        "w": 47.8,
+        "h": 16
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "ApiGateway, Gateway module, gravity 0.00",
+    "description": "Depends on AuthService, CheckoutController, OrderController. 0 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "ApiGateway, Gateway module, gravity 0.00"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1038,
+        "y": 160,
+        "w": 89.1,
+        "h": 29
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "CheckoutController, Checkout module, gravity 0.25",
+    "description": "Depends on CheckoutService. 1 of 15 members rests on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "CheckoutController, Checkout module, gravity 0.25"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 770,
+        "y": 221,
+        "w": 126.6,
+        "h": 29.6
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "CheckoutService, Checkout module, gravity 0.28",
+    "description": "Depends on OrderService, PaymentService, UserService. 2 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "CheckoutService, Checkout module, gravity 0.28"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 734,
+        "y": 282,
+        "w": 115.8,
+        "h": 31
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "OrderController, Orders module, gravity 0.26",
+    "description": "Depends on OrderService. 1 of 15 members rests on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "OrderController, Orders module, gravity 0.26"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 998,
+        "y": 283,
+        "w": 107,
+        "h": 29.6
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "OrderService, Orders module, gravity 0.46",
+    "description": "Depends on InvoiceService, PaymentService, OrderRepository, EventBus. 4 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "OrderService, Orders module, gravity 0.46"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1012,
+        "y": 344,
+        "w": 97.9,
+        "h": 31.9
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "InvoiceService, Billing module, gravity 0.42",
+    "description": "Depends on PaymentService, UserService. 5 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "InvoiceService, Billing module, gravity 0.42"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1165,
+        "y": 407,
+        "w": 103.9,
+        "h": 30.3
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "PaymentService, Payments module, gravity 0.58",
+    "description": "Depends on StripeClient, PaymentRepository. 6 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "PaymentService, Payments module, gravity 0.58"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 841,
+        "y": 468,
+        "w": 113.3,
+        "h": 32.3
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "UserService, Users module, gravity 0.52",
+    "description": "Depends on UserRepository. 6 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "UserService, Users module, gravity 0.52"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1170,
+        "y": 468,
+        "w": 92.2,
+        "h": 31.4
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "AuthService, Auth module, gravity 0.25",
+    "description": "Depends on SessionStore, UserRepository. 1 of 15 members rests on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "AuthService, Auth module, gravity 0.25"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1304,
+        "y": 460,
+        "w": 63.7,
+        "h": 38.6
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "PaymentRepository, Payments module, gravity 0.38",
+    "description": "Depends on Database. 7 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "PaymentRepository, Payments module, gravity 0.38"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 738,
+        "y": 530,
+        "w": 129.5,
+        "h": 31.5
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "OrderRepository, Orders module, gravity 0.34",
+    "description": "Depends on Database. 5 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "OrderRepository, Orders module, gravity 0.34"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1013,
+        "y": 531,
+        "w": 112.9,
+        "h": 30.3
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "UserRepository, Users module, gravity 0.50",
+    "description": "Depends on Database. 8 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "UserRepository, Users module, gravity 0.50"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1181,
+        "y": 529,
+        "w": 110.6,
+        "h": 33.1
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "SessionStore, Auth module, gravity 0.23",
+    "description": "Depends on Database. 2 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "SessionStore, Auth module, gravity 0.23"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1302,
+        "y": 531,
+        "w": 68.8,
+        "h": 56.1
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "StripeClient, Payments module, gravity 0.35",
+    "description": "Depends on nothing inside the system. 7 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "StripeClient, Payments module, gravity 0.35"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 908,
+        "y": 592,
+        "w": 60.4,
+        "h": 57.5
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Database, Platform module, gravity 0.64",
+    "description": "Depends on nothing inside the system. 13 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": 0,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "0",
+        "aria-checked": "false",
+        "aria-label": "Database, Platform module, gravity 0.64"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1004,
+        "y": 589,
+        "w": 49.6,
+        "h": 64.1
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "EventBus, Platform module, gravity 0.37",
+    "description": "Depends on nothing inside the system. 5 of 15 members rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "EventBus, Platform module, gravity 0.37"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1096,
+        "y": 593,
+        "w": 49.2,
+        "h": 56.3
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "AuthService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "CheckoutController",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "CheckoutService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "Database",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "EventBus",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "InvoiceService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "OrderController",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "OrderRepository",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "OrderService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "PaymentRepository",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "PaymentService",
+    "states": {
+      "focusable": true,
+      "selected": true
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "SessionStore",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "StripeClient",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "UserRepository",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "UserService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 508,
+        "y": 14974,
+        "w": 47.8,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Roadmap",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 508,
+        "y": 15006,
+        "w": 65.6,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Contributing",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 508,
+        "y": 15038,
+        "w": 82.3,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "MIT license",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/LICENSE"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/LICENSE",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 508,
+        "y": 15070,
+        "w": 76,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Architecture document",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ARCHITECTURE.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ARCHITECTURE.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 14974,
+        "w": 151.5,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "The IR contract",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/IR.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/IR.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 15006,
+        "w": 101.4,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "All documents",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/tree/main/docs"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/tree/main/docs",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 15038,
+        "w": 95.1,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "CodeVerse",
+    "states": {
+      "focusable": true,
+      "url": "https://codeverse.awab.tech/"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://codeverse.awab.tech",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 956,
+        "y": 14974,
+        "w": 74.3,
+        "h": 32
+      }
+    }
+  }
+]

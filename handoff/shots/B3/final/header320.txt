@@ -1,0 +1,1 @@
+header 320: normal 320x65, Menu right 304 (cut 0), doc width 320; text-spacing 320x65, Menu right 304 (cut 0), doc width 320, layout viewport 320; wider than the screen: nothing

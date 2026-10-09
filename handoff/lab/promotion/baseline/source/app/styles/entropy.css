@@ -1,0 +1,192 @@
+/* ------------------------------------------------------------------------------------------------
+ * Entropy: module drawing with added dependencies, and the commit log.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .entropy-edge {
+    fill: none;
+    stroke-width: 1.4;
+    transition:
+      stroke 220ms ease,
+      opacity 220ms ease;
+  }
+  /* At least 3:1 against the sheet: the original dependencies are part of the picture, not decoration. */
+  .entropy-edge-base {
+    stroke: var(--color-ink-faint);
+    opacity: 0.8;
+  }
+  .entropy-edge-added {
+    stroke: var(--color-ink);
+    stroke-width: 1.8;
+    stroke-dasharray: 6 4;
+  }
+  .entropy-edge-cycle {
+    stroke: var(--color-load);
+    stroke-width: 1.8;
+  }
+  .entropy-arrow-base {
+    stroke: var(--color-ink-faint);
+  }
+  .entropy-arrow-added {
+    stroke: var(--color-ink);
+  }
+  .entropy-arrow-cycle {
+    stroke: var(--color-load);
+  }
+  .entropy-joint {
+    fill: var(--color-sheet);
+    stroke: var(--color-ink);
+    stroke-width: 1.5;
+    transition:
+      fill 220ms ease,
+      stroke 220ms ease;
+  }
+  .entropy-joint.is-cyclic {
+    stroke: var(--color-load);
+    stroke-width: 2.2;
+  }
+  .entropy-label {
+    font-size: 15px;
+  }
+  /* The drawing spans the column on phones; larger type keeps the module names at 12 px or more. */
+  @media (max-width: 639px) {
+    .entropy-label {
+      font-size: 17px;
+    }
+  }
+  @media (max-width: 379px) {
+    .entropy-label {
+      font-size: 20px;
+    }
+  }
+  /* The score's own sum is chalk: load blue stays on the cycle in the drawing. */
+  .entropy-terms .term-vector[data-resultant="true"] .term-vector-shaft {
+    border-top-color: var(--color-ink);
+  }
+  .entropy-terms .term-vector[data-resultant="true"] .term-vector-head {
+    stroke: var(--color-ink);
+  }
+
+  /*
+   * The commit log: a column through one joint per commit, like the command schedule. Applied commits are
+   * drawn in chalk; the current one is a filled joint on the column.
+   */
+  .commit {
+    --pad: 0.5rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.625rem 2.5rem minmax(0, 1fr);
+    column-gap: 0.875rem;
+    align-items: baseline;
+    width: 100%;
+    padding: var(--pad) 0.75rem var(--pad) 0;
+    text-align: left;
+    font-size: 0.875rem;
+    color: var(--color-ink-faint);
+    transition: color 150ms ease;
+  }
+  .commit::before {
+    content: "";
+    position: absolute;
+    left: calc(0.3125rem - 0.5px);
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid var(--color-rule-strong);
+  }
+  /* The column starts and ends at a joint's center: the padding plus half of the first line. */
+  .commit:first-child::before {
+    top: calc(var(--pad) + 0.7rem);
+  }
+  .commit:last-child::before {
+    bottom: calc(100% - var(--pad) - 0.7rem);
+  }
+  .commit-joint {
+    position: relative;
+    align-self: start;
+    width: 0.625rem;
+    height: 0.625rem;
+    margin-top: 0.3875rem;
+    border: 1.5px solid var(--color-graphite);
+    border-radius: 50%;
+    background: var(--color-sheet);
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease;
+  }
+  .commit-step {
+    color: var(--color-ink-faint);
+  }
+  .commit[data-applied="true"] {
+    color: var(--color-ink-soft);
+  }
+  .commit[data-applied="true"] .commit-joint {
+    border-color: var(--color-ink-soft);
+  }
+  .commit[aria-checked="true"] {
+    color: var(--color-ink);
+  }
+  .commit[aria-checked="true"] .commit-joint {
+    border-color: var(--color-load);
+    background: var(--color-load);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .commit:hover {
+      color: var(--color-ink);
+    }
+    .commit:hover .commit-joint {
+      border-color: var(--color-ink-faint);
+    }
+    .commit[aria-checked="true"]:hover .commit-joint {
+      border-color: var(--color-load);
+    }
+  }
+  .commit:focus-visible {
+    outline-offset: -2px;
+  }
+  @media (pointer: coarse) {
+    .commit {
+      --pad: 0.6875rem;
+    }
+  }
+}
+
+/*
+ * Forced colors: SVG paint is not forced, so the drawing restates itself in system colors, the cycle in
+ * Highlight; the current commit keeps a visible mark when backgrounds are replaced.
+ */
+@media (forced-colors: active) {
+  .entropy-edge-base,
+  .entropy-edge-added,
+  .entropy-arrow-base,
+  .entropy-arrow-added {
+    stroke: CanvasText;
+  }
+  .entropy-edge-cycle,
+  .entropy-arrow-cycle {
+    stroke: Highlight;
+  }
+  .entropy-joint {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+  .entropy-joint.is-cyclic {
+    stroke: Highlight;
+  }
+  .entropy-terms .term-vector[data-resultant="true"] .term-vector-shaft {
+    border-top-color: CanvasText;
+  }
+  .entropy-terms .term-vector[data-resultant="true"] .term-vector-head {
+    stroke: CanvasText;
+  }
+  .commit[aria-checked="true"] {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
+  .commit[aria-checked="true"] .commit-step {
+    color: HighlightText;
+  }
+  .commit[aria-checked="true"] .commit-joint {
+    background: HighlightText;
+    border-color: HighlightText;
+  }
+}

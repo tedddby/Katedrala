@@ -1,0 +1,75 @@
+file:src/domain/index.ts
+   imports from file:src/application/borrow-book.ts
+   imports from file:src/application/dto.ts
+   imports from file:src/application/return-book.ts
+   imports from file:src/application/send-overdue-reminders.ts
+   imports from file:src/infrastructure/persistence/sql-member-repository.ts
+file:src/domain/model/book.ts
+   imports from file:src/infrastructure/persistence/sql-book-repository.ts
+   instantiates from file:src/infrastructure/persistence/sql-book-repository.ts
+   references-type from file:src/infrastructure/persistence/sql-book-repository.ts
+   uses from file:src/infrastructure/persistence/sql-book-repository.ts
+file:src/domain/model/errors.ts
+   imports from file:src/presentation/http/error-mapper.ts
+   instantiates(via) from file:src/application/borrow-book.ts
+   instantiates(via) from file:src/application/return-book.ts
+   uses from file:src/presentation/http/error-mapper.ts
+file:src/domain/model/loan.ts
+   calls from file:src/infrastructure/notifications/smtp-notifier.ts
+   calls from file:src/infrastructure/persistence/sql-loan-repository.ts
+   calls(via) from file:src/application/borrow-book.ts
+   calls(via) from file:src/application/dto.ts
+   imports from file:src/infrastructure/notifications/smtp-notifier.ts
+   imports from file:src/infrastructure/persistence/sql-loan-repository.ts
+   references-type from file:src/infrastructure/notifications/smtp-notifier.ts
+   references-type from file:src/infrastructure/persistence/sql-loan-repository.ts
+   references-type(via) from file:src/application/dto.ts
+   references-type(via) from file:src/application/send-overdue-reminders.ts
+   uses from file:src/infrastructure/persistence/sql-loan-repository.ts
+   uses(via) from file:src/application/dto.ts
+file:src/domain/model/member.ts
+   imports from file:src/infrastructure/notifications/smtp-notifier.ts
+   imports from file:src/infrastructure/persistence/sql-loan-repository.ts
+   instantiates(via) from file:src/infrastructure/persistence/sql-member-repository.ts
+   references-type from file:src/infrastructure/notifications/smtp-notifier.ts
+   references-type from file:src/infrastructure/persistence/sql-loan-repository.ts
+   references-type(via) from file:src/infrastructure/persistence/sql-member-repository.ts
+   uses from file:src/infrastructure/notifications/smtp-notifier.ts
+file:src/domain/ports/book-repository.ts
+   calls from file:src/application/borrow-book.ts
+   calls from file:src/application/return-book.ts
+   implements from file:src/infrastructure/persistence/sql-book-repository.ts
+   imports from file:src/infrastructure/persistence/sql-book-repository.ts
+   references-type(via) from file:src/application/borrow-book.ts
+   references-type(via) from file:src/application/return-book.ts
+file:src/domain/ports/clock.ts
+   calls from file:src/application/borrow-book.ts
+   calls from file:src/application/return-book.ts
+   calls from file:src/application/send-overdue-reminders.ts
+   implements from file:src/infrastructure/system-clock.ts
+   imports from file:src/infrastructure/system-clock.ts
+   references-type(via) from file:src/application/borrow-book.ts
+   references-type(via) from file:src/application/return-book.ts
+   references-type(via) from file:src/application/send-overdue-reminders.ts
+file:src/domain/ports/loan-repository.ts
+   calls from file:src/application/borrow-book.ts
+   calls from file:src/application/return-book.ts
+   calls from file:src/application/send-overdue-reminders.ts
+   implements from file:src/infrastructure/persistence/sql-loan-repository.ts
+   imports from file:src/infrastructure/persistence/sql-loan-repository.ts
+   references-type(via) from file:src/application/borrow-book.ts
+   references-type(via) from file:src/application/return-book.ts
+   references-type(via) from file:src/application/send-overdue-reminders.ts
+file:src/domain/ports/member-repository.ts
+   calls from file:src/application/borrow-book.ts
+   calls from file:src/application/send-overdue-reminders.ts
+   implements(via) from file:src/infrastructure/persistence/sql-member-repository.ts
+   references-type(via) from file:src/application/borrow-book.ts
+   references-type(via) from file:src/application/send-overdue-reminders.ts
+file:src/domain/ports/notifier.ts
+   calls from file:src/application/borrow-book.ts
+   calls from file:src/application/send-overdue-reminders.ts
+   implements from file:src/infrastructure/notifications/smtp-notifier.ts
+   imports from file:src/infrastructure/notifications/smtp-notifier.ts
+   references-type(via) from file:src/application/borrow-book.ts
+   references-type(via) from file:src/application/send-overdue-reminders.ts

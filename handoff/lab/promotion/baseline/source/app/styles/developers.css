@@ -1,0 +1,171 @@
+/* ------------------------------------------------------------------------------------------------
+ * Developers: the command schedule beside one terminal, and the guarantees.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .command-schedule {
+    display: flex;
+    flex-direction: column;
+  }
+  .command-tab {
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.625rem 1fr;
+    column-gap: 1rem;
+    align-items: baseline;
+    padding: 0.875rem 0.75rem 0.875rem 0;
+    text-align: left;
+    border-top: 1px solid var(--color-rule);
+    transition: background-color 150ms ease;
+  }
+  .command-tab:last-child {
+    border-bottom: 1px solid var(--color-rule);
+  }
+  /* A column through the joints, like the pipeline's beam turned upright. */
+  .command-tab::before {
+    content: "";
+    position: absolute;
+    left: calc(0.3125rem - 0.5px);
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-rule-strong);
+  }
+  .command-tab:first-child::before {
+    top: 1.5rem;
+  }
+  .command-tab:last-child::before {
+    bottom: calc(100% - 1.5rem);
+  }
+  .command-tab-joint {
+    position: relative;
+    width: 0.625rem;
+    height: 0.625rem;
+    align-self: start;
+    margin-top: 0.4375rem;
+    fill: var(--color-sheet);
+    stroke: var(--color-graphite);
+    stroke-width: 1.5;
+    transition:
+      fill 150ms ease,
+      stroke 150ms ease;
+  }
+  .command-tab-name {
+    font-size: 0.9375rem;
+    color: var(--color-ink-soft);
+    transition: color 150ms ease;
+  }
+  .command-tab-question {
+    grid-column: 2;
+    margin-top: 0.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    color: var(--color-ink-faint);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .command-tab:hover .command-tab-name {
+      color: var(--color-ink);
+    }
+    .command-tab:hover .command-tab-joint {
+      stroke: var(--color-ink-faint);
+    }
+  }
+  .command-tab[aria-selected="true"] .command-tab-name {
+    color: var(--color-ink);
+  }
+  .command-tab[aria-selected="true"] .command-tab-question {
+    color: var(--color-ink-soft);
+  }
+  .command-tab[aria-selected="true"] .command-tab-joint {
+    fill: var(--color-load);
+    stroke: var(--color-load);
+  }
+  .command-tab:focus-visible {
+    outline-offset: -2px;
+  }
+
+  /* Below lg the schedule turns into rows of tabs above the terminal. The rows wrap rather than scroll, so
+     every command stays in view at any width: two or three to a row on phones, all five from tablets. */
+  @media (max-width: 1023px) {
+    .command-schedule {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+      column-gap: 0.75rem;
+      border-bottom: 1px solid var(--color-rule);
+    }
+    .command-tab {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 0.25rem 0.75rem 0;
+      border: 0;
+    }
+    .command-tab:last-child {
+      border: 0;
+    }
+    .command-tab::before,
+    .command-tab-question {
+      display: none;
+    }
+    .command-tab-joint {
+      margin-top: 0;
+      align-self: center;
+    }
+    /* The joint sits on the tab's edge; the ring goes around it, not through it. */
+    .command-tab:focus-visible {
+      outline-offset: 2px;
+    }
+  }
+
+  /* On the narrowest phones the header's source would wrap for one command and not the others, moving the page
+     on every switch; there it always sits on a line of its own. */
+  @media (max-width: 359px) {
+    .terminal-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+  }
+
+  /* As tall as the longest transcript (--lines, set by the component), plus the block's padding, so switching
+     commands never moves the page. A transcript wider than the terminal fades at the edge it continues past
+     (data-overflow, set by the component, styled with every code block in code.css). */
+  .terminal-body {
+    min-height: calc(var(--lines, 10) * 1lh + 2.125rem);
+  }
+  .terminal-body.is-printing .terminal-line {
+    animation: terminal-print 180ms var(--ease-out) both;
+    animation-delay: calc(var(--line) * 32ms);
+  }
+  @keyframes terminal-print {
+    from {
+      opacity: 0;
+      transform: translateY(3px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .terminal-body.is-printing .terminal-line {
+      animation: none;
+    }
+  }
+
+  .guarantee {
+    border-top: 1px solid var(--color-rule);
+    padding-block: 1rem;
+  }
+  .guarantee:last-child {
+    border-bottom: 1px solid var(--color-rule);
+  }
+}
+
+/* Forced colors: SVG paint is not forced, so the schedule's joints restate themselves in system colors and the
+   selected command keeps its filled joint, in Highlight. */
+@media (forced-colors: active) {
+  .command-tab-joint {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+  .command-tab[aria-selected="true"] .command-tab-joint {
+    fill: Highlight;
+    stroke: Highlight;
+  }
+}

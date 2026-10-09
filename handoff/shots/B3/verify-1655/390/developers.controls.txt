@@ -1,0 +1,11 @@
+tablist "Commands" orientation=horizontal <div tabindex=-1>
+tabpanel "analyze" <div tabindex=-1>
+tab "analyze" selected controls=[#«id»-panel] focusable <button tabindex=0>
+tab "health" controls=[#«id»-panel] focusable <button tabindex=-1>
+tab "impact" controls=[#«id»-panel] focusable <button tabindex=-1>
+tab "validate" controls=[#«id»-panel] focusable <button tabindex=-1>
+tab "diff" controls=[#«id»-panel] focusable <button tabindex=-1>
+generic "" focusable <pre tabindex=0>
+button "Copy analyze.mjs" focusable <button tabindex=0>
+region "analyze.mjs" focusable <pre tabindex=0>
+link "from a clone of the repository" url=https://github.com/tedddby/Katedrala#get-started focusable <a tabindex=0>

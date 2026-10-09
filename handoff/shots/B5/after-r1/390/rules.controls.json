@@ -1,0 +1,99 @@
+[
+  {
+    "unit": "rules",
+    "role": "button",
+    "name": "Copy katedrala.config.yaml",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 314,
+        "y": 10350,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "rules",
+    "role": "region",
+    "name": "katedrala.config.yaml",
+    "states": {
+      "focusable": true
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "pre",
+      "tabIndex": 0,
+      "attrs": {
+        "tabindex": "0",
+        "role": "region",
+        "aria-label": "katedrala.config.yaml"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 10387,
+        "w": 356,
+        "h": 401
+      }
+    }
+  },
+  {
+    "unit": "rules",
+    "role": "button",
+    "name": "Remove the hypothetical import",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 29,
+        "y": 10894,
+        "w": 226.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "rules",
+    "role": "link",
+    "name": "controllers-no-database , lines 10 to 13 of katedrala.config.yaml",
+    "states": {
+      "focusable": true,
+      "url": "/#rules-config-10"
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#rules-config-10"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 87,
+        "y": 11407,
+        "w": 191.4,
+        "h": 16
+      }
+    }
+  }
+]

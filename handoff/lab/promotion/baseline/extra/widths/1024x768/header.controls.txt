@@ -1,0 +1,7 @@
+link "Katedrala, back to top" url=/#top focusable <a tabindex=0> 193.7x43.2
+link "Get started on GitHub" url=https://github.com/tedddby/Katedrala#get-started focusable <a tabindex=0> 122.9x36
+link "How it works" url=/#how-it-works focusable <a tabindex=0> 83.8x16
+link "Architecture" url=/#architecture focusable <a tabindex=0> 81.1x16
+link "Concepts" url=/#gravity focusable <a tabindex=0> 64.5x16
+link "Developers" url=/#developers focusable <a tabindex=0> 76.2x16
+link "GitHub" url=https://github.com/tedddby/Katedrala focusable <a tabindex=0> 47.8x16

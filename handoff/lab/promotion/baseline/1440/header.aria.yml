@@ -1,0 +1,23 @@
+- banner:
+  - link "Katedrala, back to top":
+    - /url: "#top"
+    - text: KATEDRALA
+  - navigation "Primary":
+    - list:
+      - listitem:
+        - link "How it works":
+          - /url: "#how-it-works"
+      - listitem:
+        - link "Architecture":
+          - /url: "#architecture"
+      - listitem:
+        - link "Concepts":
+          - /url: "#gravity"
+      - listitem:
+        - link "Developers":
+          - /url: "#developers"
+      - listitem:
+        - link "GitHub":
+          - /url: https://github.com/tedddby/Katedrala
+  - link "Get started on GitHub":
+    - /url: https://github.com/tedddby/Katedrala#get-started

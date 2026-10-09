@@ -1,0 +1,45 @@
+  1 skip-link     link "Skip to content" <a>
+  2 header        link "Katedrala, back to top" <a>
+  3 header        DisclosureTriangle "Menu" <summary>
+  4 top           link "Explore Katedrala" <a>
+  5 top           link "View on GitHub" <a>
+  6 top           radio "Platform module, 2 members" <g>
+  7 architecture  radio "Modules" <button>
+  8 architecture  button "Zoom in" <button>
+  9 architecture  button "Zoom out" <button>
+ 10 architecture  button "Fit the plan" <button>
+ 11 architecture  radio "Gateway module, 1 member" <g>
+ 12 architecture  DisclosureTriangle "Read the graph as a table" <summary>
+ 13 gravity       radio "Database 0.64" <button>
+ 14 gravity       button "Show reach in the drawing" <button>
+ 15 gravity       button "Show fan-in in the drawing" <button>
+ 16 gravity       button "Show cross-module spread in the drawing" <button>
+ 17 gravity       button "Show brokerage in the drawing" <button>
+ 18 entropy       radio "base Clean structure , entropy 0.22" <button>
+ 19 impact        combobox "katedrala impact" <select>
+ 20 rules         button "Copy katedrala.config.yaml" <button>
+ 21 rules         region "katedrala.config.yaml" <pre>
+ 22 rules         button "Remove the hypothetical import" <button>
+ 23 rules         link "controllers-no-database , lines 10 to 13 of katedrala.config.yaml" <a>
+ 24 evidence      button "Copy real output: CodeVerse at 6b942bc" <button>
+ 25 evidence      region "real output: CodeVerse at 6b942bc" <pre>
+ 26 history       list "Five versions of the demonstration system" <ol>
+ 27 developers    tab "analyze" <button>
+ 28 developers    button "Copy analyze.mjs" <button>
+ 29 developers    region "analyze.mjs" <pre>
+ 30 developers    link "from a clone of the repository" <a>
+ 31 open-source   link "View on GitHub" <a>
+ 32 open-source   link "Contribute" <a>
+ 33 open-source   link "roadmap" <a>
+ 34 ecosystem     link "Open CodeVerse" <a>
+ 35 ecosystem     link "CodeVerse on GitHub" <a>
+ 36 get-started   link "Get started on GitHub" <a>
+ 37 get-started   link "View on GitHub" <a>
+ 38 footer        link "GitHub" <a>
+ 39 footer        link "Roadmap" <a>
+ 40 footer        link "Contributing" <a>
+ 41 footer        link "MIT license" <a>
+ 42 footer        link "Architecture document" <a>
+ 43 footer        link "The IR contract" <a>
+ 44 footer        link "All documents" <a>
+ 45 footer        link "CodeVerse" <a>

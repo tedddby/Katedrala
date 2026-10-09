@@ -1,0 +1,8 @@
+/ 1440 closed: 0 violation nodes
+/ 1440 open: 0 violation nodes
+/ 390 touch closed: 0 violation nodes
+/ 390 touch open: 0 violation nodes
+/lab/kit/ 1440 closed: 0 violation nodes
+/lab/kit/ 1440 open: 0 violation nodes
+/lab/kit/ 390 touch closed: 0 violation nodes
+/lab/kit/ 390 touch open: 0 violation nodes

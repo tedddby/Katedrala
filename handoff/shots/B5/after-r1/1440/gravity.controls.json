@@ -1,0 +1,274 @@
+[
+  {
+    "unit": "gravity",
+    "role": "radiogroup",
+    "name": "Member to measure",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Member to measure"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 620,
+        "y": 4638,
+        "w": 760,
+        "h": 88.8
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "Database 0.64",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 620,
+        "y": 4638,
+        "w": 130.8,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "PaymentService 0.58",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 759,
+        "y": 4638,
+        "w": 173.2,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "OrderService 0.46",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 940,
+        "y": 4638,
+        "w": 153.4,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "CheckoutController 0.25",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1101,
+        "y": 4638,
+        "w": 191.8,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "radio",
+    "name": "ApiGateway 0.00",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 620,
+        "y": 4687,
+        "w": 146.7,
+        "h": 40.4
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "button",
+    "name": "Show reach in the drawing",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "true"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "true",
+        "aria-label": "Show reach in the drawing"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 525,
+        "y": 4254,
+        "w": 70.8,
+        "h": 30.8
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "button",
+    "name": "Show fan-in in the drawing",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "false",
+        "aria-label": "Show fan-in in the drawing"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 525,
+        "y": 4347,
+        "w": 70.8,
+        "h": 30.8
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "button",
+    "name": "Show cross-module spread in the drawing",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "false",
+        "aria-label": "Show cross-module spread in the drawing"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 525,
+        "y": 4453,
+        "w": 70.8,
+        "h": 30.8
+      }
+    }
+  },
+  {
+    "unit": "gravity",
+    "role": "button",
+    "name": "Show brokerage in the drawing",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "false"
+    },
+    "dom": {
+      "unit": "gravity",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "false",
+        "aria-label": "Show brokerage in the drawing"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 525,
+        "y": 4559,
+        "w": 70.8,
+        "h": 30.8
+      }
+    }
+  }
+]

@@ -1,0 +1,311 @@
+[
+  {
+    "unit": "developers",
+    "role": "tablist",
+    "name": "Commands",
+    "states": {
+      "multiselectable": false,
+      "orientation": "horizontal"
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "tablist",
+        "aria-label": "Commands",
+        "aria-orientation": "horizontal"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 14311,
+        "w": 358,
+        "h": 97
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tabpanel",
+    "name": "analyze",
+    "states": {
+      "labelledby": [
+        "analyze"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "tabpanel",
+        "aria-labelledby": "_R_1taatqlb_-tab-analyze"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 14468,
+        "w": 358,
+        "h": 356.1
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "analyze",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": true,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "true",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 14311,
+        "w": 111.3,
+        "h": 48
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "health",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 139,
+        "y": 14311,
+        "w": 111.3,
+        "h": 48
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "impact",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 263,
+        "y": 14311,
+        "w": 111.3,
+        "h": 48
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "validate",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 14359,
+        "w": 111.3,
+        "h": 48
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "tab",
+    "name": "diff",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "selected": false,
+      "controls": [
+        "#«id»-panel"
+      ]
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "tab",
+        "aria-selected": "false",
+        "aria-controls": "_R_1taatqlb_-panel",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 139,
+        "y": 14359,
+        "w": 111.3,
+        "h": 48
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "generic",
+    "name": "",
+    "states": {
+      "focusable": true
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "pre",
+      "tabIndex": 0,
+      "attrs": {
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 14504,
+        "w": 356,
+        "h": 319.5
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "button",
+    "name": "Copy analyze.mjs",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 314,
+        "y": 15105,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "region",
+    "name": "analyze.mjs",
+    "states": {
+      "focusable": true
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "pre",
+      "tabIndex": 0,
+      "attrs": {
+        "tabindex": "0",
+        "role": "region",
+        "aria-label": "analyze.mjs"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 17,
+        "y": 15142,
+        "w": 356,
+        "h": 136
+      }
+    }
+  },
+  {
+    "unit": "developers",
+    "role": "link",
+    "name": "from a clone of the repository",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala#get-started"
+    },
+    "dom": {
+      "unit": "developers",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala#get-started",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 56,
+        "y": 15319,
+        "w": 164.2,
+        "h": 14
+      }
+    }
+  }
+]

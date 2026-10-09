@@ -1,0 +1,717 @@
+{
+ "1440x900": {
+  "vw": 1440,
+  "scrollW": 1440,
+  "pageHeight": 15987,
+  "statement": {
+   "height": 681,
+   "h2": {
+    "size": "81.76px",
+    "weight": "640",
+    "wdth": "\"wdth\" 78",
+    "lines": 2,
+    "tracking": "-1.79872px"
+   },
+   "buttons": [
+    {
+     "name": "Get started on GitHub",
+     "srOnly": [
+      " on GitHub"
+     ],
+     "h": 44,
+     "w": 136,
+     "lines": 1
+    },
+    {
+     "name": "View on GitHub",
+     "srOnly": [],
+     "h": 44,
+     "w": 163,
+     "lines": 1
+    }
+   ],
+   "ground": {
+    "left": 0,
+    "right": 1440,
+    "height": 16,
+    "gapAbove": 96
+   }
+  },
+  "footer": {
+   "height": 340,
+   "gapFromGround": 0,
+   "cells": [
+    {
+     "l": 61,
+     "t": 15712,
+     "w": 438,
+     "h": 194
+    },
+    {
+     "l": 500,
+     "t": 15712,
+     "w": 292,
+     "h": 194
+    },
+    {
+     "l": 794,
+     "t": 15712,
+     "w": 292,
+     "h": 194
+    },
+    {
+     "l": 1087,
+     "t": 15712,
+     "w": 292,
+     "h": 194
+    }
+   ],
+   "links": [
+    {
+     "name": "GitHub",
+     "w": 48,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "Roadmap",
+     "w": 66,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "Contributing",
+     "w": 82,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "MIT license",
+     "w": 76,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "Architecture document",
+     "w": 152,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "The IR contract",
+     "w": 101,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "All documents",
+     "w": 95,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "CodeVerse",
+     "w": 74,
+     "h": 32,
+     "wraps": true
+    }
+   ]
+  },
+  "skips": [
+   {
+    "text": "Skip to content",
+    "href": "#main",
+    "display": "block"
+   },
+   {
+    "text": "Skip the film",
+    "href": "#how-it-works",
+    "display": "none"
+   }
+  ],
+  "tab": [
+   {
+    "text": "Skip to content",
+    "visible": true,
+    "top": 16
+   },
+   {
+    "text": "KATEDRALA",
+    "tag": "A"
+   }
+  ],
+  "errors": []
+ },
+ "1024x768": {
+  "vw": 1024,
+  "scrollW": 1024,
+  "pageHeight": 14595,
+  "statement": {
+   "height": 553,
+   "h2": {
+    "size": "63.456px",
+    "weight": "640",
+    "wdth": "\"wdth\" 78",
+    "lines": 2,
+    "tracking": "-1.39603px"
+   },
+   "buttons": [
+    {
+     "name": "Get started on GitHub",
+     "srOnly": [
+      " on GitHub"
+     ],
+     "h": 44,
+     "w": 136,
+     "lines": 1
+    },
+    {
+     "name": "View on GitHub",
+     "srOnly": [],
+     "h": 44,
+     "w": 163,
+     "lines": 1
+    }
+   ],
+   "ground": {
+    "left": 0,
+    "right": 1024,
+    "height": 16,
+    "gapAbove": 72
+   }
+  },
+  "footer": {
+   "height": 309,
+   "gapFromGround": 0,
+   "cells": [
+    {
+     "l": 42,
+     "t": 14338,
+     "w": 312,
+     "h": 194
+    },
+    {
+     "l": 355,
+     "t": 14338,
+     "w": 208,
+     "h": 194
+    },
+    {
+     "l": 565,
+     "t": 14338,
+     "w": 208,
+     "h": 194
+    },
+    {
+     "l": 774,
+     "t": 14338,
+     "w": 208,
+     "h": 194
+    }
+   ],
+   "links": [
+    {
+     "name": "GitHub",
+     "w": 48,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "Roadmap",
+     "w": 66,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "Contributing",
+     "w": 82,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "MIT license",
+     "w": 76,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "Architecture document",
+     "w": 152,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "The IR contract",
+     "w": 101,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "All documents",
+     "w": 95,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "CodeVerse",
+     "w": 74,
+     "h": 32,
+     "wraps": true
+    }
+   ]
+  },
+  "skips": [
+   {
+    "text": "Skip to content",
+    "href": "#main",
+    "display": "block"
+   },
+   {
+    "text": "Skip the film",
+    "href": "#how-it-works",
+    "display": "none"
+   }
+  ],
+  "tab": [
+   {
+    "text": "Skip to content",
+    "visible": true,
+    "top": 16
+   },
+   {
+    "text": "KATEDRALA",
+    "tag": "A"
+   }
+  ],
+  "errors": []
+ },
+ "768x1024": {
+  "vw": 768,
+  "scrollW": 768,
+  "pageHeight": 19387,
+  "statement": {
+   "height": 499,
+   "h2": {
+    "size": "52.192px",
+    "weight": "640",
+    "wdth": "\"wdth\" 78",
+    "lines": 2,
+    "tracking": "-1.14822px"
+   },
+   "buttons": [
+    {
+     "name": "Get started on GitHub",
+     "srOnly": [
+      " on GitHub"
+     ],
+     "h": 44,
+     "w": 136,
+     "lines": 1
+    },
+    {
+     "name": "View on GitHub",
+     "srOnly": [],
+     "h": 44,
+     "w": 163,
+     "lines": 1
+    }
+   ],
+   "ground": {
+    "left": 0,
+    "right": 768,
+    "height": 16,
+    "gapAbove": 64
+   }
+  },
+  "footer": {
+   "height": 412,
+   "gapFromGround": 0,
+   "cells": [
+    {
+     "l": 32,
+     "t": 19016,
+     "w": 705,
+     "h": 127
+    },
+    {
+     "l": 32,
+     "t": 19144,
+     "w": 234,
+     "h": 194
+    },
+    {
+     "l": 267,
+     "t": 19144,
+     "w": 234,
+     "h": 194
+    },
+    {
+     "l": 502,
+     "t": 19144,
+     "w": 234,
+     "h": 194
+    }
+   ],
+   "links": [
+    {
+     "name": "GitHub",
+     "w": 48,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "Roadmap",
+     "w": 66,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "Contributing",
+     "w": 82,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "MIT license",
+     "w": 76,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "Architecture document",
+     "w": 152,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "The IR contract",
+     "w": 101,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "All documents",
+     "w": 95,
+     "h": 32,
+     "wraps": true
+    },
+    {
+     "name": "CodeVerse",
+     "w": 74,
+     "h": 32,
+     "wraps": true
+    }
+   ]
+  },
+  "skips": [
+   {
+    "text": "Skip to content",
+    "href": "#main",
+    "display": "block"
+   },
+   {
+    "text": "Skip the film",
+    "href": "#how-it-works",
+    "display": "none"
+   }
+  ],
+  "tab": [
+   {
+    "text": "Skip to content",
+    "visible": true,
+    "top": 16
+   },
+   {
+    "text": "KATEDRALA",
+    "tag": "A"
+   }
+  ],
+  "errors": []
+ },
+ "390x844": {
+  "vw": 390,
+  "scrollW": 390,
+  "pageHeight": 21318,
+  "statement": {
+   "height": 551,
+   "h2": {
+    "size": "44px",
+    "weight": "640",
+    "wdth": "\"wdth\" 78",
+    "lines": 3,
+    "tracking": "-0.968px"
+   },
+   "buttons": [
+    {
+     "name": "Get started on GitHub",
+     "srOnly": [
+      " on GitHub"
+     ],
+     "h": 44,
+     "w": 136,
+     "lines": 1
+    },
+    {
+     "name": "View on GitHub",
+     "srOnly": [],
+     "h": 44,
+     "w": 163,
+     "lines": 1
+    }
+   ],
+   "ground": {
+    "left": 0,
+    "right": 390,
+    "height": 16,
+    "gapAbove": 64
+   }
+  },
+  "footer": {
+   "height": 572,
+   "gapFromGround": 0,
+   "cells": [
+    {
+     "l": 17,
+     "t": 20788,
+     "w": 356,
+     "h": 127
+    },
+    {
+     "l": 17,
+     "t": 20915,
+     "w": 178,
+     "h": 242
+    },
+    {
+     "l": 196,
+     "t": 20915,
+     "w": 178,
+     "h": 242
+    },
+    {
+     "l": 17,
+     "t": 21159,
+     "w": 356,
+     "h": 110
+    }
+   ],
+   "links": [
+    {
+     "name": "GitHub",
+     "w": 48,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "Roadmap",
+     "w": 66,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "Contributing",
+     "w": 82,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "MIT license",
+     "w": 76,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "Architecture document",
+     "w": 138,
+     "h": 68,
+     "wraps": false
+    },
+    {
+     "name": "The IR contract",
+     "w": 101,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "All documents",
+     "w": 95,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "CodeVerse",
+     "w": 74,
+     "h": 44,
+     "wraps": false
+    }
+   ]
+  },
+  "skips": [
+   {
+    "text": "Skip to content",
+    "href": "#main",
+    "display": "block"
+   },
+   {
+    "text": "Skip the film",
+    "href": "#how-it-works",
+    "display": "none"
+   }
+  ],
+  "tab": [
+   {
+    "text": "Skip to content",
+    "visible": true,
+    "top": 16
+   },
+   {
+    "text": "KATEDRALA",
+    "tag": "A"
+   }
+  ],
+  "errors": []
+ },
+ "320x640": {
+  "vw": 320,
+  "scrollW": 320,
+  "pageHeight": 23322,
+  "statement": {
+   "height": 635,
+   "h2": {
+    "size": "44px",
+    "weight": "640",
+    "wdth": "\"wdth\" 78",
+    "lines": 3,
+    "tracking": "-0.968px"
+   },
+   "buttons": [
+    {
+     "name": "Get started on GitHub",
+     "srOnly": [
+      " on GitHub"
+     ],
+     "h": 44,
+     "w": 136,
+     "lines": 1
+    },
+    {
+     "name": "View on GitHub",
+     "srOnly": [],
+     "h": 44,
+     "w": 163,
+     "lines": 1
+    }
+   ],
+   "ground": {
+    "left": 0,
+    "right": 320,
+    "height": 16,
+    "gapAbove": 64
+   }
+  },
+  "footer": {
+   "height": 596,
+   "gapFromGround": 0,
+   "cells": [
+    {
+     "l": 17,
+     "t": 22767,
+     "w": 286,
+     "h": 151
+    },
+    {
+     "l": 17,
+     "t": 22919,
+     "w": 143,
+     "h": 242
+    },
+    {
+     "l": 161,
+     "t": 22919,
+     "w": 143,
+     "h": 242
+    },
+    {
+     "l": 17,
+     "t": 23162,
+     "w": 286,
+     "h": 110
+    }
+   ],
+   "links": [
+    {
+     "name": "GitHub",
+     "w": 48,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "Roadmap",
+     "w": 66,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "Contributing",
+     "w": 82,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "MIT license",
+     "w": 76,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "Architecture document",
+     "w": 103,
+     "h": 68,
+     "wraps": false
+    },
+    {
+     "name": "The IR contract",
+     "w": 101,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "All documents",
+     "w": 95,
+     "h": 44,
+     "wraps": false
+    },
+    {
+     "name": "CodeVerse",
+     "w": 74,
+     "h": 44,
+     "wraps": false
+    }
+   ]
+  },
+  "skips": [
+   {
+    "text": "Skip to content",
+    "href": "#main",
+    "display": "block"
+   },
+   {
+    "text": "Skip the film",
+    "href": "#how-it-works",
+    "display": "none"
+   }
+  ],
+  "tab": [
+   {
+    "text": "Skip to content",
+    "visible": true,
+    "top": 16
+   },
+   {
+    "text": "KATEDRALA",
+    "tag": "A"
+   }
+  ],
+  "errors": []
+ }
+}

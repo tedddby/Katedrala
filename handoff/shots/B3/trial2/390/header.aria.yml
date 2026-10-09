@@ -1,0 +1,6 @@
+- banner:
+  - link "Katedrala, back to top":
+    - /url: "#top"
+    - text: KATEDRALA
+  - navigation "Primary":
+    - group: Menu

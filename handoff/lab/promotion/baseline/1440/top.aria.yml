@@ -1,0 +1,33 @@
+- region "See what holds your system up.":
+  - heading "See what holds your system up." [level=1]
+  - paragraph: Katedrala reconstructs the architecture of TypeScript and JavaScript, with evidence for every dependency it finds.
+  - link "Explore Katedrala":
+    - /url: "#how-it-works"
+  - link "View on GitHub":
+    - /url: https://github.com/tedddby/Katedrala
+  - paragraph: Database
+  - paragraph: "Carries the most load: 13 of 15 members rest on it."
+  - term: Module
+  - definition: Platform
+  - term: Depended on by
+  - definition: OrderRepository, PaymentRepository, UserRepository, SessionStore
+  - paragraph: Select any member to light the load path it carries.
+  - figure:
+    - 'radiogroup "Load drawing of the demonstration system: 16 members on 8 load levels, each resting on what it depends on"':
+      - radio "ApiGateway, Gateway module, gravity 0.00": ApiGateway
+      - radio "CheckoutController, Checkout module, gravity 0.25": CheckoutController
+      - radio "CheckoutService, Checkout module, gravity 0.28": CheckoutService
+      - radio "OrderController, Orders module, gravity 0.26": OrderController
+      - radio "OrderService, Orders module, gravity 0.46": OrderService
+      - radio "InvoiceService, Billing module, gravity 0.42": InvoiceService
+      - radio "PaymentService, Payments module, gravity 0.58": PaymentService
+      - radio "UserService, Users module, gravity 0.52": UserService
+      - radio "AuthService, Auth module, gravity 0.25": AuthService
+      - radio "PaymentRepository, Payments module, gravity 0.38": PaymentRepository
+      - radio "OrderRepository, Orders module, gravity 0.34": OrderRepository
+      - radio "UserRepository, Users module, gravity 0.50": UserRepository
+      - radio "SessionStore, Auth module, gravity 0.23": SessionStore
+      - radio "StripeClient, Payments module, gravity 0.35": StripeClient
+      - radio "Database, Platform module, gravity 0.64": Database
+      - radio "EventBus, Platform module, gravity 0.37": EventBus
+  - paragraph: "Demonstration system Line weight: load carried Gravity: draft method, planned for v1"

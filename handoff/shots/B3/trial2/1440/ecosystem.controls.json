@@ -1,0 +1,52 @@
+[
+  {
+    "unit": "ecosystem",
+    "role": "link",
+    "name": "Open CodeVerse",
+    "states": {
+      "focusable": true,
+      "url": "https://codeverse.awab.tech/"
+    },
+    "dom": {
+      "unit": "ecosystem",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://codeverse.awab.tech",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 14033,
+        "w": 173.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "ecosystem",
+    "role": "link",
+    "name": "CodeVerse on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/CodeVerse"
+    },
+    "dom": {
+      "unit": "ecosystem",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/CodeVerse",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 258,
+        "y": 14033,
+        "w": 145.3,
+        "h": 44
+      }
+    }
+  }
+]

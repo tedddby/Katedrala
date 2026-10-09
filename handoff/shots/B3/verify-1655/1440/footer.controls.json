@@ -1,0 +1,202 @@
+[
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 508,
+        "y": 14974,
+        "w": 47.8,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Roadmap",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 508,
+        "y": 15006,
+        "w": 65.6,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Contributing",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 508,
+        "y": 15038,
+        "w": 82.3,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "MIT license",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/LICENSE"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/LICENSE",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 508,
+        "y": 15070,
+        "w": 76,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "Architecture document",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ARCHITECTURE.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ARCHITECTURE.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 14974,
+        "w": 151.5,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "The IR contract",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/IR.md"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/IR.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 15006,
+        "w": 101.4,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "All documents",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/tree/main/docs"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/tree/main/docs",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 732,
+        "y": 15038,
+        "w": 95.1,
+        "h": 32
+      }
+    }
+  },
+  {
+    "unit": "footer",
+    "role": "link",
+    "name": "CodeVerse",
+    "states": {
+      "focusable": true,
+      "url": "https://codeverse.awab.tech/"
+    },
+    "dom": {
+      "unit": "footer",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://codeverse.awab.tech",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 956,
+        "y": 14974,
+        "w": 74.3,
+        "h": 32
+      }
+    }
+  }
+]

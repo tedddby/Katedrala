@@ -1,0 +1,7 @@
+Understand your system before you change it.
+
+Katedrala is open source and being built toward v1. Start with the README, follow the roadmap, or help build it.
+
+Get started
+on GitHub
+View on GitHub

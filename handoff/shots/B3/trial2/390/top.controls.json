@@ -1,0 +1,299 @@
+[
+  {
+    "unit": "top",
+    "role": "link",
+    "name": "Explore Katedrala",
+    "states": {
+      "focusable": true,
+      "url": "/#how-it-works"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "#how-it-works"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 328,
+        "w": 156.8,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "link",
+    "name": "View on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 185,
+        "y": 328,
+        "w": 163.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radiogroup",
+    "name": "Load drawing of the demonstration system by module: 8 modules on 6 load levels, each resting on what it depends on",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "svg",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Load drawing of the demonstration system by module: 8 modules on 6 load levels, each resting on what it depends on"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 16,
+        "y": 412,
+        "w": 358,
+        "h": 337.1
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Gateway module, 1 member",
+    "description": "Members: ApiGateway. 0 of 7 modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Gateway module, 1 member"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 182,
+        "y": 430,
+        "w": 75.5,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Checkout module, 2 members",
+    "description": "Members: CheckoutController, CheckoutService. 1 of 7 modules rests on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Checkout module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 63,
+        "y": 480,
+        "w": 79,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Orders module, 3 members",
+    "description": "Members: OrderController, OrderService, OrderRepository. 2 of 7 modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Orders module, 3 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 189,
+        "y": 529,
+        "w": 66.1,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Billing module, 1 member",
+    "description": "Members: InvoiceService. 3 of 7 modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Billing module, 1 member"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 218,
+        "y": 578,
+        "w": 63.2,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Auth module, 2 members",
+    "description": "Members: AuthService, SessionStore. 1 of 7 modules rests on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Auth module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 310,
+        "y": 578,
+        "w": 55.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Payments module, 3 members",
+    "description": "Members: PaymentService, PaymentRepository, StripeClient. 4 of 7 modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Payments module, 3 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 86,
+        "y": 627,
+        "w": 81.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Users module, 2 members",
+    "description": "Members: UserService, UserRepository. 5 of 7 modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-checked": "false",
+        "aria-label": "Users module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 217,
+        "y": 627,
+        "w": 61.3,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "top",
+    "role": "radio",
+    "name": "Platform module, 2 members",
+    "description": "Members: EventBus, Database. all 7 other modules rest on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "top",
+      "tag": "g",
+      "tabIndex": 0,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "0",
+        "aria-checked": "false",
+        "aria-label": "Platform module, 2 members"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 189,
+        "y": 677,
+        "w": 44,
+        "h": 58.5
+      }
+    }
+  }
+]

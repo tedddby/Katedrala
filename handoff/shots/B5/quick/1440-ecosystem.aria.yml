@@ -1,0 +1,49 @@
+- region "Built to carry other tools.":
+  - heading "Built to carry other tools." [level=2]
+  - paragraph: "Katedrala is an engine, not a visualization product: it produces one versioned document for other tools to build on."
+  - figure "Architecture document versioned, specified as JSON Schema Katedrala parse, link, infer, analyze, explain Your repository TypeScript and JavaScript first":
+    - list:
+      - listitem:
+        - paragraph: CodeVerse
+        - paragraph: The architecture as a city you can fly through.
+        - text: Planned for v1
+      - listitem:
+        - paragraph: CI pipelines
+        - paragraph: Will fail a build when a change breaks a rule.
+        - text: Planned for v1
+      - listitem:
+        - paragraph: Editors
+        - paragraph: Impact and violations inline, as you type.
+        - text: Planned after v1
+      - listitem:
+        - paragraph: Exporters
+        - paragraph: C4 diagrams, Structurizr DSL and GraphML.
+        - text: Planned after v1
+      - listitem:
+        - paragraph: Your tools
+        - paragraph: Build on the versioned document format and its JSON Schema.
+        - text: Available today
+    - text: Architecture document versioned, specified as JSON Schema Katedrala parse, link, infer, analyze, explain Your repository TypeScript and JavaScript first
+  - heading "Katedrala will power CodeVerse." [level=3]
+  - paragraph: "CodeVerse turns a GitHub repository into a 3D city you can fly through: directories become districts, files become buildings, imports become arcs. With Katedrala underneath, the city will show the architecture as well: inferred modules, the components that carry the most load, cycles and broken rules."
+  - paragraph: "CodeVerse is a separate open-source project, and Katedrala does not depend on it. Katedrala already analyzes its source: 3,766 symbols and 14,233 relationships, the same document on every run."
+  - link "Open CodeVerse":
+    - /url: https://codeverse.awab.tech
+  - link "CodeVerse on GitHub":
+    - /url: https://github.com/tedddby/CodeVerse
+  - list "From repository to CodeVerse":
+    - listitem:
+      - text: Your repository
+      - paragraph: Any TypeScript or JavaScript codebase.
+    - listitem:
+      - text: Katedrala Available today
+      - paragraph: Files, symbols and relationships today; modules and measures next.
+    - listitem:
+      - text: Architecture document Available today
+      - paragraph: "Versioned JSON: the structure today, the full architecture in v1."
+    - listitem:
+      - text: CodeVerse adapter Planned for v1
+      - paragraph: Will turn the document into a visualization model.
+    - listitem:
+      - text: CodeVerse Planned for v1
+      - paragraph: Districts, buildings and arcs that will show the architecture.

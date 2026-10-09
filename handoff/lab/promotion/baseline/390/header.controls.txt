@@ -1,0 +1,2 @@
+link "Katedrala, back to top" url=/#top focusable <a tabindex=0>
+DisclosureTriangle "Menu" focusable <summary tabindex=0>

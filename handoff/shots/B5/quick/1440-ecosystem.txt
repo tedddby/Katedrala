@@ -1,0 +1,70 @@
+Built to carry other tools.
+
+Katedrala is an engine, not a visualization product: it produces one versioned document for other tools to build on.
+
+CodeVerse
+
+The architecture as a city you can fly through.
+
+Planned for v1
+
+CI pipelines
+
+Will fail a build when a change breaks a rule.
+
+Planned for v1
+
+Editors
+
+Impact and violations inline, as you type.
+
+Planned after v1
+
+Exporters
+
+C4 diagrams, Structurizr DSL and GraphML.
+
+Planned after v1
+
+Your tools
+
+Build on the versioned document format and its JSON Schema.
+
+Available today
+Architecture document
+versioned, specified as JSON Schema
+Katedrala
+parse, link, infer, analyze, explain
+Your repository
+TypeScript and JavaScript first
+Katedrala will power CodeVerse.
+
+CodeVerse turns a GitHub repository into a 3D city you can fly through: directories become districts, files become buildings, imports become arcs. With Katedrala underneath, the city will show the architecture as well: inferred modules, the components that carry the most load, cycles and broken rules.
+
+CodeVerse is a separate open-source project, and Katedrala does not depend on it. Katedrala already analyzes its source: 3,766 symbols and 14,233 relationships, the same document on every run.
+
+Open CodeVerse
+CodeVerse on GitHub
+Your repository
+
+Any TypeScript or JavaScript codebase.
+
+Katedrala
+Available today
+
+Files, symbols and relationships today; modules and measures next.
+
+Architecture document
+Available today
+
+Versioned JSON: the structure today, the full architecture in v1.
+
+CodeVerse adapter
+Planned for v1
+
+Will turn the document into a visualization model.
+
+CodeVerse
+Planned for v1
+
+Districts, buildings and arcs that will show the architecture.

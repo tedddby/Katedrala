@@ -1,0 +1,32 @@
+// Which pointer media features match under Playwright's phone emulation, and what changes the 390 page height.
+import { chromium } from "playwright-core";
+const browser = await chromium.launch({ channel: "msedge", headless: true });
+const context = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, colorScheme: "dark" });
+const page = await context.newPage();
+const mq = () => page.evaluate(() => Object.fromEntries(["(pointer: coarse)", "(any-pointer: coarse)", "(hover: none)", "(hover: hover)"].map((q) => [q, matchMedia(q).matches])));
+await page.goto("http://localhost:3100/", { waitUntil: "networkidle" });
+console.log("after load", JSON.stringify(await mq()));
+const client = await context.newCDPSession(page);
+await client.send("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 5 });
+console.log("after setTouchEmulationEnabled", JSON.stringify(await mq()));
+const sizes = () => page.evaluate(() => ({ h: document.documentElement.scrollHeight, units: Object.fromEntries([...document.querySelectorAll("main > section[id], body > footer")].map((s) => [s.id || "footer", Math.round(s.getBoundingClientRect().height)])) }));
+const s0 = await sizes();
+console.log("t0", s0.h);
+const total = s0.h;
+for (let y = 0; y < total; y += 506) { await page.evaluate((t) => scrollTo({ top: t, behavior: "instant" }), y); await page.waitForTimeout(110); }
+await page.waitForTimeout(1500);
+const s1 = await sizes();
+console.log("after scroll-through", s1.h);
+await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
+await page.waitForTimeout(500);
+const s2 = await sizes();
+console.log("at top", s2.h);
+await page.waitForTimeout(3000);
+const s3 = await sizes();
+console.log("+3s", s3.h);
+for (const k of Object.keys(s0.units)) if (s0.units[k] !== s1.units[k] || s1.units[k] !== s2.units[k] || s2.units[k] !== s3.units[k]) console.log(k, s0.units[k], s1.units[k], s2.units[k], s3.units[k]);
+await page.screenshot({ clip: { x: 0, y: 20000, width: 390, height: 500 }, fullPage: true, scale: "css" });
+const s4 = await sizes();
+console.log("after a full-page screenshot", s4.h);
+for (const k of Object.keys(s3.units)) if (s3.units[k] !== s4.units[k]) console.log(k, s3.units[k], s4.units[k]);
+await browser.close();

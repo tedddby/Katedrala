@@ -1,0 +1,97 @@
+{
+  "context": {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "deviceScaleFactor": 2,
+    "isMobile": true,
+    "hasTouch": true,
+    "reducedMotion": "no-preference",
+    "colorScheme": "dark"
+  },
+  "scrollHeight": 18802,
+  "scrollWidth": 768,
+  "units": [
+    {
+      "unit": "skip-link",
+      "top": -78,
+      "height": 47
+    },
+    {
+      "unit": "header",
+      "top": 0,
+      "height": 65
+    },
+    {
+      "unit": "top",
+      "top": 0,
+      "height": 1150
+    },
+    {
+      "unit": "how-it-works",
+      "top": 1150,
+      "height": 1100
+    },
+    {
+      "unit": "architecture",
+      "top": 2250,
+      "height": 1247
+    },
+    {
+      "unit": "gravity",
+      "top": 3497,
+      "height": 1885
+    },
+    {
+      "unit": "entropy",
+      "top": 5382,
+      "height": 1951
+    },
+    {
+      "unit": "impact",
+      "top": 7333,
+      "height": 1478
+    },
+    {
+      "unit": "rules",
+      "top": 8811,
+      "height": 1412
+    },
+    {
+      "unit": "evidence",
+      "top": 10223,
+      "height": 1604
+    },
+    {
+      "unit": "history",
+      "top": 11826,
+      "height": 786
+    },
+    {
+      "unit": "developers",
+      "top": 12612,
+      "height": 1784
+    },
+    {
+      "unit": "open-source",
+      "top": 14397,
+      "height": 1603
+    },
+    {
+      "unit": "ecosystem",
+      "top": 16000,
+      "height": 1875
+    },
+    {
+      "unit": "get-started",
+      "top": 17875,
+      "height": 479
+    },
+    {
+      "unit": "footer",
+      "top": 18482,
+      "height": 319
+    }
+  ]
+}

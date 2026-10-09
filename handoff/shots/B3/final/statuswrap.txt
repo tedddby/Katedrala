@@ -1,0 +1,8 @@
+320: 29 marks; wrapped 0; square off-centre 0; past window 0
+360: 29 marks; wrapped 0; square off-centre 0; past window 0
+390: 29 marks; wrapped 0; square off-centre 0; past window 0
+430: 29 marks; wrapped 0; square off-centre 0; past window 0
+768: 29 marks; wrapped 2 ["ecosystem:Planned after v1","ecosystem:Planned after v1"]; square off-centre 0; past window 0
+1024: 29 marks; wrapped 0; square off-centre 0; past window 0
+1280: 29 marks; wrapped 0; square off-centre 0; past window 0
+1440: 29 marks; wrapped 0; square off-centre 0; past window 0

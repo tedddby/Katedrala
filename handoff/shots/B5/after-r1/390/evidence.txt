@@ -1,0 +1,101 @@
+Every conclusion has evidence.
+
+Every relationship points to the lines of code it came from, and every score will break down into its measurements.
+
+Why does PaymentService score 0.58?
+Planned for v1
+6 of 15 members rest on it, directly or through other members.
+→ 
+Reach: normalized
+0.70 ×
+weight
+ 0.40
+= 0.28
+3 members call it directly: CheckoutService, OrderService and InvoiceService.
+→ 
+Fan-in: normalized
+0.50 ×
+weight
+ 0.20
+= 0.10
+Its callers sit in 3 other modules: Checkout, Orders and Billing.
+→ 
+Cross-module spread: normalized
+0.50 ×
+weight
+ 0.25
+= 0.13
+Its betweenness is 13.2: summed over pairs of other members, the share of each pair's shortest dependency paths that pass through it.
+→ 
+Brokerage: normalized
+0.50 ×
+weight
+ 0.15
+= 0.07
+
+Gravity
+0.58
+
+Demonstration system. Each reason adds its normalized value times its weight, rounded so the four add up to the score. Gravity is a draft Katedrala heuristic, planned for v1.
+
+One relationship, as Katedrala records it.
+Available today
+real output: CodeVerse at 6b942bc
+Copy
+real output: CodeVerse at 6b942bc
+{
+
+  "id": "edge:68b8718fedaa1a19",
+
+  "kind": "calls",
+
+  "source": "sym:src/analysis/analysis-service.ts#createAnalysisService",
+
+  "target": "sym:src/analysis/cache-key.ts#graphCacheKey",
+
+  "observations": 2,
+
+  "typeOnly": false,
+
+  "confidence": 1,
+
+  "provenance": [
+
+    {
+
+      "file": "file:src/analysis/analysis-service.ts",
+
+      "line": 219,
+
+      "column": 17,
+
+      "mechanism": "call-expression",
+
+      "resolution": "import-binding",
+
+      "confidence": 1
+
+    },
+
+    {
+
+      "file": "file:src/analysis/analysis-service.ts",
+
+      "line": 273,
+
+      "column": 19,
+
+      "mechanism": "call-expression",
+
+      "resolution": "import-binding",
+
+      "confidence": 1
+
+    }
+
+  ]
+
+}
+
+
+From Katedrala's analysis of the open-source CodeVerse repository: a call from createAnalysisService to graphCacheKey, observed twice, each observation with its file, line, column, syntax and the rule that resolved it.

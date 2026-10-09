@@ -1,0 +1,13 @@
+import { launch, open } from "./lib.mjs";
+const browser = await launch();
+const { page, context, messages } = await open(browser, { width: 1024, height: 900, deviceScaleFactor: 1, isMobile: false, hasTouch: false });
+await page.waitForTimeout(2000);
+const before = await page.evaluate(() => document.querySelector("#gravity .drawing .drawing-level-label").style.fontSize);
+await page.locator("#gravity .term-show").nth(1).click();
+await page.waitForTimeout(300);
+const pressed = await page.evaluate(() => document.querySelector("#gravity .term-show:nth-of-type(1)")?.getAttribute("aria-pressed"));
+const after = await page.evaluate(() => [...document.querySelectorAll("#gravity .term-show")].map((b) => b.getAttribute("aria-pressed")).join(","));
+console.log({ before, after, messages });
+const html = await page.evaluate(() => document.documentElement.outerHTML.length);
+console.log(html, await page.evaluate(() => !!document.querySelector("nextjs-portal"), ));
+await context.close(); await browser.close();

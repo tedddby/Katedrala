@@ -1,0 +1,892 @@
+Skip to content
+KATEDRALA
+Menu
+See what holds your system up.
+
+Katedrala reconstructs the architecture of TypeScript and JavaScript, with evidence for every dependency it finds.
+
+Explore Katedrala
+View on GitHub
+±0
++1
++2
++3
++4
++5
+Gateway
+Checkout
+Orders
+Billing
+Auth
+Payments
+Users
+Platform
+
+Platform
+
+Carries the most load: all 7 other modules rest on it.
+
+Members
+EventBus, Database
+Depended on by
+Orders, Payments, Users, Auth
+
+Select any module to light the load path it carries.
+
+Demonstration system
+Line weight: load carried
+Gravity: draft method, planned for v1
+
+Source code
+From source code to architecture.
+
+Katedrala is designed as five passes. Each adds to the document and never rewrites what an earlier pass produced.
+
+01
+
+Parse
+
+Each TypeScript and JavaScript file becomes symbols, imports, exports and references.
+
+Available today
+file
+cache-key.ts
+symbols
+4
+function
+graphCacheKey
+
+02
+
+Link
+
+Imports resolve through tsconfig paths, workspaces and package exports; references bind to their declarations. What cannot be bound is counted, never guessed.
+
+Available today
+edge
+calls
+from
+createAnalysisService
+to
+graphCacheKey
+at
+analysis-service.ts:219
+
+03
+
+Infer
+
+Components will be derived from directories and packages; modules and layers will be inferred, each with a confidence and its evidence.
+
+Planned for v1
+module
+payments
+members
+3
+layer
+service
+
+04
+
+Analyze
+
+The dependency graph will be measured for coupling, cycles, centrality, Gravity and Entropy.
+
+Planned for v1
+gravity
+0.58
+reach
+6 of 15
+fan-in
+3
+
+05
+
+Explain
+
+Every conclusion will decompose into the measurements and the lines of code it came from.
+
+Planned for v1
+reach
++0.28
+fan-in
++0.10
+spread
++0.13
+brokerage
++0.07
+
+Parse and Link show Katedrala’s real output for CodeVerse, the relationship traced in the film above. Infer, Analyze and Explain preview v1 on the demonstration system the rest of this page uses.
+
+The whole structure, at every scale.
+
+Katedrala links files and symbols into one typed graph today; inferring the modules within it is planned for v1.
+
+Typed graph, available today
+Module inference, planned for v1
+Members
+Modules
++
+−
+Fit
+2
+GATEWAY
+CHECKOUT
+ORDERS
+AUTH
+BILLING
+PAYMENTS
+USERS
+PLATFORM
+ApiGateway
+CheckoutController
+CheckoutService
+OrderController
+OrderService
+OrderRepository
+AuthService
+SessionStore
+InvoiceService
+PaymentService
+PaymentRepository
+StripeClient
+UserService
+UserRepository
+Database
+EventBus
+Gateway
+Checkout
+Orders
+Auth
+Billing
+Payments
+Users
+Platform
+
+Pinch or use + and − to zoom, then drag to pan. Demonstration system.
+
+8 modules
+
+15 dependencies between modules. Line weight and the numbers show how many member dependencies each one aggregates. Select a module to see its members.
+
+Read the graph as a table
+Some members hold up more of the system than others.
+
+Architectural Gravity will measure how much rests on each member, from the dependency graph and module boundaries.
+
+Katedrala heuristic, planned for v1
+Database
+0.64
+PaymentService
+0.58
+OrderService
+0.46
+CheckoutController
+0.25
+ApiGateway
+0.00
+Level
++7
+ApiGateway
+(lit)
+Level
++6
+CheckoutController
+(lit)
+Level
++5
+CheckoutService
+(lit)
+OrderController
+(lit)
+Level
++4
+OrderService
+(lit)
+Level
++3
+InvoiceService
+(lit)
+Level
++2
+AuthService
+(lit)
+PaymentService
+(lit)
+UserService
+(lit)
+Level
++1
+OrderRepository
+(lit)
+PaymentRepository
+(lit)
+SessionStore
+(lit)
+UserRepository
+(lit)
+Level
+±0
+Database
+Everything that rests on Database, directly or through other members. Demonstration system.
+
+Database: gravity 0.64. Reach lights 13 members: ApiGateway, AuthService, CheckoutController, CheckoutService, InvoiceService, OrderController, OrderRepository, OrderService, PaymentRepository, PaymentService, SessionStore, UserRepository and UserService.
+
+0.64
+Gravity of Database
+
+Why does Database score 0.64?
+
+normalized × weight
+
+Reach 13 of 15 rest on it
+→ 
+: normalized
+0.95 ×
+weight
+ 0.40
+= 0.38
+
+13 of 15 members rest on it, directly or through other members.
+
+Show
+Fan-in 4 direct
+→ 
+: normalized
+0.58 ×
+weight
+ 0.20
+= 0.12
+
+4 members access data in it directly: OrderRepository, PaymentRepository, SessionStore and UserRepository.
+
+Show
+Cross-module spread 4 other modules
+→ 
+: normalized
+0.57 ×
+weight
+ 0.25
+= 0.14
+
+4 other modules access data in it: Auth, Orders, Payments and Users.
+
+Show
+Brokerage betweenness 0.0
+→ 
+: normalized
+0.00 ×
+weight
+ 0.15
+= 0.00
+
+No shortest dependency path between two other members passes through it.
+
+Show
+Sum
+0.64
+
+Each term adds its normalized value times its weight, rounded so the terms add up to the score. Reach, fan-in and brokerage are log shares, ln(1 + x) / ln(1 + max), against the most a system of 16 members allows: 15 for reach and fan-in, 210 for brokerage. Spread saturates as x / (x + 3). No term depends on the largest value observed, so a score moves with what rests on the member and only slightly as the system grows.
+
+Gravity is a Katedrala heuristic, not an established metric. Three of its four terms are established measures: reach is the visibility fan-in behind the propagation cost of MacCormack, Rusnak and Baldwin (2006), fan-in is afferent coupling (Martin 1994), and brokerage is betweenness centrality (Freeman 1977; computed with Brandes 2001). Cross-module spread is Katedrala's own. The weights are design choices and will be documented with the method in milestone 6.
+
+Structure decays one dependency at a time.
+
+Architectural Entropy will score disorder: cycles, dependencies against the grain, scattered coupling and propagation.
+
+Katedrala heuristic, planned for v1
+Gateway
+Auth
+Checkout
+Orders
+Billing
+Payments
+Users
+Platform
+Modules of the demonstration system. Arcs are dependencies added by the commits; lit modules are tangled in a cycle.
+No module is in a cycle.
+0.22
+low entropy
+base
+Clean structure
+, entropy
+0.22
++1
+Send order confirmations from the user repository
+, entropy
++0.23
++2
+Check permissions before charging
+, entropy
++0.07
++3
+Recalculate invoices from orders
+, entropy
++0.05
++4
+Show unpaid invoices on profiles
+, entropy
++0.03
++5
+Audit order access from auth
+, entropy
++0.03
+
+normalized × weight
+
+Cycles
+: normalized
+0.00 ×
+weight
+ 0.30
+= 0.00
+
+No member is part of a cycle.
+
+Against the grain
+: normalized
+0.00 ×
+weight
+ 0.25
+= 0.00
+
+Cross-module dependencies all flow one way.
+
+Scatter
+: normalized
+0.49 ×
+weight
+ 0.25
+= 0.12
+
+A module's dependencies spread over 2.9 modules on average, its own included.
+
+Propagation
+: normalized
+0.47 ×
+weight
+ 0.20
+= 0.10
+
+30% of member pairs are joined by a dependency path.
+
+Sum
+0.22
+
+Each factor adds its normalized value times its weight, rounded so the factors add up to the score.
+
+Entropy is a Katedrala heuristic. Its factors come from established ideas: acyclic dependencies (Martin 2003), propagation cost (MacCormack, Rusnak and Baldwin 2006) and Shannon entropy (Shannon 1948). Their selection, normalization and weights are design choices, and the score has not been validated against maintenance outcomes.
+
+Know what a change will touch before you make it.
+
+Katedrala will trace dependency paths out from a change to estimate its structural blast radius, path by path.
+
+Planned for v1
+$ katedrala impact
+AuthService
+CheckoutController
+CheckoutService
+Database
+EventBus
+InvoiceService
+OrderController
+OrderRepository
+OrderService
+PaymentRepository
+PaymentService
+SessionStore
+StripeClient
+UserRepository
+UserService
+±0
++1
++2
++3
++4
++5
+Gateway
+Checkout
+Orders
+Billing
+Auth
+Payments
+Users
+Platform
+
+Drawn by module. Impact rises through everything that rests on the change. Demonstration system.
+
+Changing PaymentService affects 6 members in 4 modules, including 3 HTTP handlers.
+
+Members affected
+6
+Modules
+4
+HTTP handlers
+3
+Why each member is affected
+1
+CheckoutService → PaymentService
+1
+InvoiceService → PaymentService
+1
+OrderService → PaymentService
+2
+CheckoutController → CheckoutService → PaymentService
+2
+OrderController → OrderService → PaymentService
+3
+ApiGateway → CheckoutController → CheckoutService → PaymentService
+
+PaymentService is in the Payments module. Paths are the shortest dependency chains, with ties broken by name, so every run gives the same answer.
+
+Write down the architecture you intend.
+
+Rules in katedrala.config.yaml will check every change for forbidden dependencies, layering, isolation, cycles and fan-out.
+
+Planned for v1
+katedrala.config.yaml
+Copy
+katedrala.config.yaml
+1groups:
+
+2  controllers: ["src/**/*.controller.ts"]
+
+3  repositories: ["src/**/*.repository.ts"]
+
+4
+
+5modules:
+
+6  payments: ["src/payments/**"]
+
+7  analytics: ["src/analytics/**"]
+
+8
+
+9rules:
+
+10  - id: controllers-no-database
+
+11    severity: error
+
+12    from: controllers
+
+13    cannot_depend_on: [repositories]
+
+14
+
+15  - id: payments-isolation
+
+16    severity: error
+
+17    module: payments
+
+18    cannot_depend_on: [analytics]
+
+hypothetical change
++ OrderController → OrderRepository
+Remove the hypothetical import
+CONTROLLERS
+SERVICES
+REPOSITORIES
+OrderController
+OrderService
+OrderRepository
+prohibited:controllers → repositories
+
+error  controllers-no-database
+, lines 10 to 13 of katedrala.config.yaml
+
+OrderController now depends on OrderRepository.
+
+Controllers cannot depend on repositories. The path through OrderService is allowed; the new import skips it.
+
+src/orders/order.controller.ts
+
+1 error, 2 rules checked
+
+Demonstration system, with one hypothetical import added. The configuration syntax is the one Katedrala's rule fixtures use today; the report layout is a preview.
+
+Every conclusion has evidence.
+
+Every relationship points to the lines of code it came from, and every score will break down into its measurements.
+
+Why does PaymentService score 0.58?
+Planned for v1
+6 of 15 members rest on it, directly or through other members.
+→ 
+Reach: normalized
+0.70 ×
+weight
+ 0.40
+= 0.28
+3 members call it directly: CheckoutService, OrderService and InvoiceService.
+→ 
+Fan-in: normalized
+0.50 ×
+weight
+ 0.20
+= 0.10
+Its callers sit in 3 other modules: Checkout, Orders and Billing.
+→ 
+Cross-module spread: normalized
+0.50 ×
+weight
+ 0.25
+= 0.13
+Its betweenness is 13.2: summed over pairs of other members, the share of each pair's shortest dependency paths that pass through it.
+→ 
+Brokerage: normalized
+0.50 ×
+weight
+ 0.15
+= 0.07
+
+Gravity
+0.58
+
+Demonstration system. Each reason adds its normalized value times its weight, rounded so the four add up to the score. Gravity is a draft Katedrala heuristic, planned for v1.
+
+One relationship, as Katedrala records it.
+Available today
+real output: CodeVerse at 6b942bc
+Copy
+real output: CodeVerse at 6b942bc
+{
+
+  "id": "edge:68b8718fedaa1a19",
+
+  "kind": "calls",
+
+  "source": "sym:src/analysis/analysis-service.ts#createAnalysisService",
+
+  "target": "sym:src/analysis/cache-key.ts#graphCacheKey",
+
+  "observations": 2,
+
+  "typeOnly": false,
+
+  "confidence": 1,
+
+  "provenance": [
+
+    {
+
+      "file": "file:src/analysis/analysis-service.ts",
+
+      "line": 219,
+
+      "column": 17,
+
+      "mechanism": "call-expression",
+
+      "resolution": "import-binding",
+
+      "confidence": 1
+
+    },
+
+    {
+
+      "file": "file:src/analysis/analysis-service.ts",
+
+      "line": 273,
+
+      "column": 19,
+
+      "mechanism": "call-expression",
+
+      "resolution": "import-binding",
+
+      "confidence": 1
+
+    }
+
+  ]
+
+}
+
+
+From Katedrala's analysis of the open-source CodeVerse repository: a call from createAnalysisService to graphCacheKey, observed twice, each observation with its file, line, column, syntax and the rule that resolved it.
+
+See the structure drift across commits.
+
+Compare two revisions or a range of history, and Katedrala will report new modules, new dependencies and new cycles.
+
+Planned for v1
+v1
+entropy 0.20
+
+Clean boundaries
+
+Gateway, Auth, Users and Platform
+
+v2
+entropy 0.16
+
+Payments
+
++ Payments module, 3 members
+
+v3
+entropy 0.22
+
+Orders
+
++ Checkout, Orders and Billing modules, 7 members
+
+v4
+entropy 0.23
+
+Against the load path
+
++ PaymentService → AuthService
+
+New upward dependency: Payments → Auth.
+
+v5
+entropy 0.52
+
+A cycle
+
++ UserRepository → OrderService
+
+New cycle: Users → Orders → Billing → Users.
+
+Demonstration system. Entropy uses the draft Katedrala heuristic, computed for each version.
+
+One command per question.
+
+From v1, each question below will be one command away, in your terminal or in CI.
+
+Planned for v1
+analyze
+health
+impact
+validate
+diff
+
+What is in this repository?
+
+terminal
+real counts: CodeVerse at 6b942bc
+$ katedrala analyze .
+
+tedddby/CodeVerse at 6b942bc
+
+files                       644
+
+  analyzed                  594
+
+directories                  84
+
+symbols                   3,766
+
+relationships            14,233
+
+externals                    59
+
+  npm packages               39
+
+  Node.js built-ins           8
+
+  environment variables      12
+
+unresolved imports            0
+
+unresolved references       155
+
+untyped references        2,055
+
+
+The command line is planned for v1, and this output previews its format. The analyze counts are real. The other values are computed from the demonstration system, with one hypothetical import added for validate, from OrderController to OrderRepository.
+
+Or call the engine from code.
+Available today
+analyze.mjs
+Copy
+analyze.mjs
+import { analyzeStructure } from "@katedrala/engine";
+
+
+
+const { document } = await analyzeStructure({ root: "../CodeVerse" });
+
+console.log(document.repository.stats);
+
+// CodeVerse at 6b942bc: 644 files, 3,766 symbols, 14,233 edges
+
+
+The engine runs today as a TypeScript library, from a clone of the repository. npm packages are planned for v1.
+
+Deterministic
+Available today
+The same files, configuration and Katedrala version produce the same document, byte for byte. Two analyses of CodeVerse came out identical.
+Versioned schemas
+Available today
+The document format is specified as JSON Schema, generated from its TypeScript types and versioned in the repository. Today, analyzeStructure returns the document's structural sections.
+Local
+Available today
+Analysis runs on your machine. No network calls, no language model, nothing uploaded.
+Made for CI
+Planned for v1
+Reports will be human-readable by default, with JSON or YAML for tools and an exit code that can fail a pull request.
+Read every line of it.
+
+Katedrala is MIT licensed. Its engine, document contract, design decisions and roadmap all live in the repository.
+
+MIT licensed
+Use it, change it and build on it, in open-source and commercial work alike.
+A formal contract
+The architecture document is specified in the repository, as TypeScript types and the JSON Schema generated from them.
+Recorded decisions
+Architecture decision records explain how the engine is built, and why.
+Built to extend
+Languages plug in through a typed adapter contract. TypeScript and JavaScript come first.
+View on GitHub
+Contribute
+The road to v1.
+
+4 of 15 milestones done, 1 in progress. Everything this page marks as planned for v1 is on this list.
+
+01
+Foundation, architecture, IR
+Done
+02
+TypeScript/JavaScript parsing
+Done
+03
+Dependency graph
+Done
+04
+Graph algorithms
+Done
+05
+Architectural inference
+Planned
+06
+Metrics
+Planned
+07
+Anomaly detection
+Planned
+08
+Rules engine
+Planned
+09
+Impact analysis
+Planned
+10
+Architecture diff
+Planned
+11
+CLI
+Planned
+12
+Git and CI integration
+Planned
+13
+Performance and caching
+In progress
+14
+CodeVerse adapter
+Planned
+15
+Documentation and release preparation
+Planned
+
+From the roadmap in the repository.
+
+Built to carry other tools.
+
+Katedrala is an engine, not a visualization product: it produces one versioned document for other tools to build on.
+
+CodeVerse
+
+The architecture as a city you can fly through.
+
+Planned for v1
+
+CI pipelines
+
+Will fail a build when a change breaks a rule.
+
+Planned for v1
+
+Editors
+
+Impact and violations inline, as you type.
+
+Planned after v1
+
+Exporters
+
+C4 diagrams, Structurizr DSL and GraphML.
+
+Planned after v1
+
+Your tools
+
+Build on the versioned document format and its JSON Schema.
+
+Available today
+Architecture document
+versioned, specified as JSON Schema
+Katedrala
+parse, link, infer, analyze, explain
+Your repository
+TypeScript and JavaScript first
+Katedrala will power CodeVerse.
+
+CodeVerse turns a GitHub repository into a 3D city you can fly through: directories become districts, files become buildings, imports become arcs. With Katedrala underneath, the city will show the architecture as well: inferred modules, the components that carry the most load, cycles and broken rules.
+
+CodeVerse is a separate open-source project, and Katedrala does not depend on it. Katedrala already analyzes its source: 3,766 symbols and 14,233 relationships, the same document on every run.
+
+Open CodeVerse
+CodeVerse on GitHub
+Your repository
+
+Any TypeScript or JavaScript codebase.
+
+Katedrala
+Available today
+
+Files, symbols and relationships today; modules and measures next.
+
+Architecture document
+Available today
+
+Versioned JSON: the structure today, the full architecture in v1.
+
+CodeVerse adapter
+Planned for v1
+
+Will turn the document into a visualization model.
+
+CodeVerse
+Planned for v1
+
+Districts, buildings and arcs that will show the architecture.
+
+Understand your system before you change it.
+
+Katedrala is open source and being built toward v1. Start with the README, follow the roadmap, or help build it.
+
+Get started
+on GitHub
+View on GitHub
+KATEDRALA
+
+An open-source software architecture engine. MIT licensed.
+
+Project
+GitHub
+Roadmap
+Contributing
+MIT license
+Documentation
+Architecture document
+The IR contract
+All documents
+Related
+CodeVerse

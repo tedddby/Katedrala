@@ -1,0 +1,129 @@
+/* ------------------------------------------------------------------------------------------------
+ * Navigation, cards and title blocks.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .site-nav {
+    border-bottom: 1px solid transparent;
+    background: transparent;
+  }
+  @supports (animation-timeline: scroll()) {
+    .site-nav {
+      animation: nav-solid linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 96px;
+    }
+  }
+  @supports not (animation-timeline: scroll()) {
+    .site-nav {
+      background: color-mix(in oklab, var(--color-sheet) 96%, transparent);
+      border-bottom-color: var(--color-rule);
+    }
+  }
+  @keyframes nav-solid {
+    to {
+      background: color-mix(in oklab, var(--color-sheet) 96%, transparent);
+      border-bottom-color: var(--color-rule);
+    }
+  }
+
+  .nav-link {
+    position: relative;
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 -6px 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover {
+      color: var(--color-ink);
+    }
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+  }
+  .nav-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+  .nav-menu[open] > summary {
+    border-color: var(--color-ink-faint);
+  }
+  /* The panel grows out of its toggle; closing is instant. */
+  .nav-menu[open] > .nav-menu-panel {
+    transform-origin: top right;
+    animation: nav-menu-in 160ms var(--ease-out);
+  }
+  @keyframes nav-menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.98);
+    }
+  }
+
+  .drawing-card {
+    margin-top: 1rem;
+  }
+  @media (min-width: 768px) {
+    .drawing-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 18.5rem;
+      margin-top: 0;
+    }
+  }
+  .member-card {
+    border: 1px solid var(--color-rule-strong);
+    background: var(--color-sheet);
+    padding: 0.875rem 1rem 1rem;
+  }
+
+  /* Cells share hairline rules in any wrap state: each cell draws its top and left rule over its neighbors'. */
+  .title-block {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    border: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-faint);
+  }
+  .title-block > span {
+    flex: 1 1 auto;
+    padding: 0.5rem 0.75rem;
+    margin: -1px 0 0 -1px;
+    border-top: 1px solid var(--color-rule);
+    border-left: 1px solid var(--color-rule);
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 60;
+    padding: 0.625rem 1rem;
+    background: var(--color-ink);
+    color: var(--color-sheet);
+    font-weight: 600;
+    transform: translateY(-200%);
+  }
+  .skip-link:focus-visible {
+    transform: none;
+  }
+}
+
+/* Forced colors: the open menu keeps a visible state once its border colors are replaced. */
+@media (forced-colors: active) {
+  .nav-menu[open] > summary {
+    border-color: Highlight;
+  }
+}

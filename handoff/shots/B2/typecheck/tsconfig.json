@@ -1,0 +1,5 @@
+{
+  "extends": "C:/Users/Awab/Desktop/PROJECTS/Katedrala/site/tsconfig.json",
+  "compilerOptions": { "noEmit": true, "incremental": false },
+  "include": ["typecheck.ts"]
+}

@@ -1,0 +1,755 @@
+[
+  {
+    "unit": "architecture",
+    "role": "radiogroup",
+    "name": "Scale",
+    "states": {
+      "required": false
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "div",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Scale"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 2073,
+        "w": 174.9,
+        "h": 37.2
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radiogroup",
+    "name": "Architecture plan of the demonstration system, by member",
+    "description": "Arrow keys select members, + and − zoom, 0 fits, Escape clears.",
+    "states": {
+      "required": false,
+      "describedby": [
+        "#«id»"
+      ]
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "svg",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radiogroup",
+        "aria-label": "Architecture plan of the demonstration system, by member",
+        "aria-describedby": "_R_1pqatqlb_"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 61,
+        "y": 2127,
+        "w": 982,
+        "h": 705.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Members",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "true"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "true",
+        "tabindex": "0"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 61,
+        "y": 2074,
+        "w": 89,
+        "h": 35.2
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Modules",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": -1,
+      "attrs": {
+        "type": "button",
+        "role": "radio",
+        "aria-checked": "false",
+        "tabindex": "-1"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 150,
+        "y": 2074,
+        "w": 84,
+        "h": 35.2
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Zoom in",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Zoom in",
+        "aria-disabled": "false"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 921,
+        "y": 2073,
+        "w": 36,
+        "h": 36
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Zoom out",
+    "states": {
+      "disabled": true,
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Zoom out",
+        "aria-disabled": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 961,
+        "y": 2073,
+        "w": 36,
+        "h": 36
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "Fit the plan",
+    "states": {
+      "disabled": true,
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-label": "Fit the plan",
+        "aria-disabled": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 1001,
+        "y": 2073,
+        "w": 43,
+        "h": 36
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "ApiGateway, Gateway module",
+    "description": "Depends on AuthService, CheckoutController and OrderController. Nothing depends on it.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": 0,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "0",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "ApiGateway, Gateway module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 522,
+        "y": 2172,
+        "w": 60.5,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "CheckoutController, Checkout module",
+    "description": "Depends on CheckoutService. Depended on by ApiGateway.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "CheckoutController, Checkout module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 422,
+        "y": 2287,
+        "w": 94.8,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "CheckoutService, Checkout module",
+    "description": "Depends on OrderService, PaymentService and UserService. Depended on by CheckoutController.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "CheckoutService, Checkout module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 593,
+        "y": 2287,
+        "w": 82.9,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "OrderController, Orders module",
+    "description": "Depends on OrderService. Depended on by ApiGateway.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "OrderController, Orders module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 349,
+        "y": 2403,
+        "w": 76.2,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "OrderService, Orders module",
+    "description": "Depends on InvoiceService, PaymentService, OrderRepository and EventBus. Depended on by OrderController and CheckoutService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "OrderService, Orders module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 520,
+        "y": 2403,
+        "w": 64.2,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "OrderRepository, Orders module",
+    "description": "Depends on Database. Depended on by OrderService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "OrderRepository, Orders module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 677,
+        "y": 2403,
+        "w": 81,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "AuthService, Auth module",
+    "description": "Depends on SessionStore and UserRepository. Depended on by ApiGateway.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "AuthService, Auth module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 343,
+        "y": 2519,
+        "w": 60.1,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "SessionStore, Auth module",
+    "description": "Depends on Database. Depended on by AuthService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "SessionStore, Auth module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 506,
+        "y": 2519,
+        "w": 65,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "InvoiceService, Billing module",
+    "description": "Depends on PaymentService and UserService. Depended on by OrderService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "InvoiceService, Billing module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 695,
+        "y": 2519,
+        "w": 71.5,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "PaymentService, Payments module",
+    "description": "Depends on StripeClient and PaymentRepository. Depended on by CheckoutService, OrderService and InvoiceService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "PaymentService, Payments module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 169,
+        "y": 2635,
+        "w": 79.3,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "PaymentRepository, Payments module",
+    "description": "Depends on Database. Depended on by PaymentService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "PaymentRepository, Payments module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 326,
+        "y": 2635,
+        "w": 96.1,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "StripeClient, Payments module",
+    "description": "Depends on nothing inside the system. Depended on by PaymentService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "StripeClient, Payments module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 510,
+        "y": 2635,
+        "w": 57.9,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "UserService, Users module",
+    "description": "Depends on UserRepository. Depended on by CheckoutService and InvoiceService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "UserService, Users module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 701,
+        "y": 2635,
+        "w": 59.3,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "UserRepository, Users module",
+    "description": "Depends on Database. Depended on by AuthService and UserService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "UserRepository, Users module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 858,
+        "y": 2635,
+        "w": 76.1,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "Database, Platform module",
+    "description": "Depends on nothing inside the system. Depended on by OrderRepository, PaymentRepository, UserRepository and SessionStore.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "Database, Platform module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 446,
+        "y": 2751,
+        "w": 46.6,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "radio",
+    "name": "EventBus, Platform module",
+    "description": "Depends on nothing inside the system. Depended on by OrderService.",
+    "states": {
+      "focusable": true,
+      "checked": "false"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "g",
+      "tabIndex": -1,
+      "attrs": {
+        "role": "radio",
+        "tabindex": "-1",
+        "aria-hidden": "false",
+        "aria-checked": "false",
+        "aria-label": "EventBus, Platform module"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 611,
+        "y": 2751,
+        "w": 47.2,
+        "h": 46.1
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "calls",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "true"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 2845,
+        "w": 86.7,
+        "h": 34
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "instantiates",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "true"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 155,
+        "y": 2845,
+        "w": 127,
+        "h": 34
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "button",
+    "name": "accesses data",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "pressed": "true"
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button",
+        "aria-pressed": "true"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 290,
+        "y": 2845,
+        "w": 143.2,
+        "h": 34
+      }
+    }
+  },
+  {
+    "unit": "architecture",
+    "role": "DisclosureTriangle",
+    "name": "Read the graph as a table",
+    "states": {
+      "focusable": true,
+      "expanded": false
+    },
+    "dom": {
+      "unit": "architecture",
+      "tag": "summary",
+      "tabIndex": 0,
+      "attrs": {},
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 2944,
+        "w": 171.1,
+        "h": 22.4
+      }
+    }
+  }
+]

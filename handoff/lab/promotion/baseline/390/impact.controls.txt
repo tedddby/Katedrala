@@ -1,0 +1,16 @@
+combobox "katedrala impact" value="PaymentService" hasPopup=menu focusable <select tabindex=0>
+option "AuthService" focusable <option tabindex=-1 not-rendered>
+option "CheckoutController" focusable <option tabindex=-1 not-rendered>
+option "CheckoutService" focusable <option tabindex=-1 not-rendered>
+option "Database" focusable <option tabindex=-1 not-rendered>
+option "EventBus" focusable <option tabindex=-1 not-rendered>
+option "InvoiceService" focusable <option tabindex=-1 not-rendered>
+option "OrderController" focusable <option tabindex=-1 not-rendered>
+option "OrderRepository" focusable <option tabindex=-1 not-rendered>
+option "OrderService" focusable <option tabindex=-1 not-rendered>
+option "PaymentRepository" focusable <option tabindex=-1 not-rendered>
+option "PaymentService" selected focusable <option tabindex=-1 not-rendered>
+option "SessionStore" focusable <option tabindex=-1 not-rendered>
+option "StripeClient" focusable <option tabindex=-1 not-rendered>
+option "UserRepository" focusable <option tabindex=-1 not-rendered>
+option "UserService" focusable <option tabindex=-1 not-rendered>

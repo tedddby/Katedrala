@@ -1,0 +1,13 @@
+import { chromium } from "playwright-core";
+const browser = await chromium.launch({ channel: "msedge" });
+const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, forcedColors: "active", colorScheme: "dark", deviceScaleFactor: 2 });
+const page = await context.newPage();
+await page.goto("http://localhost:3100/", { waitUntil: "networkidle" });
+const el = page.locator(".gauge");
+await el.scrollIntoViewIfNeeded();
+await page.waitForTimeout(400);
+const box = await el.boundingBox();
+await page.screenshot({ path: "final/forced-gauge-zoom.png", clip: { x: box.x, y: box.y + box.height - 220, width: 260, height: 240 }, scale: "device" });
+const colors = await page.evaluate(() => [...document.querySelectorAll(".gauge-row")].slice(0, 6).map((r) => `${r.dataset.staff}/${r.dataset.above}: before ${getComputedStyle(r, "::before").backgroundColor} after ${getComputedStyle(r, "::after").backgroundColor}`));
+console.log(colors.join("\n"));
+await browser.close();

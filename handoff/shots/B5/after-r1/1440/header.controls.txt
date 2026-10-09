@@ -1,0 +1,7 @@
+link "Katedrala, back to top" url=/#top focusable <a tabindex=0>
+link "Get started on GitHub" url=https://github.com/tedddby/Katedrala#get-started focusable <a tabindex=0>
+link "How it works" url=/#how-it-works focusable <a tabindex=0>
+link "Architecture" url=/#architecture focusable <a tabindex=0>
+link "Concepts" url=/#gravity focusable <a tabindex=0>
+link "Developers" url=/#developers focusable <a tabindex=0>
+link "GitHub" url=https://github.com/tedddby/Katedrala focusable <a tabindex=0>

@@ -1,0 +1,360 @@
+[
+  {
+    "unit": "impact",
+    "role": "combobox",
+    "name": "katedrala impact",
+    "value": "PaymentService",
+    "states": {
+      "invalid": "false",
+      "focusable": true,
+      "hasPopup": "menu",
+      "expanded": false,
+      "labelledby": [
+        "katedrala impact"
+      ]
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "select",
+      "tabIndex": 0,
+      "attrs": {},
+      "rendered": true,
+      "rect": {
+        "x": 239,
+        "y": 7018,
+        "w": 197,
+        "h": 34.8
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "AuthService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "CheckoutController",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "CheckoutService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "Database",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "EventBus",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "InvoiceService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "OrderController",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "OrderRepository",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "OrderService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "PaymentRepository",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "PaymentService",
+    "states": {
+      "focusable": true,
+      "selected": true
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "SessionStore",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "StripeClient",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "UserRepository",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  },
+  {
+    "unit": "impact",
+    "role": "option",
+    "name": "UserService",
+    "states": {
+      "focusable": true,
+      "selected": false
+    },
+    "dom": {
+      "unit": "impact",
+      "tag": "option",
+      "tabIndex": -1,
+      "attrs": {},
+      "rendered": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    }
+  }
+]

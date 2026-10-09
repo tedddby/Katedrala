@@ -1,0 +1,2 @@
+link "Open CodeVerse" url=https://codeverse.awab.tech/ focusable <a tabindex=0>
+link "CodeVerse on GitHub" url=https://github.com/tedddby/CodeVerse focusable <a tabindex=0>

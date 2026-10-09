@@ -1,0 +1,9 @@
+[
+  ["orig", []],
+  ["normalize", [["dir = dir / max(length(dir), 1e-12);", "dir = normalize(dir);"]]],
+  ["ternary", [["dir = dir / max(length(dir), 1e-12);", "dir = length(dir) > 1e-6 ? normalize(dir) : vec2(1.0, 0.0);"]]],
+  ["constnrm", [["vec2 nrm = vec2(-dir.y, dir.x);", "vec2 nrm = vec2(0.0, 1.0);"]]],
+  ["noview", [["vec2 dir = (cT.xy * cP.w - cP.xy * cT.w) * uViewport;", "vec2 dir = (cT.xy * cP.w - cP.xy * cT.w) * vec2(1440.0, 900.0);"]]],
+  ["scaled", [["dir = dir / max(length(dir), 1e-12);", "dir = dir * 1e-3; dir = dir / max(length(dir), 1e-12);"]]],
+  ["dirLog", [["vec2 nrm = vec2(-dir.y, dir.x);", "vec2 nrm = vec2(-dir.y, dir.x); if (!(abs(nrm.x) <= 1.0001 && abs(nrm.y) <= 1.0001)) nrm = vec2(0.0, 1.0);"]]]
+]

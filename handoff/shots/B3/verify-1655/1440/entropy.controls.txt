@@ -1,0 +1,7 @@
+radiogroup "Commits applied" <div tabindex=-1>
+radio "base Clean structure" checked=true focusable <button tabindex=0>
+radio "+1 Send order confirmations from the user repository" focusable <button tabindex=-1>
+radio "+2 Check permissions before charging" focusable <button tabindex=-1>
+radio "+3 Recalculate invoices from orders" focusable <button tabindex=-1>
+radio "+4 Show unpaid invoices on profiles" focusable <button tabindex=-1>
+radio "+5 Audit order access from auth" focusable <button tabindex=-1>

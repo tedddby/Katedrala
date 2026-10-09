@@ -1,0 +1,103 @@
+{
+  "scrollHeight": 21054,
+  "viewportHeight": 844,
+  "documentViewports": 24.95,
+  "units": [
+    {
+      "unit": "skip-link",
+      "top": -78,
+      "height": 47,
+      "viewports": 0.06
+    },
+    {
+      "unit": "header",
+      "top": 0,
+      "height": 65,
+      "viewports": 0.08
+    },
+    {
+      "unit": "top",
+      "top": 0,
+      "height": 1089,
+      "viewports": 1.29
+    },
+    {
+      "unit": "how-it-works",
+      "top": 1089,
+      "height": 2034,
+      "viewports": 2.41
+    },
+    {
+      "unit": "architecture",
+      "top": 3123,
+      "height": 1020,
+      "viewports": 1.21
+    },
+    {
+      "unit": "gravity",
+      "top": 4143,
+      "height": 1984,
+      "viewports": 2.35
+    },
+    {
+      "unit": "entropy",
+      "top": 6127,
+      "height": 1943,
+      "viewports": 2.3
+    },
+    {
+      "unit": "impact",
+      "top": 8069,
+      "height": 1447,
+      "viewports": 1.71
+    },
+    {
+      "unit": "rules",
+      "top": 9516,
+      "height": 1726,
+      "viewports": 2.05
+    },
+    {
+      "unit": "evidence",
+      "top": 11243,
+      "height": 1854,
+      "viewports": 2.2
+    },
+    {
+      "unit": "history",
+      "top": 13096,
+      "height": 876,
+      "viewports": 1.04
+    },
+    {
+      "unit": "developers",
+      "top": 13973,
+      "height": 1970,
+      "viewports": 2.33
+    },
+    {
+      "unit": "open-source",
+      "top": 15943,
+      "height": 1751,
+      "viewports": 2.07
+    },
+    {
+      "unit": "ecosystem",
+      "top": 17694,
+      "height": 2136,
+      "viewports": 2.53
+    },
+    {
+      "unit": "get-started",
+      "top": 19830,
+      "height": 531,
+      "viewports": 0.63
+    },
+    {
+      "unit": "footer",
+      "top": 20489,
+      "height": 565,
+      "viewports": 0.67
+    }
+  ]
+}

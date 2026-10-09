@@ -1,0 +1,65 @@
+Read every line of it.
+
+Katedrala is MIT licensed. Its engine, document contract, design decisions and roadmap all live in the repository.
+
+MIT licensed
+Use it, change it and build on it, in open-source and commercial work alike.
+A formal contract
+The architecture document is specified in the repository, as TypeScript types and the JSON Schema generated from them.
+Recorded decisions
+Architecture decision records explain how the engine is built, and why.
+Built to extend
+Languages plug in through a typed adapter contract. TypeScript and JavaScript come first.
+View on GitHub
+Contribute
+The road to v1.
+
+4 of 15 milestones done, 1 in progress. Everything this page marks as planned for v1 is on this list.
+
+01
+Foundation, architecture, IR
+Done
+02
+TypeScript/JavaScript parsing
+Done
+03
+Dependency graph
+Done
+04
+Graph algorithms
+Done
+05
+Architectural inference
+Planned
+06
+Metrics
+Planned
+07
+Anomaly detection
+Planned
+08
+Rules engine
+Planned
+09
+Impact analysis
+Planned
+10
+Architecture diff
+Planned
+11
+CLI
+Planned
+12
+Git and CI integration
+Planned
+13
+Performance and caching
+In progress
+14
+CodeVerse adapter
+Planned
+15
+Documentation and release preparation
+Planned
+
+From the roadmap in the repository.

@@ -1,0 +1,8 @@
+# Captures and installs made while the build continues stay out of git. The reference captures that came with the
+# handoff (lab/cinematic/final/ and lab/promotion/baseline/) were added on purpose.
+*.png
+*.jpg
+*.jpeg
+*.webm
+*.webp
+node_modules/

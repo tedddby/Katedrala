@@ -1,0 +1,65 @@
+[
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Katedrala, back to top",
+    "states": {
+      "focusable": true,
+      "url": "/#top"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 23,
+        "y": 10,
+        "w": 193.7,
+        "h": 43.2
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "link",
+    "name": "Get started on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala#get-started"
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 536,
+        "y": 10,
+        "w": 122.9,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "header",
+    "role": "DisclosureTriangle",
+    "name": "Menu",
+    "states": {
+      "focusable": true,
+      "expanded": false
+    },
+    "dom": {
+      "unit": "header",
+      "tag": "summary",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 667,
+        "y": 10,
+        "w": 70,
+        "h": 44
+      }
+    }
+  }
+]

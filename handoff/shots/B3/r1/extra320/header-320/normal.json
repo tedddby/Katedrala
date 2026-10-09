@@ -1,0 +1,43 @@
+{
+  "screenWidth": 320,
+  "layoutViewportWidth": 320,
+  "visualViewport": {
+    "width": 320,
+    "scale": 1
+  },
+  "docScrollWidth": 320,
+  "header": {
+    "left": 0,
+    "right": 320,
+    "top": 0,
+    "bottom": 65,
+    "w": 320,
+    "h": 65
+  },
+  "frame": {
+    "left": 0,
+    "right": 320,
+    "top": 0,
+    "bottom": 64,
+    "w": 320,
+    "h": 64
+  },
+  "wordmarkLink": {
+    "left": 8,
+    "right": 201.7,
+    "top": 10.4,
+    "bottom": 53.6,
+    "w": 193.7,
+    "h": 43.2
+  },
+  "menuButton": {
+    "left": 234,
+    "right": 304,
+    "top": 10,
+    "bottom": 54,
+    "w": 70,
+    "h": 44
+  },
+  "menuButtonCutAtRight": 0,
+  "widerThanScreen": []
+}

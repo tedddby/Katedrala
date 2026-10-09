@@ -1,0 +1,25 @@
+- region "See what holds your system up.":
+  - heading "See what holds your system up." [level=1]
+  - paragraph: Katedrala reconstructs the architecture of TypeScript and JavaScript, with evidence for every dependency it finds.
+  - link "Explore Katedrala":
+    - /url: "#how-it-works"
+  - link "View on GitHub":
+    - /url: https://github.com/tedddby/Katedrala
+  - figure:
+    - 'radiogroup "Load drawing of the demonstration system by module: 8 modules on 6 load levels, each resting on what it depends on"':
+      - radio "Gateway module, 1 member": Gateway
+      - radio "Checkout module, 2 members": Checkout
+      - radio "Orders module, 3 members": Orders
+      - radio "Billing module, 1 member": Billing
+      - radio "Auth module, 2 members": Auth
+      - radio "Payments module, 3 members": Payments
+      - radio "Users module, 2 members": Users
+      - radio "Platform module, 2 members": Platform
+  - paragraph: Platform
+  - paragraph: "Carries the most load: all 7 other modules rest on it."
+  - term: Members
+  - definition: EventBus, Database
+  - term: Depended on by
+  - definition: Orders, Payments, Users, Auth
+  - paragraph: Select any module to light the load path it carries.
+  - paragraph: "Demonstration system Line weight: load carried Gravity: draft method, planned for v1"

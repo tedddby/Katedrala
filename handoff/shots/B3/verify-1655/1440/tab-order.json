@@ -1,0 +1,882 @@
+[
+  {
+    "index": 1,
+    "role": "link",
+    "name": "Skip to content",
+    "unit": "skip-link",
+    "tag": "a",
+    "text": "Skip to content",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 16,
+      "y": 16,
+      "w": 149,
+      "h": 47
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 2,
+    "role": "link",
+    "name": "Katedrala, back to top",
+    "unit": "header",
+    "tag": "a",
+    "text": "Katedrala, back to top",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 52,
+      "y": 10,
+      "w": 194,
+      "h": 43
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 3,
+    "role": "link",
+    "name": "How it works",
+    "unit": "header",
+    "tag": "a",
+    "text": "How it works",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 507,
+      "y": 24,
+      "w": 84,
+      "h": 16
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 4,
+    "role": "link",
+    "name": "Architecture",
+    "unit": "header",
+    "tag": "a",
+    "text": "Architecture",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 623,
+      "y": 24,
+      "w": 81,
+      "h": 16
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 5,
+    "role": "link",
+    "name": "Concepts",
+    "unit": "header",
+    "tag": "a",
+    "text": "Concepts",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 736,
+      "y": 24,
+      "w": 65,
+      "h": 16
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 6,
+    "role": "link",
+    "name": "Developers",
+    "unit": "header",
+    "tag": "a",
+    "text": "Developers",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 832,
+      "y": 24,
+      "w": 76,
+      "h": 16
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 7,
+    "role": "link",
+    "name": "GitHub",
+    "unit": "header",
+    "tag": "a",
+    "text": "GitHub",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 940,
+      "y": 24,
+      "w": 48,
+      "h": 16
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 8,
+    "role": "link",
+    "name": "Get started on GitHub",
+    "unit": "header",
+    "tag": "a",
+    "text": "Get started on GitHub",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 1257,
+      "y": 14,
+      "w": 123,
+      "h": 36
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 9,
+    "role": "link",
+    "name": "Explore Katedrala",
+    "unit": "top",
+    "tag": "a",
+    "text": "Explore Katedrala",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 60,
+      "y": 446,
+      "w": 157,
+      "h": 44
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 10,
+    "role": "link",
+    "name": "View on GitHub",
+    "unit": "top",
+    "tag": "a",
+    "text": "View on GitHub",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 229,
+      "y": 446,
+      "w": 163,
+      "h": 44
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 11,
+    "role": "radio",
+    "name": "Database, Platform module, gravity 0.64",
+    "unit": "top",
+    "tag": "g",
+    "text": "Database, Platform module, gravity 0.64",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "none 3px rgb(233, 230, 223)",
+    "rect": {
+      "x": 1004,
+      "y": 589,
+      "w": 50,
+      "h": 64
+    },
+    "scrollY": 0,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 12,
+    "role": "radio",
+    "name": "Members",
+    "unit": "architecture",
+    "tag": "button",
+    "text": "Members",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 61,
+      "y": 473,
+      "w": 89,
+      "h": 35
+    },
+    "scrollY": 1601,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 13,
+    "role": "button",
+    "name": "Zoom in",
+    "unit": "architecture",
+    "tag": "button",
+    "text": "Zoom in",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 921,
+      "y": 472,
+      "w": 36,
+      "h": 36
+    },
+    "scrollY": 1601,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 14,
+    "role": "button",
+    "name": "Zoom out",
+    "unit": "architecture",
+    "tag": "button",
+    "text": "Zoom out",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 961,
+      "y": 472,
+      "w": 36,
+      "h": 36
+    },
+    "scrollY": 1601,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 15,
+    "role": "button",
+    "name": "Fit the plan",
+    "unit": "architecture",
+    "tag": "button",
+    "text": "Fit the plan",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 1001,
+      "y": 472,
+      "w": 43,
+      "h": 36
+    },
+    "scrollY": 1601,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 16,
+    "role": "radio",
+    "name": "ApiGateway, Gateway module",
+    "unit": "architecture",
+    "tag": "g",
+    "text": "ApiGateway, Gateway module",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "none 3px rgb(233, 230, 223)",
+    "rect": {
+      "x": 522,
+      "y": 571,
+      "w": 61,
+      "h": 46
+    },
+    "scrollY": 1601,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 17,
+    "role": "button",
+    "name": "calls",
+    "unit": "architecture",
+    "tag": "button",
+    "text": "calls",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 60,
+      "y": 473,
+      "w": 87,
+      "h": 34
+    },
+    "scrollY": 2372,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 18,
+    "role": "button",
+    "name": "instantiates",
+    "unit": "architecture",
+    "tag": "button",
+    "text": "instantiates",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 155,
+      "y": 473,
+      "w": 127,
+      "h": 34
+    },
+    "scrollY": 2372,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 19,
+    "role": "button",
+    "name": "accesses data",
+    "unit": "architecture",
+    "tag": "button",
+    "text": "accesses data",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 290,
+      "y": 473,
+      "w": 143,
+      "h": 34
+    },
+    "scrollY": 2372,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 20,
+    "role": "DisclosureTriangle",
+    "name": "Read the graph as a table",
+    "unit": "architecture",
+    "tag": "summary",
+    "text": "Read the graph as a table",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 60,
+      "y": 572,
+      "w": 171,
+      "h": 22
+    },
+    "scrollY": 2372,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 21,
+    "role": "radio",
+    "name": "Database 0.64",
+    "unit": "gravity",
+    "tag": "button",
+    "text": "Database0.64",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 60,
+      "y": 470,
+      "w": 131,
+      "h": 40
+    },
+    "scrollY": 2970,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 22,
+    "role": "radio",
+    "name": "base Clean structure",
+    "unit": "entropy",
+    "tag": "button",
+    "text": "baseClean structure",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 844,
+      "y": 471,
+      "w": 536,
+      "h": 38
+    },
+    "scrollY": 4383,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 23,
+    "role": "combobox",
+    "name": "katedrala impact",
+    "unit": "impact",
+    "tag": "select",
+    "text": "AuthServiceCheckoutControllerCheckoutServiceDatabaseEventBusInvoiceServiceOrderControllerOrderReposi",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 239,
+      "y": 473,
+      "w": 197,
+      "h": 35
+    },
+    "scrollY": 5763,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 24,
+    "role": "button",
+    "name": "Copy katedrala.config.yaml",
+    "unit": "rules",
+    "tag": "button",
+    "text": "Copy katedrala.config.yaml",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 536,
+      "y": 476,
+      "w": 51,
+      "h": 28
+    },
+    "scrollY": 6942,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 25,
+    "role": "button",
+    "name": "Copy real output: CodeVerse at 6b942bc",
+    "unit": "evidence",
+    "tag": "button",
+    "text": "Copy real output: CodeVerse at 6b942bc",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 1320,
+      "y": 476,
+      "w": 51,
+      "h": 28
+    },
+    "scrollY": 8031,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 26,
+    "role": "tab",
+    "name": "analyze What is in this repository?",
+    "unit": "developers",
+    "tag": "button",
+    "text": "analyzeWhat is in this repository?",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 60,
+      "y": 451,
+      "w": 424,
+      "h": 79
+    },
+    "scrollY": 10198,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 27,
+    "role": "generic",
+    "name": "$ katedrala analyze . tedddby/CodeVerse at 6b942bc files 644 analyzed 594 directories 84 symbols 3,766 relationships 14,233 externals 59 npm packages 39 Node.js built-ins 8 environment variables 12 unresolved imports 0 ",
+    "unit": "developers",
+    "tag": "pre",
+    "text": "$ katedrala analyze . tedddby/CodeVerse at 6b942bc files 644 analyzed 594 directories 84 symbols 3,7",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 509,
+      "y": 487,
+      "w": 870,
+      "h": 343
+    },
+    "scrollY": 10198,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 28,
+    "role": "button",
+    "name": "Copy analyze.mjs",
+    "unit": "developers",
+    "tag": "button",
+    "text": "Copy analyze.mjs",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 648,
+      "y": 477,
+      "w": 51,
+      "h": 28
+    },
+    "scrollY": 10790,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 29,
+    "role": "link",
+    "name": "from a clone of the repository",
+    "unit": "developers",
+    "tag": "a",
+    "text": "from a clone of the repository",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 60,
+      "y": 698,
+      "w": 164,
+      "h": 14
+    },
+    "scrollY": 10790,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 30,
+    "role": "link",
+    "name": "View on GitHub",
+    "unit": "open-source",
+    "tag": "a",
+    "text": "View on GitHub",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 60,
+      "y": 468,
+      "w": 163,
+      "h": 44
+    },
+    "scrollY": 12064,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 31,
+    "role": "link",
+    "name": "Contribute",
+    "unit": "open-source",
+    "tag": "a",
+    "text": "Contribute",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 235,
+      "y": 468,
+      "w": 133,
+      "h": 44
+    },
+    "scrollY": 12064,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 32,
+    "role": "link",
+    "name": "roadmap",
+    "unit": "open-source",
+    "tag": "a",
+    "text": "roadmap",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 786,
+      "y": 802,
+      "w": 52,
+      "h": 14
+    },
+    "scrollY": 12064,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 33,
+    "role": "link",
+    "name": "Open CodeVerse",
+    "unit": "ecosystem",
+    "tag": "a",
+    "text": "Open CodeVerse",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 60,
+      "y": 468,
+      "w": 174,
+      "h": 44
+    },
+    "scrollY": 13565,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 34,
+    "role": "link",
+    "name": "CodeVerse on GitHub",
+    "unit": "ecosystem",
+    "tag": "a",
+    "text": "CodeVerse on GitHub",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 258,
+      "y": 468,
+      "w": 145,
+      "h": 44
+    },
+    "scrollY": 13565,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 35,
+    "role": "link",
+    "name": "Get started on GitHub",
+    "unit": "get-started",
+    "tag": "a",
+    "text": "Get started on GitHub",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 60,
+      "y": 468,
+      "w": 136,
+      "h": 44
+    },
+    "scrollY": 14123,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 36,
+    "role": "link",
+    "name": "View on GitHub",
+    "unit": "get-started",
+    "tag": "a",
+    "text": "View on GitHub",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 208,
+      "y": 468,
+      "w": 163,
+      "h": 44
+    },
+    "scrollY": 14123,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 37,
+    "role": "link",
+    "name": "GitHub",
+    "unit": "footer",
+    "tag": "a",
+    "text": "GitHub",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(83, 159, 225)",
+    "rect": {
+      "x": 508,
+      "y": 851,
+      "w": 48,
+      "h": 32
+    },
+    "scrollY": 14123,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 38,
+    "role": "link",
+    "name": "Roadmap",
+    "unit": "footer",
+    "tag": "a",
+    "text": "Roadmap",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(64, 165, 252)",
+    "rect": {
+      "x": 508,
+      "y": 868,
+      "w": 66,
+      "h": 32
+    },
+    "scrollY": 14138,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 39,
+    "role": "link",
+    "name": "Contributing",
+    "unit": "footer",
+    "tag": "a",
+    "text": "Contributing",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(62, 166, 255)",
+    "rect": {
+      "x": 508,
+      "y": 780,
+      "w": 82,
+      "h": 32
+    },
+    "scrollY": 14258,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 40,
+    "role": "link",
+    "name": "MIT license",
+    "unit": "footer",
+    "tag": "a",
+    "text": "MIT license",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(78, 161, 232)",
+    "rect": {
+      "x": 508,
+      "y": 812,
+      "w": 76,
+      "h": 32
+    },
+    "scrollY": 14258,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 41,
+    "role": "link",
+    "name": "Architecture document",
+    "unit": "footer",
+    "tag": "a",
+    "text": "Architecture document",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(83, 159, 225)",
+    "rect": {
+      "x": 732,
+      "y": 716,
+      "w": 152,
+      "h": 32
+    },
+    "scrollY": 14258,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 42,
+    "role": "link",
+    "name": "The IR contract",
+    "unit": "footer",
+    "tag": "a",
+    "text": "The IR contract",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(83, 159, 225)",
+    "rect": {
+      "x": 732,
+      "y": 748,
+      "w": 101,
+      "h": 32
+    },
+    "scrollY": 14258,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 43,
+    "role": "link",
+    "name": "All documents",
+    "unit": "footer",
+    "tag": "a",
+    "text": "All documents",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(83, 159, 225)",
+    "rect": {
+      "x": 732,
+      "y": 780,
+      "w": 95,
+      "h": 32
+    },
+    "scrollY": 14258,
+    "inViewport": true,
+    "underHeader": false
+  },
+  {
+    "index": 44,
+    "role": "link",
+    "name": "CodeVerse",
+    "unit": "footer",
+    "tag": "a",
+    "text": "CodeVerse",
+    "tabIndex": 0,
+    "focusVisible": true,
+    "outline": "solid 2px rgb(78, 161, 232)",
+    "rect": {
+      "x": 956,
+      "y": 716,
+      "w": 74,
+      "h": 32
+    },
+    "scrollY": 14258,
+    "inViewport": true,
+    "underHeader": false
+  }
+]

@@ -1,0 +1,30 @@
+=== high-fan-out
+  src/orchestrator.ts
+    out (20): src/adapters/audit.adapter.ts, src/adapters/crm.adapter.ts, src/adapters/dhl.adapter.ts, src/adapters/email.adapter.ts, src/adapters/erp.adapter.ts, src/adapters/paypal.adapter.ts, src/adapters/sms.adapter.ts, src/adapters/stripe.adapter.ts, src/adapters/ups.adapter.ts, src/adapters/warehouse.adapter.ts, src/services/discount.service.ts, src/services/fraud.service.ts, src/services/inventory.service.ts, src/services/invoice.service.ts, src/services/loyalty.service.ts, src/services/notification.service.ts, src/services/payment.service.ts, src/services/pricing.service.ts, src/services/shipping.service.ts, src/services/tax.service.ts
+    in  (1): src/main.ts
+  src/main.ts
+    out (1): src/orchestrator.ts
+    in  (0): 
+=== layered-architecture
+  src/services/payment.service.ts
+    out (6): src/models/payment.ts, src/repositories/payment.repository.ts, src/services/payment-gateway.ts, src/services/user.service.ts, src/shared/errors.ts, src/shared/logger.ts
+    in  (3): src/controllers/payment.controller.ts, src/main.ts, src/services/order.service.ts
+  src/main.ts
+    out (14): src/controllers/order.controller.ts, src/controllers/payment.controller.ts, src/controllers/user.controller.ts, src/repositories/order.repository.ts, src/repositories/payment.repository.ts, src/repositories/user.repository.ts, src/services/order.service.ts, src/services/payment-gateway.ts, src/services/payment.service.ts, src/services/user.service.ts, src/shared/config.ts, src/shared/database.ts, src/shared/http.ts, src/shared/logger.ts
+    in  (0): 
+=== ambiguous-boundaries
+  src/catalog/price-calculator.ts
+    out (2): src/checkout/discounts.ts, src/checkout/tax-rules.ts
+    in  (4): src/catalog/product-view.ts, src/checkout/checkout-service.ts, src/checkout/invoice.ts, src/checkout/order-summary.ts
+  src/cart/shipping-estimator.ts
+    out (2): src/checkout/address.ts, src/checkout/shipping-rates.ts
+    in  (2): src/checkout/delivery.ts, src/checkout/order-summary.ts
+  src/checkout/stock-availability.ts
+    out (2): src/catalog/inventory.ts, src/catalog/product.ts
+    in  (2): src/catalog/product-view.ts, src/catalog/search.ts
+  src/catalog/product.ts
+    out (0): 
+    in  (5): src/cart/cart-service.ts, src/catalog/product-repository.ts, src/catalog/product-view.ts, src/catalog/search.ts, src/checkout/stock-availability.ts
+  src/server.ts
+    out (8): src/cart/cart-service.ts, src/cart/cart-view.ts, src/cart/cart.ts, src/catalog/category-tree.ts, src/catalog/product-repository.ts, src/catalog/product-view.ts, src/catalog/search.ts, src/checkout/checkout-service.ts
+    in  (0): 

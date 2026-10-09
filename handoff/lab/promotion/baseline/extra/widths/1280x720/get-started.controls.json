@@ -1,0 +1,66 @@
+[
+  {
+    "unit": "get-started",
+    "role": "region",
+    "name": "Understand your system before you change it.",
+    "states": {
+      "labelledby": [
+        "Understand your system before you change it."
+      ]
+    },
+    "dom": {
+      "unit": "get-started",
+      "tag": "section",
+      "tabIndex": -1,
+      "rendered": true,
+      "rect": {
+        "x": 0,
+        "y": 13681,
+        "w": 1280,
+        "h": 631.9
+      }
+    }
+  },
+  {
+    "unit": "get-started",
+    "role": "link",
+    "name": "Get started on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala#get-started"
+    },
+    "dom": {
+      "unit": "get-started",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 48,
+        "y": 14145,
+        "w": 135.7,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "get-started",
+    "role": "link",
+    "name": "View on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "get-started",
+      "tag": "a",
+      "tabIndex": 0,
+      "rendered": true,
+      "rect": {
+        "x": 196,
+        "y": 14145,
+        "w": 163.4,
+        "h": 44
+      }
+    }
+  }
+]

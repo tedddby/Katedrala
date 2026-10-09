@@ -1,0 +1,46 @@
+See what holds your system up.
+
+Katedrala reconstructs the architecture of TypeScript and JavaScript, with evidence for every dependency it finds.
+
+Explore Katedrala
+View on GitHub
+
+Database
+
+Carries the most load: 13 of 15 members rest on it.
+
+Module
+Platform
+Depended on by
+OrderRepository, PaymentRepository, UserRepository, SessionStore
+
+Select any member to light the load path it carries.
+
+±0
++1
++2
++3
++4
++5
++6
++7
+ApiGateway
+CheckoutController
+CheckoutService
+OrderController
+OrderService
+InvoiceService
+PaymentService
+UserService
+AuthService
+PaymentRepository
+OrderRepository
+UserRepository
+SessionStore
+StripeClient
+Database
+EventBus
+
+Demonstration system
+Line weight: load carried
+Gravity: draft method, planned for v1

@@ -1,0 +1,18 @@
+=== circular-dependencies
+  orchestrators: src/demo/seed.ts, src/index.ts
+  utilities: src/shared/id.ts
+=== typescript-features
+  orchestrators: src/cli.ts, src/index.ts
+  utilities: src/orders/order.ts, src/utils/money.ts
+=== ambiguous-boundaries
+  orchestrators: src/server.ts
+  utilities: src/common/format.ts
+=== tangled-architecture
+  orchestrators: src/main.ts
+  utilities: src/catalog/product-service.ts, src/checkout/order-history.ts, src/customers/customer.ts, src/customers/loyalty.ts, src/lib/db.ts, src/lib/events.ts, src/lib/money.ts
+=== javascript-commonjs
+  orchestrators: src/routes/index.js, src/server.js
+  utilities: 
+=== fastify-app
+  orchestrators: src/app.ts, src/plugins/orders.ts, src/server.ts
+  utilities: src/config.ts, src/db.ts, src/errors.ts, src/types.ts

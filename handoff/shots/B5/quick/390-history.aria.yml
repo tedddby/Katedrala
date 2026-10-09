@@ -1,0 +1,33 @@
+- region "See the structure drift across commits.":
+  - heading "See the structure drift across commits." [level=2]
+  - paragraph: Compare two revisions or a range of history, and Katedrala will report new modules, new dependencies and new cycles.
+  - text: Planned for v1
+  - list "Five versions of the demonstration system":
+    - listitem:
+      - text: v1 entropy 0.20
+      - 'img "v1: 4 of 8 modules, 4 dependencies between them."'
+      - paragraph: Clean boundaries
+      - paragraph: Gateway, Auth, Users and Platform
+    - listitem:
+      - text: v2 entropy 0.16
+      - 'img "v2: 5 of 8 modules, 5 dependencies between them, 1 new."'
+      - paragraph: Payments
+      - paragraph: + Payments module, 3 members
+    - listitem:
+      - text: v3 entropy 0.22
+      - 'img "v3: all 8 modules, 15 dependencies between them, 10 new."'
+      - paragraph: Orders
+      - paragraph: + Checkout, Orders and Billing modules, 7 members
+    - listitem:
+      - text: v4 entropy 0.23
+      - 'img "v4: all 8 modules, 16 dependencies between them, 1 new. New upward dependency: Payments → Auth."'
+      - paragraph: Against the load path
+      - paragraph: + PaymentService → AuthService
+      - paragraph: "New upward dependency: Payments → Auth."
+    - listitem:
+      - text: v5 entropy 0.52
+      - 'img "v5: all 8 modules, 17 dependencies between them, 1 new. New cycle: Users → Orders → Billing → Users."'
+      - paragraph: A cycle
+      - paragraph: + UserRepository → OrderService
+      - paragraph: "New cycle: Users → Orders → Billing → Users."
+  - paragraph: Demonstration system. Entropy uses the draft Katedrala heuristic, computed for each version.

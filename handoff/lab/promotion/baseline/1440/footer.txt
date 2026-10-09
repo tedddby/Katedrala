@@ -1,0 +1,15 @@
+KATEDRALA
+
+An open-source software architecture engine. MIT licensed.
+
+Project
+GitHub
+Roadmap
+Contributing
+MIT license
+Documentation
+Architecture document
+The IR contract
+All documents
+Related
+CodeVerse

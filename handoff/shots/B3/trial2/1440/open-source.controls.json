@@ -1,0 +1,77 @@
+[
+  {
+    "unit": "open-source",
+    "role": "link",
+    "name": "View on GitHub",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala"
+    },
+    "dom": {
+      "unit": "open-source",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 60,
+        "y": 12532,
+        "w": 163.4,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "open-source",
+    "role": "link",
+    "name": "Contribute",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md"
+    },
+    "dom": {
+      "unit": "open-source",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/CONTRIBUTING.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 235,
+        "y": 12532,
+        "w": 132.5,
+        "h": 44
+      }
+    }
+  },
+  {
+    "unit": "open-source",
+    "role": "link",
+    "name": "roadmap",
+    "states": {
+      "focusable": true,
+      "url": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md"
+    },
+    "dom": {
+      "unit": "open-source",
+      "tag": "a",
+      "tabIndex": 0,
+      "attrs": {
+        "href": "https://github.com/tedddby/Katedrala/blob/main/docs/ROADMAP.md",
+        "rel": "noopener"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 786,
+        "y": 12866,
+        "w": 51.7,
+        "h": 14
+      }
+    }
+  }
+]

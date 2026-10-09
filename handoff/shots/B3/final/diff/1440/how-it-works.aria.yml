@@ -1,0 +1,64 @@
+- region "From source code to architecture.":
+  - heading "From source code to architecture." [level=2]
+  - paragraph: Katedrala is designed as five passes. Each adds to the document and never rewrites what an earlier pass produced.
+  - list:
+    - listitem:
+      - paragraph: "01"
+      - heading "Parse" [level=3]
+      - paragraph: Each TypeScript and JavaScript file becomes symbols, imports, exports and references.
+      - text: Available today
+      - term: file
+      - definition: cache-key.ts
+      - term: symbols
+      - definition: "4"
+      - term: function
+      - definition: graphCacheKey
+    - listitem:
+      - paragraph: "02"
+      - heading "Link" [level=3]
+      - paragraph: Imports resolve through tsconfig paths, workspaces and package exports; references bind to their declarations. What cannot be bound is counted, never guessed.
+      - text: Available today
+      - term: edge
+      - definition: calls
+      - term: from
+      - definition: createAnalysisService
+      - term: to
+      - definition: graphCacheKey
+      - term: at
+      - definition: analysis-service.ts:219
+    - listitem:
+      - paragraph: "03"
+      - heading "Infer" [level=3]
+      - paragraph: Components will be derived from directories and packages; modules and layers will be inferred, each with a confidence and its evidence.
+      - text: Planned for v1
+      - term: module
+      - definition: payments
+      - term: members
+      - definition: "3"
+      - term: layer
+      - definition: service
+    - listitem:
+      - paragraph: "04"
+      - heading "Analyze" [level=3]
+      - paragraph: The dependency graph will be measured for coupling, cycles, centrality, Gravity and Entropy.
+      - text: Planned for v1
+      - term: gravity
+      - definition: "0.58"
+      - term: reach
+      - definition: 6 of 15
+      - term: fan-in
+      - definition: "3"
+    - listitem:
+      - paragraph: "05"
+      - heading "Explain" [level=3]
+      - paragraph: Every conclusion will decompose into the measurements and the lines of code it came from.
+      - text: Planned for v1
+      - term: reach
+      - definition: "+0.28"
+      - term: fan-in
+      - definition: "+0.10"
+      - term: spread
+      - definition: "+0.13"
+      - term: brokerage
+      - definition: "+0.07"
+  - paragraph: Parse and Link show Katedrala’s real output for CodeVerse, the relationship traced in the film above. Infer, Analyze and Explain preview v1 on the demonstration system the rest of this page uses.

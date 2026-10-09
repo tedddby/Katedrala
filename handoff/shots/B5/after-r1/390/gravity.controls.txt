@@ -1,0 +1,10 @@
+radiogroup "Member to measure" <div tabindex=-1>
+radio "Database 0.64" checked=true focusable <button tabindex=0>
+radio "PaymentService 0.58" focusable <button tabindex=-1>
+radio "OrderService 0.46" focusable <button tabindex=-1>
+radio "CheckoutController 0.25" focusable <button tabindex=-1>
+radio "ApiGateway 0.00" focusable <button tabindex=-1>
+button "Show reach in the drawing" pressed=true focusable <button tabindex=0>
+button "Show fan-in in the drawing" focusable <button tabindex=0>
+button "Show cross-module spread in the drawing" focusable <button tabindex=0>
+button "Show brokerage in the drawing" focusable <button tabindex=0>

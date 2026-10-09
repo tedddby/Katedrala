@@ -1,0 +1,553 @@
+=== ambiguous-boundaries
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L= F=cart,catalog,checkout S=common style=feature
+  P3 orchestrators: src/server.ts [entry]
+  P3 utilities: src/common/format.ts
+  P3 facades: 
+  P5 passes=2 relocations: 
+     src/cart/shipping-estimator.ts: src/cart -> src/checkout in={"src/checkout":2} out={"src/checkout":2} support=2
+     src/catalog/price-calculator.ts: src/catalog -> src/checkout in={"src/catalog":1,"src/checkout":3} out={"src/checkout":2} support=3
+     src/checkout/stock-availability.ts: src/checkout -> src/catalog in={"src/catalog":2} out={"src/catalog":2} support=2
+  MODULE mod:src kind=root conf=0.867 prior-agreement=1.000 module-size=0.333 wiring-share=1.000 members(1)=src/server.ts
+  MODULE mod:src/cart kind=feature conf=0.812 prior-agreement=0.833 module-size=0.714 internal-edge-ratio=0.824 membership-margin=0.833 members(5)=src/cart/cart-rules.ts, src/cart/cart-service.ts, src/cart/cart-store.ts, src/cart/cart-view.ts, src/cart/cart.ts
+  MODULE mod:src/catalog kind=feature conf=0.777 prior-agreement=0.750 module-size=0.778 internal-edge-ratio=0.828 membership-margin=0.719 members(7)=src/catalog/category-tree.ts, src/catalog/inventory.ts, src/catalog/product-repository.ts, src/catalog/product-view.ts, src/catalog/product.ts, src/catalog/search.ts, src/checkout/stock-availability.ts
+  MODULE mod:src/checkout kind=feature conf=0.894 prior-agreement=0.750 module-size=0.846 internal-edge-ratio=0.962 membership-margin=0.932 members(11)=src/cart/shipping-estimator.ts, src/catalog/price-calculator.ts, src/checkout/address.ts, src/checkout/checkout-service.ts, src/checkout/delivery.ts, src/checkout/discounts.ts, src/checkout/invoice.ts, src/checkout/order-summary.ts, src/checkout/payment.ts, src/checkout/shipping-rates.ts, src/checkout/tax-rules.ts
+  MODULE mod:src/common kind=shared conf=0.558 prior-agreement=1.000 module-size=0.667 shared-usage=0.250 members(4)=src/common/format.ts, src/common/session.ts, src/common/slug.ts, src/common/validation.ts
+  publicApi mod:src/cart: src/cart/cart-service.ts, src/cart/cart-view.ts
+  publicApi mod:src/catalog: src/catalog/category-tree.ts, src/catalog/product-repository.ts, src/catalog/product-view.ts, src/catalog/search.ts
+  publicApi mod:src/checkout: src/catalog/price-calculator.ts, src/checkout/checkout-service.ts
+  publicApi mod:src/common: src/common/format.ts, src/common/session.ts, src/common/slug.ts, src/common/validation.ts
+  module dependencies: mod:src -> mod:src/cart; mod:src -> mod:src/catalog; mod:src -> mod:src/checkout; mod:src/cart -> mod:src/catalog; mod:src/cart -> mod:src/common; mod:src/catalog -> mod:src/checkout; mod:src/catalog -> mod:src/common; mod:src/checkout -> mod:src/common
+  ROLES 4 files with roles
+     src/cart/cart-service.ts: service/naming 0.6
+     src/cart/cart-store.ts: state-store/naming 0.6
+     src/catalog/product-repository.ts: repository/naming 0.6
+     src/checkout/checkout-service.ts: service/naming 0.6
+  LABELS repository(1) service(2) store(1) kept=service
+  LAYERS none
+=== circular-dependencies
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=api F=demo,notifications,people,workflow S=shared style=feature
+  P3 orchestrators: src/demo/seed.ts [shape {"src/people":1,"src/workflow":1}]; src/index.ts [entry]
+  P3 utilities: src/shared/id.ts (first pass only: src/people/member.ts, src/workflow/board.ts)
+  P3 facades: src/index.ts
+  P5 passes=1 relocations: none
+  MODULE mod:src kind=root conf=0.867 prior-agreement=1.000 module-size=0.333 wiring-share=1.000 members(1)=src/index.ts
+  MODULE mod:src/api kind=layer conf=0.837 prior-agreement=1.000 module-size=0.600 internal-edge-ratio=0.833 members(3)=src/api/project-dto.ts, src/api/serializer.ts, src/api/task-dto.ts
+  MODULE mod:src/demo kind=feature conf=0.250 prior-agreement=1.000 module-size=0.333 internal-edge-ratio=absent membership-margin=absent members(1)=src/demo/seed.ts
+  MODULE mod:src/notifications kind=feature conf=0.250 prior-agreement=1.000 module-size=0.333 internal-edge-ratio=0.000 membership-margin=0.000 members(1)=src/notifications/digest.ts
+  MODULE mod:src/people kind=feature conf=0.720 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=0.800 membership-margin=0.500 members(2)=src/people/member.ts, src/people/team.ts
+  MODULE mod:src/shared kind=shared conf=0.867 prior-agreement=1.000 module-size=0.333 shared-usage=1.000 members(1)=src/shared/id.ts
+  MODULE mod:src/workflow kind=feature conf=0.757 prior-agreement=1.000 module-size=0.600 internal-edge-ratio=0.750 membership-margin=0.667 members(3)=src/workflow/board.ts, src/workflow/card.ts, src/workflow/column.ts
+  publicApi mod:src/api: src/api/serializer.ts
+  publicApi mod:src/demo: src/demo/seed.ts
+  publicApi mod:src/notifications: src/notifications/digest.ts
+  publicApi mod:src/people: src/people/member.ts, src/people/team.ts
+  publicApi mod:src/shared: src/shared/id.ts
+  publicApi mod:src/workflow: src/workflow/board.ts
+  module dependencies: mod:src -> mod:src/api; mod:src -> mod:src/demo; mod:src -> mod:src/notifications; mod:src -> mod:src/people; mod:src -> mod:src/workflow; mod:src/api -> mod:src/workflow; mod:src/demo -> mod:src/people; mod:src/demo -> mod:src/workflow; mod:src/notifications -> mod:src/people; mod:src/notifications -> mod:src/workflow; mod:src/people -> mod:src/shared; mod:src/workflow -> mod:src/shared
+  ROLES 2 files with roles
+     src/api/project-dto.ts: data-transfer-object/naming 0.6
+     src/api/task-dto.ts: data-transfer-object/naming 0.6
+  LABELS api(3) kept=api
+  LAYERS none
+=== clean-architecture
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=application,domain,infrastructure,presentation F= S= style=layer stems= coverage=0/24=0.000 applied=false droppedComponents=loan:loan.ts+loan-repository.ts,sql:sql-book-repository.ts,sql:sql-loan-repository.ts,sql:sql-member-repository.ts,loan:loan-routes.ts
+  P3 orchestrators: src/main.ts [entry]
+  P3 utilities: 
+  P3 facades: src/domain/index.ts
+  P5 passes=1 relocations: none
+  MODULE mod:src kind=root conf=0.867 prior-agreement=1.000 module-size=0.333 wiring-share=1.000 members(1)=src/main.ts
+  MODULE mod:src/application kind=layer conf=0.512 prior-agreement=1.000 module-size=0.667 internal-edge-ratio=0.157 members(4)=src/application/borrow-book.ts, src/application/dto.ts, src/application/return-book.ts, src/application/send-overdue-reminders.ts
+  MODULE mod:src/domain kind=layer conf=0.727 prior-agreement=1.000 module-size=0.833 internal-edge-ratio=0.520 members(10)=src/domain/index.ts, src/domain/model/book.ts, src/domain/model/errors.ts, src/domain/model/loan.ts, src/domain/model/member.ts, src/domain/ports/book-repository.ts, src/domain/ports/clock.ts, src/domain/ports/loan-repository.ts, src/domain/ports/member-repository.ts, src/domain/ports/notifier.ts
+  MODULE mod:src/infrastructure kind=layer conf=0.650 prior-agreement=1.000 module-size=0.750 internal-edge-ratio=0.400 members(6)=src/infrastructure/notifications/smtp-notifier.ts, src/infrastructure/persistence/pool.ts, src/infrastructure/persistence/sql-book-repository.ts, src/infrastructure/persistence/sql-loan-repository.ts, src/infrastructure/persistence/sql-member-repository.ts, src/infrastructure/system-clock.ts
+  MODULE mod:src/presentation kind=layer conf=0.797 prior-agreement=1.000 module-size=0.667 internal-edge-ratio=0.727 members(4)=src/presentation/http/error-mapper.ts, src/presentation/http/http-types.ts, src/presentation/http/loan-routes.ts, src/presentation/http/server.ts
+  publicApi mod:src/application: src/application/borrow-book.ts, src/application/return-book.ts, src/application/send-overdue-reminders.ts
+  publicApi mod:src/domain: src/domain/index.ts, src/domain/model/book.ts, src/domain/model/errors.ts, src/domain/model/loan.ts, src/domain/model/member.ts, src/domain/ports/book-repository.ts, src/domain/ports/clock.ts, src/domain/ports/loan-repository.ts, src/domain/ports/notifier.ts
+  publicApi mod:src/infrastructure: src/infrastructure/notifications/smtp-notifier.ts, src/infrastructure/persistence/pool.ts, src/infrastructure/persistence/sql-book-repository.ts, src/infrastructure/persistence/sql-loan-repository.ts, src/infrastructure/persistence/sql-member-repository.ts, src/infrastructure/system-clock.ts
+  publicApi mod:src/presentation: src/presentation/http/loan-routes.ts, src/presentation/http/server.ts
+  module dependencies: mod:src -> mod:src/application; mod:src -> mod:src/infrastructure; mod:src -> mod:src/presentation; mod:src/application -> mod:src/domain; mod:src/infrastructure -> mod:src/domain; mod:src/presentation -> mod:src/application; mod:src/presentation -> mod:src/domain
+  ROLES 7 files with roles
+     src/domain/ports/book-repository.ts: repository/naming 0.6
+     src/domain/ports/loan-repository.ts: repository/naming 0.6
+     src/domain/ports/member-repository.ts: repository/naming 0.6
+     src/infrastructure/persistence/sql-book-repository.ts: repository/naming 0.6
+     src/infrastructure/persistence/sql-loan-repository.ts: repository/naming 0.6
+     src/infrastructure/persistence/sql-member-repository.ts: repository/naming 0.6
+     src/presentation/http/loan-routes.ts: route-definition/naming 0.6
+  LABELS application(4) domain(10) infrastructure(6) presentation(4) kept=application,domain,infrastructure,presentation
+  LAYER GRAPH application>domain=19.5(type-only 1.5) infrastructure>domain=9(type-only 3) presentation>application=2 presentation>domain=1
+  removed(upward) none; conventional none
+  LAYER 0 infrastructure conf=0.737 label-agreement=0.700 direction-consistency=1.000 order-support=0.333 layer-size=0.750 files=src/infrastructure/notifications/smtp-notifier.ts, src/infrastructure/persistence/pool.ts, src/infrastructure/persistence/sql-book-repository.ts, src/infrastructure/persistence/sql-loan-repository.ts, src/infrastructure/persistence/sql-member-repository.ts, src/infrastructure/system-clock.ts
+  LAYER 0 presentation conf=0.795 label-agreement=0.700 direction-consistency=1.000 order-support=0.667 layer-size=0.667 files=src/presentation/http/error-mapper.ts, src/presentation/http/http-types.ts, src/presentation/http/loan-routes.ts, src/presentation/http/server.ts
+  LAYER 1 application conf=0.795 label-agreement=0.700 direction-consistency=1.000 order-support=0.667 layer-size=0.667 files=src/application/borrow-book.ts, src/application/dto.ts, src/application/return-book.ts, src/application/send-overdue-reminders.ts
+  LAYER 2 domain conf=0.878 label-agreement=0.700 direction-consistency=1.000 order-support=1.000 layer-size=0.833 files=src/domain/index.ts, src/domain/model/book.ts, src/domain/model/errors.ts, src/domain/model/loan.ts, src/domain/model/member.ts, src/domain/ports/book-repository.ts, src/domain/ports/clock.ts, src/domain/ports/loan-repository.ts, src/domain/ports/member-repository.ts, src/domain/ports/notifier.ts
+  layer import pairs: application>domain infrastructure>domain presentation>application presentation>domain
+=== dependency-violations
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=controllers,domain,repositories,services F= S= style=layer stems=customer,order,refund coverage=10/11=0.909 applied=true
+     stem customer: src/controllers/customer.controller.ts, src/domain/customer.ts, src/repositories/customer.repository.ts, src/services/customer.service.ts
+     stem order: src/controllers/order.controller.ts, src/domain/order.ts, src/repositories/order.repository.ts, src/services/order.service.ts
+     stem refund: src/controllers/refund.controller.ts, src/services/refund.service.ts
+  P3 orchestrators: src/main.ts [entry]
+  P3 utilities:  (first pass only: src/repositories/database.ts)
+  P3 facades: 
+  P5 passes=1 relocations: none
+  MODULE mod:src kind=root conf=0.750 prior-agreement=1.000 module-size=0.500 wiring-share=0.500 members(2)=src/config.ts, src/main.ts
+  MODULE mod:src#customer kind=stem conf=0.746 prior-agreement=1.000 module-size=0.667 internal-edge-ratio=0.750 membership-margin=0.583 members(4)=src/controllers/customer.controller.ts, src/domain/customer.ts, src/repositories/customer.repository.ts, src/services/customer.service.ts
+  MODULE mod:src#order kind=stem conf=0.685 prior-agreement=1.000 module-size=0.667 internal-edge-ratio=0.688 membership-margin=0.440 members(4)=src/controllers/order.controller.ts, src/domain/order.ts, src/repositories/order.repository.ts, src/services/order.service.ts
+  MODULE mod:src#refund kind=stem conf=0.725 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=0.500 membership-margin=1.000 members(2)=src/controllers/refund.controller.ts, src/services/refund.service.ts
+  MODULE mod:src/repositories kind=layer conf=0.367 prior-agreement=1.000 module-size=0.333 internal-edge-ratio=0.000 members(1)=src/repositories/database.ts
+  publicApi mod:analytics: src/analytics/tracker.ts
+  publicApi mod:payments: src/payments/checkout.ts, src/payments/payment-gateway.ts, src/payments/refunds.ts
+  publicApi mod:src#customer: src/controllers/customer.controller.ts, src/repositories/customer.repository.ts, src/services/customer.service.ts
+  publicApi mod:src#order: src/controllers/order.controller.ts, src/domain/order.ts, src/repositories/order.repository.ts, src/services/order.service.ts
+  publicApi mod:src#refund: src/controllers/refund.controller.ts, src/services/refund.service.ts
+  publicApi mod:src/repositories: src/repositories/database.ts
+  module dependencies: mod:payments -> mod:analytics; mod:src -> mod:analytics; mod:src -> mod:payments; mod:src -> mod:src#customer; mod:src -> mod:src#order; mod:src -> mod:src#refund; mod:src -> mod:src/repositories; mod:src#customer -> mod:src#order; mod:src#customer -> mod:src/repositories; mod:src#order -> mod:analytics; mod:src#order -> mod:payments; mod:src#order -> mod:src#customer; mod:src#order -> mod:src/repositories; mod:src#refund -> mod:analytics; mod:src#refund -> mod:payments; mod:src#refund -> mod:src#order
+  ROLES 10 files with roles
+     src/controllers/customer.controller.ts: http-controller/location 0.7, http-controller/naming 0.8
+     src/controllers/order.controller.ts: http-controller/location 0.7, http-controller/naming 0.8
+     src/controllers/refund.controller.ts: http-controller/location 0.7, http-controller/naming 0.8
+     src/payments/checkout.ts: service/naming 0.6
+     src/repositories/customer.repository.ts: repository/location 0.7, repository/naming 0.8
+     src/repositories/database.ts: repository/location 0.7
+     src/repositories/order.repository.ts: repository/location 0.7, repository/naming 0.8
+     src/services/customer.service.ts: service/location 0.7, service/naming 0.8
+     src/services/order.service.ts: service/location 0.7, service/naming 0.8
+     src/services/refund.service.ts: service/location 0.7, service/naming 0.8
+  LABELS controller(3) domain(2) repository(3) service(4) kept=controller,domain,repository,service
+  LAYER GRAPH controller>domain=1.5(type-only 0.5) controller>repository=1 controller>service=4 repository>domain=2 service>domain=2.5(type-only 0.5) service>repository=3
+  removed(upward) none; conventional none
+  LAYER 0 controller conf=0.939 label-agreement=0.940 direction-consistency=1.000 order-support=1.000 layer-size=0.600 files=src/controllers/customer.controller.ts, src/controllers/order.controller.ts, src/controllers/refund.controller.ts
+  LAYER 1 service conf=0.916 label-agreement=0.855 direction-consistency=1.000 order-support=1.000 layer-size=0.667 files=src/payments/checkout.ts, src/services/customer.service.ts, src/services/order.service.ts, src/services/refund.service.ts
+  LAYER 2 repository conf=0.911 label-agreement=0.860 direction-consistency=1.000 order-support=1.000 layer-size=0.600 files=src/repositories/customer.repository.ts, src/repositories/database.ts, src/repositories/order.repository.ts
+  LAYER 3 domain conf=0.845 label-agreement=0.700 direction-consistency=1.000 order-support=1.000 layer-size=0.500 files=src/domain/customer.ts, src/domain/order.ts
+  layer import pairs: controller>domain controller>repository controller>service repository>domain service>domain service>repository
+=== express-app
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=clients,controllers,db,middleware,models,repositories,routes,services F= S= style=layer stems=order,user coverage=10/18=0.556 applied=true
+     stem order: src/controllers/orders.controller.ts, src/models/order.ts, src/repositories/order.repository.ts, src/routes/orders.routes.ts, src/services/order.service.ts
+     stem user: src/controllers/users.controller.ts, src/models/user.ts, src/repositories/user.repository.ts, src/routes/users.routes.ts, src/services/user.service.ts
+  P3 orchestrators: src/app.ts [shape {"src/controllers":2,"src/middleware":2,"src/routes":1}]; src/routes/index.ts [shape {"src#order":1,"src#user":1}]; src/server.ts [entry]
+  P3 utilities: src/config.ts, src/container.ts, src/errors.ts, src/logger.ts
+  P3 facades: src/controllers/index.ts
+  P5 passes=2 relocations: 
+     src/clients/stripe.client.ts: src/clients -> src#order in={"src#order":1} out={} support=1
+  P7 declaration src/types/express.d.ts: no majority {}; role in metrics projection -> unassigned
+  MODULE mod:src kind=root conf=0.750 prior-agreement=1.000 module-size=0.750 wiring-share=0.333 members(6)=src/app.ts, src/config.ts, src/container.ts, src/errors.ts, src/logger.ts, src/server.ts
+  MODULE mod:src#order kind=stem conf=0.771 prior-agreement=0.833 module-size=0.750 internal-edge-ratio=0.813 membership-margin=0.667 members(6)=src/clients/stripe.client.ts, src/controllers/orders.controller.ts, src/models/order.ts, src/repositories/order.repository.ts, src/routes/orders.routes.ts, src/services/order.service.ts
+  MODULE mod:src#user kind=stem conf=0.654 prior-agreement=1.000 module-size=0.714 internal-edge-ratio=0.688 membership-margin=0.286 members(5)=src/controllers/users.controller.ts, src/models/user.ts, src/repositories/user.repository.ts, src/routes/users.routes.ts, src/services/user.service.ts
+  MODULE mod:src/controllers kind=layer conf=0.567 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=0.333 members(2)=src/controllers/health.controller.ts, src/controllers/index.ts
+  MODULE mod:src/db kind=layer conf=0.367 prior-agreement=1.000 module-size=0.333 internal-edge-ratio=0.000 members(1)=src/db/pool.ts
+  MODULE mod:src/middleware kind=layer conf=0.420 prior-agreement=1.000 module-size=0.600 internal-edge-ratio=0.000 members(3)=src/middleware/auth.ts, src/middleware/error-handler.ts, src/middleware/request-logger.ts
+  MODULE mod:src/routes kind=layer conf=0.367 prior-agreement=1.000 module-size=0.333 internal-edge-ratio=absent members(1)=src/routes/index.ts
+  publicApi mod:src: src/config.ts, src/container.ts, src/errors.ts, src/logger.ts
+  publicApi mod:src#order: src/clients/stripe.client.ts, src/controllers/orders.controller.ts, src/repositories/order.repository.ts, src/routes/orders.routes.ts, src/services/order.service.ts
+  publicApi mod:src#user: src/controllers/users.controller.ts, src/models/user.ts, src/repositories/user.repository.ts, src/routes/users.routes.ts, src/services/user.service.ts
+  publicApi mod:src/controllers: src/controllers/index.ts
+  publicApi mod:src/db: src/db/pool.ts
+  publicApi mod:src/middleware: src/middleware/auth.ts, src/middleware/error-handler.ts, src/middleware/request-logger.ts
+  publicApi mod:src/routes: src/routes/index.ts
+  module dependencies: mod:src -> mod:src#order; mod:src -> mod:src#user; mod:src -> mod:src/controllers; mod:src -> mod:src/db; mod:src -> mod:src/middleware; mod:src -> mod:src/routes; mod:src#order -> mod:src; mod:src#order -> mod:src#user; mod:src#order -> mod:src/middleware; mod:src#user -> mod:src; mod:src#user -> mod:src/controllers; mod:src#user -> mod:src/middleware; mod:src/controllers -> mod:src#order; mod:src/controllers -> mod:src#user; mod:src/controllers -> mod:src/db; mod:src/db -> mod:src; mod:src/middleware -> mod:src; mod:src/middleware -> mod:src#user; mod:src/routes -> mod:src#order; mod:src/routes -> mod:src#user
+  ROLES 17 files with roles
+     src/clients/stripe.client.ts: external-client/location 0.7, external-client/naming 0.8
+     src/controllers/health.controller.ts: http-controller/location 0.7, http-controller/naming 0.8
+     src/controllers/index.ts: http-controller/location 0.7
+     src/controllers/orders.controller.ts: http-controller/location 0.7, http-controller/naming 0.8
+     src/controllers/users.controller.ts: http-controller/location 0.7, http-controller/naming 0.8
+     src/middleware/auth.ts: middleware/location 0.7
+     src/middleware/error-handler.ts: middleware/location 0.7
+     src/middleware/request-logger.ts: middleware/location 0.7
+     src/models/order.ts: data-model/location 0.7
+     src/models/user.ts: data-model/location 0.7
+     src/repositories/order.repository.ts: repository/location 0.7, repository/naming 0.8
+     src/repositories/user.repository.ts: repository/location 0.7, repository/naming 0.8
+     src/routes/index.ts: route-definition/location 0.7
+     src/routes/orders.routes.ts: route-definition/location 0.7, route-definition/naming 0.8
+     src/routes/users.routes.ts: route-definition/location 0.7, route-definition/naming 0.8
+     src/services/order.service.ts: service/location 0.7, service/naming 0.8
+     src/services/user.service.ts: service/location 0.7, service/naming 0.8
+  LABELS client(1) controller(4) database(1) middleware(3) model(2) repository(2) route(3) service(2) kept=client,controller,database,middleware,model,repository,route,service
+  LAYER GRAPH controller>database=1 controller>model=1(type-only 1) controller>service=2 middleware>model=1 repository>model=2 route>controller=3 route>middleware=2 service>client=1 service>model=2 service>repository=2
+  removed(upward) none; conventional middleware>service middleware>database service>database client>database client>model repository>database
+  LAYER 0 route conf=0.911 label-agreement=0.860 direction-consistency=1.000 order-support=1.000 layer-size=0.600 files=src/routes/index.ts, src/routes/orders.routes.ts, src/routes/users.routes.ts
+  LAYER 1 controller conf=0.896 label-agreement=0.880 direction-consistency=1.000 order-support=0.857 layer-size=0.667 files=src/controllers/health.controller.ts, src/controllers/index.ts, src/controllers/orders.controller.ts, src/controllers/users.controller.ts
+  LAYER 1 middleware conf=0.712 label-agreement=0.700 direction-consistency=1.000 order-support=0.286 layer-size=0.600 files=src/middleware/auth.ts, src/middleware/error-handler.ts, src/middleware/request-logger.ts
+  LAYER 2 service conf=0.872 label-agreement=0.940 direction-consistency=1.000 order-support=0.714 layer-size=0.500 files=src/services/order.service.ts, src/services/user.service.ts
+  LAYER 3 client conf=0.798 label-agreement=0.940 direction-consistency=1.000 order-support=0.429 layer-size=0.333 files=src/clients/stripe.client.ts
+  LAYER 3 repository conf=0.843 label-agreement=0.940 direction-consistency=1.000 order-support=0.571 layer-size=0.500 files=src/repositories/order.repository.ts, src/repositories/user.repository.ts
+  LAYER 4 database conf=0.685 label-agreement=0.700 direction-consistency=1.000 order-support=0.286 layer-size=0.333 files=src/db/pool.ts
+  LAYER 4 model conf=0.788 label-agreement=0.700 direction-consistency=1.000 order-support=0.714 layer-size=0.500 files=src/models/order.ts, src/models/user.ts
+  layer import pairs: controller>database controller>model middleware>model repository>model route>controller route>middleware service>client service>model service>repository
+=== fastify-app
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=clients,handlers,hooks,repositories,routes,schemas,services F=plugins S= style=mixed stems=order coverage=4/8=0.500 applied=true
+     stem order: src/handlers/orders.ts, src/repositories/orders.repository.ts, src/schemas/order.schema.ts, src/services/orders.service.ts
+  P3 orchestrators: src/app.ts [shape {"src#order":2,"src/hooks":1,"src/plugins":1,"src/routes":1}]; src/server.ts [entry]
+  P3 utilities: src/config.ts, src/db.ts, src/errors.ts, src/types.ts
+  P3 facades: 
+  P5 passes=2 relocations: 
+     src/clients/shipping.client.ts: src/clients -> src#order in={"src#order":1} out={} support=1
+     src/hooks/auth.ts: src/hooks -> src/plugins in={"src/plugins":1} out={} support=1
+     src/services/pricing.ts: src/services -> src#order in={"src#order":1} out={} support=1
+  P7 test test/orders.test.ts: majority -> mod:src (1/1)
+  MODULE mod:src kind=root conf=0.750 prior-agreement=1.000 module-size=0.750 wiring-share=0.333 members(6)=src/app.ts, src/config.ts, src/db.ts, src/errors.ts, src/server.ts, src/types.ts attached=test/orders.test.ts
+  MODULE mod:src#order kind=stem conf=0.759 prior-agreement=0.667 module-size=0.750 internal-edge-ratio=0.846 membership-margin=0.700 members(6)=src/clients/shipping.client.ts, src/handlers/orders.ts, src/repositories/orders.repository.ts, src/schemas/order.schema.ts, src/services/orders.service.ts, src/services/pricing.ts
+  MODULE mod:src/plugins kind=feature conf=0.500 prior-agreement=0.500 module-size=0.500 internal-edge-ratio=0.500 membership-margin=0.500 members(2)=src/hooks/auth.ts, src/plugins/orders.ts
+  MODULE mod:src/routes kind=layer conf=0.367 prior-agreement=1.000 module-size=0.333 internal-edge-ratio=absent members(1)=src/routes/health.ts
+  publicApi mod:src: src/config.ts, src/db.ts, src/errors.ts, src/types.ts
+  publicApi mod:src#order: src/handlers/orders.ts, src/schemas/order.schema.ts
+  publicApi mod:src/plugins: src/hooks/auth.ts, src/plugins/orders.ts
+  publicApi mod:src/routes: src/routes/health.ts
+  module dependencies: mod:src -> mod:src#order; mod:src -> mod:src/plugins; mod:src -> mod:src/routes; mod:src#order -> mod:src; mod:src/plugins -> mod:src; mod:src/plugins -> mod:src#order; mod:src/routes -> mod:src
+  ROLES 5 files with roles
+     src/clients/shipping.client.ts: external-client/location 0.7, external-client/naming 0.8
+     src/repositories/orders.repository.ts: repository/location 0.7, repository/naming 0.8
+     src/routes/health.ts: route-definition/location 0.7
+     src/services/orders.service.ts: service/location 0.7, service/naming 0.8
+     src/services/pricing.ts: service/location 0.7
+  LABELS client(1) handler(1) hook(1) repository(1) route(1) schema(1) service(2) kept=client,handler,hook,repository,route,schema,service
+  LAYER GRAPH handler>schema=0.5(type-only 0.5) handler>service=1 service>client=1 service>repository=1 service>schema=1
+  removed(upward) none; conventional route>handler route>hook handler>hook hook>client hook>repository hook>schema client>schema repository>schema
+  LAYER 0 route conf=0.278 label-agreement=0.700 direction-consistency=absent order-support=0.000 layer-size=0.333 files=src/routes/health.ts
+  LAYER 1 handler conf=0.762 label-agreement=0.700 direction-consistency=1.000 order-support=0.667 layer-size=0.333 files=src/handlers/orders.ts
+  LAYER 2 hook conf=0.278 label-agreement=0.700 direction-consistency=absent order-support=0.000 layer-size=0.333 files=src/hooks/auth.ts
+  LAYER 2 service conf=0.820 label-agreement=0.820 direction-consistency=1.000 order-support=0.667 layer-size=0.500 files=src/services/orders.service.ts, src/services/pricing.ts
+  LAYER 3 client conf=0.779 label-agreement=0.940 direction-consistency=1.000 order-support=0.333 layer-size=0.333 files=src/clients/shipping.client.ts
+  LAYER 3 repository conf=0.779 label-agreement=0.940 direction-consistency=1.000 order-support=0.333 layer-size=0.333 files=src/repositories/orders.repository.ts
+  LAYER 4 schema conf=0.695 label-agreement=0.700 direction-consistency=1.000 order-support=0.333 layer-size=0.333 files=src/schemas/order.schema.ts
+  layer import pairs: handler>schema handler>service service>client service>repository service>schema
+=== high-fan-in
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=api,jobs,services,storage F= S=core style=layer stems=email,inventory,order,user coverage=10/20=0.500 applied=true
+     stem email: src/jobs/email-digest.job.ts, src/services/email.service.ts
+     stem inventory: src/jobs/inventory-sync.job.ts, src/services/inventory.service.ts
+     stem order: src/api/orders.routes.ts, src/services/order.service.ts, src/storage/order.store.ts
+     stem user: src/api/users.routes.ts, src/services/user.service.ts, src/storage/user.store.ts
+  P3 orchestrators: src/main.ts [entry]
+  P3 utilities: src/core/errors.ts, src/core/logger.ts (first pass only: src/core/config.ts, src/services/email.service.ts, src/services/order.service.ts, src/storage/database.ts)
+  P3 facades: 
+  P5 passes=2 relocations: 
+     src/services/payment.service.ts: src/services -> src#order in={"src#order":1} out={} support=1
+  MODULE mod:src kind=root conf=0.867 prior-agreement=1.000 module-size=0.333 wiring-share=1.000 members(1)=src/main.ts
+  MODULE mod:src#email kind=stem conf=0.435 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=0.400 membership-margin=0.000 members(2)=src/jobs/email-digest.job.ts, src/services/email.service.ts
+  MODULE mod:src#inventory kind=stem conf=0.560 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=0.400 membership-margin=0.500 members(2)=src/jobs/inventory-sync.job.ts, src/services/inventory.service.ts
+  MODULE mod:src#order kind=stem conf=0.505 prior-agreement=0.750 module-size=0.667 internal-edge-ratio=0.480 membership-margin=0.250 members(4)=src/api/orders.routes.ts, src/services/order.service.ts, src/services/payment.service.ts, src/storage/order.store.ts
+  MODULE mod:src#user kind=stem conf=0.506 prior-agreement=1.000 module-size=0.600 internal-edge-ratio=0.471 membership-margin=0.111 members(3)=src/api/users.routes.ts, src/services/user.service.ts, src/storage/user.store.ts
+  MODULE mod:src/api kind=layer conf=0.670 prior-agreement=1.000 module-size=0.600 internal-edge-ratio=0.500 members(3)=src/api/auth.middleware.ts, src/api/router.ts, src/api/server.ts
+  MODULE mod:src/core kind=shared conf=0.753 prior-agreement=1.000 module-size=0.600 shared-usage=0.667 members(3)=src/core/config.ts, src/core/errors.ts, src/core/logger.ts
+  MODULE mod:src/jobs kind=layer conf=0.420 prior-agreement=1.000 module-size=0.600 internal-edge-ratio=0.000 members(3)=src/jobs/nightly-report.job.ts, src/jobs/scheduler.ts, src/jobs/stale-orders.job.ts
+  MODULE mod:src/storage kind=layer conf=0.587 prior-agreement=1.000 module-size=0.600 internal-edge-ratio=0.333 members(3)=src/storage/cache.ts, src/storage/database.ts, src/storage/product.store.ts
+  publicApi mod:src#email: src/jobs/email-digest.job.ts, src/services/email.service.ts
+  publicApi mod:src#inventory: src/jobs/inventory-sync.job.ts, src/services/inventory.service.ts
+  publicApi mod:src#order: src/api/orders.routes.ts, src/services/order.service.ts, src/services/payment.service.ts, src/storage/order.store.ts
+  publicApi mod:src#user: src/api/users.routes.ts, src/services/user.service.ts, src/storage/user.store.ts
+  publicApi mod:src/api: src/api/server.ts
+  publicApi mod:src/core: src/core/config.ts, src/core/errors.ts, src/core/logger.ts
+  publicApi mod:src/jobs: src/jobs/nightly-report.job.ts, src/jobs/scheduler.ts, src/jobs/stale-orders.job.ts
+  publicApi mod:src/storage: src/storage/cache.ts, src/storage/database.ts, src/storage/product.store.ts
+  module dependencies: mod:src -> mod:src#email; mod:src -> mod:src#inventory; mod:src -> mod:src#order; mod:src -> mod:src#user; mod:src -> mod:src/api; mod:src -> mod:src/core; mod:src -> mod:src/jobs; mod:src -> mod:src/storage; mod:src#email -> mod:src#user; mod:src#email -> mod:src/core; mod:src#inventory -> mod:src/core; mod:src#inventory -> mod:src/storage; mod:src#order -> mod:src#inventory; mod:src#order -> mod:src/core; mod:src#order -> mod:src/storage; mod:src#user -> mod:src#email; mod:src#user -> mod:src/core; mod:src#user -> mod:src/storage; mod:src/api -> mod:src#order; mod:src/api -> mod:src#user; mod:src/api -> mod:src/core; mod:src/jobs -> mod:src#email; mod:src/jobs -> mod:src#order; mod:src/jobs -> mod:src/core; mod:src/storage -> mod:src/core
+  ROLES 11 files with roles
+     src/api/auth.middleware.ts: middleware/naming 0.8
+     src/api/orders.routes.ts: route-definition/naming 0.8
+     src/api/users.routes.ts: route-definition/naming 0.8
+     src/services/email.service.ts: service/location 0.7, service/naming 0.8
+     src/services/inventory.service.ts: service/location 0.7, service/naming 0.8
+     src/services/order.service.ts: service/location 0.7, service/naming 0.8
+     src/services/payment.service.ts: service/location 0.7, service/naming 0.8
+     src/services/user.service.ts: service/location 0.7, service/naming 0.8
+     src/storage/order.store.ts: state-store/naming 0.8
+     src/storage/product.store.ts: state-store/naming 0.8
+     src/storage/user.store.ts: state-store/naming 0.8
+  LABELS api(2) job(5) middleware(1) route(2) service(5) storage(2) store(3) kept=api,job,route,service,storage,store
+  LAYER GRAPH api>route=2 api>service=1(type-only 1) job>service=4 job>store=3 route>service=2 service>storage=1 service>store=3 store>storage=3
+  removed(upward) none; conventional route>job
+  LAYER 0 api conf=0.805 label-agreement=0.700 direction-consistency=1.000 order-support=0.800 layer-size=0.500 files=src/api/router.ts, src/api/server.ts
+  LAYER 1 route conf=0.840 label-agreement=0.800 direction-consistency=1.000 order-support=0.800 layer-size=0.500 files=src/api/orders.routes.ts, src/api/users.routes.ts
+  LAYER 2 job conf=0.786 label-agreement=0.700 direction-consistency=1.000 order-support=0.600 layer-size=0.714 files=src/jobs/email-digest.job.ts, src/jobs/inventory-sync.job.ts, src/jobs/nightly-report.job.ts, src/jobs/scheduler.ts, src/jobs/stale-orders.job.ts
+  LAYER 3 service conf=0.950 label-agreement=0.940 direction-consistency=1.000 order-support=1.000 layer-size=0.714 files=src/services/email.service.ts, src/services/inventory.service.ts, src/services/order.service.ts, src/services/payment.service.ts, src/services/user.service.ts
+  LAYER 4 store conf=0.890 label-agreement=0.800 direction-consistency=1.000 order-support=1.000 layer-size=0.600 files=src/storage/order.store.ts, src/storage/product.store.ts, src/storage/user.store.ts
+  LAYER 5 storage conf=0.845 label-agreement=0.700 direction-consistency=1.000 order-support=1.000 layer-size=0.500 files=src/storage/cache.ts, src/storage/database.ts
+  layer import pairs: api>route api>service job>service job>store route>service service>storage service>store store>storage
+=== high-fan-out
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=adapters,services F= S= style=layer stems= coverage=0/21=0.000 applied=false
+  P3 orchestrators: src/main.ts [entry]; src/orchestrator.ts [shape {"src/adapters":10,"src/services":10}]
+  P3 utilities: 
+  P3 facades: 
+  P5 passes=1 relocations: none
+  MODULE mod:src kind=root conf=0.900 prior-agreement=1.000 module-size=0.500 wiring-share=1.000 members(2)=src/main.ts, src/orchestrator.ts
+  MODULE mod:src/adapters kind=layer conf=0.730 prior-agreement=1.000 module-size=0.846 internal-edge-ratio=0.522 members(11)=src/adapters/audit.adapter.ts, src/adapters/crm.adapter.ts, src/adapters/dhl.adapter.ts, src/adapters/email.adapter.ts, src/adapters/erp.adapter.ts, src/adapters/http-client.ts, src/adapters/paypal.adapter.ts, src/adapters/sms.adapter.ts, src/adapters/stripe.adapter.ts, src/adapters/ups.adapter.ts, src/adapters/warehouse.adapter.ts
+  MODULE mod:src/services kind=layer conf=0.467 prior-agreement=1.000 module-size=0.833 internal-edge-ratio=0.000 members(10)=src/services/discount.service.ts, src/services/fraud.service.ts, src/services/inventory.service.ts, src/services/invoice.service.ts, src/services/loyalty.service.ts, src/services/notification.service.ts, src/services/payment.service.ts, src/services/pricing.service.ts, src/services/shipping.service.ts, src/services/tax.service.ts
+  publicApi mod:src/adapters: src/adapters/audit.adapter.ts, src/adapters/crm.adapter.ts, src/adapters/dhl.adapter.ts, src/adapters/email.adapter.ts, src/adapters/erp.adapter.ts, src/adapters/paypal.adapter.ts, src/adapters/sms.adapter.ts, src/adapters/stripe.adapter.ts, src/adapters/ups.adapter.ts, src/adapters/warehouse.adapter.ts
+  publicApi mod:src/services: src/services/discount.service.ts, src/services/fraud.service.ts, src/services/inventory.service.ts, src/services/invoice.service.ts, src/services/loyalty.service.ts, src/services/notification.service.ts, src/services/payment.service.ts, src/services/pricing.service.ts, src/services/shipping.service.ts, src/services/tax.service.ts
+  module dependencies: mod:src -> mod:src/adapters; mod:src -> mod:src/services; mod:src/services -> mod:src/adapters
+  ROLES 11 files with roles
+     src/adapters/http-client.ts: external-client/naming 0.6
+     src/services/discount.service.ts: service/location 0.7, service/naming 0.8
+     src/services/fraud.service.ts: service/location 0.7, service/naming 0.8
+     src/services/inventory.service.ts: service/location 0.7, service/naming 0.8
+     src/services/invoice.service.ts: service/location 0.7, service/naming 0.8
+     src/services/loyalty.service.ts: service/location 0.7, service/naming 0.8
+     src/services/notification.service.ts: service/location 0.7, service/naming 0.8
+     src/services/payment.service.ts: service/location 0.7, service/naming 0.8
+     src/services/pricing.service.ts: service/location 0.7, service/naming 0.8
+     src/services/shipping.service.ts: service/location 0.7, service/naming 0.8
+     src/services/tax.service.ts: service/location 0.7, service/naming 0.8
+  LABELS adapter(11) service(10) kept=adapter,service
+  LAYER GRAPH service>adapter=11
+  removed(upward) none; conventional none
+  LAYER 0 service conf=0.962 label-agreement=0.940 direction-consistency=1.000 order-support=1.000 layer-size=0.833 files=src/services/discount.service.ts, src/services/fraud.service.ts, src/services/inventory.service.ts, src/services/invoice.service.ts, src/services/loyalty.service.ts, src/services/notification.service.ts, src/services/payment.service.ts, src/services/pricing.service.ts, src/services/shipping.service.ts, src/services/tax.service.ts
+  LAYER 1 adapter conf=0.880 label-agreement=0.700 direction-consistency=1.000 order-support=1.000 layer-size=0.846 files=src/adapters/audit.adapter.ts, src/adapters/crm.adapter.ts, src/adapters/dhl.adapter.ts, src/adapters/email.adapter.ts, src/adapters/erp.adapter.ts, src/adapters/http-client.ts, src/adapters/paypal.adapter.ts, src/adapters/sms.adapter.ts, src/adapters/stripe.adapter.ts, src/adapters/ups.adapter.ts, src/adapters/warehouse.adapter.ts
+  layer import pairs: service>adapter
+=== javascript-commonjs
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=routes,services,store,views F=plugins S=lib style=mixed stems= coverage=0/6=0.000 applied=false droppedComponents=todo:todo-service.js,todo:todo-page.js
+  P3 orchestrators: src/routes/index.js [shape {"src/lib":1,"src/routes":1,"src/services":1,"src/views":1}]; src/server.js [entry]
+  P3 utilities: 
+  P3 facades: 
+  P5 passes=1 relocations: none
+  MODULE mod:src kind=root conf=0.750 prior-agreement=1.000 module-size=0.500 wiring-share=0.500 members(2)=src/config.js, src/server.js
+  MODULE mod:src/lib kind=shared conf=0.420 prior-agreement=1.000 module-size=0.600 shared-usage=0.000 members(3)=src/lib/dates.mjs, src/lib/html.cjs, src/lib/validation.js
+  MODULE mod:src/plugins kind=feature conf=0.275 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=absent membership-margin=absent members(2)=src/plugins/audit-log.js, src/plugins/loader.js
+  MODULE mod:src/routes kind=layer conf=0.400 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=absent members(2)=src/routes/health.js, src/routes/index.js
+  MODULE mod:src/services kind=layer conf=0.367 prior-agreement=1.000 module-size=0.333 internal-edge-ratio=0.000 members(1)=src/services/todo-service.js
+  MODULE mod:src/store kind=layer conf=0.367 prior-agreement=1.000 module-size=0.333 internal-edge-ratio=absent members(1)=src/store/memory-store.js
+  MODULE mod:src/views kind=layer conf=0.650 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=0.500 members(2)=src/views/layout.jsx, src/views/todo-page.js
+  publicApi mod:src/lib: src/lib/dates.mjs, src/lib/html.cjs, src/lib/validation.js
+  publicApi mod:src/plugins: src/plugins/loader.js
+  publicApi mod:src/routes: src/routes/index.js
+  publicApi mod:src/services: src/services/todo-service.js
+  publicApi mod:src/store: src/store/memory-store.js
+  publicApi mod:src/views: src/views/todo-page.js
+  module dependencies: mod:src -> mod:src/plugins; mod:src -> mod:src/routes; mod:src -> mod:src/store; mod:src/routes -> mod:src/lib; mod:src/routes -> mod:src/services; mod:src/routes -> mod:src/views; mod:src/services -> mod:src/lib; mod:src/views -> mod:src/lib
+  ROLES 5 files with roles
+     src/routes/health.js: route-definition/location 0.7
+     src/routes/index.js: route-definition/location 0.7
+     src/services/todo-service.js: service/location 0.7, service/naming 0.6
+     src/store/memory-store.js: state-store/location 0.7, state-store/naming 0.6
+     src/views/todo-page.js: ui-page/naming 0.6
+  LABELS route(2) service(1) store(1) view(2) kept=route,service,store,view
+  LAYER GRAPH route>service=1 route>view=1
+  removed(upward) none; conventional route>store view>service view>store
+  LAYER 0 route conf=0.778 label-agreement=0.700 direction-consistency=1.000 order-support=0.667 layer-size=0.500 files=src/routes/health.js, src/routes/index.js
+  LAYER 1 view conf=0.712 label-agreement=0.700 direction-consistency=1.000 order-support=0.333 layer-size=0.500 files=src/views/layout.jsx, src/views/todo-page.js
+  LAYER 2 service conf=0.758 label-agreement=0.880 direction-consistency=1.000 order-support=0.333 layer-size=0.333 files=src/services/todo-service.js
+  LAYER 2 store conf=0.341 label-agreement=0.880 direction-consistency=absent order-support=0.000 layer-size=0.333 files=src/store/memory-store.js
+  layer import pairs: route>service route>view
+=== layered-architecture
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=controllers,models,repositories,services F= S=shared style=layer stems=order,payment,user coverage=14/14=1.000 applied=true
+     stem order: src/controllers/order.controller.ts, src/models/order-line.ts, src/models/order.ts, src/repositories/order.repository.ts, src/services/order.service.ts
+     stem payment: src/controllers/payment.controller.ts, src/models/payment.ts, src/repositories/payment.repository.ts, src/services/payment-gateway.ts, src/services/payment.service.ts
+     stem user: src/controllers/user.controller.ts, src/models/user.ts, src/repositories/user.repository.ts, src/services/user.service.ts
+  P3 orchestrators: src/main.ts [entry]
+  P3 utilities: src/shared/database.ts, src/shared/errors.ts, src/shared/http.ts, src/shared/logger.ts (first pass only: src/services/user.service.ts, src/shared/config.ts)
+  P3 facades: 
+  P5 passes=1 relocations: none
+  MODULE mod:src kind=root conf=0.867 prior-agreement=1.000 module-size=0.333 wiring-share=1.000 members(1)=src/main.ts
+  MODULE mod:src#order kind=stem conf=0.888 prior-agreement=1.000 module-size=0.714 internal-edge-ratio=0.828 membership-margin=1.000 members(5)=src/controllers/order.controller.ts, src/models/order-line.ts, src/models/order.ts, src/repositories/order.repository.ts, src/services/order.service.ts
+  MODULE mod:src#payment kind=stem conf=0.807 prior-agreement=1.000 module-size=0.714 internal-edge-ratio=0.750 membership-margin=0.800 members(5)=src/controllers/payment.controller.ts, src/models/payment.ts, src/repositories/payment.repository.ts, src/services/payment-gateway.ts, src/services/payment.service.ts
+  MODULE mod:src#user kind=stem conf=0.747 prior-agreement=1.000 module-size=0.667 internal-edge-ratio=0.727 membership-margin=0.625 members(4)=src/controllers/user.controller.ts, src/models/user.ts, src/repositories/user.repository.ts, src/services/user.service.ts
+  MODULE mod:src/shared kind=shared conf=0.843 prior-agreement=1.000 module-size=0.714 shared-usage=0.800 members(5)=src/shared/config.ts, src/shared/database.ts, src/shared/errors.ts, src/shared/http.ts, src/shared/logger.ts
+  publicApi mod:src#order: src/controllers/order.controller.ts, src/repositories/order.repository.ts, src/services/order.service.ts
+  publicApi mod:src#payment: src/controllers/payment.controller.ts, src/repositories/payment.repository.ts, src/services/payment-gateway.ts, src/services/payment.service.ts
+  publicApi mod:src#user: src/controllers/user.controller.ts, src/models/user.ts, src/repositories/user.repository.ts, src/services/user.service.ts
+  publicApi mod:src/shared: src/shared/config.ts, src/shared/database.ts, src/shared/errors.ts, src/shared/http.ts, src/shared/logger.ts
+  module dependencies: mod:src -> mod:src#order; mod:src -> mod:src#payment; mod:src -> mod:src#user; mod:src -> mod:src/shared; mod:src#order -> mod:src#payment; mod:src#order -> mod:src#user; mod:src#order -> mod:src/shared; mod:src#payment -> mod:src#user; mod:src#payment -> mod:src/shared; mod:src#user -> mod:src/shared
+  ROLES 14 files with roles
+     src/controllers/order.controller.ts: http-controller/location 0.7, http-controller/naming 0.8
+     src/controllers/payment.controller.ts: http-controller/location 0.7, http-controller/naming 0.8
+     src/controllers/user.controller.ts: http-controller/location 0.7, http-controller/naming 0.8
+     src/models/order-line.ts: data-model/location 0.7
+     src/models/order.ts: data-model/location 0.7
+     src/models/payment.ts: data-model/location 0.7
+     src/models/user.ts: data-model/location 0.7
+     src/repositories/order.repository.ts: repository/location 0.7, repository/naming 0.8
+     src/repositories/payment.repository.ts: repository/location 0.7, repository/naming 0.8
+     src/repositories/user.repository.ts: repository/location 0.7, repository/naming 0.8
+     src/services/order.service.ts: service/location 0.7, service/naming 0.8
+     src/services/payment-gateway.ts: service/location 0.7
+     src/services/payment.service.ts: service/location 0.7, service/naming 0.8
+     src/services/user.service.ts: service/location 0.7, service/naming 0.8
+  LABELS controller(3) model(4) repository(3) service(4) kept=controller,model,repository,service
+  LAYER GRAPH controller>service=3 repository>model=2.5(type-only 1.5) service>model=4 service>repository=3
+  removed(upward) none; conventional none
+  LAYER 0 controller conf=0.939 label-agreement=0.940 direction-consistency=1.000 order-support=1.000 layer-size=0.600 files=src/controllers/order.controller.ts, src/controllers/payment.controller.ts, src/controllers/user.controller.ts
+  LAYER 1 service conf=0.925 label-agreement=0.880 direction-consistency=1.000 order-support=1.000 layer-size=0.667 files=src/services/order.service.ts, src/services/payment-gateway.ts, src/services/payment.service.ts, src/services/user.service.ts
+  LAYER 2 repository conf=0.939 label-agreement=0.940 direction-consistency=1.000 order-support=1.000 layer-size=0.600 files=src/repositories/order.repository.ts, src/repositories/payment.repository.ts, src/repositories/user.repository.ts
+  LAYER 3 model conf=0.862 label-agreement=0.700 direction-consistency=1.000 order-support=1.000 layer-size=0.667 files=src/models/order-line.ts, src/models/order.ts, src/models/payment.ts, src/models/user.ts
+  layer import pairs: controller>service repository>model service>model service>repository
+=== monorepo
+  scope "packages/api" source root "packages/api/src"; split dirs ["packages/api/src"]
+  P2 packages/api/src: L=handlers F= S= style=none
+  P3 orchestrators: packages/api/src/server.ts [entry]
+  P3 utilities: 
+  P3 facades: 
+  P5 passes=1 relocations: none
+  scope "packages/core" source root "packages/core/src"; split dirs ["packages/core/src"]
+  P2 packages/core/src: L= F=catalog,orders S= style=feature
+  P3 orchestrators: packages/core/src/index.ts [entry]
+  P3 utilities: 
+  P3 facades: packages/core/src/index.ts
+  P5 passes=2 relocations: 
+     packages/core/src/catalog/product.ts: packages/core/src/catalog -> packages/core/src/orders in={"packages/core/src/catalog":1,"packages/core/src/orders":2} out={} support=2
+  scope "packages/shared" source root "packages/shared/src"; split dirs ["packages/shared/src"]
+  P2 packages/shared/src: L= F= S= style=none
+  P3 orchestrators: packages/shared/src/index.ts [entry]
+  P3 utilities: 
+  P3 facades: packages/shared/src/index.ts
+  P5 passes=1 relocations: none
+  scope "packages/web" source root "packages/web/src"; split dirs ["packages/web/src"]
+  P2 packages/web/src: L=components F= S= style=none
+  P3 orchestrators: 
+  P3 utilities: 
+  P3 facades: 
+  P5 passes=1 relocations: none
+  MODULE mod:packages/api/src kind=root conf=0.750 prior-agreement=1.000 module-size=0.500 wiring-share=0.500 members(2)=packages/api/src/routes.ts, packages/api/src/server.ts
+  MODULE mod:packages/api/src/handlers kind=layer conf=0.400 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=0.000 members(2)=packages/api/src/handlers/orders.ts, packages/api/src/handlers/products.ts
+  MODULE mod:packages/core/src kind=root conf=0.867 prior-agreement=1.000 module-size=0.333 wiring-share=1.000 members(1)=packages/core/src/index.ts
+  MODULE mod:packages/core/src/catalog kind=feature conf=0.150 prior-agreement=0.500 module-size=0.333 internal-edge-ratio=0.000 membership-margin=0.000 members(1)=packages/core/src/catalog/catalog.ts
+  MODULE mod:packages/core/src/orders kind=feature conf=0.662 prior-agreement=0.667 module-size=0.600 internal-edge-ratio=0.750 membership-margin=0.556 members(3)=packages/core/src/catalog/product.ts, packages/core/src/orders/order-service.ts, packages/core/src/orders/order.ts
+  MODULE mod:packages/shared/src kind=root conf=0.708 prior-agreement=1.000 module-size=0.667 wiring-share=0.250 members(4)=packages/shared/src/index.ts, packages/shared/src/money.ts, packages/shared/src/result.ts, packages/shared/src/strings.ts
+  MODULE mod:packages/web/src kind=root conf=0.600 prior-agreement=1.000 module-size=0.500 wiring-share=0.000 members(2)=packages/web/src/App.tsx, packages/web/src/main.tsx
+  MODULE mod:packages/web/src/components kind=layer conf=0.733 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=0.667 members(2)=packages/web/src/components/PriceTag.tsx, packages/web/src/components/ProductCard.tsx
+  publicApi mod:packages/api/src/handlers: packages/api/src/handlers/orders.ts, packages/api/src/handlers/products.ts
+  publicApi mod:packages/core/src: packages/core/src/index.ts
+  publicApi mod:packages/core/src/catalog: packages/core/src/catalog/catalog.ts
+  publicApi mod:packages/core/src/orders: packages/core/src/catalog/product.ts, packages/core/src/orders/order-service.ts, packages/core/src/orders/order.ts
+  publicApi mod:packages/shared/src: packages/shared/src/index.ts, packages/shared/src/strings.ts
+  publicApi mod:packages/web/src/components: packages/web/src/components/ProductCard.tsx
+  module dependencies: mod:packages/api/src -> mod:packages/api/src/handlers; mod:packages/api/src -> mod:packages/core/src; mod:packages/api/src -> mod:packages/core/src/catalog; mod:packages/api/src -> mod:packages/core/src/orders; mod:packages/api/src/handlers -> mod:packages/core/src; mod:packages/api/src/handlers -> mod:packages/core/src/catalog; mod:packages/api/src/handlers -> mod:packages/core/src/orders; mod:packages/api/src/handlers -> mod:packages/shared/src; mod:packages/core/src -> mod:packages/core/src/catalog; mod:packages/core/src -> mod:packages/core/src/orders; mod:packages/core/src/catalog -> mod:packages/core/src/orders; mod:packages/core/src/orders -> mod:packages/core/src/catalog; mod:packages/core/src/orders -> mod:packages/shared/src; mod:packages/web/src -> mod:packages/web/src/components; mod:packages/web/src/components -> mod:packages/shared/src
+  ROLES 3 files with roles
+     packages/core/src/orders/order-service.ts: service/naming 0.6
+     packages/web/src/components/PriceTag.tsx: ui-component/location 0.7
+     packages/web/src/components/ProductCard.tsx: ui-component/location 0.7
+  LABELS component(2) handler(2) service(1) kept=component,handler
+  LAYER GRAPH 
+  removed(upward) none; conventional none
+  LAYER 0 component conf=0.295 label-agreement=0.700 direction-consistency=absent order-support=0.000 layer-size=0.500 files=packages/web/src/components/PriceTag.tsx, packages/web/src/components/ProductCard.tsx
+  LAYER 0 handler conf=0.295 label-agreement=0.700 direction-consistency=absent order-support=0.000 layer-size=0.500 files=packages/api/src/handlers/orders.ts, packages/api/src/handlers/products.ts
+  layer import pairs: 
+=== nestjs-app
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L= F=orders,payments S=common,config style=feature
+  P3 orchestrators: src/app.module.ts [shape {"src":1,"src/config":1,"src/orders":1,"src/payments":1}]; src/main.ts [entry]
+  P3 utilities: src/common/currency.ts, src/config/config.service.ts
+  P3 facades: 
+  P5 passes=1 relocations: none
+  P7 test src/orders/orders.service.spec.ts: no majority {"mod:src/orders":2,"mod:src/payments":2}; location -> mod:src/orders
+  MODULE mod:src kind=root conf=0.820 prior-agreement=1.000 module-size=0.600 wiring-share=0.667 members(3)=src/app.controller.ts, src/app.module.ts, src/main.ts
+  MODULE mod:src/common kind=shared conf=0.587 prior-agreement=1.000 module-size=0.600 shared-usage=0.333 members(3)=src/common/currency.ts, src/common/guards/api-key.guard.ts, src/common/interceptors/logging.interceptor.ts
+  MODULE mod:src/config kind=shared conf=0.650 prior-agreement=1.000 module-size=0.500 shared-usage=0.500 members(2)=src/config/config.module.ts, src/config/config.service.ts
+  MODULE mod:src/orders kind=feature conf=0.816 prior-agreement=1.000 module-size=0.750 internal-edge-ratio=0.744 membership-margin=0.821 members(6)=src/orders/dto/create-order.dto.ts, src/orders/dto/pay-order.dto.ts, src/orders/entities/order.entity.ts, src/orders/orders.controller.ts, src/orders/orders.module.ts, src/orders/orders.service.ts attached=src/orders/orders.service.spec.ts
+  MODULE mod:src/payments kind=feature conf=0.749 prior-agreement=1.000 module-size=0.750 internal-edge-ratio=0.745 membership-margin=0.556 members(6)=src/payments/dto/create-payment.dto.ts, src/payments/entities/payment.entity.ts, src/payments/payments.controller.ts, src/payments/payments.module.ts, src/payments/payments.service.ts, src/payments/stripe.client.ts
+  publicApi mod:src/common: src/common/currency.ts, src/common/guards/api-key.guard.ts, src/common/interceptors/logging.interceptor.ts
+  publicApi mod:src/config: src/config/config.module.ts, src/config/config.service.ts
+  publicApi mod:src/orders: src/orders/entities/order.entity.ts, src/orders/orders.module.ts
+  publicApi mod:src/payments: src/payments/entities/payment.entity.ts, src/payments/payments.module.ts, src/payments/payments.service.ts
+  module dependencies: mod:src -> mod:src/common; mod:src -> mod:src/config; mod:src -> mod:src/orders; mod:src -> mod:src/payments; mod:src/common -> mod:src/config; mod:src/orders -> mod:src/common; mod:src/orders -> mod:src/payments; mod:src/payments -> mod:src/common; mod:src/payments -> mod:src/config; mod:src/payments -> mod:src/orders
+  ROLES 18 files with roles
+     src/app.controller.ts: http-controller/naming 0.8
+     src/app.module.ts: module-definition/naming 0.8
+     src/common/guards/api-key.guard.ts: middleware/location 0.7, middleware/naming 0.8
+     src/common/interceptors/logging.interceptor.ts: middleware/location 0.7, middleware/naming 0.8
+     src/config/config.module.ts: module-definition/naming 0.8
+     src/config/config.service.ts: service/naming 0.8
+     src/orders/dto/create-order.dto.ts: data-transfer-object/location 0.7, data-transfer-object/naming 0.8
+     src/orders/dto/pay-order.dto.ts: data-transfer-object/location 0.7, data-transfer-object/naming 0.8
+     src/orders/entities/order.entity.ts: data-model/location 0.7, data-model/naming 0.8
+     src/orders/orders.controller.ts: http-controller/naming 0.8
+     src/orders/orders.module.ts: module-definition/naming 0.8
+     src/orders/orders.service.ts: service/naming 0.8
+     src/payments/dto/create-payment.dto.ts: data-transfer-object/location 0.7, data-transfer-object/naming 0.8
+     src/payments/entities/payment.entity.ts: data-model/location 0.7, data-model/naming 0.8
+     src/payments/payments.controller.ts: http-controller/naming 0.8
+     src/payments/payments.module.ts: module-definition/naming 0.8
+     src/payments/payments.service.ts: service/naming 0.8
+     src/payments/stripe.client.ts: external-client/naming 0.8
+  LABELS client(1) controller(3) dto(3) middleware(2) model(2) service(3) kept=controller,dto,middleware,model,service
+  LAYER GRAPH controller>dto=3 controller>middleware=1 controller>model=1.5(type-only 1.5) controller>service=3 middleware>service=1 service>dto=1.5(type-only 0.5) service>model=3
+  removed(upward) none; conventional none
+  LAYER 0 controller conf=0.890 label-agreement=0.800 direction-consistency=1.000 order-support=1.000 layer-size=0.600 files=src/app.controller.ts, src/orders/orders.controller.ts, src/payments/payments.controller.ts
+  LAYER 1 middleware conf=0.929 label-agreement=0.940 direction-consistency=1.000 order-support=1.000 layer-size=0.500 files=src/common/guards/api-key.guard.ts, src/common/interceptors/logging.interceptor.ts
+  LAYER 2 service conf=0.890 label-agreement=0.800 direction-consistency=1.000 order-support=1.000 layer-size=0.600 files=src/config/config.service.ts, src/orders/orders.service.ts, src/payments/payments.service.ts
+  LAYER 3 dto conf=0.889 label-agreement=0.940 direction-consistency=1.000 order-support=0.750 layer-size=0.600 files=src/orders/dto/create-order.dto.ts, src/orders/dto/pay-order.dto.ts, src/payments/dto/create-payment.dto.ts
+  LAYER 3 model conf=0.879 label-agreement=0.940 direction-consistency=1.000 order-support=0.750 layer-size=0.500 files=src/orders/entities/order.entity.ts, src/payments/entities/payment.entity.ts
+  layer import pairs: controller>dto controller>middleware controller>model controller>service middleware>service service>dto service>model
+=== simple-dependencies
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=services F= S=utils style=none
+  P3 orchestrators: src/app.ts [shape {"src/services":1,"src/utils":1}]; src/index.ts [entry]
+  P3 utilities: 
+  P3 facades: 
+  P5 passes=1 relocations: none
+  MODULE mod:src kind=root conf=0.900 prior-agreement=1.000 module-size=0.500 wiring-share=1.000 members(2)=src/app.ts, src/index.ts
+  MODULE mod:src/services kind=layer conf=0.367 prior-agreement=1.000 module-size=0.333 internal-edge-ratio=0.000 members(1)=src/services/expense-service.ts
+  MODULE mod:src/utils kind=shared conf=0.420 prior-agreement=1.000 module-size=0.600 shared-usage=0.000 members(3)=src/utils/currency.ts, src/utils/logger.ts, src/utils/math.ts
+  publicApi mod:src/services: src/services/expense-service.ts
+  publicApi mod:src/utils: src/utils/currency.ts, src/utils/logger.ts
+  module dependencies: mod:src -> mod:src/services; mod:src -> mod:src/utils; mod:src/services -> mod:src/utils
+  ROLES 1 files with roles
+     src/services/expense-service.ts: service/location 0.7, service/naming 0.6
+  LABELS service(1) kept=service
+  LAYERS none
+=== tangled-architecture
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L= F=cart,catalog,checkout,customers,inventory S=lib style=feature
+  P3 orchestrators: src/main.ts [entry]
+  P3 utilities: src/catalog/product-service.ts, src/checkout/order-history.ts, src/customers/customer.ts, src/customers/loyalty.ts, src/lib/db.ts, src/lib/events.ts, src/lib/money.ts (first pass only: src/cart/cart-service.ts, src/cart/cart.ts, src/customers/customer-service.ts, src/inventory/stock-service.ts)
+  P3 facades: src/catalog/index.ts
+  P5 passes=1 relocations: none
+  MODULE mod:src kind=root conf=0.867 prior-agreement=1.000 module-size=0.333 wiring-share=1.000 members(1)=src/main.ts
+  MODULE mod:src/cart kind=feature conf=0.532 prior-agreement=1.000 module-size=0.714 internal-edge-ratio=0.441 membership-margin=0.195 members(5)=src/cart/abandonment.ts, src/cart/cart-repository.ts, src/cart/cart-service.ts, src/cart/cart-stats.ts, src/cart/cart.ts
+  MODULE mod:src/catalog kind=feature conf=0.607 prior-agreement=1.000 module-size=0.714 internal-edge-ratio=0.563 membership-margin=0.300 members(5)=src/catalog/index.ts, src/catalog/pricing.ts, src/catalog/product-service.ts, src/catalog/product.ts, src/catalog/recommendations.ts
+  MODULE mod:src/checkout kind=feature conf=0.570 prior-agreement=1.000 module-size=0.714 internal-edge-ratio=0.471 membership-margin=0.300 members(5)=src/checkout/checkout-service.ts, src/checkout/order-history.ts, src/checkout/order.ts, src/checkout/payment.ts, src/checkout/receipts.ts
+  MODULE mod:src/customers kind=feature conf=0.514 prior-agreement=1.000 module-size=0.714 internal-edge-ratio=0.308 membership-margin=0.333 members(5)=src/customers/addresses.ts, src/customers/customer-service.ts, src/customers/customer.ts, src/customers/loyalty.ts, src/customers/segments.ts
+  MODULE mod:src/inventory kind=feature conf=0.638 prior-agreement=1.000 module-size=0.714 internal-edge-ratio=0.649 membership-margin=0.287 members(5)=src/inventory/reservations.ts, src/inventory/stock-level.ts, src/inventory/stock-service.ts, src/inventory/subscribers.ts, src/inventory/warehouses.ts
+  MODULE mod:src/lib kind=shared conf=0.920 prior-agreement=1.000 module-size=0.600 shared-usage=1.000 members(3)=src/lib/db.ts, src/lib/events.ts, src/lib/money.ts
+  publicApi mod:src/cart: src/cart/abandonment.ts, src/cart/cart-repository.ts, src/cart/cart-service.ts, src/cart/cart-stats.ts, src/cart/cart.ts
+  publicApi mod:src/catalog: src/catalog/index.ts, src/catalog/pricing.ts, src/catalog/product-service.ts, src/catalog/product.ts
+  publicApi mod:src/checkout: src/checkout/checkout-service.ts, src/checkout/order-history.ts, src/checkout/order.ts, src/checkout/receipts.ts
+  publicApi mod:src/customers: src/customers/addresses.ts, src/customers/customer-service.ts, src/customers/customer.ts, src/customers/loyalty.ts
+  publicApi mod:src/inventory: src/inventory/reservations.ts, src/inventory/stock-level.ts, src/inventory/stock-service.ts, src/inventory/subscribers.ts, src/inventory/warehouses.ts
+  publicApi mod:src/lib: src/lib/db.ts, src/lib/events.ts, src/lib/money.ts
+  module dependencies: mod:src -> mod:src/cart; mod:src -> mod:src/catalog; mod:src -> mod:src/checkout; mod:src -> mod:src/customers; mod:src -> mod:src/inventory; mod:src/cart -> mod:src/catalog; mod:src/cart -> mod:src/checkout; mod:src/cart -> mod:src/customers; mod:src/cart -> mod:src/inventory; mod:src/cart -> mod:src/lib; mod:src/catalog -> mod:src/cart; mod:src/catalog -> mod:src/checkout; mod:src/catalog -> mod:src/customers; mod:src/catalog -> mod:src/inventory; mod:src/catalog -> mod:src/lib; mod:src/checkout -> mod:src/cart; mod:src/checkout -> mod:src/catalog; mod:src/checkout -> mod:src/customers; mod:src/checkout -> mod:src/inventory; mod:src/checkout -> mod:src/lib; mod:src/customers -> mod:src/cart; mod:src/customers -> mod:src/checkout; mod:src/customers -> mod:src/inventory; mod:src/customers -> mod:src/lib; mod:src/inventory -> mod:src/catalog; mod:src/inventory -> mod:src/checkout; mod:src/inventory -> mod:src/customers; mod:src/inventory -> mod:src/lib
+  ROLES 6 files with roles
+     src/cart/cart-repository.ts: repository/naming 0.6
+     src/cart/cart-service.ts: service/naming 0.6
+     src/catalog/product-service.ts: service/naming 0.6
+     src/checkout/checkout-service.ts: service/naming 0.6
+     src/customers/customer-service.ts: service/naming 0.6
+     src/inventory/stock-service.ts: service/naming 0.6
+  LABELS repository(1) service(5) kept=service
+  LAYERS none
+=== typescript-features
+  scope "" source root "src"; split dirs ["src"]
+  P2 src: L=ui F=billing,customers,orders S=shared,utils style=feature
+  P3 orchestrators: src/cli.ts [entry]; src/index.ts [entry]
+  P3 utilities: src/orders/order.ts, src/utils/money.ts
+  P3 facades: src/billing/index.ts, src/customers/index.ts, src/index.ts, src/orders/index.ts
+  P5 passes=1 relocations: none
+  P7 declaration src/globals.d.ts: no majority {"mod:src":1,"mod:src/ui":1}; role in metrics projection -> unassigned
+  MODULE mod:src kind=root conf=0.730 prior-agreement=1.000 module-size=0.818 wiring-share=0.222 members(9)=src/broken.ts, src/cli.ts, src/config.ts, src/decorators.ts, src/index.ts, src/lazy.ts, src/legacy.ts, src/polyfills.ts, src/shop.ts
+  MODULE mod:src/billing kind=feature conf=0.800 prior-agreement=1.000 module-size=0.600 internal-edge-ratio=0.857 membership-margin=0.667 members(3)=src/billing/index.ts, src/billing/invoice.ts, src/billing/tax.ts
+  MODULE mod:src/customers kind=feature conf=0.408 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=0.333 membership-margin=0.000 members(2)=src/customers/customer.ts, src/customers/index.ts
+  MODULE mod:src/orders kind=feature conf=0.512 prior-agreement=1.000 module-size=0.667 internal-edge-ratio=0.462 membership-margin=0.111 members(4)=src/orders/index.ts, src/orders/order-repository.ts, src/orders/order-service.ts, src/orders/order.ts
+  MODULE mod:src/shared kind=shared conf=0.367 prior-agreement=1.000 module-size=0.333 shared-usage=0.000 members(1)=src/shared/repository.ts
+  MODULE mod:src/ui kind=layer conf=0.650 prior-agreement=1.000 module-size=0.500 internal-edge-ratio=0.500 members(2)=src/ui/App.tsx, src/ui/OrderList.tsx
+  MODULE mod:src/utils kind=shared conf=0.650 prior-agreement=1.000 module-size=0.500 shared-usage=0.500 members(2)=src/utils/collections.ts, src/utils/money.ts
+  publicApi mod:src: src/decorators.ts
+  publicApi mod:src/billing: src/billing/index.ts, src/billing/invoice.ts
+  publicApi mod:src/customers: src/customers/index.ts
+  publicApi mod:src/orders: src/orders/index.ts, src/orders/order-repository.ts, src/orders/order-service.ts, src/orders/order.ts
+  publicApi mod:src/shared: src/shared/repository.ts
+  publicApi mod:src/utils: src/utils/collections.ts, src/utils/money.ts
+  module dependencies: mod:src -> mod:src/billing; mod:src -> mod:src/orders; mod:src -> mod:src/utils; mod:src/billing -> mod:src/orders; mod:src/billing -> mod:src/utils; mod:src/customers -> mod:src/orders; mod:src/orders -> mod:src; mod:src/orders -> mod:src/customers; mod:src/orders -> mod:src/shared; mod:src/orders -> mod:src/utils; mod:src/ui -> mod:src/customers; mod:src/ui -> mod:src/orders; mod:src/ui -> mod:src/utils
+  ROLES 2 files with roles
+     src/orders/order-repository.ts: repository/naming 0.6
+     src/orders/order-service.ts: service/naming 0.6
+  LABELS presentation(2) repository(1) service(1) kept=presentation
+  LAYERS none

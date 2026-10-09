@@ -1,0 +1,17 @@
+def3d9ffe9eab8531993440c9b6687181aa361ce9348d4890485fab49dfdf601 *./app-lab-cinematic/page.tsx
+c4c50c6966c377de928eccbf22dc2b84654fa5760ae72043be4f80136ed2172a *./components-lab-cinematic/cinematic.module.css
+d5a2e45cd4fc82f64e2a5854819bb6e607e2b964a80c2663d29a7904b84036f8 *./components-lab-cinematic/CinematicHero.tsx
+dbc442863c30afb02aca33599e05d391270da8de03efcdd064bdb511eef6a849 *./components-lab-cinematic/copy.ts
+471a2be453b390458585a1f39e2c5005a76aec1def558abf64c9f4b795ee2328 *./components-lab-cinematic/fallback.ts
+6bb4ec1f6b565b7727166ea486194aa3e6480c51349a44f83d998d928b275f09 *./components-lab-cinematic/film-global.css
+5ee623ffbb9c929f389d0756ed997b90d8948418a89fd6d0d61e8dd0ad93732b *./components-lab-cinematic/film.ts
+3add17023b445812b94fe4d424bb0740ca3e77955c631a23b88317488951e2f3 *./components-lab-cinematic/FilmClient.tsx
+b183922ea0ac7feea97b736d0e6cde1d2e5fb9b5e95c389e85f0bd74e0f829ac *./components-lab-cinematic/LabNav.tsx
+7d6a3aa36110fbd7b8c88a86f5082827f7b0802937a04d17f8248b06e8d11090 *./components-lab-cinematic/mode.ts
+2b6aeb0745ebd2fe44461324abe9712659753fd5bc4eb317b37250d6ae5cf535 *./components-lab-cinematic/model.ts
+2a49408e047d877101a2adbc6cff425bc5c5ba7e329409376f07fc700a640231 *./components-lab-cinematic/ReadingNotes.tsx
+43a6ec258678ec7333b9e05b6facb7404030f0743fae6d7566c8344c70650a14 *./components-lab-cinematic/README.md
+fb49c22128d68ba07a82976a2535ee0d7576766ae966ba0670007d0d8eeb0ffe *./components-lab-cinematic/shaders.ts
+c6dae2b028b85dadbd21221ce19207e58d238fac990ab03baa3efef60a35ab8e *./components-lab-cinematic/sim.ts
+c8043f657e5b534760e9ae91d518044b2bbf12eaff2acef601e1a519446f149f *./components-lab-cinematic/stage.ts
+2f527f88e6ad517db5210313327c209cfa7a31482f7b8293c1d041c3cf0e9d47 *./components-lab-cinematic/timeline.ts

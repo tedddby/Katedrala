@@ -1,0 +1,33 @@
+{
+  "url": "http://localhost:3100/",
+  "started": "2026-10-08T14:04:10.289Z",
+  "finished": "2026-10-08T14:05:42.276Z",
+  "browser": "msedge 154.0.4258.62",
+  "log": [
+    "anchors: 13 section ids; 58 ids; 32 links; in-page targets #main #top #how-it-works #architecture #gravity #developers; missing targets: 0; duplicate ids: 0",
+    "hinge 390x844: beam down (one row per pass); height 2033.7; gutters 44,44.1,43.9,44; overlaps between 0, within 0; painting past a pass: none; clipped text: 0; doc width 390",
+    "hinge 768x1024: beam down (one row per pass); height 1099.9; gutters 44,44,44,44; overlaps between 0, within 0; painting past a pass: none; clipped text: 0; doc width 768",
+    "hinge 1024x768: beam down (one row per pass); height 1086.1; gutters 44.1,44,44,44.1; overlaps between 0, within 0; painting past a pass: none; clipped text: 0; doc width 1024",
+    "hinge 1180x820: beam down (one row per pass); height 1121.3; gutters 44,44,44.1,44; overlaps between 0, within 0; painting past a pass: none; clipped text: 0; doc width 1180",
+    "hinge 1280x720: beam across (one column per pass); height 906; gutters 24,24,24,24; overlaps between 0, within 0; painting past a pass: none; clipped text: 0; doc width 1280",
+    "hinge 1350x900: beam across (one column per pass); height 893.9; gutters 24,24,24,24; overlaps between 0, within 0; painting past a pass: none; clipped text: 0; doc width 1350",
+    "hinge 1440x900: beam across (one column per pass); height 904.6; gutters 24,24,24,24; overlaps between 0, within 0; painting past a pass: none; clipped text: 0; doc width 1440",
+    "widths 768x1024: height 18802, width 768; menu shown; header controls 3",
+    "widths 1024x768: height 14195, width 1024; menu inline links; header controls 7",
+    "widths 1280x720: height 14713, width 1280; menu inline links; header controls 7",
+    "widths 844x390: height 18952, width 844; menu shown; header controls 3",
+    "header 320: normal 320x65, Menu right 304 (cut 0), doc width 320; text-spacing 342x65, Menu right 326 (cut 6), doc width 342, layout viewport 342; wider than the screen: rules figure.violation.flex-1 (342.3); header header.site-nav.fixed.inset-x-0.top-0 (342); gravity span.status (335.5); entropy span.status (335.5)"
+  ],
+  "reruns": [
+    {
+      "part": "type (anchors.json, typography-1440.json, typography-390.json), rerecorded to count lines from the text line boxes",
+      "started": "2026-10-08T14:09:16.106Z",
+      "finished": "2026-10-08T14:09:32.705Z",
+      "log": [
+        "anchors: 13 section ids; 58 ids; 32 links; in-page targets #main #top #how-it-works #architecture #gravity #developers; missing targets: 0; duplicate ids: 0",
+        "typography 1440: 77 elements; final headline 81.76px \"wdth\" 80 2 lines",
+        "typography 390: 78 elements; final headline 44px \"wdth\" 80 3 lines"
+      ]
+    }
+  ]
+}

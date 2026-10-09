@@ -1,0 +1,12 @@
+import { chromium } from "playwright-core";
+const browser = await chromium.launch({ channel: "msedge" });
+const page = await browser.newPage({ viewport: { width: 768, height: 1024 } });
+await page.goto("http://localhost:3100/", { waitUntil: "networkidle" });
+await page.evaluate(() => document.fonts.ready);
+const el = page.locator("#ecosystem ul").first();
+await el.scrollIntoViewIfNeeded();
+await page.waitForTimeout(400);
+const info = await page.evaluate(() => [...document.querySelectorAll("#ecosystem .status")].filter((s) => s.querySelector("span").getBoundingClientRect().height > 20).map((s) => { const li = s.closest("li"); const b = li.getBoundingClientRect(); return { li: li.innerText.slice(0, 60).replace(/\n/g, " | "), w: Math.round(b.width), statusW: Math.round(s.getBoundingClientRect().width) }; }));
+console.log(JSON.stringify(info));
+await el.screenshot({ path: "r1/eco-768.png" });
+await browser.close();

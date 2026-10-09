@@ -1,0 +1,45 @@
+See the structure drift across commits.
+
+Compare two revisions or a range of history, and Katedrala will report new modules, new dependencies and new cycles.
+
+Planned for v1
+v1
+entropy 0.20
+
+Clean boundaries
+
+Gateway, Auth, Users and Platform
+
+v2
+entropy 0.16
+
+Payments
+
++ Payments module, 3 members
+
+v3
+entropy 0.22
+
+Orders
+
++ Checkout, Orders and Billing modules, 7 members
+
+v4
+entropy 0.23
+
+Against the load path
+
++ PaymentService → AuthService
+
+New upward dependency: Payments → Auth.
+
+v5
+entropy 0.52
+
+A cycle
+
++ UserRepository → OrderService
+
+New cycle: Users → Orders → Billing → Users.
+
+Demonstration system. Entropy uses the draft Katedrala heuristic, computed for each version.

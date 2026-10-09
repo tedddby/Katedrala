@@ -1,0 +1,50 @@
+[
+  {
+    "unit": "rules",
+    "role": "button",
+    "name": "Copy katedrala.config.yaml",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 536,
+        "y": 8229,
+        "w": 50.6,
+        "h": 27.6
+      }
+    }
+  },
+  {
+    "unit": "rules",
+    "role": "button",
+    "name": "Remove the hypothetical import",
+    "states": {
+      "invalid": "false",
+      "focusable": true
+    },
+    "dom": {
+      "unit": "rules",
+      "tag": "button",
+      "tabIndex": 0,
+      "attrs": {
+        "type": "button"
+      },
+      "rendered": true,
+      "rect": {
+        "x": 749,
+        "y": 8280,
+        "w": 226.7,
+        "h": 38.4
+      }
+    }
+  }
+]

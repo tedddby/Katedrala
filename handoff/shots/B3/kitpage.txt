@@ -1,0 +1,135 @@
+import type { Metadata } from "next";
+import { Plate } from "@/components/ui/Plate";
+import { Section } from "@/components/ui/Section";
+import { Status } from "@/components/ui/Status";
+import { TitleBlock } from "@/components/ui/TitleBlock";
+
+export const metadata: Metadata = {
+  title: "Katedrala: plate kit (lab)",
+  description:
+    "A specimen of the plate kit the page's plates share with the film. Deleted with the lab.",
+  robots: { index: false, follow: false },
+};
+
+/** A small elevation drawn for the specimen only: three members standing on hatched ground. */
+function Specimen({ hatch }: { hatch: string }) {
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="block h-auto w-full"
+      role="img"
+      aria-label="Specimen drawing: three members standing on hatched ground."
+    >
+      <defs>
+        <pattern
+          id={hatch}
+          width="7"
+          height="7"
+          patternUnits="userSpaceOnUse"
+          patternTransform="rotate(45)"
+        >
+          <line x1="0" y1="0" x2="0" y2="7" stroke="var(--color-graphite)" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect x="40" y="250" width="560" height="14" fill={`url(#${hatch})`} />
+      <line x1="40" y1="250" x2="600" y2="250" stroke="var(--color-ink-faint)" strokeWidth="1" />
+      <path
+        d="M160 90 L320 170 L480 90"
+        fill="none"
+        stroke="var(--color-ink-soft)"
+        strokeWidth="2"
+      />
+      <path d="M320 170 L320 250" fill="none" stroke="var(--color-load)" strokeWidth="3.5" />
+      <circle
+        cx="160"
+        cy="90"
+        r="9"
+        fill="var(--color-sheet)"
+        stroke="var(--color-ink)"
+        strokeWidth="1.5"
+      />
+      <circle
+        cx="480"
+        cy="90"
+        r="9"
+        fill="var(--color-sheet)"
+        stroke="var(--color-ink)"
+        strokeWidth="1.5"
+      />
+      <circle
+        cx="320"
+        cy="170"
+        r="11"
+        fill="var(--color-sheet)"
+        stroke="var(--color-load)"
+        strokeWidth="2"
+      />
+      <circle cx="320" cy="250" r="7" fill="var(--color-ink)" />
+      <path className="leader" data-active="" d="M331 170 H420 L450 140" />
+    </svg>
+  );
+}
+
+export default function KitLabPage() {
+  return (
+    <main id="main" className="pb-32">
+      <Section
+        id="kit"
+        title="The plate kit, on one sheet."
+        status={
+          <>
+            <Status status="available" label="Typed graph, available today" />
+            <Status status="planned" label="Module inference, planned for v1" />
+          </>
+        }
+        lede="A specimen for the builders of the plates: the status line, a sheet with crop marks and its title block, a bleed, gauge numerals and a leader label."
+      >
+        <div className="grid-12 gap-y-12">
+          <Plate
+            className="col-span-12 lg:col-span-7 lg:bleed-left"
+            titleBlock={
+              <TitleBlock
+                subject="Demonstration system"
+                fact="3 members, 1 foundation"
+                status={<Status status="planned" label="Specimen, planned for v1" />}
+              />
+            }
+          >
+            <Specimen hatch="kit-hatch-1" />
+            <div className="leader-label absolute left-[64%] top-[18%]" aria-hidden="true">
+              <code>PaymentService</code>
+              <span>carries 2 members</span>
+            </div>
+          </Plate>
+          <div className="col-span-12 lg:col-span-4 lg:col-start-9">
+            <p className="gauge-numerals text-load">0.58</p>
+            <p className="mt-3 text-[0.9375rem] text-ink-soft">Gravity of PaymentService</p>
+            <p className="footnote">
+              Gauge numerals only where a score is the subject; load blue only because this value
+              measures the active member.
+            </p>
+          </div>
+        </div>
+      </Section>
+      <Section
+        id="kit-bleed"
+        title="A band that runs off both edges."
+        status={<Status status="planned" />}
+        lede="On phones this sheet runs edge to edge; from 1024 px it sits back inside the frame and keeps its four marks."
+      >
+        <Plate
+          className="bleed-x lg:bleed-none"
+          titleBlock={
+            <TitleBlock
+              place="below"
+              subject="Demonstration system"
+              fact="a sheet that bleeds on phones"
+            />
+          }
+        >
+          <Specimen hatch="kit-hatch-2" />
+        </Plate>
+      </Section>
+    </main>
+  );
+}

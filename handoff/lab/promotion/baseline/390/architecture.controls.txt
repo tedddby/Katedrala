@@ -1,0 +1,16 @@
+radiogroup "Scale" <div tabindex=-1>
+radiogroup "Architecture plan of the demonstration system, by module" description="Arrow keys select modules, + and − zoom, 0 fits, Escape clears." describedby=[#«id»] <svg tabindex=-1>
+radio "Members" focusable <button tabindex=-1>
+radio "Modules" checked=true focusable <button tabindex=0>
+button "Zoom in" focusable <button tabindex=0>
+button "Zoom out" disabled focusable <button tabindex=0>
+button "Fit the plan" disabled focusable <button tabindex=0>
+radio "Gateway module, 1 member" description="Members: ApiGateway. Depends on Auth, Checkout and Orders. No module depends on it." focusable <g tabindex=0>
+radio "Checkout module, 2 members" description="Members: CheckoutController and CheckoutService. Depends on Orders, Payments and Users. Depended on by Gateway." focusable <g tabindex=-1>
+radio "Orders module, 3 members" description="Members: OrderController, OrderService and OrderRepository. Depends on Billing, Payments and Platform. Depended on by Gateway and Checkout." focusable <g tabindex=-1>
+radio "Auth module, 2 members" description="Members: AuthService and SessionStore. Depends on Users and Platform. Depended on by Gateway." focusable <g tabindex=-1>
+radio "Billing module, 1 member" description="Members: InvoiceService. Depends on Payments and Users. Depended on by Orders." focusable <g tabindex=-1>
+radio "Payments module, 3 members" description="Members: PaymentService, PaymentRepository and StripeClient. Depends on Platform. Depended on by Checkout, Orders and Billing." focusable <g tabindex=-1>
+radio "Users module, 2 members" description="Members: UserService and UserRepository. Depends on Platform. Depended on by Checkout, Billing and Auth." focusable <g tabindex=-1>
+radio "Platform module, 2 members" description="Members: EventBus and Database. Depends on no other module. Depended on by Orders, Payments, Users and Auth." focusable <g tabindex=-1>
+DisclosureTriangle "Read the graph as a table" focusable <summary tabindex=0>

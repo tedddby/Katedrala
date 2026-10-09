@@ -1,0 +1,87 @@
+/* Code blocks and terminals. */
+@layer components {
+  .code-block {
+    border: 1px solid var(--color-rule-strong);
+    background: var(--color-sheet-deep);
+    min-width: 0;
+  }
+  .code-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--color-rule);
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    color: var(--color-ink-faint);
+  }
+  .code-copy {
+    border: 1px solid var(--color-rule-strong);
+    padding: 0.25rem 0.625rem;
+    color: var(--color-ink-soft);
+    transition:
+      color 150ms ease,
+      border-color 150ms ease,
+      transform 120ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .code-copy:hover {
+      color: var(--color-ink);
+      border-color: var(--color-ink-faint);
+    }
+  }
+  .code-copy:active {
+    transform: scale(0.96);
+  }
+  /* Touch: the target grows to 44px tall inside the header's padding; the drawn button keeps its size. */
+  @media (pointer: coarse) {
+    .code-copy {
+      position: relative;
+    }
+    .code-copy::after {
+      content: "";
+      position: absolute;
+      inset: -0.5rem;
+    }
+  }
+  .code-block-body {
+    overflow-x: auto;
+    padding: 1rem 1.125rem 1.125rem;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    tab-size: 2;
+  }
+  /* A block that scrolls is focusable; its ring sits inside the frame. */
+  .code-block-body:focus-visible {
+    outline-offset: -2px;
+  }
+  /* While code can scroll sideways, the edge it continues past fades (data-overflow, set by the component), so
+     a cut line reads as more to come. Dropped under keyboard focus to keep the ring whole. */
+  .code-block-body[data-overflow]:not(:focus-visible) {
+    mask-image: linear-gradient(
+      to right,
+      var(--fade-start, #000),
+      #000 2.5rem,
+      #000 calc(100% - 2.5rem),
+      var(--fade-end, #000)
+    );
+  }
+  .code-block-body[data-overflow~="start"] {
+    --fade-start: transparent;
+  }
+  .code-block-body[data-overflow~="end"] {
+    --fade-end: transparent;
+  }
+}
+
+/* Code reads slightly smaller on phones, so more of each line fits before it scrolls. */
+@layer components {
+  @media (max-width: 639px) {
+    .code-block-body {
+      font-size: 0.75rem;
+      padding-inline: 0.875rem;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+/* Status marks: what ships today, what is planned for v1, what comes after. */
+@layer components {
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .status[data-status="available"] {
+    color: var(--color-ink-soft);
+  }
+  .status[data-status="planned"],
+  .status[data-status="after-v1"] {
+    color: var(--color-ink-faint);
+  }
+}

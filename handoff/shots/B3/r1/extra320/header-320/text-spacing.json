@@ -1,0 +1,51 @@
+{
+  "screenWidth": 320,
+  "layoutViewportWidth": 348,
+  "visualViewport": {
+    "width": 320,
+    "scale": 1
+  },
+  "docScrollWidth": 348,
+  "header": {
+    "left": 0,
+    "right": 348,
+    "top": 0,
+    "bottom": 65,
+    "w": 348,
+    "h": 65
+  },
+  "frame": {
+    "left": 0,
+    "right": 348,
+    "top": 0,
+    "bottom": 64,
+    "w": 348,
+    "h": 64
+  },
+  "wordmarkLink": {
+    "left": 8,
+    "right": 198.7,
+    "top": 11.3,
+    "bottom": 52.8,
+    "w": 190.7,
+    "h": 41.5
+  },
+  "menuButton": {
+    "left": 255.3,
+    "right": 332,
+    "top": 10,
+    "bottom": 54,
+    "w": 76.7,
+    "h": 44
+  },
+  "menuButtonCutAtRight": 12,
+  "widerThanScreen": [
+    {
+      "unit": "header",
+      "element": "header.site-nav.fixed.inset-x-0.top-0",
+      "text": "KATEDRALAHow it worksArchitectureConceptsDevelopersGitHubGet",
+      "right": 348,
+      "width": 348
+    }
+  ]
+}

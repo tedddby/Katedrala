@@ -1,0 +1,74 @@
+One command per question.
+
+From v1, each question below will be one command away, in your terminal or in CI.
+
+Planned for v1
+analyze
+What is in this repository?
+health
+Where is the structure weak?
+impact
+What will this change touch?
+validate
+Does the code follow our rules?
+diff
+What changed between two revisions?
+terminal
+real counts: CodeVerse at 6b942bc
+$ katedrala analyze .
+
+tedddby/CodeVerse at 6b942bc
+
+files                       644
+
+  analyzed                  594
+
+directories                  84
+
+symbols                   3,766
+
+relationships            14,233
+
+externals                    59
+
+  npm packages               39
+
+  Node.js built-ins           8
+
+  environment variables      12
+
+unresolved imports            0
+
+
+The command line is planned for v1, and this output previews its format. The analyze counts are real. The other values are computed from the demonstration system, with one hypothetical import added for validate, from OrderController to OrderRepository.
+
+Or call the engine from code.
+Available today
+analyze.mjs
+Copy
+analyze.mjs
+import { analyzeStructure } from "@katedrala/engine";
+
+
+
+const { document } = await analyzeStructure({ root: "../CodeVerse" });
+
+console.log(document.repository.stats);
+
+// CodeVerse at 6b942bc: 644 files, 3,766 symbols, 14,233 edges
+
+
+The engine runs today as a TypeScript library, from a clone of the repository. npm packages are planned for v1.
+
+Deterministic
+Available today
+The same files, configuration and Katedrala version produce the same document, byte for byte. Two analyses of CodeVerse came out identical.
+Versioned schemas
+Available today
+The document format is specified as JSON Schema, generated from its TypeScript types and versioned in the repository. Today, analyzeStructure returns the document's structural sections.
+Local
+Available today
+Analysis runs on your machine. No network calls, no language model, nothing uploaded.
+Made for CI
+Planned for v1
+Reports will be human-readable by default, with JSON or YAML for tools and an exit code that can fail a pull request.

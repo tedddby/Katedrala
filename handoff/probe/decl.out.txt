@@ -1,0 +1,142 @@
+=== express-app
+  imports file:src/types/express.d.ts -> file:src/models/user.ts typeOnly=true conf=1
+  references-type sym:src/types/express.d.ts#Express.Request -> sym:src/models/user.ts#AuthUser typeOnly=true conf=1
+  exported top-level classes: 10
+    sym:src/clients/stripe.client.ts#StripeClient
+    sym:src/errors.ts#HttpError
+    sym:src/errors.ts#NotFoundError
+    sym:src/errors.ts#PaymentFailedError
+    sym:src/errors.ts#UnauthorizedError
+    sym:src/errors.ts#ValidationError
+    sym:src/repositories/order.repository.ts#OrderRepository
+    sym:src/repositories/user.repository.ts#UserRepository
+    sym:src/services/order.service.ts#OrderService
+    sym:src/services/user.service.ts#UserService
+  facade candidates: file:src/controllers/index.ts re-exports 3/3
+=== typescript-features
+  imports file:src/shop.ts -> file:src/globals.d.ts typeOnly=true conf=1
+  references-type sym:src/globals.d.ts#ShopGlobals.buildInfo -> sym:src/globals.d.ts#ShopGlobals.BuildInfo typeOnly=true conf=1
+  uses sym:src/shop.ts#Shop.version -> sym:src/globals.d.ts#__APP_VERSION__ typeOnly=false conf=0.8
+  uses sym:src/ui/OrderList.tsx#OrderList -> sym:src/globals.d.ts#__SHOP_FLAGS__ typeOnly=false conf=0.7
+  exported top-level classes: 6
+    sym:src/billing/invoice.ts#Invoice
+    sym:src/orders/order-repository.ts#OrderRepository
+    sym:src/orders/order-service.ts#OrderService
+    sym:src/shared/repository.ts#EntityNotFoundError
+    sym:src/shared/repository.ts#Repository
+    sym:src/shop.ts#Shop
+  facade candidates: file:src/billing/index.ts re-exports 2/2; file:src/customers/index.ts re-exports 2/2; file:src/index.ts re-exports 4/4; file:src/orders/index.ts re-exports 4/4
+=== nestjs-app
+  calls file:src/orders/orders.service.spec.ts -> ext:npm:@nestjs/testing typeOnly=false conf=1
+  imports file:src/orders/orders.service.spec.ts -> ext:npm:@nestjs/testing typeOnly=false conf=1
+  calls file:src/orders/orders.service.spec.ts -> ext:npm:@nestjs/typeorm typeOnly=false conf=1
+  imports file:src/orders/orders.service.spec.ts -> ext:npm:@nestjs/typeorm typeOnly=false conf=1
+  imports file:src/orders/orders.service.spec.ts -> file:src/orders/entities/order.entity.ts typeOnly=false conf=1
+  imports file:src/orders/orders.service.spec.ts -> file:src/orders/orders.service.ts typeOnly=false conf=1
+  imports file:src/orders/orders.service.spec.ts -> file:src/payments/entities/payment.entity.ts typeOnly=false conf=1
+  imports file:src/orders/orders.service.spec.ts -> file:src/payments/payments.service.ts typeOnly=false conf=1
+  references-type file:src/orders/orders.service.spec.ts -> sym:src/orders/entities/order.entity.ts#Order typeOnly=true conf=1
+  uses file:src/orders/orders.service.spec.ts -> sym:src/orders/entities/order.entity.ts#Order typeOnly=false conf=1
+  uses file:src/orders/orders.service.spec.ts -> sym:src/orders/entities/order.entity.ts#OrderStatus typeOnly=false conf=0.7
+  references-type file:src/orders/orders.service.spec.ts -> sym:src/orders/orders.service.ts#OrdersService typeOnly=true conf=1
+  uses file:src/orders/orders.service.spec.ts -> sym:src/orders/orders.service.ts#OrdersService typeOnly=false conf=1
+  calls file:src/orders/orders.service.spec.ts -> sym:src/orders/orders.service.ts#OrdersService.pay typeOnly=false conf=0.9
+  uses file:src/orders/orders.service.spec.ts -> sym:src/payments/entities/payment.entity.ts#PaymentStatus typeOnly=false conf=0.7
+  uses file:src/orders/orders.service.spec.ts -> sym:src/payments/payments.service.ts#PaymentsService typeOnly=false conf=1
+  exported top-level classes: 18
+    sym:src/app.controller.ts#AppController
+    sym:src/app.module.ts#AppModule
+    sym:src/common/guards/api-key.guard.ts#ApiKeyGuard
+    sym:src/common/interceptors/logging.interceptor.ts#LoggingInterceptor
+    sym:src/config/config.module.ts#ConfigModule
+    sym:src/config/config.service.ts#ConfigService
+    sym:src/orders/dto/create-order.dto.ts#CreateOrderDto
+    sym:src/orders/dto/pay-order.dto.ts#PayOrderDto
+    sym:src/orders/entities/order.entity.ts#Order
+    sym:src/orders/orders.controller.ts#OrdersController
+    sym:src/orders/orders.module.ts#OrdersModule
+    sym:src/orders/orders.service.ts#OrdersService
+    sym:src/payments/dto/create-payment.dto.ts#CreatePaymentDto
+    sym:src/payments/entities/payment.entity.ts#Payment
+    sym:src/payments/payments.controller.ts#PaymentsController
+    sym:src/payments/payments.module.ts#PaymentsModule
+    sym:src/payments/payments.service.ts#PaymentsService
+    sym:src/payments/stripe.client.ts#StripeClient
+  facade candidates: 
+=== fastify-app
+  calls file:test/orders.test.ts -> ext:node:assert typeOnly=false conf=1
+  imports file:test/orders.test.ts -> ext:node:assert typeOnly=false conf=1
+  calls file:test/orders.test.ts -> ext:node:test typeOnly=false conf=1
+  imports file:test/orders.test.ts -> ext:node:test typeOnly=false conf=1
+  calls file:test/orders.test.ts -> ext:npm:fastify typeOnly=false conf=1
+  uses file:test/orders.test.ts -> ext:npm:fastify typeOnly=false conf=1
+  imports file:test/orders.test.ts -> file:src/app.ts typeOnly=false conf=1
+  exported top-level classes: 3
+    sym:src/errors.ts#OrderNotFoundError
+    sym:src/errors.ts#OrderStateError
+    sym:src/errors.ts#UpstreamError
+  facade candidates: 
+=== high-fan-out
+  exported top-level classes: 24
+    sym:src/adapters/audit.adapter.ts#AuditAdapter
+    sym:src/adapters/crm.adapter.ts#CrmAdapter
+    sym:src/adapters/dhl.adapter.ts#DhlAdapter
+    sym:src/adapters/email.adapter.ts#EmailAdapter
+    sym:src/adapters/erp.adapter.ts#ErpAdapter
+    sym:src/adapters/http-client.ts#HttpClient
+    sym:src/adapters/http-client.ts#HttpError
+    sym:src/adapters/paypal.adapter.ts#PaypalAdapter
+    sym:src/adapters/sms.adapter.ts#SmsAdapter
+    sym:src/adapters/stripe.adapter.ts#StripeAdapter
+    sym:src/adapters/ups.adapter.ts#UpsAdapter
+    sym:src/adapters/warehouse.adapter.ts#WarehouseAdapter
+    sym:src/orchestrator.ts#FulfillmentOrchestrator
+    sym:src/services/discount.service.ts#DiscountService
+    sym:src/services/fraud.service.ts#FraudService
+    sym:src/services/inventory.service.ts#InventoryService
+    sym:src/services/invoice.service.ts#InvoiceService
+    sym:src/services/loyalty.service.ts#LoyaltyService
+    sym:src/services/notification.service.ts#NotificationService
+    sym:src/services/payment.service.ts#PaymentDeclinedError
+    sym:src/services/payment.service.ts#PaymentService
+    sym:src/services/pricing.service.ts#PricingService
+    sym:src/services/shipping.service.ts#ShippingService
+    sym:src/services/tax.service.ts#TaxService
+  facade candidates: 
+=== high-fan-in
+  exported top-level classes: 18
+    sym:src/core/errors.ts#AppError
+    sym:src/core/errors.ts#NotFoundError
+    sym:src/core/errors.ts#UpstreamError
+    sym:src/core/errors.ts#ValidationError
+    sym:src/core/logger.ts#Logger
+    sym:src/jobs/email-digest.job.ts#EmailDigestJob
+    sym:src/jobs/inventory-sync.job.ts#InventorySyncJob
+    sym:src/jobs/nightly-report.job.ts#NightlyReportJob
+    sym:src/jobs/stale-orders.job.ts#StaleOrdersJob
+    sym:src/services/email.service.ts#EmailService
+    sym:src/services/inventory.service.ts#InventoryService
+    sym:src/services/order.service.ts#OrderService
+    sym:src/services/payment.service.ts#PaymentService
+    sym:src/services/user.service.ts#UserService
+    sym:src/storage/cache.ts#TtlCache
+    sym:src/storage/order.store.ts#OrderStore
+    sym:src/storage/product.store.ts#ProductStore
+    sym:src/storage/user.store.ts#UserStore
+  facade candidates: 
+=== javascript-commonjs
+  exported top-level classes: 1
+    sym:src/store/memory-store.js#MemoryStore
+  facade candidates: 
+=== simple-dependencies
+  exported top-level classes: 1
+    sym:src/services/expense-service.ts#ExpenseService
+  facade candidates: 
+=== circular-dependencies
+  exported top-level classes: 5
+    sym:src/people/member.ts#Member
+    sym:src/people/team.ts#Team
+    sym:src/workflow/board.ts#Board
+    sym:src/workflow/card.ts#Card
+    sym:src/workflow/column.ts#Column
+  facade candidates: file:src/index.ts re-exports 5/6

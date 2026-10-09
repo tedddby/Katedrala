@@ -1,0 +1,462 @@
+/* ------------------------------------------------------------------------------------------------
+ * Architecture explorer: a plan view with module bays.
+ * ---------------------------------------------------------------------------------------------- */
+@layer components {
+  .explorer-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .segmented {
+    display: inline-flex;
+    border: 1px solid var(--color-rule-strong);
+  }
+  .segmented > button {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 560;
+    color: var(--color-ink-faint);
+    transition:
+      color 150ms ease,
+      background-color 150ms ease;
+  }
+  .segmented > button[aria-checked="true"] {
+    background: var(--color-ink);
+    color: var(--color-sheet);
+  }
+  @media (hover: hover) {
+    .segmented > button[aria-checked="false"]:hover {
+      color: var(--color-ink);
+    }
+  }
+  .explorer-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+  .kind-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-ink-faint);
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8125rem;
+    color: var(--color-ink-soft);
+    transition:
+      color 150ms ease,
+      border-color 150ms ease;
+  }
+  .kind-toggle svg {
+    transition: opacity 150ms ease;
+  }
+  /* Off: a dashed outline and a faded sample, so the state does not rest on color alone. */
+  .kind-toggle[aria-pressed="false"] {
+    color: var(--color-ink-faint);
+    border-color: var(--color-rule-strong);
+    border-style: dashed;
+  }
+  .kind-toggle[aria-pressed="false"] svg {
+    opacity: 0.35;
+  }
+  .zoom-button {
+    min-width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--color-rule-strong);
+    font-size: 0.9375rem;
+    color: var(--color-ink-soft);
+    transition:
+      color 150ms ease,
+      border-color 150ms ease,
+      opacity 150ms ease,
+      transform 120ms var(--ease-out);
+  }
+  @media (hover: hover) {
+    .zoom-button:not([aria-disabled="true"]):hover {
+      color: var(--color-ink);
+      border-color: var(--color-ink-faint);
+    }
+  }
+  .zoom-button:not([aria-disabled="true"]):active {
+    transform: scale(0.95);
+  }
+  /* At a limit the button stays focusable, so keyboard focus is not dropped when it is reached. */
+  .zoom-button[aria-disabled="true"] {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .explorer-sheet {
+    border: 1px solid var(--color-rule);
+    background:
+      linear-gradient(var(--color-sheet), var(--color-sheet)) padding-box,
+      var(--color-rule);
+    overflow: hidden;
+  }
+  .plan-content {
+    transform-origin: 0 0;
+  }
+  .plan-content.is-animated {
+    transition: transform 280ms var(--ease-out);
+  }
+  /* A module's boundary: the one outline of a module at member scale, drawn at 3.7:1 on the bay. */
+  .plan-bay rect {
+    fill: color-mix(in oklab, var(--color-sheet-raised) 70%, transparent);
+    stroke: var(--color-ink-faint);
+    stroke-opacity: 0.75;
+    stroke-dasharray: 5 4;
+    transition: opacity 320ms ease;
+  }
+  .plan-bay-label {
+    fill: var(--color-ink-faint);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-variation-settings: "wdth" 87.5;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    /* A halo in the bay's own tone, so an edge that crosses the label passes behind it. */
+    paint-order: stroke;
+    stroke: color-mix(in oklab, var(--color-sheet-raised) 70%, var(--color-sheet));
+    stroke-width: 5px;
+    stroke-linejoin: round;
+  }
+  .plan-bay-label {
+    transition: opacity 240ms ease;
+  }
+  /* At module scale each module is its joint, so the bays fold away with the members they held. */
+  .plan-bay[data-mode="modules"] :is(rect, .plan-bay-label) {
+    opacity: 0;
+  }
+  .plan-edges {
+    transition: opacity 320ms ease;
+  }
+  .plan-edges[data-visible="false"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .plan-edge,
+  .plan-edge-sample {
+    stroke: var(--color-ink-soft);
+    stroke-width: 1.4;
+    fill: none;
+    transition:
+      stroke 180ms ease,
+      opacity 180ms ease;
+  }
+  .kind-instantiates {
+    stroke-dasharray: 7 4;
+  }
+  .kind-accesses-data {
+    stroke-dasharray: 1.5 3.5;
+    stroke-linecap: round;
+    stroke-width: 2;
+  }
+  .plan-edge[data-state="dependency"] {
+    stroke: var(--color-load);
+  }
+  .plan-edge[data-state="dependent"] {
+    stroke: var(--color-ink);
+  }
+  .plan-edge[data-state="dim"] {
+    opacity: 0.12;
+  }
+  .plan-edge[data-filtered="true"] {
+    opacity: 0;
+  }
+  .plan-arrow {
+    stroke: var(--color-ink-soft);
+  }
+  .plan-arrow-dependency {
+    stroke: var(--color-load);
+  }
+  .plan-arrow-dependent {
+    stroke: var(--color-ink);
+  }
+  /* A count sits in a break of its own line: the halo, in the sheet's tone, cuts the line around the figure. */
+  .plan-count {
+    fill: var(--color-ink-soft);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    paint-order: stroke;
+    stroke: var(--color-sheet);
+    stroke-width: 0.5em;
+    stroke-linejoin: round;
+    transition:
+      fill 180ms ease,
+      opacity 180ms ease;
+  }
+  .plan-count[data-state="dependency"] {
+    fill: var(--color-load);
+  }
+  .plan-count[data-state="dependent"] {
+    fill: var(--color-ink);
+  }
+  .plan-count[data-state="dim"] {
+    opacity: 0.12;
+  }
+  .plan-member,
+  .plan-module {
+    cursor: pointer;
+    outline: none;
+  }
+  .plan-member {
+    transition:
+      transform 380ms var(--ease-in-out),
+      opacity 260ms ease;
+  }
+  .plan-member[data-collapsed="true"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .plan-member[data-state="dim"],
+  .plan-module[data-state="dim"] {
+    opacity: 0.22;
+  }
+  .plan-hit {
+    fill: transparent;
+  }
+  .plan-joint {
+    fill: var(--color-sheet);
+    stroke: var(--color-ink);
+    stroke-width: 1.5;
+    transition:
+      fill 180ms ease,
+      stroke 180ms ease;
+  }
+  .plan-member[data-state="selected"] .plan-joint,
+  .plan-module[data-state="selected"] .plan-joint {
+    fill: var(--color-load);
+    stroke: var(--color-load);
+  }
+  .plan-member[data-state="dependency"] .plan-joint,
+  .plan-module[data-state="dependency"] .plan-joint {
+    stroke: var(--color-load);
+  }
+  /* The focus ring: 2 CSS pixels at any zoom, a clear step outside the joint. */
+  .plan-ring {
+    fill: none;
+    stroke: none;
+    stroke-width: 2px;
+    vector-effect: non-scaling-stroke;
+  }
+  @media (hover: hover) {
+    .plan-member:hover .plan-ring,
+    .plan-module:hover .plan-ring {
+      stroke: var(--color-ink-faint);
+    }
+  }
+  .plan-member:focus-visible,
+  .plan-module:focus-visible {
+    opacity: 1;
+  }
+  .plan-member:focus-visible .plan-ring,
+  .plan-module:focus-visible .plan-ring {
+    stroke: var(--color-load);
+  }
+  .plan-label {
+    fill: var(--color-ink-soft);
+    font-size: 12.5px;
+    font-weight: 520;
+    font-variation-settings: "wdth" 84;
+    paint-order: stroke;
+    stroke: var(--color-sheet);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+  }
+  .plan-member:is([data-state="selected"], [data-state="dependency"], [data-state="dependent"])
+    .plan-label,
+  .plan-module:is([data-state="selected"], [data-state="dependency"], [data-state="dependent"])
+    .plan-label {
+    fill: var(--color-ink);
+  }
+  .plan-module {
+    transition: opacity 320ms ease 140ms;
+  }
+  .plan-module[data-visible="false"] {
+    opacity: 0;
+    pointer-events: none;
+    transition-delay: 0ms;
+  }
+
+  .table-alternative > summary {
+    cursor: pointer;
+    width: fit-content;
+    font-size: 0.875rem;
+    color: var(--color-ink-soft);
+    text-decoration: underline;
+    text-decoration-color: var(--color-rule-strong);
+    text-underline-offset: 0.3em;
+  }
+  .table-alternative > summary:hover {
+    color: var(--color-ink);
+  }
+  .table-alternative th,
+  .table-alternative td {
+    padding: 0.5rem 1rem 0.5rem 0;
+    border-bottom: 1px solid var(--color-rule);
+    vertical-align: top;
+    color: var(--color-ink-soft);
+  }
+  .table-alternative thead th {
+    color: var(--color-ink-faint);
+    font-weight: 500;
+  }
+}
+
+/*
+ * Explorer: the plan's type and strokes are set in plan units per CSS pixel where each scale opens
+ * (--member-unit, --module-unit, measured from the sheet), so no label renders under 11 CSS pixels at any width.
+ * Module edges weigh what they aggregate.
+ */
+@layer components {
+  .explorer-sheet .plan-member .plan-label {
+    font-size: max(12.5px, calc(11px * var(--member-unit, 1)));
+    /* A member always sits inside its bay, so its halo takes the bay's tone rather than the sheet's. */
+    stroke: color-mix(in oklab, var(--color-sheet-raised) 70%, var(--color-sheet));
+    stroke-width: 0.32em;
+  }
+  .explorer-sheet .plan-bay-label {
+    font-size: max(10.5px, calc(11px * var(--member-unit, 1)));
+    stroke-width: 0.45em;
+  }
+  /* A module's boundary stays a whole CSS pixel wide wherever the plan opens. */
+  .explorer-sheet .plan-bay rect {
+    stroke-width: max(1px, calc(1px * var(--member-unit, 1)));
+  }
+  .explorer-sheet .plan-member .plan-joint {
+    stroke-width: max(1.5px, calc(1.1px * var(--member-unit, 1)));
+  }
+  .explorer-sheet .plan-edge {
+    stroke-width: max(1.4px, calc(1px * var(--member-unit, 1)));
+  }
+  .explorer-sheet .plan-edge.kind-accesses-data {
+    stroke-width: max(2px, calc(1.4px * var(--member-unit, 1)));
+  }
+  .explorer-sheet .plan-module .plan-label {
+    font-size: max(12.5px, calc(12px * var(--module-unit, 1)));
+    stroke-width: 0.25em;
+  }
+  .explorer-sheet .plan-module .plan-joint {
+    stroke-width: max(1.5px, calc(1.25px * var(--module-unit, 1)));
+  }
+  .explorer-sheet .plan-count {
+    font-size: max(11px, calc(11px * var(--module-unit, 1)));
+  }
+  .explorer-sheet .plan-module-edge {
+    stroke-width: calc((1px + var(--count, 1) * 0.7px) * max(1, calc(var(--module-unit, 1) * 0.8)));
+  }
+
+  /* Hints follow the input in use: pointer hints by default, the keys while the plan has keyboard focus. */
+  .hint-touch,
+  .hint-keyboard {
+    display: none;
+  }
+  @media (pointer: coarse) {
+    .hint-touch {
+      display: inline;
+    }
+    .hint-mouse {
+      display: none;
+    }
+  }
+  .explorer:has(.explorer-sheet :focus-visible) .hint-keyboard {
+    display: inline;
+  }
+  .explorer:has(.explorer-sheet :focus-visible) .hint-pointer {
+    display: none;
+  }
+
+  /* Touch: primary controls get full-size targets. */
+  @media (pointer: coarse) {
+    .segmented > button,
+    .kind-toggle {
+      min-height: 2.75rem;
+    }
+    .zoom-button {
+      min-width: 2.75rem;
+      height: 2.75rem;
+    }
+    .table-alternative > summary {
+      padding-block: 0.75rem;
+    }
+  }
+  @media (max-width: 479px) {
+    .explorer-toolbar {
+      column-gap: 0.75rem;
+    }
+    .segmented > button {
+      padding-inline: 0.75rem;
+    }
+    .kind-toggle {
+      gap: 0.375rem;
+      padding-inline: 0.6rem;
+    }
+    .kind-toggle svg {
+      width: 1.25rem;
+    }
+  }
+}
+
+/*
+ * Forced colors (Windows High Contrast): SVG paint is not forced, so the plan restates its states in system
+ * colors, as the hero drawing does; selection in the scale control is a background the palette would flatten.
+ * Unlayered, so no utility or component rule can outrank it, and scoped to the explorer: the Rules drawing,
+ * which shares the plan's classes, states its own.
+ */
+@media (forced-colors: active) {
+  .segmented > button[aria-checked="true"] {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
+  .explorer-sheet .plan-bay rect {
+    fill: Canvas;
+    stroke: GrayText;
+    stroke-opacity: 1;
+  }
+  .explorer-sheet .plan-bay-label {
+    fill: GrayText;
+    stroke: Canvas;
+  }
+  .explorer-sheet :is(.plan-edge, .plan-arrow),
+  .explorer-sheet :is(.plan-edge[data-state="dependent"], .plan-arrow-dependent),
+  .explorer-legend .plan-edge-sample {
+    stroke: CanvasText;
+  }
+  .explorer-sheet :is(.plan-edge[data-state="dependency"], .plan-arrow-dependency) {
+    stroke: Highlight;
+  }
+  .explorer-sheet .plan-joint {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+  .explorer-sheet :is(.plan-label, .plan-count),
+  .explorer-sheet
+    :is(.plan-member, .plan-module):is(
+      [data-state="selected"],
+      [data-state="dependency"],
+      [data-state="dependent"]
+    )
+    .plan-label {
+    fill: CanvasText;
+    stroke: Canvas;
+  }
+  .explorer-sheet .plan-count[data-state="dependency"] {
+    fill: Highlight;
+  }
+  .explorer-sheet :is(.plan-member, .plan-module)[data-state="selected"] .plan-joint {
+    fill: Highlight;
+    stroke: Highlight;
+  }
+  .explorer-sheet :is(.plan-member, .plan-module)[data-state="dependency"] .plan-joint {
+    stroke: Highlight;
+  }
+  .explorer-sheet :is(.plan-member, .plan-module):hover .plan-ring {
+    stroke: CanvasText;
+  }
+  .explorer-sheet :is(.plan-member, .plan-module):focus-visible .plan-ring {
+    stroke: Highlight;
+  }
+}

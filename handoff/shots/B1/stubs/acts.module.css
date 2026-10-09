@@ -1,0 +1,9 @@
+/*
+ * Acts II, III and the landing: their blocks, frame words and overlays.
+ *
+ * Typed stub, written at G1 by the film's engine; the acts' builder owns this file from here on. The film sets these
+ * on the elements it renders around the acts' markup (film.module.css), for selectors here to use:
+ * - html[data-kfilm="film" | "still"]: the mode, decided before first paint.
+ * - [data-act-slot="evidence" | "change" | "trace"][data-active]: the act's block while its act is on screen.
+ * - [data-act-layer="evidence" | "change" | "trace"][data-active]: the act's frame words while its act is on screen.
+ */

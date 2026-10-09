@@ -1,0 +1,57 @@
+=== clean-architecture
+  src/main.ts [src] shape=false out={"src/application":3,"src/infrastructure":6,"src/presentation":2} dependents= outsideDependents=
+=== ambiguous-boundaries
+  src/server.ts [src] shape=true out={"src/cart":3,"src/catalog":4,"src/checkout":1} dependents= outsideDependents=
+=== layered-architecture
+  src/controllers/order.controller.ts [src/controllers] shape=true out={"src/services":1,"src/shared":1} dependents=src/main.ts outsideDependents=src/main.ts
+  src/controllers/payment.controller.ts [src/controllers] shape=true out={"src/services":1,"src/shared":1} dependents=src/main.ts outsideDependents=src/main.ts
+  src/controllers/user.controller.ts [src/controllers] shape=true out={"src/services":1,"src/shared":1} dependents=src/main.ts outsideDependents=src/main.ts
+  src/main.ts [src] shape=true out={"src/controllers":3,"src/repositories":3,"src/services":4,"src/shared":4} dependents= outsideDependents=
+  src/repositories/order.repository.ts [src/repositories] shape=true out={"src/models":1,"src/shared":1} dependents=src/main.ts,src/services/order.service.ts outsideDependents=src/main.ts,src/services/order.service.ts
+  src/repositories/user.repository.ts [src/repositories] shape=true out={"src/models":1,"src/shared":1} dependents=src/main.ts,src/services/user.service.ts outsideDependents=src/main.ts,src/services/user.service.ts
+  src/services/user.service.ts [src/services] shape=true out={"src/models":1,"src/repositories":1,"src/shared":2} dependents=src/controllers/user.controller.ts,src/main.ts,src/services/order.service.ts,src/services/payment.service.ts outsideDependents=src/controllers/user.controller.ts,src/main.ts
+=== javascript-commonjs
+  src/plugins/audit-log.js [src/plugins] shape=false out={} dependents= outsideDependents=
+  src/routes/index.js [src/routes] shape=true out={"src/lib":1,"src/routes":1,"src/services":1,"src/views":1} dependents=src/server.js outsideDependents=src/server.js
+  src/server.js [src] shape=true out={"src":1,"src/plugins":1,"src/routes":1,"src/store":1} dependents= outsideDependents=
+=== typescript-features
+  src/broken.ts [src] shape=true out={"src/orders":1,"src/utils":1} dependents= outsideDependents=
+  src/cli.ts [src] shape=false out={"src/billing":1,"src":2,"src/utils":1} dependents= outsideDependents=
+  src/index.ts [src] shape=true out={"src/billing":1,"src/orders":1,"src":1,"src/utils":1} dependents=src/cli.ts outsideDependents=
+  src/ui/App.tsx [src/ui] shape=false out={"src/customers":2,"src/orders":0.5,"src/ui":1} dependents= outsideDependents=
+  src/ui/OrderList.tsx [src/ui] shape=true out={"src/orders":1,"src/utils":1} dependents=src/ui/App.tsx outsideDependents=
+=== dependency-violations
+  src/controllers/order.controller.ts [src/controllers] shape=true out={"src/domain":0.5,"src/repositories":1,"src/services":1} dependents=src/main.ts outsideDependents=src/main.ts
+  src/main.ts [src] shape=true out={"src/analytics":1,"src":1,"src/controllers":3,"src/payments":3,"src/repositories":3,"src/services":3} dependents= outsideDependents=
+  src/services/order.service.ts [src/services] shape=true out={"src/analytics":1,"src/domain":1,"src/payments":1,"src/repositories":1,"src/services":1} dependents=src/controllers/customer.controller.ts,src/controllers/order.controller.ts,src/main.ts outsideDependents=src/controllers/customer.controller.ts,src/controllers/order.controller.ts,src/main.ts
+  src/services/refund.service.ts [src/services] shape=true out={"src/analytics":1,"src/domain":1,"src/payments":1,"src/repositories":1} dependents=src/controllers/refund.controller.ts,src/main.ts outsideDependents=src/controllers/refund.controller.ts,src/main.ts
+=== nestjs-app
+  src/app.module.ts [src] shape=true out={"src":1,"src/config":2,"src/orders":1,"src/payments":1} dependents=src/main.ts outsideDependents=
+  src/main.ts [src] shape=false out={"src":1,"src/common":1,"src/config":1} dependents= outsideDependents=
+=== express-app
+  src/app.ts [src] shape=true out={"src/controllers":2,"src/middleware":2,"src/routes":1} dependents=src/server.ts outsideDependents=
+  src/container.ts [src] shape=true out={"src/clients":1,"src":1,"src/db":1,"src/repositories":2,"src/services":2} dependents=src/controllers/orders.controller.ts,src/controllers/users.controller.ts outsideDependents=src/controllers/orders.controller.ts,src/controllers/users.controller.ts
+  src/routes/orders.routes.ts [src/routes] shape=true out={"src/controllers":1,"src/middleware":1} dependents=src/routes/index.ts outsideDependents=
+  src/server.ts [src] shape=false out={"src":3,"src/db":1} dependents= outsideDependents=
+  src/services/order.service.ts [src/services] shape=true out={"src/clients":1,"src":2,"src/models":1,"src/repositories":1,"src/services":1} dependents=src/container.ts,src/controllers/orders.controller.ts outsideDependents=src/container.ts,src/controllers/orders.controller.ts
+  src/services/user.service.ts [src/services] shape=true out={"src":1,"src/models":1,"src/repositories":1} dependents=src/container.ts,src/controllers/users.controller.ts,src/services/order.service.ts outsideDependents=src/container.ts,src/controllers/users.controller.ts
+=== fastify-app
+  src/app.ts [src] shape=true out={"src":1,"src/handlers":1,"src/hooks":1,"src/plugins":1,"src/routes":1,"src/schemas":1} dependents=src/server.ts outsideDependents=
+  src/handlers/orders.ts [src/handlers] shape=true out={"src/schemas":0.5,"src/services":1,"src":0.5} dependents=src/app.ts,src/plugins/orders.ts outsideDependents=src/app.ts,src/plugins/orders.ts
+  src/plugins/orders.ts [src/plugins] shape=true out={"src/handlers":1,"src/hooks":1,"src/schemas":1} dependents=src/app.ts outsideDependents=src/app.ts
+  src/server.ts [src] shape=false out={"src":3} dependents= outsideDependents=
+  src/services/orders.service.ts [src/services] shape=true out={"src/clients":1,"src":1.5,"src/repositories":1,"src/schemas":1,"src/services":1} dependents=src/handlers/orders.ts outsideDependents=src/handlers/orders.ts
+=== circular-dependencies
+  src/demo/seed.ts [src/demo] shape=true out={"src/people":2,"src/workflow":2} dependents=src/index.ts outsideDependents=src/index.ts
+  src/index.ts [src] shape=true out={"src/api":1,"src/demo":1,"src/notifications":1,"src/people":2,"src/workflow":1} dependents= outsideDependents=
+  src/notifications/digest.ts [src/notifications] shape=true out={"src/people":1,"src/workflow":1} dependents=src/index.ts outsideDependents=src/index.ts
+=== high-fan-in
+  src/api/orders.routes.ts [src/api] shape=true out={"src/core":1,"src/services":1} dependents=src/api/router.ts outsideDependents=
+  src/api/users.routes.ts [src/api] shape=true out={"src/core":1,"src/services":1} dependents=src/api/router.ts outsideDependents=
+  src/jobs/email-digest.job.ts [src/jobs] shape=true out={"src/core":1,"src/services":1,"src/storage":1} dependents=src/main.ts outsideDependents=src/main.ts
+  src/jobs/inventory-sync.job.ts [src/jobs] shape=true out={"src/core":1,"src/services":1} dependents=src/main.ts outsideDependents=src/main.ts
+  src/jobs/nightly-report.job.ts [src/jobs] shape=true out={"src/core":1,"src/services":1,"src/storage":1} dependents=src/main.ts outsideDependents=src/main.ts
+  src/jobs/stale-orders.job.ts [src/jobs] shape=true out={"src/core":1,"src/services":1,"src/storage":1} dependents=src/main.ts outsideDependents=src/main.ts
+  src/main.ts [src] shape=true out={"src/api":1,"src/core":1,"src/jobs":5,"src/services":5,"src/storage":5} dependents= outsideDependents=
+  src/services/inventory.service.ts [src/services] shape=true out={"src/core":2,"src/storage":2} dependents=src/jobs/inventory-sync.job.ts,src/main.ts,src/services/order.service.ts outsideDependents=src/jobs/inventory-sync.job.ts,src/main.ts
+  src/services/user.service.ts [src/services] shape=true out={"src/core":2,"src/services":1,"src/storage":1} dependents=src/api/router.ts,src/api/users.routes.ts,src/main.ts outsideDependents=src/api/router.ts,src/api/users.routes.ts,src/main.ts
