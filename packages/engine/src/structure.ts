@@ -54,7 +54,12 @@ import {
 } from "./identity.js";
 import { KATEDRALA_VERSION } from "./version.js";
 
-/** Pipeline stages, in execution order; also the keys of `RunInfo.timings`. */
+/**
+ * Stages in execution order; also the keys of `RunInfo.timings`. `analyzeStructure` runs the stages up to
+ * `linking`; `analyzeArchitecture` adds `inference` (milestone 5 plan 2.3). Later milestones insert their
+ * stages where their inputs require: framework detection runs before `inference`, because detector roles are
+ * layer votes; metrics, anomalies and rules run after it. Look stages up by name, never by position.
+ */
 export const ANALYSIS_STAGES = [
   "listing",
   "configuration",
@@ -62,6 +67,7 @@ export const ANALYSIS_STAGES = [
   "extraction",
   "projects",
   "linking",
+  "inference",
 ] as const;
 
 export type AnalysisStage = (typeof ANALYSIS_STAGES)[number];
@@ -153,8 +159,12 @@ export interface StructureAnalysis {
  * (manifests, module resolution) and link everything into files, symbols, typed edges, packages and
  * externals.
  *
- * This is the observed-structure stage of the analysis. Architecture inference, metrics, anomalies and rule
- * evaluation build on its result.
+ * This is the observed-structure stage of the analysis. Architecture inference (`analyzeArchitecture`),
+ * metrics, anomalies and rule evaluation build on its result. Run alone, it does not evaluate the `modules`,
+ * `layers` and `inference` configuration sections: they are accepted without validation and reported with a
+ * `configuration-warning` ("not evaluated by this version"), unless a caller registers their validators
+ * through `configurationSections`, as `analyzeArchitecture` does. Validators inject no defaults, so the
+ * analysis digest is the same either way.
  */
 export async function analyzeStructure(options: AnalyzeOptions = {}): Promise<StructureAnalysis> {
   const startedAt = new Date();

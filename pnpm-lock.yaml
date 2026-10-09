@@ -20,6 +20,9 @@ importers:
       '@katedrala/graph':
         specifier: workspace:*
         version: link:packages/graph
+      '@katedrala/inference':
+        specifier: workspace:*
+        version: link:packages/inference
       '@katedrala/ir':
         specifier: workspace:*
         version: link:packages/ir
@@ -108,6 +111,9 @@ importers:
       '@katedrala/graph':
         specifier: workspace:*
         version: link:../graph
+      '@katedrala/inference':
+        specifier: workspace:*
+        version: link:../inference
       '@katedrala/ir':
         specifier: workspace:*
         version: link:../ir
@@ -144,6 +150,18 @@ importers:
       graphology-types:
         specifier: 0.24.8
         version: 0.24.8
+
+  packages/inference:
+    dependencies:
+      '@katedrala/graph':
+        specifier: workspace:*
+        version: link:../graph
+      '@katedrala/ir':
+        specifier: workspace:*
+        version: link:../ir
+      '@katedrala/model':
+        specifier: workspace:*
+        version: link:../model
 
   packages/ir: {}
 

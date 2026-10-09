@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 interface CodeBlockProps {
   readonly code: string;
@@ -8,57 +8,139 @@ interface CodeBlockProps {
   readonly label: string;
   readonly language?: "yaml" | "shell" | "json" | "typescript" | "text";
   readonly className?: string;
+  /** Number the lines, as an editor does; the numbers are never copied or read out. */
+  readonly lineNumbers?: boolean;
+  /** Lines to mark (1-based, inclusive): their numbers take the load color, as active architecture does. */
+  readonly highlight?: { readonly from: number; readonly to: number } | undefined;
+  /** Gives every line an id, `${lineId}-${n}`, so a link can point at it. */
+  readonly lineId?: string;
 }
+
+interface LineOptions {
+  readonly lineNumbers: boolean;
+  readonly highlight: CodeBlockProps["highlight"];
+  readonly lineId: string | undefined;
+}
+
+type CopyState = "idle" | "copied" | "failed";
+
+const ANNOUNCEMENT: Record<CopyState, (label: string) => string> = {
+  idle: () => "",
+  copied: (label) => `${label} copied.`,
+  failed: () => "Copy failed. Select the code to copy it.",
+};
 
 /**
  * Code as it would appear in a file or terminal, with a copy control. Highlighting is deliberately light: keys,
  * comments and prompts only, in the page's chalk and graphite.
  */
-export function CodeBlock({ code, label, language = "text", className }: CodeBlockProps) {
-  const [copied, setCopied] = useState(false);
+export function CodeBlock({
+  code,
+  label,
+  language = "text",
+  className,
+  lineNumbers = false,
+  highlight: marked,
+  lineId,
+}: CodeBlockProps) {
+  const [copy, setCopy] = useState<CopyState>("idle");
+  const [scrolls, setScrolls] = useState(false);
   const timer = useRef<number | undefined>(undefined);
+  const body = useRef<HTMLPreElement>(null);
+  const labelId = useId();
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
-  const copy = async () => {
+  // While the code is wider than its block (narrow screens), the block becomes a named region the keyboard can
+  // reach and scroll, and the edge it continues past fades (data-overflow), as in the terminal.
+  useEffect(() => {
+    const pre = body.current;
+    if (pre === null) return;
+    const update = () => {
+      const start = pre.scrollLeft > 1;
+      const end = pre.scrollWidth - pre.clientWidth - pre.scrollLeft > 1;
+      setScrolls(pre.scrollWidth - pre.clientWidth > 1);
+      const value = start && end ? "start end" : start ? "start" : end ? "end" : undefined;
+      if (pre.dataset.overflow === value) return;
+      if (value === undefined) delete pre.dataset.overflow;
+      else pre.dataset.overflow = value;
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(pre);
+    pre.addEventListener("scroll", update, { passive: true });
+    void document.fonts.ready.then(update);
+    return () => {
+      observer.disconnect();
+      pre.removeEventListener("scroll", update);
+    };
+  }, []);
+
+  const onCopy = async () => {
+    window.clearTimeout(timer.current);
     try {
       await navigator.clipboard.writeText(code.replace(/^\$ /gm, ""));
-      setCopied(true);
-      window.clearTimeout(timer.current);
-      timer.current = window.setTimeout(() => setCopied(false), 1600);
+      setCopy("copied");
     } catch {
-      setCopied(false);
+      setCopy("failed");
     }
+    timer.current = window.setTimeout(() => setCopy("idle"), 1600);
   };
 
   return (
-    <figure className={`code-block ${className ?? ""}`}>
-      <figcaption className="code-block-header">
-        <span>{label}</span>
-        <button type="button" onClick={copy} className="code-copy" aria-live="polite">
-          {copied ? "Copied" : "Copy"}
+    <figure className={`code-block ${className ?? ""}`} aria-labelledby={labelId}>
+      <div className="code-block-header">
+        <span id={labelId}>{label}</span>
+        <button type="button" onClick={onCopy} className="code-copy">
+          {copy === "copied" ? "Copied" : copy === "failed" ? "Copy failed" : "Copy"}
+          <span className="sr-only"> {label}</span>
         </button>
-      </figcaption>
-      <pre className="code-block-body" tabIndex={0}>
-        <code>{highlight(code, language)}</code>
+      </div>
+      <span role="status" className="sr-only">
+        {ANNOUNCEMENT[copy](label)}
+      </span>
+      <pre
+        ref={body}
+        className="code-block-body"
+        {...(scrolls ? { tabIndex: 0, role: "region", "aria-label": label } : {})}
+      >
+        <code>{highlight(code, language, { lineNumbers, highlight: marked, lineId })}</code>
       </pre>
     </figure>
   );
 }
 
-function highlight(code: string, language: CodeBlockProps["language"]) {
-  return code.split("\n").map((line, i) => (
-    <span key={i} className="block">
-      {renderLine(line, language)}
-      {"\n"}
-    </span>
-  ));
+function highlight(code: string, language: CodeBlockProps["language"], options: LineOptions) {
+  const lines = code.split("\n");
+  const digits = String(lines.length).length;
+  return lines.map((line, i) => {
+    const n = i + 1;
+    const marked =
+      options.highlight !== undefined && n >= options.highlight.from && n <= options.highlight.to;
+    return (
+      <span
+        key={i}
+        className="block"
+        id={options.lineId === undefined ? undefined : `${options.lineId}-${n}`}
+        data-line={options.lineNumbers ? n : undefined}
+        data-marked={marked ? "" : undefined}
+      >
+        {options.lineNumbers && (
+          <span className="code-line-number" aria-hidden="true" style={{ width: `${digits}ch` }}>
+            {n}
+          </span>
+        )}
+        {renderLine(line, language)}
+        {"\n"}
+      </span>
+    );
+  });
 }
 
 function renderLine(line: string, language: CodeBlockProps["language"]) {
   if (language === "shell" && line.startsWith("$ ")) {
     return (
       <>
-        <span className="text-graphite select-none">$ </span>
+        <span className="select-none text-ink-faint">$ </span>
         <span className="text-ink">{line.slice(2)}</span>
       </>
     );

@@ -25,6 +25,7 @@
     "@katedrala/adapter-typescript": "workspace:*",
     "@katedrala/core": "workspace:*",
     "@katedrala/graph": "workspace:*",
+    "@katedrala/inference": "workspace:*",
     "@katedrala/ir": "workspace:*",
     "@katedrala/linker": "workspace:*",
     "@katedrala/model": "workspace:*",

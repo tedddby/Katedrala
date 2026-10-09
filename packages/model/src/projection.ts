@@ -268,6 +268,26 @@ export class Projection {
   }
 
   /**
+   * Visit the underlying IR edges of the graph's out-edge with index `edgeIndex` (as for
+   * {@link Projection.edgeInfoAt}), in identifier order, without allocating: the edges are those whose
+   * identifiers {@link Projection.edgeInfoAt} lists. Does nothing for an invalid index. Callers that weigh
+   * every edge of a large projection use it instead of `edgeInfoAt`, which builds a summary per call.
+   *
+   * Complexity: O(k) for k underlying edges. The visited entities are the document's own objects: do not
+   * mutate them.
+   */
+  forEachUnderlyingEdge(edgeIndex: number, visit: (edge: EdgeEntity) => void): void {
+    if (!Number.isInteger(edgeIndex)) return;
+    const start = this.#edgeOffsets[edgeIndex];
+    const end = this.#edgeOffsets[edgeIndex + 1];
+    if (start === undefined || end === undefined) return;
+    for (let index = start; index < end; index++) {
+      const edge = this.#edges[index];
+      if (edge !== undefined) visit(edge);
+    }
+  }
+
+  /**
    * The lifted relationships whose endpoints both map to `node` (dropped from the graph as internal, e.g.
    * dependencies between files of the same module); undefined when there are none. Returns a new object
    * on every call.

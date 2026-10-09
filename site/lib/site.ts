@@ -4,7 +4,8 @@ export const REPOSITORY_URL = "https://github.com/tedddby/Katedrala";
 
 export const LINKS = {
   repository: REPOSITORY_URL,
-  readme: `${REPOSITORY_URL}#readme`,
+  /** The README's "Get started" section: the engine from a clone, until npm packages arrive with v1. */
+  readme: `${REPOSITORY_URL}#get-started`,
   documentation: `${REPOSITORY_URL}/tree/main/docs`,
   architecture: `${REPOSITORY_URL}/blob/main/docs/ARCHITECTURE.md`,
   ir: `${REPOSITORY_URL}/blob/main/docs/IR.md`,

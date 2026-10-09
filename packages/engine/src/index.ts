@@ -12,6 +12,14 @@ export {
   type StructureDocument,
 } from "./structure.js";
 export {
+  analyzeArchitecture,
+  type ArchitectureAnalysis,
+  type ArchitectureSections,
+} from "./architecture.js";
+export { INFERENCE_CONFIGURATION_SECTIONS } from "./inference-configuration.js";
+export { resolveDeclarations } from "./declarations.js";
+export { metricsProjectionOptions } from "./projection.js";
+export {
   loadSnapshotConfiguration,
   type ConfigurationRequest,
   type SnapshotConfiguration,

@@ -4,11 +4,12 @@
  * of CodeVerse, and the other commands print values computed from the demonstration system.
  */
 import { CODEVERSE_ANALYSIS } from "@/lib/site";
+import evidence from "@/public/data/codeverse-evidence.json";
 import { entropyOf } from "./entropy";
 import { VERSIONS } from "./history";
 import { impactOf, pathFrom } from "./impact";
-import { MEASUREMENTS, formatScore } from "./metrics";
-import { EDGES, moduleName, type ModuleId } from "./system";
+import { MEASUREMENTS, formatParts, formatScore } from "./metrics";
+import { EDGES, RULE_CHANGE, RULE_CONFIG, checkRules, moduleName, type ModuleId } from "./system";
 import { counted, rests } from "@/lib/text";
 
 export type Tone = "ink" | "soft" | "faint" | "load";
@@ -39,16 +40,50 @@ const count = (value: number) => value.toLocaleString("en-US");
 const WIDTH = 21;
 const signed = (value: number) => `${value >= 0 ? "+" : "-"}${formatScore(Math.abs(value))}`;
 
+/**
+ * The two reference counts come from the generated evidence file, which carries the repository.stats of the same
+ * document (scripts/build-codeverse-evidence.mjs): references that should bind but do not, and references whose
+ * type cannot be known without a type checker. Both files must describe one analysis; a build that pairs them
+ * with a different one fails here rather than print a mixed transcript.
+ */
+function referenceCounts(): { unresolved: number; untyped: number } {
+  const a = CODEVERSE_ANALYSIS;
+  const { source, stats } = evidence;
+  const same =
+    source.repository === a.repository &&
+    source.commit === a.commit &&
+    stats.analyzedFiles === a.analyzedFiles &&
+    stats.symbols === a.symbols &&
+    stats.edges === a.relationships &&
+    stats.unresolvedImports === a.unresolvedImports;
+  if (!same) {
+    const message = `codeverse-evidence.json (${source.commit}) and CODEVERSE_ANALYSIS (${a.commit}) describe different analyses.`;
+    if (process.env.NODE_ENV === "production") throw new Error(message);
+    console.error(message);
+  }
+  return { unresolved: stats.unresolvedReferences, untyped: stats.untypedReferences };
+}
+
 function analyze(): CommandDemo {
   const a = CODEVERSE_ANALYSIS;
-  const rows: [string, number, string?][] = [
-    ["files", a.files, `${count(a.analyzedFiles)} analyzed`],
+  const references = referenceCounts();
+  // An indented row breaks down the row above it: externals are packages, built-ins and environment
+  // variables, never all packages. What could not be bound closes the report: counted, never guessed.
+  const rows: (readonly [string, number])[] = [
+    ["files", a.files],
+    ["  analyzed", a.analyzedFiles],
     ["directories", a.directories],
     ["symbols", a.symbols],
     ["relationships", a.relationships],
-    ["external packages", a.externals],
+    ["externals", a.externals],
+    ["  npm packages", a.packages],
+    ["  Node.js built-ins", a.builtins],
+    ["  environment variables", a.environmentVariables],
     ["unresolved imports", a.unresolvedImports],
+    ["unresolved references", references.unresolved],
+    ["untyped references", references.untyped],
   ];
+  const width = Math.max(...rows.map(([label]) => label.length)) + 2;
   return {
     id: "analyze",
     question: "What is in this repository?",
@@ -56,10 +91,9 @@ function analyze(): CommandDemo {
     lines: [
       prompt("katedrala analyze ."),
       plain(`${a.repository} at ${a.commit}`, "ink"),
-      ...rows.map(([label, value, note]): TranscriptLine => [
-        { text: label.padEnd(WIDTH), tone: "faint" },
-        { text: count(value).padStart(6), tone: "ink" },
-        ...(note === undefined ? [] : [{ text: `   ${note}`, tone: "faint" as const }]),
+      ...rows.map(([label, value]): TranscriptLine => [
+        { text: label.padEnd(width), tone: "faint" },
+        { text: count(value).padStart(6), tone: label.startsWith(" ") ? "soft" : "ink" },
       ]),
     ],
   };
@@ -67,6 +101,11 @@ function analyze(): CommandDemo {
 
 function health(): CommandDemo {
   const entropy = entropyOf(EDGES.map((e) => [e.source, e.target] as const));
+  // Contributions rounded so they add up to the score printed above them.
+  const shown = formatParts(
+    entropy.factors.map((factor) => factor.contribution),
+    entropy.score,
+  );
   const heaviest = [...MEASUREMENTS.values()]
     .sort((a, b) => b.gravity - a.gravity || (a.node.id < b.node.id ? -1 : 1))
     .slice(0, 3);
@@ -81,10 +120,13 @@ function health(): CommandDemo {
         { text: formatScore(entropy.score).padStart(5), tone: "ink" },
         { text: `  ${entropy.rating}`, tone: "soft" },
       ],
-      ...entropy.factors.map((factor): TranscriptLine => [
-        { text: `  ${factor.label.toLowerCase()}`.padEnd(WIDTH), tone: "faint" },
-        { text: signed(factor.contribution), tone: "soft" },
-        { text: `  ${factor.evidence}`, tone: "faint" },
+      // Each factor, then its evidence on a line of its own, so the report fits a desktop terminal's width.
+      ...entropy.factors.flatMap((factor, i): TranscriptLine[] => [
+        [
+          { text: `  ${factor.label.toLowerCase()}`.padEnd(WIDTH), tone: "faint" },
+          { text: `+${shown[i]!}`, tone: "soft" },
+        ],
+        plain(`    ${factor.evidence}`, "faint"),
       ]),
       plain("highest gravity", "faint"),
       ...heaviest.map((m): TranscriptLine => [
@@ -127,27 +169,38 @@ function impact(): CommandDemo {
           { text: result.target, tone: "load" },
         ];
       }),
-      plain(`entry points: ${[...result.entryPoints].sort().join(", ")}`, "faint"),
+      // Members that handle HTTP requests, as the Impact section counts them (the IR's entryPoints are declared
+      // entries such as package scripts, so the transcript does not borrow that name).
+      plain(`HTTP handlers: ${[...result.entryPoints].sort().join(", ")}`, "faint"),
     ],
   };
 }
 
+/** The rules of the Rules section, checked against the system with its one hypothetical new import. */
 function validate(): CommandDemo {
+  const violations = checkRules([...EDGES, RULE_CHANGE]);
+  const errors = violations.filter((violation) => violation.rule.severity === "error").length;
   return {
     id: "validate",
     question: "Does the code follow our rules?",
     source: "demonstration system",
     lines: [
       prompt("katedrala validate . --fail-on error"),
-      [
-        { text: "error  ", tone: "load" },
-        { text: "controllers-no-database", tone: "ink" },
-      ],
-      plain("       OrderController depends on OrderRepository"),
-      plain("       src/orders/order.controller.ts:7", "faint"),
-      plain("1 error, 2 rules checked"),
+      ...violations.flatMap((violation): TranscriptLine[] => [
+        [
+          {
+            text: `${violation.rule.severity}  `,
+            tone: violation.rule.severity === "error" ? "load" : "soft",
+          },
+          { text: violation.rule.id, tone: "ink" },
+        ],
+        plain(`       ${violation.source} depends on ${violation.target}`),
+        plain(`       ${violation.file}`, "faint"),
+      ]),
+      plain(`${counted(errors, "error")}, ${counted(RULE_CONFIG.rules.length, "rule")} checked`),
       prompt("echo $?"),
-      plain("1", "ink"),
+      // --fail-on error: any error fails the run.
+      plain(errors > 0 ? "1" : "0", "ink"),
     ],
   };
 }

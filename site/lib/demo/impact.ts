@@ -16,12 +16,15 @@ export interface Impact {
   /** Affected members, nearest first, then by name. */
   readonly affected: readonly (readonly [string, number])[];
   readonly modules: ReadonlySet<ModuleId>;
-  /** Affected members that receive HTTP traffic. */
+  /**
+   * Affected members that handle HTTP requests (controllers and route definitions). In Katedrala's IR these are
+   * the handlers behind endpoints, not entry points, which are declared ways into the code such as scripts.
+   */
   readonly entryPoints: readonly string[];
 }
 
 const nodeById = new Map(NODES.map((n) => [n.id, n]));
-const ENTRY_ROLES = new Set(["http controller", "route definition"]);
+const HTTP_ROLES = new Set(["HTTP controller", "route definition"]);
 
 /** Members something depends on: the meaningful targets of an impact question. */
 export const IMPACT_TARGETS: readonly string[] = NODES.filter(
@@ -59,7 +62,7 @@ export function impactOf(target: string): Impact {
     maxDistance: Math.max(0, ...distance.values()),
     affected,
     modules: new Set(affected.map(([id]) => nodeById.get(id)!.module)),
-    entryPoints: affected.map(([id]) => id).filter((id) => ENTRY_ROLES.has(nodeById.get(id)!.role)),
+    entryPoints: affected.map(([id]) => id).filter((id) => HTTP_ROLES.has(nodeById.get(id)!.role)),
   };
 }
 

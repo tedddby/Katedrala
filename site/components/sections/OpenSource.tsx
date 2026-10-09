@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
-import { LINKS, MILESTONES, MILESTONE_LABEL, type MilestoneState } from "@/lib/site";
+import { LINKS, MILESTONES, MILESTONE_LABEL } from "@/lib/site";
+import { counted } from "@/lib/text";
 
 const FACTS = [
   {
@@ -9,42 +10,61 @@ const FACTS = [
   },
   {
     title: "A formal contract",
-    text: "The architecture document is specified in the repository and published as JSON Schema.",
+    text: "The architecture document is specified in the repository, as TypeScript types and the JSON Schema generated from them.",
   },
   {
     title: "Recorded decisions",
     text: "Architecture decision records explain how the engine is built, and why.",
   },
   {
-    title: "No model in the loop",
-    text: "There is no language model in the analysis. Every result is computed, traceable and reproducible.",
+    title: "Built to extend",
+    text: "Languages plug in through a typed adapter contract. TypeScript and JavaScript come first.",
   },
 ] as const;
 
 const done = MILESTONES.filter((m) => m.state === "done").length;
 const inProgress = MILESTONES.filter((m) => m.state === "in-progress").length;
+const planned = MILESTONES.length - done - inProgress;
+/** "4 of 15 milestones done, 1 in progress.": the in-progress clause only while something is in progress. */
+const progress = `${done} of ${MILESTONES.length} milestones done${inProgress > 0 ? `, ${inProgress} in progress` : ""}.`;
+/** The gauge's accessible name, in agreement with its counts: "4 milestones done, 1 in progress, 10 planned". */
+const summary = [
+  `${counted(done, "milestone")} done`,
+  ...(inProgress > 0 ? [`${inProgress} in progress`] : []),
+  `${planned} planned`,
+].join(", ");
+/**
+ * The gauge's staff is built (chalk) from the ground up to the last of the milestones done without a gap, and
+ * scaffolding (graphite) above it. Each row draws the stretch below its graduation and the stretch above it.
+ */
+const firstOpen = MILESTONES.findIndex((m) => m.state !== "done");
+const builtTo = firstOpen === -1 ? MILESTONES.length : firstOpen;
+const staff = (i: number) => (i < builtTo ? "built" : "scaffold");
 
-/** Open source: what the project is made of, and an honest account of how far along it is. */
+/**
+ * Open source: what the project is made of, and an honest account of how far along it is, drawn as the film's
+ * level gauge standing on hatched ground: the project's own climb toward v1.
+ */
 export function OpenSource() {
   return (
     <Section
       id="open-source"
       title="Read every line of it."
-      lede="Katedrala is MIT licensed and developed in public. The engine, the document contract, the design decisions and the roadmap all live in the repository."
+      lede="Katedrala is MIT licensed. Its engine, document contract, design decisions and roadmap all live in the repository."
     >
-      <div className="grid-12 gap-y-14">
+      <div className="grid-12 gap-y-16">
         <div className="col-span-12 lg:col-span-5">
-          <dl className="grid gap-0">
+          <dl className="os-facts">
             {FACTS.map((fact) => (
-              <div key={fact.title} className="guarantee">
+              <div key={fact.title} className="os-fact">
                 <dt className="text-[0.9375rem] font-semibold text-ink">{fact.title}</dt>
-                <dd className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-soft">
+                <dd className="mt-1.5 max-w-[60ch] text-[0.9375rem] leading-relaxed text-ink-soft">
                   {fact.text}
                 </dd>
               </div>
             ))}
           </dl>
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap gap-3">
             <Button href={LINKS.repository}>View on GitHub</Button>
             <Button href={LINKS.contributing} variant="secondary">
               Contribute
@@ -53,38 +73,29 @@ export function OpenSource() {
         </div>
 
         <div className="col-span-12 lg:col-span-6 lg:col-start-7">
-          <h3 className="subheading">The road to v1</h3>
+          <h3 className="subheading">The road to v1.</h3>
           <p className="mt-3 text-[0.9375rem] text-ink-soft">
-            {done} of {MILESTONES.length} milestones done, {inProgress} in progress. Everything on
-            this page marked in development is on this list.
+            {progress} Everything this page marks as planned for v1 is on this list.
           </p>
-          <svg
-            viewBox={`0 0 ${(MILESTONES.length - 1) * 24 + 12} 12`}
-            className="mt-6 block h-3 w-full max-w-[22rem]"
-            role="img"
-            aria-label={`${done} milestones done, ${inProgress} in progress, ${MILESTONES.length - done - inProgress} planned`}
-          >
-            <line
-              x1={6}
-              y1={6}
-              x2={(MILESTONES.length - 1) * 24 + 6}
-              y2={6}
-              className="milestone-beam"
-            />
+          {/* The list keeps the roadmap's order, 01 to 15; the drawing stands it on the ground, 01 at the foot. */}
+          <ol className="gauge" aria-label={summary}>
             {MILESTONES.map((m, i) => (
-              <MilestoneJoint key={m.name} state={m.state} x={i * 24 + 6} />
-            ))}
-          </svg>
-          <ol className="milestones mt-6">
-            {MILESTONES.map((m, i) => (
-              <li key={m.name} className="milestone" data-state={m.state}>
-                <span className="data text-ink-faint">{String(i + 1).padStart(2, "0")}</span>
-                <span className="milestone-name">{m.name}</span>
-                <span className="milestone-state">{MILESTONE_LABEL[m.state]}</span>
+              <li
+                key={m.name}
+                className="gauge-row"
+                data-state={m.state}
+                data-staff={staff(i)}
+                data-above={staff(i + 1)}
+              >
+                <span className="data gauge-number">{String(i + 1).padStart(2, "0")}</span>
+                <span aria-hidden="true" className="gauge-tick" />
+                <span className="gauge-name">{m.name}</span>
+                <span className="gauge-state">{MILESTONE_LABEL[m.state]}</span>
               </li>
             ))}
           </ol>
-          <p className="mt-5 text-[0.8125rem] text-ink-faint">
+          <div aria-hidden="true" className="gauge-ground ground-hatch" />
+          <p className="footnote mt-4">
             From the{" "}
             <a href={LINKS.roadmap} rel="noopener" className="underline hover:text-ink">
               roadmap
@@ -94,17 +105,5 @@ export function OpenSource() {
         </div>
       </div>
     </Section>
-  );
-}
-
-/** A joint on the construction sequence: filled when done, half filled in progress, open when planned. */
-function MilestoneJoint({ state, x }: { state: MilestoneState; x: number }) {
-  return (
-    <g transform={`translate(${x} 6)`} className="milestone-joint" data-state={state}>
-      <circle r={4.5} />
-      {state === "in-progress" && (
-        <path d="M0 -4.5 A4.5 4.5 0 0 0 0 4.5 Z" className="milestone-joint-half" />
-      )}
-    </g>
   );
 }

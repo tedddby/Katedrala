@@ -2,15 +2,65 @@
  * Rules and evidence.
  * ---------------------------------------------------------------------------------------------- */
 @layer components {
+  /* The violation panel: a header naming the hypothetical change, the drawing, then the report. */
   .violation {
+    display: flex;
+    flex-direction: column;
     border: 1px solid var(--color-rule-strong);
     background: var(--color-sheet);
-    padding: 1rem 1rem 1.25rem;
+  }
+  .violation-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    min-height: 2.6875rem;
+    border-bottom: 1px solid var(--color-rule);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    color: var(--color-ink-faint);
+  }
+  .violation-body {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: 1.25rem 1rem 1rem;
   }
   .violation-report {
-    margin-top: 0.5rem;
+    margin-inline: 1rem;
     border-top: 1px solid var(--color-rule);
-    padding-top: 1rem;
+    padding-block: 1rem 1.25rem;
+  }
+  /* The control that adds or removes the hypothetical import, under the header that names it. */
+  .violation-controls {
+    padding: 1rem 1rem 0;
+  }
+  .rules-toggle {
+    border: 1px solid var(--color-rule-strong);
+    padding: 0.4375rem 0.875rem;
+    font-size: 0.875rem;
+    color: var(--color-ink-soft);
+    transition:
+      color 150ms ease,
+      border-color 150ms ease,
+      transform 120ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .rules-toggle:hover {
+      color: var(--color-ink);
+      border-color: var(--color-ink-faint);
+    }
+  }
+  .rules-toggle:active {
+    transform: scale(0.97);
+  }
+  @media (pointer: coarse) {
+    .rules-toggle {
+      min-height: 2.75rem;
+    }
   }
   .rules-violation {
     fill: none;
@@ -28,13 +78,245 @@
     fill: var(--color-load);
     font-family: var(--font-mono);
     font-size: 11px;
+    font-variation-settings: "wdth" 87.5;
+  }
+  /* The break and its note follow the import: in once it has pulled taut, out at once with it. */
+  .rules-break,
+  .rules-label {
+    transition: opacity 150ms ease;
+  }
+  .violation[data-added="true"] :is(.rules-break, .rules-label) {
+    transition-delay: 220ms;
+  }
+  .violation[data-added="false"] :is(.rules-break, .rules-label) {
+    opacity: 0;
+  }
+  .rules-rule-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--color-load) 45%, transparent);
+    text-underline-offset: 0.25em;
+  }
+  /* Touch: a 44px target around the line, grown in padding the line does not make room for. */
+  @media (pointer: coarse) {
+    .rules-rule-link {
+      display: inline-block;
+      padding-block: 0.875rem;
+      margin-block: -0.875rem;
+    }
+  }
+
+  /*
+   * The leader, drawn over the layout in CSS pixels: from the rule's bracket to the break. It draws itself in
+   * from the rule once the import has pulled taut, and fades at once when the import is removed.
+   */
+  .rules-leader {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .rules-leader path {
+    fill: none;
+    stroke: var(--color-load);
+    stroke-width: 1;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    opacity: 0;
+    transition:
+      opacity 150ms ease,
+      stroke-dashoffset 0s linear 150ms;
+  }
+  .rules-leader circle {
+    fill: var(--color-load);
+    opacity: 0;
+    transition: opacity 120ms ease;
+  }
+  .rules-leader[data-on] path {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transition:
+      opacity 100ms ease 220ms,
+      stroke-dashoffset 380ms var(--ease-out) 220ms;
+  }
+  .rules-leader[data-on] circle {
+    opacity: 1;
+    transition: opacity 150ms ease 520ms;
+  }
+  /* A change made from the keyboard lands at once. */
+  .rules-layout[data-motion="instant"]
+    :is(.rules-break, .rules-label, .code-line-number, .rules-leader path, .rules-leader circle) {
+    transition: none;
+  }
+
+  /*
+   * The landscape drawing's type, in drawing units. Stacked under the configuration it renders between about 550
+   * and 610 CSS pixels wide; beside it, in six columns, between about 430 (1024) and 630; so the units step up
+   * where it renders small and no label drops under 11 pixels.
+   */
+  .violation-landscape .plan-bay-label {
+    font-size: 11.5px;
+  }
+  .violation-landscape .plan-label {
+    font-size: 12.5px;
+  }
+  .violation-landscape .rules-label {
+    font-size: 12px;
+  }
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .violation-landscape .plan-bay-label,
+    .violation-landscape .rules-label {
+      font-size: 12.5px;
+    }
+    .violation-landscape .plan-label {
+      font-size: 13.5px;
+    }
+  }
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .violation-landscape .plan-bay-label,
+    .violation-landscape .rules-label {
+      font-size: 16px;
+    }
+    .violation-landscape .plan-label {
+      font-size: 16.5px;
+    }
+  }
+  @media (min-width: 1280px) and (max-width: 1439px) {
+    .violation-landscape .plan-bay-label,
+    .violation-landscape .rules-label {
+      font-size: 12.5px;
+    }
+    .violation-landscape .plan-label {
+      font-size: 13.5px;
+    }
+  }
+  /* The portrait drawing is drawn for phones: about 300 units across 260 to 330 pixels. */
+  .violation-portrait .plan-bay-label,
+  .violation-portrait .rules-label {
+    font-size: 12.5px;
+  }
+  .violation-portrait .plan-label {
+    font-size: 14.5px;
+  }
+  @media (max-width: 379px) {
+    .violation-portrait .plan-bay-label,
+    .violation-portrait .rules-label {
+      font-size: 13.5px;
+    }
+  }
+  @media (max-width: 639px) {
+    .violation-body {
+      padding: 1.25rem 0.75rem 0.75rem;
+    }
+    .violation-report {
+      margin-inline: 0.75rem;
+    }
+    .violation-controls {
+      padding-inline: 0.75rem;
+    }
+  }
+
+  /*
+   * Evidence: each reason with its arithmetic in mono columns, closed by the score they add up to. As in the
+   * ledger, the value column is exactly "= 0.00" wide and the gap before it one mono space.
+   */
+  .evidence-item,
+  .evidence-sum {
+    display: grid;
+    grid-template-columns: 0.75rem minmax(0, 1fr) auto 3.125rem;
+    column-gap: 0.5rem;
+    align-items: baseline;
   }
   .evidence-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
     border-bottom: 1px solid var(--color-rule);
     padding-bottom: 1rem;
-    color: var(--color-load);
+  }
+  .evidence-mark {
+    align-self: start;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-top: 0.4375rem;
+    color: var(--color-ink-faint);
+  }
+  .evidence-text {
+    padding-left: 0.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+  }
+  .evidence-product {
+    padding-left: 0.5rem;
+    white-space: nowrap;
+    text-align: right;
+    color: var(--color-ink-faint);
+  }
+  .evidence-value {
+    grid-column: 4;
+    white-space: nowrap;
+    text-align: right;
+    color: var(--color-ink);
+  }
+  .evidence-sum {
+    margin-top: 1rem;
+  }
+  .evidence-sum-label {
+    grid-column: 2 / 4;
+    padding-left: 0.25rem;
+    font-size: 0.9375rem;
+    color: var(--color-ink-soft);
+  }
+  /* Phones: the arithmetic moves under its reason, so the reason keeps the full measure. */
+  @media (max-width: 639px) {
+    .evidence-text {
+      grid-column: 2 / -1;
+    }
+    .evidence-product {
+      grid-row: 2;
+      grid-column: 3;
+      margin-top: 0.375rem;
+    }
+    .evidence-item > .evidence-value {
+      grid-row: 2;
+      margin-top: 0.375rem;
+    }
+  }
+}
+
+/*
+ * Forced colors: SVG paint is not forced, so the violation drawing restates itself in system colors, the
+ * violating import in Highlight.
+ */
+@media (forced-colors: active) {
+  .violation .plan-bay rect {
+    fill: Canvas;
+    stroke: GrayText;
+  }
+  .violation .plan-bay-label {
+    fill: GrayText;
+    stroke: Canvas;
+  }
+  .violation .plan-edge,
+  .violation .plan-arrow {
+    stroke: CanvasText;
+  }
+  .violation .plan-joint {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+  .violation .plan-label {
+    fill: CanvasText;
+    stroke: Canvas;
+  }
+  .rules-violation,
+  .rules-break,
+  .violation .plan-arrow-dependency,
+  .rules-leader path {
+    stroke: Highlight;
+  }
+  .rules-label,
+  .rules-leader circle {
+    fill: Highlight;
   }
 }

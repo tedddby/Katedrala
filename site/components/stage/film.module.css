@@ -1,0 +1,1003 @@
+/*
+ * The film: one pinned, scroll-scrubbed track on the drawing sheet. Two layouts, chosen before first paint by the
+ * mode script on <html data-kfilm>: "film" (the sticky stage over a tall track, its length set by the server from
+ * the acts' lengths) and "still" (reduced motion, no usable WebGL 2, or no script: the hero frame with its still
+ * drawing, then the acts' blocks in normal flow, an illustrated article).
+ *
+ * Two compositions, split on the window's aspect exactly where the camera splits its framings (timeline.ts,
+ * width / height 0.95): wide (words left, structure right) and tall (words above and below the structure: phones,
+ * tablets in portrait). Short wide windows (a phone in landscape) scale the words to the height. The words align to
+ * the page frame (82.5rem plus gutters), so the wordmark, the headline and every section share one left edge.
+ */
+.film {
+  --k-sheet: var(--color-sheet, #0e1012);
+  --k-ink: var(--color-ink, #e9e6df);
+  --k-soft: var(--color-ink-soft, #b4b1a9);
+  --k-faint: var(--color-ink-faint, #8b8e92);
+  --k-graphite: var(--color-graphite, #5d6166);
+  --k-rule: var(--color-rule, #24282c);
+  --k-rule-strong: var(--color-rule-strong, #353a3f);
+  --k-load: var(--color-load, #3ea6ff);
+  --k-gutter: var(--page-gutter, clamp(1rem, 4vw, 3rem));
+  /* The page frame's edge, from the frame's own edge: resolved where it is used (100% is that element's width). */
+  --k-edge: max(var(--k-gutter), calc((100% - var(--page-max, 82.5rem)) / 2));
+  --k-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  /* A damped spring (damping ratio 0.55): the words land like the weights, with one small rebound. */
+  --k-spring: linear(
+    0,
+    0.075,
+    0.25,
+    0.464,
+    0.674,
+    0.851,
+    0.984,
+    1.07,
+    1.114,
+    1.126,
+    1.117,
+    1.094,
+    1.067,
+    1.041,
+    1.018,
+    1.002,
+    0.991,
+    0.986,
+    0.984,
+    0.985,
+    0.988,
+    0.992,
+    0.995,
+    0.998,
+    1
+  );
+  --k-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --k-mono: var(--font-martian), ui-monospace, "SFMono-Regular", monospace;
+}
+
+.film {
+  background: var(--k-sheet);
+  color: var(--k-ink);
+}
+
+.section {
+  position: relative;
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * Layout. Still by default; the film takes over when <html data-kfilm="film">.
+ * ------------------------------------------------------------------------------------------------------- */
+
+.track {
+  position: relative;
+}
+
+.sticky {
+  position: relative;
+}
+
+.frame {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 34rem;
+  max-height: 64rem;
+  overflow: hidden;
+  /* Not isolated: on phones the title block (z 5) must sit over the landing's sheet (z 4), outside this frame. */
+  background: var(--k-sheet);
+}
+
+:global(html[data-kfilm="film"]) .track {
+  height: calc(var(--k-track-wide) * 100vh);
+}
+
+:global(html[data-kfilm="film"]) .sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+:global(html[data-kfilm="film"]) .frame {
+  position: absolute;
+  inset: 0;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+}
+
+@media (max-aspect-ratio: 949/1000) {
+  :global(html[data-kfilm="film"]) .track {
+    height: calc(var(--k-track-tall) * 100vh);
+  }
+}
+
+/* Hidden until its first frame is drawn. The film needs no fade (its opening starts from the empty sheet); the
+ * still structure arrives with a short one. */
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 360ms var(--k-ease-out);
+}
+
+:global(html[data-kfilm="film"]) .canvas {
+  transition: none;
+}
+
+.canvas[data-ready] {
+  opacity: 1;
+}
+
+/* Without script nothing draws: no empty canvas. */
+:global(html:not([data-js])) .canvas {
+  display: none;
+}
+
+/* A soft fall-off behind the type, so words read over the finest lines: the narration's side, and the band the
+ * site's navigation crosses while it stays clear over the film. Not a glow: it is the sheet itself. */
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--k-sheet) 72%, transparent) 0,
+      color-mix(in oklab, var(--k-sheet) 34%, transparent) 3.5rem,
+      transparent 6.5rem
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--k-sheet) 78%, transparent) 0%,
+      color-mix(in oklab, var(--k-sheet) 40%, transparent) 30%,
+      transparent 52%
+    );
+}
+
+/* The climb puts the camera inside the structure, which then fills the frame: the narration's corner takes a
+ * darker ground for as long as it lasts (set by the film as data-shade). A legibility scrim, not decoration. */
+@media (min-aspect-ratio: 19/20) {
+  :global(html[data-kfilm="film"]) .frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 62% 58% at 0% 100%,
+      color-mix(in oklab, var(--k-sheet) 94%, transparent) 0%,
+      color-mix(in oklab, var(--k-sheet) 88%, transparent) 42%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 420ms var(--k-ease-out);
+  }
+
+  :global(html[data-kfilm="film"]) .frame[data-shade]::before {
+    opacity: 1;
+  }
+}
+
+@media (max-aspect-ratio: 949/1000) {
+  .frame::after {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--k-sheet) 70%, transparent) 0%,
+      transparent 22%
+    );
+  }
+
+  /* The captions' ground: the foot of the frame darkens once the film narrates, never over the hero's plan. */
+  :global(html[data-kfilm="film"]) .frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      transparent 50%,
+      color-mix(in oklab, var(--k-sheet) 88%, transparent) 78%
+    );
+    opacity: 0;
+    transition: opacity 600ms var(--k-ease-out);
+  }
+
+  :global(html[data-kfilm="film"]) .frame:has(.hero[data-off])::before {
+    opacity: 1;
+  }
+}
+
+.leaders {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.leaders path {
+  fill: none;
+  stroke: var(--k-faint);
+  stroke-width: 1;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.leaders path[data-on] {
+  opacity: 0.85;
+}
+
+.leaders path[data-active] {
+  stroke: var(--k-load);
+}
+
+/* The photograph's crop marks: hairlines, the faintest ink. Opacity is set frame by frame. */
+.leaders path[data-crop] {
+  stroke: var(--k-faint);
+  stroke-width: 1.25;
+  stroke-linecap: square;
+  transition: none;
+}
+
+.labels {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* A label knocks the drawing out behind it, as lettering on a drawing does. Long paths break after a slash. */
+.labels [data-label] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  gap: 0.15rem;
+  max-width: min(30rem, calc(100% - 2rem));
+  padding: 0.3rem 0.4rem 0.4rem;
+  margin: 0 -0.4rem;
+  background: color-mix(in oklab, var(--k-sheet) 88%, transparent);
+  opacity: 0;
+  transition: opacity 180ms ease;
+  will-change: transform;
+}
+
+@media (max-width: 767px) {
+  .labels [data-label] {
+    max-width: min(17.5rem, calc(100% - 2rem));
+  }
+}
+
+.labels [data-label][data-on] {
+  opacity: 1;
+}
+
+.labels [data-label] code {
+  font-family: var(--k-mono);
+  font-size: 0.75rem;
+  font-variation-settings: "wdth" 87.5;
+  letter-spacing: -0.01em;
+  color: var(--k-ink);
+}
+
+.labels [data-label] > span {
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: var(--k-soft);
+}
+
+/* A part of the drawing named (a directory on the plan): one line of the mono face at its smallest. */
+.labels [data-label][data-micro] {
+  padding: 0.15rem 0.35rem 0.2rem;
+}
+
+.labels [data-label][data-micro] code {
+  font-size: 0.6875rem;
+  color: var(--k-soft);
+}
+
+.labels [data-label][data-micro] > span {
+  display: none;
+}
+
+.leaders path[data-micro][data-on] {
+  opacity: 0.55;
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * The hero copy: headline, one sentence, two actions.
+ * ------------------------------------------------------------------------------------------------------- */
+
+.hero {
+  position: absolute;
+  z-index: 4;
+  left: var(--k-edge);
+  top: clamp(7.5rem, 27vh, 15rem);
+  width: min(38rem, 42vw);
+  transition:
+    opacity 520ms var(--k-ease-out),
+    transform 700ms var(--k-ease-out);
+}
+
+/*
+ * Once the film runs the hero steps out of the picture, but stays in the page: the h1 and the actions remain in
+ * the accessibility tree and in the tab order wherever the film is, and a control that takes focus brings the
+ * hero back over the drawing (so nothing focused is ever invisible).
+ */
+.hero[data-off] {
+  opacity: 0;
+  transform: translateY(-1.75rem);
+  pointer-events: none;
+  transition:
+    opacity 240ms ease,
+    transform 420ms var(--k-ease-out);
+}
+
+.hero[data-off]:focus-within {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition:
+    opacity 200ms var(--k-ease-out),
+    transform 260ms var(--k-ease-out);
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--k-display);
+  font-size: clamp(2.75rem, 0.9rem + 4.9vw, 5.75rem);
+  font-weight: 640;
+  font-variation-settings: "wdth" 76;
+  line-height: 0.93;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
+.hword {
+  display: inline-block;
+  animation:
+    k-drop 900ms var(--k-spring) both,
+    k-fade 260ms ease-out both;
+  animation-delay: calc(140ms + var(--w) * 70ms);
+}
+
+@keyframes k-drop {
+  from {
+    transform: translateY(-0.5em);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes k-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lede {
+  margin: 1.5rem 0 0;
+  max-width: 31rem;
+  font-size: clamp(1.0625rem, 0.95rem + 0.35vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--k-soft);
+  text-wrap: pretty;
+  animation: k-fade 600ms ease-out 520ms both;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-top: 2rem;
+  animation: k-fade 600ms ease-out 640ms both;
+}
+
+/* The actions are the site's buttons (ui/Button); the film only fits them to its frames. */
+.actions > a {
+  flex: none;
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * The drawing's title block: what this is, always on screen.
+ * ------------------------------------------------------------------------------------------------------- */
+
+/* Like the labels, it knocks the drawing out behind it so it reads over the ground's hatching. */
+.titleblock {
+  position: absolute;
+  z-index: 4;
+  right: calc(var(--k-edge) - 0.4rem);
+  bottom: calc(1.25rem - 0.3rem);
+  display: grid;
+  justify-items: end;
+  gap: 0.2rem;
+  margin: 0;
+  padding: 0.3rem 0.4rem;
+  background: color-mix(in oklab, var(--k-sheet) 88%, transparent);
+  font-family: var(--k-mono);
+  font-size: 0.6875rem;
+  font-variation-settings: "wdth" 87.5;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--k-faint);
+  text-align: right;
+}
+
+.titleblock span:first-child {
+  color: var(--k-soft);
+}
+
+/* Without WebGL, the title block says so on a third line. */
+.titleblock .fallbackNote {
+  color: var(--k-faint);
+}
+
+.titleblock .fallbackNote[hidden] {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * Captions: the narration's visible form in the film. They sit over the frame and drop in word by word; hidden from
+ * assistive technology (the narration block carries the words) and absent from the still layout (the block is the
+ * article there).
+ * ------------------------------------------------------------------------------------------------------- */
+
+.captions {
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.caption {
+  margin: 0;
+}
+
+.captionTitle {
+  margin: 0;
+  font-family: var(--k-display);
+  font-size: clamp(1.625rem, 1.05rem + 1.5vw, 2.625rem);
+  font-weight: 620;
+  font-variation-settings: "wdth" 80;
+  line-height: 1.02;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+
+.captionTitle code,
+.captionBody code {
+  font-family: var(--k-mono);
+  font-variation-settings: "wdth" 87.5;
+  letter-spacing: -0.03em;
+}
+
+.captionTitle code {
+  font-size: 0.72em;
+  font-weight: 500;
+}
+
+.captionBody {
+  margin: 0.875rem 0 0;
+  max-width: 36ch;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--k-soft);
+  text-wrap: pretty;
+}
+
+.captionBody code {
+  font-size: 0.86em;
+  color: var(--k-ink);
+}
+
+.word,
+.turns {
+  display: inline-block;
+}
+
+.turns {
+  transform-origin: 50% 54%;
+}
+
+/*
+ * The narration column: narrow enough that every title breaks into at most two balanced lines and stays clear of
+ * the drawing, which the camera keeps right of it. The captions stay in the accessibility tree wherever the film
+ * is (the transcript); only their words are shown and hidden, and they never take the pointer from the drawing.
+ */
+:global(html[data-kfilm="film"]) .captions {
+  position: absolute;
+  z-index: 4;
+  left: var(--k-edge);
+  bottom: clamp(2.5rem, 9vh, 5.5rem);
+  width: min(27rem, 34vw);
+  padding: 0;
+  display: block;
+  pointer-events: none;
+}
+
+:global(html[data-kfilm="film"]) .caption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+/*
+ * Arriving words come from above, the way the weights drop; leaving words sink away, faster. Captions follow one
+ * another in one place, so the arriving words wait a beat (--k-cut) for the leaving ones to clear: the change
+ * reads as a cut, never as two sentences printed over each other.
+ */
+:global(html[data-kfilm="film"]) .caption {
+  --k-cut: 110ms;
+}
+
+:global(html[data-kfilm="film"]) .caption .word,
+:global(html[data-kfilm="film"]) .caption .turns {
+  opacity: 0;
+  transition: opacity 130ms ease;
+}
+
+:global(html[data-kfilm="film"]) .caption .word {
+  transform: translateY(0.3em);
+  transition:
+    opacity 130ms ease,
+    transform 180ms ease;
+}
+
+:global(html[data-kfilm="film"]) .caption[data-on] .word {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 380ms var(--k-ease-out) calc(var(--k-cut) + var(--w) * 42ms),
+    transform 860ms var(--k-spring) calc(var(--k-cut) + var(--w) * 42ms);
+}
+
+/* The turning word's rotation is driven by the turn itself, frame by frame: only its opacity transitions. */
+:global(html[data-kfilm="film"]) .caption[data-on] .turns {
+  opacity: 1;
+  transition: opacity 380ms var(--k-ease-out) calc(var(--k-cut) + var(--w) * 42ms);
+}
+
+:global(html[data-kfilm="film"]) .caption[data-on] .captionTitle .word {
+  animation: k-drop 860ms var(--k-spring) both;
+  animation-delay: calc(var(--k-cut) + var(--w) * 42ms);
+}
+
+:global(html[data-kfilm="film"]) .caption[data-on] .captionBody .word {
+  transition-delay: calc(var(--k-cut) + 180ms + var(--w) * 14ms);
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * The climb: a level readout and a scale of the sixteen levels.
+ * ------------------------------------------------------------------------------------------------------- */
+
+.gauge {
+  display: none;
+}
+
+/* Like the labels, it knocks the drawing out behind it: during the climb the structure fills the frame. */
+:global(html[data-kfilm="film"]) .gauge {
+  position: absolute;
+  z-index: 4;
+  right: calc(var(--k-edge) - 0.75rem);
+  top: 50%;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  column-gap: 1.25rem;
+  align-items: end;
+  padding: 0.875rem 0.75rem 0.75rem 1rem;
+  background: color-mix(in oklab, var(--k-sheet) 88%, transparent);
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 260ms ease,
+    visibility 0s linear 260ms;
+}
+
+:global(html[data-kfilm="film"]) .gauge[data-on] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 500ms var(--k-ease-out);
+}
+
+.gaugeValue {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--k-mono);
+  font-size: clamp(3.25rem, 1.8rem + 4vw, 6.5rem);
+  font-weight: 300;
+  font-variation-settings: "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  text-align: right;
+}
+
+/* Graphite is never text: the sign takes the faintest ink. */
+.gaugeSign {
+  color: var(--k-faint);
+}
+
+.gaugeLabel {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--k-faint);
+  text-align: right;
+}
+
+.gaugeTicks {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: grid;
+  gap: 0.45rem;
+  align-self: center;
+}
+
+.tick {
+  display: block;
+  width: 0.75rem;
+  height: 1px;
+  background: var(--k-graphite);
+  transition:
+    width 200ms var(--k-ease-out),
+    background-color 200ms ease;
+}
+
+.tick[data-passed] {
+  background: var(--k-soft);
+}
+
+.tick[data-current] {
+  width: 1.5rem;
+  height: 2px;
+  background: var(--k-load);
+}
+
+/* The end of the film: at the top of the window when jumped to (the page's scroll padding for the bar would leave
+ * a strip of the frame showing under it). It can take focus there, and draws nothing. */
+.end {
+  height: 0;
+  outline: none;
+  scroll-margin-top: -5rem;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * One text, two presentations. Each act's block (its h2, narration, record and controls) sits in a slot after the
+ * frame, in reading order. In the film the slots are placed at their acts' anchors on the track, so a block that is
+ * read (or found) lands the film on its act; the visible words are the captions. In the still layout the slots are
+ * the article, in normal flow. The anchors (#film-start, #evidence, #impact, #trace) are empty marks at the same
+ * places: in the film the window stops exactly on the beat (they cancel the page's scroll padding: the frame is
+ * pinned under a clear bar), in the still layout just above the block.
+ * ------------------------------------------------------------------------------------------------------- */
+
+.anchor {
+  display: block;
+  height: 0;
+}
+
+:global(html[data-kfilm="film"]) .anchor {
+  position: absolute;
+  left: 0;
+  top: calc(var(--k-at-wide) * 100vh);
+  scroll-margin-top: -5rem;
+}
+
+:global(html[data-kfilm="film"]) .slot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--k-at-wide) * 100vh);
+}
+
+/*
+ * The landing's block holds controls the visitor uses with the drawing: in the film it is pinned over the frame for
+ * the whole act (from the act's start to the end of the track, where it leaves with the frame). Empty where it does
+ * not draw, so the pointer still reaches the drawing.
+ */
+:global(html[data-kfilm="film"]) .slotPinned {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  margin-top: calc(var(--k-from-wide) * 100vh - 100vh);
+  margin-top: calc(var(--k-from-wide) * 100vh - 100svh);
+  pointer-events: none;
+}
+
+@media (max-aspect-ratio: 949/1000) {
+  :global(html[data-kfilm="film"]) .anchor,
+  :global(html[data-kfilm="film"]) .slot {
+    top: calc(var(--k-at-tall) * 100vh);
+  }
+
+  :global(html[data-kfilm="film"]) .slotPinned {
+    margin-top: calc(var(--k-from-tall) * 100vh - 100vh);
+    margin-top: calc(var(--k-from-tall) * 100vh - 100svh);
+  }
+}
+
+/* The acts' words over the drawing: only in the film (the still layout's figures carry their own). */
+.layer {
+  display: none;
+}
+
+:global(html[data-kfilm="film"]) .layer {
+  display: block;
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+}
+
+/*
+ * Act I's narration. In the film it is read, not seen (the captions show its words). In the still layout it is the
+ * article under the hero frame: every beat as a heading-sized sentence and its line, on the page frame.
+ */
+.narration {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  gap: 2.5rem clamp(1.5rem, 3vw, 3rem);
+  padding: 3rem var(--k-edge) clamp(4rem, 9vh, 6rem);
+}
+
+:global(html[data-kfilm="film"]) .narration {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.beat {
+  margin: 0;
+}
+
+.beatTitle {
+  margin: 0;
+  font-family: var(--k-display);
+  font-size: clamp(1.625rem, 1.05rem + 1.5vw, 2.625rem);
+  font-weight: 620;
+  font-variation-settings: "wdth" 80;
+  line-height: 1.02;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+
+.beatBody {
+  margin: 0.875rem 0 0;
+  max-width: 36ch;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--k-soft);
+  text-wrap: pretty;
+}
+
+.beatTitle code,
+.beatBody code {
+  font-family: var(--k-mono);
+  font-variation-settings: "wdth" 87.5;
+  letter-spacing: -0.03em;
+}
+
+.beatTitle code {
+  font-size: 0.72em;
+  font-weight: 500;
+}
+
+.beatBody code {
+  font-size: 0.86em;
+  color: var(--k-ink);
+}
+
+/*
+ * An act's still figure (StillFigure.tsx): its drawing in the still layout, framed like the hero's (wide on wide
+ * windows, tall on phones), with its labels and leaders. Absent from the film and without script.
+ */
+.still {
+  display: none;
+}
+
+:global(html[data-kfilm="still"]) .still {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 2.5rem 0 0;
+  aspect-ratio: 16 / 10;
+  max-height: 64rem;
+  background: var(--k-sheet);
+}
+
+@media (max-aspect-ratio: 949/1000) {
+  :global(html[data-kfilm="still"]) .still {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.stillLayer {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * Tall windows (phones, tablets in portrait): a deliberate portrait film, composed for the camera's tall
+ * framing. Words own the top and the bottom, the structure the middle.
+ * ------------------------------------------------------------------------------------------------------- */
+
+@media (max-aspect-ratio: 949/1000) {
+  .hero {
+    left: var(--k-edge);
+    right: var(--k-edge);
+    top: 5.5rem;
+    width: auto;
+  }
+
+  .headline {
+    font-size: clamp(2.5rem, 1.2rem + 6.4vw, 4.75rem);
+    line-height: 0.95;
+  }
+
+  .lede {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+
+  .actions {
+    margin-top: 1.25rem;
+    gap: 0.5rem;
+  }
+
+  .actions > a {
+    padding-inline: 1rem;
+  }
+
+  /* At the foot of the frame, under the drawing it names (above the headline it would read as a label). Three
+   * lines; the captions and the landing keep clear of them. */
+  .titleblock {
+    z-index: 5;
+    left: calc(var(--k-edge) - 0.4rem);
+    right: auto;
+    bottom: calc(0.575rem + env(safe-area-inset-bottom, 0px));
+    justify-items: start;
+    text-align: left;
+    font-size: 0.6875rem;
+  }
+
+  :global(html[data-kfilm="film"]) .captions {
+    left: var(--k-edge);
+    right: var(--k-edge);
+    bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+    width: auto;
+    max-width: 34rem;
+  }
+
+  .captionTitle {
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 1.875rem);
+  }
+
+  .captionBody {
+    margin-top: 0.625rem;
+    font-size: 0.9375rem;
+  }
+
+  .beatTitle {
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 1.875rem);
+  }
+
+  .beatBody {
+    margin-top: 0.625rem;
+    font-size: 0.9375rem;
+  }
+
+  :global(html[data-kfilm="film"]) .gauge {
+    right: calc(var(--k-edge) - 0.5rem);
+    top: 4.75rem;
+    transform: none;
+    column-gap: 0.75rem;
+    padding: 0.625rem 0.5rem 0.5rem 0.75rem;
+  }
+
+  .gaugeValue {
+    font-size: 3rem;
+  }
+
+  .gaugeLabel {
+    font-size: 0.75rem;
+  }
+
+  .gaugeTicks {
+    gap: 0.3rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * Short wide windows (a phone turned to landscape, a small laptop window): the hero and the narration are scaled
+ * to the height, so nothing runs under the bar or off the foot of the frame.
+ * ------------------------------------------------------------------------------------------------------- */
+
+@media (max-height: 560px) and (min-aspect-ratio: 19/20) {
+  .hero {
+    top: 4.75rem;
+    width: min(38rem, 48vw);
+  }
+
+  .headline {
+    font-size: min(clamp(2.75rem, 0.9rem + 4.9vw, 5.75rem), 12vh);
+  }
+
+  .lede {
+    margin-top: 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+
+  .actions {
+    margin-top: 1rem;
+  }
+
+  :global(html[data-kfilm="film"]) .captions {
+    bottom: 1.5rem;
+    width: min(27rem, 42vw);
+  }
+
+  .captionTitle {
+    font-size: min(clamp(1.625rem, 1.05rem + 1.5vw, 2.625rem), 7.5vh);
+  }
+
+  .captionBody {
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+
+  .gaugeValue {
+    font-size: min(clamp(3.25rem, 1.8rem + 4vw, 6.5rem), 15vh);
+  }
+}
+
+/* A fine pointer gets the compact button there; a phone keeps the 44px target. */
+@media (max-height: 560px) and (min-aspect-ratio: 19/20) and (pointer: fine) {
+  .actions > a {
+    height: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hword,
+  .lede,
+  .actions {
+    animation: none;
+  }
+}

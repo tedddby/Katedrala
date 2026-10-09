@@ -1,0 +1,230 @@
+/* ------------------------------------------------------------------------------------------------
+ * The plate kit: what every plate after the film shares with it, so the demonstration speaks the film's
+ * drawing language without repeating its spectacle.
+ *
+ *   Section `status`     the status marks on their own line under the heading, before the lede
+ *   <Plate>  .sheet      a drawing's sheet: four crop marks at its corners where a box would stand, and its
+ *                        title block at the bottom right; never a card, never decoration around nothing
+ *   <TitleBlock>         what the drawing is of (line 1), one computed fact (line 2), its status (line 3), in
+ *                        the film's mono micro type on a knock-out ground
+ *   <CropMarks>          the four marks alone, for a positioned element that is not a <Plate>
+ *   bleed-left, bleed-right, bleed-x, bleed-none
+ *                        a sheet or band runs past the page frame to the window's edge on that side (Tailwind
+ *                        utilities, so `lg:bleed-right` works); the crop marks on a bleeding side are dropped
+ *   .gauge-numerals      the film's level-gauge figures, only where a score is the subject
+ *   .leader-label        the film's label: a mono name, a short note, a knock-out ground (HTML over a drawing)
+ *   .leader              a hairline leader from a label to its joint (SVG paths); [data-active] in load blue
+ * ---------------------------------------------------------------------------------------------- */
+
+/*
+ * The distance from the page frame's content edge to the window's edge. Computed where the frame sits in its
+ * plate, against the plate's own width (a size container, so the scrollbar is not counted), and inherited as a
+ * fixed length so nothing nested can change what it means.
+ */
+@property --bleed {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+:root {
+  --bleed: max(var(--page-gutter), (100vw - var(--page-max)) / 2);
+}
+
+@layer components {
+  .section > .frame {
+    --bleed: max(var(--page-gutter), (100cqw - var(--page-max)) / 2);
+  }
+
+  /* --- Status under the heading ------------------------------------------------------------------ */
+
+  .status-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    margin-top: 1.125rem;
+  }
+
+  /* --- The sheet ------------------------------------------------------------------------------------ */
+
+  .sheet {
+    --sheet-pad: clamp(1rem, 2.5vw, 2rem);
+    position: relative;
+    padding: var(--sheet-pad);
+  }
+
+  /* 12 px arms, 1 px, the faintest ink: the film's photograph, at the sheet's four corners. */
+  .crop-marks {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .crop-marks > span {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 0 solid var(--color-ink-faint);
+  }
+  .crop-marks > [data-corner="top-start"] {
+    top: 0;
+    inset-inline-start: 0;
+    border-top-width: 1px;
+    border-inline-start-width: 1px;
+    visibility: var(--crop-start, visible);
+  }
+  .crop-marks > [data-corner="top-end"] {
+    top: 0;
+    inset-inline-end: 0;
+    border-top-width: 1px;
+    border-inline-end-width: 1px;
+    visibility: var(--crop-end, visible);
+  }
+  .crop-marks > [data-corner="bottom-end"] {
+    bottom: 0;
+    inset-inline-end: 0;
+    border-bottom-width: 1px;
+    border-inline-end-width: 1px;
+    visibility: var(--crop-end, visible);
+  }
+  .crop-marks > [data-corner="bottom-start"] {
+    bottom: 0;
+    inset-inline-start: 0;
+    border-bottom-width: 1px;
+    border-inline-start-width: 1px;
+    visibility: var(--crop-start, visible);
+  }
+
+  /* --- The title block ------------------------------------------------------------------------------ */
+
+  /*
+   * As the film sets it: mono micro type, right-aligned, the subject a step brighter than the rest, on a ground
+   * that knocks the drawing out behind it. In flow it sits at the right of its line. On a sheet it sits under the
+   * drawing on phones, where drawings fill the width, and over the drawing's bottom right corner, inside the crop
+   * marks, from 768 px; data-place pins either placement at every width.
+   */
+  .titleblock {
+    display: grid;
+    justify-items: end;
+    gap: 0.2rem;
+    width: max-content;
+    max-width: 100%;
+    margin: 0 0 0 auto;
+    padding: 0.3rem 0.4rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+    text-align: right;
+    color: var(--color-ink-faint);
+    background: color-mix(in oklab, var(--color-sheet) 88%, transparent);
+  }
+  .titleblock > :first-child {
+    color: var(--color-ink-soft);
+  }
+  .sheet > .titleblock {
+    margin-top: 0.75rem;
+    margin-inline-end: -0.4rem;
+    max-width: calc(100% + 0.8rem);
+  }
+  .sheet > .titleblock[data-place="overlay"] {
+    position: absolute;
+    z-index: 1;
+    inset-inline-end: calc(var(--sheet-pad) - 0.4rem);
+    bottom: calc(var(--sheet-pad) - 0.3rem);
+    max-width: calc(100% - 2 * var(--sheet-pad) + 0.8rem);
+    margin: 0;
+  }
+  @media (min-width: 768px) {
+    .sheet > .titleblock:not([data-place]) {
+      position: absolute;
+      z-index: 1;
+      inset-inline-end: calc(var(--sheet-pad) - 0.4rem);
+      bottom: calc(var(--sheet-pad) - 0.3rem);
+      max-width: calc(100% - 2 * var(--sheet-pad) + 0.8rem);
+      margin: 0;
+    }
+  }
+
+  /* --- Gauge numerals ------------------------------------------------------------------------------- */
+
+  /* The film's level-gauge type. Load blue (text-load) only when the value measures the active member. */
+  .gauge-numerals {
+    font-family: var(--font-mono);
+    font-size: var(--text-gauge);
+    font-weight: 300;
+    font-variation-settings: "wdth" 87.5;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+  }
+
+  /* --- Leader-line labels --------------------------------------------------------------------------- */
+
+  .leader-label {
+    display: grid;
+    gap: 0.15rem;
+    width: max-content;
+    max-width: min(30rem, 100%);
+    padding: 0.3rem 0.4rem 0.4rem;
+    margin-inline: -0.4rem;
+    background: color-mix(in oklab, var(--color-sheet) 88%, transparent);
+  }
+  .leader-label > code {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-variation-settings: "wdth" 87.5;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+  .leader-label > span {
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    color: var(--color-ink-soft);
+  }
+  .leader {
+    fill: none;
+    stroke: var(--color-ink-faint);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+  .leader[data-active] {
+    stroke: var(--color-load);
+  }
+}
+
+/* --- Bleeds ------------------------------------------------------------------------------------------ */
+
+@utility bleed-left {
+  margin-inline-start: calc(-1 * var(--bleed));
+  --crop-start: hidden;
+}
+@utility bleed-right {
+  margin-inline-end: calc(-1 * var(--bleed));
+  --crop-end: hidden;
+}
+@utility bleed-x {
+  margin-inline: calc(-1 * var(--bleed));
+  --crop-start: hidden;
+  --crop-end: hidden;
+}
+/* Back inside the frame at a breakpoint, e.g. `bleed-x lg:bleed-none`. */
+@utility bleed-none {
+  margin-inline: 0;
+  --crop-start: visible;
+  --crop-end: visible;
+}
+
+/* Forced colors: the knock-out grounds give way to the system's, and the leaders keep a visible stroke. */
+@media (forced-colors: active) {
+  .titleblock,
+  .leader-label {
+    background: Canvas;
+  }
+  .leader {
+    stroke: CanvasText;
+  }
+  .leader[data-active] {
+    stroke: Highlight;
+  }
+}

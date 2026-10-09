@@ -1,14 +1,41 @@
 /* ------------------------------------------------------------------------------------------------
- * Choices, tributary drawings and term bars.
+ * Gravity: member choices, the tributary schedule small screens read instead of the drawing, and
+ * the ledger of weighted terms on its load line and the gauge numerals (both shared with Entropy).
  * ---------------------------------------------------------------------------------------------- */
 @layer components {
+  /* Gauge numerals: the film's level-gauge type, only where a score is the subject (Gravity and Entropy). */
+  .score-gauge {
+    font-family: var(--font-mono);
+    font-size: var(--text-gauge, clamp(3.25rem, 1.8rem + 4vw, 6.5rem));
+    font-weight: 300;
+    font-variation-settings: "wdth" 87.5;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    color: var(--color-ink);
+  }
+
+  /*
+   * The member choices: a schedule strip under the drawing, each cell the member's name over its score. Cells
+   * grow to share the row, so a row that wraps never leaves one member alone at its end.
+   */
+  .choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    container-type: inline-size;
+  }
   .choice {
     display: inline-flex;
-    align-items: baseline;
-    gap: 0.625rem;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
     border: 1px solid var(--color-rule-strong);
-    padding: 0.5rem 0.875rem;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
     font-size: 0.875rem;
+    line-height: 1.35;
     color: var(--color-ink-soft);
     transition:
       color 150ms ease,
@@ -16,61 +43,354 @@
       background-color 150ms ease,
       transform 120ms var(--ease-out);
   }
-  .choice:hover {
-    color: var(--color-ink);
-    border-color: var(--color-ink-faint);
+  @media (hover: hover) and (pointer: fine) {
+    .choice:hover {
+      color: var(--color-ink);
+      border-color: var(--color-ink-faint);
+    }
   }
   .choice:active {
     transform: scale(0.97);
   }
-  .choice[aria-checked="true"],
-  .choice[aria-pressed="true"] {
+  .choice[aria-checked="true"] {
     border-color: var(--color-ink);
     color: var(--color-ink);
     background: var(--color-sheet-raised);
   }
-  .choice[aria-checked="true"] .data,
-  .choice[aria-pressed="true"] .data {
+  .choice[aria-checked="true"] .data {
     color: var(--color-load);
   }
+  /* Too narrow for all five, wide enough for four: three to a row, so the last row holds two. */
+  @container (min-width: 32rem) and (max-width: 41.5rem) {
+    .choice {
+      flex-basis: calc((100% - 0.75rem) / 3);
+    }
+  }
+  /* Touch: the two lines of a cell already make it more than a 44px target. */
 
-  .tributary-edge {
-    stroke: var(--color-ink-faint);
-    stroke-width: 1.2;
-    opacity: 0.7;
+  /* The tributary on small screens: one row per load level, down to the member that carries it. */
+  .schedule-level {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    align-items: baseline;
+    column-gap: 0.75rem;
+    padding-block: 0.625rem;
+    border-top: 1px solid var(--color-rule);
   }
-  .tributary-edge.is-into {
-    stroke: var(--color-load);
-    stroke-width: 2;
-    opacity: 1;
+  .schedule-level-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-variation-settings: "wdth" 87.5;
+    color: var(--color-ink-faint);
   }
-  .tributary-member {
-    transition: transform 380ms var(--ease-out);
+  .schedule-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem 1.25rem;
   }
-  .tributary-joint {
-    fill: var(--color-sheet);
-    stroke: var(--color-ink);
-    stroke-width: 1.4;
+  .schedule-member {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 520;
+    font-variation-settings: "wdth" 84;
+    color: var(--color-ink);
   }
-  .tributary-joint.is-selected {
-    fill: var(--color-load);
-    stroke: var(--color-load);
+  .schedule-joint {
+    flex: none;
+    width: 0.625rem;
+    height: 0.625rem;
+    border: 1.5px solid var(--color-load);
+    border-radius: 50%;
+    background: var(--color-sheet);
+    transition: background-color 180ms ease;
   }
-  .tributary-empty {
-    fill: var(--color-ink-faint);
-    font-size: 15px;
-  }
-
-  .term-track {
-    display: block;
-    flex: 1;
-    height: 6px;
-  }
-  .term-bar {
-    display: block;
-    height: 100%;
+  .schedule-member[data-relation="active"] .schedule-joint {
     background: var(--color-load);
+  }
+  /* A member the shown term does not light keeps its place on its level, in the drawing's quiet ink. */
+  .schedule-member[data-relation="quiet"] {
+    color: var(--color-ink-faint);
+  }
+  .schedule-member[data-relation="quiet"] .schedule-joint {
+    border-color: var(--color-graphite);
+  }
+  .schedule-member {
+    transition: color 150ms ease;
+  }
+  .schedule-joint {
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease;
+  }
+  .schedule[data-arrival="instant"] :is(.schedule-member, .schedule-joint) {
+    transition: none;
+  }
+
+  /* The score, in gauge numerals and load blue: it measures the member under test. */
+  .gravity-score {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 1rem;
+    row-gap: 0.5rem;
+  }
+
+  /*
+   * Under each term: the reason it adds what it adds, and a toggle that lights its evidence in the drawing. The
+   * toggle's joint is filled in load blue while its evidence is lit, as the drawing's lit members are.
+   */
+  .term > .term-evidence {
+    grid-column: 1 / -1;
+  }
+  .term-evidence {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem 1.25rem;
+    margin-top: 0.5rem;
+  }
+  .term-reason {
+    max-width: 52ch;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+  }
+  .term-show {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px dashed var(--color-rule-strong);
+    padding: 0.25rem 0.625rem;
+    font-size: 0.8125rem;
+    color: var(--color-ink-faint);
+    transition:
+      color 150ms ease,
+      border-color 150ms ease,
+      transform 120ms var(--ease-out);
+  }
+  .term-show[aria-pressed="true"] {
+    border-style: solid;
+    border-color: var(--color-ink-faint);
+    color: var(--color-ink);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .term-show:hover {
+      color: var(--color-ink);
+      border-color: var(--color-ink-faint);
+    }
+  }
+  .term-show:active {
+    transform: scale(0.97);
+  }
+  .term-show-joint {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1.25px solid var(--color-ink-faint);
+    border-radius: 50%;
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease;
+  }
+  .term-show[aria-pressed="true"] .term-show-joint {
+    border-color: var(--color-load);
+    background: var(--color-load);
+  }
+  /* Touch: a 44px target around the small control, grown in its own padding. */
+  @media (pointer: coarse) {
+    .term-show {
+      min-height: 2.75rem;
+      padding-inline: 0.875rem;
+    }
+  }
+  /* The last level closes on a rule; a foundation stands on hatched ground, as in the drawings. */
+  .schedule-base {
+    border-top: 1px solid var(--color-rule);
+  }
+  .schedule-ground {
+    height: 0.625rem;
+    border-top: 1.25px solid var(--color-graphite);
+    opacity: 0.85;
+  }
+
+  /*
+   * A score's ledger: per term, what was measured, then the normalized value times the weight equal to what
+   * the term adds, in mono columns that line up; the term's vector runs beneath it on the score's 0 to 1 load
+   * line, and the sum closes the line with the resultant.
+   */
+  .ledger {
+    /* The value column is exactly "= 0.00" wide in the mono, so with a half-rem gap the arithmetic reads with
+       even spacing: 0.95 × 0.40 = 0.38. */
+    --ledger-columns: minmax(0, 1fr) auto 3.125rem;
+    container-type: inline-size;
+  }
+  .ledger-head {
+    display: grid;
+    grid-template-columns: var(--ledger-columns);
+    column-gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-faint);
+  }
+  .ledger-head > span {
+    grid-column: 2;
+    text-align: right;
+  }
+  .ledger-terms {
+    display: grid;
+    gap: 0.875rem;
+    padding-top: 0.875rem;
+  }
+  .term,
+  .ledger-sum {
+    display: grid;
+    grid-template-columns: var(--ledger-columns);
+    column-gap: 0.5rem;
+    align-items: baseline;
+    font-size: 0.875rem;
+  }
+  .term-label {
+    min-width: 0;
+  }
+  .term-product {
+    grid-column: 2;
+    padding-left: 0.5rem;
+    white-space: nowrap;
+    text-align: right;
+    color: var(--color-ink-faint);
+  }
+  .term-value {
+    grid-column: 3;
+    white-space: nowrap;
+    text-align: right;
+    color: var(--color-ink);
+  }
+  .term > :is(.term-vector, p),
+  .ledger-sum > .term-vector {
+    grid-column: 1 / -1;
+  }
+  /* A narrow ledger gives a term with its measurement the whole first line, and its arithmetic the next, so
+     neither the measurement nor the label breaks mid-phrase. */
+  @container (max-width: 26rem) {
+    .term[data-measured] > .term-label {
+      grid-column: 1 / -1;
+    }
+    .term[data-measured] > :is(.term-product, .term-value) {
+      margin-top: 0.25rem;
+    }
+  }
+  .ledger-sum {
+    margin-top: 1rem;
+    border-top: 1px solid var(--color-rule-strong);
+    padding-top: 0.875rem;
+  }
+  .ledger-sum > .term-label {
+    color: var(--color-ink-soft);
+  }
+
+  /* A term's vector: a hairline load line, the term as an arrow from its tail to its head. */
+  .term-vector {
+    position: relative;
+    display: block;
+    height: 0.75rem;
+    margin-top: 0.375rem;
+    overflow: hidden;
+  }
+  .term-vector::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    border-top: 1px solid var(--color-rule);
+  }
+  .term-vector-shaft {
+    position: absolute;
+    left: 0;
+    top: calc(50% - 1px);
+    width: 100%;
+    border-top: 2px solid var(--color-ink-soft);
     transform-origin: left center;
     transition: transform 360ms var(--ease-out);
+  }
+  .term-vector-mark {
+    position: absolute;
+    inset: 0;
+    transition: transform 360ms var(--ease-out);
+  }
+  .term-vector-tail {
+    position: absolute;
+    left: 0;
+    top: 0.125rem;
+    bottom: 0.125rem;
+    border-left: 1px solid var(--color-ink-faint);
+  }
+  .term-vector-head {
+    position: absolute;
+    left: -7px;
+    top: calc(50% - 4px);
+    width: 8px;
+    height: 8px;
+    overflow: visible;
+    fill: none;
+    stroke: var(--color-ink-soft);
+    stroke-width: 1.4;
+    stroke-linejoin: round;
+    transition: opacity 150ms ease;
+  }
+  .term-vector[data-empty="true"] .term-vector-head {
+    opacity: 0;
+  }
+  /* The resultant: the member's gravity, the load it holds, drawn in load blue. */
+  .term-vector[data-resultant="true"] .term-vector-shaft {
+    top: calc(50% - 1.5px);
+    border-top: 3px solid var(--color-load);
+  }
+  .term-vector[data-resultant="true"] .term-vector-head {
+    stroke: var(--color-load);
+  }
+}
+
+/* Forced colors: keep the chosen member and the load line visible when the palette is replaced. */
+@media (forced-colors: active) {
+  .choice[aria-checked="true"] {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
+  .choice[aria-checked="true"] .data {
+    color: HighlightText;
+  }
+  .schedule-member[data-relation="active"] .schedule-joint {
+    forced-color-adjust: none;
+    background: Highlight;
+    border-color: Highlight;
+  }
+  .schedule-member[data-relation="lit"] .schedule-joint {
+    forced-color-adjust: none;
+    border-color: Highlight;
+  }
+  .term-show[aria-pressed="true"] {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
+  .term-show[aria-pressed="true"] .term-show-joint {
+    background: HighlightText;
+    border-color: HighlightText;
+  }
+  .term-vector-head {
+    stroke: CanvasText;
+  }
+  .term-vector[data-resultant="true"] .term-vector-shaft {
+    border-top-color: Highlight;
+  }
+  .term-vector[data-resultant="true"] .term-vector-head {
+    stroke: Highlight;
   }
 }

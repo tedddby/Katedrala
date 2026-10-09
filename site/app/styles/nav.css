@@ -1,5 +1,6 @@
 /* ------------------------------------------------------------------------------------------------
- * Navigation, cards and title blocks.
+ * Site chrome: the navigation, the skip links and the footer; and, until the hero gives way to the film, the
+ * hero's member cards and title block.
  * ---------------------------------------------------------------------------------------------- */
 @layer components {
   .site-nav {
@@ -55,6 +56,17 @@
   .nav-menu[open] > summary {
     border-color: var(--color-ink-faint);
   }
+  /* The panel grows out of its toggle; closing is instant. */
+  .nav-menu[open] > .nav-menu-panel {
+    transform-origin: top right;
+    animation: nav-menu-in 160ms var(--ease-out);
+  }
+  @keyframes nav-menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.98);
+    }
+  }
 
   .drawing-card {
     margin-top: 1rem;
@@ -74,9 +86,11 @@
     padding: 0.875rem 1rem 1rem;
   }
 
+  /* Cells share hairline rules in any wrap state: each cell draws its top and left rule over its neighbors'. */
   .title-block {
     display: flex;
     flex-wrap: wrap;
+    overflow: hidden;
     border: 1px solid var(--color-rule);
     font-family: var(--font-mono);
     font-size: var(--text-micro);
@@ -87,27 +101,16 @@
   .title-block > span {
     flex: 1 1 auto;
     padding: 0.5rem 0.75rem;
-  }
-  .title-block > span + span {
+    margin: -1px 0 0 -1px;
     border-top: 1px solid var(--color-rule);
-  }
-  @media (min-width: 640px) {
-    .title-block > span + span {
-      border-top: 0;
-      border-left: 1px solid var(--color-rule);
-    }
-  }
-  @media (max-width: 639px) {
-    .title-block {
-      flex-direction: column;
-    }
+    border-left: 1px solid var(--color-rule);
   }
 
   .skip-link {
     position: fixed;
     left: 1rem;
     top: 1rem;
-    z-index: 60;
+    z-index: var(--z-skip);
     padding: 0.625rem 1rem;
     background: var(--color-ink);
     color: var(--color-sheet);
@@ -116,5 +119,63 @@
   }
   .skip-link:focus-visible {
     transform: none;
+  }
+  /* "Skip the film" exists only where the film and the plate after it are both on the page. */
+  html:not(:has(#film-start)) .skip-link[data-skip="film"],
+  html:not(:has(#how-it-works)) .skip-link[data-skip="film"] {
+    display: none;
+  }
+
+  /* --- The footer: the sheet's title block, in cells divided by hairlines ------------------------------ */
+
+  .site-footer {
+    padding-block: clamp(2.5rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
+  }
+  /* The gaps are the hairlines: every cell shares its rules with its neighbours in any wrap state. */
+  .footer-block {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    border: 1px solid var(--color-rule);
+    background: var(--color-rule);
+  }
+  .footer-cell {
+    padding: 1.25rem 1.25rem 1rem;
+    background: var(--color-sheet);
+  }
+  .footer-mark,
+  .footer-cell:last-child {
+    grid-column: 1 / -1;
+  }
+  .footer-license {
+    display: block;
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    letter-spacing: 0.02em;
+  }
+  @media (min-width: 768px) {
+    .footer-block {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .footer-cell:last-child {
+      grid-column: auto;
+    }
+  }
+  @media (min-width: 1024px) {
+    .footer-block {
+      grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+    }
+    .footer-mark {
+      grid-column: auto;
+    }
+  }
+}
+
+/* Forced colors: the open menu keeps a visible state once its border colors are replaced. */
+@media (forced-colors: active) {
+  .nav-menu[open] > summary {
+    border-color: Highlight;
   }
 }

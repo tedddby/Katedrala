@@ -1,21 +1,31 @@
 import { Section } from "@/components/ui/Section";
+import { Status } from "@/components/ui/Status";
 import { MEASUREMENTS } from "@/lib/demo/metrics";
 import { moduleName } from "@/lib/demo/system";
-import { ArchitectureExplorer } from "./ArchitectureExplorer";
+import { ArchitectureExplorer, TableScroller } from "./ArchitectureExplorer";
 
-/** The typed dependency graph, explorable at member and module scale, with a table as its text alternative. */
+/**
+ * The typed dependency graph, explorable at member and module scale, with a table as its text alternative. The
+ * graph of files and symbols ships today; grouping it into modules is inference, planned for v1.
+ */
 export function Architecture() {
   const rows = [...MEASUREMENTS.values()].sort((a, b) => b.level - a.level);
   return (
     <Section
       id="architecture"
       title="The whole structure, at every scale."
-      lede="Files, symbols and modules form one typed graph. Group it by module to see the boundaries, filter relationships by kind, and zoom into any member."
+      lede="Katedrala links files and symbols into one typed graph today; inferring the modules within it is planned for v1."
+      aside={
+        <div className="flex flex-col gap-2">
+          <Status status="available" label="Typed graph, available today" />
+          <Status status="planned" label="Module inference, planned for v1" />
+        </div>
+      }
     >
       <ArchitectureExplorer />
       <details className="table-alternative mt-8">
         <summary>Read the graph as a table</summary>
-        <div className="mt-4 overflow-x-auto">
+        <TableScroller label="Graph as a table">
           <table className="w-full min-w-[40rem] text-left text-[0.875rem]">
             <thead className="text-ink-faint">
               <tr>
@@ -38,7 +48,7 @@ export function Architecture() {
               ))}
             </tbody>
           </table>
-        </div>
+        </TableScroller>
       </details>
     </Section>
   );

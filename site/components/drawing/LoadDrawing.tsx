@@ -1,6 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import type { DrawingFrame, LabelSide } from "@/lib/demo/layout";
 
 export interface DrawingMember {
@@ -12,8 +21,10 @@ export interface DrawingMember {
   readonly side: LabelSide;
   /** Load the member carries; sets the joint size. */
   readonly load: number;
-  /** One-line accessible summary, e.g. "PaymentService, Payments module". */
+  /** One-line accessible name, e.g. "PaymentService, Payments module". */
   readonly description: string;
+  /** Accessible description read after the name: what the member's card says about it. */
+  readonly detail?: string;
 }
 
 export interface DrawingEdge {
@@ -32,13 +43,20 @@ interface LoadDrawingProps {
   readonly levels: number;
   /** Accessible name of the drawing. */
   readonly title: string;
-  /** Card for the tested member, rendered inside the figure. Omit when the page shows it elsewhere. */
+  /** Card for the member under test, rendered inside the figure. Omit when the page shows it elsewhere. */
   readonly renderCard?: (id: string) => ReactNode;
   readonly idleCard?: ReactNode;
   /** Controlled selection; omit both to let the drawing keep its own. */
   readonly active?: string | null;
+  /** Called when a click, tap, Enter, Space, arrow key or Escape changes the selection. */
   readonly onActiveChange?: (id: string | null) => void;
+  /** Member tested while nothing is selected or previewed: its load path is the drawing's resting state. */
+  readonly resting?: string | null;
+  /** Called when the member under test changes: a mouse preview, else the selection; null at rest. */
+  readonly onTestedChange?: (id: string | null) => void;
   readonly labelSize?: number;
+  /** Smallest rendered size of any text in the drawing, in CSS px; text grows in drawing units below it. */
+  readonly minLabelPx?: number;
   readonly className?: string;
   /** Play the settle when the drawing first comes into view (the page has one such moment). Default true. */
   readonly settle?: boolean;
@@ -50,12 +68,32 @@ interface LoadDrawingProps {
     readonly members: ReadonlySet<string>;
     readonly edges: ReadonlySet<string>;
   };
+  /**
+   * How a change of the explicit lighting arrives: `cascade`, as load does, level by level from the top down
+   * into the member (60 ms a level, at most 480 ms); `crossfade` in 150 ms; `instant` at once (keyboard input).
+   * Members and dependencies that go dark always do so at once, without waiting.
+   */
+  readonly arrival?: DrawingArrival;
 }
 
-type Relation = "active" | "below" | "above" | "dim" | "rest";
+export type DrawingArrival = "cascade" | "crossfade" | "instant";
+
+/** The cascade's beat per load level and its longest wait, in ms. */
+const ARRIVAL_STEP = 60;
+const ARRIVAL_MAX = 480;
+
+/**
+ * How a member or a dependency relates to the member under test: `carried` rests on it (the load it carries,
+ * drawn in load blue), `support` is what it rests on, down to the foundations.
+ */
+type Relation = "active" | "carried" | "support" | "dim" | "rest";
 
 /** Distance below the lowest level where the ground line runs; foundations stand on supports above it. */
 const SUPPORT = 14;
+/** Level labels never set smaller than this, in drawing units. */
+const LEVEL_LABEL = 11;
+/** Rendered radius of a member's touch target on coarse pointers, in CSS px (a 44px target). */
+const TOUCH_RADIUS = 22;
 
 export function LoadDrawing({
   frame,
@@ -68,26 +106,52 @@ export function LoadDrawing({
   idleCard,
   active: controlledActive,
   onActiveChange,
+  resting = null,
+  onTestedChange,
   labelSize = 13,
+  minLabelPx = 11,
   className,
   settle = true,
   interactive = true,
   highlight,
+  arrival,
 }: LoadDrawingProps) {
-  const [ownActive, setOwnActive] = useState<string | null>(null);
+  const [ownSelected, setOwnSelected] = useState<string | null>(null);
   const controlled = controlledActive !== undefined;
-  const active = controlled ? controlledActive : ownActive;
-  const setActive = useCallback(
-    (next: string | null | ((current: string | null) => string | null)) => {
-      const value = typeof next === "function" ? next(active) : next;
-      if (!controlled) setOwnActive(value);
-      onActiveChange?.(value);
+  const selected = controlled ? controlledActive : ownSelected;
+  // A mouse or pen hovering a member previews it without changing the selection.
+  const [preview, setPreview] = useState<string | null>(null);
+  // Roving tab stop: the member that last had focus.
+  const [focused, setFocused] = useState<string | null>(null);
+  const tested = interactive ? (preview ?? selected) : selected;
+  const shown = tested ?? resting;
+
+  const select = useCallback(
+    (id: string | null) => {
+      if (!controlled) setOwnSelected(id);
+      onActiveChange?.(id);
     },
-    [active, controlled, onActiveChange],
+    [controlled, onActiveChange],
   );
+
+  // Before paint, so a card shown elsewhere on the page changes in the same frame as the drawing.
+  useLayoutEffect(() => {
+    onTestedChange?.(tested);
+  }, [tested, onTestedChange]);
+
   const figureRef = useRef<HTMLElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
   const memberRefs = useRef(new Map<string, SVGGElement>());
   const edgeRefs = useRef(new Map<string, SVGLineElement>());
+  const hatchId = useId();
+  const scale = useDrawingScale(svgRef, frame.width);
+  const coarse = useCoarsePointer(interactive);
+
+  // Reading order: top level first, left to right. Sets the DOM order and what arrow keys step through.
+  const order = useMemo(
+    () => [...members].sort((a, b) => b.level - a.level || a.x - b.x),
+    [members],
+  );
 
   const adjacency = useMemo(() => {
     const down = new Map<string, string[]>();
@@ -100,7 +164,7 @@ export function LoadDrawing({
   }, [edges]);
 
   const relation = useMemo(() => {
-    if (active === null) return null;
+    if (shown === null) return null;
     const walk = (start: string, next: Map<string, string[]>): Set<string> => {
       const seen = new Set<string>();
       const stack = [...(next.get(start) ?? [])];
@@ -112,43 +176,110 @@ export function LoadDrawing({
       }
       return seen;
     };
-    return { below: walk(active, adjacency.down), above: walk(active, adjacency.up) };
-  }, [active, adjacency]);
+    return { carried: walk(shown, adjacency.up), support: walk(shown, adjacency.down) };
+  }, [shown, adjacency]);
 
   const memberRelation = (id: string): Relation => {
     if (highlight !== undefined) {
       if (id === highlight.focus) return "active";
-      if (highlight.members.has(id)) return "below";
+      if (highlight.members.has(id)) return "carried";
       return highlight.focus === null ? "rest" : "dim";
     }
-    if (active === null || relation === null) return "rest";
-    if (id === active) return "active";
-    if (relation.below.has(id)) return "below";
-    if (relation.above.has(id)) return "above";
-    return "dim";
+    if (shown === null || relation === null) return "rest";
+    if (id === shown) return "active";
+    if (relation.carried.has(id)) return "carried";
+    if (relation.support.has(id)) return "support";
+    // At rest every member stays legible; only a member someone is testing dims what it does not touch.
+    return tested === null ? "rest" : "dim";
   };
 
   const edgeRelation = (edge: DrawingEdge): Relation => {
     if (highlight !== undefined) {
-      if (highlight.edges.has(`${edge.source}>${edge.target}`)) return "below";
+      if (highlight.edges.has(`${edge.source}>${edge.target}`)) return "carried";
       return highlight.focus === null ? "rest" : "dim";
     }
-    if (active === null || relation === null) return "rest";
-    const onPath = (id: string) => id === active || relation.below.has(id);
-    const resting = (id: string) => id === active || relation.above.has(id);
-    if (onPath(edge.source) && relation.below.has(edge.target)) return "below";
-    if (relation.above.has(edge.source) && resting(edge.target)) return "above";
-    return "dim";
+    if (shown === null || relation === null) return "rest";
+    // Load coming down to the member under test, then on from it to the ground.
+    const bearing = (id: string) => id === shown || relation.carried.has(id);
+    const supporting = (id: string) => id === shown || relation.support.has(id);
+    if (relation.carried.has(edge.source) && bearing(edge.target)) return "carried";
+    if (supporting(edge.source) && relation.support.has(edge.target)) return "support";
+    return tested === null ? "rest" : "dim";
   };
 
-  const strokeWidth = useCallback(
-    (load: number) => 0.85 + 2.4 * Math.sqrt(load / maxEdgeLoad),
-    [maxEdgeLoad],
-  );
+  // Line weight in proportion to the load carried: the heaviest member is drawn about five times the lightest.
+  const strokeWidth = useCallback((load: number) => 0.8 + 5 * (load / maxEdgeLoad), [maxEdgeLoad]);
   const radius = (load: number) => 3.6 + 1.9 * Math.sqrt(load);
   const groundY = frame.ground + SUPPORT;
+  const labelUnits = Math.max(labelSize, minLabelPx * scale);
+  const levelUnits = Math.max(LEVEL_LABEL, minLabelPx * scale);
+  const touchUnits = coarse ? TOUCH_RADIUS * scale : 0;
+
+  const known = (id: string | null): id is string =>
+    id !== null && members.some((m) => m.id === id);
+  const tabStop = known(focused)
+    ? focused
+    : known(selected)
+      ? selected
+      : known(resting)
+        ? resting
+        : order[0]?.id;
+
+  /** Arrow keys: left and right read through the members, up and down climb the load-path levels. */
+  const neighbor = (from: DrawingMember, key: string): DrawingMember | undefined => {
+    const at = order.indexOf(from);
+    switch (key) {
+      case "ArrowRight":
+        return order[(at + 1) % order.length];
+      case "ArrowLeft":
+        return order[(at - 1 + order.length) % order.length];
+      case "Home":
+        return order[0];
+      case "End":
+        return order[order.length - 1];
+      case "ArrowUp":
+      case "ArrowDown": {
+        const up = key === "ArrowUp";
+        const beyond = order.filter((m) => (up ? m.level > from.level : m.level < from.level));
+        if (beyond.length === 0) return undefined;
+        const level = up
+          ? Math.min(...beyond.map((m) => m.level))
+          : Math.max(...beyond.map((m) => m.level));
+        return beyond
+          .filter((m) => m.level === level)
+          .reduce((best, m) => (Math.abs(m.x - from.x) < Math.abs(best.x - from.x) ? m : best));
+      }
+      default:
+        return undefined;
+    }
+  };
+
+  const onMemberKeyDown = (event: React.KeyboardEvent<SVGGElement>, member: DrawingMember) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setPreview(null);
+      select(member.id);
+      return;
+    }
+    if (event.key === "Escape") {
+      if (selected === null && preview === null) return;
+      event.preventDefault();
+      setPreview(null);
+      select(null);
+      return;
+    }
+    if (!NAVIGATION_KEYS.has(event.key)) return;
+    event.preventDefault();
+    const next = neighbor(member, event.key);
+    if (next === undefined) return;
+    setPreview(null);
+    select(next.id);
+    setFocused(next.id);
+    memberRefs.current.get(next.id)?.focus();
+  };
 
   useSettle(figureRef, members, edges, memberRefs, edgeRefs, strokeWidth, settle);
+  useArrival(figureRef, members, memberRefs, edgeRefs, highlight, arrival);
 
   return (
     <figure
@@ -156,23 +287,42 @@ export function LoadDrawing({
       className={`drawing relative ${className ?? ""}`}
       data-settle={settle ? "pending" : "done"}
       data-interactive={interactive}
+      data-resting={interactive && tested === null && resting !== null ? "" : undefined}
+      data-arrival={arrival}
     >
       <svg
+        ref={svgRef}
         viewBox={`0 0 ${frame.width} ${frame.height}`}
         className="block h-auto w-full overflow-visible"
-        role="group"
+        role={interactive ? "radiogroup" : "img"}
         aria-label={title}
-        onPointerLeave={interactive ? () => setActive(null) : undefined}
+        onPointerLeave={
+          interactive
+            ? (event) => {
+                if (event.pointerType !== "touch") setPreview(null);
+              }
+            : undefined
+        }
+        onClick={
+          interactive
+            ? (event) => {
+                // A click or tap on the bare sheet returns the drawing to rest.
+                if ((event.target as Element).closest(".drawing-member") !== null) return;
+                setPreview(null);
+                select(null);
+              }
+            : undefined
+        }
       >
         <defs>
           <pattern
-            id="ground-hatch"
+            id={hatchId}
             width="7"
             height="7"
             patternUnits="userSpaceOnUse"
             patternTransform="rotate(45)"
           >
-            <line x1="0" y1="0" x2="0" y2="7" className="stroke-graphite" strokeWidth="1" />
+            <line x1="0" y1="0" x2="0" y2="7" className="drawing-hatch" />
           </pattern>
         </defs>
 
@@ -183,7 +333,12 @@ export function LoadDrawing({
             return (
               <g key={level}>
                 <line x1={28} x2={frame.width - 8} y1={y} y2={y} className="drawing-level" />
-                <text x={0} y={y + 3.5} className="drawing-level-label">
+                <text
+                  x={0}
+                  y={y + levelUnits * 0.34}
+                  className="drawing-level-label"
+                  style={{ fontSize: levelUnits }}
+                >
                   {level === 0 ? "±0" : `+${level}`}
                 </text>
               </g>
@@ -195,16 +350,17 @@ export function LoadDrawing({
             y={groundY}
             width={frame.width - 36}
             height={10}
-            fill="url(#ground-hatch)"
+            fill={`url(#${hatchId})`}
             opacity={0.7}
           />
         </g>
 
-        <g>
+        <g aria-hidden="true">
           {edges.map((edge) => {
             const from = members.find((m) => m.id === edge.source)!;
             const to = members.find((m) => m.id === edge.target)!;
             const key = `${edge.source}>${edge.target}`;
+            const relation = edgeRelation(edge);
             return (
               <line
                 key={key}
@@ -218,7 +374,7 @@ export function LoadDrawing({
                 y2={to.y}
                 strokeWidth={strokeWidth(edge.load)}
                 className="drawing-edge"
-                data-relation={edgeRelation(edge)}
+                data-relation={relation}
                 data-load={edge.load}
               />
             );
@@ -226,9 +382,10 @@ export function LoadDrawing({
         </g>
 
         <g>
-          {members.map((member) => {
+          {order.map((member) => {
             const r = radius(member.load);
             const foundation = member.level === 0;
+            const relation = memberRelation(member.id);
             return (
               <g
                 key={member.id}
@@ -238,28 +395,24 @@ export function LoadDrawing({
                 }}
                 transform={`translate(${member.x} ${member.y})`}
                 className="drawing-member"
-                data-relation={memberRelation(member.id)}
+                data-relation={relation}
                 {...(interactive
                   ? {
-                      tabIndex: 0,
-                      role: "button",
+                      role: "radio",
+                      tabIndex: member.id === tabStop ? 0 : -1,
+                      "aria-checked": selected === member.id,
                       "aria-label": member.description,
-                      "aria-pressed": active === member.id,
-                      onPointerEnter: () => setActive(member.id),
-                      onFocus: () => setActive(member.id),
-                      onBlur: () =>
-                        setActive((current) => (current === member.id ? null : current)),
-                      onClick: () =>
-                        setActive((current) => (current === member.id ? null : member.id)),
-                      onKeyDown: (event: React.KeyboardEvent<SVGGElement>) => {
-                        if (event.key === "Escape") {
-                          setActive(null);
-                          event.currentTarget.blur();
-                        }
+                      onPointerEnter: (event: React.PointerEvent<SVGGElement>) => {
+                        if (event.pointerType !== "touch") setPreview(member.id);
                       },
+                      onFocus: () => setFocused(member.id),
+                      onClick: () => select(member.id),
+                      onKeyDown: (event: React.KeyboardEvent<SVGGElement>) =>
+                        onMemberKeyDown(event, member),
                     }
                   : { "aria-hidden": true })}
               >
+                {interactive && member.detail !== undefined && <desc>{member.detail}</desc>}
                 {foundation && (
                   <path
                     d={`M 0 ${r * 0.4} L ${-8} ${SUPPORT} L ${8} ${SUPPORT} Z`}
@@ -267,9 +420,16 @@ export function LoadDrawing({
                     aria-hidden="true"
                   />
                 )}
-                <circle r={r + 9} className="drawing-hit" />
+                <circle r={Math.max(r + 9, touchUnits)} className="drawing-hit" />
+                {interactive && (
+                  <circle
+                    r={r + 4.5 * scale}
+                    className="drawing-focus"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                )}
                 <circle r={r} className="drawing-joint" />
-                <MemberLabel member={member} radius={r} size={labelSize} />
+                <MemberLabel member={member} radius={r} size={labelUnits} />
               </g>
             );
           })}
@@ -277,13 +437,13 @@ export function LoadDrawing({
       </svg>
 
       {renderCard !== undefined && (
-        <div className="drawing-card" aria-live="polite">
-          {active === null ? idleCard : renderCard(active)}
-        </div>
+        <div className="drawing-card">{tested === null ? idleCard : renderCard(tested)}</div>
       )}
     </figure>
   );
 }
+
+const NAVIGATION_KEYS = new Set(["ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown", "Home", "End"]);
 
 function MemberLabel({
   member,
@@ -311,6 +471,97 @@ function MemberLabel({
 }
 
 /**
+ * Drawing units per CSS pixel at the drawing's rendered width (1 until measured, as on the server), so text
+ * and touch targets can keep a fixed on-screen size however small the drawing is drawn.
+ */
+function useDrawingScale(svgRef: React.RefObject<SVGSVGElement | null>, width: number): number {
+  const [scale, setScale] = useState(1);
+  useLayoutEffect(() => {
+    const svg = svgRef.current;
+    if (svg === null) return;
+    const measure = () => {
+      const rendered = svg.getBoundingClientRect().width;
+      // A drawing hidden at this breakpoint has no width; keep the last scale.
+      if (rendered > 0) setScale(Math.round((width / rendered) * 100) / 100);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, [svgRef, width]);
+  return scale;
+}
+
+/**
+ * Load arriving: when the explicit lighting changes with `arrival` "cascade", everything it lights starts from
+ * the drawing's quiet state and brightens level by level from the top down into the member under test, a
+ * dependency together with the member it leaves (60 ms a level, at most 480 ms, ease-out). Only opacity moves,
+ * on the compositor. A new change cancels the wave in flight and starts its own; what goes dark does so at once.
+ * Nothing moves under reduced motion, on first render, or while the drawing is hidden at this width.
+ */
+function useArrival(
+  figureRef: React.RefObject<HTMLElement | null>,
+  members: readonly DrawingMember[],
+  memberRefs: React.RefObject<Map<string, SVGGElement>>,
+  edgeRefs: React.RefObject<Map<string, SVGLineElement>>,
+  highlight: LoadDrawingProps["highlight"],
+  arrival: DrawingArrival | undefined,
+) {
+  const wave = useRef<Animation[]>([]);
+  // The lighting last drawn: only a change of it is a wave, never a first render or a repeated effect.
+  const drawn = useRef(highlight);
+  useLayoutEffect(() => {
+    const changed = drawn.current !== highlight;
+    drawn.current = highlight;
+    if (!changed) return;
+    for (const animation of wave.current) animation.cancel();
+    wave.current = [];
+    const figure = figureRef.current;
+    if (arrival !== "cascade" || highlight === undefined || figure === null) return;
+    if (figure.getClientRects().length === 0) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const level = new Map(members.map((m) => [m.id, m.level]));
+    const lit = [...highlight.members, ...(highlight.focus === null ? [] : [highlight.focus])];
+    if (lit.length === 0) return;
+    const top = Math.max(...lit.map((id) => level.get(id) ?? 0));
+    const timing = (id: string, offset: number): KeyframeAnimationOptions => ({
+      delay: Math.min(ARRIVAL_MAX, (top - (level.get(id) ?? top)) * ARRIVAL_STEP + offset),
+      duration: 220,
+      easing: "cubic-bezier(0.23, 1, 0.32, 1)",
+      fill: "backwards",
+    });
+    // From the opacity the drawing gives what it does not light (drawing.css), up to fully lit.
+    for (const id of lit) {
+      const g = memberRefs.current.get(id);
+      if (g !== undefined)
+        wave.current.push(g.animate([{ opacity: 0.24 }, { opacity: 1 }], timing(id, 0)));
+    }
+    for (const key of highlight.edges) {
+      const line = edgeRefs.current.get(key);
+      const source = key.slice(0, key.indexOf(">"));
+      if (line !== undefined)
+        wave.current.push(
+          line.animate([{ opacity: 0.1 }, { opacity: 1 }], timing(source, ARRIVAL_STEP / 2)),
+        );
+    }
+  }, [figureRef, members, memberRefs, edgeRefs, highlight, arrival]);
+  useEffect(() => () => wave.current.forEach((animation) => animation.cancel()), []);
+}
+
+function useCoarsePointer(enabled: boolean): boolean {
+  const [coarse, setCoarse] = useState(false);
+  useEffect(() => {
+    if (!enabled) return;
+    const query = window.matchMedia("(any-pointer: coarse)");
+    const update = () => setCoarse(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, [enabled]);
+  return coarse;
+}
+
+/**
  * The signature motion: members start scattered and settle under a damped spring onto their load-path level,
  * foundations first; each dependency appears once its dependent has landed on its support. Skipped entirely
  * (final drawing at once) under prefers-reduced-motion. The server-rendered drawing is already the final state.
@@ -329,6 +580,19 @@ function useSettle(
     if (figure === null || !enabled) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
+      figure.dataset.settle = "done";
+      return;
+    }
+    // If hydration came so late that the CSS failsafe already showed the finished drawing, never scatter it again.
+    const failsafe = memberRefs.current
+      .values()
+      .next()
+      .value?.getAnimations()
+      .find(
+        (animation) =>
+          animation instanceof CSSAnimation && animation.animationName === "drawing-failsafe",
+      );
+    if (failsafe?.playState === "finished") {
       figure.dataset.settle = "done";
       return;
     }

@@ -53,7 +53,7 @@ export const NODES: readonly DemoNode[] = [
   {
     id: "CheckoutController",
     module: "checkout",
-    role: "http controller",
+    role: "HTTP controller",
     file: "src/checkout/checkout.controller.ts",
   },
   {
@@ -65,7 +65,7 @@ export const NODES: readonly DemoNode[] = [
   {
     id: "OrderController",
     module: "orders",
-    role: "http controller",
+    role: "HTTP controller",
     file: "src/orders/order.controller.ts",
   },
   { id: "OrderService", module: "orders", role: "service", file: "src/orders/order.service.ts" },
@@ -110,7 +110,7 @@ export const NODES: readonly DemoNode[] = [
   {
     id: "Database",
     module: "platform",
-    role: "configuration provider",
+    role: "data model",
     file: "src/platform/database.ts",
   },
 ];
@@ -143,4 +143,113 @@ export const EDGES: readonly DemoEdge[] = [
 
 export function moduleName(id: ModuleId): string {
   return MODULES.find((module) => module.id === id)?.name ?? id;
+}
+
+// Rules: the architecture the page declares for the demonstration system, and one change checked against it.
+
+export interface DemoRule {
+  readonly id: string;
+  readonly severity: "error" | "warning";
+  /** The constrained files: a group (`from`) or a module (`module`). */
+  readonly from?: string;
+  readonly module?: string;
+  /** Groups or modules the constrained files must not depend on. */
+  readonly cannotDependOn: readonly string[];
+}
+
+export interface RuleConfig {
+  readonly groups: Readonly<Record<string, readonly string[]>>;
+  readonly modules: Readonly<Record<string, readonly string[]>>;
+  readonly rules: readonly DemoRule[];
+}
+
+/** The rules section of katedrala.config.yaml for the demonstration system, in the syntax of Katedrala's rule fixtures. */
+export const RULE_CONFIG: RuleConfig = {
+  groups: {
+    controllers: ["src/**/*.controller.ts"],
+    repositories: ["src/**/*.repository.ts"],
+  },
+  modules: {
+    payments: ["src/payments/**"],
+    analytics: ["src/analytics/**"],
+  },
+  rules: [
+    {
+      id: "controllers-no-database",
+      severity: "error",
+      from: "controllers",
+      cannotDependOn: ["repositories"],
+    },
+    {
+      id: "payments-isolation",
+      severity: "error",
+      module: "payments",
+      cannotDependOn: ["analytics"],
+    },
+  ],
+};
+
+/**
+ * A hypothetical change, not part of the system: a direct import from a controller to a repository. The Rules
+ * section and the validate transcript check the system with this one dependency added.
+ */
+export const RULE_CHANGE: DemoEdge = {
+  source: "OrderController",
+  target: "OrderRepository",
+  kind: "imports",
+};
+
+export interface RuleViolation {
+  readonly rule: DemoRule;
+  readonly source: string;
+  readonly target: string;
+  /** The dependent's file, where the dependency is declared. */
+  readonly file: string;
+}
+
+/** A configuration glob as a pattern: `**` spans directories, `*` stays within one path segment. */
+function globPattern(glob: string): RegExp {
+  const source = glob
+    .split(/(\*\*\/|\*\*|\*)/)
+    .map((part) =>
+      part === "**/"
+        ? "(?:.*/)?"
+        : part === "**"
+          ? ".*"
+          : part === "*"
+            ? "[^/]*"
+            : part.replace(/[.+?^${}()|[\]\\]/g, "\\$&"),
+    )
+    .join("");
+  return new RegExp(`^${source}$`);
+}
+
+/** Every dependency in `edges` that a rule forbids, matched on the members' files as Katedrala matches globs. */
+export function checkRules(
+  edges: readonly DemoEdge[],
+  config: RuleConfig = RULE_CONFIG,
+): RuleViolation[] {
+  const fileOf = new Map(NODES.map((node) => [node.id, node.file]));
+  const patterns = (name: string) =>
+    [...(config.groups[name] ?? []), ...(config.modules[name] ?? [])].map(globPattern);
+  const matches = (selection: readonly RegExp[], member: string) => {
+    const file = fileOf.get(member);
+    return file !== undefined && selection.some((pattern) => pattern.test(file));
+  };
+  const violations: RuleViolation[] = [];
+  for (const rule of config.rules) {
+    const constrained = patterns(rule.from ?? rule.module ?? "");
+    const forbidden = rule.cannotDependOn.flatMap(patterns);
+    for (const edge of edges) {
+      if (matches(constrained, edge.source) && matches(forbidden, edge.target)) {
+        violations.push({
+          rule,
+          source: edge.source,
+          target: edge.target,
+          file: fileOf.get(edge.source)!,
+        });
+      }
+    }
+  }
+  return violations;
 }

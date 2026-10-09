@@ -566,6 +566,54 @@ describe("Projection API", () => {
     }
   });
 
+  it("visits the underlying edges of an out-edge in identifier order, without a summary", () => {
+    for (const spec of [
+      { level: "file" },
+      { level: "symbol", fileRoles: WITH_TESTS },
+      { level: "package", edgeKinds: WITH_MANIFESTS, includeExternals: true },
+    ] satisfies ProjectionSpec[]) {
+      const projection = shop().projection(spec);
+      let visited = 0;
+      for (let index = 0; index < projection.graph.edgeCount; index++) {
+        const edges: EdgeEntity[] = [];
+        projection.forEachUnderlyingEdge(index, (edge) => edges.push(edge));
+        expect(edges.map((edge) => edge.id)).toEqual(projection.edgeInfoAt(index)?.edges);
+        visited += edges.length;
+      }
+      expect(visited).toBeGreaterThan(0);
+    }
+    // The file-level edge app → order merges three relationships; they are the document's own objects.
+    const model = shop();
+    const projection = model.projection({ level: "file" });
+    const index = projection.graph.edgeIndex(
+      projection.indexOf(F.app),
+      projection.indexOf(F.order),
+    );
+    const edges: EdgeEntity[] = [];
+    projection.forEachUnderlyingEdge(index, (edge) => edges.push(edge));
+    expect(edges.map((edge) => edge.id)).toEqual(
+      idsOf(E.appImportsOrder, E.appCallsPlace, E.appInstantiatesService),
+    );
+    for (const edge of edges) expect(model.index.edge(edge.id)).toBe(edge);
+  });
+
+  it("visits nothing for an invalid out-edge index", () => {
+    const projection = files();
+    const { graph } = projection;
+    for (const index of [-1, graph.edgeCount, graph.edgeCount + 1, 0.5, Number.NaN, Infinity]) {
+      let calls = 0;
+      projection.forEachUnderlyingEdge(index, () => calls++);
+      expect(calls).toBe(0);
+    }
+    // A projection without edges.
+    const empty = ArchitectureModel.from(documentOf({ files: [makeFile("a.ts")] })).projection({
+      level: "file",
+    });
+    let calls = 0;
+    empty.forEachUnderlyingEdge(0, () => calls++);
+    expect(calls).toBe(0);
+  });
+
   it("answers undefined for absent edges and invalid node numbers", () => {
     const projection = files();
     const app = projection.indexOf(F.app);

@@ -55,10 +55,10 @@ Implemented today (milestones 1 to 4):
   PageRank, Louvain, feedback arc set.
 - The structure stage of the engine (`analyzeStructure`) with caching and parallel parsing.
 
-In development for v1 (milestones 5 to 15): inference of components, modules and layers; metrics including
-Architectural Gravity and Architectural Entropy; anomaly detection; the YAML rules engine; impact analysis;
-architecture diff; the CLI; git history and CI integration; Express, NestJS and Fastify awareness; the
-`@katedrala/codeverse` adapter.
+Planned for v1 (milestones 5 to 15; milestone 13, performance and caching, is in progress): inference of
+components, modules and layers; metrics including Architectural Gravity and Architectural Entropy; anomaly
+detection; the YAML rules engine; impact analysis; architecture diff; the CLI; git history and CI integration;
+Express, NestJS and Fastify awareness; the `@katedrala/codeverse` adapter.
 
 Constraints: TypeScript and JavaScript are the only supported languages today. Inference is heuristic and says so.
 Katedrala never labels code "bad"; it reports anomalies, risks and violations. No LLM in core analysis.
@@ -67,7 +67,7 @@ Katedrala never labels code "bad"; it reports anomalies, risks and violations. N
 
 The name Katedrala means "cathedral". The metaphor works only through structure, geometry, hierarchy, foundations
 and depth; never literal church imagery, crosses or fantasy. Voice: technical, precise, honest; no "AI-powered"
-marketing language, no hype verbs. Every claim must match the implementation or be presented as in development.
+marketing language, no hype verbs. Every claim must match the implementation or be presented as planned.
 
 ## Evidence on Hand
 
@@ -88,7 +88,7 @@ marketing language, no hype verbs. Every claim must match the implementation or 
 
 1. Determinism is part of the contract: identical input, identical output.
 2. Every conclusion has evidence the user can inspect.
-3. Honesty over impressiveness: label heuristics, label demonstrations, label what is still in development.
+3. Honesty over impressiveness: label heuristics, label demonstrations, label what is still planned.
 4. An engine with a stable contract: the IR is the product other tools build on.
 5. Describe structure, not virtue: anomalies, risks and violations, never "bad code".
 

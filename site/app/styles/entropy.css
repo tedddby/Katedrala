@@ -9,9 +9,10 @@
       stroke 220ms ease,
       opacity 220ms ease;
   }
+  /* At least 3:1 against the sheet: the original dependencies are part of the picture, not decoration. */
   .entropy-edge-base {
     stroke: var(--color-ink-faint);
-    opacity: 0.55;
+    opacity: 0.8;
   }
   .entropy-edge-added {
     stroke: var(--color-ink);
@@ -43,33 +44,175 @@
     stroke: var(--color-load);
     stroke-width: 2.2;
   }
-
-  .commit-log {
-    border-left: 1px solid var(--color-rule-strong);
+  .entropy-label {
+    font-size: 15px;
   }
+  /* The drawing spans the column on phones; larger type keeps the module names at 12 px or more. */
+  @media (max-width: 639px) {
+    .entropy-label {
+      font-size: 17px;
+    }
+  }
+  @media (max-width: 379px) {
+    .entropy-label {
+      font-size: 20px;
+    }
+  }
+  /* The score's own sum is chalk: load blue stays on the cycle in the drawing. */
+  .entropy-terms .term-vector[data-resultant="true"] .term-vector-shaft {
+    border-top-color: var(--color-ink);
+  }
+  .entropy-terms .term-vector[data-resultant="true"] .term-vector-head {
+    stroke: var(--color-ink);
+  }
+
+  /* A change made from the keyboard lands at once: no color or stroke eases in the drawing. */
+  .entropy-figure[data-motion="instant"] :is(.entropy-edge, .entropy-joint) {
+    transition: none;
+  }
+
+  /* The score: the film's gauge numerals beside the rating they fall in. */
+  .entropy-score {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 1rem;
+  }
+
+  /*
+   * The commit log: a column through one joint per commit, like the command schedule. Applied commits are
+   * drawn in chalk; the current one is a filled joint on the column. Each row ends with what the commit did to
+   * the score (the base row with the score it started from), so the column adds up to the score above it.
+   */
   .commit {
+    --pad: 0.5rem;
+    position: relative;
     display: grid;
-    grid-template-columns: 3rem 1fr;
-    gap: 0.5rem;
+    grid-template-columns: 0.625rem 2.5rem minmax(0, 1fr) auto;
+    column-gap: 0.875rem;
+    align-items: baseline;
     width: 100%;
-    padding: 0.5rem 0.75rem;
+    padding: var(--pad) 0 var(--pad) 0;
     text-align: left;
     font-size: 0.875rem;
     color: var(--color-ink-faint);
+    transition: color 150ms ease;
+  }
+  .commit-move {
+    padding-left: 0.5rem;
+    text-align: right;
+    white-space: nowrap;
+    color: var(--color-ink-faint);
+  }
+  .commit[data-applied="true"] .commit-move {
+    color: var(--color-ink-soft);
+  }
+  .commit[aria-checked="true"] .commit-move {
+    color: var(--color-ink);
+  }
+  .commit::before {
+    content: "";
+    position: absolute;
+    left: calc(0.3125rem - 0.5px);
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid var(--color-rule-strong);
+  }
+  /* The column starts and ends at a joint's center: the padding plus half of the first line. */
+  .commit:first-child::before {
+    top: calc(var(--pad) + 0.7rem);
+  }
+  .commit:last-child::before {
+    bottom: calc(100% - var(--pad) - 0.7rem);
+  }
+  .commit-joint {
+    position: relative;
+    align-self: start;
+    width: 0.625rem;
+    height: 0.625rem;
+    margin-top: 0.3875rem;
+    border: 1.5px solid var(--color-graphite);
+    border-radius: 50%;
+    background: var(--color-sheet);
     transition:
-      color 150ms ease,
-      background-color 150ms ease;
+      background-color 150ms ease,
+      border-color 150ms ease;
+  }
+  .commit-step {
+    color: var(--color-ink-faint);
   }
   .commit[data-applied="true"] {
     color: var(--color-ink-soft);
   }
-  .commit:hover {
-    color: var(--color-ink);
-    background: var(--color-sheet-raised);
+  .commit[data-applied="true"] .commit-joint {
+    border-color: var(--color-ink-soft);
   }
-  .commit[aria-pressed="true"] {
+  .commit[aria-checked="true"] {
     color: var(--color-ink);
-    background: var(--color-sheet-raised);
-    box-shadow: inset 2px 0 0 var(--color-load);
+  }
+  .commit[aria-checked="true"] .commit-joint {
+    border-color: var(--color-load);
+    background: var(--color-load);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .commit:hover {
+      color: var(--color-ink);
+    }
+    .commit:hover .commit-joint {
+      border-color: var(--color-ink-faint);
+    }
+    .commit[aria-checked="true"]:hover .commit-joint {
+      border-color: var(--color-load);
+    }
+  }
+  .commit:focus-visible {
+    outline-offset: -2px;
+  }
+  @media (pointer: coarse) {
+    .commit {
+      --pad: 0.6875rem;
+    }
+  }
+}
+
+/*
+ * Forced colors: SVG paint is not forced, so the drawing restates itself in system colors, the cycle in
+ * Highlight; the current commit keeps a visible mark when backgrounds are replaced.
+ */
+@media (forced-colors: active) {
+  .entropy-edge-base,
+  .entropy-edge-added,
+  .entropy-arrow-base,
+  .entropy-arrow-added {
+    stroke: CanvasText;
+  }
+  .entropy-edge-cycle,
+  .entropy-arrow-cycle {
+    stroke: Highlight;
+  }
+  .entropy-joint {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+  .entropy-joint.is-cyclic {
+    stroke: Highlight;
+  }
+  .entropy-terms .term-vector[data-resultant="true"] .term-vector-shaft {
+    border-top-color: CanvasText;
+  }
+  .entropy-terms .term-vector[data-resultant="true"] .term-vector-head {
+    stroke: CanvasText;
+  }
+  .commit[aria-checked="true"] {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
+  .commit[aria-checked="true"] :is(.commit-step, .commit-move) {
+    color: HighlightText;
+  }
+  .commit[aria-checked="true"] .commit-joint {
+    background: HighlightText;
+    border-color: HighlightText;
   }
 }

@@ -1,115 +1,269 @@
 /* ------------------------------------------------------------------------------------------------
- * Pipeline: five passes as joints along one beam.
+ * The hinge plate: the five passes as a chain of weights hanging from the board the film stood on, drawn flat.
+ * One composition at every width: the chain in the first column, the heading and the passes beside it, so the
+ * document grows downward from "Source code". From 768 px each pass is a row of the 12-column frame: the pass in
+ * columns 2 to 7 (2 to 6 from 1280 px), what it adds to the document from column 8.
+ *
+ * Every length of chain is as heavy as the passes hanging from it (--held): the top length carries all five.
+ * Built passes hang as solid weights on taut chalk; planned ones as open rings on dashed graphite.
  * ---------------------------------------------------------------------------------------------- */
 @layer components {
-  .pipeline {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    column-gap: clamp(1rem, 2vw, 1.5rem);
+  .hinge {
+    /* The board follows the film closely: the first thing after it is the same ground. */
+    padding-top: clamp(2.5rem, 5vw, 4.5rem);
+    --chain-col: 2rem;
+    --pass-gap: clamp(2.5rem, 3.5vw, 3rem);
+    --hang-top: clamp(3.5rem, 6vw, 5rem);
+    --hang-gap: clamp(3rem, 4.5vw, 4rem);
+    --weight: 1rem;
+    /* The verb's line, and the weight's centre on it, measured from the top of a pass. */
+    --verb-line: calc(var(--text-subheading) * 1.2);
+    --weight-y: calc(1.25rem + 0.25rem + var(--verb-line) / 2);
   }
-  .pipeline-stage {
-    position: relative;
-    outline: none;
-  }
-  @media (min-width: 1024px) {
-    .pipeline {
-      grid-template-rows: repeat(6, auto);
-    }
-    /* Every stage shares the same rows, so statuses and artifacts line up across the beam. */
-    .pipeline-stage {
-      display: grid;
-      grid-row: span 6;
-      grid-template-rows: subgrid;
-      align-content: start;
-    }
-  }
-  .pipeline-beam {
+
+  /* --- The board ------------------------------------------------------------------------------------ */
+
+  /* A fixed support drawn as engineers draw one: hatching on the solid side, the chain under its edge. */
+  .hinge-board {
     position: relative;
     height: 1.75rem;
-    margin-bottom: 1.25rem;
+    border-bottom: 1.5px solid var(--color-ink-soft);
   }
-  .pipeline-beam::before {
+  .hinge-board-label {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: calc(var(--bleed) - 0.4rem);
+    translate: 0 -50%;
+    padding: 0.15rem 0.4rem;
+    background: var(--color-sheet);
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-variation-settings: "wdth" 87.5;
+    letter-spacing: 0.01em;
+    line-height: 1.35;
+    color: var(--color-ink-soft);
+  }
+
+  /* --- The heading and the passes ------------------------------------------------------------------- */
+
+  .hinge-body {
+    display: grid;
+    grid-template-columns: var(--chain-col) minmax(0, 1fr);
+    column-gap: 1rem;
+    padding-top: var(--hang-top);
+  }
+  .hinge-head {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .hinge-head .lede {
+    max-width: 38rem;
+  }
+
+  /* The top length of chain: from the board's edge, past the heading, down to the first weight. */
+  .hinge-hang {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    width: calc(0.5px + 5 * 0.5px);
+    margin-top: calc(-1 * var(--hang-top));
+    margin-bottom: calc(-1 * (var(--hang-gap) + var(--weight-y)));
+    background: var(--color-ink-soft);
+  }
+
+  .hinge-passes {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: subgrid;
+    row-gap: var(--pass-gap);
+    margin-top: var(--hang-gap);
+  }
+  /* Phones: the chain, then the verb with its status beside it on one line, and everything else under them. */
+  .hinge-pass {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: var(--chain-col) auto minmax(0, 1fr);
+    /* The number, the verb and its status, the text, what the pass adds. */
+    grid-template-rows: repeat(4, auto);
+    column-gap: 1rem;
+    align-items: start;
+  }
+  .hinge-pass > :not(.hinge-chain) {
+    grid-column: 2 / -1;
+  }
+  .hinge-pass > .hinge-verb {
+    grid-column: 2;
+  }
+  .hinge-pass > .hinge-status {
+    grid-column: 3;
+    grid-row: 2;
+    align-self: center;
+    margin-top: 0.25rem;
+  }
+
+  /* The chain cell: the weight on the verb's line, and the length of chain down to the next weight. */
+  .hinge-chain {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1 / -1;
+    align-self: stretch;
+  }
+  .hinge-chain::before {
     content: "";
     position: absolute;
-    left: 0;
-    right: calc(-1 * clamp(1rem, 2vw, 1.5rem));
-    top: 50%;
-    height: 1.5px;
-    background: var(--color-ink-faint);
+    left: 50%;
+    top: var(--weight-y);
+    bottom: calc(-1 * (var(--pass-gap) + var(--weight-y)));
+    width: calc(0.5px + var(--held) * 0.5px);
+    translate: -50% 0;
+    background: var(--color-ink-soft);
   }
-  .pipeline-stage:last-child .pipeline-beam::before {
-    right: 0;
+  .hinge-pass:not([data-chain]) .hinge-chain::before {
+    display: none;
   }
-  .pipeline-joint {
+  .hinge-pass[data-chain="planned"] .hinge-chain::before {
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--color-graphite) 0 6px,
+      transparent 6px 11px
+    );
+  }
+  .hinge-weight {
     position: absolute;
-    left: 0;
-    top: 50%;
-    width: 0.875rem;
-    height: 0.875rem;
-    translate: 0 -50%;
+    left: 50%;
+    top: var(--weight-y);
+    width: var(--weight);
+    height: var(--weight);
+    translate: -50% -50%;
     border-radius: 999px;
-    border: 1.5px solid var(--color-ink);
+    background: var(--color-ink);
+  }
+  .hinge-pass[data-status="planned"] .hinge-weight {
+    border: 1.5px solid var(--color-ink-faint);
     background: var(--color-sheet);
-    transition:
-      background-color 180ms ease,
-      border-color 180ms ease;
   }
-  .pipeline-stage:is(:hover, :focus-visible) .pipeline-joint {
-    background: var(--color-load);
-    border-color: var(--color-load);
+
+  .hinge-number {
+    grid-row: 1;
+    line-height: 1.25rem;
+    color: var(--color-ink-faint);
   }
-  .pipeline-stage:focus-visible {
-    outline: 2px solid var(--color-load);
-    outline-offset: 6px;
+  .hinge-verb {
+    grid-row: 2;
+    margin-top: 0.25rem;
+    font-size: var(--text-subheading);
+    font-weight: 600;
+    font-variation-settings: "wdth" 88;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
   }
-  .pipeline-artifact {
-    margin-top: 1.25rem;
+  .hinge-text {
+    grid-row: 3;
+    max-width: 36rem;
+    margin-top: 0.625rem;
+    font-size: var(--text-small);
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+  }
+
+  /* What the pass adds to the document: a schedule of mono values, keys in one column across every pass. */
+  .hinge-artifact {
+    grid-row: 4;
     display: grid;
-    gap: 0.25rem;
-    border: 1px solid var(--color-rule);
-    background: var(--color-sheet-deep);
-    padding: 0.625rem 0.75rem;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    row-gap: 0.125rem;
+    margin-top: 1.25rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     font-variation-settings: "wdth" 87.5;
     line-height: 1.6;
   }
-  .pipeline-stage:is(:hover, :focus-visible) .pipeline-artifact {
-    border-color: var(--color-rule-strong);
+  .hinge-artifact > div {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
+  .hinge-artifact dt {
+    color: var(--color-ink-faint);
+  }
+  .hinge-artifact dd {
+    min-width: 0;
+    color: var(--color-ink);
+    overflow-wrap: anywhere;
   }
 
-  @media (max-width: 1023px) {
-    .pipeline {
-      grid-template-columns: minmax(0, 1fr);
-      row-gap: 2.75rem;
-      padding-left: 2rem;
+  .hinge-note {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: clamp(3rem, 5vw, 4rem);
+  }
+
+  /*
+   * From 768 px each pass is a row of the frame's 12 columns, read as a schedule: the chain in the first column,
+   * the pass from the second with its status in a column of its own on the verb's line, and, from 1024 px, what
+   * it adds to the document from the ninth (under the text before that, where the column would break its values).
+   */
+  @media (min-width: 768px) {
+    .hinge {
+      --chain-col: auto;
     }
-    .pipeline-beam {
-      position: absolute;
-      left: -2rem;
-      top: 0;
-      bottom: -2.75rem;
-      height: auto;
-      width: 1rem;
-      margin: 0;
+    .hinge-body {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--col-gap);
     }
-    .pipeline-beam::before {
-      left: calc(0.4375rem - 0.75px);
-      right: auto;
-      top: 0.4rem;
-      bottom: 0;
-      width: 1.5px;
-      height: auto;
+    .hinge-head,
+    .hinge-note {
+      grid-column: 2 / span 8;
     }
-    .pipeline-stage:last-child .pipeline-beam::before {
-      display: none;
+    .hinge-pass {
+      grid-template-columns: subgrid;
+      column-gap: normal;
     }
-    .pipeline-joint {
-      top: 0.4rem;
-      translate: 0 0;
+    .hinge-pass > :not(.hinge-chain) {
+      grid-column: 2 / span 8;
     }
-    .pipeline-artifact {
-      max-width: 22rem;
+    .hinge-pass > .hinge-verb {
+      grid-column: 2 / span 2;
     }
+    .hinge-pass > .hinge-status {
+      grid-column: 4 / span 4;
+    }
+    .hinge-pass > .hinge-artifact {
+      grid-row: 4;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hinge-pass > :is(.hinge-number, .hinge-text) {
+      grid-column: 2 / span 6;
+    }
+    .hinge-pass > .hinge-artifact {
+      grid-row: 2 / span 2;
+      grid-column: 9 / -1;
+      margin-top: 0.375rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .hinge-head,
+    .hinge-note {
+      grid-column: 2 / span 7;
+    }
+  }
+}
+
+/* Forced colors: backgrounds give way to the system's, so the chain and its weights restate themselves. */
+@media (forced-colors: active) {
+  .hinge-hang,
+  .hinge-chain::before,
+  .hinge-weight {
+    forced-color-adjust: none;
+    background: CanvasText;
+  }
+  .hinge-pass[data-chain="planned"] .hinge-chain::before {
+    background: repeating-linear-gradient(to bottom, CanvasText 0 6px, transparent 6px 11px);
+  }
+  .hinge-pass[data-status="planned"] .hinge-weight {
+    border-color: CanvasText;
+    background: Canvas;
   }
 }

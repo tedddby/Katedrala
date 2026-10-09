@@ -2,22 +2,25 @@
 @layer components {
   .status {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
     font-family: var(--font-mono);
     font-size: var(--text-micro);
     font-variation-settings: "wdth" 87.5;
     letter-spacing: 0.02em;
-    white-space: nowrap;
+  }
+  /* The square sits on the middle of the first line; a label longer than its column wraps beside it. */
+  .status > svg {
+    margin-top: calc((1lh - 0.5rem) / 2);
+  }
+  .status > span {
+    min-width: 0;
+    text-wrap: balance;
   }
   .status[data-status="available"] {
     color: var(--color-ink-soft);
   }
-  .status[data-status="planned"] {
-    color: var(--color-ink-faint);
-  }
-}
-@layer components {
+  .status[data-status="planned"],
   .status[data-status="after-v1"] {
     color: var(--color-ink-faint);
   }

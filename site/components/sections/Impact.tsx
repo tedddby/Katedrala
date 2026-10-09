@@ -8,7 +8,7 @@ export function Impact() {
     <Section
       id="impact"
       title="Know what a change will touch before you make it."
-      lede="Katedrala traces dependency paths outward from a component to estimate the structural blast radius of a change, and shows the path behind every member it reaches."
+      lede="Katedrala will trace dependency paths out from a change to estimate its structural blast radius, path by path."
       aside={<Status status="planned" />}
     >
       <ImpactStage />

@@ -1,6 +1,6 @@
 /**
  * Architectural Entropy of the demonstration system, following Katedrala's draft `katedrala/entropy@1` design
- * (milestone 6, in development). Four factors, each normalized without reference to the snapshot's maximum:
+ * (milestone 6, planned). Four factors, each normalized without reference to the snapshot's maximum:
  *
  * - cyclicity: members in cycles, weighted by cycle size (Acyclic Dependencies Principle);
  * - direction: weight of module dependencies against the best one-way ordering (minimum feedback arc set);
@@ -204,8 +204,8 @@ export function entropyOf(
       contribution: 0,
       evidence:
         feedback === 0
-          ? "Module dependencies flow one way."
-          : `${feedback} of ${crossWeight} module dependencies run against the best one-way order.`,
+          ? "Cross-module dependencies all flow one way."
+          : `${feedback} of ${crossWeight} cross-module dependencies ${feedback === 1 ? "runs" : "run"} against the best one-way order.`,
     },
     {
       key: "dispersion",
@@ -214,7 +214,8 @@ export function entropyOf(
       normalized: (perplexity - 1) / (perplexity + 1),
       weight: 0.25,
       contribution: 0,
-      evidence: `A dependency lands in ${perplexity.toFixed(1)} modules on average.`,
+      // The perplexity of a dependency's target module given its source module: an effective number of modules.
+      evidence: `A module's dependencies spread over ${perplexity.toFixed(1)} modules on average, its own included.`,
     },
     {
       key: "propagation",

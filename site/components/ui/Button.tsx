@@ -22,7 +22,8 @@ const variants: Record<Variant, string> = {
 
 const sizes: Record<Size, string> = {
   md: "h-11 px-5 text-[0.9375rem]",
-  sm: "h-9 px-4 text-[0.875rem]",
+  // A compact button for fine pointers; on touch it keeps the 44px target every primary control gets.
+  sm: "h-9 px-4 text-[0.875rem] pointer-coarse:h-11",
 };
 
 /** A link styled as a button. External links open in the same tab and say where they go. */

@@ -1,74 +1,225 @@
 /* ------------------------------------------------------------------------------------------------
- * Ecosystem: tools stand on the document, the document on Katedrala, Katedrala on the code.
+ * Ecosystem: a structural elevation. Tools stand as columns on the document beam, the document on Katedrala,
+ * Katedrala on the code, all on hatched ground; the beam, the layers and the ground run off both edges of the
+ * page. Each tool's status mark is the capital of its column, and the column is drawn the way the mark is:
+ * solid when available, dashed when planned for v1, only its two ends when planned after v1.
  * ---------------------------------------------------------------------------------------------- */
+
+/* The hover colour of a column, registered so it can ease. */
+@property --shaft-ink {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #8b8e92;
+}
+
 @layer components {
+  /* The bleed: cqw is the section's width, without the scrollbar. */
+  .eco-plate {
+    container-type: inline-size;
+  }
   .eco {
+    --gap: clamp(1rem, 2vw, 1.5rem);
+    /* Phones: the lanes the columns of the tools above run down in, wide enough for their joints to stand apart
+       on the beam. */
+    --lane: 1rem;
+    /* A column: 1 px (1.5 on dense screens), its center under the capital square's (the mark is 8 px wide). */
+    --shaft-w: 1px;
+    --shaft-x: calc(4px - var(--shaft-w) / 2);
+    /* Planned: 6 px dashes, the last one landing on the beam. After v1: the two ends, 9 px each. A column
+       running past another tool keeps its faint ink (--dash); a tool's own column eases to load blue on hover,
+       so its rules write the gradient with --shaft-ink where it is used. */
+    --dash: linear-gradient(transparent 0 4px, var(--color-ink-faint) 4px);
+    --dash-period: 10px;
+    --end: 9px;
     margin: 0;
   }
-  .eco-tools {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
+  @media (resolution >= 2x) {
+    .eco {
+      --shaft-w: 1.5px;
+    }
   }
+
   .eco-tool {
+    --shaft-ink: var(--color-ink-faint);
     position: relative;
-    padding: 0 0 1.75rem 1.125rem;
-    border-left: 1.5px solid var(--color-ink-faint);
-    transition: border-color 150ms ease;
+    transition: --shaft-ink 150ms ease;
   }
-  /* The joint where the tool's column meets what it rests on. */
-  .eco-column {
+  .eco-tool[data-status="available"] {
+    --shaft-ink: var(--color-ink);
+  }
+  .eco-tool-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-ink);
+  }
+  .eco-tool-text {
+    margin-top: 0.25rem;
+    padding-bottom: 0.875rem;
+    font-size: 0.875rem;
+    line-height: 1.375;
+    color: var(--color-ink-soft);
+  }
+  /* The capital: the status mark, its square on the column's axis and on the label's first line wherever the
+     label wraps, so the square's foot is always 0.75rem below the capital's top, where the shaft begins. */
+  .eco-capital {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1rem;
+  }
+  .eco-capital .status {
+    align-items: flex-start;
+  }
+  .eco-capital .status svg {
+    margin-top: 0.25rem;
+    transition: color 150ms ease;
+  }
+  .eco-capital::after {
+    content: "";
     position: absolute;
-    left: -5.75px;
-    bottom: -5px;
+    left: var(--shaft-x);
+    top: 0.75rem;
+    bottom: calc(-1 * var(--shaft-below));
+    width: var(--shaft-w);
+  }
+  .eco-tool[data-status="available"] .eco-capital::after {
+    background: var(--shaft-ink);
+  }
+  .eco-tool[data-status="planned"] .eco-capital::after {
+    background: linear-gradient(transparent 0 4px, var(--shaft-ink) 4px) 0 100% / 100%
+      var(--dash-period) repeat-y;
+  }
+  .eco-tool[data-status="after-v1"] .eco-capital::after {
+    background:
+      linear-gradient(var(--shaft-ink) 0 0) top / 100% var(--end) no-repeat,
+      linear-gradient(var(--shaft-ink) 0 0) bottom / 100% var(--end) no-repeat;
+  }
+
+  /* The beam: the document every tool stands on, 3 px of chalk; joints where the columns meet it. */
+  .eco-beam {
+    position: relative;
+    height: 3px;
+  }
+  .eco-beam::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    left: calc(50% - 50cqw);
+    right: calc(50% - 50cqw);
+    background: var(--color-ink);
+  }
+  .eco-joint {
+    position: absolute;
+    top: 50%;
     width: 10px;
     height: 10px;
+    border: 1.5px solid var(--color-ink-faint);
     border-radius: 50%;
     background: var(--color-sheet);
-    border: 1.5px solid var(--color-ink-faint);
-    z-index: 1;
+    transform: translate(-50%, -50%);
     transition:
       border-color 150ms ease,
       background-color 150ms ease;
   }
-  .eco-tool:first-child {
-    padding-top: 0.25rem;
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .eco-tool:hover {
-      border-left-color: var(--color-load);
-    }
-    .eco-tool:hover .eco-column {
-      border-color: var(--color-load);
-      background: var(--color-load);
-    }
-  }
-  .eco-beam {
-    height: 3px;
+  .eco-joint[data-status="available"] {
+    border-color: var(--color-ink);
     background: var(--color-ink);
   }
+
+  /* The layers under the beam, ruled and filled out to both screen edges. */
   .eco-layer {
+    position: relative;
+    z-index: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
     gap: 0.25rem 1rem;
     padding: 0.875rem 0;
+  }
+  .eco-layer::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset-block: 0;
+    left: calc(50% - 50cqw);
+    right: calc(50% - 50cqw);
     border-bottom: 1px solid var(--color-rule);
   }
-  .eco-foundation {
-    padding-inline: 1rem;
+  /* Katedrala: the slab everything rests on, filled as a cut slab is. */
+  .eco-foundation::before {
+    border-bottom-color: var(--color-rule-strong);
     background: var(--color-sheet-raised);
-    border: 1px solid var(--color-rule-strong);
-    border-top: 0;
   }
-  @media (min-width: 1024px) {
+  .eco-layer:has(+ .eco-foundation)::before {
+    border-bottom-color: var(--color-rule-strong);
+  }
+  /* The last layer stands on the ground line itself. */
+  .eco-layer:has(+ .eco-ground)::before {
+    border-bottom: 0;
+  }
+  .eco-ground {
+    height: 0.75rem;
+    margin-inline: calc(50% - 50cqw);
+    border-top: 1px solid var(--color-graphite);
+  }
+
+  /* Side by side (tablets and up): five columns in a row, names, texts and capitals each on one line across
+     the row, every shaft the same height down to the beam. */
+  @media (min-width: 768px) {
     .eco-tools {
+      --shaft-below: clamp(3rem, 5vw, 4.5rem);
+      display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      column-gap: clamp(1rem, 2vw, 1.5rem);
+      grid-template-rows: auto auto auto var(--shaft-below);
+      column-gap: var(--gap);
     }
-    .eco-tool,
-    .eco-tool:first-child {
-      padding: 0 1rem 4.5rem 1.125rem;
+    .eco-tool {
+      grid-row: 1 / span 4;
+      display: grid;
+      grid-template-rows: subgrid;
+    }
+    .eco-joint {
+      left: calc((100% + var(--gap)) * var(--i) / 5 + 4px);
+    }
+  }
+  @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .eco-tool:hover {
+      --shaft-ink: var(--color-load);
+    }
+    .eco-tool:hover .eco-capital .status svg {
+      color: var(--color-load);
+    }
+    .eco:has(.eco-tool:nth-child(1):hover) .eco-joint:nth-child(1),
+    .eco:has(.eco-tool:nth-child(2):hover) .eco-joint:nth-child(2),
+    .eco:has(.eco-tool:nth-child(3):hover) .eco-joint:nth-child(3),
+    .eco:has(.eco-tool:nth-child(4):hover) .eco-joint:nth-child(4),
+    .eco:has(.eco-tool:nth-child(5):hover) .eco-joint:nth-child(5) {
+      border-color: var(--color-load);
+      background: var(--color-load);
+    }
+  }
+
+  /* Stacked (phones): each tool keeps its own column. Tools step one lane to the right, and the columns of the
+     tools above run past in the lanes on the left (drawn as this tool's background, see lanesPast), so every
+     tool stands on the beam, none on the tool below it. */
+  @media (max-width: 767px) {
+    .eco-tool {
+      --shaft-below: 1.75rem;
+      padding-left: calc(var(--i) * var(--lane));
+      padding-bottom: var(--shaft-below);
+      background-image: var(--past-image, none);
+      background-position: var(--past-position, 0 0);
+      background-size: var(--past-size, auto);
+      background-repeat: var(--past-repeat, no-repeat);
+    }
+    /* The lower end of an after-v1 column stands on the beam, drawn under the last tool. */
+    .eco-tool[data-status="after-v1"]:not(:last-child) .eco-capital::after {
+      background: linear-gradient(var(--shaft-ink) 0 0) top / 100% var(--end) no-repeat;
+    }
+    .eco-joint {
+      left: calc(var(--i) * var(--lane) + 4px);
     }
   }
 
@@ -109,9 +260,46 @@
     stroke: var(--color-ink-soft);
   }
 
+  /* The closing statement: an h2 in the section headings' condensed voice (width, weight, tracking and word
+     spacing from .heading), raised to the hero's display scale. */
+  .cta-title {
+    font-size: var(--text-display);
+    line-height: 0.96;
+  }
   .cta-ground {
     height: 0.75rem;
     margin-top: clamp(4.5rem, 9vw, 7rem);
     border-top: 1px solid var(--color-graphite);
+  }
+}
+
+/* Forced colors: backgrounds are replaced and SVG paint is not forced, so the columns, joints, beam and the
+   chain's joints restate themselves in system colors. */
+@media (forced-colors: active) {
+  .eco-tool {
+    --shaft-ink: CanvasText;
+  }
+  .eco-capital::after,
+  .eco-tool {
+    forced-color-adjust: none;
+  }
+  .eco-joint {
+    forced-color-adjust: none;
+    border-color: CanvasText;
+    background: Canvas;
+  }
+  .eco-joint[data-status="available"] {
+    background: CanvasText;
+  }
+  .eco-beam::before {
+    forced-color-adjust: none;
+    background: CanvasText;
+  }
+  .chain-joint {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+  .chain-step:is([data-status="available"], [data-status="source"]) .chain-joint {
+    fill: CanvasText;
   }
 }

@@ -1,6 +1,7 @@
 /* ------------------------------------------------------------------------------------------------
  * Load drawings: the structural drawing of a system. States come from data attributes set by
- * LoadDrawing: the member under test, its load path below, the members resting on it above.
+ * LoadDrawing: the member under test, the members it carries (resting on it, lit in load blue) and
+ * the members that support it, down to the foundations.
  * ---------------------------------------------------------------------------------------------- */
 @layer components {
   .drawing-level {
@@ -11,12 +12,15 @@
   .drawing-level-label {
     fill: var(--color-ink-faint);
     font-family: var(--font-mono);
-    font-size: 10px;
     font-variation-settings: "wdth" 87.5;
   }
   .drawing-ground {
     stroke: var(--color-graphite);
     stroke-width: 1.25;
+  }
+  .drawing-hatch {
+    stroke: var(--color-graphite);
+    stroke-width: 1;
   }
   .drawing-edge {
     stroke: var(--color-ink-soft);
@@ -26,11 +30,11 @@
       stroke 180ms ease,
       opacity 180ms ease;
   }
-  .drawing-edge[data-relation="below"] {
+  .drawing-edge[data-relation="carried"] {
     stroke: var(--color-load);
     opacity: 1;
   }
-  .drawing-edge[data-relation="above"] {
+  .drawing-edge[data-relation="support"] {
     stroke: var(--color-ink);
     opacity: 0.9;
   }
@@ -80,29 +84,114 @@
     stroke: var(--color-load);
   }
   .drawing-member[data-relation="active"] .drawing-label,
-  .drawing-member[data-relation="below"] .drawing-label,
-  .drawing-member[data-relation="above"] .drawing-label {
+  .drawing-member[data-relation="carried"] .drawing-label,
+  .drawing-member[data-relation="support"] .drawing-label {
     fill: var(--color-ink);
   }
-  .drawing-member[data-relation="below"] .drawing-joint {
+  .drawing-member[data-relation="carried"] .drawing-joint {
     stroke: var(--color-load);
   }
   .drawing-member[data-relation="dim"] {
     opacity: 0.24;
   }
-  .drawing-member:focus-visible .drawing-joint {
-    stroke: var(--color-load);
-    stroke-width: 2.4;
+
+  /*
+   * How a change of lighting arrives (data-arrival, LoadDrawing's `arrival`): as load, the lit members and
+   * dependencies brightening level by level (set in LoadDrawing, on opacity only); as a crossfade; or at once.
+   */
+  .drawing[data-arrival="crossfade"]
+    :is(.drawing-edge, .drawing-member, .drawing-joint, .drawing-label) {
+    transition-duration: 150ms;
+  }
+  .drawing[data-arrival="instant"]
+    :is(.drawing-edge, .drawing-member, .drawing-joint, .drawing-label) {
+    transition: none;
   }
 
-  /* With JavaScript, members wait (hidden) for the settle; without it the server-drawn final state shows. */
-  :root[data-js] .drawing[data-settle="pending"] :is(.drawing-member, .drawing-edge) {
-    opacity: 0;
-    animation: drawing-failsafe 1ms 3.5s forwards;
+  /* Keyboard focus: a 2px ring around the joint, the same width at any drawing scale. */
+  .drawing-focus {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 2px;
+  }
+  .drawing-member:focus-visible .drawing-focus {
+    stroke: var(--color-load);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* With JavaScript, members wait (hidden) for the settle; without it the server-drawn final state shows. */
+    :root[data-js] .drawing[data-settle="pending"] :is(.drawing-member, .drawing-edge) {
+      opacity: 0;
+      animation: drawing-failsafe 1ms 3.5s forwards;
+    }
+    /* A resting load path lights only once every member has landed: the settle ends in the first test. */
+    :root[data-js] .drawing[data-resting]:not([data-settle="done"]) .drawing-edge {
+      stroke: var(--color-ink-soft);
+    }
+    :root[data-js] .drawing[data-resting]:not([data-settle="done"]) .drawing-joint {
+      fill: var(--color-sheet);
+      stroke: var(--color-ink);
+    }
+    :root[data-js] .drawing[data-resting]:not([data-settle="done"]) .drawing-label {
+      fill: var(--color-ink-soft);
+    }
   }
   @keyframes drawing-failsafe {
     to {
       opacity: 1;
     }
+  }
+
+  /*
+   * Dependencies drawn as chains (drawing/chain-motion.ts): one held out of the drawing is not drawn. While a
+   * chain drops in or lifts out its opacity and shape are set inline; at rest this rule has the last word.
+   */
+  .chain[data-present="false"] {
+    opacity: 0;
+  }
+}
+
+/*
+ * Forced colors (Windows High Contrast): SVG paint is not forced, so the drawing restates its states in system
+ * colors. Unlayered, so no utility or component rule can outrank it.
+ */
+@media (forced-colors: active) {
+  .drawing-level,
+  .drawing-hatch {
+    stroke: GrayText;
+  }
+  /* Construction lines, not members: dotted, so they never read as dependencies in a system color. */
+  .drawing-level {
+    stroke-dasharray: 1 5;
+  }
+  .drawing-level-label {
+    fill: GrayText;
+  }
+  .drawing-ground,
+  .drawing-edge,
+  .drawing-edge[data-relation="support"] {
+    stroke: CanvasText;
+  }
+  .drawing-edge[data-relation="carried"] {
+    stroke: Highlight;
+  }
+  .drawing-joint,
+  .drawing-support {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+  .drawing-label {
+    fill: CanvasText;
+    stroke: Canvas;
+  }
+  .drawing-member[data-relation="active"] .drawing-joint {
+    fill: Highlight;
+    stroke: Highlight;
+  }
+  .drawing-member[data-relation="carried"] .drawing-joint {
+    stroke: Highlight;
+  }
+  .drawing-member:focus-visible .drawing-focus {
+    stroke: Highlight;
   }
 }

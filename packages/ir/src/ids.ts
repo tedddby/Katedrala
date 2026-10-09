@@ -265,17 +265,54 @@ export function declaredModuleKey(name: string): string {
 }
 
 /**
- * The key of an inferred module: its anchor directory, followed by `#<stem>` for modules anchored on a
- * file-name stem; `~inferred` is appended when the key equals a declared module's key.
+ * Escape the directory part of an inferred module key: `%` → `%25`, `#` → `%23`, `~` → `%7E`, the encodings
+ * symbol identifiers already use (`%25` and `%23` in their path part, `%7E` in name segments). After escaping,
+ * the first `#` of a key always separates the directory from the stem, and `~` only introduces the
+ * `~inferred` suffix.
+ */
+function escapeModuleDirectory(directory: string): string {
+  return directory.replaceAll("%", "%25").replaceAll("#", "%23").replaceAll("~", "%7E");
+}
+
+/**
+ * Characters a module stem never contains, so that the part after `#` needs no escaping (milestone 5 plan,
+ * 3.5): file-name stems are tokens, which never contain an ASCII separator (D-05); fallback keys are made of
+ * such tokens or of hex digits (D-34); a recurring sub-directory name gives a stem only without these
+ * characters (D-28). A stem that breaks this would make keys ambiguous, so it is rejected.
+ */
+const STEM_FORBIDDEN = /[%#~/]/;
+
+/**
+ * The key of an inferred module, derived from its anchor (see docs/IR.md, "Identifiers"):
+ *
+ * - the directory part is the normalized anchor directory with `%`, `#` and `~` written `%25`, `%23` and
+ *   `%7E`; the analysis root is written `.`, also when a stem follows;
+ * - modules anchored on a stem append `#<stem>`; stems are names with ASCII letters lower-cased (file-name
+ *   tokens, recurring sub-directory names, fallback keys) and never contain `%`, `#`, `~` or `/`;
+ * - `~inferred` is appended when the key equals a declared module's name.
+ *
+ * Distinct anchors give distinct keys: `{ directory: "src/a#b" }` is `src/a%23b`, while
+ * `{ directory: "src/a", stem: "b" }` is `src/a#b`; a directory named `x~inferred` cannot imitate the
+ * collision suffix.
+ *
+ * @example inferredModuleKey({ directory: "", stem: "payment" }) === ".#payment"
+ * @throws {InvalidIdentifierError} when the stem is empty or contains `%`, `#`, `~` or `/`.
  */
 export function inferredModuleKey(
   anchor: { directory: string; stem?: string },
   collidesWithDeclared = false,
 ): string {
   const directory = normalizePath(anchor.directory);
-  const key = anchor.stem === undefined ? directory : `${directory}#${anchor.stem}`;
-  const base = key === "" ? "." : key;
-  return collidesWithDeclared ? `${base}~inferred` : base;
+  let key = directory === "" ? "." : escapeModuleDirectory(directory);
+  if (anchor.stem !== undefined) {
+    if (anchor.stem === "" || STEM_FORBIDDEN.test(anchor.stem)) {
+      throw new InvalidIdentifierError(
+        `Module stems must be non-empty and must not contain "%", "#", "~" or "/": ${JSON.stringify(anchor.stem)}`,
+      );
+    }
+    key = `${key}#${anchor.stem}`;
+  }
+  return collidesWithDeclared ? `${key}~inferred` : key;
 }
 
 /** `layer:<name>` */

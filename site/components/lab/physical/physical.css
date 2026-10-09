@@ -1,0 +1,650 @@
+/*
+ * Lab: physical. The Load Path world: a near-black drawing sheet, chalk, graphite for construction only, and one
+ * load blue for what is active right now. Sharp corners, hairlines, condensed Archivo for display, Martian Mono only
+ * for code and measured values. Every class is prefixed phx- so the lab cannot leak into the site.
+ */
+
+.phx {
+  --phx-sheet: var(--color-sheet, #0e1012);
+  --phx-raised: var(--color-sheet-raised, #14171a);
+  --phx-ink: var(--color-ink, #e9e6df);
+  --phx-soft: var(--color-ink-soft, #b4b1a9);
+  --phx-faint: var(--color-ink-faint, #8b8e92);
+  --phx-graphite: var(--color-graphite, #5d6166);
+  --phx-rule: var(--color-rule, #24282c);
+  --phx-rule-strong: var(--color-rule-strong, #353a3f);
+  --phx-load: var(--color-load, #3ea6ff);
+  --phx-gutter: clamp(1rem, 4vw, 3rem);
+  --phx-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --phx-display-font: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --phx-mono-font: var(--font-martian), ui-monospace, "SFMono-Regular", monospace;
+
+  background: var(--phx-sheet);
+  color: var(--phx-ink);
+  font-family: var(--phx-display-font);
+}
+
+.phx code {
+  font-family: var(--phx-mono-font);
+  font-size: 0.86em;
+  font-variation-settings: "wdth" 87.5;
+  overflow-wrap: anywhere;
+}
+
+/* Navigation: one line, 64px, over the top of the stage. */
+.phx-nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  height: 4rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--phx-gutter);
+  background: linear-gradient(
+    to bottom,
+    var(--phx-sheet) 35%,
+    color-mix(in oklab, var(--phx-sheet) 0%, transparent)
+  );
+}
+
+.phx-nav nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.phx-wordmark {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-variation-settings: "wdth" 118;
+  text-decoration: none;
+}
+
+.phx-nav-link {
+  color: var(--phx-soft);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.phx-nav-link:hover {
+  color: var(--phx-ink);
+}
+
+/* Actions: sharp, physical on press. */
+.phx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
+}
+
+.phx-btn {
+  display: inline-flex;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border: 1px solid var(--phx-rule-strong);
+  padding-inline: 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-variation-settings: "wdth" 92;
+  white-space: nowrap;
+  text-decoration: none;
+  user-select: none;
+  transition:
+    transform 150ms var(--phx-ease),
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.phx-btn:active {
+  transform: scale(0.97);
+}
+
+.phx-btn--primary {
+  border-color: var(--phx-ink);
+  background: var(--phx-ink);
+  color: var(--phx-sheet);
+}
+
+.phx-btn--primary:hover {
+  border-color: #d8d5ce;
+  background: #d8d5ce;
+}
+
+.phx-btn--secondary:hover {
+  border-color: var(--phx-faint);
+  background: var(--phx-raised);
+}
+
+.phx-btn--sm {
+  height: 2.25rem;
+  padding-inline: 1rem;
+  font-size: 0.875rem;
+}
+
+@media (pointer: coarse) {
+  .phx-btn--sm {
+    height: 2.75rem;
+  }
+}
+
+.phx-external {
+  width: 0.75rem;
+  height: 0.75rem;
+  transition: transform 150ms var(--phx-ease);
+}
+
+.phx-btn:hover .phx-external {
+  transform: translate(1px, -1px);
+}
+
+/* The run: a tall section; the stage sticks while the steps scroll over it. */
+/* The steps and the stage share one grid cell: the steps come first in the document (keyboard and screen readers
+ * meet the words before the drawing) and scroll over the stage, which sticks to the top of the cell. */
+.phx-run {
+  position: relative;
+  display: grid;
+}
+
+.phx-run > .phx-steps,
+.phx-run > .phx-sticky {
+  grid-area: 1 / 1;
+}
+
+.phx-sticky {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.phx-stage {
+  position: absolute;
+  inset: 0;
+  outline: none;
+}
+
+.phx-stage:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--phx-load);
+}
+
+.phx-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* Vertical swipes scroll the page; horizontal ones may tug a weight. */
+  touch-action: pan-y;
+}
+
+.phx-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.phx-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--phx-mono-font);
+  font-size: 0.6875rem;
+  font-variation-settings: "wdth" 87.5;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--phx-faint);
+  opacity: 0;
+  transition: opacity 320ms ease;
+  will-change: transform;
+}
+
+.phx-label[data-on="true"] {
+  opacity: 1;
+}
+
+.phx-label--bay {
+  translate: -50% -50%;
+}
+
+.phx-label--level {
+  translate: 0 -50%;
+}
+
+.phx-label--level[data-align="right"] {
+  translate: -100% -50%;
+}
+
+.phx-label--callout {
+  translate: 6px -50%;
+  color: var(--phx-soft);
+}
+
+.phx-label--callout[data-align="right"] {
+  translate: calc(-100% - 6px) -50%;
+}
+
+.phx-label--callout[data-align="center"] {
+  translate: -50% -50%;
+}
+
+/* Leaders from a member to its note, drawn in graphite like any construction line. */
+.phx-leaders {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.phx-leaders line {
+  stroke: var(--phx-graphite);
+  stroke-width: 1;
+  opacity: 0;
+  transition: opacity 320ms ease;
+}
+
+.phx-leaders line[data-on="true"] {
+  opacity: 1;
+}
+
+/* The identity card of the file under the pointer. */
+.phx-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  min-width: 13.5rem;
+  max-width: 19rem;
+  border: 1px solid var(--phx-rule-strong);
+  background: color-mix(in oklab, var(--phx-raised) 94%, transparent);
+  padding: 0.75rem 0.875rem 0.8125rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms ease-out;
+}
+
+.phx-card[data-open="true"] {
+  opacity: 1;
+}
+
+.phx-card-path {
+  display: grid;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.phx-card-dir {
+  font-family: var(--phx-mono-font);
+  font-size: 0.6875rem;
+  font-variation-settings: "wdth" 87.5;
+  color: var(--phx-faint);
+  overflow-wrap: anywhere;
+}
+
+.phx-card-base {
+  margin-top: 0.125rem;
+  font-size: 1.0625rem;
+  font-weight: 620;
+  font-variation-settings: "wdth" 86;
+  color: var(--phx-load);
+  overflow-wrap: anywhere;
+}
+
+.phx-card-meta {
+  display: grid;
+  gap: 0.1875rem;
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0 0;
+  border-top: 1px solid var(--phx-rule);
+  list-style: none;
+  font-family: var(--phx-mono-font);
+  font-size: 0.6875rem;
+  font-variation-settings: "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  color: var(--phx-soft);
+}
+
+/* The drawing's title block, as on a sheet: what this is and where its numbers come from. */
+.phx-title-block {
+  position: absolute;
+  right: var(--phx-gutter);
+  bottom: 1.5rem;
+  display: grid;
+  justify-items: end;
+  gap: 0.25rem;
+  margin: 0;
+  font-family: var(--phx-mono-font);
+  font-size: 0.6875rem;
+  font-variation-settings: "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+  color: var(--phx-faint);
+  pointer-events: none;
+}
+
+.phx-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* The steps scroll over the stage; only their text takes the pointer. */
+.phx-steps {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.phx-step {
+  display: grid;
+  min-height: 100svh;
+  align-items: center;
+  padding-inline: var(--phx-gutter);
+}
+
+.phx-copy {
+  max-width: 30rem;
+  pointer-events: auto;
+}
+
+.phx-step--hero .phx-copy {
+  max-width: 34rem;
+  padding-top: 3rem;
+}
+
+.phx-display {
+  margin: 0;
+  font-size: clamp(2.75rem, 1.3rem + 4.3vw, 5.75rem);
+  font-weight: 640;
+  font-variation-settings: "wdth" 76;
+  line-height: 0.95;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+
+.phx-heading {
+  margin: 0;
+  font-size: clamp(2.125rem, 1.25rem + 2.5vw, 3.5rem);
+  font-weight: 620;
+  font-variation-settings: "wdth" 80;
+  line-height: 1;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+
+.phx-subheading {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.15rem + 0.9vw, 2rem);
+  font-weight: 600;
+  font-variation-settings: "wdth" 86;
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+}
+
+.phx-lede {
+  margin: 1.75rem 0 0;
+  max-width: 30rem;
+  font-size: clamp(1.125rem, 1rem + 0.35vw, 1.3125rem);
+  line-height: 1.5;
+  color: var(--phx-soft);
+  text-wrap: pretty;
+}
+
+.phx-body {
+  margin: 1.25rem 0 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--phx-soft);
+  text-wrap: pretty;
+}
+
+.phx-measure {
+  max-width: 68ch;
+}
+
+.phx-facts {
+  display: grid;
+  gap: 0.875rem;
+  margin: 1.75rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--phx-rule);
+}
+
+.phx-facts div {
+  display: grid;
+  grid-template-columns: 10.5rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.phx-facts dt {
+  font-family: var(--phx-mono-font);
+  font-size: 0.8125rem;
+  font-variation-settings: "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  color: var(--phx-ink);
+}
+
+.phx-facts dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--phx-faint);
+}
+
+.phx-coarse-pointer {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .phx-fine-pointer {
+    display: none;
+  }
+  .phx-coarse-pointer {
+    display: inline;
+  }
+}
+
+/* With reduced motion the drawing stands still and cannot be tugged: the words say so. */
+.phx-still {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phx-step .phx-moving {
+    display: none;
+  }
+  .phx-step .phx-still {
+    display: inline;
+  }
+}
+
+/* Without WebGL the drawing is still too. */
+.phx-run:has(.phx-stage[data-webgl="none"]) .phx-step .phx-moving {
+  display: none;
+}
+
+.phx-run:has(.phx-stage[data-webgl="none"]) .phx-step .phx-still {
+  display: inline;
+}
+
+/* After the run: the structure in words, and what is real. */
+.phx-after {
+  position: relative;
+  border-top: 1px solid var(--phx-rule);
+  padding-block: clamp(4rem, 3rem + 5vw, 8rem);
+  padding-inline: var(--phx-gutter);
+}
+
+.phx-after-inner {
+  max-width: 82.5rem;
+  margin-inline: auto;
+}
+
+.phx-levels-wrap {
+  margin-top: 2.5rem;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.phx-levels {
+  border-collapse: collapse;
+  font-family: var(--phx-mono-font);
+  font-size: 0.75rem;
+  font-variation-settings: "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.phx-levels caption {
+  margin-bottom: 0.75rem;
+  text-align: left;
+  font-family: var(--phx-display-font);
+  font-size: 0.9375rem;
+  color: var(--phx-soft);
+}
+
+.phx-levels th {
+  padding: 0.375rem 1rem 0.375rem 0;
+  text-align: left;
+  font-weight: 400;
+  color: var(--phx-faint);
+}
+
+.phx-levels td {
+  min-width: 2.25rem;
+  padding: 0.375rem 0.5rem;
+  text-align: right;
+  color: var(--phx-ink);
+}
+
+.phx-levels tr + tr td,
+.phx-levels tr + tr th {
+  border-top: 1px solid var(--phx-rule);
+}
+
+.phx-notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  margin-top: 3rem;
+  max-width: 62rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--phx-faint);
+}
+
+.phx-notes p {
+  margin: 0;
+}
+
+.phx-notes strong {
+  font-weight: 600;
+  color: var(--phx-soft);
+}
+
+/* Phones: the model fills the upper part of the screen; the words sit below it, on the sheet. */
+@media (max-width: 767px) {
+  .phx-nav nav {
+    gap: 1rem;
+  }
+
+  .phx-step {
+    align-items: end;
+    padding-inline: 0;
+  }
+
+  .phx-copy,
+  .phx-step--hero .phx-copy {
+    max-width: none;
+    padding: 2.75rem var(--phx-gutter) 2rem;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--phx-sheet) 0%, transparent),
+      var(--phx-sheet) 2.5rem
+    );
+  }
+
+  .phx-display {
+    font-size: clamp(2.5rem, 1.6rem + 4.4vw, 3.25rem);
+  }
+
+  .phx-heading {
+    font-size: 2rem;
+  }
+
+  .phx-lede {
+    margin-top: 1.125rem;
+    font-size: 1.0625rem;
+  }
+
+  .phx-body {
+    margin-top: 0.875rem;
+    font-size: 1rem;
+  }
+
+  .phx-actions {
+    margin-top: 1.5rem;
+  }
+
+  .phx-facts {
+    margin-top: 1.125rem;
+    padding-top: 0.875rem;
+    gap: 0.5rem;
+  }
+
+  .phx-facts div {
+    grid-template-columns: 1fr;
+    gap: 0.125rem;
+  }
+
+  .phx-title-block {
+    top: 4.25rem;
+    bottom: auto;
+    left: var(--phx-gutter);
+    right: auto;
+    justify-items: start;
+    gap: 0.125rem;
+    font-size: 0.625rem;
+  }
+
+  .phx-card {
+    min-width: 0;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .phx-label--callout {
+    width: max-content;
+    max-width: 9.75rem;
+    white-space: normal;
+    line-height: 1.3;
+  }
+
+  .phx-notes {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phx-label,
+  .phx-leaders line,
+  .phx-card,
+  .phx-btn,
+  .phx-external {
+    transition-duration: 1ms;
+  }
+}

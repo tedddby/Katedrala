@@ -1,13 +1,30 @@
 /* ------------------------------------------------------------------------------------------------
- * Sections: the hairline rule that opens each one.
+ * Sections: the plates after the film. Each stands well clear of the last and opens with a hairline rule,
+ * then its heading, its status line and its lede (components/ui/Section.tsx).
  * ---------------------------------------------------------------------------------------------- */
 @layer components {
   .section {
-    padding-block: clamp(5rem, 9vw, 8.5rem) 0;
+    /* A size container, so a sheet can bleed to the window's edge exactly (plates.css). */
+    container-type: inline-size;
+    padding-block: var(--plate-pad) 0;
   }
   .section-rule {
     height: 1px;
     background: var(--color-rule);
     margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  /*
+   * The final statement: the headline at display scale (the hero's condensed width, never the plates' heading
+   * size), and under the actions the ground everything on the page has stood on: a line the statement stands
+   * on, hatched beneath, from one edge of the window to the other.
+   */
+  .statement-title {
+    max-width: 22ch;
+  }
+  .statement-ground {
+    height: 1rem;
+    margin-top: clamp(4rem, 7vw, 6rem);
+    border-top: 1.5px solid var(--color-ink-soft);
   }
 }

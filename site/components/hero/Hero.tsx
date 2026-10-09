@@ -12,8 +12,8 @@ export function Hero() {
               See what holds your system&nbsp;up.
             </h1>
             <p className="lede mt-7">
-              Katedrala reconstructs the architecture inside TypeScript and JavaScript code, with
-              evidence for every dependency it finds.
+              Katedrala reconstructs the architecture of TypeScript and JavaScript, with evidence
+              for every&nbsp;dependency&nbsp;it&nbsp;finds.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Button href="#how-it-works">Explore Katedrala</Button>
@@ -27,7 +27,7 @@ export function Hero() {
           <p className="title-block mt-3">
             <span>Demonstration system</span>
             <span>Line weight: load carried</span>
-            <span>Gravity: draft method, in development</span>
+            <span>Gravity: draft method, planned for v1</span>
           </p>
         }
       />

@@ -1,9 +1,10 @@
 /**
  * Measurements of the demonstration system, computed from its graph.
  *
- * Gravity follows Katedrala's draft `katedrala/gravity@1` design (milestone 6, in development): a weighted sum of
- * reach (transitive dependents), fan-in, cross-module spread and brokerage (betweenness), each normalized
- * against the largest value possible for the system's size, never against the observed maximum.
+ * Gravity follows Katedrala's draft `katedrala/gravity@1` design (milestone 6, planned): a weighted sum of
+ * reach (transitive dependents), fan-in, cross-module spread and brokerage (betweenness). Reach, fan-in and
+ * brokerage are log shares of the largest value possible for the system's size, never of the observed maximum;
+ * spread saturates at a fixed constant.
  */
 import { EDGES, MODULES, NODES, type DemoNode, type ModuleId } from "./system";
 
@@ -208,6 +209,100 @@ export function measurementOf(id: string): Measurement {
   return measurement;
 }
 
+export type TermKey = GravityTerm["key"];
+
+/** What one term of a member's Gravity measured, as members and dependencies a drawing can light. */
+export interface TermEvidence {
+  /** Members the term counts or passes through, the member itself excluded, by name. */
+  readonly members: readonly string[];
+  /** Dependencies as `source>target` (the dependent first). */
+  readonly edges: readonly string[];
+}
+
+// Shortest dependency distances between every two members (breadth first; -1 where there is no path).
+const distance: number[][] = nodeIds.map((_, s) => {
+  const d = new Array<number>(n).fill(-1);
+  d[s] = 0;
+  const queue = [s];
+  while (queue.length > 0) {
+    const v = queue.shift()!;
+    for (const w of facts.out[v]!) {
+      if (d[w] === -1) {
+        d[w] = d[v]! + 1;
+        queue.push(w);
+      }
+    }
+  }
+  return d;
+});
+
+/** Whether the dependency a -> b lies on a shortest path from s to t. */
+const onShortestPath = (a: number, b: number, s: number, t: number): boolean => {
+  const st = distance[s]![t]!;
+  const sa = distance[s]![a]!;
+  const bt = distance[b]![t]!;
+  return st >= 0 && sa >= 0 && bt >= 0 && sa + 1 + bt === st;
+};
+
+/**
+ * The evidence behind each term, per member: reach, everything that rests on it and the dependencies that bring
+ * that load down to it; fan-in, its direct dependents and their dependencies on it; cross-module spread, the
+ * direct dependents in other modules; brokerage, every member and dependency on a shortest dependency path
+ * between two other members that passes through it (the paths its betweenness sums over).
+ */
+export const TERM_EVIDENCE: ReadonlyMap<string, Readonly<Record<TermKey, TermEvidence>>> = new Map(
+  NODES.map((node, v) => {
+    const key = (a: number, b: number) => `${nodeIds[a]}>${nodeIds[b]}`;
+    const sorted = (members: Iterable<number>) =>
+      [...new Set(members)]
+        .filter((u) => u !== v)
+        .map((u) => nodeIds[u]!)
+        .sort();
+    const tributary = facts.dependents[v]!;
+    const carried = new Set([v, ...tributary]);
+    const reachEdges = facts.out.flatMap((targets, s) =>
+      tributary.has(s) ? targets.filter((t) => carried.has(t)).map((t) => key(s, t)) : [],
+    );
+    const callers = facts.in[v]!;
+    const outside = callers.filter((u) => NODES[u]!.module !== node.module);
+
+    const brokered = new Set<number>();
+    const brokeredEdges = new Set<string>();
+    for (let s = 0; s < n; s++) {
+      for (let t = 0; t < n; t++) {
+        if (s === v || t === v || s === t) continue;
+        const sv = distance[s]![v]!;
+        const vt = distance[v]![t]!;
+        if (sv < 0 || vt < 0 || sv + vt !== distance[s]![t]) continue;
+        // v lies on a shortest path from s to t: light every dependency on a shortest path s -> v or v -> t.
+        facts.out.forEach((targets, a) => {
+          for (const b of targets) {
+            if (onShortestPath(a, b, s, v) || onShortestPath(a, b, v, t)) {
+              brokered.add(a);
+              brokered.add(b);
+              brokeredEdges.add(key(a, b));
+            }
+          }
+        });
+      }
+    }
+
+    const evidence: Record<TermKey, TermEvidence> = {
+      reach: { members: sorted(tributary), edges: reachEdges.sort() },
+      "fan-in": { members: sorted(callers), edges: callers.map((u) => key(u, v)).sort() },
+      spread: { members: sorted(outside), edges: outside.map((u) => key(u, v)).sort() },
+      brokerage: { members: sorted(brokered), edges: [...brokeredEdges].sort() },
+    };
+    return [node.id, evidence];
+  }),
+);
+
+export function termEvidenceOf(id: string, term: TermKey): TermEvidence {
+  const evidence = TERM_EVIDENCE.get(id);
+  if (evidence === undefined) throw new Error(`Unknown member ${id}`);
+  return evidence[term];
+}
+
 /** Load carried by one member (dependent -> dependency). */
 export function edgeLoad(source: string, target: string): number {
   return facts.edgeLoad.get(`${source}>${target}`) ?? 0;
@@ -265,6 +360,47 @@ export const MAX_MODULE_EDGE_LOAD = Math.max(...moduleFacts.edgeLoad.values());
 export function formatScore(value: number): string {
   return value.toFixed(2);
 }
+
+/**
+ * The change from one score to another as the page shows them, signed ("+0.04", "−0.02"): the difference of the
+ * two shown values, so a column of changes adds up exactly to the scores beside it.
+ */
+export function formatDelta(before: number, after: number): string {
+  const cents =
+    Math.round(Number(formatScore(after)) * 100) - Math.round(Number(formatScore(before)) * 100);
+  return `${cents < 0 ? "−" : "+"}${(Math.abs(cents) / 100).toFixed(2)}`;
+}
+
+/**
+ * The parts of a score at the page's two decimals, rounded so they add up to the score as shown: each part is
+ * rounded down, and the hundredths still missing go to the parts with the largest remainders (ties to the
+ * earlier part). Plain rounding can make 0.12 + 0.09 sit beside a total of 0.22.
+ */
+export function formatParts(parts: readonly number[], total: number): string[] {
+  const cents = parts.map((part) => Math.floor(part * 100 + 1e-9));
+  // The target is the total exactly as formatScore prints it, so the parts can never disagree with it.
+  let missing = Math.round(Number(formatScore(total)) * 100) - cents.reduce((sum, c) => sum + c, 0);
+  const remainder = (i: number) => parts[i]! * 100 - cents[i]!;
+  const order = parts.map((_, i) => i).sort((a, b) => remainder(b) - remainder(a) || a - b);
+  for (const i of order) {
+    if (missing <= 0) break;
+    cents[i]! += 1;
+    missing -= 1;
+  }
+  return cents.map((c) => (c / 100).toFixed(2));
+}
+
+/**
+ * The scale each Gravity term is normalized against, for the page to state the method with its own numbers:
+ * reach and fan-in against the other members, brokerage against the ordered pairs of other members.
+ */
+export const GRAVITY_SCALE = {
+  members: n,
+  reach: n - 1,
+  "fan-in": n - 1,
+  brokerage: (n - 1) * (n - 2),
+  spread: SPREAD_K,
+} as const;
 
 export function moduleMeasurementOf(id: string): ModuleMeasurement {
   const measurement = MODULE_MEASUREMENTS.get(id as ModuleId);

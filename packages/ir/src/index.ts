@@ -99,6 +99,7 @@ export {
   relativePath,
 } from "./paths.js";
 export { sha256, sha256Hex, shortHash } from "./hash.js";
+export { canonicalJson } from "./canonical-json.js";
 export {
   DuplicateIdError,
   METRIC_SIGNIFICANT_DIGITS,

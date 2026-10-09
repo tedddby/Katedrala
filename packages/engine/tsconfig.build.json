@@ -21,6 +21,9 @@
       "path": "../model/tsconfig.build.json"
     },
     {
+      "path": "../inference/tsconfig.build.json"
+    },
+    {
       "path": "../adapter-typescript/tsconfig.build.json"
     },
     {

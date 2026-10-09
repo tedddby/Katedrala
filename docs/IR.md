@@ -168,10 +168,27 @@ content analyzed from different clones yields the same document.
 
 - **Packages** are identified by ecosystem and manifest location, so names may repeat (fixtures, examples)
   and renaming a package keeps its identity. The declared name is the `name` field.
-- **Declared modules** are `mod:<configured name>` (names must not contain `#` or `~`). **Inferred modules**
-  are identified by their anchor: `mod:<anchor directory>` or `mod:<anchor directory>#<stem>` for modules
-  anchored on a file-name stem; the root directory is written `.`; `~inferred` is appended in the rare case
-  the key equals a declared module's name.
+- **Declared modules** are `mod:<configured name>` (names must not contain `#` or `~`).
+- **Inferred modules** are identified by their anchor: `mod:<directory>`, or `mod:<directory>#<stem>` for
+  modules anchored on a name stem (`inferredModuleKey`).
+  - The directory part is the anchor directory, normalized, with `%`, `#` and `~` written `%25`, `%23` and
+    `%7E`, the encodings symbol identifiers use. The first `#` therefore always separates directory and stem,
+    and `~` only introduces the `~inferred` suffix.
+  - The analysis root is written `.`, also when a stem follows: `mod:.`, `mod:.#payment`.
+  - Stems are names with ASCII letters lower-cased: the S-stemmed first token of the member files' names
+    (`payment`), the S-stemmed name of a sub-directory that recurs below several layer directories
+    (`controllers/payment/` and `services/payment/` give `payment`), or, for a piece of an oversized directory
+    without a common stem, the hyphen-joined tokens of a file name (`format-date-ts`) or 16 hex digits. Stems
+    never contain `%`, `#`, `~` or `/` (a sub-directory whose name contains one gives no stem), so they are
+    written as they are.
+  - `~inferred` is appended in the rare case the key equals a declared module's name.
+  - Examples: directory `src/payments` gives `mod:src/payments`; directory `src` and stem `payment` give
+    `mod:src#payment`; directory `src/a#b` gives `mod:src/a%23b`, distinct from directory `src/a` with stem
+    `b` (`mod:src/a#b`); `src/50%` gives `mod:src/50%25`; a directory named `x~inferred` gives
+    `mod:x%7Einferred`, distinct from `mod:x~inferred` (directory `x` colliding with a declared module `x`).
+  - Pre-release change (identifier derivation, schema version 1.0.0 kept because no document with modules
+    had been produced): before milestone 5 the root was written `.` only without a stem (`mod:#payment`), and
+    the directory part was not escaped.
 - **Externals** use a namespace registry (`EXTERNAL_NAMESPACES`): `npm`, `node`, `pypi`, `python`, `maven`,
   `jdk`, `go`, `go-std`, `cargo`, `rust-std`, `nuget`, `dotnet`, `env`, `http`, `datastore`; plugins use `x-`
   namespaces. For packages, the name is the distribution name the package manager uses (what manifests

@@ -1,0 +1,670 @@
+/*
+ * The hanging model hero. A tall section whose stage stays pinned (position: sticky, no scroll hijack) while
+ * the copy and the captions scroll past at the reader's own speed. The invisible frames inside the figure are
+ * the camera's boxes: the engine reads them, so the composition lives here, per breakpoint.
+ *
+ * A caption is read at the reading line (--read) when the pinned scroll reaches its share --at of --pin, the
+ * same shares as the choreography in engine/stage.ts.
+ *
+ * Phones: the drawing owns a band at the top of the sheet (--band) and the text scrolls up beneath it, like
+ * notes under a drawing; nothing ever covers the structure.
+ *
+ * Still layout (reduced motion, no WebGL, or no engine): nothing hangs or turns, so the section is not pinned
+ * for a sequence; the still notes follow the hero in the text column while the standing structure stays put.
+ */
+
+.section {
+  --pin: 420svh;
+  --read: 50svh;
+  position: relative;
+  height: calc(100svh + var(--pin));
+  background: var(--color-sheet);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.figure {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  outline: none;
+  touch-action: pan-y;
+}
+
+.figure:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: 72px 10px 10px;
+  border: 1px solid var(--color-load);
+  pointer-events: none;
+}
+
+.canvas,
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.overlay {
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* The camera's boxes. */
+.frameHang,
+.framePlan,
+.frameStand {
+  position: absolute;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * The server-drawn board: on screen from the first paint, until the drawing takes over.
+ * ------------------------------------------------------------------------------------------------------- */
+.board {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 220ms var(--ease-out) 60ms;
+}
+
+.section:is([data-drawing="live"], [data-drawing="still"], [data-drawing="fallback"]) .board {
+  opacity: 0;
+}
+
+.boardWide,
+.boardMedium {
+  position: absolute;
+  overflow: visible;
+  display: none;
+}
+
+.boardLines line {
+  vector-effect: non-scaling-stroke;
+}
+
+.boardLine {
+  stroke: var(--color-ink);
+  stroke-width: 1.6px;
+}
+
+.boardSlab {
+  stroke: var(--color-ink-soft);
+  stroke-width: 0.75px;
+  opacity: 0.6;
+}
+
+.pinRing,
+.pinFace {
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+}
+
+.pinRing {
+  stroke: var(--color-ink);
+}
+
+.pinFace {
+  stroke: var(--color-sheet);
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * The hero copy, over the first viewport.
+ * ------------------------------------------------------------------------------------------------------- */
+.copy {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.copy a {
+  pointer-events: auto;
+}
+
+.title {
+  font-weight: 640;
+  font-variation-settings: "wdth" 76;
+  line-height: 0.94;
+  letter-spacing: -0.024em;
+  color: var(--color-ink);
+}
+
+.lede {
+  margin-top: 1.5rem;
+  color: var(--color-ink-soft);
+  line-height: 1.55;
+  max-width: 34ch;
+}
+
+.actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * Captions, placed down the pinned scroll.
+ * ------------------------------------------------------------------------------------------------------- */
+.captions {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.caption {
+  position: absolute;
+  top: calc(var(--at) * var(--pin) + var(--read));
+  transform: translateY(-50%);
+}
+
+.caption[data-at="hang"] {
+  --at: 0.15;
+}
+.caption[data-at="turn"] {
+  --at: 0.275;
+}
+.caption[data-at="plan"] {
+  --at: 0.4;
+}
+.caption[data-at="stand"] {
+  --at: 0.6;
+}
+.caption[data-at="test"] {
+  --at: 0.8;
+}
+
+/* The still notes belong to the still layout only. */
+.caption[data-mode="still"] {
+  display: none;
+}
+
+.captionTitle {
+  font-size: clamp(1.625rem, 1.1rem + 1.1vw, 2.25rem);
+  font-weight: 620;
+  font-variation-settings: "wdth" 80;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.captionBody {
+  margin-top: 0.875rem;
+  color: var(--color-ink-soft);
+  font-size: 1rem;
+  line-height: 1.55;
+  max-width: 36ch;
+}
+
+.captionData {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-data);
+  font-variation-settings: "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
+  color: var(--color-ink-faint);
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * The title block.
+ * ------------------------------------------------------------------------------------------------------- */
+.titleBlock {
+  position: absolute;
+  z-index: 1;
+  border: 1px solid var(--color-rule-strong);
+  background: var(--color-sheet);
+  font-family: var(--font-mono);
+  font-variation-settings: "wdth" 87.5;
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  color: var(--color-ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.tbHead {
+  padding: 0.625rem 0.75rem 0.5rem;
+  border-bottom: 1px solid var(--color-rule-strong);
+}
+
+.tbTitle {
+  font-family: var(--font-sans);
+  font-variation-settings: "wdth" 88;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  letter-spacing: -0.005em;
+}
+
+.tbSource {
+  margin-top: 0.125rem;
+}
+
+.tbRows > div {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  border-top: 1px solid var(--color-rule);
+}
+
+.tbRows > div:first-child {
+  border-top: 0;
+}
+
+/* Labels are lettering, in the page's condensed sans; values are measurements, in the mono. */
+.tbRows dt {
+  padding: 0.375rem 0.75rem;
+  border-right: 1px solid var(--color-rule);
+  font-family: var(--font-sans);
+  font-variation-settings: "wdth" 82;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.625rem;
+  align-self: center;
+}
+
+.tbRows dd {
+  padding: 0.375rem 0.75rem;
+  color: var(--color-ink-soft);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tbView {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.tbViewName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font-sans);
+  font-variation-settings: "wdth" 88;
+  font-size: 0.75rem;
+  letter-spacing: 0.005em;
+}
+
+.tbAngle {
+  flex: none;
+  color: var(--color-ink-faint);
+  transition: color 160ms var(--ease-out);
+}
+
+.tbAngle[data-active="1"] {
+  color: var(--color-load);
+}
+
+.tbLegend {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.tbSample {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+}
+
+.tbStroke {
+  width: 1.375rem;
+  height: 0.5rem;
+  overflow: visible;
+}
+
+.tbStrokeWide,
+.tbStrokeNarrow {
+  stroke: var(--color-ink);
+  stroke-linecap: butt;
+}
+
+.tbStrokeNarrow {
+  display: none;
+}
+
+.tbUnit {
+  display: block;
+  margin-top: 0.125rem;
+  color: var(--color-ink-faint);
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * Desktop and large tablets: copy and captions in the left column, the drawing on the right.
+ * ------------------------------------------------------------------------------------------------------- */
+@media (min-width: 900px) {
+  .frameHang {
+    left: 41vw;
+    right: 4.5vw;
+    top: 156px;
+    bottom: 150px;
+  }
+  .framePlan {
+    left: 41vw;
+    right: 4.5vw;
+    top: 190px;
+    bottom: 200px;
+  }
+  /* Standing, the ground line sits clear above the title block, with room for a label under it. */
+  .frameStand {
+    left: 41vw;
+    right: 4.5vw;
+    top: 112px;
+    bottom: 250px;
+  }
+
+  /* The focus ring frames the drawing's own part of the sheet, level datum included, not the copy beside it. */
+  .figure:focus-visible::after {
+    inset: 76px calc(4.5vw - 24px) 12px calc(41vw - 76px);
+  }
+
+  .boardWide {
+    display: block;
+    left: 41vw;
+    top: 156px;
+    width: calc(100% - 41vw - 4.5vw);
+    height: calc(100% - 306px);
+  }
+
+  .copy {
+    top: 0;
+    left: 0;
+    height: 100svh;
+    width: 37vw;
+    padding: 0 0 clamp(3.5rem, 9svh, 5.5rem) var(--page-gutter);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .title {
+    font-size: clamp(3rem, 1.2rem + 3.9vw, 5.5rem);
+  }
+
+  .lede {
+    font-size: clamp(1.0625rem, 0.95rem + 0.3vw, 1.25rem);
+  }
+
+  .caption {
+    left: var(--page-gutter);
+    width: min(31vw, 26rem);
+  }
+
+  .titleBlock {
+    right: 4.5vw;
+    bottom: 1.5rem;
+    width: 24.5rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * Phones and small tablets: the drawing owns the top band of the sheet; the copy and the captions scroll up
+ * beneath it, through the notes band below.
+ * ------------------------------------------------------------------------------------------------------- */
+@media (max-width: 899px) {
+  .section {
+    --pin: 440svh;
+    --band: 57svh;
+    --read: calc((var(--band) + 100svh) / 2);
+  }
+
+  .stage {
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .figure {
+    inset: 0 0 auto;
+    height: var(--band);
+    overflow: hidden;
+    pointer-events: auto;
+    background: var(--color-sheet);
+    border-bottom: 1px solid var(--color-rule-strong);
+  }
+
+  .figure:focus-visible::after {
+    inset: 70px 6px 6px;
+  }
+
+  .frameHang,
+  .boardMedium {
+    left: 2.375rem;
+    right: 1rem;
+    top: 84px;
+    bottom: 64px;
+  }
+  .framePlan {
+    left: 1.25rem;
+    right: 1.25rem;
+    top: 128px;
+    bottom: 84px;
+  }
+  .frameStand {
+    left: 2.375rem;
+    right: 1rem;
+    top: 100px;
+    bottom: 72px;
+  }
+
+  .boardMedium {
+    display: block;
+    width: calc(100% - 3.375rem);
+    height: calc(100% - 148px);
+  }
+
+  /* The title block becomes the strip along the bottom of the drawing band: what it is, then source and view. */
+  .titleBlock {
+    left: 1rem;
+    right: 1rem;
+    top: calc(var(--band) - 50px);
+    height: 44px;
+    display: grid;
+    /* Fixed columns, both set from their start: a longer view name never moves anything. */
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    grid-template-areas:
+      "title title"
+      "source view";
+    align-content: center;
+    column-gap: 0.75rem;
+    row-gap: 0.125rem;
+    border: 0;
+    border-top: 1px solid var(--color-rule);
+    background: transparent;
+  }
+
+  .tbHead,
+  .tbRows,
+  .tbRows > div:first-child {
+    display: contents;
+  }
+
+  .tbTitle {
+    grid-area: title;
+    font-size: 0.75rem;
+  }
+
+  .tbSource {
+    grid-area: source;
+    margin-top: 0;
+    font-size: 0.625rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tbOwner {
+    display: none;
+  }
+
+  .tbRows dt,
+  .tbStatusRow,
+  .tbWeightRow {
+    display: none !important;
+  }
+
+  .tbRows dd {
+    grid-area: view;
+    padding: 0;
+    font-size: 0.625rem;
+    color: var(--color-ink-soft);
+  }
+
+  .tbViewName {
+    font-size: 0.6875rem;
+  }
+
+  .copy {
+    left: 1rem;
+    right: 1rem;
+    top: calc(var(--band) + 1.375rem);
+  }
+
+  .title {
+    font-size: clamp(2.375rem, 1.3rem + 4.6vw, 3.25rem);
+  }
+
+  .lede {
+    margin-top: 0.875rem;
+    font-size: 1rem;
+  }
+
+  .actions {
+    margin-top: 1.25rem;
+  }
+
+  .caption {
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .captionTitle {
+    font-size: 1.625rem;
+  }
+
+  .captionBody {
+    margin-top: 0.625rem;
+    font-size: 0.9375rem;
+  }
+
+  .tbStrokeWide {
+    display: none;
+  }
+  .tbStrokeNarrow {
+    display: inline;
+  }
+}
+
+/*
+ * On desktop the copy and the captions scroll up under the translucent navigation: each fades out over the top
+ * of the sheet, linked to the scroll, so nothing ghosts under the bar. Where scroll-linked animation is not
+ * supported they simply scroll away.
+ */
+@supports (animation-timeline: view()) {
+  @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+    .section:not([data-layout="still"]) .caption,
+    .section:not([data-layout="still"]) .copy > * {
+      animation: hm-clear linear both;
+      animation-timeline: view(block 28% 0%);
+      animation-range: exit 0% exit 100%;
+    }
+  }
+}
+
+@keyframes hm-clear {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * The still layout: reduced motion (decided before the first paint), or a drawing that cannot animate.
+ * ------------------------------------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    height: auto;
+  }
+  .board {
+    display: none;
+  }
+  .captions {
+    position: relative;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 34svh;
+    padding: 6svh 0 30svh;
+  }
+  .caption {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    margin-inline: var(--page-gutter);
+  }
+  .caption[data-mode="motion"] {
+    display: none;
+  }
+  .caption[data-mode="still"] {
+    display: block;
+  }
+}
+
+.section[data-layout="still"] {
+  height: auto;
+}
+
+.section[data-layout="still"] .captions {
+  position: relative;
+  inset: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 34svh;
+  padding: 6svh 0 30svh;
+}
+
+.section[data-layout="still"] .caption {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  transform: none;
+  margin-inline: var(--page-gutter);
+}
+
+.section[data-layout="still"] .caption[data-mode="motion"] {
+  display: none;
+}
+
+.section[data-layout="still"] .caption[data-mode="still"] {
+  display: block;
+}
+
+/* Windows High Contrast: the canvas keeps its own colours; the text and the title block follow the system. */
+@media (forced-colors: active) {
+  .titleBlock {
+    border-color: CanvasText;
+  }
+  .tbStrokeWide,
+  .tbStrokeNarrow,
+  .boardLine,
+  .pinRing {
+    stroke: CanvasText;
+  }
+}

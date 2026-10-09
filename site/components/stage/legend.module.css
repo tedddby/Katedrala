@@ -1,0 +1,142 @@
+/*
+ * The drawing's key and its notes. The key's marks are drawn with the stage's own strokes (rings filled with the
+ * sheet, solid discs for foundations, chains in chalk, hatched ground in graphite) so the key reads as part of the
+ * drawing; nothing in it is lit, so nothing is load blue.
+ */
+.legend {
+  --l-sheet: var(--color-sheet, #0e1012);
+  --l-ink: var(--color-ink, #e9e6df);
+  --l-soft: var(--color-ink-soft, #b4b1a9);
+  --l-faint: var(--color-ink-faint, #8b8e92);
+  --l-graphite: var(--color-graphite, #5d6166);
+  --l-rule: var(--color-rule, #24282c);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--l-soft);
+}
+
+.keys {
+  display: grid;
+  gap: 0.625rem;
+  margin: 0;
+}
+
+.key dt {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-weight: 560;
+  font-variation-settings: "wdth" 92;
+  color: var(--l-ink);
+}
+
+.key dd {
+  margin: 0.125rem 0 0 2.375rem;
+}
+
+.mark {
+  flex: none;
+  width: 1.75rem;
+  height: 1rem;
+  overflow: visible;
+}
+
+.ring {
+  fill: var(--l-sheet);
+  stroke: var(--l-ink);
+  stroke-width: 1.1;
+}
+
+.disc {
+  fill: var(--l-ink);
+}
+
+.chain,
+.thin,
+.thick,
+.scale {
+  fill: none;
+  stroke: var(--l-ink);
+}
+
+.chain {
+  stroke-width: 1.2;
+}
+
+.thin {
+  stroke-width: 0.75;
+  opacity: 0.7;
+}
+
+.thick {
+  stroke-width: 2.6;
+}
+
+.scale {
+  stroke-width: 1;
+}
+
+.ground {
+  fill: none;
+  stroke: var(--l-graphite);
+  stroke-width: 1.5;
+}
+
+.notes {
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--l-rule);
+}
+
+.summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variation-settings: "wdth" 92;
+  color: var(--l-ink);
+  cursor: pointer;
+  list-style: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.chevron {
+  width: 0.75rem;
+  height: 0.75rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+.notes[open] .chevron {
+  transform: rotate(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .summary:hover {
+    color: var(--l-soft);
+  }
+}
+
+.noteList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1.25rem clamp(1.25rem, 3vw, 2.5rem);
+  margin: 0.5rem 0 0;
+}
+
+.note dt {
+  font-weight: 600;
+  font-variation-settings: "wdth" 92;
+  color: var(--l-ink);
+}
+
+.note dd {
+  margin: 0.375rem 0 0;
+  max-width: 44ch;
+  line-height: 1.55;
+}

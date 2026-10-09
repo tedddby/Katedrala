@@ -26,9 +26,43 @@
   --text-small: 0.9375rem;
   --text-data: 0.8125rem;
   --text-micro: 0.6875rem;
+  /* The film's level gauge: a measured value set as the subject of its plate (Gravity, Entropy, Act III). */
+  --text-gauge: clamp(3.25rem, 1.8rem + 4vw, 6.5rem);
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  /*
+   * The film's catch: a damped spring (damping ratio 0.55) that overshoots once by 12.6 percent and settles, as a
+   * chain catches a falling weight. Reserved for dependencies dropping in and pulling taut, and the film's words;
+   * never for controls. Under reduced motion every transition is cut to 1ms below.
+   */
+  --ease-spring: linear(
+    0,
+    0.075,
+    0.25,
+    0.464,
+    0.674,
+    0.851,
+    0.984,
+    1.07,
+    1.114,
+    1.126,
+    1.117,
+    1.094,
+    1.067,
+    1.041,
+    1.018,
+    1.002,
+    0.991,
+    0.986,
+    0.984,
+    0.985,
+    0.988,
+    0.992,
+    0.995,
+    0.998,
+    1
+  );
 
   --radius-none: 0;
 }
@@ -37,6 +71,23 @@
   color-scheme: dark;
   --page-gutter: clamp(1rem, 4vw, 3rem);
   --page-max: 82.5rem;
+  /* The construction grid's column gap. */
+  --col-gap: clamp(1rem, 2vw, 1.5rem);
+  /* Space above each plate: the page's density is low, so plates stand well apart. */
+  --plate-pad: clamp(6.5rem, 11vw, 10.5rem);
+
+  /*
+   * The one z-index scale. The film stacks its own layers inside its frame (0 to 4: the drawing, the legibility
+   * scrims, leaders, labels, then its words and title block); the navigation sits over the page, the skip links
+   * over everything.
+   */
+  --z-film-drawing: 0;
+  --z-film-scrim: 1;
+  --z-film-leaders: 2;
+  --z-film-labels: 3;
+  --z-film-words: 4;
+  --z-nav: 40;
+  --z-skip: 60;
 }
 
 @layer base {
@@ -47,8 +98,15 @@
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
+    /* The fixed 64px navigation plus a breath: focused elements and anchor targets stop clear of it. */
+    scroll-padding-top: 5rem;
     scrollbar-color: var(--color-graphite) var(--color-sheet);
     caret-color: var(--color-load);
+  }
+
+  /* While the film runs, a jump is a jump: a smooth scroll would play the film at speed on the way. */
+  html[data-kfilm="film"] {
+    scroll-behavior: auto;
   }
 
   body {
@@ -77,10 +135,12 @@
     text-underline-offset: 0.22em;
   }
 
+  /* A word wider than its line (a display heading at 320 px under user text spacing) breaks, never the page. */
   h1,
   h2,
   h3 {
     text-wrap: balance;
+    overflow-wrap: break-word;
   }
 
   p {
@@ -123,7 +183,7 @@
   .grid-12 {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: clamp(1rem, 2vw, 1.5rem);
+    column-gap: var(--col-gap);
   }
 
   .display {
@@ -158,8 +218,16 @@
     max-width: 38rem;
   }
 
-  .measure {
-    max-width: 68ch;
+  /*
+   * Small print: section notes and the captions under drawings and code share one size, color and measure (about
+   * 70 characters). A note closing a section stands 2rem clear; a caption sets its own smaller gap.
+   */
+  .footnote {
+    max-width: 60ch;
+    margin-top: 2rem;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--color-ink-faint);
   }
 
   /* Measured values and identifiers: monospace only where something is measured or named in code. */

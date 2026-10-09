@@ -1,47 +1,123 @@
 /* ------------------------------------------------------------------------------------------------
- * Open source: the construction sequence of v1.
+ * Open source: the four facts, and the road to v1 as a construction gauge: the film's level gauge standing on
+ * hatched ground, one graduation per milestone from 01 at the foot to 15 at the top. Built milestones are
+ * chalk, the one in progress is the 2 px load-blue tick (active now), planned ones are graphite scaffolding.
  * ---------------------------------------------------------------------------------------------- */
 @layer components {
-  .milestone-beam {
-    stroke: var(--color-rule-strong);
-    stroke-width: 1;
+  /* Facts stand apart by space; the gauge beside them carries the only drawn lines. */
+  .os-fact + .os-fact {
+    margin-top: 1.625rem;
   }
-  .milestone-joint circle {
-    fill: var(--color-sheet);
-    stroke: var(--color-ink-faint);
-    stroke-width: 1.5;
+
+  /* The list keeps the roadmap's order in the document; the drawing reverses it so 01 stands on the ground. */
+  .gauge {
+    --staff-x: 2.75rem;
+    --tick-y: calc(0.5rem + 0.6875rem);
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 2rem;
   }
-  .milestone-joint[data-state="done"] circle {
-    fill: var(--color-ink);
-    stroke: var(--color-ink);
-  }
-  .milestone-joint-half {
-    fill: var(--color-ink-soft);
-  }
-  .milestones {
-    border-top: 1px solid var(--color-rule);
-  }
-  .milestone {
+  .gauge-row {
+    position: relative;
     display: grid;
-    grid-template-columns: 2rem 1fr auto;
-    column-gap: 0.75rem;
-    align-items: baseline;
+    grid-template-columns: var(--staff-x) 2.25rem minmax(0, 1fr) auto;
+    align-items: start;
     padding-block: 0.5rem;
-    border-bottom: 1px solid var(--color-rule);
     font-size: 0.9375rem;
+    line-height: 1.375rem;
   }
-  .milestone-name {
+  /* The staff, drawn row by row: the stretch below the row's graduation (::before) and the stretch above it
+     (::after), built in chalk up to the last milestone done and graphite scaffolding above. */
+  .gauge-row::before,
+  .gauge-row::after {
+    content: "";
+    position: absolute;
+    left: var(--staff-x);
+    width: 1px;
+    background: var(--color-graphite);
+  }
+  .gauge-row::before {
+    top: var(--tick-y);
+    bottom: 0;
+  }
+  .gauge-row::after {
+    top: 0;
+    height: var(--tick-y);
+  }
+  .gauge-row[data-staff="built"]::before,
+  .gauge-row[data-above="built"]::after {
+    background: var(--color-ink);
+  }
+  /* The staff ends at the top graduation. */
+  .gauge-row:last-child::after {
+    display: none;
+  }
+  .gauge-number {
+    padding-right: 0.875rem;
+    text-align: right;
+    line-height: inherit;
+    color: var(--color-ink-faint);
+  }
+  /* The graduation: a short hairline off the staff, in the row's state. */
+  .gauge-tick {
+    position: relative;
+    height: 1.375rem;
+  }
+  .gauge-tick::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(50% - 0.5px);
+    width: 0.75rem;
+    height: 1px;
+    background: var(--color-graphite);
+  }
+  .gauge-row[data-state="done"] .gauge-tick::after {
+    background: var(--color-ink);
+  }
+  .gauge-row[data-state="in-progress"] .gauge-tick::after {
+    top: calc(50% - 1px);
+    width: 1.5rem;
+    height: 2px;
+    background: var(--color-load);
+  }
+  .gauge-name {
     color: var(--color-ink-soft);
   }
-  .milestone-state {
+  .gauge-state {
+    padding-left: 1rem;
     font-family: var(--font-mono);
     font-size: var(--text-micro);
     font-variation-settings: "wdth" 87.5;
     letter-spacing: 0.02em;
+    text-align: right;
     color: var(--color-ink-faint);
   }
-  .milestone:is([data-state="done"], [data-state="in-progress"])
-    :is(.milestone-name, .milestone-state) {
+  .gauge-row:is([data-state="done"], [data-state="in-progress"]) :is(.gauge-name, .gauge-state) {
     color: var(--color-ink);
+  }
+  /* The ground the staff stands on. */
+  .gauge-ground {
+    height: 0.75rem;
+    border-top: 1px solid var(--color-graphite);
+  }
+}
+
+/* Forced colors: backgrounds are replaced, so the staff, graduations and ground restate themselves in system
+   colors, the milestone in progress in Highlight. */
+@media (forced-colors: active) {
+  .gauge-row::before,
+  .gauge-row::after,
+  .gauge-tick::after {
+    forced-color-adjust: none;
+    background: GrayText;
+  }
+  .gauge-row[data-staff="built"]::before,
+  .gauge-row[data-above="built"]::after,
+  .gauge-row[data-state="done"] .gauge-tick::after {
+    background: CanvasText;
+  }
+  .gauge-row[data-state="in-progress"] .gauge-tick::after {
+    background: Highlight;
   }
 }

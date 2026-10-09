@@ -26,12 +26,25 @@
       border-color 150ms ease,
       transform 120ms var(--ease-out);
   }
-  .code-copy:hover {
-    color: var(--color-ink);
-    border-color: var(--color-ink-faint);
+  @media (hover: hover) and (pointer: fine) {
+    .code-copy:hover {
+      color: var(--color-ink);
+      border-color: var(--color-ink-faint);
+    }
   }
   .code-copy:active {
     transform: scale(0.96);
+  }
+  /* Touch: the target grows to 44px tall inside the header's padding; the drawn button keeps its size. */
+  @media (pointer: coarse) {
+    .code-copy {
+      position: relative;
+    }
+    .code-copy::after {
+      content: "";
+      position: absolute;
+      inset: -0.5rem;
+    }
   }
   .code-block-body {
     overflow-x: auto;
@@ -40,14 +53,60 @@
     line-height: 1.7;
     tab-size: 2;
   }
+  /* A block that scrolls is focusable; its ring sits inside the frame. */
+  .code-block-body:focus-visible {
+    outline-offset: -2px;
+  }
+  /* While code can scroll sideways, the edge it continues past fades (data-overflow, set by the component), so
+     a cut line reads as more to come. Dropped under keyboard focus to keep the ring whole. */
+  .code-block-body[data-overflow]:not(:focus-visible) {
+    mask-image: linear-gradient(
+      to right,
+      var(--fade-start, #000),
+      #000 2.5rem,
+      #000 calc(100% - 2.5rem),
+      var(--fade-end, #000)
+    );
+  }
+  .code-block-body[data-overflow~="start"] {
+    --fade-start: transparent;
+  }
+  .code-block-body[data-overflow~="end"] {
+    --fade-end: transparent;
+  }
+
+  /*
+   * Line numbers: an editor's gutter in the faintest ink, never selected or copied with the code. A marked line's
+   * number takes the load color: the line is architecture that is active right now (a rule a change breaks).
+   */
+  .code-line-number {
+    display: inline-block;
+    margin-right: 1.5ch;
+    text-align: right;
+    color: var(--color-ink-faint);
+    user-select: none;
+    transition: color 150ms ease;
+  }
+  [data-marked] > .code-line-number {
+    color: var(--color-load);
+  }
 }
 
-/* Code reads slightly smaller on phones, so more of each line fits before it scrolls. */
+@media (forced-colors: active) {
+  [data-marked] > .code-line-number {
+    color: Highlight;
+  }
+}
+
+/* Code reads slightly smaller on phones, so more of each line fits before it scrolls; line numbers sit closer. */
 @layer components {
   @media (max-width: 639px) {
     .code-block-body {
       font-size: 0.75rem;
       padding-inline: 0.875rem;
+    }
+    .code-line-number {
+      margin-right: 1ch;
     }
   }
 }

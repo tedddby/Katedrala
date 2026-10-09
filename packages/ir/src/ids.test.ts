@@ -63,6 +63,61 @@ describe("entity identifiers", () => {
     expect(() => declaredModuleKey("a#b")).toThrow(InvalidIdentifierError);
   });
 
+  it("write the analysis root as '.' also when a stem follows", () => {
+    expect(inferredModuleKey({ directory: "", stem: "payment" })).toBe(".#payment");
+    expect(inferredModuleKey({ directory: "./", stem: "payment" })).toBe(".#payment");
+    expect(inferredModuleKey({ directory: "", stem: "payment" }, true)).toBe(".#payment~inferred");
+    expect(inferredModuleKey({ directory: "" }, true)).toBe(".~inferred");
+  });
+
+  it("escape '%', '#' and '~' in the directory part", () => {
+    // A directory containing "#" no longer collides with a group directory plus a stem.
+    expect(inferredModuleKey({ directory: "src/a#b" })).toBe("src/a%23b");
+    expect(inferredModuleKey({ directory: "src/a", stem: "b" })).toBe("src/a#b");
+    // A directory ending in "~inferred" cannot imitate the collision suffix.
+    expect(inferredModuleKey({ directory: "src/x~inferred" })).toBe("src/x%7Einferred");
+    expect(inferredModuleKey({ directory: "src/x" }, true)).toBe("src/x~inferred");
+    expect(inferredModuleKey({ directory: "src/50%" })).toBe("src/50%25");
+    expect(inferredModuleKey({ directory: "src/%23" })).toBe("src/%2523");
+    expect(inferredModuleKey({ directory: "src\\a#b\\", stem: "order" })).toBe("src/a%23b#order");
+    expect(moduleId(inferredModuleKey({ directory: "src/a#b", stem: "x" }, true))).toBe(
+      "mod:src/a%23b#x~inferred",
+    );
+  });
+
+  it("reject stems that would make keys ambiguous", () => {
+    for (const stem of ["", "a#b", "a~b", "50%", "a/b"]) {
+      expect(() => inferredModuleKey({ directory: "src", stem })).toThrow(InvalidIdentifierError);
+    }
+    expect(inferredModuleKey({ directory: "src/lib", stem: "format-date-ts" })).toBe(
+      "src/lib#format-date-ts",
+    );
+    expect(inferredModuleKey({ directory: "src/lib", stem: "0123456789abcdef" })).toBe(
+      "src/lib#0123456789abcdef",
+    );
+  });
+
+  it("derive distinct keys from distinct anchors", () => {
+    const segment = fc
+      .stringMatching(/^[a-z0-9#%~._ -]{1,5}$/)
+      .filter((value) => value !== "." && value !== ".." && value.trim() === value);
+    const anchor = fc
+      .tuple(
+        fc.array(segment, { maxLength: 3 }).map((segments) => segments.join("/")),
+        fc.option(fc.stringMatching(/^[a-z0-9-]{1,4}$/), { nil: null }),
+      )
+      .map(([directory, stem]): { directory: string; stem?: string } =>
+        stem === null ? { directory } : { directory, stem },
+      );
+    fc.assert(
+      fc.property(anchor, anchor, fc.boolean(), fc.boolean(), (a, b, collidesA, collidesB) => {
+        const same = a.directory === b.directory && a.stem === b.stem && collidesA === collidesB;
+        expect(inferredModuleKey(a, collidesA) === inferredModuleKey(b, collidesB)).toBe(same);
+      }),
+      { seed: 20261007, numRuns: 1000 },
+    );
+  });
+
   it("derive endpoint ids from protocol, method, path and handler", () => {
     const id = endpointId("http", "GET", "/users/:id", "sym:src/users.ts#getUser");
     expect(id).toMatch(/^endpoint:[0-9a-f]{16}$/);

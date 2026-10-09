@@ -1,0 +1,35 @@
+{
+  "name": "@katedrala/inference",
+  "version": "0.1.0",
+  "description": "Katedrala architectural inference: derived components, inferred modules and layers, each conclusion with confidence and evidence.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "exports": {
+    ".": {
+      "katedrala-source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.ts",
+    "!src/**/*test-support.ts"
+  ],
+  "dependencies": {
+    "@katedrala/graph": "workspace:*",
+    "@katedrala/ir": "workspace:*",
+    "@katedrala/model": "workspace:*"
+  },
+  "keywords": [
+    "katedrala",
+    "architecture",
+    "inference"
+  ]
+}

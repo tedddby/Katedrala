@@ -1,0 +1,20 @@
+/*
+ * The site's navigation over the film, once the film opens the main page. The bar stays clear while the film's
+ * frame lies under it (the film keeps <html data-kfilm-under> current) and takes its ground and rule once the
+ * film has scrolled away. This replaces the bar's scroll-linked fade, which would turn it solid 96px into a film
+ * several thousand pixels long. Global on purpose: it reaches the shared navigation (.site-nav), and does nothing
+ * on a page without the film (no data-kfilm on <html>).
+ */
+html[data-kfilm] .site-nav {
+  animation: none;
+  background: color-mix(in oklab, var(--color-sheet, #0e1012) 96%, transparent);
+  border-bottom-color: var(--color-rule, #24282c);
+  transition:
+    background-color 240ms ease,
+    border-color 240ms ease;
+}
+
+html[data-kfilm][data-kfilm-under] .site-nav {
+  background: transparent;
+  border-bottom-color: transparent;
+}

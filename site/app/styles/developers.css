@@ -83,19 +83,20 @@
     outline-offset: -2px;
   }
 
+  /* Below lg the schedule turns into rows of tabs above the terminal. The rows wrap rather than scroll, so
+     every command stays in view at any width: two or three to a row on phones, all five from tablets. */
   @media (max-width: 1023px) {
     .command-schedule {
-      flex-direction: row;
-      overflow-x: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+      column-gap: 0.75rem;
       border-bottom: 1px solid var(--color-rule);
-      scrollbar-width: none;
     }
     .command-tab {
-      flex: none;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.75rem 1rem 0.75rem 0;
+      padding: 0.75rem 0.25rem 0.75rem 0;
       border: 0;
     }
     .command-tab:last-child {
@@ -109,14 +110,33 @@
       margin-top: 0;
       align-self: center;
     }
+    /* The joint sits on the tab's edge; the ring goes around it, not through it. */
+    .command-tab:focus-visible {
+      outline-offset: 2px;
+    }
   }
 
-  .terminal-body {
-    min-height: 15.5rem;
+  /* On the narrowest phones the header's source would wrap for one command and not the others, moving the page
+     on every switch; there it always sits on a line of its own. */
+  @media (max-width: 359px) {
+    .terminal-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
   }
+
+  /* As tall as the longest transcript (--lines, set by the component), plus the block's padding, so switching
+     commands never moves the page. A transcript wider than the terminal fades at the edge it continues past
+     (data-overflow, set by the component, styled with every code block in code.css). */
+  .terminal-body {
+    min-height: calc(var(--lines, 10) * 1lh + 2.125rem);
+  }
+  /* 180 ms a line, each starting --stagger after the one above (set by the component so the whole transcript
+     lands within 400 ms). */
   .terminal-body.is-printing .terminal-line {
     animation: terminal-print 180ms var(--ease-out) both;
-    animation-delay: calc(var(--line) * 32ms);
+    animation-delay: calc(var(--line) * var(--stagger, 32ms));
   }
   @keyframes terminal-print {
     from {
@@ -130,11 +150,27 @@
     }
   }
 
-  .guarantee {
-    border-top: 1px solid var(--color-rule);
-    padding-block: 1rem;
+  /* The guarantees as a schedule: items stand apart by space, and one rule divides the groups (what is available
+     today from what is planned), never a hairline under every row. */
+  .guarantee + .guarantee {
+    margin-top: 1.5rem;
   }
-  .guarantee:last-child {
-    border-bottom: 1px solid var(--color-rule);
+  .guarantee[data-group="start"] {
+    margin-top: 1.75rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--color-rule);
+  }
+}
+
+/* Forced colors: SVG paint is not forced, so the schedule's joints restate themselves in system colors and the
+   selected command keeps its filled joint, in Highlight. */
+@media (forced-colors: active) {
+  .command-tab-joint {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+  .command-tab[aria-selected="true"] .command-tab-joint {
+    fill: Highlight;
+    stroke: Highlight;
   }
 }

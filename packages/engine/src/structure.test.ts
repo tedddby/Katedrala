@@ -10,6 +10,7 @@ import {
   type ArchitectureDocument,
   type ImportEntry,
 } from "@katedrala/ir";
+import type { SnapshotSource } from "@katedrala/plugin-api";
 import { Ajv2020 } from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -545,6 +546,53 @@ describe("files outside the snapshot", () => {
     expect(await readdir(join(scratch, "explicit-cache"))).not.toEqual([]);
     expect(existsSync(join(scratch, "ci", "explicit-cache"))).toBe(false);
     expect(explicit.document.diagnostics).toEqual([]);
+  });
+
+  it("analyzes the working tree at the root when no source is given", async () => {
+    const root = join(scratch, "tree");
+    await mkdir(join(root, "src"), { recursive: true });
+    await writeFile(join(root, "package.json"), '{"name":"tree"}\n');
+    for (const [path, text] of Object.entries(SERVICE)) await writeFile(join(root, path), text);
+    const { document } = await analyze({ root, useGit: false });
+    expect(document.snapshot.kind).toBe("working-tree");
+    expect(document.repository.name).toBe("tree");
+    expect(document.files.map((file) => file.path)).toEqual([
+      "package.json",
+      "src/forbidden.ts",
+      "src/main.ts",
+    ]);
+    // The source this call opened is closed again, so the directory can be removed (Windows included).
+    await rm(root, { recursive: true });
+    expect(existsSync(root)).toBe(false);
+  });
+
+  it("reports the symbolic links the source skipped", async () => {
+    const inner = new InMemorySource({ files: SERVICE });
+    const withLink: SnapshotSource = {
+      kind: inner.kind,
+      description: inner.description,
+      revision: () => inner.revision(),
+      subdirectory: () => inner.subdirectory(),
+      remote: () => inner.remote(),
+      list: () => inner.list(),
+      skipped: () => Promise.resolve(["src/link.ts"]),
+      read: (path) => inner.read(path),
+      readAncestor: (path) => inner.readAncestor(path),
+      close: () => inner.close(),
+    };
+    const { document } = await analyze({ source: withLink });
+    expect(document.diagnostics).toEqual([
+      {
+        code: "symlink-skipped",
+        severity: "info",
+        message:
+          "Not analyzed: src/link.ts is a symbolic link or junction (links are never followed)",
+      },
+    ]);
+    const plain = await analyze({ source: inner });
+    // What was skipped is part of what the analysis saw (the analysis digest), not of the content.
+    expect(document.snapshot.contentDigest).toBe(plain.document.snapshot.contentDigest);
+    expect(document.snapshot.analysisDigest).not.toBe(plain.document.snapshot.analysisDigest);
   });
 
   it("names an explicit configuration file without its location (regression)", async () => {

@@ -127,8 +127,12 @@ export interface CoreConfiguration {
  */
 export type KatedralaConfig = CoreConfiguration & { readonly [section: string]: unknown };
 
-/** A glob discovery can use: not blank, and nothing `globPatternProblem` rejects (`./`, `!`, `/dist`, `a{`). */
-const globSchema = z
+/**
+ * A configuration glob (picomatch syntax, relative to the analysis root): not blank, and nothing
+ * `globPatternProblem` rejects (`./`, `!`, `/dist`, `a{`). Exported so that sections validated outside core
+ * (the engine's `modules`, `layers` and `inference` validators) report glob problems with the same messages.
+ */
+export const globSchema = z
   .string({ error: "Expected a glob pattern (string)" })
   .superRefine((glob, context) => {
     const problem =
@@ -136,7 +140,11 @@ const globSchema = z
     if (problem !== undefined) context.addIssue({ code: "custom", message: problem });
   });
 
-const globListSchema = z.array(globSchema, { error: "Expected a list of glob patterns" });
+/**
+ * A list of {@link globSchema} patterns, as `include`, `exclude`, `roles` and `entry_points` take it. A pattern
+ * starting with `!` (but not the extglob `!(...)`) excludes for the whole list (see `createPathMatcher`).
+ */
+export const globListSchema = z.array(globSchema, { error: "Expected a list of glob patterns" });
 
 const rolesShape = Object.fromEntries(
   FILE_ROLES.map((role) => [role, globListSchema.optional()]),

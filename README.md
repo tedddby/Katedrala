@@ -45,6 +45,40 @@ source files ──► language adapters ──► Architecture IR ──► gra
 
 Read [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the design and [docs/IR.md](docs/IR.md) for the data model.
 
+## Get started
+
+Katedrala is not on npm yet (packages are planned for v1), but the engine already runs as a library from a
+clone of this repository. You need Node.js 22.12 or later and pnpm 11 (`corepack enable`, or install pnpm
+directly).
+
+```bash
+git clone https://github.com/tedddby/Katedrala.git
+cd Katedrala
+pnpm install
+pnpm build
+```
+
+Save this script as `analyze.mjs` in the repository root, where `@katedrala/engine` resolves:
+
+```js
+import { analyzeStructure } from "@katedrala/engine";
+
+const { document } = await analyzeStructure({ root: process.argv[2] ?? "." });
+console.log(document.repository.stats);
+```
+
+Then point it at a TypeScript or JavaScript project:
+
+```bash
+node analyze.mjs path/to/your/project
+```
+
+It prints the project's counts: files, symbols, relationships (`edges`), externals, and the imports and
+references that could not be resolved. `document` holds the structural sections of the architecture document
+described in [docs/IR.md](docs/IR.md): every file, symbol and typed relationship, with the file and line each
+relationship came from. Extraction results are cached in your user cache directory (`KATEDRALA_CACHE_DIR`
+moves it). Inference, metrics, rules and the command line are on the [roadmap](docs/ROADMAP.md).
+
 ## Development
 
 ```bash

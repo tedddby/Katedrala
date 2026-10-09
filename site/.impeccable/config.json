@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "bounce-easing",
+        "value": "var(--k-spring)",
+        "createdAt": "2026-10-07T22:25:51.390Z",
+        "reason": "Claude, 2026-10-08: the cinematic film's caption words use a damped spring (damping ratio 0.55, one 12.6% rebound, defined and commented at cinematic.module.css:23) so they settle like the hanging weights the film simulates; domain-appropriate physical motion, not a repeating bounce. The user chose this prototype; this specific easing was not separately confirmed."
+      }
+    ]
+  }
+}
