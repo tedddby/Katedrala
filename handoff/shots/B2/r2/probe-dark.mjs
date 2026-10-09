@@ -1,0 +1,17 @@
+import { chromium } from "playwright-core";
+const browser = await chromium.launch({ channel: "msedge", headless: true });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto("http://localhost:3100/lab/cinematic/", { waitUntil: "load" });
+await page.waitForFunction(() => document.documentElement.dataset.kfilmLive !== undefined, null, { timeout: 60000 });
+await page.waitForTimeout(2000);
+const go = async (t) => { await page.evaluate((t) => { const f = window.__kfilm; const P = f.clock.progressOf(1, t); window.scrollTo({ top: f.trigger.start + P * (f.trigger.end - f.trigger.start), behavior: "instant" }); }, t); await page.waitForTimeout(3000); };
+await go(0.76);
+await page.screenshot({ path: "r2/cap2/dark-a.png", clip: { x: 800, y: 560, width: 640, height: 340 } });
+await page.evaluate(() => { document.querySelector("[data-ev-record]").style.display = "none"; window.__kfilm.relayout = true; });
+await page.mouse.move(10, 10);
+await page.waitForTimeout(1500);
+await page.screenshot({ path: "r2/cap2/dark-b.png", clip: { x: 800, y: 560, width: 640, height: 340 } });
+await go(0.6);
+await page.screenshot({ path: "r2/cap2/dark-c.png", clip: { x: 800, y: 560, width: 640, height: 340 } });
+console.log(await page.evaluate(() => [...document.querySelectorAll("canvas")].map((c) => [c.width, c.height, c.getAttribute("style"), [...c.attributes].map((a) => a.name).join(",")])));
+await browser.close();

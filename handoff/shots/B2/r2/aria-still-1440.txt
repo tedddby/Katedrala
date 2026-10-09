@@ -1,0 +1,119 @@
+- region "See what your code stands on.":
+  - heading "See what your code stands on." [level=1]
+  - paragraph: Katedrala reconstructs the architecture inside TypeScript and JavaScript code, with evidence for every dependency it finds.
+  - link "Explore Katedrala":
+    - /url: "#film-start"
+  - link "View on GitHub":
+    - /url: https://github.com/tedddby/Katedrala
+  - paragraph: Katedrala’s analysis of CodeVerse tedddby/CodeVerse at 6b942bc, 404 source files Dependency graph, available today
+  - paragraph: 91 foundations, set out on a plan.
+  - paragraph: The files of CodeVerse that depend on no other source file. Everything else will hang from them. They are set out by directory. Directories are the boundaries Katedrala records today; modules are planned for v1.
+  - paragraph: Every other file hangs from the files it depends on.
+  - paragraph: Each one is a weight, as heavy as its lines of code.
+  - paragraph: 1,369 runtime dependencies pull taut.
+  - paragraph: Level by level, 15 levels below the board.
+  - paragraph: Gravity finds the form.
+  - paragraph: "Antoni Gaudí found the vaults of the Colònia Güell church this way: weighted strings hung from a plan, photographed, then turned over."
+  - paragraph:
+    - text: The lowest weight is
+    - code: src/app/page.tsx
+    - text: .
+  - paragraph: It hangs from 137 files, among them 40 of the 91 foundations.
+  - paragraph: Turn it over and it stands.
+  - paragraph: "Chains in tension become arches in compression: the hanging form is the standing one."
+  - paragraph: Load runs down to the foundations.
+  - paragraph:
+    - text: The heaviest,
+    - code: src/graph/model/types.ts
+    - text: ", carries 147 files."
+  - paragraph: 16 levels from the ground to the crown.
+  - paragraph:
+    - text: Climbing the longest load path, from
+    - code: src/engine/rendering/palette.ts
+    - text: up.
+  - paragraph: The crown of CodeVerse, 15 levels up.
+  - paragraph: It depends directly on 1 file, and through it stands on 137 files, 40 of them foundations.
+  - paragraph: The drawing is Katedrala's analysis of CodeVerse (tedddby/CodeVerse at commit 6b942bc, katedrala 0.1.0, IR schema 1.0.0), drawn as a hanging-chain model that is then turned over.
+  - paragraph: 404 source files are drawn; the 183 test files are left out because no source file rests on them.
+  - paragraph: "91 foundations depend on no other source file and stand on the ground. Every other file stands on the files it depends on, along 1,369 runtime dependencies, in 16 levels: 92 at level 0, 80 at level 1, 60 at level 2, 54 at level 3, 32 at level 4, 20 at level 5, 11 at level 6, 20 at level 7, 12 at level 8, 4 at level 9, 3 at level 10, 5 at level 11, 5 at level 12, 4 at level 13, 1 at level 14, 1 at level 15."
+  - paragraph: "The heaviest foundations: src/graph/model/types.ts (147 files rest on it), src/lib/languages/registry.ts (107 files rest on it), src/lib/utils/cn.ts (88 files rest on it), src/lib/utils/format.ts (79 files rest on it), src/graph/model/ids.ts (66 files rest on it)."
+  - paragraph: The highest file, src/app/page.tsx, is at level 15. It depends directly on 1 file and stands on 137 files, 40 of them foundations.
+  - paragraph: 31 files depend on other files while nothing depends on them; 1 file is isolated.
+  - paragraph: Levels, reach and foundations are computed for this drawing from the relationships in Katedrala's document; positions, line weights and motion are drawn.
+  - heading "Every conclusion has evidence." [level=2]
+  - paragraph:
+    - text: Every line in the drawing has a record behind it. This one runs from
+    - code: src/analysis/analysis-service.ts
+    - text: down to
+    - code: src/analysis/cache-key.ts
+    - text: . The first has 369 lines and 13 symbols, at level 9; the second has 51 lines and 4 symbols, at level 1.
+  - paragraph: Katedrala parses each file into its symbols.
+  - paragraph:
+    - code: cache-key.ts
+    - text: "declares four functions. Across CodeVerse: 3,766 symbols in 594 files. In analysis-service.ts, createAnalysisService spans lines 141 to 369. In cache-key.ts: stableStringify, lines 19 to 27, not exported; limitsHash, lines 30 to 38; graphCacheKey, lines 40 to 46; and latestGraphPointerKey, lines 49 to 51."
+  - text: Available today
+  - paragraph: Then it binds references to what they name.
+  - paragraph: "Between these two files: one import and calls to two of its functions, seven observations in all. What cannot be bound is counted, never guessed. The import at line 25 binds to the file; the calls at lines 164, 189, 190 and 358 bind to latestGraphPointerKey and the calls at lines 219 and 273 bind to graphCacheKey. Across CodeVerse, every import was resolved; 155 references could not be bound although a binding should exist (an unknown name, or a member a module does not export); and 2,055 references reach members of values whose type cannot be known without type checking, so the relationships through them are missing from the document."
+  - text: Available today
+  - paragraph: Every relationship points to the lines of code it came from, and every score will break down into its measurements.
+  - 'figure "real output: CodeVerse at 6b942bc"':
+    - text: "real output: CodeVerse at 6b942bc"
+    - 'button "Copy real output: CodeVerse at 6b942bc"'
+    - status
+    - code: "{ \"id\": \"edge:68b8718fedaa1a19\", \"kind\": \"calls\", \"source\": \"sym:src/analysis/analysis-service.ts#createAnalysisService\", \"target\": \"sym:src/analysis/cache-key.ts#graphCacheKey\", \"observations\": 2, \"typeOnly\": false, \"confidence\": 1, \"provenance\": [ { \"file\": \"file:src/analysis/analysis-service.ts\", \"line\": 219, \"column\": 17, \"mechanism\": \"call-expression\", \"resolution\": \"import-binding\", \"confidence\": 1 }, { \"file\": \"file:src/analysis/analysis-service.ts\", \"line\": 273, \"column\": 19, \"mechanism\": \"call-expression\", \"resolution\": \"import-binding\", \"confidence\": 1 } ] }"
+  - paragraph: "From Katedrala’s analysis of the open-source CodeVerse repository: a call from createAnalysisService to graphCacheKey, observed twice, each observation with its file, line, column, syntax and the rule that resolved it."
+  - paragraph: 14,233 relationships, each recorded like this one.
+  - paragraph:
+    - code: calls
+    - text: 4,866,
+    - code: uses
+    - text: 3,459,
+    - code: references-type
+    - text: 2,964,
+    - code: imports
+    - text: "2,616, and 328 of six other kinds. The drawing joins source files wherever one depends on another at runtime: 1,369 dependencies."
+  - heading "Know what a change will touch before you make it." [level=2]
+  - text: Impact analysis, planned for v1
+  - paragraph: Katedrala will trace dependency paths out from a change to estimate its structural blast radius, path by path.
+  - paragraph:
+    - text: What happens if you change
+    - code: src/graph/model/types.ts
+    - text: "?"
+  - paragraph: A foundation of 471 lines. 48 files depend on it directly at runtime.
+  - paragraph: The change travels up through everything that rests on it.
+  - paragraph: 48 directly, 78 through one other file, 17 through two, 4 through three.
+  - paragraph: Traced by this page over the dependencies in Katedrala’s analysis of CodeVerse.
+  - paragraph: 147 of the 404 source files rest on it.
+  - paragraph: Count type-only dependencies too and it is 265 source files; with the tests, 409 files. From the crown, the shortest path down to it runs from src/app/page.tsx through src/components/landing/landing-page.tsx, src/components/landing/features.tsx and src/components/landing/feature-mockups.tsx to src/graph/model/types.ts.
+  - paragraph: Traced by this page over the dependencies in Katedrala’s analysis of CodeVerse.
+  - heading "Trace any file." [level=2]
+  - paragraph: Hover or tap a file in the drawing, or choose one here. Load blue shows what it stands on, or what rests on it.
+  - group "Show":
+    - text: Show
+    - radio "What it stands on" [checked]
+    - text: What it stands on
+    - radio "What rests on it"
+    - text: What rests on it
+  - text: File
+  - combobox "File":
+    - option "Choose a file" [selected]
+  - group "Start from":
+    - text: Start from
+    - button "src/app/ page.tsx"
+    - button "src/graph/model/ types.ts"
+    - button "src/lib/languages/ registry.ts"
+    - button "src/lib/utils/ cn.ts"
+  - status: Choose a file to trace it.
+  - paragraph: Traced by this page over the dependencies in Katedrala’s analysis of CodeVerse.
+  - term: Source file
+  - definition: A ring, sized by its lines of code.
+  - term: Foundation
+  - definition: "A solid disc: it depends on no other source file."
+  - term: Runtime dependency
+  - definition: A line between two source files, 1,369 in all.
+  - term: Level
+  - definition: "Height above the ground, 16 levels: the longest runtime path down to a foundation."
+  - term: Drawn by this page
+  - definition: Line weight and every position. They are not Katedrala output.
+  - group: How to read the drawing
+  - status

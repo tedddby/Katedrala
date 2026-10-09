@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/site/Navbar";
 import { Film } from "@/components/stage/Film";
-import { Legend } from "@/components/stage/Legend";
 
 export const metadata: Metadata = {
   title: "Katedrala: see what your code stands on (preview)",
@@ -12,9 +11,9 @@ export const metadata: Metadata = {
 
 /**
  * The film's preview route until it opens the main page: the promoted film (components/stage) under the site's
- * navigation, then the drawing's legend, which the landing will carry. The layout's <head> decides film or still
- * before anything paints (FILM_MODE_SCRIPT). The layout's "Skip the film" shows only on a page with the plate after
- * the film, so this route keeps its own until the switch.
+ * navigation. The drawing's legend is the landing's now (acts/LandingAct.tsx), so the route shows the film alone. The
+ * layout's <head> decides film or still before anything paints (FILM_MODE_SCRIPT). The layout's "Skip the film" shows
+ * only on a page with the plate after the film, so this route keeps its own until the switch.
  */
 export default function CinematicLabPage() {
   return (
@@ -25,11 +24,6 @@ export default function CinematicLabPage() {
       <Navbar />
       <main id="main">
         <Film />
-        <section aria-label="The drawing's legend" className="border-t border-rule py-20">
-          <div className="frame">
-            <Legend />
-          </div>
-        </section>
       </main>
     </>
   );

@@ -108,7 +108,7 @@ export interface ActContext {
   /** "film": the pinned WebGL film; "still": one Canvas 2D figure of this act (still.ts). */
   readonly mode: "film" | "still";
   readonly id: ActId;
-  /** The film's section. */
+  /** The film's root: the client island's element around its section (every word of the film is inside it). */
   readonly root: HTMLElement;
   /** The frame the drawing fills (film: the pinned stage; still: this act's figure). Overlays use its CSS px. */
   readonly frame: HTMLElement;
@@ -152,7 +152,13 @@ export interface ActContext {
   onPin(listener: (v: number) => void): () => void;
   /** Lights the current trace again: call it after traceOf would answer differently (a direction changed). */
   retrace(): void;
-  /** Brings the film to this act's local time t at once (focus reveal). Does nothing in still mode. */
+  /**
+   * Brings the film to this act's local time t at once (focus reveal): an instant scroll, the camera already there,
+   * and `root` marked [data-instant] for the frame that shows it (words may skip their transitions under it). The
+   * film itself brings an act on screen, at its anchor, when a control in the act's block or layer takes
+   * focus and the film is elsewhere (decided on the next frame, after the browser's own scroll to the control); call
+   * this from the control's own focus listener for a better beat, and the film stays on it. Does nothing in still mode.
+   */
   reveal(t: number): void;
   /** Asks for the frame to be placed again (an overlay changed what it shows, or measured new words). */
   invalidate(): void;

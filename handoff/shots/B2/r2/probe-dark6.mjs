@@ -1,0 +1,14 @@
+import { chromium } from "playwright-core";
+const flags = process.argv.slice(2);
+const browser = await chromium.launch({ channel: process.env.CH === "chromium" ? undefined : "msedge", headless: true, args: flags });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto("http://localhost:3100/lab/cinematic/", { waitUntil: "load" });
+await page.waitForFunction(() => document.documentElement.dataset.kfilmLive !== undefined, null, { timeout: 60000 });
+await page.waitForTimeout(2000);
+await page.evaluate((t) => { const f = window.__kfilm; const P = f.clock.progressOf(1, t); window.scrollTo({ top: f.trigger.start + P * (f.trigger.end - f.trigger.start), behavior: "instant" }); }, 0.76);
+await page.waitForTimeout(3000);
+await page.screenshot({ path: `r2/cap2/d6-${process.env.TAG}.png`, clip: { x: 800, y: 560, width: 640, height: 340 } });
+await page.evaluate(() => { const f = document.querySelector("[data-ev-record] figure"); f.style.background = "rgba(10,11,13,0.97)"; });
+await page.waitForTimeout(1000);
+await page.screenshot({ path: `r2/cap2/d6-${process.env.TAG}-translucent.png`, clip: { x: 800, y: 560, width: 640, height: 340 } });
+await browser.close();

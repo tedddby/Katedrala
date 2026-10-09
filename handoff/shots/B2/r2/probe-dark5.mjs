@@ -1,0 +1,17 @@
+import { chromium } from "playwright-core";
+const browser = await chromium.launch({ channel: "msedge", headless: true });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto("http://localhost:3100/lab/cinematic/", { waitUntil: "load" });
+await page.waitForFunction(() => document.documentElement.dataset.kfilmLive !== undefined, null, { timeout: 60000 });
+await page.waitForTimeout(2000);
+const go = async (t) => { await page.evaluate((t) => { const f = window.__kfilm; const P = f.clock.progressOf(1, t); window.scrollTo({ top: f.trigger.start + P * (f.trigger.end - f.trigger.start), behavior: "instant" }); }, t); await page.waitForTimeout(3000); };
+await go(0.6);
+await page.evaluate(() => { const r = document.querySelector("[data-ev-record]"); r.style.opacity = "1"; r.style.transform = "none"; });
+await page.waitForTimeout(1000);
+await page.screenshot({ path: "r2/cap2/d5-e3-with-record.png" });
+await page.evaluate(() => { const r = document.querySelector("[data-ev-record]"); r.style.opacity = ""; r.style.transform = ""; });
+await go(0.76);
+await page.evaluate(() => { const r = document.querySelector("[data-ev-record]"); r.style.opacity = "0"; });
+await page.waitForTimeout(1000);
+await page.screenshot({ path: "r2/cap2/d5-e4-no-record.png" });
+await browser.close();

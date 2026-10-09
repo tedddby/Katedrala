@@ -99,7 +99,7 @@ graph JSON), `payload` (from `acts/payload.ts`, computed on the server), `framin
 `screenOfWorld(x, y, z, out)`, `obstacles()`, `label({ active, micro })` (the film's own labels: `set(path, note)`,
 `at(v)`, `atWorld(x, y, z)`, `hide()`), `traced()`, `pinnedFile()`, `pin(v)` (the act announces it through its own
 readout; the film announces pins made on the drawing), `onPin(listener)`, `retrace()`, `reveal(t)` (brings the film to
-the act's local t at once: focus reveal) and `invalidate()`.
+the act's local t at once, for focus reveal: see Keyboard) and `invalidate()`.
 
 Act modules never import three.js, GSAP or `stage.ts`: what they need comes through the context, so the still layout
 runs every act without downloading either.
@@ -141,8 +141,11 @@ For an act's builder:
   `data-kfilm-under`. On a reload, back or forward the mode script reads it, so the bar has the right ground from the
   first frame at the restored position (without the note it decides on the first animation frame).
 - `--k-foot` (on the film): on tall framings, the band at the frame's foot the title block holds.
-- Performance marks: `kfilm:start`, `kfilm:model`, `kfilm:stage-ready`, `kfilm:first-frame` (both paths),
-  `kfilm:act-<id>`. `window.__kfilm` is the director or the still controller outside production.
+- `[data-instant]` on the film's root (`ActContext.root`) for the frame that shows what a focus reveal brought in:
+  the jump is keyboard-initiated, so the hero skips its transitions under it, and an act's words may too.
+- Performance marks: `kfilm:start`, `kfilm:model`, `kfilm:stage-ready`, `kfilm:first-frame` (both paths; in the still
+  layout the first figure drawn, whichever act's: a deep link can land far below the hero), `kfilm:act-<id>`.
+  `window.__kfilm` is the director or the still controller outside production.
 
 ## Act I, beat by beat (local t)
 
@@ -161,8 +164,9 @@ For an act's builder:
 
 The opening runs on time from the stage's first frame: a pen draws the plan in 0.9 s, each foundation lands 50 ms
 behind it, the first level is let go at 1.25 s; the headline's words drop with a damped spring, the lede and the
-actions follow. "Explore Katedrala" goes to `#film-start` (the plan caption): a short smooth scroll in the film, an
-instant jump in the still layout. The four files to trace, at the end of the prototype, are the landing's.
+actions follow. "Explore Katedrala" goes to `#film-start` (the plan caption): a short smooth scroll in the film when a
+pointer pressed it, an instant jump from the keyboard and in the still layout. The four files to trace, at the end of
+the prototype, are the landing's.
 
 ## Motion, rendering, fallbacks
 
@@ -170,12 +174,36 @@ As in the prototype: one authored sequence, scrubbed by the visitor; a camera wi
 jumps over 1.3 viewports); monotone cubic camera tracks; a quintic turn; captions cut, never overlap; the word-drop
 spring overshoots once, on purpose; exits faster than entrances; buttons press to 0.97. The stage draws only when
 something changes and stops off screen, in a hidden tab and at rest; the pixel ratio is capped at 2 and steps down
-when the median of 90 frames exceeds 21 ms.
+when the median of 90 frames exceeds 21 ms. Off screen the scroll clock stops too: GSAP ScrollTrigger keeps
+requestAnimationFrame busy while it is enabled, so the director turns it off 1.2 s after the film has left the screen
+(no toggling at its edge) and on again, measured afresh, as the film comes back; a page scrolled past the film runs
+no frames for it at all. When the film is disposed (a client-side navigation away) with no other trigger left, the
+clock is turned off for good; the next film turns it on.
 
-Still layout (reduced motion, no usable WebGL 2, a stage or GSAP that cannot load): the hero frame shows the standing
-structure in 2D with the crown named, Act I's narration is the article under it, and each act's block shows its own
-figure. "Drawn without WebGL" is added to the title block only when WebGL is the reason. Without JavaScript the words
-are all there and no empty canvas shows.
+## Keyboard
+
+- Focus reveal: a control in the film that takes focus (Tab, Shift+Tab, a script) brings the film to where it is
+  seen. The hero's actions bring it back to the hero frame at once: they sit on the pinned frame, which the browser
+  never scrolls to. A control in an act's block or layer brings the film to that act's anchor unless the film is in
+  that act, with its frame pinned, by the next frame: the browser scrolls a focused control into view itself, after
+  the focus event, and an act's block sits at its own place on the track, so that scroll usually lands in the act. An
+  act with a better beat for a control calls `ctx.reveal(t)` from the control's own focus listener, and the film stays
+  on it. The jump is keyboard-initiated, so it is instant: the camera is already there and the film's root carries
+  `[data-instant]` for the frame that shows it. Nothing moves in the still layout, which is in normal flow.
+- "Explore Katedrala" is followed natively. Chromium moves focus off the link as the fragment is followed, so the next
+  Tab starts from `#film-start` and reaches the first control in the film; Shift+Tab from there returns to the hero.
+- Space, Page Down and Page Up step through every act's stops while the film is pinned (a smooth scroll, as the keys'
+  own is); past either end of the film, and with focus in a control, they do what they always do.
+- Escape clears a trace kept from the drawing.
+
+## Still layout
+
+Reduced motion, no usable WebGL 2, or a stage or GSAP that cannot load: the film becomes an illustrated article in
+normal flow. The hero frame shows the standing structure in 2D with the crown named, Act I's narration is the article
+under it, and each act's block shows its own figure (Canvas 2D, `still.ts`: drawn within a viewport of the window, at
+a pixel ratio of at most 2, at most two figures holding pixels; hover, click, tap and Escape trace, with instant
+lighting). Neither three.js nor GSAP nor the WebGL stage is ever requested. "Drawn without WebGL" is added to the
+title block only when WebGL is the reason. Without JavaScript the words are all there and no empty canvas shows.
 
 ## Drawing the structure elsewhere (the key plan)
 
@@ -235,6 +263,17 @@ drew at a median of 117 ms per frame (software rendering) while the film's own w
 contentful paint 532 ms); reduced motion 1,090 ms; WebGL disabled 1,432 ms; the dev server's hydration of the whole
 route dominates them. The frame budgets of the plan are to be measured again on a machine with a GPU.
 
+The same conditions again after the keyboard and idle work (2026-10-09, later, with the acts' builder's work in
+progress on the same server). Idle, the director's ticks and drawn frames over two quiet seconds: 0 at the hero, the
+crown hold, Act II, Act III, the landing and the end of the track. Off screen, every requestAnimationFrame callback on
+the page, per half second from the moment the film leaves: 32, 32, 14 (the 1.2 s grace), then 0, and 0 over the next
+two seconds; back in the film it follows the scroll at once. Marks on load, median of five: film `kfilm:first-frame`
+1,846 ms at 1440 x 900 (first contentful paint 700 ms) and 1,166 ms at 390 x 844 (444 ms); reduced motion 1,179 and
+1,008 ms; WebGL disabled 1,146 and 1,009 ms. Under software rendering the pixel ratio steps down as it should: 2 to 1
+at 390 x 844 (device pixel ratio 3) and 2 to 1.5 at 1440 x 900 (2) within a 20 s scrub. One WebGL context is alive at
+a time (the probe's is lost at once); after a client-side navigation away none is, no trigger is left, no attribute on
+`<html>` and no frame is requested.
+
 Full-page captures that render beyond the viewport (Chromium's `captureBeyondViewport`, used by Playwright's
 `fullPage`) lay the page out in a window as tall as the page, which can turn the film to its tall framing
 mid-capture; there (under SwiftShader) some of them also lost the hero's headline, which the page itself never did.
@@ -242,7 +281,18 @@ Stitch full-page captures by scrolling the window, and look at every one.
 
 ## Known weaknesses
 
-- GSAP ScrollTrigger keeps an empty requestAnimationFrame loop alive while it is registered (its repaint workaround).
+- While the film is on screen GSAP ScrollTrigger keeps an empty requestAnimationFrame loop (its repaint workaround)
+  and a 250 ms timer that asks for frames: the director draws nothing at rest, but the browser runs those callbacks
+  (about 64 a second). Off screen the film turns ScrollTrigger off. Each time it is turned on again,
+  `ScrollTrigger.enable()` registers GSAP's matchMedia listeners again (GSAP's own code): measured after forced garbage
+  collection, about 20 KB of heap per return to the film (12 round trips: 504 KB against 236 KB with the clock left
+  on, on a heap of 23 MB); enable() itself takes about 2.3 ms.
+- `ScrollTrigger.config({ ignoreMobileResize: true })` is not called. GSAP 3.15 already sets it when ScrollTrigger
+  registers, wherever the pointer is coarse or cannot hover (`Observer.isTouch` 1), which is all that config can set;
+  and config() without a `syncInterval` overwrites the handle of ScrollTrigger's sync timer, which can then never be
+  cleared, so the film could not go quiet off screen. Checked on an emulated phone: a height-only resize of 8 percent
+  (an address bar) measures nothing again and the film stays on its beat; a rotation measures once and holds the
+  moment.
 - Every number above is from one machine against the dev server; real phones, Safari and Firefox are unmeasured.
 - A browser with the WebGL 2 API but no usable context switches to the still layout on mount, after hydration.
 - The film creates two WebGL contexts at start (the probe, released at once, and the renderer's): one is alive at a
@@ -250,6 +300,3 @@ Stitch full-page captures by scrolling the window, and look at every one.
 - The word-drop spring is a deliberate overshoot that Impeccable's detector reports as bounce easing.
 - On wider-than-16:10 windows the camera's orbit carries the lowest weight under the narration for part of its beat;
   its label waits for the file to come out.
-- In the still layout a figure draws only within a viewport of the window, so `data-kfilm-live` and
-  `kfilm:first-frame` wait for the hero when a deep link lands far below it.
-- Until the acts are built, Acts II, III and the landing hold the crown's shot with nothing lit (their stubs).

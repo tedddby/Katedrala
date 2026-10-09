@@ -1,0 +1,20 @@
+import { chromium } from "playwright-core";
+const browser = await chromium.launch({ channel: "msedge", headless: true });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto("http://localhost:3100/lab/cinematic/", { waitUntil: "load" });
+await page.waitForFunction(() => window.__kfilm?.trigger, null, { timeout: 60000 });
+await page.waitForTimeout(2000);
+await page.getByRole("button", { name: /Copy real output/ }).focus();
+await page.waitForTimeout(500);
+await page.keyboard.press("Tab");
+await page.waitForTimeout(600);
+const r = await page.evaluate(() => {
+  const el = document.activeElement;
+  const sib = el.nextElementSibling;
+  const cs = sib ? getComputedStyle(sib) : null;
+  const b = sib?.getBoundingClientRect();
+  return { el: el.outerHTML.slice(0, 140), focusVisible: el.matches(":focus-visible"), sibling: sib?.outerHTML.slice(0, 120), outline: cs ? `${cs.outlineStyle} ${cs.outlineWidth} ${cs.outlineColor}` : null, box: b ? [Math.round(b.left), Math.round(b.top), Math.round(b.width), Math.round(b.height)] : null };
+});
+console.log(JSON.stringify(r, null, 1));
+await page.screenshot({ path: "cap/radio-focus.png", clip: { x: 0, y: 200, width: 600, height: 140 } });
+await browser.close();

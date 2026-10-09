@@ -33,9 +33,28 @@ await count("top idle 2s");
 await page.evaluate(() => { const tr = window.__kfilm.trigger; window.scrollTo({ top: tr.end - 2, behavior: "instant" }); });
 await page.waitForTimeout(3000);
 await count("landing idle 2s");
-await page.evaluate(() => { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }); });
+// The preview route has only the legend after the film (shorter than a window): add the sections' length after it,
+// as the main page has, so the film can leave the screen entirely.
+const geo = await page.evaluate(() => {
+  const spacer = document.createElement("div");
+  spacer.style.height = "3000px";
+  document.querySelector("main").append(spacer);
+  window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });
+  const r = document.querySelector("[data-film-track]").getBoundingClientRect();
+  return { trackBottom: Math.round(r.bottom), innerHeight };
+});
+console.log("geometry offscreen", JSON.stringify(geo));
 await page.waitForTimeout(4000);
 await count("offscreen 2s");
 await page.waitForTimeout(3000);
 await count("offscreen later 2s");
+// Back into the film: the clock runs again and the film follows the scroll.
+await page.evaluate(() => { const tr = window.__kfilm.trigger; window.scrollTo({ top: tr.start + (tr.end - tr.start) * 0.3, behavior: "instant" }); });
+await page.waitForTimeout(2500);
+const back = await page.evaluate(() => ({ pRaw: +window.__kfilm.pRaw.toFixed(4), p: +window.__kfilm.p.toFixed(4), pos: `${window.__kfilm.pos.id} ${window.__kfilm.pos.t.toFixed(3)}` }));
+console.log("back in the film", JSON.stringify(back));
+await page.evaluate(() => { const tr = window.__kfilm.trigger; window.scrollTo({ top: tr.start + (tr.end - tr.start) * 0.5, behavior: "instant" }); });
+await page.waitForTimeout(1500);
+const back2 = await page.evaluate(() => ({ pRaw: +window.__kfilm.pRaw.toFixed(4), pos: `${window.__kfilm.pos.id} ${window.__kfilm.pos.t.toFixed(3)}` }));
+console.log("scrolled within the film", JSON.stringify(back2));
 await browser.close();

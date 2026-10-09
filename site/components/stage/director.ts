@@ -539,29 +539,43 @@ export class Director {
 
   /**
    * Focus reveal. A control in the film that takes focus (Tab, Shift+Tab, a script) brings the film to where it is
-   * seen: the hero's actions to the hero frame; a control in an act's block or layer to that act's anchor (its first
-   * caption in full view), unless the film is already in that act. An act that knows a better beat for one of its
-   * controls calls ActContext.reveal(t) from its own focus listener: whichever runs first, the act's beat wins (this
-   * one does nothing once the film is in the act). Nothing moves in the still layout, which is in normal flow.
+   * seen. The hero's actions bring it back to the hero frame, at once: they sit on the pinned frame, which the browser
+   * never needs to scroll to. A control in an act's block or layer brings the film to that act's anchor (its first
+   * caption in full view) unless the film is in that act by the next frame: the browser scrolls a focused element
+   * into view itself, after this event, and an act's block sits at its own place on the track, so that scroll alone
+   * usually lands in the act. An act that knows a better beat for one of its controls calls ActContext.reveal(t) from
+   * its own focus listener, and the film stays there. Nothing moves in the still layout, which is in normal flow.
    */
   private bindFocus(): void {
+    let pending = 0;
     const onFocus = (e: FocusEvent) => {
       if (this.disposed || this.still !== null || !(e.target instanceof Element)) return;
       const target = e.target;
-      const now = this.clock.at(this.pRaw);
       if (target.closest("[data-film-hero]") !== null) {
-        if (now.index !== 0 || now.t >= BEAT.heroEnd) this.reveal(0, 0);
+        const raw = this.trackProgress();
+        const now = this.clock.at(clamp01(raw));
+        if (raw < 0 || now.index !== 0 || now.t >= BEAT.heroEnd) this.reveal(0, 0);
         return;
       }
       const host = target.closest<HTMLElement>("[data-act-slot], [data-act-layer]");
       if (host === null) return;
       const id = host.dataset.actSlot ?? host.dataset.actLayer;
       const index = this.acts.findIndex((a) => a.id === id);
-      if (index < 0 || now.index === index) return;
-      this.reveal(index, ACTS[index]!.anchor);
+      if (index < 0) return;
+      cancelAnimationFrame(pending);
+      pending = requestAnimationFrame(() => {
+        if (this.disposed || this.still !== null || document.activeElement !== target) return;
+        // In the act with the frame pinned (not letting go past the film's end): the control is seen there.
+        const raw = this.trackProgress();
+        const inAct = this.clock.at(clamp01(raw)).index === index && raw >= 0 && raw <= 1 + 1e-4;
+        if (!inAct) this.reveal(index, ACTS[index]!.anchor);
+      });
     };
     this.root.addEventListener("focusin", onFocus);
-    this.cleanups.push(() => this.root.removeEventListener("focusin", onFocus));
+    this.cleanups.push(() => {
+      this.root.removeEventListener("focusin", onFocus);
+      cancelAnimationFrame(pending);
+    });
   }
 
   /* ---------------------------------------------------------------------------------------------------------
@@ -641,9 +655,14 @@ export class Director {
 
   /** Scroll progress through the track, read from the layout: what ScrollTrigger reports once it runs. */
   private progressNow(): number {
+    return clamp01(this.trackProgress());
+  }
+
+  /** The same, unclamped: below 0 before the frame pins, above 1 once it has let go and scrolls away. */
+  private trackProgress(): number {
     const r = this.track.getBoundingClientRect();
     const span = r.height - window.innerHeight;
-    return span > 0 ? clamp01(-r.top / span) : 0;
+    return span > 0 ? -r.top / span : 0;
   }
 
   /* ---------------------------------------------------------------------------------------------------------

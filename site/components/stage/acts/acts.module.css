@@ -1,9 +1,1110 @@
 /*
  * Acts II, III and the landing: their blocks, frame words and overlays.
  *
- * Typed stub, written at G1 by the film's engine; the acts' builder owns this file from here on. The film sets these
- * on the elements it renders around the acts' markup (film.module.css), for selectors here to use:
+ * The film sets these on the elements it renders around the acts' markup (film.module.css), and selectors here use
+ * them:
  * - html[data-kfilm="film" | "still"]: the mode, decided before first paint.
  * - [data-act-slot="evidence" | "change" | "trace"][data-active]: the act's block while its act is on screen.
  * - [data-act-layer="evidence" | "change" | "trace"][data-active]: the act's frame words while its act is on screen.
+ * - [data-caption][data-on]: a caption shown.
+ * The framing split is the film's: tall below an aspect of 0.95 (timeline.ts TALL_MEDIA).
+ *
+ * One text, two presentations: in the film a block's words are visually hidden at its anchor (the captions show
+ * them); in the still layout the blocks are the article, on the page frame, each with its own figure.
  */
+
+/* ---------------------------------------------------------------------------------------------------------
+ * The blocks: the still article; visually hidden words in the film.
+ * ------------------------------------------------------------------------------------------------------- */
+
+.block {
+  display: grid;
+  gap: 1.75rem;
+  padding: clamp(3.5rem, 8vh, 6rem) var(--k-edge) 0;
+}
+
+.title {
+  margin: 0;
+  max-width: 22ch;
+  font-family: var(--k-display);
+  font-size: var(--text-heading, clamp(2.125rem, 1.2rem + 2.6vw, 3.5rem));
+  font-weight: 620;
+  font-variation-settings: "wdth" 80;
+  line-height: 1.02;
+  letter-spacing: -0.026em;
+}
+
+.statusLine {
+  margin-top: 1.125rem;
+}
+
+.lede {
+  margin: 1.25rem 0 0;
+  max-width: 38rem;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--k-soft);
+}
+
+.lede code,
+.beatBody code,
+.beatTitle code {
+  font-family: var(--k-mono);
+  font-size: 0.86em;
+  font-variation-settings: "wdth" 87.5;
+  letter-spacing: -0.02em;
+  color: var(--k-ink);
+}
+
+.beats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  gap: 2.5rem clamp(1.5rem, 3vw, 3rem);
+}
+
+.beat {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+.beatTitle {
+  margin: 0;
+  font-family: var(--k-display);
+  font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem);
+  font-weight: 600;
+  font-variation-settings: "wdth" 84;
+  line-height: 1.15;
+  letter-spacing: -0.014em;
+  text-wrap: balance;
+}
+
+.beatBody {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--k-soft);
+}
+
+/* The scope of a page-computed number, beside the number (never a footnote). */
+.scope {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--k-faint);
+}
+
+/* In the film a block is read, not seen: the captions show its words. */
+:global(html[data-kfilm="film"]) .read {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+:global(html[data-kfilm="film"]) .block {
+  display: block;
+  padding: 0;
+}
+
+/* An act's still figure in the article: the full width of the page frame; on phones a little taller than the
+ * hero's, so the rulers or the named path stand clear of the figure's title block. */
+.figure {
+  width: 100%;
+}
+
+@media (max-aspect-ratio: 949/1000) {
+  :global(html[data-kfilm="still"]) .figure {
+    aspect-ratio: 2 / 3;
+  }
+}
+
+/* A still figure's title block, at its bottom right, as the film's. */
+.figureBlock {
+  position: absolute;
+  z-index: 1;
+}
+
+@media (max-aspect-ratio: 949/1000) {
+  .figureBlock {
+    bottom: 0.4rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * The record (Act II). In the article: the code block and its note. In the film: over the frame at E4 on wide
+ * frames (fixed, so it stays in the block's reading order), and on tall ones only while the keyboard is in it.
+ * ------------------------------------------------------------------------------------------------------- */
+
+.record {
+  display: grid;
+  gap: 0.875rem;
+  max-width: 44rem;
+}
+
+.recordNote {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--k-faint);
+}
+
+:global(html[data-kfilm="film"]) .record {
+  position: fixed;
+  z-index: var(--z-film-words, 4);
+  top: max(5.5rem, 12vh);
+  right: max(var(--page-gutter, 3rem), calc((100% - var(--page-max, 82.5rem)) / 2));
+  width: min(34.5rem, 40vw);
+  max-width: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 180ms ease,
+    transform 240ms var(--k-ease-out);
+}
+
+:global(html[data-kfilm="film"]) .record[data-shown],
+:global(html[data-kfilm="film"]) .record:has(:focus-visible) {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  transition:
+    opacity 260ms var(--k-ease-out),
+    transform 420ms var(--k-ease-out);
+}
+
+/* The note is read, not shown, over the frame: the caption says it. */
+:global(html[data-kfilm="film"]) .recordNote {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/*
+ * Over the frame the record's ground is not quite opaque: Chrome culls a WebGL canvas below and right of an opaque
+ * layer laid over it (seen with Edge and Chromium under SwiftShader), and the drawing must stay whole around it.
+ */
+:global(html[data-kfilm="film"]) .recordCode {
+  background: color-mix(in oklab, var(--color-sheet-deep, #0a0b0d) 97%, transparent);
+}
+
+/*
+ * Over the frame the record is set a little tighter, so all of it stands beside the ruler it points to; a line longer
+ * than the record is wide wraps (on a 1440 frame none does) rather than hiding its end.
+ */
+:global(html[data-kfilm="film"]) .recordCode :global(.code-block-body) {
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  padding-block: 0.75rem 0.875rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-aspect-ratio: 949/1000), (max-height: 599px) and (min-aspect-ratio: 19/20) {
+  :global(html[data-kfilm="film"]) .record {
+    top: auto;
+    left: var(--page-gutter, 1rem);
+    right: var(--page-gutter, 1rem);
+    bottom: calc(var(--k-foot) + 0.5rem);
+    width: auto;
+    max-height: calc(100svh - var(--k-foot) - 6rem);
+    overflow: auto;
+    background: color-mix(in oklab, var(--k-sheet) 97%, transparent);
+  }
+
+  /* Tall frames show the record's provenance rows in the frame instead (the condensed record). */
+  :global(html[data-kfilm="film"]) .record[data-shown] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  :global(html[data-kfilm="film"]) .record:has(:focus-visible) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * Frame words: the layer's content over the drawing (film), the host the overlays draw into (film and still).
+ * ------------------------------------------------------------------------------------------------------- */
+
+.frame,
+.host {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* A status mark or a scope line under a caption, arriving with its words. */
+.extra {
+  margin-top: 0.875rem;
+  opacity: 0;
+  transition: opacity 130ms ease;
+}
+
+:global([data-caption][data-on]) .extra {
+  opacity: 1;
+  transition: opacity 380ms var(--k-ease-out) 420ms;
+}
+
+/*
+ * The title block's lines for a beat or an act (E3's counts, Act III's status): set on the film's own title block's
+ * place and type, shown instead of it while the act asks.
+ */
+.swap {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 180ms ease,
+    visibility 0s linear 180ms;
+}
+
+.swap[data-on] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 260ms var(--k-ease-out);
+}
+
+:global([data-film-stage]):has(.swap[data-on]) :global([data-film-titleblock]) {
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * Act II's drawing: the rulers, the symbols' spans, the observations and their leaders, built by the overlay
+ * (evidence.ts) into the host. Mono for every name and line number, on the labels' knock-out ground; hairlines;
+ * load blue only on what is active (the dependency's observations, then the record's two lines).
+ * ------------------------------------------------------------------------------------------------------- */
+
+.host :global([data-ev-diagram]) {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.host :global([data-ev-diagram][data-on]) {
+  opacity: 1;
+}
+
+.host :global([data-ev-lines]) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.host :global([data-ev-lines] path) {
+  fill: none;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.host :global([data-ev="ruler"]) {
+  stroke: var(--k-ink);
+  stroke-width: 1.25;
+}
+
+.host :global([data-ev="ticks"]) {
+  stroke: var(--k-soft);
+}
+
+.host :global([data-ev="bracket"]) {
+  stroke: var(--k-soft);
+}
+
+.host :global([data-ev="join"]) {
+  stroke: var(--k-faint);
+  stroke-dasharray: 2 3;
+}
+
+.host :global([data-ev="mark"]) {
+  stroke: var(--k-load);
+  stroke-width: 1.5;
+}
+
+.host :global([data-ev="leader"]) {
+  stroke: var(--k-faint);
+  transition: stroke 200ms ease;
+}
+
+.host :global([data-ev="leader"][data-lit]) {
+  stroke: var(--k-load);
+  stroke-width: 1.25;
+}
+
+.host :global([data-ev="tie"]) {
+  stroke: var(--k-load);
+  stroke-width: 1.25;
+}
+
+.host :global([data-ev-word]) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.15rem 0.3rem;
+  margin: -0.15rem -0.3rem;
+  white-space: nowrap;
+  font-family: var(--k-mono);
+  font-size: 0.75rem;
+  font-variation-settings: "wdth" 87.5;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--k-ink);
+  background: color-mix(in oklab, var(--k-sheet) 88%, transparent);
+  will-change: transform;
+}
+
+.host :global([data-ev-word][data-right]) {
+  justify-items: end;
+  text-align: right;
+}
+
+.host :global([data-ev-word] .note) {
+  font-size: 0.6875rem;
+  color: var(--k-faint);
+}
+
+.host :global([data-ev-word="line"]) {
+  font-variant-numeric: tabular-nums;
+  color: var(--k-soft);
+  transition: color 200ms ease;
+}
+
+.host :global([data-ev-word="line"][data-lit]) {
+  color: var(--k-load);
+}
+
+@media (max-aspect-ratio: 949/1000) {
+  .host :global([data-ev-word]) {
+    font-size: 0.6875rem;
+  }
+}
+
+/* The record's provenance rows (tall frames, E4): legible at 11 px, under the main ruler they tie to. */
+.condensed {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  gap: 0.3rem;
+  margin: 0;
+  padding: 0.5rem 0.625rem 0.625rem;
+  font-family: var(--k-mono);
+  font-size: 0.6875rem;
+  font-variation-settings: "wdth" 87.5;
+  line-height: 1.35;
+  color: var(--k-soft);
+  /* Not quite opaque, as the record's: an opaque layer over the canvas makes Chrome cull the drawing beside it. */
+  background: color-mix(in oklab, var(--color-sheet-deep, #0a0b0d) 96%, transparent);
+  border: 1px solid var(--k-rule-strong);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 160ms ease,
+    visibility 0s linear 160ms;
+  will-change: transform;
+}
+
+.condensed[data-on] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 260ms var(--k-ease-out);
+}
+
+.condensed p {
+  margin: 0;
+}
+
+.condensedHead {
+  color: var(--k-faint);
+}
+
+.condensedEdge code {
+  margin-right: 0.5rem;
+  color: var(--k-ink);
+}
+
+.condensedRow {
+  display: flex;
+  gap: 0.875rem;
+}
+
+.condensedRow code {
+  color: var(--k-load);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * Act III's counter: files reached, set like the level gauge, with a tick per step.
+ * ------------------------------------------------------------------------------------------------------- */
+
+.counter {
+  position: absolute;
+  z-index: var(--z-film-words, 4);
+  right: calc(var(--k-edge) - 0.75rem);
+  top: 50%;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1.25rem;
+  align-items: end;
+  padding: 0.875rem 0.75rem 0.75rem 1rem;
+  background: color-mix(in oklab, var(--k-sheet) 88%, transparent);
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 260ms ease,
+    visibility 0s linear 260ms;
+}
+
+.counter[data-on],
+.counter[data-done] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 500ms var(--k-ease-out);
+}
+
+.counterValue {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--k-mono);
+  font-size: var(--text-gauge, clamp(3.25rem, 1.8rem + 4vw, 6.5rem));
+  font-weight: 300;
+  font-variation-settings: "wdth" 87.5;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  text-align: right;
+  color: var(--k-load);
+}
+
+.counterLabel {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--k-faint);
+  text-align: right;
+}
+
+/* A tick per step, the first at the foot: the change rises. */
+.counterSteps {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.6rem;
+  align-self: center;
+}
+
+.counterStep {
+  display: block;
+  width: 0.75rem;
+  height: 1px;
+  background: var(--k-graphite);
+  transition:
+    width 200ms var(--k-ease-out),
+    background-color 200ms ease;
+}
+
+.counterStep[data-passed] {
+  background: var(--k-soft);
+}
+
+.counterStep[data-current] {
+  width: 1.5rem;
+  height: 2px;
+  background: var(--k-load);
+}
+
+/* In a still figure: at its top right, the final count. */
+.figure .counter {
+  top: 1.25rem;
+  right: 1rem;
+  transform: none;
+}
+
+@media (max-aspect-ratio: 949/1000) {
+  .counter {
+    right: calc(var(--k-edge) - 0.5rem);
+    top: 4.75rem;
+    transform: none;
+    column-gap: 0.75rem;
+    padding: 0.625rem 0.5rem 0.5rem 0.75rem;
+  }
+
+  .counterValue {
+    font-size: 3rem;
+  }
+
+  .counterLabel {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .counterSteps {
+    gap: 0.4rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------------------
+ * The landing: its controls, readout and legend. In the film: a column left of the structure (wide) or a sheet over
+ * the frame's foot (tall), shown while the landing is on screen. In the still layout: the article's last part,
+ * beside its figure.
+ * ------------------------------------------------------------------------------------------------------- */
+
+.landing {
+  display: grid;
+  gap: 2.5rem;
+  padding: clamp(3.5rem, 8vh, 6rem) var(--k-edge) clamp(4rem, 9vh, 6rem);
+}
+
+@media (min-aspect-ratio: 19/20) {
+  .landing {
+    grid-template-columns: minmax(0, 27rem) minmax(0, 1fr);
+    align-items: start;
+    column-gap: clamp(2rem, 4vw, 4rem);
+  }
+}
+
+.panel {
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.landingTitle {
+  margin: 0;
+  font-family: var(--k-display);
+  font-size: clamp(1.75rem, 1.15rem + 1.6vw, 2.75rem);
+  font-weight: 620;
+  font-variation-settings: "wdth" 80;
+  line-height: 1.02;
+  letter-spacing: -0.024em;
+}
+
+.landingLede {
+  margin: -0.25rem 0 0;
+  max-width: 44ch;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--k-soft);
+}
+
+.controls {
+  display: grid;
+  gap: 0.875rem;
+}
+
+.controlLabel {
+  display: block;
+  margin: 0 0 0.4rem;
+  padding: 0;
+  font-family: var(--k-mono);
+  font-size: 0.6875rem;
+  font-variation-settings: "wdth" 87.5;
+  letter-spacing: 0.01em;
+  color: var(--k-faint);
+}
+
+.show {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.segments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--k-rule-strong);
+}
+
+.segment {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.segment + .segment {
+  border-left: 1px solid var(--k-rule-strong);
+}
+
+.segment input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.segment span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 560;
+  font-variation-settings: "wdth" 92;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--k-soft);
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.segment input:checked + span {
+  background: var(--color-sheet-raised, #14171a);
+  color: var(--k-ink);
+  box-shadow: inset 0 -2px 0 var(--k-ink);
+}
+
+.segment input:focus-visible + span {
+  outline: 2px solid var(--k-load);
+  outline-offset: -2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .segment span {
+    min-height: 2.25rem;
+  }
+
+  .segment:hover input:not(:checked) + span {
+    color: var(--k-ink);
+  }
+}
+
+.selectWrap {
+  position: relative;
+}
+
+.select {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 2.25rem 0.5rem 0.75rem;
+  appearance: none;
+  border: 1px solid var(--k-rule-strong);
+  border-radius: 0;
+  background: var(--color-sheet-deep, #0a0b0d);
+  color: var(--k-ink);
+  color-scheme: dark;
+  font-family: var(--k-mono);
+  font-size: 0.8125rem;
+  font-variation-settings: "wdth" 87.5;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: border-color 150ms ease;
+}
+
+.select option,
+.select optgroup {
+  background: var(--k-sheet);
+  color: var(--k-ink);
+}
+
+.select optgroup {
+  color: var(--k-faint);
+  font-style: normal;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .select {
+    min-height: 2.25rem;
+  }
+
+  .select:hover {
+    border-color: var(--k-faint);
+  }
+}
+
+.select:focus-visible {
+  outline-offset: 2px;
+}
+
+.chevron {
+  width: 0.75rem;
+  height: 0.75rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+.selectWrap .chevron {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  translate: 0 -50%;
+  color: var(--k-faint);
+  pointer-events: none;
+}
+
+.picks {
+  min-width: 0;
+  container-type: inline-size;
+}
+
+.pickList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.375rem;
+}
+
+/* A file to start from: its folder in the faintest ink over its name, so the four read as places in the code. */
+.pick {
+  display: grid;
+  align-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.375rem 0.625rem;
+  border: 1px solid var(--k-rule-strong);
+  background: transparent;
+  color: var(--k-ink);
+  font-family: var(--k-mono);
+  font-size: 0.8125rem;
+  font-variation-settings: "wdth" 87.5;
+  letter-spacing: -0.01em;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    transform 120ms var(--k-ease-out);
+}
+
+.pickDir,
+.pickName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pickDir {
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  color: var(--k-faint);
+}
+
+.pickName {
+  line-height: 1.35;
+}
+
+.pick[aria-pressed="true"] {
+  border-color: var(--k-load);
+  background: color-mix(in oklab, var(--k-load) 10%, transparent);
+}
+
+.pick:active {
+  transform: scale(0.98);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pick {
+    min-height: 2.25rem;
+  }
+
+  .pick:hover {
+    border-color: var(--k-faint);
+  }
+
+  .pick[aria-pressed="true"]:hover {
+    border-color: var(--k-load);
+  }
+}
+
+.readout {
+  margin: 0.25rem 0 0;
+  min-height: 3em;
+  max-width: 52ch;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--k-ink);
+  overflow-wrap: anywhere;
+}
+
+.landingHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.legendToggle {
+  display: none;
+}
+
+.legend {
+  min-width: 0;
+}
+
+/* The key in two columns beside the controls: five marks in three rows, the drawing's own conventions last. */
+@media (min-aspect-ratio: 19/20) {
+  .legend > div > dl {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.625rem 1.25rem;
+  }
+
+  .legend > div > dl > div:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .legend > div > dl dd {
+    margin-left: 0;
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .legend > div > details {
+    margin-top: 0.75rem;
+  }
+}
+
+.landingFigure {
+  min-width: 0;
+}
+
+/* Without script nothing traces: the controls step out, the words and the legend stay. */
+:global(html:not([data-js])) .controls {
+  display: none;
+}
+
+/* The film: the landing's block pinned over the frame (film.module.css .slotPinned), shown while its act is on
+ * screen, or while the keyboard is in it. */
+:global(html[data-kfilm="film"]) .landing {
+  position: relative;
+  display: block;
+  height: 100%;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+:global(html[data-kfilm="film"] [data-act-slot][data-active]) .landing,
+:global(html[data-kfilm="film"]) .landing:has(:focus-visible) {
+  opacity: 1;
+  transition: opacity 420ms var(--k-ease-out);
+}
+
+:global(html[data-kfilm="film"]) .panel {
+  position: absolute;
+  left: var(--k-edge);
+  top: max(5.75rem, 13vh);
+  bottom: 1.5rem;
+  width: min(27rem, 34vw);
+  align-content: start;
+  gap: 0.875rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--k-rule-strong) transparent;
+}
+
+:global(html[data-kfilm="film"] [data-act-slot][data-active]) .panel,
+:global(html[data-kfilm="film"]) .landing:has(:focus-visible) .panel {
+  pointer-events: auto;
+}
+
+/* Short wide windows (a laptop at 1280 x 720, a phone turned): the legend folds into a disclosure. */
+@media (max-height: 819px) and (min-aspect-ratio: 19/20) {
+  :global(html[data-kfilm="film"]) .legendToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--k-ink);
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-variation-settings: "wdth" 92;
+    cursor: pointer;
+  }
+
+  :global(html[data-kfilm="film"]) .legendToggle[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+  }
+
+  :global(html[data-kfilm="film"]) .legend:not([data-open]) {
+    display: none;
+  }
+}
+
+@media (max-aspect-ratio: 949/1000) {
+  .landing {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .landingFigure {
+    order: -1;
+  }
+
+  /* The sheet: over the frame's foot, the structure above it; the band of the title block stays free. */
+  :global(html[data-kfilm="film"]) .panel {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: var(--k-foot);
+    width: auto;
+    max-height: calc(100svh - var(--k-foot) - 14rem);
+    padding: 1rem var(--k-edge) 0.875rem;
+    border-top: 1px solid var(--k-rule-strong);
+    background: color-mix(in oklab, var(--k-sheet) 96%, transparent);
+  }
+
+  :global(html[data-kfilm="film"]) .landingLede {
+    max-width: none;
+    font-size: 0.875rem;
+  }
+}
+
+/*
+ * The landing compact: on a phone's sheet, and beside the structure on a wide frame too short for the full column (a
+ * phone turned). The controls speak for themselves: their labels are read, not shown; the files to start from sit in
+ * one row, by name; the legend folds into a disclosure.
+ */
+@media (max-aspect-ratio: 949/1000), (max-height: 599px) and (min-aspect-ratio: 19/20) {
+  :global(html[data-kfilm="film"]) .panel {
+    gap: 0.75rem;
+  }
+
+  :global(html[data-kfilm="film"]) .landingTitle {
+    font-size: 1.5rem;
+  }
+
+  :global(html[data-kfilm="film"]) .controls {
+    gap: 0.625rem;
+  }
+
+  :global(html[data-kfilm="film"]) .readout {
+    min-height: 0;
+    margin: 0;
+    font-size: 0.875rem;
+  }
+
+  :global(html[data-kfilm="film"]) .scope {
+    font-size: 0.75rem;
+  }
+
+  :global(html[data-kfilm="film"]) .controlLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* Two by two where one row would not hold the four names (the row measures 336px). */
+  :global(html[data-kfilm="film"]) .pick {
+    padding-inline: 0.375rem;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  @container (min-width: 340px) {
+    :global(html[data-kfilm="film"]) .pickList {
+      grid-template-columns: repeat(4, auto);
+    }
+  }
+
+  :global(html[data-kfilm="film"]) .pickDir {
+    display: none;
+  }
+
+  :global(html[data-kfilm="film"]) .legendToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--k-ink);
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-variation-settings: "wdth" 92;
+    cursor: pointer;
+  }
+
+  :global(html[data-kfilm="film"]) .legendToggle[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+  }
+
+  :global(html[data-kfilm="film"]) .legend:not([data-open]) {
+    display: none;
+  }
+}
+
+/*
+ * A phone turned: no room for the sentence under the title (it is read, and the controls say it); the column set
+ * closer, the legend's disclosure (a secondary control) at 32px. A long readout scrolls the column (landing.ts keeps
+ * the readout and its scope line in view).
+ */
+@media (max-height: 599px) and (min-aspect-ratio: 19/20) {
+  :global(html[data-kfilm="film"]) .landingLede {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  :global(html[data-kfilm="film"]) .panel {
+    top: 4.25rem;
+    bottom: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  :global(html[data-kfilm="film"]) .controls {
+    gap: 0.5rem;
+  }
+
+  :global(html[data-kfilm="film"]) .legendToggle {
+    min-height: 2rem;
+  }
+}
+
+/* A focus reveal shows its beat at once: the director marks the film [data-instant] for the frame that shows it. */
+:global(html[data-kfilm="film"] [data-instant] [data-act-slot]) .record,
+:global(html[data-kfilm="film"] [data-instant] [data-act-slot]) .landing {
+  transition: none;
+}
+
+@media (forced-colors: active) {
+  .segment input:checked + span,
+  .pick[aria-pressed="true"] {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
+
+  .counterStep[data-current],
+  .host :global([data-ev="mark"]),
+  .host :global([data-ev="leader"][data-lit]),
+  .host :global([data-ev="tie"]) {
+    stroke: Highlight;
+    background: Highlight;
+  }
+}

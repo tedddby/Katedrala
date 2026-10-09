@@ -22,34 +22,9 @@
   /* The page frame's edge, from the frame's own edge: resolved where it is used (100% is that element's width). */
   --k-edge: max(var(--k-gutter), calc((100% - var(--page-max, 82.5rem)) / 2));
   --k-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  /* A damped spring (damping ratio 0.55): the words land like the weights, with one small rebound. */
-  --k-spring: linear(
-    0,
-    0.075,
-    0.25,
-    0.464,
-    0.674,
-    0.851,
-    0.984,
-    1.07,
-    1.114,
-    1.126,
-    1.117,
-    1.094,
-    1.067,
-    1.041,
-    1.018,
-    1.002,
-    0.991,
-    0.986,
-    0.984,
-    0.985,
-    0.988,
-    0.992,
-    0.995,
-    0.998,
-    1
-  );
+  /* A damped spring (damping ratio 0.55): the words land like the weights, with one small rebound. The curve is the
+   * site's --ease-spring (styles/base.css); the film keeps its own name for it. */
+  --k-spring: var(--ease-spring);
   --k-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --k-mono: var(--font-martian), ui-monospace, "SFMono-Regular", monospace;
   /*

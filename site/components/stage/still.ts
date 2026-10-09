@@ -281,13 +281,13 @@ export class StillFilm {
       console.error(`kfilm: the ${f.act.id} still overlay failed`, error);
     }
     this.place(f);
-    if (f.index === 0 && !this.firstFrame) {
+    f.canvas.setAttribute("data-ready", "");
+    if (!this.firstFrame) {
+      // The first structure on screen, whichever act's figure it is: a deep link can land far below the hero, and
+      // figures are drawn in the page's order, so on a load at the top it is the hero's.
       this.firstFrame = true;
-      f.canvas.setAttribute("data-ready", "");
       this.html.dataset.kfilmLive = "";
       performance.mark("kfilm:first-frame");
-    } else {
-      f.canvas.setAttribute("data-ready", "");
     }
   }
 

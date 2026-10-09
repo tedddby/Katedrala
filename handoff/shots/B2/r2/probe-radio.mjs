@@ -1,0 +1,15 @@
+import { chromium } from "playwright-core";
+const browser = await chromium.launch({ channel: "msedge", headless: true });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto("http://localhost:3100/lab/cinematic/", { waitUntil: "load" });
+await page.waitForFunction(() => document.documentElement.dataset.kfilmLive !== undefined, null, { timeout: 60000 });
+await page.waitForTimeout(2000);
+await page.evaluate(() => { const f = window.__kfilm; const P = f.clock.progressOf(3, 0.4); window.scrollTo({ top: f.trigger.start + P * (f.trigger.end - f.trigger.start), behavior: "instant" }); });
+await page.waitForTimeout(2500);
+const box = await page.locator("text=What rests on it").boundingBox();
+console.log("box", box);
+console.log(await page.evaluate(([x, y]) => document.elementsFromPoint(x, y).slice(0, 5).map((e) => e.tagName + (e.className ? "." + String(e.className).slice(0, 40) : "")), [box.x + box.width / 2, box.y + box.height / 2]));
+await page.click("text=What rests on it");
+await page.waitForTimeout(300);
+console.log(await page.evaluate(() => [...document.querySelectorAll('[data-ld-show] input')].map((i) => `${i.value}:${i.checked}`)));
+await browser.close();
