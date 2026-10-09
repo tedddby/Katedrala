@@ -1,0 +1,572 @@
+{
+  "components": [
+    {
+      "id": "cmp:",
+      "name": "expense-report",
+      "kind": "package",
+      "path": "",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "children": [
+        "cmp:src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 6,
+        "symbols": 21,
+        "lines": 149
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/services",
+        "mod:src/utils"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src",
+      "name": "src",
+      "kind": "directory",
+      "path": "src",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:",
+      "children": [
+        "cmp:src/services",
+        "cmp:src/utils"
+      ],
+      "files": [
+        "file:src/app.ts",
+        "file:src/index.ts"
+      ],
+      "totals": {
+        "files": 6,
+        "symbols": 21,
+        "lines": 149
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/services",
+        "mod:src/utils"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 7,
+          "observations": 8,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1,
+            "instantiates": 1,
+            "references-type": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:0f9eca2f3fc51022",
+            "edge:10f872beaabce1e2",
+            "edge:29457892e8f9b6e2",
+            "edge:3c77c3dc1ae8ac42",
+            "edge:92331973f520b6e9"
+          ]
+        },
+        {
+          "entity": "cmp:src/utils",
+          "edgeCount": 4,
+          "observations": 7,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:aed1d446fef69138",
+            "edge:76954f38b2c6f9c2",
+            "edge:b08b979cbdce3421",
+            "edge:b3f6f48543657ae4"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src/services",
+      "name": "services",
+      "kind": "directory",
+      "path": "src/services",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/services/expense-service.ts"
+      ],
+      "totals": {
+        "files": 1,
+        "symbols": 10,
+        "lines": 45
+      },
+      "modules": [
+        "mod:src/services"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/utils",
+          "edgeCount": 2,
+          "observations": 3,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:44261d1b8a721b8e",
+            "edge:295e93e3ae859662"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 7,
+          "observations": 8,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1,
+            "instantiates": 1,
+            "references-type": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:0f9eca2f3fc51022",
+            "edge:10f872beaabce1e2",
+            "edge:29457892e8f9b6e2",
+            "edge:3c77c3dc1ae8ac42",
+            "edge:92331973f520b6e9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/utils",
+      "name": "utils",
+      "kind": "directory",
+      "path": "src/utils",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/utils/currency.ts",
+        "file:src/utils/logger.ts",
+        "file:src/utils/math.ts"
+      ],
+      "totals": {
+        "files": 3,
+        "symbols": 8,
+        "lines": 51
+      },
+      "modules": [
+        "mod:src/utils"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 4,
+          "observations": 7,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:aed1d446fef69138",
+            "edge:76954f38b2c6f9c2",
+            "edge:b08b979cbdce3421",
+            "edge:b3f6f48543657ae4"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 2,
+          "observations": 3,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:44261d1b8a721b8e",
+            "edge:295e93e3ae859662"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod:src",
+      "name": "expense-report",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/app.ts",
+        "file:src/index.ts"
+      ],
+      "components": [
+        "cmp:src"
+      ],
+      "entryPoints": [
+        "file:src/index.ts"
+      ],
+      "publicApi": [],
+      "inference": {
+        "confidence": 0.9,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `src` (2 files); 2 are treated as composition roots, barrels or declared entry points.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "wiring-share",
+            "description": "2 of 2 files are composition roots, barrels or declared entry points.",
+            "value": 1,
+            "weight": 0.3,
+            "entities": [
+              "file:src/app.ts",
+              "file:src/index.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.2
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as composition roots by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `src/app.ts` (shape rule: nothing outside its unit depends on it; its dependencies spread over 2 other units, none above 50%); `src/index.ts` (entry-point rule: a declared entry point that nothing in its package depends on).",
+            "value": 2,
+            "entities": [
+              "file:src/app.ts",
+              "file:src/index.ts"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/services",
+          "edgeCount": 7,
+          "observations": 8,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1,
+            "instantiates": 1,
+            "references-type": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:0f9eca2f3fc51022",
+            "edge:10f872beaabce1e2",
+            "edge:29457892e8f9b6e2",
+            "edge:3c77c3dc1ae8ac42",
+            "edge:92331973f520b6e9"
+          ]
+        },
+        {
+          "entity": "mod:src/utils",
+          "edgeCount": 4,
+          "observations": 7,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:aed1d446fef69138",
+            "edge:76954f38b2c6f9c2",
+            "edge:b08b979cbdce3421",
+            "edge:b3f6f48543657ae4"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "mod:src/services",
+      "name": "services",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/services"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/services/expense-service.ts"
+      ],
+      "components": [
+        "cmp:src/services"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/services/expense-service.ts"
+      ],
+      "inference": {
+        "confidence": 0.366666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/services`, the only layer directory in `src`.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/services` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "0% of the dependency weight of member files stays inside the module (internal 0.0, crossing 1.0).",
+            "value": 0,
+            "weight": 0.5
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/services`.",
+            "entities": [
+              "dir:src/services"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 1 layer directory (services) and 1 shared directory (utils), so it is organized neither by feature nor by layer.",
+            "entities": [
+              "dir:src/services",
+              "dir:src/utils"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/utils",
+          "edgeCount": 2,
+          "observations": 3,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:44261d1b8a721b8e",
+            "edge:295e93e3ae859662"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 7,
+          "observations": 8,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1,
+            "instantiates": 1,
+            "references-type": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:0f9eca2f3fc51022",
+            "edge:10f872beaabce1e2",
+            "edge:29457892e8f9b6e2",
+            "edge:3c77c3dc1ae8ac42",
+            "edge:92331973f520b6e9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/utils",
+      "name": "utils",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/utils"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/utils/currency.ts",
+        "file:src/utils/logger.ts",
+        "file:src/utils/math.ts"
+      ],
+      "components": [
+        "cmp:src/utils"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/utils/currency.ts",
+        "file:src/utils/logger.ts"
+      ],
+      "inference": {
+        "confidence": 0.42,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: shared directory `src/utils`; 0 of 3 files are used by two or more other modules.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/utils` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 3 member files.",
+            "value": 0.6,
+            "weight": 0.2
+          },
+          {
+            "signal": "shared-usage",
+            "description": "0 of 3 files are used by two or more other modules (composition roots do not count as users).",
+            "value": 0,
+            "weight": 0.5
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 1 layer directory (services) and 1 shared directory (utils), so it is organized neither by feature nor by layer.",
+            "entities": [
+              "dir:src/services",
+              "dir:src/utils"
+            ]
+          },
+          {
+            "signal": "shared-directory",
+            "description": "Inferred from the shared directory `src/utils`.",
+            "entities": [
+              "dir:src/utils"
+            ]
+          },
+          {
+            "signal": "single-user-files",
+            "description": "1 file is used by only one other module: currency (services).",
+            "value": 1,
+            "entities": [
+              "file:src/utils/currency.ts"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 4,
+          "observations": 7,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:aed1d446fef69138",
+            "edge:76954f38b2c6f9c2",
+            "edge:b08b979cbdce3421",
+            "edge:b3f6f48543657ae4"
+          ]
+        },
+        {
+          "entity": "mod:src/services",
+          "edgeCount": 2,
+          "observations": 3,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:44261d1b8a721b8e",
+            "edge:295e93e3ae859662"
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [],
+  "roles": {
+    "src/services/expense-service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `expense-service.ts` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/services/expense-service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `ExpenseService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/expense-service.ts#ExpenseService"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

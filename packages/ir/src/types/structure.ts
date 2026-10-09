@@ -322,7 +322,7 @@ export interface FileEntity {
   imports: ImportEntry[];
   /** Exported names, sorted by name, then `from`, then `typeOnly`. */
   exports: ExportEntry[];
-  /** Architectural roles, sorted by role. Omitted when none. */
+  /** Architectural roles, sorted by role, then source. Omitted when none. */
   roles?: RoleEntry[];
   /** Free-form labels, sorted. */
   tags: string[];
@@ -564,7 +564,7 @@ export interface SymbolEntity {
   signature?: string;
   /** The symbol's role when it differs from its file's (e.g. an in-file test module). */
   role?: FileRole;
-  /** Architectural roles, sorted by role. Omitted when none. */
+  /** Architectural roles, sorted by role, then source. Omitted when none. */
   roles?: RoleEntry[];
   /** Free-form labels, sorted. Omitted when empty. */
   tags?: string[];

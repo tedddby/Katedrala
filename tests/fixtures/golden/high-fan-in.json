@@ -1,0 +1,3213 @@
+{
+  "components": [
+    {
+      "id": "cmp:",
+      "name": "shop-service",
+      "kind": "package",
+      "path": "",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "children": [
+        "cmp:src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 24,
+        "symbols": 169,
+        "lines": 857
+      },
+      "modules": [
+        "mod:src",
+        "mod:src#email",
+        "mod:src#inventory",
+        "mod:src#order",
+        "mod:src#user",
+        "mod:src/api",
+        "mod:src/core",
+        "mod:src/jobs",
+        "mod:src/storage"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src",
+      "name": "src",
+      "kind": "directory",
+      "path": "src",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:",
+      "children": [
+        "cmp:src/api",
+        "cmp:src/core",
+        "cmp:src/jobs",
+        "cmp:src/services",
+        "cmp:src/storage"
+      ],
+      "files": [
+        "file:src/main.ts"
+      ],
+      "totals": {
+        "files": 24,
+        "symbols": 169,
+        "lines": 857
+      },
+      "modules": [
+        "mod:src",
+        "mod:src#email",
+        "mod:src#inventory",
+        "mod:src#order",
+        "mod:src#user",
+        "mod:src/api",
+        "mod:src/core",
+        "mod:src/jobs",
+        "mod:src/storage"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/api",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:133e1da034d9b83b",
+            "edge:3e89cfd2b4838bd8"
+          ]
+        },
+        {
+          "entity": "cmp:src/core",
+          "edgeCount": 3,
+          "observations": 8,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:756eacd0a4b34129",
+            "edge:1b37f33f992c4c4b",
+            "edge:adb817dc87021eb7"
+          ]
+        },
+        {
+          "entity": "cmp:src/jobs",
+          "edgeCount": 11,
+          "observations": 11,
+          "runtimeEdgeCount": 11,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 5,
+            "instantiates": 4
+          },
+          "examples": [
+            "edge:0ada3ad4c836b46a",
+            "edge:166bc61f6363d4c9",
+            "edge:576fb71199ed736c",
+            "edge:8197da7cd47bc5e3",
+            "edge:a06f24fad5be0f27"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 10,
+          "observations": 10,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "imports": 5,
+            "instantiates": 5
+          },
+          "examples": [
+            "edge:1473f0cc0532efe6",
+            "edge:32a3be8f42ef0458",
+            "edge:43baee3440cab4db",
+            "edge:56e2bf4b435dbb99",
+            "edge:58693d2cc086cee6"
+          ]
+        },
+        {
+          "entity": "cmp:src/storage",
+          "edgeCount": 10,
+          "observations": 10,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 5,
+            "instantiates": 4
+          },
+          "examples": [
+            "edge:0bd933b22a145836",
+            "edge:3048635101e380b0",
+            "edge:3200beea917546b9",
+            "edge:5ab0752a9ff853bb",
+            "edge:82bdb4c0e3871b8e"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src/api",
+      "name": "api",
+      "kind": "directory",
+      "path": "src/api",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/api/auth.middleware.ts",
+        "file:src/api/orders.routes.ts",
+        "file:src/api/router.ts",
+        "file:src/api/server.ts",
+        "file:src/api/users.routes.ts"
+      ],
+      "totals": {
+        "files": 5,
+        "symbols": 11,
+        "lines": 141
+      },
+      "modules": [
+        "mod:src#order",
+        "mod:src#user",
+        "mod:src/api"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/core",
+          "edgeCount": 23,
+          "observations": 26,
+          "runtimeEdgeCount": 21,
+          "kindCounts": {
+            "calls": 12,
+            "imports": 8,
+            "instantiates": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:03c27b01421e9edf",
+            "edge:d7e915408bd3ee72",
+            "edge:0b38109a654b02b4",
+            "edge:2dd3ef6da201be13",
+            "edge:366ca0df398e83dc"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 13,
+          "observations": 13,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 4,
+            "references-type": 4
+          },
+          "examples": [
+            "edge:2b91ef6887c5e453",
+            "edge:57b5c74e9819b65c",
+            "edge:64ab219d8f75908c",
+            "edge:711606af9576ced8",
+            "edge:79f9e52f675fa8f4"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:133e1da034d9b83b",
+            "edge:3e89cfd2b4838bd8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/core",
+      "name": "core",
+      "kind": "directory",
+      "path": "src/core",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/core/config.ts",
+        "file:src/core/errors.ts",
+        "file:src/core/logger.ts"
+      ],
+      "totals": {
+        "files": 3,
+        "symbols": 35,
+        "lines": 139
+      },
+      "modules": [
+        "mod:src/core"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 3,
+          "observations": 8,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:756eacd0a4b34129",
+            "edge:1b37f33f992c4c4b",
+            "edge:adb817dc87021eb7"
+          ]
+        },
+        {
+          "entity": "cmp:src/api",
+          "edgeCount": 23,
+          "observations": 26,
+          "runtimeEdgeCount": 21,
+          "kindCounts": {
+            "calls": 12,
+            "imports": 8,
+            "instantiates": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:03c27b01421e9edf",
+            "edge:d7e915408bd3ee72",
+            "edge:0b38109a654b02b4",
+            "edge:2dd3ef6da201be13",
+            "edge:366ca0df398e83dc"
+          ]
+        },
+        {
+          "entity": "cmp:src/jobs",
+          "edgeCount": 18,
+          "observations": 20,
+          "runtimeEdgeCount": 18,
+          "kindCounts": {
+            "calls": 13,
+            "imports": 5
+          },
+          "examples": [
+            "edge:32ee62ee11b07f13",
+            "edge:026f8c4975bf8bc5",
+            "edge:0317cec13b512a1e",
+            "edge:0ead5f0a46376253",
+            "edge:112731e8e2f607ae"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 31,
+          "observations": 31,
+          "runtimeEdgeCount": 31,
+          "kindCounts": {
+            "calls": 14,
+            "imports": 10,
+            "instantiates": 7
+          },
+          "examples": [
+            "edge:18b627d83e3d9a56",
+            "edge:1d6b433a4a238551",
+            "edge:2db4bef780732eb7",
+            "edge:2dfba2087614c8be",
+            "edge:3f4c91e0bc370393"
+          ]
+        },
+        {
+          "entity": "cmp:src/storage",
+          "edgeCount": 20,
+          "observations": 21,
+          "runtimeEdgeCount": 20,
+          "kindCounts": {
+            "calls": 15,
+            "imports": 5
+          },
+          "examples": [
+            "edge:a559de8affc36a5a",
+            "edge:0167933ded777f37",
+            "edge:10f1a85020a4501d",
+            "edge:2b7d0455252b9b20",
+            "edge:3b010014a783adc0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/jobs",
+      "name": "jobs",
+      "kind": "directory",
+      "path": "src/jobs",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/jobs/email-digest.job.ts",
+        "file:src/jobs/inventory-sync.job.ts",
+        "file:src/jobs/nightly-report.job.ts",
+        "file:src/jobs/scheduler.ts",
+        "file:src/jobs/stale-orders.job.ts"
+      ],
+      "totals": {
+        "files": 5,
+        "symbols": 39,
+        "lines": 144
+      },
+      "modules": [
+        "mod:src#email",
+        "mod:src#inventory",
+        "mod:src/jobs"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/core",
+          "edgeCount": 18,
+          "observations": 20,
+          "runtimeEdgeCount": 18,
+          "kindCounts": {
+            "calls": 13,
+            "imports": 5
+          },
+          "examples": [
+            "edge:32ee62ee11b07f13",
+            "edge:026f8c4975bf8bc5",
+            "edge:0317cec13b512a1e",
+            "edge:0ead5f0a46376253",
+            "edge:112731e8e2f607ae"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 12,
+          "observations": 12,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 4,
+            "references-type": 4
+          },
+          "examples": [
+            "edge:1013ce061dca84c2",
+            "edge:23e7b7ede6e37217",
+            "edge:3aaf90a76cebf156",
+            "edge:5cbbeb926b575211",
+            "edge:648c05d7cad8b525"
+          ]
+        },
+        {
+          "entity": "cmp:src/storage",
+          "edgeCount": 9,
+          "observations": 9,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:1a8171d7dd050bdc",
+            "edge:2a3df1d41b6b89d3",
+            "edge:2b976f8f40bcf137",
+            "edge:321c61318038f287",
+            "edge:5f9075bb04e4012e"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 11,
+          "observations": 11,
+          "runtimeEdgeCount": 11,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 5,
+            "instantiates": 4
+          },
+          "examples": [
+            "edge:0ada3ad4c836b46a",
+            "edge:166bc61f6363d4c9",
+            "edge:576fb71199ed736c",
+            "edge:8197da7cd47bc5e3",
+            "edge:a06f24fad5be0f27"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/services",
+      "name": "services",
+      "kind": "directory",
+      "path": "src/services",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/services/email.service.ts",
+        "file:src/services/inventory.service.ts",
+        "file:src/services/order.service.ts",
+        "file:src/services/payment.service.ts",
+        "file:src/services/user.service.ts"
+      ],
+      "totals": {
+        "files": 5,
+        "symbols": 37,
+        "lines": 181
+      },
+      "modules": [
+        "mod:src#email",
+        "mod:src#inventory",
+        "mod:src#order",
+        "mod:src#user"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/core",
+          "edgeCount": 31,
+          "observations": 31,
+          "runtimeEdgeCount": 31,
+          "kindCounts": {
+            "calls": 14,
+            "imports": 10,
+            "instantiates": 7
+          },
+          "examples": [
+            "edge:18b627d83e3d9a56",
+            "edge:1d6b433a4a238551",
+            "edge:2db4bef780732eb7",
+            "edge:2dfba2087614c8be",
+            "edge:3f4c91e0bc370393"
+          ]
+        },
+        {
+          "entity": "cmp:src/storage",
+          "edgeCount": 29,
+          "observations": 32,
+          "runtimeEdgeCount": 14,
+          "kindCounts": {
+            "calls": 12,
+            "imports": 4,
+            "references-type": 11,
+            "uses": 2
+          },
+          "examples": [
+            "edge:a2eb24c5881d8c07",
+            "edge:cc97d600da5f0f60",
+            "edge:e3cac020ff2d98d6",
+            "edge:054832ec76d4cad8",
+            "edge:2272cac26e001751"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 10,
+          "observations": 10,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "imports": 5,
+            "instantiates": 5
+          },
+          "examples": [
+            "edge:1473f0cc0532efe6",
+            "edge:32a3be8f42ef0458",
+            "edge:43baee3440cab4db",
+            "edge:56e2bf4b435dbb99",
+            "edge:58693d2cc086cee6"
+          ]
+        },
+        {
+          "entity": "cmp:src/api",
+          "edgeCount": 13,
+          "observations": 13,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 4,
+            "references-type": 4
+          },
+          "examples": [
+            "edge:2b91ef6887c5e453",
+            "edge:57b5c74e9819b65c",
+            "edge:64ab219d8f75908c",
+            "edge:711606af9576ced8",
+            "edge:79f9e52f675fa8f4"
+          ]
+        },
+        {
+          "entity": "cmp:src/jobs",
+          "edgeCount": 12,
+          "observations": 12,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 4,
+            "references-type": 4
+          },
+          "examples": [
+            "edge:1013ce061dca84c2",
+            "edge:23e7b7ede6e37217",
+            "edge:3aaf90a76cebf156",
+            "edge:5cbbeb926b575211",
+            "edge:648c05d7cad8b525"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/storage",
+      "name": "storage",
+      "kind": "directory",
+      "path": "src/storage",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/storage/cache.ts",
+        "file:src/storage/database.ts",
+        "file:src/storage/order.store.ts",
+        "file:src/storage/product.store.ts",
+        "file:src/storage/user.store.ts"
+      ],
+      "totals": {
+        "files": 5,
+        "symbols": 46,
+        "lines": 203
+      },
+      "modules": [
+        "mod:src#order",
+        "mod:src#user",
+        "mod:src/storage"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/core",
+          "edgeCount": 20,
+          "observations": 21,
+          "runtimeEdgeCount": 20,
+          "kindCounts": {
+            "calls": 15,
+            "imports": 5
+          },
+          "examples": [
+            "edge:a559de8affc36a5a",
+            "edge:0167933ded777f37",
+            "edge:10f1a85020a4501d",
+            "edge:2b7d0455252b9b20",
+            "edge:3b010014a783adc0"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 10,
+          "observations": 10,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 5,
+            "instantiates": 4
+          },
+          "examples": [
+            "edge:0bd933b22a145836",
+            "edge:3048635101e380b0",
+            "edge:3200beea917546b9",
+            "edge:5ab0752a9ff853bb",
+            "edge:82bdb4c0e3871b8e"
+          ]
+        },
+        {
+          "entity": "cmp:src/jobs",
+          "edgeCount": 9,
+          "observations": 9,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:1a8171d7dd050bdc",
+            "edge:2a3df1d41b6b89d3",
+            "edge:2b976f8f40bcf137",
+            "edge:321c61318038f287",
+            "edge:5f9075bb04e4012e"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 29,
+          "observations": 32,
+          "runtimeEdgeCount": 14,
+          "kindCounts": {
+            "calls": 12,
+            "imports": 4,
+            "references-type": 11,
+            "uses": 2
+          },
+          "examples": [
+            "edge:a2eb24c5881d8c07",
+            "edge:cc97d600da5f0f60",
+            "edge:e3cac020ff2d98d6",
+            "edge:054832ec76d4cad8",
+            "edge:2272cac26e001751"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod:src",
+      "name": "shop-service",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/main.ts"
+      ],
+      "components": [
+        "cmp:src"
+      ],
+      "entryPoints": [],
+      "publicApi": [],
+      "inference": {
+        "confidence": 0.866666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `src` (1 file); it is treated as a composition root, barrel or declared entry point.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "wiring-share",
+            "description": "Its only member file is a composition root, barrel or declared entry point.",
+            "value": 1,
+            "weight": 0.3,
+            "entities": [
+              "file:src/main.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `src/main.ts` (entry-point rule: a declared entry point that nothing in its package depends on).",
+            "value": 1,
+            "entities": [
+              "file:src/main.ts"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src#email",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "imports": 2,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:56e2bf4b435dbb99",
+            "edge:aac07e1d4c0f7614",
+            "edge:cef497890a631bd3",
+            "edge:d78256cf2b0240ef"
+          ]
+        },
+        {
+          "entity": "mod:src#inventory",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "imports": 2,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:166bc61f6363d4c9",
+            "edge:32a3be8f42ef0458",
+            "edge:576fb71199ed736c",
+            "edge:58693d2cc086cee6"
+          ]
+        },
+        {
+          "entity": "mod:src#order",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:0bd933b22a145836",
+            "edge:43baee3440cab4db",
+            "edge:786ba5c65d394894",
+            "edge:bee34e994da0496d",
+            "edge:c50db7c81599a079"
+          ]
+        },
+        {
+          "entity": "mod:src#user",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "imports": 2,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:1473f0cc0532efe6",
+            "edge:9af013a393a40350",
+            "edge:b8965c68a9f6f4d7",
+            "edge:d3c7463663b6507a"
+          ]
+        },
+        {
+          "entity": "mod:src/api",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:133e1da034d9b83b",
+            "edge:3e89cfd2b4838bd8"
+          ]
+        },
+        {
+          "entity": "mod:src/core",
+          "edgeCount": 3,
+          "observations": 8,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:756eacd0a4b34129",
+            "edge:1b37f33f992c4c4b",
+            "edge:adb817dc87021eb7"
+          ]
+        },
+        {
+          "entity": "mod:src/jobs",
+          "edgeCount": 7,
+          "observations": 7,
+          "runtimeEdgeCount": 7,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 3,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:0ada3ad4c836b46a",
+            "edge:8197da7cd47bc5e3",
+            "edge:a06f24fad5be0f27",
+            "edge:d2d75e804ca6f698",
+            "edge:eb35741c36123b82"
+          ]
+        },
+        {
+          "entity": "mod:src/storage",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 3,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:3048635101e380b0",
+            "edge:3200beea917546b9",
+            "edge:5ab0752a9ff853bb",
+            "edge:82bdb4c0e3871b8e",
+            "edge:a0d47b4ff67e3a78"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "mod:src#email",
+      "name": "email",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src",
+        "stem": "email"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/jobs/email-digest.job.ts",
+        "file:src/services/email.service.ts"
+      ],
+      "components": [
+        "cmp:src/jobs",
+        "cmp:src/services"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/jobs/email-digest.job.ts",
+        "file:src/services/email.service.ts"
+      ],
+      "inference": {
+        "confidence": 0.435,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: files with the name stem `email` in 2 layer directories of `src` form a connected group; 40% of their dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the file-name stem `email` across 2 layer directories exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "40% of the dependency weight of member files stays inside the module (internal 1.0, crossing 3.0).",
+            "value": 0.4,
+            "weight": 0.4
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.15
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 0 percentage points more connected to this module than to any other; 2 of 2 members are contested.",
+            "value": 0,
+            "weight": 0.25,
+            "entities": [
+              "file:src/jobs/email-digest.job.ts",
+              "file:src/services/email.service.ts"
+            ]
+          },
+          {
+            "signal": "file-stem",
+            "description": "Inferred from the file-name stem `email`, which recurs across the layer directories of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (api, jobs, services and storage) and 1 shared directory (core), so it is organized by layer; file-name stems email, inventory, order and user recur across its layer directories and cover 10 of 20 files.",
+            "value": 0.5,
+            "entities": [
+              "dir:src/api",
+              "dir:src/core",
+              "dir:src/jobs",
+              "dir:src/services",
+              "dir:src/storage"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src#user",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:2b976f8f40bcf137",
+            "edge:9b4ddcbe6fe6ab92",
+            "edge:f0a2fcd408ab362f"
+          ]
+        },
+        {
+          "entity": "mod:src/core",
+          "edgeCount": 10,
+          "observations": 10,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "calls": 6,
+            "imports": 3,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:026f8c4975bf8bc5",
+            "edge:0317cec13b512a1e",
+            "edge:565abd053ef88d9c",
+            "edge:5bf0eab651566c12",
+            "edge:7c7d65a280aad52e"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "imports": 2,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:56e2bf4b435dbb99",
+            "edge:aac07e1d4c0f7614",
+            "edge:cef497890a631bd3",
+            "edge:d78256cf2b0240ef"
+          ]
+        },
+        {
+          "entity": "mod:src#user",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:0bb82527ecc80926",
+            "edge:869990375f2bc9d1",
+            "edge:e4e75a7cc1c09720"
+          ]
+        },
+        {
+          "entity": "mod:src/jobs",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:648c05d7cad8b525",
+            "edge:ec083a1d5d337198",
+            "edge:ff714527aaeaf41d"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src#inventory",
+      "name": "inventory",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src",
+        "stem": "inventory"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/jobs/inventory-sync.job.ts",
+        "file:src/services/inventory.service.ts"
+      ],
+      "components": [
+        "cmp:src/jobs",
+        "cmp:src/services"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/jobs/inventory-sync.job.ts",
+        "file:src/services/inventory.service.ts"
+      ],
+      "inference": {
+        "confidence": 0.56,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: files with the name stem `inventory` in 2 layer directories of `src` form a connected group; 40% of their dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the file-name stem `inventory` across 2 layer directories exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "40% of the dependency weight of member files stays inside the module (internal 1.0, crossing 3.0).",
+            "value": 0.4,
+            "weight": 0.4
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 50 percentage points more connected to this module than to any other; 1 of 2 members is contested.",
+            "value": 0.5,
+            "weight": 0.25,
+            "entities": [
+              "file:src/services/inventory.service.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.15
+          },
+          {
+            "signal": "file-stem",
+            "description": "Inferred from the file-name stem `inventory`, which recurs across the layer directories of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (api, jobs, services and storage) and 1 shared directory (core), so it is organized by layer; file-name stems email, inventory, order and user recur across its layer directories and cover 10 of 20 files.",
+            "value": 0.5,
+            "entities": [
+              "dir:src/api",
+              "dir:src/core",
+              "dir:src/jobs",
+              "dir:src/services",
+              "dir:src/storage"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/core",
+          "edgeCount": 10,
+          "observations": 10,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 3,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:2dfba2087614c8be",
+            "edge:3f4c91e0bc370393",
+            "edge:5489e9585818f402",
+            "edge:56cc5c04ffda3e14",
+            "edge:574d9e446e653406"
+          ]
+        },
+        {
+          "entity": "mod:src/storage",
+          "edgeCount": 13,
+          "observations": 13,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 6,
+            "imports": 2,
+            "references-type": 5
+          },
+          "examples": [
+            "edge:2272cac26e001751",
+            "edge:309a57223bc4d9b9",
+            "edge:5b4cf5bca155a08c",
+            "edge:5c072e840eea8dcd",
+            "edge:7b62f80c199c05dd"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "imports": 2,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:166bc61f6363d4c9",
+            "edge:32a3be8f42ef0458",
+            "edge:576fb71199ed736c",
+            "edge:58693d2cc086cee6"
+          ]
+        },
+        {
+          "entity": "mod:src#order",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:bd3b808dad195115",
+            "edge:c9617e9b40d6f3e5",
+            "edge:ff162f505a7c3c04"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src#order",
+      "name": "order",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src",
+        "stem": "order"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/api/orders.routes.ts",
+        "file:src/services/order.service.ts",
+        "file:src/services/payment.service.ts",
+        "file:src/storage/order.store.ts"
+      ],
+      "components": [
+        "cmp:src/api",
+        "cmp:src/services",
+        "cmp:src/storage"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/api/orders.routes.ts",
+        "file:src/services/order.service.ts",
+        "file:src/services/payment.service.ts",
+        "file:src/storage/order.store.ts"
+      ],
+      "inference": {
+        "confidence": 0.5045,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: files with the name stem `order` in 3 layer directories of `src` form a connected group; 48% of their dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "48% of the dependency weight of member files stays inside the module (internal 3.0, crossing 6.5).",
+            "value": 0.48,
+            "weight": 0.4
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the file-name stem `order` across 3 layer directories except 1 relocated file (Jaccard 0.75).",
+            "value": 0.75,
+            "weight": 0.2,
+            "entities": [
+              "file:src/services/payment.service.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.15
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 25 percentage points more connected to this module than to any other; 3 of 4 members are contested.",
+            "value": 0.25,
+            "weight": 0.25,
+            "entities": [
+              "file:src/api/orders.routes.ts",
+              "file:src/services/order.service.ts",
+              "file:src/storage/order.store.ts"
+            ]
+          },
+          {
+            "signal": "file-stem",
+            "description": "Inferred from the file-name stem `order`, which recurs across the layer directories of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (api, jobs, services and storage) and 1 shared directory (core), so it is organized by layer; file-name stems email, inventory, order and user recur across its layer directories and cover 10 of 20 files.",
+            "value": 0.5,
+            "entities": [
+              "dir:src/api",
+              "dir:src/core",
+              "dir:src/jobs",
+              "dir:src/services",
+              "dir:src/storage"
+            ]
+          },
+          {
+            "signal": "relocated-files",
+            "description": "Reassigned here by the strict-majority rule (Katedrala heuristic): `src/services/payment.service.ts` has 1 of its 1 dependent (weight 1.0 of 1.0) in this module and no dependencies; it was the only file left in `src/services`, so one dependent suffices.",
+            "value": 1,
+            "entities": [
+              "file:src/services/payment.service.ts"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src#inventory",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:bd3b808dad195115",
+            "edge:c9617e9b40d6f3e5",
+            "edge:ff162f505a7c3c04"
+          ]
+        },
+        {
+          "entity": "mod:src/core",
+          "edgeCount": 19,
+          "observations": 20,
+          "runtimeEdgeCount": 19,
+          "kindCounts": {
+            "calls": 11,
+            "imports": 6,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:d7e915408bd3ee72",
+            "edge:18b627d83e3d9a56",
+            "edge:366ca0df398e83dc",
+            "edge:3f68071c7a92fe0c",
+            "edge:6579bf4fef68f513"
+          ]
+        },
+        {
+          "entity": "mod:src/storage",
+          "edgeCount": 7,
+          "observations": 7,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:01bd060454fcb813",
+            "edge:517553042944932c",
+            "edge:7fc78f678cfcbb12",
+            "edge:8cb0fb339c21de1c",
+            "edge:b2b3020b1272c42c"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:0bd933b22a145836",
+            "edge:43baee3440cab4db",
+            "edge:786ba5c65d394894",
+            "edge:bee34e994da0496d",
+            "edge:c50db7c81599a079"
+          ]
+        },
+        {
+          "entity": "mod:src/api",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:40c1bb8443ef911c",
+            "edge:55948418c9323e37",
+            "edge:8b17e0d041aa80df",
+            "edge:b424a53e96942849"
+          ]
+        },
+        {
+          "entity": "mod:src/jobs",
+          "edgeCount": 9,
+          "observations": 9,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:1013ce061dca84c2",
+            "edge:1a8171d7dd050bdc",
+            "edge:23e7b7ede6e37217",
+            "edge:2a3df1d41b6b89d3",
+            "edge:321c61318038f287"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src#user",
+      "name": "user",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src",
+        "stem": "user"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/api/users.routes.ts",
+        "file:src/services/user.service.ts",
+        "file:src/storage/user.store.ts"
+      ],
+      "components": [
+        "cmp:src/api",
+        "cmp:src/services",
+        "cmp:src/storage"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/api/users.routes.ts",
+        "file:src/services/user.service.ts",
+        "file:src/storage/user.store.ts"
+      ],
+      "inference": {
+        "confidence": 0.506013072,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: files with the name stem `user` in 3 layer directories of `src` form a connected group; 47% of their dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the file-name stem `user` across 3 layer directories exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "47% of the dependency weight of member files stays inside the module (internal 2.0, crossing 4.5).",
+            "value": 0.470588235,
+            "weight": 0.4
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 3 member files.",
+            "value": 0.6,
+            "weight": 0.15
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 11 percentage points more connected to this module than to any other; 2 of 3 members are contested.",
+            "value": 0.111111111,
+            "weight": 0.25,
+            "entities": [
+              "file:src/api/users.routes.ts",
+              "file:src/storage/user.store.ts"
+            ]
+          },
+          {
+            "signal": "file-stem",
+            "description": "Inferred from the file-name stem `user`, which recurs across the layer directories of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (api, jobs, services and storage) and 1 shared directory (core), so it is organized by layer; file-name stems email, inventory, order and user recur across its layer directories and cover 10 of 20 files.",
+            "value": 0.5,
+            "entities": [
+              "dir:src/api",
+              "dir:src/core",
+              "dir:src/jobs",
+              "dir:src/services",
+              "dir:src/storage"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src#email",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:0bb82527ecc80926",
+            "edge:869990375f2bc9d1",
+            "edge:e4e75a7cc1c09720"
+          ]
+        },
+        {
+          "entity": "mod:src/core",
+          "edgeCount": 13,
+          "observations": 13,
+          "runtimeEdgeCount": 13,
+          "kindCounts": {
+            "calls": 7,
+            "imports": 4,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:0b38109a654b02b4",
+            "edge:1d6b433a4a238551",
+            "edge:2db4bef780732eb7",
+            "edge:59e946b526076e80",
+            "edge:62ec59ddd874afc7"
+          ]
+        },
+        {
+          "entity": "mod:src/storage",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:05ae90824051b730",
+            "edge:183517f0ec6ea137",
+            "edge:3e97f6146f69062d",
+            "edge:708252af3a1cb925",
+            "edge:76e21a0b86c5969a"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "imports": 2,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:1473f0cc0532efe6",
+            "edge:9af013a393a40350",
+            "edge:b8965c68a9f6f4d7",
+            "edge:d3c7463663b6507a"
+          ]
+        },
+        {
+          "entity": "mod:src#email",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:2b976f8f40bcf137",
+            "edge:9b4ddcbe6fe6ab92",
+            "edge:f0a2fcd408ab362f"
+          ]
+        },
+        {
+          "entity": "mod:src/api",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:0190ff2e6b0f18a5",
+            "edge:32b34db4e27b0c3b",
+            "edge:92cb7e5d78be1ff8",
+            "edge:c9f8415eb68f1dc6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/api",
+      "name": "api",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/api"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/api/auth.middleware.ts",
+        "file:src/api/router.ts",
+        "file:src/api/server.ts"
+      ],
+      "components": [
+        "cmp:src/api"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/api/server.ts"
+      ],
+      "inference": {
+        "confidence": 0.67,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/api` in a layer-organized source tree; the files left in it share no recurring file-name stem.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/api` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "50% of the dependency weight of member files stays inside the module (internal 2.0, crossing 4.0).",
+            "value": 0.5,
+            "weight": 0.5
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 3 member files.",
+            "value": 0.6,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/api`.",
+            "entities": [
+              "dir:src/api"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (api, jobs, services and storage) and 1 shared directory (core), so it is organized by layer; file-name stems email, inventory, order and user recur across its layer directories and cover 10 of 20 files.",
+            "value": 0.5,
+            "entities": [
+              "dir:src/api",
+              "dir:src/core",
+              "dir:src/jobs",
+              "dir:src/services",
+              "dir:src/storage"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src#order",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:40c1bb8443ef911c",
+            "edge:55948418c9323e37",
+            "edge:8b17e0d041aa80df",
+            "edge:b424a53e96942849"
+          ]
+        },
+        {
+          "entity": "mod:src#user",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:0190ff2e6b0f18a5",
+            "edge:32b34db4e27b0c3b",
+            "edge:92cb7e5d78be1ff8",
+            "edge:c9f8415eb68f1dc6"
+          ]
+        },
+        {
+          "entity": "mod:src/core",
+          "edgeCount": 17,
+          "observations": 19,
+          "runtimeEdgeCount": 15,
+          "kindCounts": {
+            "calls": 8,
+            "imports": 6,
+            "instantiates": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:03c27b01421e9edf",
+            "edge:2dd3ef6da201be13",
+            "edge:3b5385299309ec4f",
+            "edge:40c6fbc0da982909",
+            "edge:48951891bd812a58"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:133e1da034d9b83b",
+            "edge:3e89cfd2b4838bd8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/core",
+      "name": "core",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/core"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/core/config.ts",
+        "file:src/core/errors.ts",
+        "file:src/core/logger.ts"
+      ],
+      "components": [
+        "cmp:src/core"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/core/config.ts",
+        "file:src/core/errors.ts",
+        "file:src/core/logger.ts"
+      ],
+      "inference": {
+        "confidence": 0.753333333,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: shared directory `src/core`; 2 of 3 files are used by two or more other modules.",
+        "evidence": [
+          {
+            "signal": "shared-usage",
+            "description": "2 of 3 files are used by two or more other modules (composition roots do not count as users).",
+            "value": 0.666666667,
+            "weight": 0.5,
+            "entities": [
+              "file:src/core/errors.ts",
+              "file:src/core/logger.ts"
+            ]
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/core` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 3 member files.",
+            "value": 0.6,
+            "weight": 0.2
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (api, jobs, services and storage) and 1 shared directory (core), so it is organized by layer; file-name stems email, inventory, order and user recur across its layer directories and cover 10 of 20 files.",
+            "value": 0.5,
+            "entities": [
+              "dir:src/api",
+              "dir:src/core",
+              "dir:src/jobs",
+              "dir:src/services",
+              "dir:src/storage"
+            ]
+          },
+          {
+            "signal": "shared-directory",
+            "description": "Inferred from the shared directory `src/core`.",
+            "entities": [
+              "dir:src/core"
+            ]
+          },
+          {
+            "signal": "single-user-files",
+            "description": "1 file is used by only one other module: config (api).",
+            "value": 1,
+            "entities": [
+              "file:src/core/config.ts"
+            ]
+          },
+          {
+            "signal": "utility-files",
+            "description": "Treated as shared utilities by the utility rule (Katedrala heuristic), pinned and not counted as evidence: `src/core/errors.ts` (its dependents lie in 6 other units); `src/core/logger.ts` (its dependents lie in 8 other units).",
+            "value": 2,
+            "entities": [
+              "file:src/core/errors.ts",
+              "file:src/core/logger.ts"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 3,
+          "observations": 8,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:756eacd0a4b34129",
+            "edge:1b37f33f992c4c4b",
+            "edge:adb817dc87021eb7"
+          ]
+        },
+        {
+          "entity": "mod:src#email",
+          "edgeCount": 10,
+          "observations": 10,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "calls": 6,
+            "imports": 3,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:026f8c4975bf8bc5",
+            "edge:0317cec13b512a1e",
+            "edge:565abd053ef88d9c",
+            "edge:5bf0eab651566c12",
+            "edge:7c7d65a280aad52e"
+          ]
+        },
+        {
+          "entity": "mod:src#inventory",
+          "edgeCount": 10,
+          "observations": 10,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 3,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:2dfba2087614c8be",
+            "edge:3f4c91e0bc370393",
+            "edge:5489e9585818f402",
+            "edge:56cc5c04ffda3e14",
+            "edge:574d9e446e653406"
+          ]
+        },
+        {
+          "entity": "mod:src#order",
+          "edgeCount": 19,
+          "observations": 20,
+          "runtimeEdgeCount": 19,
+          "kindCounts": {
+            "calls": 11,
+            "imports": 6,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:d7e915408bd3ee72",
+            "edge:18b627d83e3d9a56",
+            "edge:366ca0df398e83dc",
+            "edge:3f68071c7a92fe0c",
+            "edge:6579bf4fef68f513"
+          ]
+        },
+        {
+          "entity": "mod:src#user",
+          "edgeCount": 13,
+          "observations": 13,
+          "runtimeEdgeCount": 13,
+          "kindCounts": {
+            "calls": 7,
+            "imports": 4,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:0b38109a654b02b4",
+            "edge:1d6b433a4a238551",
+            "edge:2db4bef780732eb7",
+            "edge:59e946b526076e80",
+            "edge:62ec59ddd874afc7"
+          ]
+        },
+        {
+          "entity": "mod:src/api",
+          "edgeCount": 17,
+          "observations": 19,
+          "runtimeEdgeCount": 15,
+          "kindCounts": {
+            "calls": 8,
+            "imports": 6,
+            "instantiates": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:03c27b01421e9edf",
+            "edge:2dd3ef6da201be13",
+            "edge:3b5385299309ec4f",
+            "edge:40c6fbc0da982909",
+            "edge:48951891bd812a58"
+          ]
+        },
+        {
+          "entity": "mod:src/jobs",
+          "edgeCount": 11,
+          "observations": 13,
+          "runtimeEdgeCount": 11,
+          "kindCounts": {
+            "calls": 8,
+            "imports": 3
+          },
+          "examples": [
+            "edge:32ee62ee11b07f13",
+            "edge:0ead5f0a46376253",
+            "edge:112731e8e2f607ae",
+            "edge:3f60dc902d35207f",
+            "edge:51d5c824183f1bf9"
+          ]
+        },
+        {
+          "entity": "mod:src/storage",
+          "edgeCount": 12,
+          "observations": 13,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 3
+          },
+          "examples": [
+            "edge:a559de8affc36a5a",
+            "edge:0167933ded777f37",
+            "edge:10f1a85020a4501d",
+            "edge:2b7d0455252b9b20",
+            "edge:3b010014a783adc0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/jobs",
+      "name": "jobs",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/jobs"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/jobs/nightly-report.job.ts",
+        "file:src/jobs/scheduler.ts",
+        "file:src/jobs/stale-orders.job.ts"
+      ],
+      "components": [
+        "cmp:src/jobs"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/jobs/nightly-report.job.ts",
+        "file:src/jobs/scheduler.ts",
+        "file:src/jobs/stale-orders.job.ts"
+      ],
+      "inference": {
+        "confidence": 0.42,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/jobs` in a layer-organized source tree; the files left in it share no recurring file-name stem.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/jobs` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 3 member files.",
+            "value": 0.6,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "0% of the dependency weight of member files stays inside the module (internal 0.0, crossing 4.0).",
+            "value": 0,
+            "weight": 0.5
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/jobs`.",
+            "entities": [
+              "dir:src/jobs"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (api, jobs, services and storage) and 1 shared directory (core), so it is organized by layer; file-name stems email, inventory, order and user recur across its layer directories and cover 10 of 20 files.",
+            "value": 0.5,
+            "entities": [
+              "dir:src/api",
+              "dir:src/core",
+              "dir:src/jobs",
+              "dir:src/services",
+              "dir:src/storage"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src#email",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:648c05d7cad8b525",
+            "edge:ec083a1d5d337198",
+            "edge:ff714527aaeaf41d"
+          ]
+        },
+        {
+          "entity": "mod:src#order",
+          "edgeCount": 9,
+          "observations": 9,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:1013ce061dca84c2",
+            "edge:1a8171d7dd050bdc",
+            "edge:23e7b7ede6e37217",
+            "edge:2a3df1d41b6b89d3",
+            "edge:321c61318038f287"
+          ]
+        },
+        {
+          "entity": "mod:src/core",
+          "edgeCount": 11,
+          "observations": 13,
+          "runtimeEdgeCount": 11,
+          "kindCounts": {
+            "calls": 8,
+            "imports": 3
+          },
+          "examples": [
+            "edge:32ee62ee11b07f13",
+            "edge:0ead5f0a46376253",
+            "edge:112731e8e2f607ae",
+            "edge:3f60dc902d35207f",
+            "edge:51d5c824183f1bf9"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 7,
+          "observations": 7,
+          "runtimeEdgeCount": 7,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 3,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:0ada3ad4c836b46a",
+            "edge:8197da7cd47bc5e3",
+            "edge:a06f24fad5be0f27",
+            "edge:d2d75e804ca6f698",
+            "edge:eb35741c36123b82"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/storage",
+      "name": "storage",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/storage"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/storage/cache.ts",
+        "file:src/storage/database.ts",
+        "file:src/storage/product.store.ts"
+      ],
+      "components": [
+        "cmp:src/storage"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/storage/cache.ts",
+        "file:src/storage/database.ts",
+        "file:src/storage/product.store.ts"
+      ],
+      "inference": {
+        "confidence": 0.586666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/storage` in a layer-organized source tree; the files left in it share no recurring file-name stem.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/storage` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "33% of the dependency weight of member files stays inside the module (internal 1.0, crossing 4.0).",
+            "value": 0.333333333,
+            "weight": 0.5
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 3 member files.",
+            "value": 0.6,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/storage`.",
+            "entities": [
+              "dir:src/storage"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (api, jobs, services and storage) and 1 shared directory (core), so it is organized by layer; file-name stems email, inventory, order and user recur across its layer directories and cover 10 of 20 files.",
+            "value": 0.5,
+            "entities": [
+              "dir:src/api",
+              "dir:src/core",
+              "dir:src/jobs",
+              "dir:src/services",
+              "dir:src/storage"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/core",
+          "edgeCount": 12,
+          "observations": 13,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 3
+          },
+          "examples": [
+            "edge:a559de8affc36a5a",
+            "edge:0167933ded777f37",
+            "edge:10f1a85020a4501d",
+            "edge:2b7d0455252b9b20",
+            "edge:3b010014a783adc0"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 3,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:3048635101e380b0",
+            "edge:3200beea917546b9",
+            "edge:5ab0752a9ff853bb",
+            "edge:82bdb4c0e3871b8e",
+            "edge:a0d47b4ff67e3a78"
+          ]
+        },
+        {
+          "entity": "mod:src#inventory",
+          "edgeCount": 13,
+          "observations": 13,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 6,
+            "imports": 2,
+            "references-type": 5
+          },
+          "examples": [
+            "edge:2272cac26e001751",
+            "edge:309a57223bc4d9b9",
+            "edge:5b4cf5bca155a08c",
+            "edge:5c072e840eea8dcd",
+            "edge:7b62f80c199c05dd"
+          ]
+        },
+        {
+          "entity": "mod:src#order",
+          "edgeCount": 7,
+          "observations": 7,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:01bd060454fcb813",
+            "edge:517553042944932c",
+            "edge:7fc78f678cfcbb12",
+            "edge:8cb0fb339c21de1c",
+            "edge:b2b3020b1272c42c"
+          ]
+        },
+        {
+          "entity": "mod:src#user",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:05ae90824051b730",
+            "edge:183517f0ec6ea137",
+            "edge:3e97f6146f69062d",
+            "edge:708252af3a1cb925",
+            "edge:76e21a0b86c5969a"
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:api",
+      "name": "api",
+      "origin": "inferred",
+      "rank": 0,
+      "files": [
+        "file:src/api/router.ts",
+        "file:src/api/server.ts"
+      ],
+      "inference": {
+        "confidence": 0.805,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/api` holds 2 files; no other layer depends on it and it depends on `route` and `service` (rank 0).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (3.0 of 3.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 4 of the 5 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 0.8,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 2 member files.",
+            "value": 0.5,
+            "weight": 0.1
+          },
+          {
+            "signal": "role-sources",
+            "description": "2 members by location only."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:route",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2
+          },
+          "examples": [
+            "edge:0190ff2e6b0f18a5",
+            "edge:32b34db4e27b0c3b",
+            "edge:40c1bb8443ef911c",
+            "edge:55948418c9323e37"
+          ]
+        },
+        {
+          "entity": "layer:service",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:8b17e0d041aa80df",
+            "edge:92cb7e5d78be1ff8",
+            "edge:b424a53e96942849",
+            "edge:c9f8415eb68f1dc6"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "layer:route",
+      "name": "route",
+      "origin": "inferred",
+      "rank": 1,
+      "files": [
+        "file:src/api/orders.routes.ts",
+        "file:src/api/users.routes.ts"
+      ],
+      "inference": {
+        "confidence": 0.84,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: 2 files are named `*.routes.ts`; `api` depends on it and it depends on `service` (rank 1).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (4.0 of 4.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.80 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.8,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 4 of the 5 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 0.8,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 2 member files.",
+            "value": 0.5,
+            "weight": 0.1
+          },
+          {
+            "signal": "conventional-order",
+            "description": "Placed before `job` by the conventional tier order (Katedrala heuristic): no observed dependency path connects them.",
+            "entities": [
+              "layer:job",
+              "layer:route"
+            ]
+          },
+          {
+            "signal": "misplaced-by-name",
+            "description": "2 members are named for another layer than their directory: `src/api/orders.routes.ts` (name: `route`, directory: `api`) and `src/api/users.routes.ts` (name: `route`, directory: `api`).",
+            "value": 2,
+            "entities": [
+              "file:src/api/orders.routes.ts",
+              "file:src/api/users.routes.ts"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "2 members by naming only."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:service",
+          "edgeCount": 9,
+          "observations": 9,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:2b91ef6887c5e453",
+            "edge:57b5c74e9819b65c",
+            "edge:64ab219d8f75908c",
+            "edge:711606af9576ced8",
+            "edge:79f9e52f675fa8f4"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "layer:api",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2
+          },
+          "examples": [
+            "edge:0190ff2e6b0f18a5",
+            "edge:32b34db4e27b0c3b",
+            "edge:40c1bb8443ef911c",
+            "edge:55948418c9323e37"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layer:job",
+      "name": "job",
+      "origin": "inferred",
+      "rank": 2,
+      "files": [
+        "file:src/jobs/email-digest.job.ts",
+        "file:src/jobs/inventory-sync.job.ts",
+        "file:src/jobs/nightly-report.job.ts",
+        "file:src/jobs/scheduler.ts",
+        "file:src/jobs/stale-orders.job.ts"
+      ],
+      "inference": {
+        "confidence": 0.786428571,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/jobs` holds 5 files; no other layer depends on it and it depends on `service` and `store` (rank 2).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (7.0 of 7.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 3 of the 5 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 0.6,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 5 member files.",
+            "value": 0.714285714,
+            "weight": 0.1
+          },
+          {
+            "signal": "conventional-order",
+            "description": "Placed after `route` by the conventional tier order (Katedrala heuristic): no observed dependency path connects them.",
+            "entities": [
+              "layer:job",
+              "layer:route"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "5 members by location only."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:service",
+          "edgeCount": 12,
+          "observations": 12,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 4,
+            "references-type": 4
+          },
+          "examples": [
+            "edge:1013ce061dca84c2",
+            "edge:23e7b7ede6e37217",
+            "edge:3aaf90a76cebf156",
+            "edge:5cbbeb926b575211",
+            "edge:648c05d7cad8b525"
+          ]
+        },
+        {
+          "entity": "layer:store",
+          "edgeCount": 9,
+          "observations": 9,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:1a8171d7dd050bdc",
+            "edge:2a3df1d41b6b89d3",
+            "edge:2b976f8f40bcf137",
+            "edge:321c61318038f287",
+            "edge:5f9075bb04e4012e"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "layer:service",
+      "name": "service",
+      "origin": "inferred",
+      "rank": 3,
+      "files": [
+        "file:src/services/email.service.ts",
+        "file:src/services/inventory.service.ts",
+        "file:src/services/order.service.ts",
+        "file:src/services/payment.service.ts",
+        "file:src/services/user.service.ts"
+      ],
+      "inference": {
+        "confidence": 0.950428571,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/services` holds 5 files named `*.service.ts`; `api`, `job` and `route` depend on it and it depends on `storage` and `store` (rank 3).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (11.0 of 11.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.94 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.94,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 5 of the 5 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 5 member files.",
+            "value": 0.714285714,
+            "weight": 0.1
+          },
+          {
+            "signal": "role-sources",
+            "description": "5 members by location and naming."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:storage",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:309a57223bc4d9b9",
+            "edge:7b62f80c199c05dd",
+            "edge:7b78eb3014f8a9cf",
+            "edge:85227ce4cab835ae",
+            "edge:980c2e8d3d964aa0"
+          ]
+        },
+        {
+          "entity": "layer:store",
+          "edgeCount": 24,
+          "observations": 27,
+          "runtimeEdgeCount": 11,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 3,
+            "references-type": 10,
+            "uses": 2
+          },
+          "examples": [
+            "edge:a2eb24c5881d8c07",
+            "edge:cc97d600da5f0f60",
+            "edge:e3cac020ff2d98d6",
+            "edge:054832ec76d4cad8",
+            "edge:2272cac26e001751"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "layer:api",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:8b17e0d041aa80df",
+            "edge:92cb7e5d78be1ff8",
+            "edge:b424a53e96942849",
+            "edge:c9f8415eb68f1dc6"
+          ]
+        },
+        {
+          "entity": "layer:job",
+          "edgeCount": 12,
+          "observations": 12,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 4,
+            "references-type": 4
+          },
+          "examples": [
+            "edge:1013ce061dca84c2",
+            "edge:23e7b7ede6e37217",
+            "edge:3aaf90a76cebf156",
+            "edge:5cbbeb926b575211",
+            "edge:648c05d7cad8b525"
+          ]
+        },
+        {
+          "entity": "layer:route",
+          "edgeCount": 9,
+          "observations": 9,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:2b91ef6887c5e453",
+            "edge:57b5c74e9819b65c",
+            "edge:64ab219d8f75908c",
+            "edge:711606af9576ced8",
+            "edge:79f9e52f675fa8f4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layer:store",
+      "name": "store",
+      "origin": "inferred",
+      "rank": 4,
+      "files": [
+        "file:src/storage/order.store.ts",
+        "file:src/storage/product.store.ts",
+        "file:src/storage/user.store.ts"
+      ],
+      "inference": {
+        "confidence": 0.89,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: 3 files are named `*.store.ts`; `job` and `service` depend on it and it depends on `storage` (rank 4).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (9.0 of 9.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.80 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.8,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 5 of the 5 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 3 member files.",
+            "value": 0.6,
+            "weight": 0.1
+          },
+          {
+            "signal": "misplaced-by-name",
+            "description": "3 members are named for another layer than their directory: `src/storage/order.store.ts` (name: `store`, directory: `storage`), `src/storage/product.store.ts` (name: `store`, directory: `storage`) and `src/storage/user.store.ts` (name: `store`, directory: `storage`).",
+            "value": 3,
+            "entities": [
+              "file:src/storage/order.store.ts",
+              "file:src/storage/product.store.ts",
+              "file:src/storage/user.store.ts"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "3 members by naming only."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:storage",
+          "edgeCount": 17,
+          "observations": 17,
+          "runtimeEdgeCount": 11,
+          "kindCounts": {
+            "calls": 11,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:01bd060454fcb813",
+            "edge:023e55a54a5f9006",
+            "edge:05ae90824051b730",
+            "edge:157b3ccf578d22d8",
+            "edge:183517f0ec6ea137"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "layer:job",
+          "edgeCount": 9,
+          "observations": 9,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:1a8171d7dd050bdc",
+            "edge:2a3df1d41b6b89d3",
+            "edge:2b976f8f40bcf137",
+            "edge:321c61318038f287",
+            "edge:5f9075bb04e4012e"
+          ]
+        },
+        {
+          "entity": "layer:service",
+          "edgeCount": 24,
+          "observations": 27,
+          "runtimeEdgeCount": 11,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 3,
+            "references-type": 10,
+            "uses": 2
+          },
+          "examples": [
+            "edge:a2eb24c5881d8c07",
+            "edge:cc97d600da5f0f60",
+            "edge:e3cac020ff2d98d6",
+            "edge:054832ec76d4cad8",
+            "edge:2272cac26e001751"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layer:storage",
+      "name": "storage",
+      "origin": "inferred",
+      "rank": 5,
+      "files": [
+        "file:src/storage/cache.ts",
+        "file:src/storage/database.ts"
+      ],
+      "inference": {
+        "confidence": 0.845,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/storage` holds 2 files; `service` and `store` depend on it and it depends on no other layer (rank 5).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (4.0 of 4.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 5 of the 5 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 2 member files.",
+            "value": 0.5,
+            "weight": 0.1
+          },
+          {
+            "signal": "role-sources",
+            "description": "2 members by location only."
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "layer:service",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:309a57223bc4d9b9",
+            "edge:7b62f80c199c05dd",
+            "edge:7b78eb3014f8a9cf",
+            "edge:85227ce4cab835ae",
+            "edge:980c2e8d3d964aa0"
+          ]
+        },
+        {
+          "entity": "layer:store",
+          "edgeCount": 17,
+          "observations": 17,
+          "runtimeEdgeCount": 11,
+          "kindCounts": {
+            "calls": 11,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:01bd060454fcb813",
+            "edge:023e55a54a5f9006",
+            "edge:05ae90824051b730",
+            "edge:157b3ccf578d22d8",
+            "edge:183517f0ec6ea137"
+          ]
+        }
+      ]
+    }
+  ],
+  "roles": {
+    "src/api/auth.middleware.ts": [
+      {
+        "role": "middleware",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `auth.middleware.ts` has the qualifier `middleware`, which the naming vocabulary maps to `middleware`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/api/auth.middleware.ts"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/api/orders.routes.ts": [
+      {
+        "role": "route-definition",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `orders.routes.ts` has the qualifier `routes`, which the naming vocabulary maps to `route-definition`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/api/orders.routes.ts"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/api/users.routes.ts": [
+      {
+        "role": "route-definition",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `users.routes.ts` has the qualifier `routes`, which the naming vocabulary maps to `route-definition`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/api/users.routes.ts"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/email.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `email.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/email.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `EmailService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/email.service.ts#EmailService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/inventory.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `inventory.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/inventory.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `InventoryService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/inventory.service.ts#InventoryService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/order.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `order.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/order.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `OrderService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/order.service.ts#OrderService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/payment.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `payment.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/payment.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `PaymentService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/payment.service.ts#PaymentService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/user.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `user.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/user.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `UserService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/user.service.ts#UserService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/storage/order.store.ts": [
+      {
+        "role": "state-store",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `order.store.ts` has the qualifier `store`, which the naming vocabulary maps to `state-store`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/storage/order.store.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `OrderStore` ends with the word `store`, which the naming vocabulary maps to `state-store`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/storage/order.store.ts#OrderStore"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/storage/product.store.ts": [
+      {
+        "role": "state-store",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `product.store.ts` has the qualifier `store`, which the naming vocabulary maps to `state-store`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/storage/product.store.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `ProductStore` ends with the word `store`, which the naming vocabulary maps to `state-store`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/storage/product.store.ts#ProductStore"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/storage/user.store.ts": [
+      {
+        "role": "state-store",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `user.store.ts` has the qualifier `store`, which the naming vocabulary maps to `state-store`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/storage/user.store.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `UserStore` ends with the word `store`, which the naming vocabulary maps to `state-store`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/storage/user.store.ts#UserStore"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

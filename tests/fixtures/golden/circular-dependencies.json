@@ -1,0 +1,1574 @@
+{
+  "components": [
+    {
+      "id": "cmp:",
+      "name": "@kanban/board-core",
+      "kind": "package",
+      "path": "",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "children": [
+        "cmp:src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 12,
+        "symbols": 79,
+        "lines": 387
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/api",
+        "mod:src/demo",
+        "mod:src/notifications",
+        "mod:src/people",
+        "mod:src/shared",
+        "mod:src/workflow"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src",
+      "name": "src",
+      "kind": "directory",
+      "path": "src",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:",
+      "children": [
+        "cmp:src/api",
+        "cmp:src/demo",
+        "cmp:src/notifications",
+        "cmp:src/people",
+        "cmp:src/shared",
+        "cmp:src/workflow"
+      ],
+      "files": [
+        "file:src/index.ts"
+      ],
+      "totals": {
+        "files": 12,
+        "symbols": 79,
+        "lines": 387
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/api",
+        "mod:src/demo",
+        "mod:src/notifications",
+        "mod:src/people",
+        "mod:src/shared",
+        "mod:src/workflow"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/api",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "re-exports": 1
+          },
+          "examples": [
+            "edge:6d393b5c120f058f"
+          ]
+        },
+        {
+          "entity": "cmp:src/demo",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:84a5373883255d54",
+            "edge:e91cf4717286df74"
+          ]
+        },
+        {
+          "entity": "cmp:src/notifications",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "re-exports": 1
+          },
+          "examples": [
+            "edge:cd5ea9068ead7c2b"
+          ]
+        },
+        {
+          "entity": "cmp:src/people",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "re-exports": 2
+          },
+          "examples": [
+            "edge:05c6ca8f9307e6cc",
+            "edge:0b7bd53b31d8df11"
+          ]
+        },
+        {
+          "entity": "cmp:src/workflow",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 1,
+            "re-exports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:57c1c2b2c0acccfa",
+            "edge:8820ac6ec7480d6b",
+            "edge:a38d6330e2b31e48"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src/api",
+      "name": "api",
+      "kind": "directory",
+      "path": "src/api",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/api/project-dto.ts",
+        "file:src/api/serializer.ts",
+        "file:src/api/task-dto.ts"
+      ],
+      "totals": {
+        "files": 3,
+        "symbols": 7,
+        "lines": 71
+      },
+      "modules": [
+        "mod:src/api"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/workflow",
+          "edgeCount": 6,
+          "observations": 9,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1,
+            "uses": 3
+          },
+          "examples": [
+            "edge:0154407f508382b8",
+            "edge:7a30c98b25651a30",
+            "edge:a7edad7a244ee5dd",
+            "edge:386549844b3570df",
+            "edge:668912834641ad8f"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "re-exports": 1
+          },
+          "examples": [
+            "edge:6d393b5c120f058f"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/demo",
+      "name": "demo",
+      "kind": "directory",
+      "path": "src/demo",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/demo/seed.ts"
+      ],
+      "totals": {
+        "files": 1,
+        "symbols": 1,
+        "lines": 22
+      },
+      "modules": [
+        "mod:src/demo"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/people",
+          "edgeCount": 5,
+          "observations": 7,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "instantiates": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:05edb37ff69b60ce",
+            "edge:0e2dbf76860468a3",
+            "edge:0198c9c90ec2dbbb",
+            "edge:09ff6da77732b767",
+            "edge:d6eb13911245be75"
+          ]
+        },
+        {
+          "entity": "cmp:src/workflow",
+          "edgeCount": 6,
+          "observations": 10,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1,
+            "instantiates": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:de31c8919c67f37d",
+            "edge:deeddf4ab2830350",
+            "edge:3464bd2fa15d99ba",
+            "edge:3c5e2dbfb1c144ad",
+            "edge:84014b572c30a278"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:84a5373883255d54",
+            "edge:e91cf4717286df74"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/notifications",
+      "name": "notifications",
+      "kind": "directory",
+      "path": "src/notifications",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/notifications/digest.ts"
+      ],
+      "totals": {
+        "files": 1,
+        "symbols": 3,
+        "lines": 29
+      },
+      "modules": [
+        "mod:src/notifications"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/people",
+          "edgeCount": 4,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:1a75995d242e755c",
+            "edge:1fdbf27d47440e49",
+            "edge:ae9d886563ea6c0d",
+            "edge:ea5da30747b6aaa9"
+          ]
+        },
+        {
+          "entity": "cmp:src/workflow",
+          "edgeCount": 3,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:3d58d980e1550ea5",
+            "edge:dc41439fa10e011b",
+            "edge:f90656346bacd8c2"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "re-exports": 1
+          },
+          "examples": [
+            "edge:cd5ea9068ead7c2b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/people",
+      "name": "people",
+      "kind": "directory",
+      "path": "src/people",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/people/member.ts",
+        "file:src/people/team.ts"
+      ],
+      "totals": {
+        "files": 2,
+        "symbols": 20,
+        "lines": 72
+      },
+      "modules": [
+        "mod:src/people"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/shared",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2
+          },
+          "examples": [
+            "edge:179456f7c30f9612",
+            "edge:30a569ed2b0d5af3",
+            "edge:438b20606b787ef0",
+            "edge:7fe4cd30b16e1813"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "re-exports": 2
+          },
+          "examples": [
+            "edge:05c6ca8f9307e6cc",
+            "edge:0b7bd53b31d8df11"
+          ]
+        },
+        {
+          "entity": "cmp:src/demo",
+          "edgeCount": 5,
+          "observations": 7,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "instantiates": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:05edb37ff69b60ce",
+            "edge:0e2dbf76860468a3",
+            "edge:0198c9c90ec2dbbb",
+            "edge:09ff6da77732b767",
+            "edge:d6eb13911245be75"
+          ]
+        },
+        {
+          "entity": "cmp:src/notifications",
+          "edgeCount": 4,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:1a75995d242e755c",
+            "edge:1fdbf27d47440e49",
+            "edge:ae9d886563ea6c0d",
+            "edge:ea5da30747b6aaa9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/shared",
+      "name": "shared",
+      "kind": "directory",
+      "path": "src/shared",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/shared/id.ts"
+      ],
+      "totals": {
+        "files": 1,
+        "symbols": 3,
+        "lines": 11
+      },
+      "modules": [
+        "mod:src/shared"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src/people",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2
+          },
+          "examples": [
+            "edge:179456f7c30f9612",
+            "edge:30a569ed2b0d5af3",
+            "edge:438b20606b787ef0",
+            "edge:7fe4cd30b16e1813"
+          ]
+        },
+        {
+          "entity": "cmp:src/workflow",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3
+          },
+          "examples": [
+            "edge:2bbe66264269beaa",
+            "edge:5f26566ac0e0e1e9",
+            "edge:b791c1943e76c6c0",
+            "edge:cebe0597260eae14",
+            "edge:cfea53f86d906786"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/workflow",
+      "name": "workflow",
+      "kind": "directory",
+      "path": "src/workflow",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/workflow/board.ts",
+        "file:src/workflow/card.ts",
+        "file:src/workflow/column.ts"
+      ],
+      "totals": {
+        "files": 3,
+        "symbols": 44,
+        "lines": 169
+      },
+      "modules": [
+        "mod:src/workflow"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/shared",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3
+          },
+          "examples": [
+            "edge:2bbe66264269beaa",
+            "edge:5f26566ac0e0e1e9",
+            "edge:b791c1943e76c6c0",
+            "edge:cebe0597260eae14",
+            "edge:cfea53f86d906786"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 1,
+            "re-exports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:57c1c2b2c0acccfa",
+            "edge:8820ac6ec7480d6b",
+            "edge:a38d6330e2b31e48"
+          ]
+        },
+        {
+          "entity": "cmp:src/api",
+          "edgeCount": 6,
+          "observations": 9,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1,
+            "uses": 3
+          },
+          "examples": [
+            "edge:0154407f508382b8",
+            "edge:7a30c98b25651a30",
+            "edge:a7edad7a244ee5dd",
+            "edge:386549844b3570df",
+            "edge:668912834641ad8f"
+          ]
+        },
+        {
+          "entity": "cmp:src/demo",
+          "edgeCount": 6,
+          "observations": 10,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1,
+            "instantiates": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:de31c8919c67f37d",
+            "edge:deeddf4ab2830350",
+            "edge:3464bd2fa15d99ba",
+            "edge:3c5e2dbfb1c144ad",
+            "edge:84014b572c30a278"
+          ]
+        },
+        {
+          "entity": "cmp:src/notifications",
+          "edgeCount": 3,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:3d58d980e1550ea5",
+            "edge:dc41439fa10e011b",
+            "edge:f90656346bacd8c2"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod:src",
+      "name": "board-core",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/index.ts"
+      ],
+      "components": [
+        "cmp:src"
+      ],
+      "entryPoints": [
+        "file:src/index.ts"
+      ],
+      "publicApi": [],
+      "inference": {
+        "confidence": 0.866666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `src` (1 file); it is treated as a composition root, barrel or declared entry point.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "wiring-share",
+            "description": "Its only member file is a composition root, barrel or declared entry point.",
+            "value": 1,
+            "weight": 0.3,
+            "entities": [
+              "file:src/index.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `src/index.ts` (entry-point rule: a declared entry point and barrel that nothing in its package depends on).",
+            "value": 1,
+            "entities": [
+              "file:src/index.ts"
+            ]
+          },
+          {
+            "signal": "facade-files",
+            "description": "Treated as a barrel by the facade rule (Katedrala heuristic) and pinned to its directory: `src/index.ts` (5 of its 6 dependencies are re-exports).",
+            "value": 1,
+            "entities": [
+              "file:src/index.ts"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/api",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "re-exports": 1
+          },
+          "examples": [
+            "edge:6d393b5c120f058f"
+          ]
+        },
+        {
+          "entity": "mod:src/demo",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:84a5373883255d54",
+            "edge:e91cf4717286df74"
+          ]
+        },
+        {
+          "entity": "mod:src/notifications",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "re-exports": 1
+          },
+          "examples": [
+            "edge:cd5ea9068ead7c2b"
+          ]
+        },
+        {
+          "entity": "mod:src/people",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "re-exports": 2
+          },
+          "examples": [
+            "edge:05c6ca8f9307e6cc",
+            "edge:0b7bd53b31d8df11"
+          ]
+        },
+        {
+          "entity": "mod:src/workflow",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 1,
+            "re-exports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:57c1c2b2c0acccfa",
+            "edge:8820ac6ec7480d6b",
+            "edge:a38d6330e2b31e48"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "mod:src/api",
+      "name": "api",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/api"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/api/project-dto.ts",
+        "file:src/api/serializer.ts",
+        "file:src/api/task-dto.ts"
+      ],
+      "components": [
+        "cmp:src/api"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/api/serializer.ts"
+      ],
+      "inference": {
+        "confidence": 0.836666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/api`, the only layer directory in `src`.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "83% of the dependency weight of member files stays inside the module (internal 2.5, crossing 1.0).",
+            "value": 0.833333333,
+            "weight": 0.5
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/api` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 3 member files.",
+            "value": 0.6,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/api`.",
+            "entities": [
+              "dir:src/api"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 1 layer directory (api), 4 feature directories (demo, notifications, people and workflow) and 1 shared directory (shared), so it is organized by feature.",
+            "entities": [
+              "dir:src/api",
+              "dir:src/demo",
+              "dir:src/notifications",
+              "dir:src/people",
+              "dir:src/shared",
+              "dir:src/workflow"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/workflow",
+          "edgeCount": 6,
+          "observations": 9,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1,
+            "uses": 3
+          },
+          "examples": [
+            "edge:0154407f508382b8",
+            "edge:7a30c98b25651a30",
+            "edge:a7edad7a244ee5dd",
+            "edge:386549844b3570df",
+            "edge:668912834641ad8f"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "re-exports": 1
+          },
+          "examples": [
+            "edge:6d393b5c120f058f"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/demo",
+      "name": "demo",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/demo"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/demo/seed.ts"
+      ],
+      "components": [
+        "cmp:src/demo"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/demo/seed.ts"
+      ],
+      "inference": {
+        "confidence": 0.25,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: directory `src/demo`; no member has dependency evidence in its package.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/demo` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.15
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "No member file has a dependency or dependent in its package that counts as evidence (those of composition roots and utilities do not), so cohesion is not measured and the signal contributes 0.",
+            "weight": 0.4
+          },
+          {
+            "signal": "membership-margin",
+            "description": "No member file has dependents or dependencies in its package that count as evidence (those of composition roots and utilities do not), so the margin is not measured and the signal contributes 0.",
+            "weight": 0.25
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `src/demo/seed.ts` (shape rule: only composition roots outside its unit depend on it; its dependencies spread over 2 other units, none above 50%).",
+            "value": 1,
+            "entities": [
+              "file:src/demo/seed.ts"
+            ]
+          },
+          {
+            "signal": "feature-directory",
+            "description": "Inferred from the feature directory `src/demo`.",
+            "entities": [
+              "dir:src/demo"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 1 layer directory (api), 4 feature directories (demo, notifications, people and workflow) and 1 shared directory (shared), so it is organized by feature.",
+            "entities": [
+              "dir:src/api",
+              "dir:src/demo",
+              "dir:src/notifications",
+              "dir:src/people",
+              "dir:src/shared",
+              "dir:src/workflow"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/people",
+          "edgeCount": 5,
+          "observations": 7,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "instantiates": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:05edb37ff69b60ce",
+            "edge:0e2dbf76860468a3",
+            "edge:0198c9c90ec2dbbb",
+            "edge:09ff6da77732b767",
+            "edge:d6eb13911245be75"
+          ]
+        },
+        {
+          "entity": "mod:src/workflow",
+          "edgeCount": 6,
+          "observations": 10,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1,
+            "instantiates": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:de31c8919c67f37d",
+            "edge:deeddf4ab2830350",
+            "edge:3464bd2fa15d99ba",
+            "edge:3c5e2dbfb1c144ad",
+            "edge:84014b572c30a278"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:84a5373883255d54",
+            "edge:e91cf4717286df74"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/notifications",
+      "name": "notifications",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/notifications"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/notifications/digest.ts"
+      ],
+      "components": [
+        "cmp:src/notifications"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/notifications/digest.ts"
+      ],
+      "inference": {
+        "confidence": 0.25,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: directory `src/notifications`; 0% of the dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/notifications` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.15
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "0% of the dependency weight of member files stays inside the module (internal 0.0, crossing 2.0).",
+            "value": 0,
+            "weight": 0.4
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 0 percentage points more connected to this module than to any other; 1 of 1 member is contested.",
+            "value": 0,
+            "weight": 0.25,
+            "entities": [
+              "file:src/notifications/digest.ts"
+            ]
+          },
+          {
+            "signal": "feature-directory",
+            "description": "Inferred from the feature directory `src/notifications`.",
+            "entities": [
+              "dir:src/notifications"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 1 layer directory (api), 4 feature directories (demo, notifications, people and workflow) and 1 shared directory (shared), so it is organized by feature.",
+            "entities": [
+              "dir:src/api",
+              "dir:src/demo",
+              "dir:src/notifications",
+              "dir:src/people",
+              "dir:src/shared",
+              "dir:src/workflow"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/people",
+          "edgeCount": 4,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:1a75995d242e755c",
+            "edge:1fdbf27d47440e49",
+            "edge:ae9d886563ea6c0d",
+            "edge:ea5da30747b6aaa9"
+          ]
+        },
+        {
+          "entity": "mod:src/workflow",
+          "edgeCount": 3,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:3d58d980e1550ea5",
+            "edge:dc41439fa10e011b",
+            "edge:f90656346bacd8c2"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "re-exports": 1
+          },
+          "examples": [
+            "edge:cd5ea9068ead7c2b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/people",
+      "name": "people",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/people"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/people/member.ts",
+        "file:src/people/team.ts"
+      ],
+      "components": [
+        "cmp:src/people"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/people/member.ts",
+        "file:src/people/team.ts"
+      ],
+      "inference": {
+        "confidence": 0.72,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: directory `src/people`; 80% of the dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "80% of the dependency weight of member files stays inside the module (internal 2.0, crossing 1.0).",
+            "value": 0.8,
+            "weight": 0.4
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/people` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 50 percentage points more connected to this module than to any other; 1 of 2 members is contested.",
+            "value": 0.5,
+            "weight": 0.25,
+            "entities": [
+              "file:src/people/member.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.15
+          },
+          {
+            "signal": "feature-directory",
+            "description": "Inferred from the feature directory `src/people`.",
+            "entities": [
+              "dir:src/people"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 1 layer directory (api), 4 feature directories (demo, notifications, people and workflow) and 1 shared directory (shared), so it is organized by feature.",
+            "entities": [
+              "dir:src/api",
+              "dir:src/demo",
+              "dir:src/notifications",
+              "dir:src/people",
+              "dir:src/shared",
+              "dir:src/workflow"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/shared",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2
+          },
+          "examples": [
+            "edge:179456f7c30f9612",
+            "edge:30a569ed2b0d5af3",
+            "edge:438b20606b787ef0",
+            "edge:7fe4cd30b16e1813"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "re-exports": 2
+          },
+          "examples": [
+            "edge:05c6ca8f9307e6cc",
+            "edge:0b7bd53b31d8df11"
+          ]
+        },
+        {
+          "entity": "mod:src/demo",
+          "edgeCount": 5,
+          "observations": 7,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "instantiates": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:05edb37ff69b60ce",
+            "edge:0e2dbf76860468a3",
+            "edge:0198c9c90ec2dbbb",
+            "edge:09ff6da77732b767",
+            "edge:d6eb13911245be75"
+          ]
+        },
+        {
+          "entity": "mod:src/notifications",
+          "edgeCount": 4,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 2
+          },
+          "examples": [
+            "edge:1a75995d242e755c",
+            "edge:1fdbf27d47440e49",
+            "edge:ae9d886563ea6c0d",
+            "edge:ea5da30747b6aaa9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/shared",
+      "name": "shared",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/shared"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/shared/id.ts"
+      ],
+      "components": [
+        "cmp:src/shared"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/shared/id.ts"
+      ],
+      "inference": {
+        "confidence": 0.866666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: shared directory `src/shared`; its only file is used by two or more other modules.",
+        "evidence": [
+          {
+            "signal": "shared-usage",
+            "description": "Its only file is used by two or more other modules (composition roots do not count as users).",
+            "value": 1,
+            "weight": 0.5,
+            "entities": [
+              "file:src/shared/id.ts"
+            ]
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/shared` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 1 layer directory (api), 4 feature directories (demo, notifications, people and workflow) and 1 shared directory (shared), so it is organized by feature.",
+            "entities": [
+              "dir:src/api",
+              "dir:src/demo",
+              "dir:src/notifications",
+              "dir:src/people",
+              "dir:src/shared",
+              "dir:src/workflow"
+            ]
+          },
+          {
+            "signal": "shared-directory",
+            "description": "Inferred from the shared directory `src/shared`.",
+            "entities": [
+              "dir:src/shared"
+            ]
+          },
+          {
+            "signal": "utility-files",
+            "description": "Treated as a shared utility by the utility rule (Katedrala heuristic), pinned and not counted as evidence: `src/shared/id.ts` (its dependents lie in 2 other units).",
+            "value": 1,
+            "entities": [
+              "file:src/shared/id.ts"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:src/people",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2
+          },
+          "examples": [
+            "edge:179456f7c30f9612",
+            "edge:30a569ed2b0d5af3",
+            "edge:438b20606b787ef0",
+            "edge:7fe4cd30b16e1813"
+          ]
+        },
+        {
+          "entity": "mod:src/workflow",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3
+          },
+          "examples": [
+            "edge:2bbe66264269beaa",
+            "edge:5f26566ac0e0e1e9",
+            "edge:b791c1943e76c6c0",
+            "edge:cebe0597260eae14",
+            "edge:cfea53f86d906786"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/workflow",
+      "name": "workflow",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/workflow"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/workflow/board.ts",
+        "file:src/workflow/card.ts",
+        "file:src/workflow/column.ts"
+      ],
+      "components": [
+        "cmp:src/workflow"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/workflow/board.ts"
+      ],
+      "inference": {
+        "confidence": 0.756666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: directory `src/workflow`; 75% of the dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "75% of the dependency weight of member files stays inside the module (internal 3.0, crossing 2.0).",
+            "value": 0.75,
+            "weight": 0.4
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/workflow` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 67 percentage points more connected to this module than to any other; 1 of 3 members is contested.",
+            "value": 0.666666667,
+            "weight": 0.25,
+            "entities": [
+              "file:src/workflow/board.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 3 member files.",
+            "value": 0.6,
+            "weight": 0.15
+          },
+          {
+            "signal": "feature-directory",
+            "description": "Inferred from the feature directory `src/workflow`.",
+            "entities": [
+              "dir:src/workflow"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 1 layer directory (api), 4 feature directories (demo, notifications, people and workflow) and 1 shared directory (shared), so it is organized by feature.",
+            "entities": [
+              "dir:src/api",
+              "dir:src/demo",
+              "dir:src/notifications",
+              "dir:src/people",
+              "dir:src/shared",
+              "dir:src/workflow"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/shared",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3
+          },
+          "examples": [
+            "edge:2bbe66264269beaa",
+            "edge:5f26566ac0e0e1e9",
+            "edge:b791c1943e76c6c0",
+            "edge:cebe0597260eae14",
+            "edge:cfea53f86d906786"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 1,
+            "re-exports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:57c1c2b2c0acccfa",
+            "edge:8820ac6ec7480d6b",
+            "edge:a38d6330e2b31e48"
+          ]
+        },
+        {
+          "entity": "mod:src/api",
+          "edgeCount": 6,
+          "observations": 9,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1,
+            "uses": 3
+          },
+          "examples": [
+            "edge:0154407f508382b8",
+            "edge:7a30c98b25651a30",
+            "edge:a7edad7a244ee5dd",
+            "edge:386549844b3570df",
+            "edge:668912834641ad8f"
+          ]
+        },
+        {
+          "entity": "mod:src/demo",
+          "edgeCount": 6,
+          "observations": 10,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1,
+            "instantiates": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:de31c8919c67f37d",
+            "edge:deeddf4ab2830350",
+            "edge:3464bd2fa15d99ba",
+            "edge:3c5e2dbfb1c144ad",
+            "edge:84014b572c30a278"
+          ]
+        },
+        {
+          "entity": "mod:src/notifications",
+          "edgeCount": 3,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:3d58d980e1550ea5",
+            "edge:dc41439fa10e011b",
+            "edge:f90656346bacd8c2"
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [],
+  "roles": {
+    "src/api/project-dto.ts": [
+      {
+        "role": "data-transfer-object",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `project-dto.ts` ends with the word `dto`, which the naming vocabulary maps to `data-transfer-object`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/api/project-dto.ts"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/api/task-dto.ts": [
+      {
+        "role": "data-transfer-object",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `task-dto.ts` ends with the word `dto`, which the naming vocabulary maps to `data-transfer-object`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/api/task-dto.ts"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

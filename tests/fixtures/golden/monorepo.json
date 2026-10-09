@@ -1,0 +1,1849 @@
+{
+  "components": [
+    {
+      "id": "cmp:",
+      "name": "acme-monorepo",
+      "kind": "package",
+      "path": "",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "children": [
+        "cmp:packages"
+      ],
+      "files": [],
+      "totals": {
+        "files": 17,
+        "symbols": 55,
+        "lines": 424
+      },
+      "modules": [
+        "mod:packages/api/src",
+        "mod:packages/api/src/handlers",
+        "mod:packages/core/src",
+        "mod:packages/core/src/orders",
+        "mod:packages/shared/src",
+        "mod:packages/web/src",
+        "mod:packages/web/src/components"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:packages",
+      "name": "packages",
+      "kind": "directory",
+      "path": "packages",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:",
+      "children": [
+        "cmp:packages/api",
+        "cmp:packages/core",
+        "cmp:packages/shared",
+        "cmp:packages/web"
+      ],
+      "files": [],
+      "totals": {
+        "files": 17,
+        "symbols": 55,
+        "lines": 424
+      },
+      "modules": [
+        "mod:packages/api/src",
+        "mod:packages/api/src/handlers",
+        "mod:packages/core/src",
+        "mod:packages/core/src/orders",
+        "mod:packages/shared/src",
+        "mod:packages/web/src",
+        "mod:packages/web/src/components"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:packages/api",
+      "name": "@acme/api",
+      "kind": "package",
+      "path": "packages/api",
+      "packages": [
+        "pkg:npm:packages/api"
+      ],
+      "parent": "cmp:packages",
+      "children": [
+        "cmp:packages/api/src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 4,
+        "symbols": 12,
+        "lines": 127
+      },
+      "modules": [
+        "mod:packages/api/src",
+        "mod:packages/api/src/handlers"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:packages/api/src",
+      "name": "src",
+      "kind": "directory",
+      "path": "packages/api/src",
+      "packages": [
+        "pkg:npm:packages/api"
+      ],
+      "parent": "cmp:packages/api",
+      "children": [
+        "cmp:packages/api/src/handlers"
+      ],
+      "files": [
+        "file:packages/api/src/routes.ts",
+        "file:packages/api/src/server.ts"
+      ],
+      "totals": {
+        "files": 4,
+        "symbols": 12,
+        "lines": 127
+      },
+      "modules": [
+        "mod:packages/api/src",
+        "mod:packages/api/src/handlers"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:packages/api/src/handlers",
+          "edgeCount": 5,
+          "observations": 6,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "uses": 1
+          },
+          "examples": [
+            "edge:c809d509f755fcaf",
+            "edge:32f62b0795db871a",
+            "edge:76df6ae15748cc13",
+            "edge:9a92013c7579b160",
+            "edge:e9fbead2d890616b"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 1
+          },
+          "examples": [
+            "edge:707585c4f02dd527"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src/catalog",
+          "edgeCount": 3,
+          "observations": 7,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:07305ddfcdf8b92c",
+            "edge:c769c31e87e04bdd",
+            "edge:15de0efb2e3871ad"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src/orders",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:89cf4b91af888962"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "cmp:packages/api/src/handlers",
+      "name": "handlers",
+      "kind": "directory",
+      "path": "packages/api/src/handlers",
+      "packages": [
+        "pkg:npm:packages/api"
+      ],
+      "parent": "cmp:packages/api/src",
+      "children": [],
+      "files": [
+        "file:packages/api/src/handlers/orders.ts",
+        "file:packages/api/src/handlers/products.ts"
+      ],
+      "totals": {
+        "files": 2,
+        "symbols": 5,
+        "lines": 61
+      },
+      "modules": [
+        "mod:packages/api/src/handlers"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:packages/core/src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "imports": 2
+          },
+          "examples": [
+            "edge:668345ddba0cf21e",
+            "edge:dc543e935e5c5a31"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src/catalog",
+          "edgeCount": 5,
+          "observations": 10,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "references-type": 3,
+            "uses": 1
+          },
+          "examples": [
+            "edge:d7a714f12afe62f8",
+            "edge:224505ee0cab6418",
+            "edge:3e75840fec1e1183",
+            "edge:a3e843defcc544c8",
+            "edge:ea67181b74c65dbd"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src/orders",
+          "edgeCount": 3,
+          "observations": 4,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "calls": 1,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:54246c094b9c9f27",
+            "edge:ae5b0a0ff01cd5ea",
+            "edge:fe0712697342b3f9"
+          ]
+        },
+        {
+          "entity": "cmp:packages/shared/src",
+          "edgeCount": 5,
+          "observations": 8,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "uses": 1
+          },
+          "examples": [
+            "edge:26121bfdc7801b58",
+            "edge:2965ed359ededf47",
+            "edge:6e330dfdd8970720",
+            "edge:f230c673fdcf3f3a",
+            "edge:fb825cf517c59057"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:packages/api/src",
+          "edgeCount": 5,
+          "observations": 6,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "uses": 1
+          },
+          "examples": [
+            "edge:c809d509f755fcaf",
+            "edge:32f62b0795db871a",
+            "edge:76df6ae15748cc13",
+            "edge:9a92013c7579b160",
+            "edge:e9fbead2d890616b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:packages/core",
+      "name": "@acme/core",
+      "kind": "package",
+      "path": "packages/core",
+      "packages": [
+        "pkg:npm:packages/core"
+      ],
+      "parent": "cmp:packages",
+      "children": [
+        "cmp:packages/core/src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 5,
+        "symbols": 23,
+        "lines": 137
+      },
+      "modules": [
+        "mod:packages/core/src",
+        "mod:packages/core/src/orders"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:packages/core/src",
+      "name": "src",
+      "kind": "directory",
+      "path": "packages/core/src",
+      "packages": [
+        "pkg:npm:packages/core"
+      ],
+      "parent": "cmp:packages/core",
+      "children": [
+        "cmp:packages/core/src/catalog",
+        "cmp:packages/core/src/orders"
+      ],
+      "files": [
+        "file:packages/core/src/index.ts"
+      ],
+      "totals": {
+        "files": 5,
+        "symbols": 23,
+        "lines": 137
+      },
+      "modules": [
+        "mod:packages/core/src",
+        "mod:packages/core/src/orders"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:packages/core/src/catalog",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "re-exports": 2
+          },
+          "examples": [
+            "edge:9745728ad2ff95ae",
+            "edge:b9eb42d506b2911e"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src/orders",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "re-exports": 2
+          },
+          "examples": [
+            "edge:30494f9f2572913b",
+            "edge:48fed6f39c7ee077"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:packages/api/src",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 1
+          },
+          "examples": [
+            "edge:707585c4f02dd527"
+          ]
+        },
+        {
+          "entity": "cmp:packages/api/src/handlers",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "imports": 2
+          },
+          "examples": [
+            "edge:668345ddba0cf21e",
+            "edge:dc543e935e5c5a31"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:packages/core/src/catalog",
+      "name": "catalog",
+      "kind": "directory",
+      "path": "packages/core/src/catalog",
+      "packages": [
+        "pkg:npm:packages/core"
+      ],
+      "parent": "cmp:packages/core/src",
+      "children": [],
+      "files": [
+        "file:packages/core/src/catalog/catalog.ts",
+        "file:packages/core/src/catalog/product.ts"
+      ],
+      "totals": {
+        "files": 2,
+        "symbols": 10,
+        "lines": 52
+      },
+      "modules": [
+        "mod:packages/core/src/orders"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:packages/shared/src",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:1397e6ab9ba3cb64",
+            "edge:63cc3e08b5354f37",
+            "edge:82891f9426d31e3d",
+            "edge:c6d63f558a3256f6"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:packages/api/src",
+          "edgeCount": 3,
+          "observations": 7,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:07305ddfcdf8b92c",
+            "edge:c769c31e87e04bdd",
+            "edge:15de0efb2e3871ad"
+          ]
+        },
+        {
+          "entity": "cmp:packages/api/src/handlers",
+          "edgeCount": 5,
+          "observations": 10,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "references-type": 3,
+            "uses": 1
+          },
+          "examples": [
+            "edge:d7a714f12afe62f8",
+            "edge:224505ee0cab6418",
+            "edge:3e75840fec1e1183",
+            "edge:a3e843defcc544c8",
+            "edge:ea67181b74c65dbd"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "re-exports": 2
+          },
+          "examples": [
+            "edge:9745728ad2ff95ae",
+            "edge:b9eb42d506b2911e"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src/orders",
+          "edgeCount": 8,
+          "observations": 12,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2,
+            "uses": 2
+          },
+          "examples": [
+            "edge:1c97117e4bf8c5bc",
+            "edge:dbc7f0e584397906",
+            "edge:2cb479bbdea9ecb6",
+            "edge:34bdc9807e5da8ba",
+            "edge:78e0f22256c1d994"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:packages/core/src/orders",
+      "name": "orders",
+      "kind": "directory",
+      "path": "packages/core/src/orders",
+      "packages": [
+        "pkg:npm:packages/core"
+      ],
+      "parent": "cmp:packages/core/src",
+      "children": [],
+      "files": [
+        "file:packages/core/src/orders/order-service.ts",
+        "file:packages/core/src/orders/order.ts"
+      ],
+      "totals": {
+        "files": 2,
+        "symbols": 13,
+        "lines": 81
+      },
+      "modules": [
+        "mod:packages/core/src/orders"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:packages/core/src/catalog",
+          "edgeCount": 8,
+          "observations": 12,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2,
+            "uses": 2
+          },
+          "examples": [
+            "edge:1c97117e4bf8c5bc",
+            "edge:dbc7f0e584397906",
+            "edge:2cb479bbdea9ecb6",
+            "edge:34bdc9807e5da8ba",
+            "edge:78e0f22256c1d994"
+          ]
+        },
+        {
+          "entity": "cmp:packages/shared/src",
+          "edgeCount": 11,
+          "observations": 13,
+          "runtimeEdgeCount": 7,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 2,
+            "references-type": 4
+          },
+          "examples": [
+            "edge:1d8ca2b105d8e934",
+            "edge:085fa7206be2d90e",
+            "edge:2e8b23be26894b48",
+            "edge:347dcea15ea7e489",
+            "edge:64b41fa4a1b657dc"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:packages/api/src",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:89cf4b91af888962"
+          ]
+        },
+        {
+          "entity": "cmp:packages/api/src/handlers",
+          "edgeCount": 3,
+          "observations": 4,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "calls": 1,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:54246c094b9c9f27",
+            "edge:ae5b0a0ff01cd5ea",
+            "edge:fe0712697342b3f9"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "re-exports": 2
+          },
+          "examples": [
+            "edge:30494f9f2572913b",
+            "edge:48fed6f39c7ee077"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:packages/shared",
+      "name": "@acme/shared",
+      "kind": "package",
+      "path": "packages/shared",
+      "packages": [
+        "pkg:npm:packages/shared"
+      ],
+      "parent": "cmp:packages",
+      "children": [
+        "cmp:packages/shared/src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 4,
+        "symbols": 12,
+        "lines": 67
+      },
+      "modules": [
+        "mod:packages/shared/src"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:packages/shared/src",
+      "name": "src",
+      "kind": "directory",
+      "path": "packages/shared/src",
+      "packages": [
+        "pkg:npm:packages/shared"
+      ],
+      "parent": "cmp:packages/shared",
+      "children": [],
+      "files": [
+        "file:packages/shared/src/index.ts",
+        "file:packages/shared/src/money.ts",
+        "file:packages/shared/src/result.ts",
+        "file:packages/shared/src/strings.ts"
+      ],
+      "totals": {
+        "files": 4,
+        "symbols": 12,
+        "lines": 67
+      },
+      "modules": [
+        "mod:packages/shared/src"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:packages/api/src/handlers",
+          "edgeCount": 5,
+          "observations": 8,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "uses": 1
+          },
+          "examples": [
+            "edge:26121bfdc7801b58",
+            "edge:2965ed359ededf47",
+            "edge:6e330dfdd8970720",
+            "edge:f230c673fdcf3f3a",
+            "edge:fb825cf517c59057"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src/catalog",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:1397e6ab9ba3cb64",
+            "edge:63cc3e08b5354f37",
+            "edge:82891f9426d31e3d",
+            "edge:c6d63f558a3256f6"
+          ]
+        },
+        {
+          "entity": "cmp:packages/core/src/orders",
+          "edgeCount": 11,
+          "observations": 13,
+          "runtimeEdgeCount": 7,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 2,
+            "references-type": 4
+          },
+          "examples": [
+            "edge:1d8ca2b105d8e934",
+            "edge:085fa7206be2d90e",
+            "edge:2e8b23be26894b48",
+            "edge:347dcea15ea7e489",
+            "edge:64b41fa4a1b657dc"
+          ]
+        },
+        {
+          "entity": "cmp:packages/web/src/components",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:28c6be793a0aa378",
+            "edge:3db5bf5d5f87cc7c",
+            "edge:5e29eb9076477dd0",
+            "edge:6c82ab3a34a0ac3f",
+            "edge:c71d4dde4558ffcc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:packages/web",
+      "name": "@acme/web",
+      "kind": "package",
+      "path": "packages/web",
+      "packages": [
+        "pkg:npm:packages/web"
+      ],
+      "parent": "cmp:packages",
+      "children": [
+        "cmp:packages/web/src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 4,
+        "symbols": 8,
+        "lines": 93
+      },
+      "modules": [
+        "mod:packages/web/src",
+        "mod:packages/web/src/components"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:packages/web/src",
+      "name": "src",
+      "kind": "directory",
+      "path": "packages/web/src",
+      "packages": [
+        "pkg:npm:packages/web"
+      ],
+      "parent": "cmp:packages/web",
+      "children": [
+        "cmp:packages/web/src/components"
+      ],
+      "files": [
+        "file:packages/web/src/App.tsx",
+        "file:packages/web/src/main.tsx"
+      ],
+      "totals": {
+        "files": 4,
+        "symbols": 8,
+        "lines": 93
+      },
+      "modules": [
+        "mod:packages/web/src",
+        "mod:packages/web/src/components"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:packages/web/src/components",
+          "edgeCount": 3,
+          "observations": 4,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:a4ff9c4fef28a33d",
+            "edge:4bf22be1bfd14742",
+            "edge:8b909fb722637e3e"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "cmp:packages/web/src/components",
+      "name": "components",
+      "kind": "directory",
+      "path": "packages/web/src/components",
+      "packages": [
+        "pkg:npm:packages/web"
+      ],
+      "parent": "cmp:packages/web/src",
+      "children": [],
+      "files": [
+        "file:packages/web/src/components/PriceTag.tsx",
+        "file:packages/web/src/components/ProductCard.tsx"
+      ],
+      "totals": {
+        "files": 2,
+        "symbols": 4,
+        "lines": 31
+      },
+      "modules": [
+        "mod:packages/web/src/components"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:packages/shared/src",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:28c6be793a0aa378",
+            "edge:3db5bf5d5f87cc7c",
+            "edge:5e29eb9076477dd0",
+            "edge:6c82ab3a34a0ac3f",
+            "edge:c71d4dde4558ffcc"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:packages/web/src",
+          "edgeCount": 3,
+          "observations": 4,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:a4ff9c4fef28a33d",
+            "edge:4bf22be1bfd14742",
+            "edge:8b909fb722637e3e"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod:packages/api/src",
+      "name": "api",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "packages/api/src"
+      },
+      "packages": [
+        "pkg:npm:packages/api"
+      ],
+      "files": [
+        "file:packages/api/src/routes.ts",
+        "file:packages/api/src/server.ts"
+      ],
+      "components": [
+        "cmp:packages/api/src"
+      ],
+      "entryPoints": [],
+      "publicApi": [],
+      "inference": {
+        "confidence": 0.75,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `packages/api/src` (2 files); 1 is treated as a composition root, barrel or declared entry point.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `packages/api/src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "wiring-share",
+            "description": "1 of 2 files is a composition root, barrel or declared entry point.",
+            "value": 0.5,
+            "weight": 0.3,
+            "entities": [
+              "file:packages/api/src/server.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.2
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `packages/api/src/server.ts` (entry-point rule: a declared entry point that nothing in its package depends on).",
+            "value": 1,
+            "entities": [
+              "file:packages/api/src/server.ts"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `packages/api/src`.",
+            "entities": [
+              "dir:packages/api/src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:packages/api/src/handlers",
+          "edgeCount": 5,
+          "observations": 6,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "uses": 1
+          },
+          "examples": [
+            "edge:c809d509f755fcaf",
+            "edge:32f62b0795db871a",
+            "edge:76df6ae15748cc13",
+            "edge:9a92013c7579b160",
+            "edge:e9fbead2d890616b"
+          ]
+        },
+        {
+          "entity": "mod:packages/core/src",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 1
+          },
+          "examples": [
+            "edge:707585c4f02dd527"
+          ]
+        },
+        {
+          "entity": "mod:packages/core/src/orders",
+          "edgeCount": 4,
+          "observations": 8,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:07305ddfcdf8b92c",
+            "edge:c769c31e87e04bdd",
+            "edge:15de0efb2e3871ad",
+            "edge:89cf4b91af888962"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "mod:packages/api/src/handlers",
+      "name": "handlers",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "packages/api/src/handlers"
+      },
+      "packages": [
+        "pkg:npm:packages/api"
+      ],
+      "files": [
+        "file:packages/api/src/handlers/orders.ts",
+        "file:packages/api/src/handlers/products.ts"
+      ],
+      "components": [
+        "cmp:packages/api/src/handlers"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:packages/api/src/handlers/orders.ts",
+        "file:packages/api/src/handlers/products.ts"
+      ],
+      "inference": {
+        "confidence": 0.4,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `packages/api/src/handlers`, the only layer directory in `packages/api/src`.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `packages/api/src/handlers` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "0% of the dependency weight of member files stays inside the module (internal 0.0, crossing 2.0).",
+            "value": 0,
+            "weight": 0.5
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `packages/api/src/handlers`.",
+            "entities": [
+              "dir:packages/api/src/handlers"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `packages/api/src` has 1 layer directory (handlers), so it is organized neither by feature nor by layer.",
+            "entities": [
+              "dir:packages/api/src/handlers"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:packages/core/src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "imports": 2
+          },
+          "examples": [
+            "edge:668345ddba0cf21e",
+            "edge:dc543e935e5c5a31"
+          ]
+        },
+        {
+          "entity": "mod:packages/core/src/orders",
+          "edgeCount": 8,
+          "observations": 14,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "references-type": 5,
+            "uses": 1
+          },
+          "examples": [
+            "edge:d7a714f12afe62f8",
+            "edge:54246c094b9c9f27",
+            "edge:224505ee0cab6418",
+            "edge:3e75840fec1e1183",
+            "edge:a3e843defcc544c8"
+          ]
+        },
+        {
+          "entity": "mod:packages/shared/src",
+          "edgeCount": 5,
+          "observations": 8,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "uses": 1
+          },
+          "examples": [
+            "edge:26121bfdc7801b58",
+            "edge:2965ed359ededf47",
+            "edge:6e330dfdd8970720",
+            "edge:f230c673fdcf3f3a",
+            "edge:fb825cf517c59057"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:packages/api/src",
+          "edgeCount": 5,
+          "observations": 6,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "uses": 1
+          },
+          "examples": [
+            "edge:c809d509f755fcaf",
+            "edge:32f62b0795db871a",
+            "edge:76df6ae15748cc13",
+            "edge:9a92013c7579b160",
+            "edge:e9fbead2d890616b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:packages/core/src",
+      "name": "core",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "packages/core/src"
+      },
+      "packages": [
+        "pkg:npm:packages/core"
+      ],
+      "files": [
+        "file:packages/core/src/index.ts"
+      ],
+      "components": [
+        "cmp:packages/core/src"
+      ],
+      "entryPoints": [
+        "file:packages/core/src/index.ts"
+      ],
+      "publicApi": [
+        "file:packages/core/src/index.ts"
+      ],
+      "inference": {
+        "confidence": 0.866666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `packages/core/src` (1 file); it is treated as a composition root, barrel or declared entry point.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `packages/core/src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "wiring-share",
+            "description": "Its only member file is a composition root, barrel or declared entry point.",
+            "value": 1,
+            "weight": 0.3,
+            "entities": [
+              "file:packages/core/src/index.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `packages/core/src/index.ts` (entry-point rule: a declared entry point and barrel that nothing in its package depends on).",
+            "value": 1,
+            "entities": [
+              "file:packages/core/src/index.ts"
+            ]
+          },
+          {
+            "signal": "facade-files",
+            "description": "Treated as a barrel by the facade rule (Katedrala heuristic) and pinned to its directory: `packages/core/src/index.ts` (4 of its 4 dependencies are re-exports).",
+            "value": 1,
+            "entities": [
+              "file:packages/core/src/index.ts"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `packages/core/src`.",
+            "entities": [
+              "dir:packages/core/src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:packages/core/src/orders",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "re-exports": 4
+          },
+          "examples": [
+            "edge:30494f9f2572913b",
+            "edge:48fed6f39c7ee077",
+            "edge:9745728ad2ff95ae",
+            "edge:b9eb42d506b2911e"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:packages/api/src",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 1
+          },
+          "examples": [
+            "edge:707585c4f02dd527"
+          ]
+        },
+        {
+          "entity": "mod:packages/api/src/handlers",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "imports": 2
+          },
+          "examples": [
+            "edge:668345ddba0cf21e",
+            "edge:dc543e935e5c5a31"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:packages/core/src/orders",
+      "name": "orders",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "packages/core/src/orders"
+      },
+      "packages": [
+        "pkg:npm:packages/core"
+      ],
+      "files": [
+        "file:packages/core/src/catalog/catalog.ts",
+        "file:packages/core/src/catalog/product.ts",
+        "file:packages/core/src/orders/order-service.ts",
+        "file:packages/core/src/orders/order.ts"
+      ],
+      "components": [
+        "cmp:packages/core/src/catalog",
+        "cmp:packages/core/src/orders"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:packages/core/src/catalog/catalog.ts",
+        "file:packages/core/src/catalog/product.ts",
+        "file:packages/core/src/orders/order-service.ts",
+        "file:packages/core/src/orders/order.ts"
+      ],
+      "inference": {
+        "confidence": 0.85,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: directory `packages/core/src/orders` with 2 files reassigned in; 100% of the dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "100% of the dependency weight of member files stays inside the module (internal 5.0, crossing 0.0).",
+            "value": 1,
+            "weight": 0.4
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 100 percentage points more connected to this module than to any other; no member is contested.",
+            "value": 1,
+            "weight": 0.25
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.15
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `packages/core/src/orders` except 2 relocated files (Jaccard 0.50).",
+            "value": 0.5,
+            "weight": 0.2,
+            "entities": [
+              "file:packages/core/src/catalog/catalog.ts",
+              "file:packages/core/src/catalog/product.ts"
+            ]
+          },
+          {
+            "signal": "feature-directory",
+            "description": "Inferred from the feature directory `packages/core/src/orders`.",
+            "entities": [
+              "dir:packages/core/src/orders"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `packages/core/src` has 2 feature directories (catalog and orders), so it is organized by feature.",
+            "entities": [
+              "dir:packages/core/src/catalog",
+              "dir:packages/core/src/orders"
+            ]
+          },
+          {
+            "signal": "relocated-files",
+            "description": "Reassigned here by the strict-majority rule (Katedrala heuristic): `packages/core/src/catalog/catalog.ts` has 1 of its 1 dependent (weight 1.0 of 1.0) and all of its dependencies (1.0 of 1.0) in this module; it was the only file left in `packages/core/src/catalog`, so one dependent suffices.",
+            "value": 1,
+            "entities": [
+              "file:packages/core/src/catalog/catalog.ts"
+            ]
+          },
+          {
+            "signal": "relocated-files",
+            "description": "Reassigned here by the strict-majority rule (Katedrala heuristic): `packages/core/src/catalog/product.ts` has 2 of its 3 dependents (weight 2.0 of 3.0) in this module and no dependencies.",
+            "value": 0.666666667,
+            "entities": [
+              "file:packages/core/src/catalog/product.ts"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:packages/shared/src",
+          "edgeCount": 15,
+          "observations": 17,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "calls": 7,
+            "imports": 3,
+            "references-type": 5
+          },
+          "examples": [
+            "edge:1d8ca2b105d8e934",
+            "edge:085fa7206be2d90e",
+            "edge:1397e6ab9ba3cb64",
+            "edge:2e8b23be26894b48",
+            "edge:347dcea15ea7e489"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:packages/api/src",
+          "edgeCount": 4,
+          "observations": 8,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "instantiates": 2
+          },
+          "examples": [
+            "edge:07305ddfcdf8b92c",
+            "edge:c769c31e87e04bdd",
+            "edge:15de0efb2e3871ad",
+            "edge:89cf4b91af888962"
+          ]
+        },
+        {
+          "entity": "mod:packages/api/src/handlers",
+          "edgeCount": 8,
+          "observations": 14,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "references-type": 5,
+            "uses": 1
+          },
+          "examples": [
+            "edge:d7a714f12afe62f8",
+            "edge:54246c094b9c9f27",
+            "edge:224505ee0cab6418",
+            "edge:3e75840fec1e1183",
+            "edge:a3e843defcc544c8"
+          ]
+        },
+        {
+          "entity": "mod:packages/core/src",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "re-exports": 4
+          },
+          "examples": [
+            "edge:30494f9f2572913b",
+            "edge:48fed6f39c7ee077",
+            "edge:9745728ad2ff95ae",
+            "edge:b9eb42d506b2911e"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:packages/shared/src",
+      "name": "shared",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "packages/shared/src"
+      },
+      "packages": [
+        "pkg:npm:packages/shared"
+      ],
+      "files": [
+        "file:packages/shared/src/index.ts",
+        "file:packages/shared/src/money.ts",
+        "file:packages/shared/src/result.ts",
+        "file:packages/shared/src/strings.ts"
+      ],
+      "components": [
+        "cmp:packages/shared/src"
+      ],
+      "entryPoints": [
+        "file:packages/shared/src/index.ts"
+      ],
+      "publicApi": [
+        "file:packages/shared/src/index.ts",
+        "file:packages/shared/src/strings.ts"
+      ],
+      "inference": {
+        "confidence": 0.708333333,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `packages/shared/src` (4 files); 1 is treated as a composition root, barrel or declared entry point.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `packages/shared/src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.2
+          },
+          {
+            "signal": "wiring-share",
+            "description": "1 of 4 files is a composition root, barrel or declared entry point.",
+            "value": 0.25,
+            "weight": 0.3,
+            "entities": [
+              "file:packages/shared/src/index.ts"
+            ]
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `packages/shared/src/index.ts` (entry-point rule: a declared entry point and barrel that nothing in its package depends on).",
+            "value": 1,
+            "entities": [
+              "file:packages/shared/src/index.ts"
+            ]
+          },
+          {
+            "signal": "facade-files",
+            "description": "Treated as a barrel by the facade rule (Katedrala heuristic) and pinned to its directory: `packages/shared/src/index.ts` (3 of its 3 dependencies are re-exports).",
+            "value": 1,
+            "entities": [
+              "file:packages/shared/src/index.ts"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `packages/shared/src`.",
+            "entities": [
+              "dir:packages/shared/src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:packages/api/src/handlers",
+          "edgeCount": 5,
+          "observations": 8,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "uses": 1
+          },
+          "examples": [
+            "edge:26121bfdc7801b58",
+            "edge:2965ed359ededf47",
+            "edge:6e330dfdd8970720",
+            "edge:f230c673fdcf3f3a",
+            "edge:fb825cf517c59057"
+          ]
+        },
+        {
+          "entity": "mod:packages/core/src/orders",
+          "edgeCount": 15,
+          "observations": 17,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "calls": 7,
+            "imports": 3,
+            "references-type": 5
+          },
+          "examples": [
+            "edge:1d8ca2b105d8e934",
+            "edge:085fa7206be2d90e",
+            "edge:1397e6ab9ba3cb64",
+            "edge:2e8b23be26894b48",
+            "edge:347dcea15ea7e489"
+          ]
+        },
+        {
+          "entity": "mod:packages/web/src/components",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:28c6be793a0aa378",
+            "edge:3db5bf5d5f87cc7c",
+            "edge:5e29eb9076477dd0",
+            "edge:6c82ab3a34a0ac3f",
+            "edge:c71d4dde4558ffcc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:packages/web/src",
+      "name": "web",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "packages/web/src"
+      },
+      "packages": [
+        "pkg:npm:packages/web"
+      ],
+      "files": [
+        "file:packages/web/src/App.tsx",
+        "file:packages/web/src/main.tsx"
+      ],
+      "components": [
+        "cmp:packages/web/src"
+      ],
+      "entryPoints": [],
+      "publicApi": [],
+      "inference": {
+        "confidence": 0.6,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `packages/web/src` (2 files); none is treated as a composition root, barrel or declared entry point.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `packages/web/src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.2
+          },
+          {
+            "signal": "wiring-share",
+            "description": "0 of 2 files are composition roots, barrels or declared entry points.",
+            "value": 0,
+            "weight": 0.3
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `packages/web/src`.",
+            "entities": [
+              "dir:packages/web/src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:packages/web/src/components",
+          "edgeCount": 3,
+          "observations": 4,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:a4ff9c4fef28a33d",
+            "edge:4bf22be1bfd14742",
+            "edge:8b909fb722637e3e"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "mod:packages/web/src/components",
+      "name": "components",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "packages/web/src/components"
+      },
+      "packages": [
+        "pkg:npm:packages/web"
+      ],
+      "files": [
+        "file:packages/web/src/components/PriceTag.tsx",
+        "file:packages/web/src/components/ProductCard.tsx"
+      ],
+      "components": [
+        "cmp:packages/web/src/components"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:packages/web/src/components/ProductCard.tsx"
+      ],
+      "inference": {
+        "confidence": 0.733333333,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `packages/web/src/components`, the only layer directory in `packages/web/src`.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "67% of the dependency weight of member files stays inside the module (internal 1.0, crossing 1.0).",
+            "value": 0.666666667,
+            "weight": 0.5
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `packages/web/src/components` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `packages/web/src/components`.",
+            "entities": [
+              "dir:packages/web/src/components"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `packages/web/src` has 1 layer directory (components), so it is organized neither by feature nor by layer.",
+            "entities": [
+              "dir:packages/web/src/components"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:packages/shared/src",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:28c6be793a0aa378",
+            "edge:3db5bf5d5f87cc7c",
+            "edge:5e29eb9076477dd0",
+            "edge:6c82ab3a34a0ac3f",
+            "edge:c71d4dde4558ffcc"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:packages/web/src",
+          "edgeCount": 3,
+          "observations": 4,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "references-type": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:a4ff9c4fef28a33d",
+            "edge:4bf22be1bfd14742",
+            "edge:8b909fb722637e3e"
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:component",
+      "name": "component",
+      "origin": "inferred",
+      "rank": 0,
+      "files": [
+        "file:packages/web/src/components/PriceTag.tsx",
+        "file:packages/web/src/components/ProductCard.tsx"
+      ],
+      "inference": {
+        "confidence": 0.295,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `packages/web/src/components` holds 2 files; no dependency connects it with another layer (rank 0).",
+        "evidence": [
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 2 member files.",
+            "value": 0.5,
+            "weight": 0.1
+          },
+          {
+            "signal": "direction-consistency",
+            "description": "No dependency connects this layer with another layer, so the direction of its dependencies cannot be measured.",
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 0 of the 1 other layer (conventional arcs and upward dependencies do not count).",
+            "value": 0,
+            "weight": 0.2
+          },
+          {
+            "signal": "role-sources",
+            "description": "2 members by location only."
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "layer:handler",
+      "name": "handler",
+      "origin": "inferred",
+      "rank": 0,
+      "files": [
+        "file:packages/api/src/handlers/orders.ts",
+        "file:packages/api/src/handlers/products.ts"
+      ],
+      "inference": {
+        "confidence": 0.295,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `packages/api/src/handlers` holds 2 files; no dependency connects it with another layer (rank 0).",
+        "evidence": [
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 2 member files.",
+            "value": 0.5,
+            "weight": 0.1
+          },
+          {
+            "signal": "direction-consistency",
+            "description": "No dependency connects this layer with another layer, so the direction of its dependencies cannot be measured.",
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 0 of the 1 other layer (conventional arcs and upward dependencies do not count).",
+            "value": 0,
+            "weight": 0.2
+          },
+          {
+            "signal": "role-sources",
+            "description": "2 members by location only."
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": []
+    }
+  ],
+  "roles": {
+    "packages/core/src/orders/order-service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `order-service.ts` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "file:packages/core/src/orders/order-service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `OrderService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:packages/core/src/orders/order-service.ts#OrderService"
+            ]
+          }
+        ]
+      }
+    ],
+    "packages/web/src/components/PriceTag.tsx": [
+      {
+        "role": "ui-component",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `packages/web/src/components`, which the directory vocabulary maps to the layer `component`.",
+            "value": 0.7,
+            "entities": [
+              "dir:packages/web/src/components"
+            ]
+          }
+        ]
+      }
+    ],
+    "packages/web/src/components/ProductCard.tsx": [
+      {
+        "role": "ui-component",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `packages/web/src/components`, which the directory vocabulary maps to the layer `component`.",
+            "value": 0.7,
+            "entities": [
+              "dir:packages/web/src/components"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,1376 @@
+{
+  "components": [
+    {
+      "id": "cmp:",
+      "name": "coffee-shop",
+      "kind": "package",
+      "path": "",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "children": [
+        "cmp:src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 28,
+        "symbols": 114,
+        "lines": 939
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/cart",
+        "mod:src/catalog",
+        "mod:src/checkout",
+        "mod:src/common"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src",
+      "name": "src",
+      "kind": "directory",
+      "path": "src",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:",
+      "children": [
+        "cmp:src/cart",
+        "cmp:src/catalog",
+        "cmp:src/checkout",
+        "cmp:src/common"
+      ],
+      "files": [
+        "file:src/server.ts"
+      ],
+      "totals": {
+        "files": 28,
+        "symbols": 114,
+        "lines": 939
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/cart",
+        "mod:src/catalog",
+        "mod:src/checkout",
+        "mod:src/common"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/cart",
+          "edgeCount": 8,
+          "observations": 10,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 2,
+            "instantiates": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:40c4a20ca0ececc3",
+            "edge:75bb33a88c8a9802",
+            "edge:2bcdf5289acb1429",
+            "edge:306d45b11584cc79",
+            "edge:be7d1ea4127a6e53"
+          ]
+        },
+        {
+          "entity": "cmp:src/catalog",
+          "edgeCount": 8,
+          "observations": 9,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 4
+          },
+          "examples": [
+            "edge:17216540c922c1a7",
+            "edge:5715c8ca66413e2a",
+            "edge:57ddb3330af3140e",
+            "edge:79913a2b85a2051d",
+            "edge:8beabc28fa2de00e"
+          ]
+        },
+        {
+          "entity": "cmp:src/checkout",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:32c0baebe0e6fb12",
+            "edge:35b5dc5f6216bf3c",
+            "edge:afa0f8a232c9a74f"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src/cart",
+      "name": "cart",
+      "kind": "directory",
+      "path": "src/cart",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/cart/cart-rules.ts",
+        "file:src/cart/cart-service.ts",
+        "file:src/cart/cart-store.ts",
+        "file:src/cart/cart-view.ts",
+        "file:src/cart/cart.ts",
+        "file:src/cart/shipping-estimator.ts"
+      ],
+      "totals": {
+        "files": 6,
+        "symbols": 32,
+        "lines": 180
+      },
+      "modules": [
+        "mod:src/cart",
+        "mod:src/checkout"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/catalog",
+          "edgeCount": 3,
+          "observations": 7,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:0a779b973c6bf244",
+            "edge:6d736c73d28c60a0",
+            "edge:bbaa10c776e61e5c"
+          ]
+        },
+        {
+          "entity": "cmp:src/checkout",
+          "edgeCount": 9,
+          "observations": 10,
+          "runtimeEdgeCount": 7,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 2,
+            "references-type": 2,
+            "uses": 1
+          },
+          "examples": [
+            "edge:1bd49841ae275c8c",
+            "edge:0708282092f2dfff",
+            "edge:08d187a3629742d3",
+            "edge:0a868e433526a751",
+            "edge:91bafff0468f553d"
+          ]
+        },
+        {
+          "entity": "cmp:src/common",
+          "edgeCount": 5,
+          "observations": 6,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 2
+          },
+          "examples": [
+            "edge:4f69f896f2178e49",
+            "edge:5c2a3ec97056a048",
+            "edge:75a07746d64ce556",
+            "edge:b2bba056eb9c6bf6",
+            "edge:d1ac7eb0d240d1f6"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 8,
+          "observations": 10,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 2,
+            "instantiates": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:40c4a20ca0ececc3",
+            "edge:75bb33a88c8a9802",
+            "edge:2bcdf5289acb1429",
+            "edge:306d45b11584cc79",
+            "edge:be7d1ea4127a6e53"
+          ]
+        },
+        {
+          "entity": "cmp:src/checkout",
+          "edgeCount": 6,
+          "observations": 14,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "uses": 2
+          },
+          "examples": [
+            "edge:6d7558c3a60ef386",
+            "edge:d912b7c98b79bab7",
+            "edge:31ac6d679717bab5",
+            "edge:5c49ced32043c67b",
+            "edge:c8960ae516064bd7"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/catalog",
+      "name": "catalog",
+      "kind": "directory",
+      "path": "src/catalog",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/catalog/category-tree.ts",
+        "file:src/catalog/inventory.ts",
+        "file:src/catalog/price-calculator.ts",
+        "file:src/catalog/product-repository.ts",
+        "file:src/catalog/product-view.ts",
+        "file:src/catalog/product.ts",
+        "file:src/catalog/search.ts"
+      ],
+      "totals": {
+        "files": 7,
+        "symbols": 23,
+        "lines": 268
+      },
+      "modules": [
+        "mod:src/catalog",
+        "mod:src/checkout"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/checkout",
+          "edgeCount": 13,
+          "observations": 13,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "calls": 6,
+            "imports": 4,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:054fb333f8bf1d94",
+            "edge:10a045b2163ef0f3",
+            "edge:1ba976a56a8ee29c",
+            "edge:270ce5b5354b05b9",
+            "edge:335cf2298482b2b5"
+          ]
+        },
+        {
+          "entity": "cmp:src/common",
+          "edgeCount": 6,
+          "observations": 8,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3
+          },
+          "examples": [
+            "edge:758c0f423b1e181e",
+            "edge:f55f4b80e2732e09",
+            "edge:0a263b052c1008bf",
+            "edge:a76366626947420b",
+            "edge:c3b323b0c8d840e5"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 8,
+          "observations": 9,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 4
+          },
+          "examples": [
+            "edge:17216540c922c1a7",
+            "edge:5715c8ca66413e2a",
+            "edge:57ddb3330af3140e",
+            "edge:79913a2b85a2051d",
+            "edge:8beabc28fa2de00e"
+          ]
+        },
+        {
+          "entity": "cmp:src/cart",
+          "edgeCount": 3,
+          "observations": 7,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:0a779b973c6bf244",
+            "edge:6d736c73d28c60a0",
+            "edge:bbaa10c776e61e5c"
+          ]
+        },
+        {
+          "entity": "cmp:src/checkout",
+          "edgeCount": 17,
+          "observations": 27,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 5,
+            "references-type": 4,
+            "uses": 4
+          },
+          "examples": [
+            "edge:0f426adabee19e32",
+            "edge:8bb324b2c8687856",
+            "edge:acd11fcadd7a910b",
+            "edge:5d9d0caf2d1fb17e",
+            "edge:70401600343b0f09"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/checkout",
+      "name": "checkout",
+      "kind": "directory",
+      "path": "src/checkout",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/checkout/address.ts",
+        "file:src/checkout/checkout-service.ts",
+        "file:src/checkout/delivery.ts",
+        "file:src/checkout/discounts.ts",
+        "file:src/checkout/invoice.ts",
+        "file:src/checkout/order-summary.ts",
+        "file:src/checkout/payment.ts",
+        "file:src/checkout/shipping-rates.ts",
+        "file:src/checkout/stock-availability.ts",
+        "file:src/checkout/tax-rules.ts"
+      ],
+      "totals": {
+        "files": 10,
+        "symbols": 46,
+        "lines": 383
+      },
+      "modules": [
+        "mod:src/catalog",
+        "mod:src/checkout"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/cart",
+          "edgeCount": 6,
+          "observations": 14,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "uses": 2
+          },
+          "examples": [
+            "edge:6d7558c3a60ef386",
+            "edge:d912b7c98b79bab7",
+            "edge:31ac6d679717bab5",
+            "edge:5c49ced32043c67b",
+            "edge:c8960ae516064bd7"
+          ]
+        },
+        {
+          "entity": "cmp:src/catalog",
+          "edgeCount": 17,
+          "observations": 27,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 5,
+            "references-type": 4,
+            "uses": 4
+          },
+          "examples": [
+            "edge:0f426adabee19e32",
+            "edge:8bb324b2c8687856",
+            "edge:acd11fcadd7a910b",
+            "edge:5d9d0caf2d1fb17e",
+            "edge:70401600343b0f09"
+          ]
+        },
+        {
+          "entity": "cmp:src/common",
+          "edgeCount": 8,
+          "observations": 17,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 3
+          },
+          "examples": [
+            "edge:c50c044fe1abad74",
+            "edge:c372c761fa43caa1",
+            "edge:33b3477746af8765",
+            "edge:813e64ee7700f889",
+            "edge:c118b963d1f8612f"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:32c0baebe0e6fb12",
+            "edge:35b5dc5f6216bf3c",
+            "edge:afa0f8a232c9a74f"
+          ]
+        },
+        {
+          "entity": "cmp:src/cart",
+          "edgeCount": 9,
+          "observations": 10,
+          "runtimeEdgeCount": 7,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 2,
+            "references-type": 2,
+            "uses": 1
+          },
+          "examples": [
+            "edge:1bd49841ae275c8c",
+            "edge:0708282092f2dfff",
+            "edge:08d187a3629742d3",
+            "edge:0a868e433526a751",
+            "edge:91bafff0468f553d"
+          ]
+        },
+        {
+          "entity": "cmp:src/catalog",
+          "edgeCount": 13,
+          "observations": 13,
+          "runtimeEdgeCount": 10,
+          "kindCounts": {
+            "calls": 6,
+            "imports": 4,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:054fb333f8bf1d94",
+            "edge:10a045b2163ef0f3",
+            "edge:1ba976a56a8ee29c",
+            "edge:270ce5b5354b05b9",
+            "edge:335cf2298482b2b5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/common",
+      "name": "common",
+      "kind": "directory",
+      "path": "src/common",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/common/format.ts",
+        "file:src/common/session.ts",
+        "file:src/common/slug.ts",
+        "file:src/common/validation.ts"
+      ],
+      "totals": {
+        "files": 4,
+        "symbols": 11,
+        "lines": 47
+      },
+      "modules": [
+        "mod:src/common"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src/cart",
+          "edgeCount": 5,
+          "observations": 6,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 2
+          },
+          "examples": [
+            "edge:4f69f896f2178e49",
+            "edge:5c2a3ec97056a048",
+            "edge:75a07746d64ce556",
+            "edge:b2bba056eb9c6bf6",
+            "edge:d1ac7eb0d240d1f6"
+          ]
+        },
+        {
+          "entity": "cmp:src/catalog",
+          "edgeCount": 6,
+          "observations": 8,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3
+          },
+          "examples": [
+            "edge:758c0f423b1e181e",
+            "edge:f55f4b80e2732e09",
+            "edge:0a263b052c1008bf",
+            "edge:a76366626947420b",
+            "edge:c3b323b0c8d840e5"
+          ]
+        },
+        {
+          "entity": "cmp:src/checkout",
+          "edgeCount": 8,
+          "observations": 17,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 3
+          },
+          "examples": [
+            "edge:c50c044fe1abad74",
+            "edge:c372c761fa43caa1",
+            "edge:33b3477746af8765",
+            "edge:813e64ee7700f889",
+            "edge:c118b963d1f8612f"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod:src",
+      "name": "coffee-shop",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/server.ts"
+      ],
+      "components": [
+        "cmp:src"
+      ],
+      "entryPoints": [],
+      "publicApi": [],
+      "inference": {
+        "confidence": 0.866666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `src` (1 file); it is treated as a composition root, barrel or declared entry point.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "wiring-share",
+            "description": "Its only member file is a composition root, barrel or declared entry point.",
+            "value": 1,
+            "weight": 0.3,
+            "entities": [
+              "file:src/server.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `src/server.ts` (entry-point rule: a declared entry point that nothing in its package depends on).",
+            "value": 1,
+            "entities": [
+              "file:src/server.ts"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/cart",
+          "edgeCount": 8,
+          "observations": 10,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 2,
+            "instantiates": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:40c4a20ca0ececc3",
+            "edge:75bb33a88c8a9802",
+            "edge:2bcdf5289acb1429",
+            "edge:306d45b11584cc79",
+            "edge:be7d1ea4127a6e53"
+          ]
+        },
+        {
+          "entity": "mod:src/catalog",
+          "edgeCount": 8,
+          "observations": 9,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 4
+          },
+          "examples": [
+            "edge:17216540c922c1a7",
+            "edge:5715c8ca66413e2a",
+            "edge:57ddb3330af3140e",
+            "edge:79913a2b85a2051d",
+            "edge:8beabc28fa2de00e"
+          ]
+        },
+        {
+          "entity": "mod:src/checkout",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:32c0baebe0e6fb12",
+            "edge:35b5dc5f6216bf3c",
+            "edge:afa0f8a232c9a74f"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "mod:src/cart",
+      "name": "cart",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/cart"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/cart/cart-rules.ts",
+        "file:src/cart/cart-service.ts",
+        "file:src/cart/cart-store.ts",
+        "file:src/cart/cart-view.ts",
+        "file:src/cart/cart.ts"
+      ],
+      "components": [
+        "cmp:src/cart"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/cart/cart-service.ts",
+        "file:src/cart/cart-view.ts"
+      ],
+      "inference": {
+        "confidence": 0.811554622,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: directory `src/cart` with 1 file reassigned out; 82% of the dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "82% of the dependency weight of member files stays inside the module (internal 7.0, crossing 3.0).",
+            "value": 0.823529412,
+            "weight": 0.4
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 83 percentage points more connected to this module than to any other; no member is contested.",
+            "value": 0.833333333,
+            "weight": 0.25
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/cart` except 1 relocated file (Jaccard 0.83).",
+            "value": 0.833333333,
+            "weight": 0.2,
+            "entities": [
+              "file:src/cart/shipping-estimator.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 5 member files.",
+            "value": 0.714285714,
+            "weight": 0.15
+          },
+          {
+            "signal": "feature-directory",
+            "description": "Inferred from the feature directory `src/cart`.",
+            "entities": [
+              "dir:src/cart"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 3 feature directories (cart, catalog and checkout) and 1 shared directory (common), so it is organized by feature.",
+            "entities": [
+              "dir:src/cart",
+              "dir:src/catalog",
+              "dir:src/checkout",
+              "dir:src/common"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/catalog",
+          "edgeCount": 3,
+          "observations": 7,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:0a779b973c6bf244",
+            "edge:6d736c73d28c60a0",
+            "edge:bbaa10c776e61e5c"
+          ]
+        },
+        {
+          "entity": "mod:src/common",
+          "edgeCount": 5,
+          "observations": 6,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 2
+          },
+          "examples": [
+            "edge:4f69f896f2178e49",
+            "edge:5c2a3ec97056a048",
+            "edge:75a07746d64ce556",
+            "edge:b2bba056eb9c6bf6",
+            "edge:d1ac7eb0d240d1f6"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 8,
+          "observations": 10,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 2,
+            "instantiates": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:40c4a20ca0ececc3",
+            "edge:75bb33a88c8a9802",
+            "edge:2bcdf5289acb1429",
+            "edge:306d45b11584cc79",
+            "edge:be7d1ea4127a6e53"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/catalog",
+      "name": "catalog",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/catalog"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/catalog/category-tree.ts",
+        "file:src/catalog/inventory.ts",
+        "file:src/catalog/product-repository.ts",
+        "file:src/catalog/product-view.ts",
+        "file:src/catalog/product.ts",
+        "file:src/catalog/search.ts",
+        "file:src/checkout/stock-availability.ts"
+      ],
+      "components": [
+        "cmp:src/catalog",
+        "cmp:src/checkout"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/catalog/category-tree.ts",
+        "file:src/catalog/product-repository.ts",
+        "file:src/catalog/product-view.ts",
+        "file:src/catalog/search.ts"
+      ],
+      "inference": {
+        "confidence": 0.777463054,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: directory `src/catalog` with 1 file reassigned in and 1 out; 83% of the dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "83% of the dependency weight of member files stays inside the module (internal 12.0, crossing 5.0).",
+            "value": 0.827586207,
+            "weight": 0.4
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 72 percentage points more connected to this module than to any other; no member is contested.",
+            "value": 0.719047619,
+            "weight": 0.25
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/catalog` except 2 relocated files (Jaccard 0.75).",
+            "value": 0.75,
+            "weight": 0.2,
+            "entities": [
+              "file:src/catalog/price-calculator.ts",
+              "file:src/checkout/stock-availability.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 7 member files.",
+            "value": 0.777777778,
+            "weight": 0.15
+          },
+          {
+            "signal": "feature-directory",
+            "description": "Inferred from the feature directory `src/catalog`.",
+            "entities": [
+              "dir:src/catalog"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 3 feature directories (cart, catalog and checkout) and 1 shared directory (common), so it is organized by feature.",
+            "entities": [
+              "dir:src/cart",
+              "dir:src/catalog",
+              "dir:src/checkout",
+              "dir:src/common"
+            ]
+          },
+          {
+            "signal": "relocated-files",
+            "description": "Reassigned here by the strict-majority rule (Katedrala heuristic): `src/checkout/stock-availability.ts` has 2 of its 2 dependents (weight 2.0 of 2.0) and all of its dependencies (2.0 of 2.0) in this module.",
+            "value": 1,
+            "entities": [
+              "file:src/checkout/stock-availability.ts"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/checkout",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:276b718f2ee5e8a5",
+            "edge:a6096f1821ac1821"
+          ]
+        },
+        {
+          "entity": "mod:src/common",
+          "edgeCount": 6,
+          "observations": 8,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3
+          },
+          "examples": [
+            "edge:758c0f423b1e181e",
+            "edge:f55f4b80e2732e09",
+            "edge:0a263b052c1008bf",
+            "edge:a76366626947420b",
+            "edge:c3b323b0c8d840e5"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 8,
+          "observations": 9,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 4,
+            "imports": 4
+          },
+          "examples": [
+            "edge:17216540c922c1a7",
+            "edge:5715c8ca66413e2a",
+            "edge:57ddb3330af3140e",
+            "edge:79913a2b85a2051d",
+            "edge:8beabc28fa2de00e"
+          ]
+        },
+        {
+          "entity": "mod:src/cart",
+          "edgeCount": 3,
+          "observations": 7,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:0a779b973c6bf244",
+            "edge:6d736c73d28c60a0",
+            "edge:bbaa10c776e61e5c"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/checkout",
+      "name": "checkout",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/checkout"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/cart/shipping-estimator.ts",
+        "file:src/catalog/price-calculator.ts",
+        "file:src/checkout/address.ts",
+        "file:src/checkout/checkout-service.ts",
+        "file:src/checkout/delivery.ts",
+        "file:src/checkout/discounts.ts",
+        "file:src/checkout/invoice.ts",
+        "file:src/checkout/order-summary.ts",
+        "file:src/checkout/payment.ts",
+        "file:src/checkout/shipping-rates.ts",
+        "file:src/checkout/tax-rules.ts"
+      ],
+      "components": [
+        "cmp:src/cart",
+        "cmp:src/catalog",
+        "cmp:src/checkout"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/catalog/price-calculator.ts",
+        "file:src/checkout/checkout-service.ts"
+      ],
+      "inference": {
+        "confidence": 0.894493007,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: directory `src/checkout` with 2 files reassigned in and 1 out; 96% of the dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "96% of the dependency weight of member files stays inside the module (internal 25.0, crossing 2.0).",
+            "value": 0.961538462,
+            "weight": 0.4
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 93 percentage points more connected to this module than to any other; no member is contested.",
+            "value": 0.931818182,
+            "weight": 0.25
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/checkout` except 3 relocated files (Jaccard 0.75).",
+            "value": 0.75,
+            "weight": 0.2,
+            "entities": [
+              "file:src/cart/shipping-estimator.ts",
+              "file:src/catalog/price-calculator.ts",
+              "file:src/checkout/stock-availability.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 11 member files.",
+            "value": 0.846153846,
+            "weight": 0.15
+          },
+          {
+            "signal": "feature-directory",
+            "description": "Inferred from the feature directory `src/checkout`.",
+            "entities": [
+              "dir:src/checkout"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 3 feature directories (cart, catalog and checkout) and 1 shared directory (common), so it is organized by feature.",
+            "entities": [
+              "dir:src/cart",
+              "dir:src/catalog",
+              "dir:src/checkout",
+              "dir:src/common"
+            ]
+          },
+          {
+            "signal": "relocated-files",
+            "description": "Reassigned here by the strict-majority rule (Katedrala heuristic): `src/cart/shipping-estimator.ts` has 2 of its 2 dependents (weight 2.0 of 2.0) and all of its dependencies (2.0 of 2.0) in this module.",
+            "value": 1,
+            "entities": [
+              "file:src/cart/shipping-estimator.ts"
+            ]
+          },
+          {
+            "signal": "relocated-files",
+            "description": "Reassigned here by the strict-majority rule (Katedrala heuristic): `src/catalog/price-calculator.ts` has 3 of its 4 dependents (weight 3.0 of 4.0) and all of its dependencies (2.0 of 2.0) in this module.",
+            "value": 0.75,
+            "entities": [
+              "file:src/catalog/price-calculator.ts"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/common",
+          "edgeCount": 8,
+          "observations": 17,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 3
+          },
+          "examples": [
+            "edge:c50c044fe1abad74",
+            "edge:c372c761fa43caa1",
+            "edge:33b3477746af8765",
+            "edge:813e64ee7700f889",
+            "edge:c118b963d1f8612f"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:32c0baebe0e6fb12",
+            "edge:35b5dc5f6216bf3c",
+            "edge:afa0f8a232c9a74f"
+          ]
+        },
+        {
+          "entity": "mod:src/catalog",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:276b718f2ee5e8a5",
+            "edge:a6096f1821ac1821"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/common",
+      "name": "common",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/common"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/common/format.ts",
+        "file:src/common/session.ts",
+        "file:src/common/slug.ts",
+        "file:src/common/validation.ts"
+      ],
+      "components": [
+        "cmp:src/common"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/common/format.ts",
+        "file:src/common/session.ts",
+        "file:src/common/slug.ts",
+        "file:src/common/validation.ts"
+      ],
+      "inference": {
+        "confidence": 0.558333333,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: shared directory `src/common`; 1 of 4 files is used by two or more other modules.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/common` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.2
+          },
+          {
+            "signal": "shared-usage",
+            "description": "1 of 4 files is used by two or more other modules (composition roots do not count as users).",
+            "value": 0.25,
+            "weight": 0.5,
+            "entities": [
+              "file:src/common/format.ts"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 3 feature directories (cart, catalog and checkout) and 1 shared directory (common), so it is organized by feature.",
+            "entities": [
+              "dir:src/cart",
+              "dir:src/catalog",
+              "dir:src/checkout",
+              "dir:src/common"
+            ]
+          },
+          {
+            "signal": "shared-directory",
+            "description": "Inferred from the shared directory `src/common`.",
+            "entities": [
+              "dir:src/common"
+            ]
+          },
+          {
+            "signal": "single-user-files",
+            "description": "3 files are used by only one other module: session (cart), slug (catalog) and validation (checkout).",
+            "value": 3,
+            "entities": [
+              "file:src/common/session.ts",
+              "file:src/common/slug.ts",
+              "file:src/common/validation.ts"
+            ]
+          },
+          {
+            "signal": "utility-files",
+            "description": "Treated as a shared utility by the utility rule (Katedrala heuristic), pinned and not counted as evidence: `src/common/format.ts` (its dependents lie in 3 other units).",
+            "value": 1,
+            "entities": [
+              "file:src/common/format.ts"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:src/cart",
+          "edgeCount": 5,
+          "observations": 6,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 2
+          },
+          "examples": [
+            "edge:4f69f896f2178e49",
+            "edge:5c2a3ec97056a048",
+            "edge:75a07746d64ce556",
+            "edge:b2bba056eb9c6bf6",
+            "edge:d1ac7eb0d240d1f6"
+          ]
+        },
+        {
+          "entity": "mod:src/catalog",
+          "edgeCount": 6,
+          "observations": 8,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 3
+          },
+          "examples": [
+            "edge:758c0f423b1e181e",
+            "edge:f55f4b80e2732e09",
+            "edge:0a263b052c1008bf",
+            "edge:a76366626947420b",
+            "edge:c3b323b0c8d840e5"
+          ]
+        },
+        {
+          "entity": "mod:src/checkout",
+          "edgeCount": 8,
+          "observations": 17,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 5,
+            "imports": 3
+          },
+          "examples": [
+            "edge:c50c044fe1abad74",
+            "edge:c372c761fa43caa1",
+            "edge:33b3477746af8765",
+            "edge:813e64ee7700f889",
+            "edge:c118b963d1f8612f"
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [],
+  "roles": {
+    "src/cart/cart-service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `cart-service.ts` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/cart/cart-service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `CartService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/cart/cart-service.ts#CartService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/cart/cart-store.ts": [
+      {
+        "role": "state-store",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `cart-store.ts` ends with the word `store`, which the naming vocabulary maps to `state-store`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/cart/cart-store.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `CartStore` ends with the word `store`, which the naming vocabulary maps to `state-store`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/cart/cart-store.ts#CartStore"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/catalog/product-repository.ts": [
+      {
+        "role": "repository",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `product-repository.ts` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/catalog/product-repository.ts"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/checkout/checkout-service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `checkout-service.ts` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/checkout/checkout-service.ts"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -77,7 +77,27 @@ It prints the project's counts: files, symbols, relationships (`edges`), externa
 references that could not be resolved. `document` holds the structural sections of the architecture document
 described in [docs/IR.md](docs/IR.md): every file, symbol and typed relationship, with the file and line each
 relationship came from. Extraction results are cached in your user cache directory (`KATEDRALA_CACHE_DIR`
-moves it). Inference, metrics, rules and the command line are on the [roadmap](docs/ROADMAP.md).
+moves it).
+
+`analyzeArchitecture` returns the same structure plus the architectural view: components, derived from the
+directory tree and the package manifests, and modules and layers, inferred from dependencies, naming and
+location (or declared in `katedrala.config.yaml`). Save this as `architecture.mjs`:
+
+```js
+import { analyzeArchitecture } from "@katedrala/engine";
+
+const { document } = await analyzeArchitecture({ root: process.argv[2] ?? "." });
+for (const module of document.modules) {
+  const how = module.inference ? `inferred, confidence ${module.inference.confidence}` : "declared";
+  console.log(`${module.id} (${how}): ${module.files.join(", ")}`);
+  if (module.inference) console.log(`  ${module.inference.reason}`);
+}
+for (const layer of document.layers) console.log(`${layer.id}: rank ${layer.rank}`);
+```
+
+Every inferred module and layer carries its confidence, the evidence behind it and a one-sentence reason
+that begins with "Inferred:"; [docs/ALGORITHMS.md](docs/ALGORITHMS.md) explains how they are computed and
+what the numbers mean. Metrics, rules and the command line are on the [roadmap](docs/ROADMAP.md).
 
 ## Development
 

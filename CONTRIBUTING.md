@@ -60,6 +60,17 @@ need a prior build.
   `tsconfig.build.json` so they never ship in `dist`.
 - **Honesty.** Do not ship placeholder behavior. If something cannot be implemented correctly yet, define the
   interface, return a clear "not supported" error and document the limitation.
+- **Truth labels.** TSDoc of analysis code says what kind of result it produces: [ESTABLISHED] for a cited,
+  established algorithm or measure, [DERIVED] for a deterministic function of observed facts, and
+  [KATEDRALA HEURISTIC] for Katedrala's own heuristics (all inference of modules, layers and roles). Every
+  heuristic conclusion is worded as one: an `InferenceInfo.reason` begins with "Inferred:", and a description
+  of a heuristic class, relocation or attachment names its rule and says "(Katedrala heuristic)". Descriptions
+  of measurements stay factual. See docs/ALGORITHMS.md, "Conventions".
+- **Analysis packages run anywhere.** `@katedrala/inference` uses no Node.js API and depends on `ir`,
+  `graph` and `model` only; it never reads the clock, randomness or the locale (`Intl`, `localeCompare`,
+  `toLocale*`), and folds case with `asciiLower` only. Lint enforces the import, global and API restrictions
+  for its sources (tests and `*test-support.ts` files are exempt); reviewers check the rest (no `\p{…}`
+  classes, no `toLowerCase`/`toUpperCase`, no unsorted `Map`/`Set` iteration on an output path).
 - **Documentation.** Update the relevant document in `docs/` in the same change. Cite the source of any
   established algorithm or metric; label Katedrala-specific heuristics as such.
 
@@ -83,6 +94,20 @@ describing the architecture it models and the conclusions Katedrala is expected 
 `tests/fixtures/structure.test.ts` analyzes every fixture end to end and compares the result with its
 `expected.json`. Expectation keys that belong to a pipeline stage not implemented yet appear as `todo` tests;
 when you implement a stage, turn its keys into real checks.
+
+`tests/fixtures/inference.test.ts` checks the inferred architecture of every fixture: the expectations of
+milestone 5, and the **golden sections** in `tests/fixtures/golden/<fixture>.json` (components, modules,
+layers and the roles of every file that has some). Any difference fails the test with a diff. When a change
+is meant to change them, rewrite the goldens with
+
+```bash
+KATEDRALA_UPDATE_GOLDEN=1 pnpm test tests/fixtures
+```
+
+and explain every golden difference in the pull request: which modules, layers, confidences or evidence
+texts changed, and why. A change of the algorithm that changes results at default settings also increments
+the method version (`katedrala/module-inference@2`, docs/ALGORITHMS.md). `KATEDRALA_REPORT=1` prints the
+perturbation measurements that docs/ALGORITHMS.md publishes.
 
 ## Commits
 

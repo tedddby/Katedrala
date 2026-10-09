@@ -5,7 +5,9 @@
 import { performance } from "node:perf_hooks";
 import { sortDiagnostics, type EffectiveCoreSettings } from "@katedrala/core";
 import {
+  inferArchitecture,
   resolveInferenceSettings,
+  withRoles,
   type InferenceConfiguration,
   type InferenceInput,
   type InferenceResult,
@@ -87,27 +89,8 @@ interface InferenceSections {
   readonly inference?: InferenceConfiguration;
 }
 
-/** Raised by {@link analyzeArchitecture} while `@katedrala/inference` has no inference pipeline yet. */
-class InferenceUnavailableError extends Error {
-  /** Stable error code. */
-  readonly code = "inference-unavailable";
-
-  constructor() {
-    super(
-      "Architecture inference is not available in this build: @katedrala/inference does not provide inferArchitecture yet (analyzeStructure returns the observed structure)",
-    );
-    this.name = "InferenceUnavailableError";
-  }
-}
-
-function unavailable(): never {
-  throw new InferenceUnavailableError();
-}
-
-// Milestone 5 integration (plan 6.5): this becomes `{ inferArchitecture, withRoles }` from
-// @katedrala/inference when its pipeline lands. Until then analyzeArchitecture says so, rather than publish
-// empty architecture sections that would read as "no modules, no layers" (plan 1.2; CONTRIBUTING, "Honesty").
-const INFERENCE_STAGE: InferenceStage = { inferArchitecture: unavailable, withRoles: unavailable };
+/** The inference stage of `@katedrala/inference` (plan 3.2). */
+const INFERENCE_STAGE: InferenceStage = { inferArchitecture, withRoles };
 
 /**
  * Analyze a repository's architecture: run {@link analyzeStructure}, then the inference stage, which derives
@@ -129,9 +112,6 @@ const INFERENCE_STAGE: InferenceStage = { inferArchitecture: unavailable, withRo
  * configuration key order carries no meaning (D-23). Complexity: that of the structure analysis plus
  * inference (docs/ALGORITHMS.md, "Complexity and scale") plus one model build, linear in the document size.
  * References: plan 2.3, 3.4; docs/ARCHITECTURE.md, "The analysis pipeline".
- *
- * Until `@katedrala/inference` provides its pipeline (milestone 5, plan 6.5), the inference stage rejects
- * with an error whose `code` is `inference-unavailable`; `analyzeStructure` is unaffected.
  *
  * @throws {TypeError} when `options.configurationSections` registers `modules`, `layers` or `inference`,
  *   which this function registers itself.

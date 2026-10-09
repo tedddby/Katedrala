@@ -268,22 +268,117 @@ the syntactic reference kind and the kind of the resolved target (a call of a cl
 
 ## Architecture
 
-- **Components** (`cmp:`) are physical units: package roots and source directories, arranged in a tree. Each
-  component owns the files directly inside it; `totals` aggregate the whole subtree; `dependencies` and
-  `dependents` are computed over directly owned files.
-- **Modules** (`mod:`) are logical groupings of files, inferred (with `anchor` and `inference`: confidence,
-  method, reason, evidence) or declared in configuration. Modules may cut across directories and packages.
-  `entryPoints` is the intended public surface (configured entry files or barrels at the anchor); `publicApi`
-  is the actual surface (member files that other modules import from).
-- **Layers** (`layer:`) are horizontal roles ordered by `rank`. They partition files: a file belongs to at
-  most one layer. Dependencies are expected to point from lower to higher rank.
+The architectural sections are produced by the inference stage (milestone 5; algorithms, rationale and
+references in [ALGORITHMS.md](ALGORITHMS.md)). Components are derived [DERIVED]; inferred modules and layers
+are Katedrala heuristics, each with its confidence and evidence; declared modules and layers are exact.
+
+- **Components** (`cmp:`) are physical units, derived (never inferred) from the directory tree and the
+  package manifests. A directory is a component when its subtree holds an owned file (a file whose role is in
+  `inference.components.file_roles`, by default `declaration`, `generated`, `script`, `source` and `test`)
+  and it is the analysis root, a package root, a directory that directly contains an owned file, or a
+  directory where owned code branches into two or more subdirectories. Chains of directories without code
+  collapse into their deepest member, which is then named by its path relative to the parent component
+  (`presentation/http`); package components carry the package's declared name, and the analysis root of a
+  repository without a root manifest the repository name. Each component owns the files directly inside it
+  (every owned file belongs to exactly one component); `totals` aggregate the whole subtree; `modules` lists
+  the modules owning a file of the subtree; `dependencies` and `dependents` are computed over directly owned
+  files.
+- **Modules** (`mod:`) are logical groupings of files, inferred (with `anchor` and `inference`) or declared
+  in configuration. Modules may cut across directories; declared modules may also span packages, inferred
+  modules never do.
+  - **Declared modules** have exact membership: the files their globs match whose role components own (code,
+    tests and declarations, never manifests or documentation). A file several declared modules match
+    belongs to the one whose name sorts first, and a `configuration-warning` names both. A declared module
+    that matches nothing is kept, empty, with a warning.
+  - **Inferred modules** group the inference nodes (by default the `source` files no declared module owns)
+    of one package by prior-anchored refinement: directories and recurring file-name stems form the prior,
+    and a file moves only on a strict majority of its dependency evidence. Their `files` are those nodes plus
+    the tests and declarations attached for navigation. Declarations, and tests when
+    `analysis.include_tests_in_metrics` counts them, are attached only by a strict majority of their
+    dependents (declarations) or dependencies (tests); other tests without a majority are attached by
+    location. Attached declarations, and tests counted in metrics, take part in aggregated module
+    dependencies, because the metrics projection includes their roles.
+  - The **anchor** is the module's prior: the directory it was formed from, or the directory across whose
+    layer subdirectories its stem recurs. Identities derive from it and stay stable when files move in or
+    out; when fewer than half of the members lie under it, `anchor-drift` evidence says so.
+  - `entryPoints` is the intended public surface: the configured `entry` files of a declared module, else the
+    `index` files and barrels (files whose dependencies are mostly re-exports) directly in the anchor
+    directory (for declared modules without `entry`, in the members' common directory). `publicApi` is the
+    actual surface: the member files that files of other modules import or re-export from, computed from
+    `imports` and `re-exports` edges under the metrics projection's file roles and type-only setting;
+    attached files are never listed. A difference between the two shows deep imports.
+  - Every file belongs to at most one module.
+- **Layers** (`layer:`) are horizontal roles ordered by `rank`, 0 being the outermost (e.g. `controller` 0,
+  `service` 1, `repository` 2). A file belongs to at most one layer, and only production (`source`) files are
+  members. Dependencies are expected to point from lower to higher rank; equal ranks are allowed.
+  - **Declared layers** (the `layers` section) are exact: list order decides overlaps, ranks are the
+    configured `rank` or the list position, and declaring layers disables layer inference.
+  - **Inferred layers** come from per-file layer labels (architectural roles and layer-named directories)
+    and are ranked by the observed dependencies between them: dependencies that contradict the order are
+    reported as `upward-dependencies` evidence, and layers no observed path connects are ordered by
+    conventional tiers (`conventional-order` evidence). Layer ordering counts type-only references at
+    `inference.modules.type_only_weight` even when the metrics projection excludes them, while
+    `LayerEntity.dependencies` follow the metrics projection.
+- **Roles** (`FileEntity.roles`, `RoleEntry`) are architectural roles with a confidence, a `source` and
+  evidence. Inference writes the sources `naming` (file-name qualifiers and suffixes, exported class names),
+  `location` (layer-named directories) and `configuration` (`inference.roles` globs), on `source` files only;
+  framework detectors will add entries under their own id. Running inference again replaces its own entries
+  and keeps the others.
 - **Endpoints** are externally reachable entries (e.g. HTTP routes) detected by framework detectors, with
   method, path template, handler, location and inference.
 
 Aggregated dependencies (`AggregatedDependency`) lift every relationship between member files (including
 symbol-level ones) to the units, on the metrics projection, and report distinct edges (`edgeCount`), total
 observations, runtime (non-type-only) edges and counts per kind. Package-level dependencies also include
-the externals the package's files use (`PackageEntity.dependencies`).
+the externals the package's files use (`PackageEntity.dependencies`); the dependencies of components, modules
+and layers never list externals.
+
+### Inference methods
+
+Every inferred conclusion carries an `InferenceInfo`:
+
+- `method` names the algorithm and its version: `katedrala/module-inference@1` for modules,
+  `katedrala/layer-inference@1` for layers. When parameters that can change the result differ from their
+  defaults, the identifier is followed by `?` and those parameters as `key=value` pairs joined by `&`, keys
+  sorted by UTF-16 code units: `katedrala/module-inference@1?max_module_files=200&type_only_weight=0`.
+  - Keys of the method's own configuration section are written bare (`max_module_files`); keys of the other
+    `inference` sections carry their path relative to `inference` (`layers.directory_layers`,
+    `modules.type_only_weight`, `roles`); the core setting carries its full path
+    (`analysis.include_tests_in_metrics`).
+  - Scalars are written as they are; lists and maps as `h:` and the first 8 hex digits of the SHA-256 of
+    their canonical JSON (the effective value, sets as sorted arrays, maps as objects), so equal effective
+    vocabularies give equal strings however they were written.
+  - The **module method** covers `inference.modules.*`, `inference.layers.directory_layers`,
+    `inference.layers.naming_suffixes`, `inference.components.file_roles` and
+    `analysis.include_tests_in_metrics`. The **layer method** covers `inference.layers.*`, `inference.roles`,
+    `inference.modules.type_only_weight`, `inference.modules.min_edge_confidence` and
+    `inference.modules.container_directories`.
+  - Declarations (`modules`, `layers`) are inputs, not parameters: they appear in the document as declared
+    modules and layers. A change of the algorithm that changes results at default settings increments the
+    version (`@2`).
+- `confidence` is the weighted sum of the weighted evidence (`Σ weight × value`, an absent value counting
+  0), in `[0, 1]`. It expresses how strongly the observations support the conclusion; it is not a calibrated
+  probability, and the weights are part of the method.
+- `reason` is one sentence that begins with "Inferred:". Descriptions of heuristic classes (composition
+  roots, utilities, barrels), relocations and attachments name the rule, say "(Katedrala heuristic)" and
+  state what triggered it; descriptions of measurements are factual.
+- `evidence` lists the weighted signals of the unit's kind, absent ones included with their weight and no
+  `value`, then unweighted context signals: the module's kind (`feature-directory`, `layer-directory`,
+  `shared-directory`, `root-files`, `file-stem` or `split-piece`), `relocated-files`, `attached-files` (every
+  attached test or declaration, by majority or location), the structural classes and others. Signal ids are
+  stable; the catalogue is in [ALGORITHMS.md](ALGORITHMS.md#evidence-and-explanation).
+
+### Pre-release changes
+
+Milestone 5 made these changes before the first release; `IR_SCHEMA_VERSION` stays 1.0.0 because no document
+with components, modules or layers had been produced (a released schema would call them major):
+
+- the module key derivation (see [Identifiers](#packages-modules-externals-endpoints));
+- `ModuleAnchor.directory` is the directory of the module's prior, no longer "the directory most member
+  files share", and `ModuleAnchor.stem` may be a fallback key of a piece of an oversized directory;
+- `ComponentEntity.name` of a collapsed chain is the path relative to the parent component;
+- `ModuleEntity.packages`: declared modules may span packages, inferred modules never do (it said "Modules
+  may span packages").
 
 ## Metrics and findings
 
@@ -301,7 +396,8 @@ the externals the package's files use (`PackageEntity.dependencies`).
 - `diagnostics` list problems encountered while analyzing (syntax errors, unresolved imports, limits,
   approximations).
 
-See [ALGORITHMS.md](ALGORITHMS.md) for metric definitions and references.
+See [ALGORITHMS.md](ALGORITHMS.md) for the inference algorithms and references; metric definitions are added
+there from milestone 6.
 
 ## Detail and limits
 
@@ -332,6 +428,8 @@ independent of locale. Collections follow total orders:
 | `entryPoints`                                           | by entity, kind, source                                    |
 | `FileEntity.symbols`, `FileEntity.imports`              | source order                                               |
 | `FileEntity.exports`                                    | by name, `from`, `typeOnly`, symbols                       |
+| `FileEntity.roles`, `SymbolEntity.roles`                | by role, then source                                       |
+| `InferenceInfo.evidence`                                | see below                                                  |
 | `PackageEntity.declaredDependencies`                    | by name, scope, version range, target                      |
 | `metrics.units`                                         | by entity                                                  |
 | `metrics.definitions`                                   | by key                                                     |
@@ -340,6 +438,10 @@ independent of locale. Collections follow total orders:
 | score terms (`terms`, `factors`)                        | formula order                                              |
 | `repository.languages`                                  | by descending line count, then language                    |
 | keys of record fields (`kindCounts`, `extensions`, ...) | sorted                                                     |
+
+`InferenceInfo.evidence` is ordered totally: weighted observations (those with a `weight`) first, by
+decreasing `weight × value` (an absent value counts 0), then by `signal`; then unweighted observations by
+`signal`, then `description`, then `value` (absent first), then `entities` compared element-wise.
 
 Producers keep collections canonical at every stage boundary (plugins see canonical input), reduce floating
 point values in canonical order on one thread, use fixed seeds for any sampling, and call

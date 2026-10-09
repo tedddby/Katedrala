@@ -6,9 +6,15 @@
  * engine validates the `modules`, `layers` and `inference` configuration sections, resolves their globs and
  * passes typed settings and file lists (ADR-013).
  *
- * This entry point currently exports the configuration types, the declarations, the effective settings and
- * their resolution, which the engine's validators need; the inference pipeline itself is added with
- * `inferArchitecture`. See docs/ALGORITHMS.md for the algorithms and docs/IR.md for the output.
+ * The public API (plan 3.3):
+ *
+ * - `inferArchitecture`, the pipeline, and `withRoles`, which merges its roles into the files;
+ * - `resolveInferenceSettings` with `DEFAULT_INFERENCE_CONFIGURATION`, `INFERENCE_KEYS` and
+ *   `normalizeVocabularyName`, which the engine's validators use;
+ * - `sStem`, the normalization the vocabularies apply;
+ * - the configuration, declaration, settings, input and result types.
+ *
+ * Everything else is internal. See docs/ALGORITHMS.md for the algorithms and docs/IR.md for the output.
  */
 export type {
   ComponentInferenceConfiguration,
@@ -31,6 +37,9 @@ export type {
   ModulesConfiguration,
   Vocabulary,
 } from "./types.js";
+export { inferArchitecture } from "./infer.js";
+// Plan 3.2: the engine merges the inferred roles into the files with it (plan 3.3 omitted it; U2, U5).
+export { withRoles } from "./roles.js";
 export {
   DEFAULT_INFERENCE_CONFIGURATION,
   INFERENCE_KEYS,

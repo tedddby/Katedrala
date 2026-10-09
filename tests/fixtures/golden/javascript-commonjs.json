@@ -1,0 +1,1646 @@
+{
+  "components": [
+    {
+      "id": "cmp:",
+      "name": "todo-server",
+      "kind": "package",
+      "path": "",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "children": [
+        "cmp:src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 13,
+        "symbols": 40,
+        "lines": 393
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/lib",
+        "mod:src/plugins",
+        "mod:src/routes",
+        "mod:src/services",
+        "mod:src/store",
+        "mod:src/views"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src",
+      "name": "src",
+      "kind": "directory",
+      "path": "src",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:",
+      "children": [
+        "cmp:src/lib",
+        "cmp:src/plugins",
+        "cmp:src/routes",
+        "cmp:src/services",
+        "cmp:src/store",
+        "cmp:src/views"
+      ],
+      "files": [
+        "file:src/config.js",
+        "file:src/server.js"
+      ],
+      "totals": {
+        "files": 13,
+        "symbols": 40,
+        "lines": 393
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/lib",
+        "mod:src/plugins",
+        "mod:src/routes",
+        "mod:src/services",
+        "mod:src/store",
+        "mod:src/views"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/plugins",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:3fa1c4a973233fbe",
+            "edge:6875b64179adf4d0"
+          ]
+        },
+        {
+          "entity": "cmp:src/routes",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:06242ee732661f40",
+            "edge:a2cf9747a2397906"
+          ]
+        },
+        {
+          "entity": "cmp:src/store",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:944fa972dbadcb9c",
+            "edge:bef1fbcd39747a76"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src/lib",
+      "name": "lib",
+      "kind": "directory",
+      "path": "src/lib",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/lib/dates.mjs",
+        "file:src/lib/html.cjs",
+        "file:src/lib/validation.js"
+      ],
+      "totals": {
+        "files": 3,
+        "symbols": 14,
+        "lines": 80
+      },
+      "modules": [
+        "mod:src/lib"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src/routes",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1
+          },
+          "examples": [
+            "edge:457c5af4a8860453",
+            "edge:8c14bb3c4f2535ab",
+            "edge:e417e0d536afef64"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:471db7f0ad9638a5",
+            "edge:9496cc48fcb844c9",
+            "edge:fab223bd961a541b"
+          ]
+        },
+        {
+          "entity": "cmp:src/views",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2
+          },
+          "examples": [
+            "edge:85631aa0894be728",
+            "edge:da40f9ab2a651297",
+            "edge:fde00560a2aa10f8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/plugins",
+      "name": "plugins",
+      "kind": "directory",
+      "path": "src/plugins",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/plugins/audit-log.js",
+        "file:src/plugins/loader.js"
+      ],
+      "totals": {
+        "files": 2,
+        "symbols": 4,
+        "lines": 43
+      },
+      "modules": [
+        "mod:src/plugins"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:3fa1c4a973233fbe",
+            "edge:6875b64179adf4d0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/routes",
+      "name": "routes",
+      "kind": "directory",
+      "path": "src/routes",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/routes/health.js",
+        "file:src/routes/index.js"
+      ],
+      "totals": {
+        "files": 2,
+        "symbols": 4,
+        "lines": 65
+      },
+      "modules": [
+        "mod:src/routes"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/lib",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1
+          },
+          "examples": [
+            "edge:457c5af4a8860453",
+            "edge:8c14bb3c4f2535ab",
+            "edge:e417e0d536afef64"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1
+          },
+          "examples": [
+            "edge:15756424516d6e1c",
+            "edge:270c8c550742f25f",
+            "edge:907100e427788e39",
+            "edge:f2d46130a48c08f1"
+          ]
+        },
+        {
+          "entity": "cmp:src/views",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:0950414720c9ab29",
+            "edge:42a3d9c643a2798f"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:06242ee732661f40",
+            "edge:a2cf9747a2397906"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/services",
+      "name": "services",
+      "kind": "directory",
+      "path": "src/services",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/services/todo-service.js"
+      ],
+      "totals": {
+        "files": 1,
+        "symbols": 3,
+        "lines": 38
+      },
+      "modules": [
+        "mod:src/services"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/lib",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:471db7f0ad9638a5",
+            "edge:9496cc48fcb844c9",
+            "edge:fab223bd961a541b"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src/routes",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1
+          },
+          "examples": [
+            "edge:15756424516d6e1c",
+            "edge:270c8c550742f25f",
+            "edge:907100e427788e39",
+            "edge:f2d46130a48c08f1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/store",
+      "name": "store",
+      "kind": "directory",
+      "path": "src/store",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/store/memory-store.js"
+      ],
+      "totals": {
+        "files": 1,
+        "symbols": 8,
+        "lines": 47
+      },
+      "modules": [
+        "mod:src/store"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:944fa972dbadcb9c",
+            "edge:bef1fbcd39747a76"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/views",
+      "name": "views",
+      "kind": "directory",
+      "path": "src/views",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/views/layout.jsx",
+        "file:src/views/todo-page.js"
+      ],
+      "totals": {
+        "files": 2,
+        "symbols": 3,
+        "lines": 67
+      },
+      "modules": [
+        "mod:src/views"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/lib",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2
+          },
+          "examples": [
+            "edge:85631aa0894be728",
+            "edge:da40f9ab2a651297",
+            "edge:fde00560a2aa10f8"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src/routes",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:0950414720c9ab29",
+            "edge:42a3d9c643a2798f"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod:src",
+      "name": "todo-server",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/config.js",
+        "file:src/server.js"
+      ],
+      "components": [
+        "cmp:src"
+      ],
+      "entryPoints": [],
+      "publicApi": [],
+      "inference": {
+        "confidence": 0.75,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `src` (2 files); 1 is treated as a composition root, barrel or declared entry point.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "wiring-share",
+            "description": "1 of 2 files is a composition root, barrel or declared entry point.",
+            "value": 0.5,
+            "weight": 0.3,
+            "entities": [
+              "file:src/server.js"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.2
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `src/server.js` (entry-point rule: a declared entry point that nothing in its package depends on).",
+            "value": 1,
+            "entities": [
+              "file:src/server.js"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/plugins",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:3fa1c4a973233fbe",
+            "edge:6875b64179adf4d0"
+          ]
+        },
+        {
+          "entity": "mod:src/routes",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:06242ee732661f40",
+            "edge:a2cf9747a2397906"
+          ]
+        },
+        {
+          "entity": "mod:src/store",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:944fa972dbadcb9c",
+            "edge:bef1fbcd39747a76"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "mod:src/lib",
+      "name": "lib",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/lib"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/lib/dates.mjs",
+        "file:src/lib/html.cjs",
+        "file:src/lib/validation.js"
+      ],
+      "components": [
+        "cmp:src/lib"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/lib/dates.mjs",
+        "file:src/lib/html.cjs",
+        "file:src/lib/validation.js"
+      ],
+      "inference": {
+        "confidence": 0.42,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: shared directory `src/lib`; 0 of 3 files are used by two or more other modules.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/lib` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 3 member files.",
+            "value": 0.6,
+            "weight": 0.2
+          },
+          {
+            "signal": "shared-usage",
+            "description": "0 of 3 files are used by two or more other modules (composition roots do not count as users).",
+            "value": 0,
+            "weight": 0.5
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (routes, services, store and views), 1 feature directory (plugins) and 1 shared directory (lib), so it is organized by layer and by feature (mixed); no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/lib",
+              "dir:src/plugins",
+              "dir:src/routes",
+              "dir:src/services",
+              "dir:src/store",
+              "dir:src/views"
+            ]
+          },
+          {
+            "signal": "shared-directory",
+            "description": "Inferred from the shared directory `src/lib`.",
+            "entities": [
+              "dir:src/lib"
+            ]
+          },
+          {
+            "signal": "single-user-files",
+            "description": "2 files are used by only one other module: html (views) and validation (services).",
+            "value": 2,
+            "entities": [
+              "file:src/lib/html.cjs",
+              "file:src/lib/validation.js"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:src/routes",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1
+          },
+          "examples": [
+            "edge:457c5af4a8860453",
+            "edge:8c14bb3c4f2535ab",
+            "edge:e417e0d536afef64"
+          ]
+        },
+        {
+          "entity": "mod:src/services",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:471db7f0ad9638a5",
+            "edge:9496cc48fcb844c9",
+            "edge:fab223bd961a541b"
+          ]
+        },
+        {
+          "entity": "mod:src/views",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2
+          },
+          "examples": [
+            "edge:85631aa0894be728",
+            "edge:da40f9ab2a651297",
+            "edge:fde00560a2aa10f8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/plugins",
+      "name": "plugins",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/plugins"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/plugins/audit-log.js",
+        "file:src/plugins/loader.js"
+      ],
+      "components": [
+        "cmp:src/plugins"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/plugins/loader.js"
+      ],
+      "inference": {
+        "confidence": 0.275,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: directory `src/plugins`; no member has dependency evidence in its package.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/plugins` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.15
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "No member file has a dependency or dependent in its package that counts as evidence (those of composition roots and utilities do not), so cohesion is not measured and the signal contributes 0.",
+            "weight": 0.4
+          },
+          {
+            "signal": "membership-margin",
+            "description": "No member file has dependents or dependencies in its package that count as evidence (those of composition roots and utilities do not), so the margin is not measured and the signal contributes 0.",
+            "weight": 0.25
+          },
+          {
+            "signal": "feature-directory",
+            "description": "Inferred from the feature directory `src/plugins`.",
+            "entities": [
+              "dir:src/plugins"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (routes, services, store and views), 1 feature directory (plugins) and 1 shared directory (lib), so it is organized by layer and by feature (mixed); no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/lib",
+              "dir:src/plugins",
+              "dir:src/routes",
+              "dir:src/services",
+              "dir:src/store",
+              "dir:src/views"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:3fa1c4a973233fbe",
+            "edge:6875b64179adf4d0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/routes",
+      "name": "routes",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/routes"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/routes/health.js",
+        "file:src/routes/index.js"
+      ],
+      "components": [
+        "cmp:src/routes"
+      ],
+      "entryPoints": [
+        "file:src/routes/index.js"
+      ],
+      "publicApi": [
+        "file:src/routes/index.js"
+      ],
+      "inference": {
+        "confidence": 0.4,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/routes` in a layer-organized source tree; no file-name stem recurs across its layers.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/routes` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "No member file has a dependency or dependent in its package that counts as evidence (those of composition roots and utilities do not), so cohesion is not measured and the signal contributes 0.",
+            "weight": 0.5
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `src/routes/index.js` (shape rule: only composition roots outside its unit depend on it; its dependencies spread over 3 other units, none above 50%).",
+            "value": 1,
+            "entities": [
+              "file:src/routes/index.js"
+            ]
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/routes`.",
+            "entities": [
+              "dir:src/routes"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (routes, services, store and views), 1 feature directory (plugins) and 1 shared directory (lib), so it is organized by layer and by feature (mixed); no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/lib",
+              "dir:src/plugins",
+              "dir:src/routes",
+              "dir:src/services",
+              "dir:src/store",
+              "dir:src/views"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/lib",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 1
+          },
+          "examples": [
+            "edge:457c5af4a8860453",
+            "edge:8c14bb3c4f2535ab",
+            "edge:e417e0d536afef64"
+          ]
+        },
+        {
+          "entity": "mod:src/services",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1
+          },
+          "examples": [
+            "edge:15756424516d6e1c",
+            "edge:270c8c550742f25f",
+            "edge:907100e427788e39",
+            "edge:f2d46130a48c08f1"
+          ]
+        },
+        {
+          "entity": "mod:src/views",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:0950414720c9ab29",
+            "edge:42a3d9c643a2798f"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:06242ee732661f40",
+            "edge:a2cf9747a2397906"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/services",
+      "name": "services",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/services"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/services/todo-service.js"
+      ],
+      "components": [
+        "cmp:src/services"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/services/todo-service.js"
+      ],
+      "inference": {
+        "confidence": 0.366666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/services` in a layer-organized source tree; no file-name stem recurs across its layers.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/services` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "0% of the dependency weight of member files stays inside the module (internal 0.0, crossing 1.0).",
+            "value": 0,
+            "weight": 0.5
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/services`.",
+            "entities": [
+              "dir:src/services"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (routes, services, store and views), 1 feature directory (plugins) and 1 shared directory (lib), so it is organized by layer and by feature (mixed); no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/lib",
+              "dir:src/plugins",
+              "dir:src/routes",
+              "dir:src/services",
+              "dir:src/store",
+              "dir:src/views"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/lib",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "uses": 1
+          },
+          "examples": [
+            "edge:471db7f0ad9638a5",
+            "edge:9496cc48fcb844c9",
+            "edge:fab223bd961a541b"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src/routes",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1
+          },
+          "examples": [
+            "edge:15756424516d6e1c",
+            "edge:270c8c550742f25f",
+            "edge:907100e427788e39",
+            "edge:f2d46130a48c08f1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/store",
+      "name": "store",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/store"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/store/memory-store.js"
+      ],
+      "components": [
+        "cmp:src/store"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/store/memory-store.js"
+      ],
+      "inference": {
+        "confidence": 0.366666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/store` in a layer-organized source tree; no file-name stem recurs across its layers.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/store` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "No member file has a dependency or dependent in its package that counts as evidence (those of composition roots and utilities do not), so cohesion is not measured and the signal contributes 0.",
+            "weight": 0.5
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/store`.",
+            "entities": [
+              "dir:src/store"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (routes, services, store and views), 1 feature directory (plugins) and 1 shared directory (lib), so it is organized by layer and by feature (mixed); no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/lib",
+              "dir:src/plugins",
+              "dir:src/routes",
+              "dir:src/services",
+              "dir:src/store",
+              "dir:src/views"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:944fa972dbadcb9c",
+            "edge:bef1fbcd39747a76"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/views",
+      "name": "views",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/views"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/views/layout.jsx",
+        "file:src/views/todo-page.js"
+      ],
+      "components": [
+        "cmp:src/views"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/views/todo-page.js"
+      ],
+      "inference": {
+        "confidence": 0.65,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/views` in a layer-organized source tree; no file-name stem recurs across its layers.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/views` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "50% of the dependency weight of member files stays inside the module (internal 1.0, crossing 2.0).",
+            "value": 0.5,
+            "weight": 0.5
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/views`.",
+            "entities": [
+              "dir:src/views"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (routes, services, store and views), 1 feature directory (plugins) and 1 shared directory (lib), so it is organized by layer and by feature (mixed); no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/lib",
+              "dir:src/plugins",
+              "dir:src/routes",
+              "dir:src/services",
+              "dir:src/store",
+              "dir:src/views"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/lib",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 3,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2
+          },
+          "examples": [
+            "edge:85631aa0894be728",
+            "edge:da40f9ab2a651297",
+            "edge:fde00560a2aa10f8"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src/routes",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:0950414720c9ab29",
+            "edge:42a3d9c643a2798f"
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:route",
+      "name": "route",
+      "origin": "inferred",
+      "rank": 0,
+      "files": [
+        "file:src/routes/health.js",
+        "file:src/routes/index.js"
+      ],
+      "inference": {
+        "confidence": 0.778333333,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/routes` holds 2 files; no other layer depends on it and it depends on `service` and `view` (rank 0).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (2.0 of 2.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 2 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 0.666666667,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 2 member files.",
+            "value": 0.5,
+            "weight": 0.1
+          },
+          {
+            "signal": "conventional-order",
+            "description": "Placed before `store` by the conventional tier order (Katedrala heuristic): no observed dependency path connects them.",
+            "entities": [
+              "layer:route",
+              "layer:store"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "2 members by location only."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:service",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1
+          },
+          "examples": [
+            "edge:15756424516d6e1c",
+            "edge:270c8c550742f25f",
+            "edge:907100e427788e39",
+            "edge:f2d46130a48c08f1"
+          ]
+        },
+        {
+          "entity": "layer:view",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:0950414720c9ab29",
+            "edge:42a3d9c643a2798f"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "layer:view",
+      "name": "view",
+      "origin": "inferred",
+      "rank": 1,
+      "files": [
+        "file:src/views/layout.jsx",
+        "file:src/views/todo-page.js"
+      ],
+      "inference": {
+        "confidence": 0.711666667,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/views` holds 2 files; `route` depends on it and it depends on no other layer (rank 1).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (1.0 of 1.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 1 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 2 member files.",
+            "value": 0.5,
+            "weight": 0.1
+          },
+          {
+            "signal": "conventional-order",
+            "description": "Placed before `service` by the conventional tier order (Katedrala heuristic): no observed dependency path connects them.",
+            "entities": [
+              "layer:service",
+              "layer:view"
+            ]
+          },
+          {
+            "signal": "conventional-order",
+            "description": "Placed before `store` by the conventional tier order (Katedrala heuristic): no observed dependency path connects them.",
+            "entities": [
+              "layer:store",
+              "layer:view"
+            ]
+          },
+          {
+            "signal": "misplaced-by-name",
+            "description": "1 member is named for another layer than its directory: `src/views/todo-page.js` (name: `page`, directory: `view`).",
+            "value": 1,
+            "entities": [
+              "file:src/views/todo-page.js"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "2 members by location only."
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "layer:route",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:0950414720c9ab29",
+            "edge:42a3d9c643a2798f"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layer:service",
+      "name": "service",
+      "origin": "inferred",
+      "rank": 2,
+      "files": [
+        "file:src/services/todo-service.js"
+      ],
+      "inference": {
+        "confidence": 0.758,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/services` holds 1 file named `*-service.js`; `route` depends on it and it depends on no other layer (rank 2).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (1.0 of 1.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.88 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.88,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 1 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.1
+          },
+          {
+            "signal": "conventional-order",
+            "description": "Placed after `view` by the conventional tier order (Katedrala heuristic): no observed dependency path connects them.",
+            "entities": [
+              "layer:service",
+              "layer:view"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "1 member by location and naming."
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "layer:route",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 1
+          },
+          "examples": [
+            "edge:15756424516d6e1c",
+            "edge:270c8c550742f25f",
+            "edge:907100e427788e39",
+            "edge:f2d46130a48c08f1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layer:store",
+      "name": "store",
+      "origin": "inferred",
+      "rank": 2,
+      "files": [
+        "file:src/store/memory-store.js"
+      ],
+      "inference": {
+        "confidence": 0.341333333,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/store` holds 1 file named `*-store.js`; no dependency connects it with another layer (rank 2).",
+        "evidence": [
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.88 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.88,
+            "weight": 0.35
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.1
+          },
+          {
+            "signal": "direction-consistency",
+            "description": "No dependency connects this layer with another layer, so the direction of its dependencies cannot be measured.",
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 0 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 0,
+            "weight": 0.2
+          },
+          {
+            "signal": "conventional-order",
+            "description": "Placed after `route` by the conventional tier order (Katedrala heuristic): no observed dependency path connects them.",
+            "entities": [
+              "layer:route",
+              "layer:store"
+            ]
+          },
+          {
+            "signal": "conventional-order",
+            "description": "Placed after `view` by the conventional tier order (Katedrala heuristic): no observed dependency path connects them.",
+            "entities": [
+              "layer:store",
+              "layer:view"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "1 member by location and naming."
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": []
+    }
+  ],
+  "roles": {
+    "src/routes/health.js": [
+      {
+        "role": "route-definition",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/routes`, which the directory vocabulary maps to the layer `route`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/routes"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/routes/index.js": [
+      {
+        "role": "route-definition",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/routes`, which the directory vocabulary maps to the layer `route`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/routes"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/todo-service.js": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `todo-service.js` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/services/todo-service.js"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/store/memory-store.js": [
+      {
+        "role": "state-store",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/store`, which the directory vocabulary maps to the layer `store`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/store"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "state-store",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `memory-store.js` ends with the word `store`, which the naming vocabulary maps to `state-store`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/store/memory-store.js"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `MemoryStore` ends with the word `store`, which the naming vocabulary maps to `state-store`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/store/memory-store.js#MemoryStore"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/views/todo-page.js": [
+      {
+        "role": "ui-page",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `todo-page.js` ends with the word `page`, which the naming vocabulary maps to `ui-page`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/views/todo-page.js"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

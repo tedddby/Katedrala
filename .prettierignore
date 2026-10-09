@@ -7,10 +7,13 @@ pnpm-lock.yaml
 fixtures/
 # Generated artifacts are formatted by their generators.
 packages/ir/schema/
+tests/fixtures/golden/
 benchmarks/results/
 benchmarks/.work/
 # Claude Code skills and settings: third-party content and tool-written files.
 .claude/
+# The cloud handoff folder is not part of the project; it is removed before merging, and this entry with it.
+handoff/
 # Site build output and tool-written design records.
 site/.next/
 site/out/

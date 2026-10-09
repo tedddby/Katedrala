@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ConfigurationError, InMemorySource, sortDiagnostics } from "@katedrala/core";
 import {
+  inferArchitecture,
   resolveInferenceSettings,
   type InferenceInput,
   type InferenceResult,
@@ -784,10 +785,15 @@ describe("analyzeArchitecture: an explicit configuration file", () => {
     await rm(scratch, { recursive: true, force: true });
   });
 
-  async function analyzeWithFile(directory: string, configuration: string) {
+  async function configurationFile(directory: string, configuration: string): Promise<string> {
     await mkdir(join(scratch, directory), { recursive: true });
     const configPath = join(scratch, directory, CONFIGURATION_FILE);
     await writeFile(configPath, configuration);
+    return configPath;
+  }
+
+  async function analyzeWithFile(directory: string, configuration: string) {
+    const configPath = await configurationFile(directory, configuration);
     const { stage, calls } = standInStage();
     const analysis = await analyzeWith(stage, {
       root: join(scratch, "root"),
@@ -797,23 +803,14 @@ describe("analyzeArchitecture: an explicit configuration file", () => {
     return { analysis, input: onlyCall(calls) };
   }
 
+  const OVERLAPPING = [
+    ['  payments: ["src/payments/**"]', '  billing: ["src/payments/payment.ts"]'],
+    ['  billing: ["src/payments/payment.ts"]', '  payments: ["src/payments/**"]'],
+  ] as const;
+
   it("gives byte-identical documents and digests when overlapping modules are reordered (D-23)", async () => {
-    const a = await analyzeWithFile(
-      "a",
-      lines(
-        "modules:",
-        '  payments: ["src/payments/**"]',
-        '  billing: ["src/payments/payment.ts"]',
-      ),
-    );
-    const b = await analyzeWithFile(
-      "b",
-      lines(
-        "modules:",
-        '  billing: ["src/payments/payment.ts"]',
-        '  payments: ["src/payments/**"]',
-      ),
-    );
+    const a = await analyzeWithFile("a", lines("modules:", ...OVERLAPPING[0]));
+    const b = await analyzeWithFile("b", lines("modules:", ...OVERLAPPING[1]));
     expect(b.input.declarations).toEqual(a.input.declarations);
     expect(a.input.declarations.modules.map((module) => module.name)).toEqual([
       "billing",
@@ -829,17 +826,144 @@ describe("analyzeArchitecture: an explicit configuration file", () => {
       a.analysis.document.diagnostics.filter((diagnostic) => diagnostic.file !== undefined),
     ).toEqual([]);
   });
+
+  it("gives byte-identical documents and digests with the inference of @katedrala/inference (D-23)", async () => {
+    const analyze = async (directory: string, order: readonly string[]) =>
+      analyzeArchitecture({
+        ...BASE_OPTIONS,
+        root: join(scratch, "root"),
+        source: source(),
+        configPath: await configurationFile(directory, lines("modules:", ...order)),
+      });
+    const a = await analyze("a", OVERLAPPING[0]);
+    const b = await analyze("b", OVERLAPPING[1]);
+    expect(b.document.snapshot.analysisDigest).toBe(a.document.snapshot.analysisDigest);
+    expect(serializeDocument(b.document)).toBe(serializeDocument(a.document));
+    // The first module by name keeps the file both match, whatever the order of the keys.
+    const filesOf = (name: string) =>
+      a.document.modules.find((module) => module.name === name)?.files.map(String);
+    expect(filesOf("billing")).toEqual(["file:src/payments/payment.ts"]);
+    expect(filesOf("payments")).toEqual([
+      "file:src/payments/payment.test.ts",
+      "file:src/payments/refund.ts",
+    ]);
+    // The overlap warning names the rule; a configuration outside the snapshot locates nothing.
+    expect(a.document.diagnostics).toEqual([
+      {
+        code: "configuration-warning",
+        severity: "warning",
+        message:
+          'Files match several declared modules: 1 file matches both "billing" and "payments", and the first by name ("billing") keeps it: src/payments/payment.ts',
+      },
+    ]);
+  });
 });
 
-describe("analyzeArchitecture", () => {
-  it("rejects with inference-unavailable until @katedrala/inference provides inferArchitecture", async () => {
-    const result = analyzeArchitecture({ ...BASE_OPTIONS, source: configured() });
-    await expect(result).rejects.toMatchObject({
-      name: "InferenceUnavailableError",
-      code: "inference-unavailable",
-    });
-    // analyzeStructure is unaffected.
-    const structure = await analyzeStructure({ ...BASE_OPTIONS, source: configured() });
-    expect(structure.document.files.length).toBeGreaterThan(0);
+describe("analyzeArchitecture with the inference of @katedrala/inference", () => {
+  const paths = (files: readonly string[]): string[] =>
+    files.map((file) => file.slice("file:".length));
+
+  it("infers canonical architecture sections that validate against the strict schema", async () => {
+    const { document } = await analyzeArchitecture({ ...BASE_OPTIONS, source: configured() });
+    const full = asDocument(document);
+    const valid = strictSchema(full);
+    expect(strictSchema.errors ?? []).toEqual([]);
+    expect(valid).toBe(true);
+    // Canonical as produced (plan 4.8).
+    expect(canonicalizeDocument(full)).toEqual(full);
+
+    // Declared modules are exact: the first by name keeps a file several match (D-23), and one matching
+    // nothing is kept empty (D-71); the other files are inferred (D-21, infer-rest), the test attached.
+    expect(
+      document.modules.map((module) => [module.id, module.origin, paths(module.files)]),
+    ).toEqual([
+      ["mod:billing", "declared", ["src/payments/payment.ts"]],
+      ["mod:legacy", "declared", []],
+      ["mod:payments", "declared", ["src/payments/payment.test.ts", "src/payments/refund.ts"]],
+      ["mod:src", "inferred", ["src/main.ts"]],
+      ["mod:src/orders", "inferred", ["src/orders/order.service.ts", "src/orders/order.ts"]],
+    ]);
+    for (const module of document.modules) {
+      if (module.origin === "declared") {
+        expect(module.inference).toBeUndefined();
+        continue;
+      }
+      // D-56: the non-default parameter is part of the method; D-66: the reason says it is inferred.
+      expect(module.inference?.method).toBe("katedrala/module-inference@1?max_module_files=200");
+      expect(module.inference?.reason).toMatch(/^Inferred: /);
+    }
+    // Aggregated dependencies on the metrics projection, mirrored as dependents.
+    const dependencies = (id: string) =>
+      document.modules
+        .find((module) => module.id === id)
+        ?.dependencies.map((dependency) => dependency.entity);
+    expect(dependencies("mod:src")).toEqual(["mod:src/orders"]);
+    expect(dependencies("mod:src/orders")).toEqual(["mod:billing"]);
+    expect(dependencies("mod:payments")).toEqual(["mod:billing"]);
+    // The declared layer (D-50), the configured and the naming role (D-17).
+    expect(document.layers.map((layer) => [layer.id, layer.origin, layer.rank])).toEqual([
+      ["layer:service", "declared", 0],
+    ]);
+    const rolesOf = (path: string) =>
+      document.files
+        .find((file) => file.path === path)
+        ?.roles?.map((entry) => [entry.role, entry.source]);
+    expect(rolesOf("src/orders/order.ts")).toEqual([["data-model", "configuration"]]);
+    expect(rolesOf("src/orders/order.service.ts")).toEqual([["service", "naming"]]);
+    // The components and their cross-references with the modules.
+    const component = (id: string) => document.components.find((candidate) => candidate.id === id);
+    expect(component("cmp:src/payments")?.modules).toEqual(["mod:billing", "mod:payments"]);
+    expect(component("cmp:")?.modules).toEqual([
+      "mod:billing",
+      "mod:payments",
+      "mod:src",
+      "mod:src/orders",
+    ]);
+    // The declared modules' warnings, located at the configuration file (D-24, D-71).
+    expect(
+      document.diagnostics
+        .filter((diagnostic) => /declared module/i.test(diagnostic.message))
+        .map((diagnostic) => [diagnostic.file, diagnostic.message]),
+    ).toEqual([
+      [
+        fileId(CONFIGURATION_FILE),
+        'Declared module "legacy" matches no file; it is kept without member files',
+      ],
+      [
+        fileId(CONFIGURATION_FILE),
+        'Files match several declared modules: 1 file matches both "billing" and "payments", and the first by name ("billing") keeps it: src/payments/payment.ts',
+      ],
+    ]);
+  });
+
+  it("leaves the structural sections as analyzeStructure gives them (plan 7.1)", async () => {
+    for (const repository of [source, () => configured()]) {
+      const analysis = await analyzeArchitecture({ ...BASE_OPTIONS, source: repository() });
+      const structure = await analyzeStructure({ ...BASE_OPTIONS, source: repository() });
+      // The inference stage's own diagnostics, from the same inputs the engine passes.
+      const { configuration } = structure;
+      const inferred = inferArchitecture({
+        model: structure.model,
+        settings: analysis.inference,
+        declarations: resolveDeclarations(
+          structure.document.files,
+          configuration.config as InferenceSections,
+          configuration.inSnapshot && configuration.path !== undefined
+            ? fileId(configuration.path)
+            : undefined,
+        ),
+        projection: metricsProjectionOptions(structure.settings),
+        repositoryName: structure.document.repository.name,
+      });
+      expect(serializeDocument(structuralPart(analysis.document, inferred.diagnostics))).toBe(
+        serializeDocument(withoutInferenceWarnings(structure.document)),
+      );
+    }
+  });
+
+  it("gives byte-identical documents on every run", async () => {
+    const first = await analyzeArchitecture({ ...BASE_OPTIONS, source: configured() });
+    const second = await analyzeArchitecture({ ...BASE_OPTIONS, source: configured() });
+    expect(serializeDocument(second.document)).toBe(serializeDocument(first.document));
   });
 });

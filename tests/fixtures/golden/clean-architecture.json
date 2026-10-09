@@ -1,0 +1,2094 @@
+{
+  "components": [
+    {
+      "id": "cmp:",
+      "name": "library-lending",
+      "kind": "package",
+      "path": "",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "children": [
+        "cmp:src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 25,
+        "symbols": 142,
+        "lines": 706
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/application",
+        "mod:src/domain",
+        "mod:src/infrastructure",
+        "mod:src/presentation"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src",
+      "name": "src",
+      "kind": "directory",
+      "path": "src",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:",
+      "children": [
+        "cmp:src/application",
+        "cmp:src/domain",
+        "cmp:src/infrastructure",
+        "cmp:src/presentation/http"
+      ],
+      "files": [
+        "file:src/main.ts"
+      ],
+      "totals": {
+        "files": 25,
+        "symbols": 142,
+        "lines": 706
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/application",
+        "mod:src/domain",
+        "mod:src/infrastructure",
+        "mod:src/presentation"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/application",
+          "edgeCount": 7,
+          "observations": 7,
+          "runtimeEdgeCount": 7,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:504f04cf4fe5e5c8",
+            "edge:5aadd0216eef539f",
+            "edge:89738b24fd4d8f4a",
+            "edge:9c5ea36b9a5c1989",
+            "edge:9d3a982a6db558cf"
+          ]
+        },
+        {
+          "entity": "cmp:src/infrastructure",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:5013886c3c545783",
+            "edge:bd251cc91d67f1ed"
+          ]
+        },
+        {
+          "entity": "cmp:src/infrastructure/notifications",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:1cf21156f18a7dc5",
+            "edge:93b801230f7b80c0"
+          ]
+        },
+        {
+          "entity": "cmp:src/infrastructure/persistence",
+          "edgeCount": 8,
+          "observations": 8,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 4,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:13a8c257da794707",
+            "edge:a17c395e5e40bac2",
+            "edge:a5069dc693e59187",
+            "edge:b0fe5427a1c748c1",
+            "edge:bd1593a64d82613c"
+          ]
+        },
+        {
+          "entity": "cmp:src/presentation/http",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2
+          },
+          "examples": [
+            "edge:5c79319c3c37eb61",
+            "edge:8fc905ae4b082906",
+            "edge:c2028dcb268b7488",
+            "edge:db18473adebbf7d6"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src/application",
+      "name": "application",
+      "kind": "directory",
+      "path": "src/application",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/application/borrow-book.ts",
+        "file:src/application/dto.ts",
+        "file:src/application/return-book.ts",
+        "file:src/application/send-overdue-reminders.ts"
+      ],
+      "totals": {
+        "files": 4,
+        "symbols": 25,
+        "lines": 130
+      },
+      "modules": [
+        "mod:src/application"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/domain",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 4
+          },
+          "examples": [
+            "edge:0402094786b91650",
+            "edge:17af435264802112",
+            "edge:d3fe38a1a7e9c21a",
+            "edge:d848e2f3372f8792"
+          ]
+        },
+        {
+          "entity": "cmp:src/domain/model",
+          "edgeCount": 11,
+          "observations": 13,
+          "runtimeEdgeCount": 9,
+          "kindCounts": {
+            "calls": 4,
+            "instantiates": 2,
+            "references-type": 2,
+            "uses": 3
+          },
+          "examples": [
+            "edge:0cf6ad566afa2086",
+            "edge:2c30370bd3d45feb",
+            "edge:10f154fde1546f10",
+            "edge:6183f289e53bf855",
+            "edge:62abfa93dcded0ec"
+          ]
+        },
+        {
+          "entity": "cmp:src/domain/ports",
+          "edgeCount": 24,
+          "observations": 29,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 12,
+            "references-type": 12
+          },
+          "examples": [
+            "edge:086ddd852b1df538",
+            "edge:34a2f2d0a2e43b69",
+            "edge:4fc73e82693e8d59",
+            "edge:b360812b84fb61f7",
+            "edge:095209035065ae5b"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 7,
+          "observations": 7,
+          "runtimeEdgeCount": 7,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:504f04cf4fe5e5c8",
+            "edge:5aadd0216eef539f",
+            "edge:89738b24fd4d8f4a",
+            "edge:9c5ea36b9a5c1989",
+            "edge:9d3a982a6db558cf"
+          ]
+        },
+        {
+          "entity": "cmp:src/presentation/http",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:467cf2d05f3858d5",
+            "edge:66a7255d17e4739f",
+            "edge:7706c34eaa66aee6",
+            "edge:b056bbaa1e4027b4",
+            "edge:edbe7386909db6ca"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/domain",
+      "name": "domain",
+      "kind": "directory",
+      "path": "src/domain",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [
+        "cmp:src/domain/model",
+        "cmp:src/domain/ports"
+      ],
+      "files": [
+        "file:src/domain/index.ts"
+      ],
+      "totals": {
+        "files": 10,
+        "symbols": 62,
+        "lines": 223
+      },
+      "modules": [
+        "mod:src/domain"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/domain/model",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "re-exports": 4
+          },
+          "examples": [
+            "edge:02e33683d91bd66c",
+            "edge:890f646c332d04f9",
+            "edge:9e5049e2f66d60a2",
+            "edge:db1405191b9b6081"
+          ]
+        },
+        {
+          "entity": "cmp:src/domain/ports",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "re-exports": 5
+          },
+          "examples": [
+            "edge:7cdfb07225935d07",
+            "edge:8c1624405dbd3078",
+            "edge:9d225aa7224bda76",
+            "edge:d8a99f3494a22e3a",
+            "edge:de425ad7aaf54412"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src/application",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 4
+          },
+          "examples": [
+            "edge:0402094786b91650",
+            "edge:17af435264802112",
+            "edge:d3fe38a1a7e9c21a",
+            "edge:d848e2f3372f8792"
+          ]
+        },
+        {
+          "entity": "cmp:src/infrastructure/persistence",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 1
+          },
+          "examples": [
+            "edge:351492db71a1735e"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/domain/model",
+      "name": "model",
+      "kind": "directory",
+      "path": "src/domain/model",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src/domain",
+      "children": [],
+      "files": [
+        "file:src/domain/model/book.ts",
+        "file:src/domain/model/errors.ts",
+        "file:src/domain/model/loan.ts",
+        "file:src/domain/model/member.ts"
+      ],
+      "totals": {
+        "files": 4,
+        "symbols": 57,
+        "lines": 182
+      },
+      "modules": [
+        "mod:src/domain"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src/application",
+          "edgeCount": 11,
+          "observations": 13,
+          "runtimeEdgeCount": 9,
+          "kindCounts": {
+            "calls": 4,
+            "instantiates": 2,
+            "references-type": 2,
+            "uses": 3
+          },
+          "examples": [
+            "edge:0cf6ad566afa2086",
+            "edge:2c30370bd3d45feb",
+            "edge:10f154fde1546f10",
+            "edge:6183f289e53bf855",
+            "edge:62abfa93dcded0ec"
+          ]
+        },
+        {
+          "entity": "cmp:src/domain",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "re-exports": 4
+          },
+          "examples": [
+            "edge:02e33683d91bd66c",
+            "edge:890f646c332d04f9",
+            "edge:9e5049e2f66d60a2",
+            "edge:db1405191b9b6081"
+          ]
+        },
+        {
+          "entity": "cmp:src/domain/ports",
+          "edgeCount": 15,
+          "observations": 22,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "imports": 6,
+            "references-type": 9
+          },
+          "examples": [
+            "edge:4ed5b93bae2d4c46",
+            "edge:2ae73125851e0835",
+            "edge:5bf4d148e998f90e",
+            "edge:6c74c22402823488",
+            "edge:7cd4aeb2f30cc075"
+          ]
+        },
+        {
+          "entity": "cmp:src/infrastructure/notifications",
+          "edgeCount": 11,
+          "observations": 11,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2,
+            "references-type": 4,
+            "uses": 4
+          },
+          "examples": [
+            "edge:06b4b33f82050d2d",
+            "edge:3d376fdfde70f14a",
+            "edge:416e121e3d02c7db",
+            "edge:4b7e8a14f8113493",
+            "edge:51ac5e41edcd3682"
+          ]
+        },
+        {
+          "entity": "cmp:src/infrastructure/persistence",
+          "edgeCount": 24,
+          "observations": 29,
+          "runtimeEdgeCount": 9,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 3,
+            "instantiates": 2,
+            "references-type": 14,
+            "uses": 3
+          },
+          "examples": [
+            "edge:b94d5d2ffd1373b0",
+            "edge:21ebf6a20314f934",
+            "edge:24b65447af865e45",
+            "edge:286a4c7eb3ffd65b",
+            "edge:2ffb53e40a497012"
+          ]
+        },
+        {
+          "entity": "cmp:src/presentation/http",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 1,
+            "uses": 5
+          },
+          "examples": [
+            "edge:1be97fcd918e5541",
+            "edge:39201a49bb074e28",
+            "edge:74b5a8f5760eeca0",
+            "edge:8eabd1791eebf600",
+            "edge:e4e7adf8652f92a4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/domain/ports",
+      "name": "ports",
+      "kind": "directory",
+      "path": "src/domain/ports",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src/domain",
+      "children": [],
+      "files": [
+        "file:src/domain/ports/book-repository.ts",
+        "file:src/domain/ports/clock.ts",
+        "file:src/domain/ports/loan-repository.ts",
+        "file:src/domain/ports/member-repository.ts",
+        "file:src/domain/ports/notifier.ts"
+      ],
+      "totals": {
+        "files": 5,
+        "symbols": 5,
+        "lines": 32
+      },
+      "modules": [
+        "mod:src/domain"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/domain/model",
+          "edgeCount": 15,
+          "observations": 22,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "imports": 6,
+            "references-type": 9
+          },
+          "examples": [
+            "edge:4ed5b93bae2d4c46",
+            "edge:2ae73125851e0835",
+            "edge:5bf4d148e998f90e",
+            "edge:6c74c22402823488",
+            "edge:7cd4aeb2f30cc075"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src/application",
+          "edgeCount": 24,
+          "observations": 29,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 12,
+            "references-type": 12
+          },
+          "examples": [
+            "edge:086ddd852b1df538",
+            "edge:34a2f2d0a2e43b69",
+            "edge:4fc73e82693e8d59",
+            "edge:b360812b84fb61f7",
+            "edge:095209035065ae5b"
+          ]
+        },
+        {
+          "entity": "cmp:src/domain",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "re-exports": 5
+          },
+          "examples": [
+            "edge:7cdfb07225935d07",
+            "edge:8c1624405dbd3078",
+            "edge:9d225aa7224bda76",
+            "edge:d8a99f3494a22e3a",
+            "edge:de425ad7aaf54412"
+          ]
+        },
+        {
+          "entity": "cmp:src/infrastructure",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "implements": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:2f13f6d9db1f4683",
+            "edge:df2fa921a2b67ca9"
+          ]
+        },
+        {
+          "entity": "cmp:src/infrastructure/notifications",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "implements": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:b6932ae7471ed226",
+            "edge:fe8a072232359dbc"
+          ]
+        },
+        {
+          "entity": "cmp:src/infrastructure/persistence",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "implements": 3,
+            "imports": 2
+          },
+          "examples": [
+            "edge:681495e4032cddc0",
+            "edge:6b80f362f2f57f36",
+            "edge:8c43c586ad8ff41f",
+            "edge:c0429b3ba3441cf3",
+            "edge:d930553b64b64bdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/infrastructure",
+      "name": "infrastructure",
+      "kind": "directory",
+      "path": "src/infrastructure",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [
+        "cmp:src/infrastructure/notifications",
+        "cmp:src/infrastructure/persistence"
+      ],
+      "files": [
+        "file:src/infrastructure/system-clock.ts"
+      ],
+      "totals": {
+        "files": 6,
+        "symbols": 33,
+        "lines": 167
+      },
+      "modules": [
+        "mod:src/infrastructure"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/domain/ports",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "implements": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:2f13f6d9db1f4683",
+            "edge:df2fa921a2b67ca9"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:5013886c3c545783",
+            "edge:bd251cc91d67f1ed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/infrastructure/notifications",
+      "name": "notifications",
+      "kind": "directory",
+      "path": "src/infrastructure/notifications",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src/infrastructure",
+      "children": [],
+      "files": [
+        "file:src/infrastructure/notifications/smtp-notifier.ts"
+      ],
+      "totals": {
+        "files": 1,
+        "symbols": 7,
+        "lines": 41
+      },
+      "modules": [
+        "mod:src/infrastructure"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/domain/model",
+          "edgeCount": 11,
+          "observations": 11,
+          "runtimeEdgeCount": 5,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2,
+            "references-type": 4,
+            "uses": 4
+          },
+          "examples": [
+            "edge:06b4b33f82050d2d",
+            "edge:3d376fdfde70f14a",
+            "edge:416e121e3d02c7db",
+            "edge:4b7e8a14f8113493",
+            "edge:51ac5e41edcd3682"
+          ]
+        },
+        {
+          "entity": "cmp:src/domain/ports",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "implements": 1,
+            "imports": 1
+          },
+          "examples": [
+            "edge:b6932ae7471ed226",
+            "edge:fe8a072232359dbc"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 2,
+          "observations": 2,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "imports": 1,
+            "instantiates": 1
+          },
+          "examples": [
+            "edge:1cf21156f18a7dc5",
+            "edge:93b801230f7b80c0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/infrastructure/persistence",
+      "name": "persistence",
+      "kind": "directory",
+      "path": "src/infrastructure/persistence",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src/infrastructure",
+      "children": [],
+      "files": [
+        "file:src/infrastructure/persistence/pool.ts",
+        "file:src/infrastructure/persistence/sql-book-repository.ts",
+        "file:src/infrastructure/persistence/sql-loan-repository.ts",
+        "file:src/infrastructure/persistence/sql-member-repository.ts"
+      ],
+      "totals": {
+        "files": 4,
+        "symbols": 24,
+        "lines": 119
+      },
+      "modules": [
+        "mod:src/infrastructure"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/domain",
+          "edgeCount": 1,
+          "observations": 1,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 1
+          },
+          "examples": [
+            "edge:351492db71a1735e"
+          ]
+        },
+        {
+          "entity": "cmp:src/domain/model",
+          "edgeCount": 24,
+          "observations": 29,
+          "runtimeEdgeCount": 9,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 3,
+            "instantiates": 2,
+            "references-type": 14,
+            "uses": 3
+          },
+          "examples": [
+            "edge:b94d5d2ffd1373b0",
+            "edge:21ebf6a20314f934",
+            "edge:24b65447af865e45",
+            "edge:286a4c7eb3ffd65b",
+            "edge:2ffb53e40a497012"
+          ]
+        },
+        {
+          "entity": "cmp:src/domain/ports",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 0,
+          "kindCounts": {
+            "implements": 3,
+            "imports": 2
+          },
+          "examples": [
+            "edge:681495e4032cddc0",
+            "edge:6b80f362f2f57f36",
+            "edge:8c43c586ad8ff41f",
+            "edge:c0429b3ba3441cf3",
+            "edge:d930553b64b64bdf"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 8,
+          "observations": 8,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 4,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:13a8c257da794707",
+            "edge:a17c395e5e40bac2",
+            "edge:a5069dc693e59187",
+            "edge:b0fe5427a1c748c1",
+            "edge:bd1593a64d82613c"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/presentation/http",
+      "name": "presentation/http",
+      "kind": "directory",
+      "path": "src/presentation/http",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/presentation/http/error-mapper.ts",
+        "file:src/presentation/http/http-types.ts",
+        "file:src/presentation/http/loan-routes.ts",
+        "file:src/presentation/http/server.ts"
+      ],
+      "totals": {
+        "files": 4,
+        "symbols": 13,
+        "lines": 152
+      },
+      "modules": [
+        "mod:src/presentation"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/application",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:467cf2d05f3858d5",
+            "edge:66a7255d17e4739f",
+            "edge:7706c34eaa66aee6",
+            "edge:b056bbaa1e4027b4",
+            "edge:edbe7386909db6ca"
+          ]
+        },
+        {
+          "entity": "cmp:src/domain/model",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 1,
+            "uses": 5
+          },
+          "examples": [
+            "edge:1be97fcd918e5541",
+            "edge:39201a49bb074e28",
+            "edge:74b5a8f5760eeca0",
+            "edge:8eabd1791eebf600",
+            "edge:e4e7adf8652f92a4"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2
+          },
+          "examples": [
+            "edge:5c79319c3c37eb61",
+            "edge:8fc905ae4b082906",
+            "edge:c2028dcb268b7488",
+            "edge:db18473adebbf7d6"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod:src",
+      "name": "library-lending",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/main.ts"
+      ],
+      "components": [
+        "cmp:src"
+      ],
+      "entryPoints": [],
+      "publicApi": [],
+      "inference": {
+        "confidence": 0.866666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `src` (1 file); it is treated as a composition root, barrel or declared entry point.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "wiring-share",
+            "description": "Its only member file is a composition root, barrel or declared entry point.",
+            "value": 1,
+            "weight": 0.3,
+            "entities": [
+              "file:src/main.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `src/main.ts` (entry-point rule: a declared entry point that nothing in its package depends on).",
+            "value": 1,
+            "entities": [
+              "file:src/main.ts"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/application",
+          "edgeCount": 7,
+          "observations": 7,
+          "runtimeEdgeCount": 7,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:504f04cf4fe5e5c8",
+            "edge:5aadd0216eef539f",
+            "edge:89738b24fd4d8f4a",
+            "edge:9c5ea36b9a5c1989",
+            "edge:9d3a982a6db558cf"
+          ]
+        },
+        {
+          "entity": "mod:src/infrastructure",
+          "edgeCount": 12,
+          "observations": 12,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 6,
+            "instantiates": 5
+          },
+          "examples": [
+            "edge:13a8c257da794707",
+            "edge:1cf21156f18a7dc5",
+            "edge:5013886c3c545783",
+            "edge:93b801230f7b80c0",
+            "edge:a17c395e5e40bac2"
+          ]
+        },
+        {
+          "entity": "mod:src/presentation",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2
+          },
+          "examples": [
+            "edge:5c79319c3c37eb61",
+            "edge:8fc905ae4b082906",
+            "edge:c2028dcb268b7488",
+            "edge:db18473adebbf7d6"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "mod:src/application",
+      "name": "application",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/application"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/application/borrow-book.ts",
+        "file:src/application/dto.ts",
+        "file:src/application/return-book.ts",
+        "file:src/application/send-overdue-reminders.ts"
+      ],
+      "components": [
+        "cmp:src/application"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/application/borrow-book.ts",
+        "file:src/application/return-book.ts",
+        "file:src/application/send-overdue-reminders.ts"
+      ],
+      "inference": {
+        "confidence": 0.511764706,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/application` in a layer-organized source tree; no file-name stem recurs across its layers.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/application` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "16% of the dependency weight of member files stays inside the module (internal 2.0, crossing 21.5).",
+            "value": 0.156862745,
+            "weight": 0.5
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/application`.",
+            "entities": [
+              "dir:src/application"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (application, domain, infrastructure and presentation), so it is organized by layer; no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/application",
+              "dir:src/domain",
+              "dir:src/infrastructure",
+              "dir:src/presentation"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/domain",
+          "edgeCount": 39,
+          "observations": 46,
+          "runtimeEdgeCount": 23,
+          "kindCounts": {
+            "calls": 16,
+            "imports": 4,
+            "instantiates": 2,
+            "references-type": 14,
+            "uses": 3
+          },
+          "examples": [
+            "edge:086ddd852b1df538",
+            "edge:0cf6ad566afa2086",
+            "edge:2c30370bd3d45feb",
+            "edge:34a2f2d0a2e43b69",
+            "edge:4fc73e82693e8d59"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 7,
+          "observations": 7,
+          "runtimeEdgeCount": 7,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:504f04cf4fe5e5c8",
+            "edge:5aadd0216eef539f",
+            "edge:89738b24fd4d8f4a",
+            "edge:9c5ea36b9a5c1989",
+            "edge:9d3a982a6db558cf"
+          ]
+        },
+        {
+          "entity": "mod:src/presentation",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:467cf2d05f3858d5",
+            "edge:66a7255d17e4739f",
+            "edge:7706c34eaa66aee6",
+            "edge:b056bbaa1e4027b4",
+            "edge:edbe7386909db6ca"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/domain",
+      "name": "domain",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/domain"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/domain/index.ts",
+        "file:src/domain/model/book.ts",
+        "file:src/domain/model/errors.ts",
+        "file:src/domain/model/loan.ts",
+        "file:src/domain/model/member.ts",
+        "file:src/domain/ports/book-repository.ts",
+        "file:src/domain/ports/clock.ts",
+        "file:src/domain/ports/loan-repository.ts",
+        "file:src/domain/ports/member-repository.ts",
+        "file:src/domain/ports/notifier.ts"
+      ],
+      "components": [
+        "cmp:src/domain",
+        "cmp:src/domain/model",
+        "cmp:src/domain/ports"
+      ],
+      "entryPoints": [
+        "file:src/domain/index.ts"
+      ],
+      "publicApi": [
+        "file:src/domain/index.ts",
+        "file:src/domain/model/book.ts",
+        "file:src/domain/model/errors.ts",
+        "file:src/domain/model/loan.ts",
+        "file:src/domain/model/member.ts",
+        "file:src/domain/ports/book-repository.ts",
+        "file:src/domain/ports/clock.ts",
+        "file:src/domain/ports/loan-repository.ts",
+        "file:src/domain/ports/notifier.ts"
+      ],
+      "inference": {
+        "confidence": 0.726829268,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/domain` in a layer-organized source tree; no file-name stem recurs across its layers.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/domain` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "52% of the dependency weight of member files stays inside the module (internal 16.0, crossing 29.5).",
+            "value": 0.520325203,
+            "weight": 0.5
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 10 member files.",
+            "value": 0.833333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "facade-files",
+            "description": "Treated as a barrel by the facade rule (Katedrala heuristic) and pinned to its directory: `src/domain/index.ts` (9 of its 9 dependencies are re-exports).",
+            "value": 1,
+            "entities": [
+              "file:src/domain/index.ts"
+            ]
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/domain`.",
+            "entities": [
+              "dir:src/domain"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (application, domain, infrastructure and presentation), so it is organized by layer; no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/application",
+              "dir:src/domain",
+              "dir:src/infrastructure",
+              "dir:src/presentation"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:src/application",
+          "edgeCount": 39,
+          "observations": 46,
+          "runtimeEdgeCount": 23,
+          "kindCounts": {
+            "calls": 16,
+            "imports": 4,
+            "instantiates": 2,
+            "references-type": 14,
+            "uses": 3
+          },
+          "examples": [
+            "edge:086ddd852b1df538",
+            "edge:0cf6ad566afa2086",
+            "edge:2c30370bd3d45feb",
+            "edge:34a2f2d0a2e43b69",
+            "edge:4fc73e82693e8d59"
+          ]
+        },
+        {
+          "entity": "mod:src/infrastructure",
+          "edgeCount": 45,
+          "observations": 50,
+          "runtimeEdgeCount": 15,
+          "kindCounts": {
+            "calls": 3,
+            "implements": 5,
+            "imports": 10,
+            "instantiates": 2,
+            "references-type": 18,
+            "uses": 7
+          },
+          "examples": [
+            "edge:b94d5d2ffd1373b0",
+            "edge:06b4b33f82050d2d",
+            "edge:21ebf6a20314f934",
+            "edge:24b65447af865e45",
+            "edge:286a4c7eb3ffd65b"
+          ]
+        },
+        {
+          "entity": "mod:src/presentation",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 1,
+            "uses": 5
+          },
+          "examples": [
+            "edge:1be97fcd918e5541",
+            "edge:39201a49bb074e28",
+            "edge:74b5a8f5760eeca0",
+            "edge:8eabd1791eebf600",
+            "edge:e4e7adf8652f92a4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/infrastructure",
+      "name": "infrastructure",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/infrastructure"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/infrastructure/notifications/smtp-notifier.ts",
+        "file:src/infrastructure/persistence/pool.ts",
+        "file:src/infrastructure/persistence/sql-book-repository.ts",
+        "file:src/infrastructure/persistence/sql-loan-repository.ts",
+        "file:src/infrastructure/persistence/sql-member-repository.ts",
+        "file:src/infrastructure/system-clock.ts"
+      ],
+      "components": [
+        "cmp:src/infrastructure",
+        "cmp:src/infrastructure/notifications",
+        "cmp:src/infrastructure/persistence"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/infrastructure/notifications/smtp-notifier.ts",
+        "file:src/infrastructure/persistence/pool.ts",
+        "file:src/infrastructure/persistence/sql-book-repository.ts",
+        "file:src/infrastructure/persistence/sql-loan-repository.ts",
+        "file:src/infrastructure/persistence/sql-member-repository.ts",
+        "file:src/infrastructure/system-clock.ts"
+      ],
+      "inference": {
+        "confidence": 0.65,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/infrastructure` in a layer-organized source tree; no file-name stem recurs across its layers.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/infrastructure` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "40% of the dependency weight of member files stays inside the module (internal 3.0, crossing 9.0).",
+            "value": 0.4,
+            "weight": 0.5
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 6 member files.",
+            "value": 0.75,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/infrastructure`.",
+            "entities": [
+              "dir:src/infrastructure"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (application, domain, infrastructure and presentation), so it is organized by layer; no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/application",
+              "dir:src/domain",
+              "dir:src/infrastructure",
+              "dir:src/presentation"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/domain",
+          "edgeCount": 45,
+          "observations": 50,
+          "runtimeEdgeCount": 15,
+          "kindCounts": {
+            "calls": 3,
+            "implements": 5,
+            "imports": 10,
+            "instantiates": 2,
+            "references-type": 18,
+            "uses": 7
+          },
+          "examples": [
+            "edge:b94d5d2ffd1373b0",
+            "edge:06b4b33f82050d2d",
+            "edge:21ebf6a20314f934",
+            "edge:24b65447af865e45",
+            "edge:286a4c7eb3ffd65b"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 12,
+          "observations": 12,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 6,
+            "instantiates": 5
+          },
+          "examples": [
+            "edge:13a8c257da794707",
+            "edge:1cf21156f18a7dc5",
+            "edge:5013886c3c545783",
+            "edge:93b801230f7b80c0",
+            "edge:a17c395e5e40bac2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/presentation",
+      "name": "presentation",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/presentation"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/presentation/http/error-mapper.ts",
+        "file:src/presentation/http/http-types.ts",
+        "file:src/presentation/http/loan-routes.ts",
+        "file:src/presentation/http/server.ts"
+      ],
+      "components": [
+        "cmp:src/presentation/http"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/presentation/http/loan-routes.ts",
+        "file:src/presentation/http/server.ts"
+      ],
+      "inference": {
+        "confidence": 0.796969697,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/presentation` in a layer-organized source tree; no file-name stem recurs across its layers.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "73% of the dependency weight of member files stays inside the module (internal 4.0, crossing 3.0).",
+            "value": 0.727272727,
+            "weight": 0.5
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/presentation` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/presentation`.",
+            "entities": [
+              "dir:src/presentation"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (application, domain, infrastructure and presentation), so it is organized by layer; no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/application",
+              "dir:src/domain",
+              "dir:src/infrastructure",
+              "dir:src/presentation"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/application",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:467cf2d05f3858d5",
+            "edge:66a7255d17e4739f",
+            "edge:7706c34eaa66aee6",
+            "edge:b056bbaa1e4027b4",
+            "edge:edbe7386909db6ca"
+          ]
+        },
+        {
+          "entity": "mod:src/domain",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 1,
+            "uses": 5
+          },
+          "examples": [
+            "edge:1be97fcd918e5541",
+            "edge:39201a49bb074e28",
+            "edge:74b5a8f5760eeca0",
+            "edge:8eabd1791eebf600",
+            "edge:e4e7adf8652f92a4"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 4,
+          "observations": 4,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2
+          },
+          "examples": [
+            "edge:5c79319c3c37eb61",
+            "edge:8fc905ae4b082906",
+            "edge:c2028dcb268b7488",
+            "edge:db18473adebbf7d6"
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:infrastructure",
+      "name": "infrastructure",
+      "origin": "inferred",
+      "rank": 0,
+      "files": [
+        "file:src/infrastructure/notifications/smtp-notifier.ts",
+        "file:src/infrastructure/persistence/pool.ts",
+        "file:src/infrastructure/persistence/sql-book-repository.ts",
+        "file:src/infrastructure/persistence/sql-loan-repository.ts",
+        "file:src/infrastructure/persistence/sql-member-repository.ts",
+        "file:src/infrastructure/system-clock.ts"
+      ],
+      "inference": {
+        "confidence": 0.736666667,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/infrastructure` holds 6 files; no other layer depends on it and it depends on `domain` (rank 0).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (9.0 of 9.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 6 member files.",
+            "value": 0.75,
+            "weight": 0.1
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 1 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "misplaced-by-name",
+            "description": "3 members are named for another layer than their directory: `src/infrastructure/persistence/sql-book-repository.ts` (name: `repository`, directory: `infrastructure`), `src/infrastructure/persistence/sql-loan-repository.ts` (name: `repository`, directory: `infrastructure`) and `src/infrastructure/persistence/sql-member-repository.ts` (name: `repository`, directory: `infrastructure`).",
+            "value": 3,
+            "entities": [
+              "file:src/infrastructure/persistence/sql-book-repository.ts",
+              "file:src/infrastructure/persistence/sql-loan-repository.ts",
+              "file:src/infrastructure/persistence/sql-member-repository.ts"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "6 members by location only."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:domain",
+          "edgeCount": 45,
+          "observations": 50,
+          "runtimeEdgeCount": 15,
+          "kindCounts": {
+            "calls": 3,
+            "implements": 5,
+            "imports": 10,
+            "instantiates": 2,
+            "references-type": 18,
+            "uses": 7
+          },
+          "examples": [
+            "edge:b94d5d2ffd1373b0",
+            "edge:06b4b33f82050d2d",
+            "edge:21ebf6a20314f934",
+            "edge:24b65447af865e45",
+            "edge:286a4c7eb3ffd65b"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "layer:presentation",
+      "name": "presentation",
+      "origin": "inferred",
+      "rank": 0,
+      "files": [
+        "file:src/presentation/http/error-mapper.ts",
+        "file:src/presentation/http/http-types.ts",
+        "file:src/presentation/http/loan-routes.ts",
+        "file:src/presentation/http/server.ts"
+      ],
+      "inference": {
+        "confidence": 0.795,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/presentation` holds 4 files; no other layer depends on it and it depends on `application` and `domain` (rank 0).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (3.0 of 3.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 2 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 0.666666667,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.1
+          },
+          {
+            "signal": "misplaced-by-name",
+            "description": "1 member is named for another layer than its directory: `src/presentation/http/loan-routes.ts` (name: `route`, directory: `presentation`).",
+            "value": 1,
+            "entities": [
+              "file:src/presentation/http/loan-routes.ts"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "4 members by location only."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:application",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:467cf2d05f3858d5",
+            "edge:66a7255d17e4739f",
+            "edge:7706c34eaa66aee6",
+            "edge:b056bbaa1e4027b4",
+            "edge:edbe7386909db6ca"
+          ]
+        },
+        {
+          "entity": "layer:domain",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 1,
+            "uses": 5
+          },
+          "examples": [
+            "edge:1be97fcd918e5541",
+            "edge:39201a49bb074e28",
+            "edge:74b5a8f5760eeca0",
+            "edge:8eabd1791eebf600",
+            "edge:e4e7adf8652f92a4"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "layer:application",
+      "name": "application",
+      "origin": "inferred",
+      "rank": 1,
+      "files": [
+        "file:src/application/borrow-book.ts",
+        "file:src/application/dto.ts",
+        "file:src/application/return-book.ts",
+        "file:src/application/send-overdue-reminders.ts"
+      ],
+      "inference": {
+        "confidence": 0.795,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/application` holds 4 files; `presentation` depends on it and it depends on `domain` (rank 1).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (21.5 of 21.5).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 2 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 0.666666667,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.1
+          },
+          {
+            "signal": "role-sources",
+            "description": "4 members by location only."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:domain",
+          "edgeCount": 39,
+          "observations": 46,
+          "runtimeEdgeCount": 23,
+          "kindCounts": {
+            "calls": 16,
+            "imports": 4,
+            "instantiates": 2,
+            "references-type": 14,
+            "uses": 3
+          },
+          "examples": [
+            "edge:086ddd852b1df538",
+            "edge:0cf6ad566afa2086",
+            "edge:2c30370bd3d45feb",
+            "edge:34a2f2d0a2e43b69",
+            "edge:4fc73e82693e8d59"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "layer:presentation",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 4,
+          "kindCounts": {
+            "calls": 2,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:467cf2d05f3858d5",
+            "edge:66a7255d17e4739f",
+            "edge:7706c34eaa66aee6",
+            "edge:b056bbaa1e4027b4",
+            "edge:edbe7386909db6ca"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layer:domain",
+      "name": "domain",
+      "origin": "inferred",
+      "rank": 2,
+      "files": [
+        "file:src/domain/index.ts",
+        "file:src/domain/model/book.ts",
+        "file:src/domain/model/errors.ts",
+        "file:src/domain/model/loan.ts",
+        "file:src/domain/model/member.ts",
+        "file:src/domain/ports/book-repository.ts",
+        "file:src/domain/ports/clock.ts",
+        "file:src/domain/ports/loan-repository.ts",
+        "file:src/domain/ports/member-repository.ts",
+        "file:src/domain/ports/notifier.ts"
+      ],
+      "inference": {
+        "confidence": 0.878333333,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/domain` holds 10 files; `application`, `infrastructure` and `presentation` depend on it and it depends on no other layer (rank 2).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (29.5 of 29.5).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 3 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 10 member files.",
+            "value": 0.833333333,
+            "weight": 0.1
+          },
+          {
+            "signal": "misplaced-by-name",
+            "description": "3 members are named for another layer than their directory: `src/domain/ports/book-repository.ts` (name: `repository`, directory: `domain`), `src/domain/ports/loan-repository.ts` (name: `repository`, directory: `domain`) and `src/domain/ports/member-repository.ts` (name: `repository`, directory: `domain`).",
+            "value": 3,
+            "entities": [
+              "file:src/domain/ports/book-repository.ts",
+              "file:src/domain/ports/loan-repository.ts",
+              "file:src/domain/ports/member-repository.ts"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "10 members by location only."
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "layer:application",
+          "edgeCount": 39,
+          "observations": 46,
+          "runtimeEdgeCount": 23,
+          "kindCounts": {
+            "calls": 16,
+            "imports": 4,
+            "instantiates": 2,
+            "references-type": 14,
+            "uses": 3
+          },
+          "examples": [
+            "edge:086ddd852b1df538",
+            "edge:0cf6ad566afa2086",
+            "edge:2c30370bd3d45feb",
+            "edge:34a2f2d0a2e43b69",
+            "edge:4fc73e82693e8d59"
+          ]
+        },
+        {
+          "entity": "layer:infrastructure",
+          "edgeCount": 45,
+          "observations": 50,
+          "runtimeEdgeCount": 15,
+          "kindCounts": {
+            "calls": 3,
+            "implements": 5,
+            "imports": 10,
+            "instantiates": 2,
+            "references-type": 18,
+            "uses": 7
+          },
+          "examples": [
+            "edge:b94d5d2ffd1373b0",
+            "edge:06b4b33f82050d2d",
+            "edge:21ebf6a20314f934",
+            "edge:24b65447af865e45",
+            "edge:286a4c7eb3ffd65b"
+          ]
+        },
+        {
+          "entity": "layer:presentation",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 1,
+            "uses": 5
+          },
+          "examples": [
+            "edge:1be97fcd918e5541",
+            "edge:39201a49bb074e28",
+            "edge:74b5a8f5760eeca0",
+            "edge:8eabd1791eebf600",
+            "edge:e4e7adf8652f92a4"
+          ]
+        }
+      ]
+    }
+  ],
+  "roles": {
+    "src/domain/ports/book-repository.ts": [
+      {
+        "role": "repository",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `book-repository.ts` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/domain/ports/book-repository.ts"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/domain/ports/loan-repository.ts": [
+      {
+        "role": "repository",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `loan-repository.ts` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/domain/ports/loan-repository.ts"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/domain/ports/member-repository.ts": [
+      {
+        "role": "repository",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `member-repository.ts` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/domain/ports/member-repository.ts"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/infrastructure/persistence/sql-book-repository.ts": [
+      {
+        "role": "repository",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `sql-book-repository.ts` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/infrastructure/persistence/sql-book-repository.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `SqlBookRepository` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/infrastructure/persistence/sql-book-repository.ts#SqlBookRepository"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/infrastructure/persistence/sql-loan-repository.ts": [
+      {
+        "role": "repository",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `sql-loan-repository.ts` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/infrastructure/persistence/sql-loan-repository.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `SqlLoanRepository` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/infrastructure/persistence/sql-loan-repository.ts#SqlLoanRepository"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/infrastructure/persistence/sql-member-repository.ts": [
+      {
+        "role": "repository",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `sql-member-repository.ts` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/infrastructure/persistence/sql-member-repository.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `SqlMemberRepository` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/infrastructure/persistence/sql-member-repository.ts#SqlMemberRepository"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/presentation/http/loan-routes.ts": [
+      {
+        "role": "route-definition",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `loan-routes.ts` ends with the word `routes`, which the naming vocabulary maps to `route-definition`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/presentation/http/loan-routes.ts"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

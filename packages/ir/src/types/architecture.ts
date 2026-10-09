@@ -55,10 +55,19 @@ export interface UnitTotals {
   lines: Count;
 }
 
-/** A physical architectural unit: a package root or a source directory. */
+/**
+ * A physical architectural unit, derived (never inferred): the analysis root, a package root, a directory
+ * that directly contains code, or a directory where code branches into two or more subdirectories. Chains
+ * of directories without code collapse into their deepest member (see docs/ALGORITHMS.md, "Components").
+ */
 export interface ComponentEntity {
   id: ComponentId;
-  /** Directory name, or package name for package components. */
+  /**
+   * Package components: the package's declared name. The analysis root of a repository without a root
+   * manifest: the repository name. Other directories: the path relative to the parent component — the
+   * directory name, or several segments when directories without code were collapsed (e.g.
+   * `presentation/http`).
+   */
   name: string;
   kind: "package" | "directory";
   /** Directory of the component ("" for the analysis root). */
@@ -79,11 +88,21 @@ export interface ComponentEntity {
   dependents: AggregatedDependency[];
 }
 
-/** What an inferred module's identity and name derive from. */
+/** What an inferred module's identity and name derive from: its prior (see docs/ALGORITHMS.md, "Modules"). */
 export interface ModuleAnchor {
-  /** The directory most member files share (see docs/ALGORITHMS.md). */
+  /**
+   * The directory of the module's prior: the directory the module was formed from, or the directory across
+   * whose layer subdirectories a file-name stem recurs. It contains most member files when the module is
+   * formed and is kept when files move in or out (reported as `anchor-drift` evidence), so that identities
+   * are stable.
+   */
   directory: string;
-  /** The common file-name stem, for modules that cut across directories (e.g. `payment`). */
+  /**
+   * The S-stemmed first token the member file names share, ASCII letters lower-cased (e.g. `payment`), for
+   * modules that cut across directories or that are pieces of an oversized directory. A piece without a
+   * common stem uses the hyphen-joined tokens of its smallest member's file name (e.g. `format-date-ts`), or
+   * a 16-hex-digit hash when that is taken.
+   */
   stem?: string;
 }
 
@@ -100,9 +119,14 @@ export interface ModuleEntity {
   origin: "inferred" | "declared";
   /** Present for inferred modules. */
   anchor?: ModuleAnchor;
-  /** Packages owning member files, sorted. Modules may span packages. */
+  /** Packages owning member files, sorted. Declared modules may span packages; inferred modules never do. */
   packages: PackageId[];
-  /** Member files, sorted. Every analyzed source file belongs to at most one module. */
+  /**
+   * Member files, sorted. Inferred modules: the files inference assigned (by default production code) plus
+   * tests and declarations attached for navigation; declarations, and tests counted in metrics, are attached
+   * only by a strict majority of their dependents or dependencies (see docs/ALGORITHMS.md). Declared
+   * modules: the configured matches with a role components own. Every file belongs to at most one module.
+   */
   files: FileId[];
   /** Components owning at least one member file, sorted. */
   components: ComponentId[];
@@ -111,9 +135,16 @@ export interface ModuleEntity {
    * anchor. Sorted.
    */
   entryPoints: FileId[];
-  /** Member files that files of other modules import or re-export from (actual usage). Sorted. */
+  /**
+   * Member files that files of other modules import or re-export from (actual usage). Sorted. Computed from
+   * `imports` and `re-exports` edges, with the metrics projection's file roles and type-only setting;
+   * attached files are never listed.
+   */
   publicApi: FileId[];
-  /** Present for inferred modules. */
+  /**
+   * Present for inferred modules; `method` is `katedrala/module-inference@1`, followed by the non-default
+   * parameters that can change the result.
+   */
   inference?: InferenceInfo;
   dependencies: AggregatedDependency[];
   dependents: AggregatedDependency[];
@@ -131,9 +162,12 @@ export interface LayerEntity {
   origin: "inferred" | "declared";
   /** Position in the expected dependency order; 0 is the outermost/top layer. Ties are allowed. */
   rank: Count;
-  /** Member files, sorted. */
+  /** Member files (production code), sorted. */
   files: FileId[];
-  /** Present for inferred layers. */
+  /**
+   * Present for inferred layers; `method` is `katedrala/layer-inference@1`, followed by the non-default
+   * parameters that can change the result.
+   */
   inference?: InferenceInfo;
   dependencies: AggregatedDependency[];
   dependents: AggregatedDependency[];

@@ -1245,7 +1245,7 @@
       "properties": {
         "signal": {
           "type": "string",
-          "description": "Stable kebab-case identifier of the signal, e.g. `internal-dependency-ratio`."
+          "description": "Stable kebab-case identifier of the signal, e.g. `internal-edge-ratio`."
         },
         "description": {
           "type": "string",

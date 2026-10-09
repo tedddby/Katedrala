@@ -905,7 +905,7 @@
           "items": {
             "$ref": "#/$defs/RoleEntry"
           },
-          "description": "Architectural roles, sorted by role. Omitted when none."
+          "description": "Architectural roles, sorted by role, then source. Omitted when none."
         },
         "tags": {
           "type": "array",
@@ -1388,7 +1388,7 @@
       "properties": {
         "signal": {
           "type": "string",
-          "description": "Stable kebab-case identifier of the signal, e.g. `internal-dependency-ratio`."
+          "description": "Stable kebab-case identifier of the signal, e.g. `internal-edge-ratio`."
         },
         "description": {
           "type": "string",
@@ -1548,7 +1548,7 @@
           "items": {
             "$ref": "#/$defs/RoleEntry"
           },
-          "description": "Architectural roles, sorted by role. Omitted when none."
+          "description": "Architectural roles, sorted by role, then source. Omitted when none."
         },
         "tags": {
           "type": "array",
@@ -1999,7 +1999,7 @@
         },
         "name": {
           "type": "string",
-          "description": "Directory name, or package name for package components."
+          "description": "Package components: the package's declared name. The analysis root of a repository without a root manifest: the repository name. Other directories: the path relative to the parent component — the directory name, or several segments when directories without code were collapsed (e.g. `presentation/http`)."
         },
         "kind": {
           "type": "string",
@@ -2075,7 +2075,7 @@
         "dependents"
       ],
       "additionalProperties": false,
-      "description": "A physical architectural unit: a package root or a source directory."
+      "description": "A physical architectural unit, derived (never inferred): the analysis root, a package root, a directory that directly contains code, or a directory where code branches into two or more subdirectories. Chains of directories without code collapse into their deepest member (see docs/ALGORITHMS.md, \"Components\")."
     },
     "UnitTotals": {
       "type": "object",
@@ -2125,14 +2125,14 @@
           "items": {
             "$ref": "#/$defs/PackageId"
           },
-          "description": "Packages owning member files, sorted. Modules may span packages."
+          "description": "Packages owning member files, sorted. Declared modules may span packages; inferred modules never do."
         },
         "files": {
           "type": "array",
           "items": {
             "$ref": "#/$defs/FileId"
           },
-          "description": "Member files, sorted. Every analyzed source file belongs to at most one module."
+          "description": "Member files, sorted. Inferred modules: the files inference assigned (by default production code) plus tests and declarations attached for navigation; declarations, and tests counted in metrics, are attached only by a strict majority of their dependents or dependencies (see docs/ALGORITHMS.md). Declared modules: the configured matches with a role components own. Every file belongs to at most one module."
         },
         "components": {
           "type": "array",
@@ -2153,11 +2153,11 @@
           "items": {
             "$ref": "#/$defs/FileId"
           },
-          "description": "Member files that files of other modules import or re-export from (actual usage). Sorted."
+          "description": "Member files that files of other modules import or re-export from (actual usage). Sorted. Computed from `imports` and `re-exports` edges, with the metrics projection's file roles and type-only setting; attached files are never listed."
         },
         "inference": {
           "$ref": "#/$defs/InferenceInfo",
-          "description": "Present for inferred modules."
+          "description": "Present for inferred modules; `method` is `katedrala/module-inference@1`, followed by the non-default parameters that can change the result."
         },
         "dependencies": {
           "type": "array",
@@ -2192,18 +2192,18 @@
       "properties": {
         "directory": {
           "type": "string",
-          "description": "The directory most member files share (see docs/ALGORITHMS.md)."
+          "description": "The directory of the module's prior: the directory the module was formed from, or the directory across whose layer subdirectories a file-name stem recurs. It contains most member files when the module is formed and is kept when files move in or out (reported as `anchor-drift` evidence), so that identities are stable."
         },
         "stem": {
           "type": "string",
-          "description": "The common file-name stem, for modules that cut across directories (e.g. `payment`)."
+          "description": "The S-stemmed first token the member file names share, ASCII letters lower-cased (e.g. `payment`), for modules that cut across directories or that are pieces of an oversized directory. A piece without a common stem uses the hyphen-joined tokens of its smallest member's file name (e.g. `format-date-ts`), or a 16-hex-digit hash when that is taken."
         }
       },
       "required": [
         "directory"
       ],
       "additionalProperties": false,
-      "description": "What an inferred module's identity and name derive from."
+      "description": "What an inferred module's identity and name derive from: its prior (see docs/ALGORITHMS.md, \"Modules\")."
     },
     "InferenceInfo": {
       "type": "object",
@@ -2213,7 +2213,7 @@
         },
         "method": {
           "type": "string",
-          "description": "Identifier and version of the inference method, e.g. `katedrala/module-clustering@1`."
+          "description": "Identifier and version of the inference method, e.g. `katedrala/module-inference@1`. When parameters that can change the result differ from their defaults, the identifier is followed by `?` and those parameters as `key=value` pairs joined by `&`, keys sorted (see docs/IR.md)."
         },
         "reason": {
           "type": "string",
@@ -2224,7 +2224,7 @@
           "items": {
             "$ref": "#/$defs/Evidence"
           },
-          "description": "The observations the conclusion is based on, strongest first (ties broken by `signal`)."
+          "description": "The observations the conclusion is based on. Weighted observations (those with a `weight`) first, by decreasing `weight × value` (an absent value counts 0), then by `signal`; then unweighted observations by `signal`, then `description`, then `value` (absent first), then `entities` compared element-wise."
         }
       },
       "required": [
@@ -2261,11 +2261,11 @@
           "items": {
             "$ref": "#/$defs/FileId"
           },
-          "description": "Member files, sorted."
+          "description": "Member files (production code), sorted."
         },
         "inference": {
           "$ref": "#/$defs/InferenceInfo",
-          "description": "Present for inferred layers."
+          "description": "Present for inferred layers; `method` is `katedrala/layer-inference@1`, followed by the non-default parameters that can change the result."
         },
         "dependencies": {
           "type": "array",

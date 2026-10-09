@@ -151,7 +151,7 @@ export interface SourceLocation {
  * human-readable (`description`).
  */
 export interface Evidence {
-  /** Stable kebab-case identifier of the signal, e.g. `internal-dependency-ratio`. */
+  /** Stable kebab-case identifier of the signal, e.g. `internal-edge-ratio`. */
   signal: string;
   /** A complete sentence explaining the observation, e.g. "87% of dependencies stay within the cluster". */
   description: string;
@@ -172,11 +172,19 @@ export interface Evidence {
  */
 export interface InferenceInfo {
   confidence: Confidence;
-  /** Identifier and version of the inference method, e.g. `katedrala/module-clustering@1`. */
+  /**
+   * Identifier and version of the inference method, e.g. `katedrala/module-inference@1`. When parameters
+   * that can change the result differ from their defaults, the identifier is followed by `?` and those
+   * parameters as `key=value` pairs joined by `&`, keys sorted (see docs/IR.md).
+   */
   method: string;
   /** One-sentence summary of why the conclusion was reached. */
   reason: string;
-  /** The observations the conclusion is based on, strongest first (ties broken by `signal`). */
+  /**
+   * The observations the conclusion is based on. Weighted observations (those with a `weight`) first, by
+   * decreasing `weight × value` (an absent value counts 0), then by `signal`; then unweighted observations by
+   * `signal`, then `description`, then `value` (absent first), then `entities` compared element-wise.
+   */
   evidence: Evidence[];
 }
 

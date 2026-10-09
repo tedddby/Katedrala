@@ -80,6 +80,8 @@ evaluating whether Katedrala's conclusions can be trusted.
 | `@katedrala/codeverse`          | Converts documents into a visualization model for CodeVerse                                                            | ir                        |
 
 Packages are introduced milestone by milestone (see [ROADMAP.md](ROADMAP.md)); the table describes the target.
+`@katedrala/inference` is a pure library over the IR and the model: the engine validates the `modules`,
+`layers` and `inference` configuration sections and resolves their globs before calling it (ADR-013).
 
 **Dependency rules.** Package dependencies form a directed acyclic graph that points downward in the overview.
 Plugins depend only on `plugin-api` and `ir`. `ir` and `graph` have no dependencies. `@katedrala/codeverse`
@@ -129,8 +131,10 @@ SnapshotSource ──list()──► discovery ──► extraction ──► pr
    type checker (for example a member of the result of a function that declares no return type).
 5. **Framework detection.** Detectors add roles (controller, service, repository, route, ...), edges
    (e.g. dependency injection) and external integrations.
-6. **Inference, metrics, anomalies, rules.** Each stage reads the model and contributes one section of the
-   document. Stages never mutate earlier sections.
+6. **Inference, metrics, anomalies, rules.** Each stage reads the model and contributes its sections of the
+   document. Stages never mutate earlier sections. Inference (milestone 5) contributes `components`,
+   `modules` and `layers`, the inferred roles of `files` and its diagnostics; it merges the roles into
+   `files` copy-on-write, so the structural sections it read are never changed.
 7. **Canonicalization.** All arrays are put in canonical order and real values are rounded, so documents are
    byte-identical across runs and machines.
 
@@ -139,8 +143,26 @@ sections of the document, already canonical), an `ArchitectureModel` over it for
 algorithms, and run information (timings, cache hits, workers) that is kept out of the document. The repository
 is identified by its `origin` remote or its configured or declared name, never by the checkout directory, and
 `snapshot` records the content, analysis and project-configuration digests. The later stages build on this
-result. The end-to-end test in `tests/fixtures/structure.test.ts` runs it on every fixture and compares the
-result with the fixture's ground truth.
+result.
+
+`analyzeArchitecture()` runs steps 1–4 and then inference (step 6). It registers the validators of the
+`modules`, `layers` and `inference` configuration sections (ADR-013), so its analysis digest equals
+`analyzeStructure()`'s; resolves the inference settings and the declared modules, layers and roles; runs
+`inferArchitecture()` on the structure's model with the metrics projection; merges the inferred roles and
+diagnostics; and returns the structural sections plus `components`, `modules` and `layers`, with a model over
+the final document. The sections of later milestones (`metrics`, `anomalies`, `violations`, `rules`,
+`endpoints`) are absent rather than empty, so that nothing reads as a measurement that was not made.
+
+The engine reports its stages through `onProgress` and times them in `run.timings`. `ANALYSIS_STAGES` lists
+them in execution order: `listing`, `configuration`, `discovery`, `extraction`, `projects`, `linking`,
+`inference`. `analyzeStructure` runs the stages up to `linking`. Later milestones insert their stages where
+their inputs require: framework detection runs before `inference`, because detector roles are layer votes;
+metrics, anomalies and rules run after it. The list is therefore not append-only: look stages up by name,
+never by position.
+
+The end-to-end tests in `tests/fixtures/` run `analyzeArchitecture()` on every fixture: `structure.test.ts`
+compares the result with the fixture's ground truth, and `inference.test.ts` checks the inferred sections
+against the milestone 5 expectations and the committed golden sections (`tests/fixtures/golden/`).
 
 ## Truth levels: observed, derived, inferred
 
@@ -240,8 +262,9 @@ through a declared type). Each observation therefore carries its own `confidence
 
 ### ADR-007 — Determinism is part of the contract
 
-- Arrays are sorted canonically; real-valued measurements are rounded to six decimals; iteration over maps
-  follows sorted keys where order matters; approximations (sampled betweenness) use fixed seeds.
+- Arrays are sorted canonically; real-valued measurements are rounded with `roundMetric` to nine significant
+  digits (see [IR.md](IR.md)); iteration over maps follows sorted keys where order matters; approximations
+  (sampled betweenness) use fixed seeds.
 - Volatile information (timings, timestamps, cache statistics) lives in an optional `run` section that is
   excluded from serialization by default.
 - Golden-output tests run the full pipeline on fixture repositories and compare against committed documents.
@@ -303,6 +326,59 @@ for YAML configuration.
      within the limits. Last-resort fallbacks keep the analysis going (a binder failure, or a stack overflow
      during name resolution, extracts the file without scopes and reports the error), but their outcome
      depends on the thread again.
+
+### ADR-012 — Architectural inference: derived components, prior-anchored modules, layers by dependency order
+
+- **Context.** ADR-006 separates components, modules and layers. The milestone 5 design measured the
+  alternatives on the fixtures ([ALGORITHMS.md](ALGORITHMS.md#modules)): unconstrained modularity clustering (Louvain, γ = 1) scrambles intentional structure (it mixes
+  clean-architecture's layers into dependency-dense groups and cuts every feature of a tangled repository
+  into pieces of other features) and is unstable under single-edge changes, as Wu, Hassan and Holt (2005)
+  observed for clustering-based recovery. Directories and file names are the strongest available statement
+  of the developers' intent, and pattern-based recovery (ACDC) did comparatively well in the comparative
+  studies.
+- **Decisions.**
+  - **Components are derived**, never inferred: package roots, directories that contain code, branch points
+    and the analysis root, by rules with no thresholds.
+  - **Modules use prior-anchored refinement**, not unconstrained clustering: directories and recurring
+    file-name stems form the prior; dependency evidence overrides it file by file, only on a strict majority
+    with minimum support; Louvain only splits directories too large and too flat to be one module, warm
+    started from file-name stems and with pinned parameters.
+  - **Module identity comes from the prior** (`mod:<anchor directory>[#<stem>]`), never from final
+    membership, so files moving in or out never rename a module.
+  - **Declared modules are exact and win**: their files are never inferred, and overlaps resolve by name.
+  - **Rules target declared modules unless a rule opts in.** Inferred modules may form cycles (an observation,
+    not a violation): module selectors and `scope: modules` match declared modules unless
+    `include_inferred: true`. This is the one requirement milestone 5 records for the rules milestone
+    (milestone 8), which writes `docs/RULES.md`.
+  - **Layers come from role and directory votes**, ranked by the observed dependencies between them: an exact
+    minimum-feedback order for strongly connected sets of up to 12 layers (the subset dynamic programme of
+    Bodlaender et al. 2012), a greedy order beyond, and conventional tiers only for layers no observed path
+    orders.
+  - **Every heuristic carries evidence and a decomposable confidence** (`confidence = Σ weight × value`), a
+    method string with its non-default parameters, and wording that says it is inferred ("Inferred: …",
+    "(Katedrala heuristic)").
+  - **No randomness and no runtime-dependent text processing**: ASCII-only lexing (no Unicode tables, no
+    locale), exact dyadic weight arithmetic, deterministic tie-breaking.
+- **Consequences.** The vocabularies (directory names, naming suffixes, generic tokens) encode TypeScript and
+  JavaScript naming culture; they are configurable, and the defaults are listed in ALGORITHMS.md. The signal
+  weights are design choices, not calibrated against a ground-truth corpus; they are part of the method
+  version, so confidences stay comparable across repositories. Stability is measured, not assumed:
+  ALGORITHMS.md publishes the perturbation measurements and analyses every case above the bound.
+
+### ADR-013 — Inference configuration is validated by the engine; inference takes resolved settings
+
+- **Context.** `@katedrala/inference` depends on `ir`, `graph` and `model` only, has no `zod` and no
+  `picomatch`, and runs in any JavaScript environment. Lint enforces this for its sources (no Node.js
+  modules or globals, no other workspace package, nothing that reads the clock, randomness or the locale).
+- **Decision.** The engine registers the validators of the `modules`, `layers` and `inference` sections,
+  resolves their globs with core's path matcher and passes typed settings and file lists
+  (`resolveInferenceSettings`, `Declarations`). Validators never inject defaults, so the canonical
+  configuration JSON, and the analysis digest computed from it, are the same with and without them; and no
+  inference semantics depend on the order of configuration keys (overlapping declared modules resolve by
+  name).
+- **Consequences.** The scope is inference: milestones 6–8 decide for their own sections. The packages
+  table's `@katedrala/rules — Rule configuration, selectors and evaluation` stays until milestone 8 decides;
+  this ADR does not prejudge it.
 
 ## Performance strategy
 

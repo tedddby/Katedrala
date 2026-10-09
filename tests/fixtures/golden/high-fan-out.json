@@ -1,0 +1,1170 @@
+{
+  "components": [
+    {
+      "id": "cmp:",
+      "name": "fulfillment-worker",
+      "kind": "package",
+      "path": "",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "children": [
+        "cmp:src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 23,
+        "symbols": 166,
+        "lines": 881
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/adapters",
+        "mod:src/services"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src",
+      "name": "src",
+      "kind": "directory",
+      "path": "src",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:",
+      "children": [
+        "cmp:src/adapters",
+        "cmp:src/services"
+      ],
+      "files": [
+        "file:src/main.ts",
+        "file:src/orchestrator.ts"
+      ],
+      "totals": {
+        "files": 23,
+        "symbols": 166,
+        "lines": 881
+      },
+      "modules": [
+        "mod:src",
+        "mod:src/adapters",
+        "mod:src/services"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/adapters",
+          "edgeCount": 23,
+          "observations": 23,
+          "runtimeEdgeCount": 20,
+          "kindCounts": {
+            "imports": 10,
+            "instantiates": 10,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:05cb6342e4d4331f",
+            "edge:060265ae602281c3",
+            "edge:1c9abdc6ddf2dca9",
+            "edge:2417e5d084a1dbdb",
+            "edge:2a881d42241d64a2"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 30,
+          "observations": 30,
+          "runtimeEdgeCount": 20,
+          "kindCounts": {
+            "imports": 10,
+            "instantiates": 10,
+            "references-type": 10
+          },
+          "examples": [
+            "edge:0061622e47614a71",
+            "edge:032e5fc6f7c1e6ee",
+            "edge:05bd337d718f7f4a",
+            "edge:19dfa1e83b84e77a",
+            "edge:1aa5f0a0bcaa4b0c"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src/adapters",
+      "name": "adapters",
+      "kind": "directory",
+      "path": "src/adapters",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/adapters/audit.adapter.ts",
+        "file:src/adapters/crm.adapter.ts",
+        "file:src/adapters/dhl.adapter.ts",
+        "file:src/adapters/email.adapter.ts",
+        "file:src/adapters/erp.adapter.ts",
+        "file:src/adapters/http-client.ts",
+        "file:src/adapters/paypal.adapter.ts",
+        "file:src/adapters/sms.adapter.ts",
+        "file:src/adapters/stripe.adapter.ts",
+        "file:src/adapters/ups.adapter.ts",
+        "file:src/adapters/warehouse.adapter.ts"
+      ],
+      "totals": {
+        "files": 11,
+        "symbols": 77,
+        "lines": 328
+      },
+      "modules": [
+        "mod:src/adapters"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 23,
+          "observations": 23,
+          "runtimeEdgeCount": 20,
+          "kindCounts": {
+            "imports": 10,
+            "instantiates": 10,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:05cb6342e4d4331f",
+            "edge:060265ae602281c3",
+            "edge:1c9abdc6ddf2dca9",
+            "edge:2417e5d084a1dbdb",
+            "edge:2a881d42241d64a2"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 43,
+          "observations": 43,
+          "runtimeEdgeCount": 19,
+          "kindCounts": {
+            "calls": 19,
+            "imports": 11,
+            "references-type": 13
+          },
+          "examples": [
+            "edge:00431c5c82b4fe45",
+            "edge:06aa4f28e051bbb6",
+            "edge:1041927b6cfec443",
+            "edge:1fc177613160e705",
+            "edge:23af1448e964a029"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/services",
+      "name": "services",
+      "kind": "directory",
+      "path": "src/services",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/services/discount.service.ts",
+        "file:src/services/fraud.service.ts",
+        "file:src/services/inventory.service.ts",
+        "file:src/services/invoice.service.ts",
+        "file:src/services/loyalty.service.ts",
+        "file:src/services/notification.service.ts",
+        "file:src/services/payment.service.ts",
+        "file:src/services/pricing.service.ts",
+        "file:src/services/shipping.service.ts",
+        "file:src/services/tax.service.ts"
+      ],
+      "totals": {
+        "files": 10,
+        "symbols": 73,
+        "lines": 321
+      },
+      "modules": [
+        "mod:src/services"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/adapters",
+          "edgeCount": 43,
+          "observations": 43,
+          "runtimeEdgeCount": 19,
+          "kindCounts": {
+            "calls": 19,
+            "imports": 11,
+            "references-type": 13
+          },
+          "examples": [
+            "edge:00431c5c82b4fe45",
+            "edge:06aa4f28e051bbb6",
+            "edge:1041927b6cfec443",
+            "edge:1fc177613160e705",
+            "edge:23af1448e964a029"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 30,
+          "observations": 30,
+          "runtimeEdgeCount": 20,
+          "kindCounts": {
+            "imports": 10,
+            "instantiates": 10,
+            "references-type": 10
+          },
+          "examples": [
+            "edge:0061622e47614a71",
+            "edge:032e5fc6f7c1e6ee",
+            "edge:05bd337d718f7f4a",
+            "edge:19dfa1e83b84e77a",
+            "edge:1aa5f0a0bcaa4b0c"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod:src",
+      "name": "fulfillment-worker",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/main.ts",
+        "file:src/orchestrator.ts"
+      ],
+      "components": [
+        "cmp:src"
+      ],
+      "entryPoints": [],
+      "publicApi": [],
+      "inference": {
+        "confidence": 0.9,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `src` (2 files); 2 are treated as composition roots, barrels or declared entry points.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "wiring-share",
+            "description": "2 of 2 files are composition roots, barrels or declared entry points.",
+            "value": 1,
+            "weight": 0.3,
+            "entities": [
+              "file:src/main.ts",
+              "file:src/orchestrator.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 2 member files.",
+            "value": 0.5,
+            "weight": 0.2
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as composition roots by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `src/main.ts` (entry-point rule: a declared entry point that nothing in its package depends on); `src/orchestrator.ts` (shape rule: nothing outside its unit depends on it; its dependencies spread over 2 other units, none above 50%).",
+            "value": 2,
+            "entities": [
+              "file:src/main.ts",
+              "file:src/orchestrator.ts"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/adapters",
+          "edgeCount": 23,
+          "observations": 23,
+          "runtimeEdgeCount": 20,
+          "kindCounts": {
+            "imports": 10,
+            "instantiates": 10,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:05cb6342e4d4331f",
+            "edge:060265ae602281c3",
+            "edge:1c9abdc6ddf2dca9",
+            "edge:2417e5d084a1dbdb",
+            "edge:2a881d42241d64a2"
+          ]
+        },
+        {
+          "entity": "mod:src/services",
+          "edgeCount": 30,
+          "observations": 30,
+          "runtimeEdgeCount": 20,
+          "kindCounts": {
+            "imports": 10,
+            "instantiates": 10,
+            "references-type": 10
+          },
+          "examples": [
+            "edge:0061622e47614a71",
+            "edge:032e5fc6f7c1e6ee",
+            "edge:05bd337d718f7f4a",
+            "edge:19dfa1e83b84e77a",
+            "edge:1aa5f0a0bcaa4b0c"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "mod:src/adapters",
+      "name": "adapters",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/adapters"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/adapters/audit.adapter.ts",
+        "file:src/adapters/crm.adapter.ts",
+        "file:src/adapters/dhl.adapter.ts",
+        "file:src/adapters/email.adapter.ts",
+        "file:src/adapters/erp.adapter.ts",
+        "file:src/adapters/http-client.ts",
+        "file:src/adapters/paypal.adapter.ts",
+        "file:src/adapters/sms.adapter.ts",
+        "file:src/adapters/stripe.adapter.ts",
+        "file:src/adapters/ups.adapter.ts",
+        "file:src/adapters/warehouse.adapter.ts"
+      ],
+      "components": [
+        "cmp:src/adapters"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/adapters/audit.adapter.ts",
+        "file:src/adapters/crm.adapter.ts",
+        "file:src/adapters/dhl.adapter.ts",
+        "file:src/adapters/email.adapter.ts",
+        "file:src/adapters/erp.adapter.ts",
+        "file:src/adapters/paypal.adapter.ts",
+        "file:src/adapters/sms.adapter.ts",
+        "file:src/adapters/stripe.adapter.ts",
+        "file:src/adapters/ups.adapter.ts",
+        "file:src/adapters/warehouse.adapter.ts"
+      ],
+      "inference": {
+        "confidence": 0.730100334,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/adapters` in a layer-organized source tree; no file-name stem recurs across its layers.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/adapters` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "52% of the dependency weight of member files stays inside the module (internal 6.0, crossing 11.0).",
+            "value": 0.52173913,
+            "weight": 0.5
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 11 member files.",
+            "value": 0.846153846,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/adapters`.",
+            "entities": [
+              "dir:src/adapters"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 2 layer directories (adapters and services), so it is organized by layer; no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/adapters",
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 23,
+          "observations": 23,
+          "runtimeEdgeCount": 20,
+          "kindCounts": {
+            "imports": 10,
+            "instantiates": 10,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:05cb6342e4d4331f",
+            "edge:060265ae602281c3",
+            "edge:1c9abdc6ddf2dca9",
+            "edge:2417e5d084a1dbdb",
+            "edge:2a881d42241d64a2"
+          ]
+        },
+        {
+          "entity": "mod:src/services",
+          "edgeCount": 43,
+          "observations": 43,
+          "runtimeEdgeCount": 19,
+          "kindCounts": {
+            "calls": 19,
+            "imports": 11,
+            "references-type": 13
+          },
+          "examples": [
+            "edge:00431c5c82b4fe45",
+            "edge:06aa4f28e051bbb6",
+            "edge:1041927b6cfec443",
+            "edge:1fc177613160e705",
+            "edge:23af1448e964a029"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/services",
+      "name": "services",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/services"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/services/discount.service.ts",
+        "file:src/services/fraud.service.ts",
+        "file:src/services/inventory.service.ts",
+        "file:src/services/invoice.service.ts",
+        "file:src/services/loyalty.service.ts",
+        "file:src/services/notification.service.ts",
+        "file:src/services/payment.service.ts",
+        "file:src/services/pricing.service.ts",
+        "file:src/services/shipping.service.ts",
+        "file:src/services/tax.service.ts"
+      ],
+      "components": [
+        "cmp:src/services"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/services/discount.service.ts",
+        "file:src/services/fraud.service.ts",
+        "file:src/services/inventory.service.ts",
+        "file:src/services/invoice.service.ts",
+        "file:src/services/loyalty.service.ts",
+        "file:src/services/notification.service.ts",
+        "file:src/services/payment.service.ts",
+        "file:src/services/pricing.service.ts",
+        "file:src/services/shipping.service.ts",
+        "file:src/services/tax.service.ts"
+      ],
+      "inference": {
+        "confidence": 0.466666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: layer directory `src/services` in a layer-organized source tree; no file-name stem recurs across its layers.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/services` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 10 member files.",
+            "value": 0.833333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "internal-edge-ratio",
+            "description": "0% of the dependency weight of member files stays inside the module (internal 0.0, crossing 11.0).",
+            "value": 0,
+            "weight": 0.5
+          },
+          {
+            "signal": "layer-directory",
+            "description": "Inferred from the layer directory `src/services`.",
+            "entities": [
+              "dir:src/services"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 2 layer directories (adapters and services), so it is organized by layer; no file-name stem recurs across its layer directories in connected files, so the layer directories stay modules.",
+            "value": 0,
+            "entities": [
+              "dir:src/adapters",
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/adapters",
+          "edgeCount": 43,
+          "observations": 43,
+          "runtimeEdgeCount": 19,
+          "kindCounts": {
+            "calls": 19,
+            "imports": 11,
+            "references-type": 13
+          },
+          "examples": [
+            "edge:00431c5c82b4fe45",
+            "edge:06aa4f28e051bbb6",
+            "edge:1041927b6cfec443",
+            "edge:1fc177613160e705",
+            "edge:23af1448e964a029"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 30,
+          "observations": 30,
+          "runtimeEdgeCount": 20,
+          "kindCounts": {
+            "imports": 10,
+            "instantiates": 10,
+            "references-type": 10
+          },
+          "examples": [
+            "edge:0061622e47614a71",
+            "edge:032e5fc6f7c1e6ee",
+            "edge:05bd337d718f7f4a",
+            "edge:19dfa1e83b84e77a",
+            "edge:1aa5f0a0bcaa4b0c"
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:service",
+      "name": "service",
+      "origin": "inferred",
+      "rank": 0,
+      "files": [
+        "file:src/services/discount.service.ts",
+        "file:src/services/fraud.service.ts",
+        "file:src/services/inventory.service.ts",
+        "file:src/services/invoice.service.ts",
+        "file:src/services/loyalty.service.ts",
+        "file:src/services/notification.service.ts",
+        "file:src/services/payment.service.ts",
+        "file:src/services/pricing.service.ts",
+        "file:src/services/shipping.service.ts",
+        "file:src/services/tax.service.ts"
+      ],
+      "inference": {
+        "confidence": 0.962333333,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/services` holds 10 files named `*.service.ts`; no other layer depends on it and it depends on `adapter` (rank 0).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (11.0 of 11.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.94 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.94,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 1 of the 1 other layer (conventional arcs and upward dependencies do not count).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 10 member files.",
+            "value": 0.833333333,
+            "weight": 0.1
+          },
+          {
+            "signal": "role-sources",
+            "description": "10 members by location and naming."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:adapter",
+          "edgeCount": 43,
+          "observations": 43,
+          "runtimeEdgeCount": 19,
+          "kindCounts": {
+            "calls": 19,
+            "imports": 11,
+            "references-type": 13
+          },
+          "examples": [
+            "edge:00431c5c82b4fe45",
+            "edge:06aa4f28e051bbb6",
+            "edge:1041927b6cfec443",
+            "edge:1fc177613160e705",
+            "edge:23af1448e964a029"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "layer:adapter",
+      "name": "adapter",
+      "origin": "inferred",
+      "rank": 1,
+      "files": [
+        "file:src/adapters/audit.adapter.ts",
+        "file:src/adapters/crm.adapter.ts",
+        "file:src/adapters/dhl.adapter.ts",
+        "file:src/adapters/email.adapter.ts",
+        "file:src/adapters/erp.adapter.ts",
+        "file:src/adapters/http-client.ts",
+        "file:src/adapters/paypal.adapter.ts",
+        "file:src/adapters/sms.adapter.ts",
+        "file:src/adapters/stripe.adapter.ts",
+        "file:src/adapters/ups.adapter.ts",
+        "file:src/adapters/warehouse.adapter.ts"
+      ],
+      "inference": {
+        "confidence": 0.879615385,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/adapters` holds 11 files; `service` depends on it and it depends on no other layer (rank 1).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (11.0 of 11.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 1 of the 1 other layer (conventional arcs and upward dependencies do not count).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 11 member files.",
+            "value": 0.846153846,
+            "weight": 0.1
+          },
+          {
+            "signal": "misplaced-by-name",
+            "description": "1 member is named for another layer than its directory: `src/adapters/http-client.ts` (name: `client`, directory: `adapter`).",
+            "value": 1,
+            "entities": [
+              "file:src/adapters/http-client.ts"
+            ]
+          },
+          {
+            "signal": "role-sources",
+            "description": "11 members by location only."
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "layer:service",
+          "edgeCount": 43,
+          "observations": 43,
+          "runtimeEdgeCount": 19,
+          "kindCounts": {
+            "calls": 19,
+            "imports": 11,
+            "references-type": 13
+          },
+          "examples": [
+            "edge:00431c5c82b4fe45",
+            "edge:06aa4f28e051bbb6",
+            "edge:1041927b6cfec443",
+            "edge:1fc177613160e705",
+            "edge:23af1448e964a029"
+          ]
+        }
+      ]
+    }
+  ],
+  "roles": {
+    "src/adapters/http-client.ts": [
+      {
+        "role": "external-client",
+        "confidence": 0.6,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the file name `http-client.ts` ends with the word `client`, which the naming vocabulary maps to `external-client`.",
+            "value": 0.6,
+            "entities": [
+              "file:src/adapters/http-client.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `HttpClient` ends with the word `client`, which the naming vocabulary maps to `external-client`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/adapters/http-client.ts#HttpClient"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/discount.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `discount.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/discount.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `DiscountService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/discount.service.ts#DiscountService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/fraud.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `fraud.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/fraud.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `FraudService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/fraud.service.ts#FraudService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/inventory.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `inventory.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/inventory.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `InventoryService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/inventory.service.ts#InventoryService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/invoice.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `invoice.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/invoice.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `InvoiceService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/invoice.service.ts#InvoiceService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/loyalty.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `loyalty.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/loyalty.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `LoyaltyService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/loyalty.service.ts#LoyaltyService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/notification.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `notification.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/notification.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `NotificationService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/notification.service.ts#NotificationService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/payment.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `payment.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/payment.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `PaymentService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/payment.service.ts#PaymentService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/pricing.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `pricing.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/pricing.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `PricingService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/pricing.service.ts#PricingService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/shipping.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `shipping.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/shipping.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `ShippingService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/shipping.service.ts#ShippingService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/tax.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `tax.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/tax.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `TaxService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/tax.service.ts#TaxService"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

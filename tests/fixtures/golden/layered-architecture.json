@@ -1,0 +1,2195 @@
+{
+  "components": [
+    {
+      "id": "cmp:",
+      "name": "shop-backend",
+      "kind": "package",
+      "path": "",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "children": [
+        "cmp:src"
+      ],
+      "files": [],
+      "totals": {
+        "files": 20,
+        "symbols": 148,
+        "lines": 876
+      },
+      "modules": [
+        "mod:src",
+        "mod:src#order",
+        "mod:src#payment",
+        "mod:src#user",
+        "mod:src/shared"
+      ],
+      "dependencies": [],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src",
+      "name": "src",
+      "kind": "directory",
+      "path": "src",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:",
+      "children": [
+        "cmp:src/controllers",
+        "cmp:src/models",
+        "cmp:src/repositories",
+        "cmp:src/services",
+        "cmp:src/shared"
+      ],
+      "files": [
+        "file:src/main.ts"
+      ],
+      "totals": {
+        "files": 20,
+        "symbols": 148,
+        "lines": 876
+      },
+      "modules": [
+        "mod:src",
+        "mod:src#order",
+        "mod:src#payment",
+        "mod:src#user",
+        "mod:src/shared"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/controllers",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:086a1504ed989d2f",
+            "edge:16e244609df986be",
+            "edge:1deb0b4d33b490dc",
+            "edge:283b5e9e9e858591",
+            "edge:2c0e961bdfa67592"
+          ]
+        },
+        {
+          "entity": "cmp:src/repositories",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:0a5249b8afc51a06",
+            "edge:372eb4f04570da89",
+            "edge:520264e35145559e",
+            "edge:73b93ee7e0212130",
+            "edge:a741d474ebb63c7f"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 8,
+          "observations": 8,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "imports": 4,
+            "instantiates": 4
+          },
+          "examples": [
+            "edge:1473f0cc0532efe6",
+            "edge:15831700eb835bd9",
+            "edge:3b03a7f9608fddf9",
+            "edge:786ba5c65d394894",
+            "edge:99f6141cdf51b7f6"
+          ]
+        },
+        {
+          "entity": "cmp:src/shared",
+          "edgeCount": 16,
+          "observations": 16,
+          "runtimeEdgeCount": 16,
+          "kindCounts": {
+            "calls": 7,
+            "imports": 4,
+            "instantiates": 2,
+            "uses": 3
+          },
+          "examples": [
+            "edge:0c0b3162202ddf28",
+            "edge:277f289a172c6e11",
+            "edge:3524b797f9cf83a4",
+            "edge:3ea7f0b09ec0c5dd",
+            "edge:41a4ee7f3a5a09e4"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "cmp:src/controllers",
+      "name": "controllers",
+      "kind": "directory",
+      "path": "src/controllers",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/controllers/order.controller.ts",
+        "file:src/controllers/payment.controller.ts",
+        "file:src/controllers/user.controller.ts"
+      ],
+      "totals": {
+        "files": 3,
+        "symbols": 12,
+        "lines": 54
+      },
+      "modules": [
+        "mod:src#order",
+        "mod:src#payment",
+        "mod:src#user"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 15,
+          "observations": 15,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:129a5e0bf4f18776",
+            "edge:380eadbc4fa056e8",
+            "edge:44b184a5290b444e",
+            "edge:4c7b881b79741260",
+            "edge:819cd12c5694c6b3"
+          ]
+        },
+        {
+          "entity": "cmp:src/shared",
+          "edgeCount": 21,
+          "observations": 33,
+          "runtimeEdgeCount": 18,
+          "kindCounts": {
+            "calls": 15,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:aa3440ca9d1cef61",
+            "edge:6aef63430bb0b587",
+            "edge:87f465bd6e3be0b9",
+            "edge:b1e2b1009ebbb8bc",
+            "edge:7807b67601b3850a"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:086a1504ed989d2f",
+            "edge:16e244609df986be",
+            "edge:1deb0b4d33b490dc",
+            "edge:283b5e9e9e858591",
+            "edge:2c0e961bdfa67592"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/models",
+      "name": "models",
+      "kind": "directory",
+      "path": "src/models",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/models/order-line.ts",
+        "file:src/models/order.ts",
+        "file:src/models/payment.ts",
+        "file:src/models/user.ts"
+      ],
+      "totals": {
+        "files": 4,
+        "symbols": 21,
+        "lines": 100
+      },
+      "modules": [
+        "mod:src#order",
+        "mod:src#payment",
+        "mod:src#user"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src/repositories",
+          "edgeCount": 23,
+          "observations": 27,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 4,
+            "references-type": 18,
+            "uses": 1
+          },
+          "examples": [
+            "edge:09268e3cffa688fd",
+            "edge:284bd5ce5c8a6084",
+            "edge:5ea2061674cac54d",
+            "edge:044ab47ad8d8f7e3",
+            "edge:137f5afa55c9c3d5"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 27,
+          "observations": 28,
+          "runtimeEdgeCount": 15,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 4,
+            "references-type": 12,
+            "uses": 2
+          },
+          "examples": [
+            "edge:3c0ae495fec66de4",
+            "edge:0c54d08c9162c77d",
+            "edge:0d22485faf675400",
+            "edge:13d65613d8d7ea4e",
+            "edge:15812f93739573a1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/repositories",
+      "name": "repositories",
+      "kind": "directory",
+      "path": "src/repositories",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/repositories/order.repository.ts",
+        "file:src/repositories/payment.repository.ts",
+        "file:src/repositories/user.repository.ts"
+      ],
+      "totals": {
+        "files": 3,
+        "symbols": 26,
+        "lines": 167
+      },
+      "modules": [
+        "mod:src#order",
+        "mod:src#payment",
+        "mod:src#user"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/models",
+          "edgeCount": 23,
+          "observations": 27,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 4,
+            "references-type": 18,
+            "uses": 1
+          },
+          "examples": [
+            "edge:09268e3cffa688fd",
+            "edge:284bd5ce5c8a6084",
+            "edge:5ea2061674cac54d",
+            "edge:044ab47ad8d8f7e3",
+            "edge:137f5afa55c9c3d5"
+          ]
+        },
+        {
+          "entity": "cmp:src/shared",
+          "edgeCount": 17,
+          "observations": 17,
+          "runtimeEdgeCount": 11,
+          "kindCounts": {
+            "calls": 11,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:003e999d5cf46d53",
+            "edge:3434c980879e89d0",
+            "edge:3c1b54a03d9f4481",
+            "edge:3cf4dd4e00d81146",
+            "edge:3ee44edc155107ef"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:0a5249b8afc51a06",
+            "edge:372eb4f04570da89",
+            "edge:520264e35145559e",
+            "edge:73b93ee7e0212130",
+            "edge:a741d474ebb63c7f"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 19,
+          "observations": 20,
+          "runtimeEdgeCount": 16,
+          "kindCounts": {
+            "calls": 13,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:f920c35dcdc47ca9",
+            "edge:199f9637379c847b",
+            "edge:528778bfa048ace7",
+            "edge:8568cdb27b6a9bf9",
+            "edge:94780b7889a074d1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/services",
+      "name": "services",
+      "kind": "directory",
+      "path": "src/services",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/services/order.service.ts",
+        "file:src/services/payment-gateway.ts",
+        "file:src/services/payment.service.ts",
+        "file:src/services/user.service.ts"
+      ],
+      "totals": {
+        "files": 4,
+        "symbols": 34,
+        "lines": 222
+      },
+      "modules": [
+        "mod:src#order",
+        "mod:src#payment",
+        "mod:src#user"
+      ],
+      "dependencies": [
+        {
+          "entity": "cmp:src/models",
+          "edgeCount": 27,
+          "observations": 28,
+          "runtimeEdgeCount": 15,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 4,
+            "references-type": 12,
+            "uses": 2
+          },
+          "examples": [
+            "edge:3c0ae495fec66de4",
+            "edge:0c54d08c9162c77d",
+            "edge:0d22485faf675400",
+            "edge:13d65613d8d7ea4e",
+            "edge:15812f93739573a1"
+          ]
+        },
+        {
+          "entity": "cmp:src/repositories",
+          "edgeCount": 19,
+          "observations": 20,
+          "runtimeEdgeCount": 16,
+          "kindCounts": {
+            "calls": 13,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:f920c35dcdc47ca9",
+            "edge:199f9637379c847b",
+            "edge:528778bfa048ace7",
+            "edge:8568cdb27b6a9bf9",
+            "edge:94780b7889a074d1"
+          ]
+        },
+        {
+          "entity": "cmp:src/shared",
+          "edgeCount": 24,
+          "observations": 26,
+          "runtimeEdgeCount": 18,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 7,
+            "instantiates": 11,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:d3e126811acbd9be",
+            "edge:0da8b0ef3dddfd56",
+            "edge:1d64704c1e63988f",
+            "edge:1fee5e6f62485815",
+            "edge:2bccc6940a5a816c"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 8,
+          "observations": 8,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "imports": 4,
+            "instantiates": 4
+          },
+          "examples": [
+            "edge:1473f0cc0532efe6",
+            "edge:15831700eb835bd9",
+            "edge:3b03a7f9608fddf9",
+            "edge:786ba5c65d394894",
+            "edge:99f6141cdf51b7f6"
+          ]
+        },
+        {
+          "entity": "cmp:src/controllers",
+          "edgeCount": 15,
+          "observations": 15,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:129a5e0bf4f18776",
+            "edge:380eadbc4fa056e8",
+            "edge:44b184a5290b444e",
+            "edge:4c7b881b79741260",
+            "edge:819cd12c5694c6b3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cmp:src/shared",
+      "name": "shared",
+      "kind": "directory",
+      "path": "src/shared",
+      "packages": [
+        "pkg:npm:"
+      ],
+      "parent": "cmp:src",
+      "children": [],
+      "files": [
+        "file:src/shared/config.ts",
+        "file:src/shared/database.ts",
+        "file:src/shared/errors.ts",
+        "file:src/shared/http.ts",
+        "file:src/shared/logger.ts"
+      ],
+      "totals": {
+        "files": 5,
+        "symbols": 47,
+        "lines": 291
+      },
+      "modules": [
+        "mod:src/shared"
+      ],
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "cmp:src",
+          "edgeCount": 16,
+          "observations": 16,
+          "runtimeEdgeCount": 16,
+          "kindCounts": {
+            "calls": 7,
+            "imports": 4,
+            "instantiates": 2,
+            "uses": 3
+          },
+          "examples": [
+            "edge:0c0b3162202ddf28",
+            "edge:277f289a172c6e11",
+            "edge:3524b797f9cf83a4",
+            "edge:3ea7f0b09ec0c5dd",
+            "edge:41a4ee7f3a5a09e4"
+          ]
+        },
+        {
+          "entity": "cmp:src/controllers",
+          "edgeCount": 21,
+          "observations": 33,
+          "runtimeEdgeCount": 18,
+          "kindCounts": {
+            "calls": 15,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:aa3440ca9d1cef61",
+            "edge:6aef63430bb0b587",
+            "edge:87f465bd6e3be0b9",
+            "edge:b1e2b1009ebbb8bc",
+            "edge:7807b67601b3850a"
+          ]
+        },
+        {
+          "entity": "cmp:src/repositories",
+          "edgeCount": 17,
+          "observations": 17,
+          "runtimeEdgeCount": 11,
+          "kindCounts": {
+            "calls": 11,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:003e999d5cf46d53",
+            "edge:3434c980879e89d0",
+            "edge:3c1b54a03d9f4481",
+            "edge:3cf4dd4e00d81146",
+            "edge:3ee44edc155107ef"
+          ]
+        },
+        {
+          "entity": "cmp:src/services",
+          "edgeCount": 24,
+          "observations": 26,
+          "runtimeEdgeCount": 18,
+          "kindCounts": {
+            "calls": 3,
+            "imports": 7,
+            "instantiates": 11,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:d3e126811acbd9be",
+            "edge:0da8b0ef3dddfd56",
+            "edge:1d64704c1e63988f",
+            "edge:1fee5e6f62485815",
+            "edge:2bccc6940a5a816c"
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod:src",
+      "name": "shop-backend",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/main.ts"
+      ],
+      "components": [
+        "cmp:src"
+      ],
+      "entryPoints": [],
+      "publicApi": [],
+      "inference": {
+        "confidence": 0.866666667,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: the top-level files of `src` (1 file); it is treated as a composition root, barrel or declared entry point.",
+        "evidence": [
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the top-level files of `src` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.5
+          },
+          {
+            "signal": "wiring-share",
+            "description": "Its only member file is a composition root, barrel or declared entry point.",
+            "value": 1,
+            "weight": 0.3,
+            "entities": [
+              "file:src/main.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 1 member file.",
+            "value": 0.333333333,
+            "weight": 0.2
+          },
+          {
+            "signal": "composition-roots",
+            "description": "Treated as a composition root by the orchestrator rules (Katedrala heuristic) and not counted as evidence: `src/main.ts` (entry-point rule: a declared entry point that nothing in its package depends on).",
+            "value": 1,
+            "entities": [
+              "file:src/main.ts"
+            ]
+          },
+          {
+            "signal": "root-files",
+            "description": "Inferred from the top-level files of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src#order",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:15831700eb835bd9",
+            "edge:1deb0b4d33b490dc",
+            "edge:283b5e9e9e858591",
+            "edge:372eb4f04570da89",
+            "edge:520264e35145559e"
+          ]
+        },
+        {
+          "entity": "mod:src#payment",
+          "edgeCount": 8,
+          "observations": 8,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "imports": 4,
+            "instantiates": 4
+          },
+          "examples": [
+            "edge:086a1504ed989d2f",
+            "edge:0a5249b8afc51a06",
+            "edge:16e244609df986be",
+            "edge:3b03a7f9608fddf9",
+            "edge:73b93ee7e0212130"
+          ]
+        },
+        {
+          "entity": "mod:src#user",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:1473f0cc0532efe6",
+            "edge:2c0e961bdfa67592",
+            "edge:a741d474ebb63c7f",
+            "edge:bc4ef2e2732f12e5",
+            "edge:cd7b3fbee35ac656"
+          ]
+        },
+        {
+          "entity": "mod:src/shared",
+          "edgeCount": 16,
+          "observations": 16,
+          "runtimeEdgeCount": 16,
+          "kindCounts": {
+            "calls": 7,
+            "imports": 4,
+            "instantiates": 2,
+            "uses": 3
+          },
+          "examples": [
+            "edge:0c0b3162202ddf28",
+            "edge:277f289a172c6e11",
+            "edge:3524b797f9cf83a4",
+            "edge:3ea7f0b09ec0c5dd",
+            "edge:41a4ee7f3a5a09e4"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "mod:src#order",
+      "name": "orders",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src",
+        "stem": "order"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/controllers/order.controller.ts",
+        "file:src/models/order-line.ts",
+        "file:src/models/order.ts",
+        "file:src/repositories/order.repository.ts",
+        "file:src/services/order.service.ts"
+      ],
+      "components": [
+        "cmp:src/controllers",
+        "cmp:src/models",
+        "cmp:src/repositories",
+        "cmp:src/services"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/controllers/order.controller.ts",
+        "file:src/repositories/order.repository.ts",
+        "file:src/services/order.service.ts"
+      ],
+      "inference": {
+        "confidence": 0.88817734,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: files with the name stem `order` in 4 layer directories of `src` form a connected group; 83% of their dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "83% of the dependency weight of member files stays inside the module (internal 6.0, crossing 2.5).",
+            "value": 0.827586207,
+            "weight": 0.4
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 100 percentage points more connected to this module than to any other; no member is contested.",
+            "value": 1,
+            "weight": 0.25
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the file-name stem `order` across 4 layer directories exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 5 member files.",
+            "value": 0.714285714,
+            "weight": 0.15
+          },
+          {
+            "signal": "file-stem",
+            "description": "Inferred from the file-name stem `order`, which recurs across the layer directories of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (controllers, models, repositories and services) and 1 shared directory (shared), so it is organized by layer; file-name stems order, payment and user recur across its layer directories and cover 14 of 14 files.",
+            "value": 1,
+            "entities": [
+              "dir:src/controllers",
+              "dir:src/models",
+              "dir:src/repositories",
+              "dir:src/services",
+              "dir:src/shared"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src#payment",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:45a8a7bf0bc1adae",
+            "edge:de477ef4e4d2606b",
+            "edge:f9c6919b61e95452"
+          ]
+        },
+        {
+          "entity": "mod:src#user",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:22b66a260baf2657",
+            "edge:2e2088213e4c3890",
+            "edge:5711261d8912924f",
+            "edge:61b10d41142c33df",
+            "edge:70b65fb81a212deb"
+          ]
+        },
+        {
+          "entity": "mod:src/shared",
+          "edgeCount": 20,
+          "observations": 29,
+          "runtimeEdgeCount": 17,
+          "kindCounts": {
+            "calls": 11,
+            "imports": 3,
+            "instantiates": 4,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:aa3440ca9d1cef61",
+            "edge:87f465bd6e3be0b9",
+            "edge:b1e2b1009ebbb8bc",
+            "edge:7807b67601b3850a",
+            "edge:afff05028bf44d64"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:15831700eb835bd9",
+            "edge:1deb0b4d33b490dc",
+            "edge:283b5e9e9e858591",
+            "edge:372eb4f04570da89",
+            "edge:520264e35145559e"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src#payment",
+      "name": "payments",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src",
+        "stem": "payment"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/controllers/payment.controller.ts",
+        "file:src/models/payment.ts",
+        "file:src/repositories/payment.repository.ts",
+        "file:src/services/payment-gateway.ts",
+        "file:src/services/payment.service.ts"
+      ],
+      "components": [
+        "cmp:src/controllers",
+        "cmp:src/models",
+        "cmp:src/repositories",
+        "cmp:src/services"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/controllers/payment.controller.ts",
+        "file:src/repositories/payment.repository.ts",
+        "file:src/services/payment-gateway.ts",
+        "file:src/services/payment.service.ts"
+      ],
+      "inference": {
+        "confidence": 0.807142857,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: files with the name stem `payment` in 4 layer directories of `src` form a connected group; 75% of their dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "75% of the dependency weight of member files stays inside the module (internal 4.5, crossing 3.0).",
+            "value": 0.75,
+            "weight": 0.4
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 80 percentage points more connected to this module than to any other; 1 of 5 members is contested.",
+            "value": 0.8,
+            "weight": 0.25,
+            "entities": [
+              "file:src/services/payment.service.ts"
+            ]
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the file-name stem `payment` across 4 layer directories exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 5 member files.",
+            "value": 0.714285714,
+            "weight": 0.15
+          },
+          {
+            "signal": "file-stem",
+            "description": "Inferred from the file-name stem `payment`, which recurs across the layer directories of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (controllers, models, repositories and services) and 1 shared directory (shared), so it is organized by layer; file-name stems order, payment and user recur across its layer directories and cover 14 of 14 files.",
+            "value": 1,
+            "entities": [
+              "dir:src/controllers",
+              "dir:src/models",
+              "dir:src/repositories",
+              "dir:src/services",
+              "dir:src/shared"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src#user",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:264048ff37ddbb73",
+            "edge:6c46abf4e89bb8ac",
+            "edge:77069df0dc090f25",
+            "edge:7bba34c89adde2dd",
+            "edge:d93497e40f04e325"
+          ]
+        },
+        {
+          "entity": "mod:src/shared",
+          "edgeCount": 23,
+          "observations": 24,
+          "runtimeEdgeCount": 16,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 6,
+            "instantiates": 4,
+            "references-type": 4
+          },
+          "examples": [
+            "edge:c3044711261f1835",
+            "edge:003e999d5cf46d53",
+            "edge:1d64704c1e63988f",
+            "edge:1fee5e6f62485815",
+            "edge:3434c980879e89d0"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 8,
+          "observations": 8,
+          "runtimeEdgeCount": 8,
+          "kindCounts": {
+            "imports": 4,
+            "instantiates": 4
+          },
+          "examples": [
+            "edge:086a1504ed989d2f",
+            "edge:0a5249b8afc51a06",
+            "edge:16e244609df986be",
+            "edge:3b03a7f9608fddf9",
+            "edge:73b93ee7e0212130"
+          ]
+        },
+        {
+          "entity": "mod:src#order",
+          "edgeCount": 3,
+          "observations": 3,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 1,
+            "references-type": 1
+          },
+          "examples": [
+            "edge:45a8a7bf0bc1adae",
+            "edge:de477ef4e4d2606b",
+            "edge:f9c6919b61e95452"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src#user",
+      "name": "users",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src",
+        "stem": "user"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/controllers/user.controller.ts",
+        "file:src/models/user.ts",
+        "file:src/repositories/user.repository.ts",
+        "file:src/services/user.service.ts"
+      ],
+      "components": [
+        "cmp:src/controllers",
+        "cmp:src/models",
+        "cmp:src/repositories",
+        "cmp:src/services"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/controllers/user.controller.ts",
+        "file:src/models/user.ts",
+        "file:src/repositories/user.repository.ts",
+        "file:src/services/user.service.ts"
+      ],
+      "inference": {
+        "confidence": 0.747159091,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: files with the name stem `user` in 4 layer directories of `src` form a connected group; 73% of their dependency weight stays inside.",
+        "evidence": [
+          {
+            "signal": "internal-edge-ratio",
+            "description": "73% of the dependency weight of member files stays inside the module (internal 4.0, crossing 3.0).",
+            "value": 0.727272727,
+            "weight": 0.4
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match the file-name stem `user` across 4 layer directories exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "membership-margin",
+            "description": "On average, member files are 63 percentage points more connected to this module than to any other; 1 of 4 members is contested.",
+            "value": 0.625,
+            "weight": 0.25,
+            "entities": [
+              "file:src/services/user.service.ts"
+            ]
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.15
+          },
+          {
+            "signal": "file-stem",
+            "description": "Inferred from the file-name stem `user`, which recurs across the layer directories of `src`.",
+            "entities": [
+              "dir:src"
+            ]
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (controllers, models, repositories and services) and 1 shared directory (shared), so it is organized by layer; file-name stems order, payment and user recur across its layer directories and cover 14 of 14 files.",
+            "value": 1,
+            "entities": [
+              "dir:src/controllers",
+              "dir:src/models",
+              "dir:src/repositories",
+              "dir:src/services",
+              "dir:src/shared"
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "mod:src/shared",
+          "edgeCount": 19,
+          "observations": 23,
+          "runtimeEdgeCount": 14,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 4,
+            "instantiates": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:6aef63430bb0b587",
+            "edge:d3e126811acbd9be",
+            "edge:0da8b0ef3dddfd56",
+            "edge:2bccc6940a5a816c",
+            "edge:3a15880b4681c492"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 6,
+          "observations": 6,
+          "runtimeEdgeCount": 6,
+          "kindCounts": {
+            "imports": 3,
+            "instantiates": 3
+          },
+          "examples": [
+            "edge:1473f0cc0532efe6",
+            "edge:2c0e961bdfa67592",
+            "edge:a741d474ebb63c7f",
+            "edge:bc4ef2e2732f12e5",
+            "edge:cd7b3fbee35ac656"
+          ]
+        },
+        {
+          "entity": "mod:src#order",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:22b66a260baf2657",
+            "edge:2e2088213e4c3890",
+            "edge:5711261d8912924f",
+            "edge:61b10d41142c33df",
+            "edge:70b65fb81a212deb"
+          ]
+        },
+        {
+          "entity": "mod:src#payment",
+          "edgeCount": 5,
+          "observations": 5,
+          "runtimeEdgeCount": 2,
+          "kindCounts": {
+            "calls": 1,
+            "imports": 2,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:264048ff37ddbb73",
+            "edge:6c46abf4e89bb8ac",
+            "edge:77069df0dc090f25",
+            "edge:7bba34c89adde2dd",
+            "edge:d93497e40f04e325"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mod:src/shared",
+      "name": "shared",
+      "origin": "inferred",
+      "anchor": {
+        "directory": "src/shared"
+      },
+      "packages": [
+        "pkg:npm:"
+      ],
+      "files": [
+        "file:src/shared/config.ts",
+        "file:src/shared/database.ts",
+        "file:src/shared/errors.ts",
+        "file:src/shared/http.ts",
+        "file:src/shared/logger.ts"
+      ],
+      "components": [
+        "cmp:src/shared"
+      ],
+      "entryPoints": [],
+      "publicApi": [
+        "file:src/shared/config.ts",
+        "file:src/shared/database.ts",
+        "file:src/shared/errors.ts",
+        "file:src/shared/http.ts",
+        "file:src/shared/logger.ts"
+      ],
+      "inference": {
+        "confidence": 0.842857143,
+        "method": "katedrala/module-inference@1",
+        "reason": "Inferred: shared directory `src/shared`; 4 of 5 files are used by two or more other modules.",
+        "evidence": [
+          {
+            "signal": "shared-usage",
+            "description": "4 of 5 files are used by two or more other modules (composition roots do not count as users).",
+            "value": 0.8,
+            "weight": 0.5,
+            "entities": [
+              "file:src/shared/database.ts",
+              "file:src/shared/errors.ts",
+              "file:src/shared/http.ts",
+              "file:src/shared/logger.ts"
+            ]
+          },
+          {
+            "signal": "prior-agreement",
+            "description": "The members match directory `src/shared` exactly (Jaccard 1.00).",
+            "value": 1,
+            "weight": 0.3
+          },
+          {
+            "signal": "module-size",
+            "description": "The module has 5 member files.",
+            "value": 0.714285714,
+            "weight": 0.2
+          },
+          {
+            "signal": "organization-style",
+            "description": "Directory classification (Katedrala heuristic, directory vocabulary): `src` has 4 layer directories (controllers, models, repositories and services) and 1 shared directory (shared), so it is organized by layer; file-name stems order, payment and user recur across its layer directories and cover 14 of 14 files.",
+            "value": 1,
+            "entities": [
+              "dir:src/controllers",
+              "dir:src/models",
+              "dir:src/repositories",
+              "dir:src/services",
+              "dir:src/shared"
+            ]
+          },
+          {
+            "signal": "shared-directory",
+            "description": "Inferred from the shared directory `src/shared`.",
+            "entities": [
+              "dir:src/shared"
+            ]
+          },
+          {
+            "signal": "single-user-files",
+            "description": "1 file is used by only one other module: config (payments).",
+            "value": 1,
+            "entities": [
+              "file:src/shared/config.ts"
+            ]
+          },
+          {
+            "signal": "utility-files",
+            "description": "Treated as shared utilities by the utility rule (Katedrala heuristic), pinned and not counted as evidence: `src/shared/database.ts` (its dependents lie in 3 other units); `src/shared/errors.ts` (its dependents lie in 3 other units); `src/shared/http.ts` (its dependents lie in 3 other units); `src/shared/logger.ts` (its dependents lie in 2 other units).",
+            "value": 4,
+            "entities": [
+              "file:src/shared/database.ts",
+              "file:src/shared/errors.ts",
+              "file:src/shared/http.ts",
+              "file:src/shared/logger.ts"
+            ]
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "mod:src",
+          "edgeCount": 16,
+          "observations": 16,
+          "runtimeEdgeCount": 16,
+          "kindCounts": {
+            "calls": 7,
+            "imports": 4,
+            "instantiates": 2,
+            "uses": 3
+          },
+          "examples": [
+            "edge:0c0b3162202ddf28",
+            "edge:277f289a172c6e11",
+            "edge:3524b797f9cf83a4",
+            "edge:3ea7f0b09ec0c5dd",
+            "edge:41a4ee7f3a5a09e4"
+          ]
+        },
+        {
+          "entity": "mod:src#order",
+          "edgeCount": 20,
+          "observations": 29,
+          "runtimeEdgeCount": 17,
+          "kindCounts": {
+            "calls": 11,
+            "imports": 3,
+            "instantiates": 4,
+            "references-type": 2
+          },
+          "examples": [
+            "edge:aa3440ca9d1cef61",
+            "edge:87f465bd6e3be0b9",
+            "edge:b1e2b1009ebbb8bc",
+            "edge:7807b67601b3850a",
+            "edge:afff05028bf44d64"
+          ]
+        },
+        {
+          "entity": "mod:src#payment",
+          "edgeCount": 23,
+          "observations": 24,
+          "runtimeEdgeCount": 16,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 6,
+            "instantiates": 4,
+            "references-type": 4
+          },
+          "examples": [
+            "edge:c3044711261f1835",
+            "edge:003e999d5cf46d53",
+            "edge:1d64704c1e63988f",
+            "edge:1fee5e6f62485815",
+            "edge:3434c980879e89d0"
+          ]
+        },
+        {
+          "entity": "mod:src#user",
+          "edgeCount": 19,
+          "observations": 23,
+          "runtimeEdgeCount": 14,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 4,
+            "instantiates": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:6aef63430bb0b587",
+            "edge:d3e126811acbd9be",
+            "edge:0da8b0ef3dddfd56",
+            "edge:2bccc6940a5a816c",
+            "edge:3a15880b4681c492"
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:controller",
+      "name": "controller",
+      "origin": "inferred",
+      "rank": 0,
+      "files": [
+        "file:src/controllers/order.controller.ts",
+        "file:src/controllers/payment.controller.ts",
+        "file:src/controllers/user.controller.ts"
+      ],
+      "inference": {
+        "confidence": 0.939,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/controllers` holds 3 files named `*.controller.ts`; no other layer depends on it and it depends on `service` (rank 0).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (3.0 of 3.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.94 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.94,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 3 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 3 member files.",
+            "value": 0.6,
+            "weight": 0.1
+          },
+          {
+            "signal": "role-sources",
+            "description": "3 members by location and naming."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:service",
+          "edgeCount": 15,
+          "observations": 15,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:129a5e0bf4f18776",
+            "edge:380eadbc4fa056e8",
+            "edge:44b184a5290b444e",
+            "edge:4c7b881b79741260",
+            "edge:819cd12c5694c6b3"
+          ]
+        }
+      ],
+      "dependents": []
+    },
+    {
+      "id": "layer:service",
+      "name": "service",
+      "origin": "inferred",
+      "rank": 1,
+      "files": [
+        "file:src/services/order.service.ts",
+        "file:src/services/payment-gateway.ts",
+        "file:src/services/payment.service.ts",
+        "file:src/services/user.service.ts"
+      ],
+      "inference": {
+        "confidence": 0.924666667,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/services` holds 4 files, 3 of them named `*.service.ts`; `controller` depends on it and it depends on `model` and `repository` (rank 1).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (10.0 of 10.0).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.88 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.88,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 3 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.1
+          },
+          {
+            "signal": "role-sources",
+            "description": "3 members by location and naming, 1 by location only."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:model",
+          "edgeCount": 27,
+          "observations": 28,
+          "runtimeEdgeCount": 15,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 4,
+            "references-type": 12,
+            "uses": 2
+          },
+          "examples": [
+            "edge:3c0ae495fec66de4",
+            "edge:0c54d08c9162c77d",
+            "edge:0d22485faf675400",
+            "edge:13d65613d8d7ea4e",
+            "edge:15812f93739573a1"
+          ]
+        },
+        {
+          "entity": "layer:repository",
+          "edgeCount": 19,
+          "observations": 20,
+          "runtimeEdgeCount": 16,
+          "kindCounts": {
+            "calls": 13,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:f920c35dcdc47ca9",
+            "edge:199f9637379c847b",
+            "edge:528778bfa048ace7",
+            "edge:8568cdb27b6a9bf9",
+            "edge:94780b7889a074d1"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "layer:controller",
+          "edgeCount": 15,
+          "observations": 15,
+          "runtimeEdgeCount": 12,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:129a5e0bf4f18776",
+            "edge:380eadbc4fa056e8",
+            "edge:44b184a5290b444e",
+            "edge:4c7b881b79741260",
+            "edge:819cd12c5694c6b3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layer:repository",
+      "name": "repository",
+      "origin": "inferred",
+      "rank": 2,
+      "files": [
+        "file:src/repositories/order.repository.ts",
+        "file:src/repositories/payment.repository.ts",
+        "file:src/repositories/user.repository.ts"
+      ],
+      "inference": {
+        "confidence": 0.939,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/repositories` holds 3 files named `*.repository.ts`; `service` depends on it and it depends on `model` (rank 2).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (5.5 of 5.5).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.94 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.94,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 3 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 3 member files.",
+            "value": 0.6,
+            "weight": 0.1
+          },
+          {
+            "signal": "role-sources",
+            "description": "3 members by location and naming."
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "entity": "layer:model",
+          "edgeCount": 23,
+          "observations": 27,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 4,
+            "references-type": 18,
+            "uses": 1
+          },
+          "examples": [
+            "edge:09268e3cffa688fd",
+            "edge:284bd5ce5c8a6084",
+            "edge:5ea2061674cac54d",
+            "edge:044ab47ad8d8f7e3",
+            "edge:137f5afa55c9c3d5"
+          ]
+        }
+      ],
+      "dependents": [
+        {
+          "entity": "layer:service",
+          "edgeCount": 19,
+          "observations": 20,
+          "runtimeEdgeCount": 16,
+          "kindCounts": {
+            "calls": 13,
+            "imports": 3,
+            "references-type": 3
+          },
+          "examples": [
+            "edge:f920c35dcdc47ca9",
+            "edge:199f9637379c847b",
+            "edge:528778bfa048ace7",
+            "edge:8568cdb27b6a9bf9",
+            "edge:94780b7889a074d1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layer:model",
+      "name": "model",
+      "origin": "inferred",
+      "rank": 3,
+      "files": [
+        "file:src/models/order-line.ts",
+        "file:src/models/order.ts",
+        "file:src/models/payment.ts",
+        "file:src/models/user.ts"
+      ],
+      "inference": {
+        "confidence": 0.861666667,
+        "method": "katedrala/layer-inference@1",
+        "reason": "Inferred: `src/models` holds 4 files; `repository` and `service` depend on it and it depends on no other layer (rank 3).",
+        "evidence": [
+          {
+            "signal": "direction-consistency",
+            "description": "100% of the dependency weight between this layer and other layers follows the inferred order, outgoing to a higher rank or incoming from a lower rank (6.5 of 6.5).",
+            "value": 1,
+            "weight": 0.35
+          },
+          {
+            "signal": "label-agreement",
+            "description": "The members' votes for this layer score 0.70 on average (maximum within a vote source, noisy-OR across sources).",
+            "value": 0.7,
+            "weight": 0.35
+          },
+          {
+            "signal": "order-support",
+            "description": "Observed dependency paths order this layer relative to 3 of the 3 other layers (conventional arcs and upward dependencies do not count).",
+            "value": 1,
+            "weight": 0.2
+          },
+          {
+            "signal": "layer-size",
+            "description": "The layer has 4 member files.",
+            "value": 0.666666667,
+            "weight": 0.1
+          },
+          {
+            "signal": "role-sources",
+            "description": "4 members by location only."
+          }
+        ]
+      },
+      "dependencies": [],
+      "dependents": [
+        {
+          "entity": "layer:repository",
+          "edgeCount": 23,
+          "observations": 27,
+          "runtimeEdgeCount": 1,
+          "kindCounts": {
+            "imports": 4,
+            "references-type": 18,
+            "uses": 1
+          },
+          "examples": [
+            "edge:09268e3cffa688fd",
+            "edge:284bd5ce5c8a6084",
+            "edge:5ea2061674cac54d",
+            "edge:044ab47ad8d8f7e3",
+            "edge:137f5afa55c9c3d5"
+          ]
+        },
+        {
+          "entity": "layer:service",
+          "edgeCount": 27,
+          "observations": 28,
+          "runtimeEdgeCount": 15,
+          "kindCounts": {
+            "calls": 9,
+            "imports": 4,
+            "references-type": 12,
+            "uses": 2
+          },
+          "examples": [
+            "edge:3c0ae495fec66de4",
+            "edge:0c54d08c9162c77d",
+            "edge:0d22485faf675400",
+            "edge:13d65613d8d7ea4e",
+            "edge:15812f93739573a1"
+          ]
+        }
+      ]
+    }
+  ],
+  "roles": {
+    "src/controllers/order.controller.ts": [
+      {
+        "role": "http-controller",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/controllers`, which the directory vocabulary maps to the layer `controller`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/controllers"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "http-controller",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `order.controller.ts` has the qualifier `controller`, which the naming vocabulary maps to `http-controller`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/controllers/order.controller.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `OrderController` ends with the word `controller`, which the naming vocabulary maps to `http-controller`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/controllers/order.controller.ts#OrderController"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/controllers/payment.controller.ts": [
+      {
+        "role": "http-controller",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/controllers`, which the directory vocabulary maps to the layer `controller`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/controllers"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "http-controller",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `payment.controller.ts` has the qualifier `controller`, which the naming vocabulary maps to `http-controller`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/controllers/payment.controller.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `PaymentController` ends with the word `controller`, which the naming vocabulary maps to `http-controller`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/controllers/payment.controller.ts#PaymentController"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/controllers/user.controller.ts": [
+      {
+        "role": "http-controller",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/controllers`, which the directory vocabulary maps to the layer `controller`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/controllers"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "http-controller",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `user.controller.ts` has the qualifier `controller`, which the naming vocabulary maps to `http-controller`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/controllers/user.controller.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `UserController` ends with the word `controller`, which the naming vocabulary maps to `http-controller`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/controllers/user.controller.ts#UserController"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/models/order-line.ts": [
+      {
+        "role": "data-model",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/models`, which the directory vocabulary maps to the layer `model`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/models"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/models/order.ts": [
+      {
+        "role": "data-model",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/models`, which the directory vocabulary maps to the layer `model`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/models"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/models/payment.ts": [
+      {
+        "role": "data-model",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/models`, which the directory vocabulary maps to the layer `model`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/models"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/models/user.ts": [
+      {
+        "role": "data-model",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/models`, which the directory vocabulary maps to the layer `model`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/models"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/repositories/order.repository.ts": [
+      {
+        "role": "repository",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/repositories`, which the directory vocabulary maps to the layer `repository`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/repositories"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "repository",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `order.repository.ts` has the qualifier `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/repositories/order.repository.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `OrderRepository` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/repositories/order.repository.ts#OrderRepository"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/repositories/payment.repository.ts": [
+      {
+        "role": "repository",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/repositories`, which the directory vocabulary maps to the layer `repository`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/repositories"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "repository",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `payment.repository.ts` has the qualifier `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/repositories/payment.repository.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `PaymentRepository` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/repositories/payment.repository.ts#PaymentRepository"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/repositories/user.repository.ts": [
+      {
+        "role": "repository",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/repositories`, which the directory vocabulary maps to the layer `repository`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/repositories"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "repository",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `user.repository.ts` has the qualifier `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/repositories/user.repository.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `UserRepository` ends with the word `repository`, which the naming vocabulary maps to `repository`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/repositories/user.repository.ts#UserRepository"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/order.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `order.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/order.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `OrderService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/order.service.ts#OrderService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/payment-gateway.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/payment.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `payment.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/payment.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `PaymentService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/payment.service.ts#PaymentService"
+            ]
+          }
+        ]
+      }
+    ],
+    "src/services/user.service.ts": [
+      {
+        "role": "service",
+        "confidence": 0.7,
+        "source": "location",
+        "evidence": [
+          {
+            "signal": "directory-name",
+            "description": "Location rule (Katedrala heuristic): the file lies in `src/services`, which the directory vocabulary maps to the layer `service`.",
+            "value": 0.7,
+            "entities": [
+              "dir:src/services"
+            ]
+          }
+        ]
+      },
+      {
+        "role": "service",
+        "confidence": 0.8,
+        "source": "naming",
+        "evidence": [
+          {
+            "signal": "name-qualifier",
+            "description": "Naming rule (Katedrala heuristic): the file name `user.service.ts` has the qualifier `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.8,
+            "entities": [
+              "file:src/services/user.service.ts"
+            ]
+          },
+          {
+            "signal": "type-name-suffix",
+            "description": "Naming rule (Katedrala heuristic): the exported class `UserService` ends with the word `service`, which the naming vocabulary maps to `service`.",
+            "value": 0.6,
+            "entities": [
+              "sym:src/services/user.service.ts#UserService"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

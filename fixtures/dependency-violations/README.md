@@ -62,4 +62,4 @@ do not touch analytics. Services may use analytics: `order.service.ts` and `refu
 | `groups`                     | Files matched by each selector under `groups`.                                                             |
 | `declaredModules`            | Member files of each module declared under `modules`.                                                      |
 | `declaredModuleDependencies` | `[from, to]` pairs of declared modules where a file of `from` imports a file of `to`.                     |
-| `moduleCycles`               | Cycles between modules (none).                                                                             |
+| `moduleCycles`               | Cycles between declared modules (none). Inferred modules may form cycles; they are observations, not rule violations. |
