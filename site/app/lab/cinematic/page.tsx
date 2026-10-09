@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/site/Navbar";
 import { Film } from "@/components/stage/Film";
 import { Legend } from "@/components/stage/Legend";
-import { FILM_MODE_SCRIPT } from "@/components/stage/mode";
 
 export const metadata: Metadata = {
   title: "Katedrala: see what your code stands on (preview)",
@@ -13,14 +12,13 @@ export const metadata: Metadata = {
 
 /**
  * The film's preview route until it opens the main page: the promoted film (components/stage) under the site's
- * navigation, then the drawing's legend, which the landing will carry.
+ * navigation, then the drawing's legend, which the landing will carry. The layout's <head> decides film or still
+ * before anything paints (FILM_MODE_SCRIPT). The layout's "Skip the film" shows only on a page with the plate after
+ * the film, so this route keeps its own until the switch.
  */
 export default function CinematicLabPage() {
   return (
     <>
-      {/* Decides film or still before anything paints. The main page's layout carries it in <head>; a second copy
-          does nothing. */}
-      <script dangerouslySetInnerHTML={{ __html: FILM_MODE_SCRIPT }} />
       <a href="#film-end" className="skip-link" data-film-skip>
         Skip the film
       </a>

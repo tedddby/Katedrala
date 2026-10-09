@@ -1,0 +1,74 @@
+- region "Some members hold up more of the system than others.":
+  - heading "Some members hold up more of the system than others." [level=2]
+  - paragraph: Architectural Gravity will measure how much rests on each member, from the dependency graph and module boundaries.
+  - text: Katedrala heuristic, planned for v1
+  - radiogroup "Member to measure":
+    - radio "Database 0.64" [checked]
+    - radio "PaymentService 0.58"
+    - radio "OrderService 0.46"
+    - radio "CheckoutController 0.25"
+    - radio "ApiGateway 0.00"
+  - figure "Everything that rests on Database, directly or through other members. Demonstration system.":
+    - list "Database and what rests on it, by load level":
+      - listitem:
+        - text: Level +7
+        - list:
+          - listitem: ApiGateway
+      - listitem:
+        - text: Level +6
+        - list:
+          - listitem: CheckoutController
+      - listitem:
+        - text: Level +5
+        - list:
+          - listitem: CheckoutService
+          - listitem: OrderController
+      - listitem:
+        - text: Level +4
+        - list:
+          - listitem: OrderService
+      - listitem:
+        - text: Level +3
+        - list:
+          - listitem: InvoiceService
+      - listitem:
+        - text: Level +2
+        - list:
+          - listitem: AuthService
+          - listitem: PaymentService
+          - listitem: UserService
+      - listitem:
+        - text: Level +1
+        - list:
+          - listitem: OrderRepository
+          - listitem: PaymentRepository
+          - listitem: SessionStore
+          - listitem: UserRepository
+      - listitem:
+        - text: Level ±0
+        - list:
+          - listitem: Database
+    - text: Everything that rests on Database, directly or through other members. Demonstration system.
+  - status: "Database: gravity 0.64. Reach lights 13 members: ApiGateway, AuthService, CheckoutController, CheckoutService, InvoiceService, OrderController, OrderRepository, OrderService, PaymentRepository, PaymentService, SessionStore, UserRepository and UserService."
+  - paragraph: 0.64 Gravity of Database
+  - heading "Why does Database score 0.64?" [level=3]
+  - list:
+    - listitem:
+      - text: "Reach 13 of 15 rest on it : normalized 0.95 × weight 0.40 = 0.38"
+      - paragraph: 13 of 15 members rest on it, directly or through other members.
+      - button "Show reach in the drawing" [pressed]: Show
+    - listitem:
+      - text: "Fan-in 4 direct : normalized 0.58 × weight 0.20 = 0.12"
+      - paragraph: "4 members access data in it directly: OrderRepository, PaymentRepository, SessionStore and UserRepository."
+      - button "Show fan-in in the drawing": Show
+    - listitem:
+      - text: "Cross-module spread 4 other modules : normalized 0.57 × weight 0.25 = 0.14"
+      - paragraph: "4 other modules access data in it: Auth, Orders, Payments and Users."
+      - button "Show cross-module spread in the drawing": Show
+    - listitem:
+      - text: "Brokerage betweenness 0.0 : normalized 0.00 × weight 0.15 = 0.00"
+      - paragraph: No shortest dependency path between two other members passes through it.
+      - button "Show brokerage in the drawing": Show
+  - text: Sum 0.64
+  - paragraph: "Each term adds its normalized value times its weight, rounded so the terms add up to the score. Reach, fan-in and brokerage are log shares, ln(1 + x) / ln(1 + max), against the most a system of 16 members allows: 15 for reach and fan-in, 210 for brokerage. Spread saturates as x / (x + 3). No term depends on the largest value observed, so a score moves with what rests on the member and only slightly as the system grows."
+  - paragraph: "Gravity is a Katedrala heuristic, not an established metric. Three of its four terms are established measures: reach is the visibility fan-in behind the propagation cost of MacCormack, Rusnak and Baldwin (2006), fan-in is afferent coupling (Martin 1994), and brokerage is betweenness centrality (Freeman 1977; computed with Brandes 2001). Cross-module spread is Katedrala's own. The weights are design choices and will be documented with the method in milestone 6."

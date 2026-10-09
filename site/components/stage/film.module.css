@@ -52,6 +52,12 @@
   );
   --k-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --k-mono: var(--font-martian), ui-monospace, "SFMono-Regular", monospace;
+  /*
+   * On tall framings the title block holds the band at the frame's foot. The pinned stage is its own stacking
+   * context, so anything an act pins over the frame from outside it (the landing's sheet) paints over every layer of
+   * the frame: it keeps this band free, as the captions do.
+   */
+  --k-foot: calc(4.75rem + env(safe-area-inset-bottom, 0px));
 }
 
 .film {
@@ -82,7 +88,6 @@
   min-height: 34rem;
   max-height: 64rem;
   overflow: hidden;
-  /* Not isolated: on phones the title block (z 5) must sit over the landing's sheet (z 4), outside this frame. */
   background: var(--k-sheet);
 }
 
@@ -143,7 +148,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: var(--z-film-scrim, 1);
   pointer-events: none;
   background:
     linear-gradient(
@@ -167,7 +172,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: var(--z-film-scrim, 1);
     pointer-events: none;
     background: radial-gradient(
       ellipse 62% 58% at 0% 100%,
@@ -198,7 +203,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: var(--z-film-scrim, 1);
     pointer-events: none;
     background: linear-gradient(
       180deg,
@@ -217,7 +222,7 @@
 .leaders {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: var(--z-film-leaders, 2);
   width: 100%;
   height: 100%;
   overflow: visible;
@@ -251,7 +256,7 @@
 .labels {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: var(--z-film-labels, 3);
   pointer-events: none;
 }
 
@@ -319,7 +324,7 @@
 
 .hero {
   position: absolute;
-  z-index: 4;
+  z-index: var(--z-film-words, 4);
   left: var(--k-edge);
   top: clamp(7.5rem, 27vh, 15rem);
   width: min(38rem, 42vw);
@@ -388,9 +393,10 @@
   }
 }
 
+/* Two lines from 1280 up (a lede never runs past two lines at 1440); the hero is narrower below that. */
 .lede {
   margin: 1.5rem 0 0;
-  max-width: 31rem;
+  max-width: 34rem;
   font-size: clamp(1.0625rem, 0.95rem + 0.35vw, 1.25rem);
   line-height: 1.5;
   color: var(--k-soft);
@@ -418,7 +424,7 @@
 /* Like the labels, it knocks the drawing out behind it so it reads over the ground's hatching. */
 .titleblock {
   position: absolute;
-  z-index: 4;
+  z-index: var(--z-film-words, 4);
   right: calc(var(--k-edge) - 0.4rem);
   bottom: calc(1.25rem - 0.3rem);
   display: grid;
@@ -519,7 +525,7 @@
  */
 :global(html[data-kfilm="film"]) .captions {
   position: absolute;
-  z-index: 4;
+  z-index: var(--z-film-words, 4);
   left: var(--k-edge);
   bottom: clamp(2.5rem, 9vh, 5.5rem);
   width: min(27rem, 34vw);
@@ -591,7 +597,7 @@
 /* Like the labels, it knocks the drawing out behind it: during the climb the structure fills the frame. */
 :global(html[data-kfilm="film"]) .gauge {
   position: absolute;
-  z-index: 4;
+  z-index: var(--z-film-words, 4);
   right: calc(var(--k-edge) - 0.75rem);
   top: 50%;
   display: grid;
@@ -725,7 +731,7 @@
  */
 :global(html[data-kfilm="film"]) .slotPinned {
   position: sticky;
-  z-index: 4;
+  z-index: var(--z-film-words, 4);
   top: 0;
   height: 100vh;
   height: 100svh;
@@ -754,7 +760,7 @@
 :global(html[data-kfilm="film"]) .layer {
   display: block;
   position: absolute;
-  z-index: 4;
+  z-index: var(--z-film-words, 4);
   inset: 0;
   pointer-events: none;
 }
@@ -846,7 +852,7 @@
 
 .stillLayer {
   position: absolute;
-  z-index: 4;
+  z-index: var(--z-film-words, 4);
   inset: 0;
   pointer-events: none;
 }
@@ -883,10 +889,9 @@
     padding-inline: 1rem;
   }
 
-  /* At the foot of the frame, under the drawing it names (above the headline it would read as a label). Three
-   * lines; the captions and the landing keep clear of them. */
+  /* At the foot of the frame, under the drawing it names (above the headline it would read as a label): three lines
+   * in the band --k-foot keeps for them. */
   .titleblock {
-    z-index: 5;
     left: calc(var(--k-edge) - 0.4rem);
     right: auto;
     bottom: calc(0.575rem + env(safe-area-inset-bottom, 0px));
@@ -898,7 +903,7 @@
   :global(html[data-kfilm="film"]) .captions {
     left: var(--k-edge);
     right: var(--k-edge);
-    bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(var(--k-foot) + 0.5rem);
     width: auto;
     max-width: 34rem;
   }

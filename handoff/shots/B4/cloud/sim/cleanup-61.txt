@@ -1,0 +1,9 @@
+start 57.862 [0,0,0,3,27,0]
+end 57.549 [0,0,0,3,27,0]
+CFG {"order":{"payments":["StripeClient","PaymentService","PaymentRepository"],"auth":["SessionStore","AuthService"],"checkout":["CheckoutService","CheckoutController"]},"nudge":{"Database":52,"ApiGateway":32,"SessionStore":8,"UserRepository":-36,"InvoiceService":-32,"EventBus":8,"OrderService":20,"OrderController":36,"CheckoutController":-8,"AuthService":24,"OrderRepository":12,"UserService":-20,"PaymentService":-32,"PaymentRepository":-12,"CheckoutService":-8},"bend":{"OrderService>EventBus":24,"ApiGateway>CheckoutController":24,"ApiGateway>OrderController":-24,"InvoiceService>UserService":32,"OrderService>PaymentService":-8}}
+1.018 
+1.240 
+1.430 
+1.636 OrderRepository crossed x1; Checkout crossed x1; Platform crossed x1
+{"crossings":27,"near":0,"pairs":[]}
+bends ApiGateway>AuthService:48 ApiGateway>CheckoutController:24 ApiGateway>OrderController:-24 CheckoutService>PaymentService:48 OrderService>PaymentService:-8 OrderService>EventBus:24 InvoiceService>UserService:32

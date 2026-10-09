@@ -1,0 +1,31 @@
+- region "Structure decays one dependency at a time.":
+  - heading "Structure decays one dependency at a time." [level=2]
+  - paragraph: "Architectural Entropy will score disorder: cycles, dependencies against the grain, scattered coupling and propagation."
+  - text: Katedrala heuristic, planned for v1
+  - figure "Modules of the demonstration system. Arcs are dependencies added by the commits; lit modules are tangled in a cycle. No module is in a cycle.":
+    - 'img "Modules of the demonstration system on their load levels, Platform the foundation, after 0 of 5 commits: no dependency added; no module cycles."': Gateway Auth Checkout Orders Billing Payments Users Platform
+    - text: Modules of the demonstration system. Arcs are dependencies added by the commits; lit modules are tangled in a cycle. No module is in a cycle.
+  - text: 0.22 low entropy
+  - radiogroup "Commits applied":
+    - radio "base Clean structure, entropy 0.22" [checked]: base Clean structure 0.22
+    - radio "+1 Send order confirmations from the user repository, entropy +0.23": +1 Send order confirmations from the user repository +0.23
+    - radio "+2 Check permissions before charging, entropy +0.07": +2 Check permissions before charging +0.07
+    - radio "+3 Recalculate invoices from orders, entropy +0.05": +3 Recalculate invoices from orders +0.05
+    - radio "+4 Show unpaid invoices on profiles, entropy +0.03": +4 Show unpaid invoices on profiles +0.03
+    - radio "+5 Audit order access from auth, entropy +0.03": +5 Audit order access from auth +0.03
+  - list:
+    - listitem:
+      - text: "Cycles : normalized 0.00 × weight 0.30 = 0.00"
+      - paragraph: No member is part of a cycle.
+    - listitem:
+      - text: "Against the grain : normalized 0.00 × weight 0.25 = 0.00"
+      - paragraph: Cross-module dependencies all flow one way.
+    - listitem:
+      - text: "Scatter : normalized 0.49 × weight 0.25 = 0.12"
+      - paragraph: A module's dependencies spread over 2.9 modules on average, its own included.
+    - listitem:
+      - text: "Propagation : normalized 0.47 × weight 0.20 = 0.10"
+      - paragraph: 30% of member pairs are joined by a dependency path.
+  - text: Sum 0.22
+  - paragraph: Each factor adds its normalized value times its weight, rounded so the factors add up to the score.
+  - paragraph: "Entropy is a Katedrala heuristic. Its factors come from established ideas: acyclic dependencies (Martin 2003), propagation cost (MacCormack, Rusnak and Baldwin 2006) and Shannon entropy (Shannon 1948). Their selection, normalization and weights are design choices, and the score has not been validated against maintenance outcomes."

@@ -7,19 +7,20 @@
  * draw again when they return). Hover and tap trace files with instant lighting; each figure keeps its own trace.
  */
 import type { ActContext, ActDefinition, ActOverlay, Box, LitMask, ScreenPoint } from "./act";
+import type { ActPayload } from "./acts/payload";
 import { Fallback } from "./fallback";
 import { defaultTrace } from "./hang";
 import { ActLabelHandle, LabelLayer, type Label } from "./labels";
 import { bindFilmLinks, bindNavigationMark } from "./links";
 import { buildModel, DATA_URL, type GraphData, type HangingModel } from "./model";
 import { filmActs } from "./registry";
-import { framingOf, type Framing } from "./timeline";
+import { TALL_MEDIA, type Framing } from "./timeline";
 
 export interface FilmOptions {
   /** Rest positions of the model, as the server computed them (skips the layout iterations). */
   readonly rest: readonly number[];
   /** What the server computed for the acts (acts/payload.ts). */
-  readonly payload: unknown;
+  readonly payload: ActPayload;
   /** WebGL 2 is missing or unusable: the title block says the drawing is still for that reason. */
   readonly noWebGL: boolean;
 }
@@ -65,6 +66,8 @@ export class StillFilm {
   private disposed = false;
   private firstFrame = false;
   private readonly pt: ScreenPoint = { x: 0, y: 0, depth: 0, visible: false };
+  /** The window's framing, as the stylesheet lays the figures out (timeline.ts TALL_MEDIA). */
+  private readonly tall = window.matchMedia(TALL_MEDIA);
 
   constructor(
     root: HTMLElement,
@@ -131,10 +134,16 @@ export class StillFilm {
       }
     });
     for (const f of this.figures) ro.observe(f.el);
+    // The framing can flip without a figure changing size (a frame capped in height): draw again in the new one.
+    const onFraming = () => {
+      for (const f of this.figures) if (f.fallback?.drawn === true) this.draw(f);
+    };
+    this.tall.addEventListener("change", onFraming);
     this.cleanups.push(() => {
       near.disconnect();
       onScreen.disconnect();
       ro.disconnect();
+      this.tall.removeEventListener("change", onFraming);
     });
     this.bindInput();
     // The figures near the window now are drawn at once, without waiting for the observers.
@@ -240,19 +249,20 @@ export class StillFilm {
     const rect = f.el.getBoundingClientRect();
     if (rect.width < 1 || rect.height < 1) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const framing: Framing = this.tall.matches ? "tall" : "wide";
     if (f.fallback === null) {
       try {
-        f.fallback = new Fallback(f.canvas, model, framingOf(rect.width, rect.height));
+        f.fallback = new Fallback(f.canvas, model, framing);
       } catch {
         return;
       }
     }
     const fb = f.fallback;
-    const key = `${rect.width}x${rect.height}@${dpr}`;
+    const key = `${rect.width}x${rect.height}@${dpr}:${framing}`;
     if (key !== f.projected) {
       f.projected = key;
       f.size = { width: rect.width, height: rect.height };
-      f.framing = framingOf(rect.width, rect.height);
+      f.framing = framing;
       fb.resize(rect.width, rect.height, dpr, f.framing);
       fb.setCamera(f.act.still.camera(model, f.framing));
       f.labels.resize(rect.width, rect.height);

@@ -1,0 +1,12 @@
+import { readFileSync } from "node:fs";
+import { buildModel, restOf, summarize } from "/home/user/Katedrala/site/components/stage/model.ts";
+const data = JSON.parse(readFileSync("/home/user/Katedrala/site/public/data/codeverse-graph.json", "utf8"));
+const t0 = performance.now();
+const model = buildModel(data);
+const t1 = performance.now();
+const rest = restOf(model);
+const t2 = performance.now();
+const again = buildModel(data, rest);
+const t3 = performance.now();
+const s = summarize(again, data);
+console.log(JSON.stringify({ buildWithoutRest: +(t1 - t0).toFixed(1), buildWithRest: +(t3 - t2).toFixed(1), restNumbers: rest.length, restJsonBytes: JSON.stringify(rest).length, n: model.n, m: model.m, levels: s.levels, foundations: s.foundations, crown: s.crown.path }));

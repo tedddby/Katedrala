@@ -169,6 +169,16 @@ export function clockOf(framing: Framing, acts: readonly ActTiming[] = ACTS): Cl
   };
 }
 
+const clocks: Partial<Record<Framing, Clock>> = {};
+
+/**
+ * The act at global progress P (0..1) and its local time, for one framing: the clock of the film's acts, built once
+ * per framing. Contiguous and monotone over [0, 1]; the stops of the page keys are `clockOf(framing).stops`.
+ */
+export function actAt(P: number, framing: Framing): ActPosition {
+  return (clocks[framing] ??= clockOf(framing)).at(P);
+}
+
 /* ------------------------------------------------------------------------------------------------------------
  * Easing and Act I's shape over its local t.
  * ---------------------------------------------------------------------------------------------------------- */
@@ -603,8 +613,9 @@ export function stillCamera(model: HangingModel, framing: Framing): CameraState 
 export function planCamera(model: HangingModel): CameraState {
   const H = modelHeight(model);
   const pitch = 1.18;
-  const dist = 58;
-  const target: [number, number, number] = [0, H * 0.35, 0];
+  // The board's long axis fills about 70 percent of a 16:10 frame; narrower frames keep that width (lensFov).
+  const dist = 44;
+  const target: [number, number, number] = [0, H * 0.3, 0];
   return {
     eye: [target[0], target[1] + dist * Math.sin(pitch), target[2] + dist * Math.cos(pitch)],
     target,
@@ -641,3 +652,11 @@ export function holdKeys(from: CameraKey | null): CameraKey[] {
 export function framingOf(width: number, height: number): Framing {
   return width / Math.max(1, height) >= 0.95 ? "wide" : "tall";
 }
+
+/**
+ * The window's framing, as the film's stylesheet chooses its layout (the same split, on the window's aspect): the
+ * director and the still controller frame the drawing with it, so words and drawing are always composed for the same
+ * framing. A frame capped in height (the still layout's, at 64rem) can be wider than the window it is in, so its own
+ * aspect is not the measure.
+ */
+export const TALL_MEDIA = "(max-aspect-ratio: 949/1000)";

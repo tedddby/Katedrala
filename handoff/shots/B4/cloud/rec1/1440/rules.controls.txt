@@ -1,0 +1,2 @@
+button "Copy katedrala.config.yaml" focusable <button tabindex=0>
+button "Remove the hypothetical import" focusable <button tabindex=0>

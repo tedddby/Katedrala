@@ -1,0 +1,20 @@
+// Is the headline gone from the page, or only from the full-page capture? viewport, full page, viewport again.
+import { chromium } from "playwright-core";
+const [size = "390x844"] = process.argv.slice(2);
+const [width, height] = size.split("x").map(Number);
+const variant = process.argv[3] ?? "none";
+const browser = await chromium.launch({ channel: "msedge", headless: true });
+const mobile = width < 600;
+const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1, isMobile: mobile, hasTouch: mobile, reducedMotion: "reduce" });
+await page.goto("http://localhost:3100/lab/cinematic/", { waitUntil: "load" });
+await page.waitForTimeout(3000);
+if (variant === "nobalance") await page.addStyleTag({ content: "h1 { text-wrap: wrap !important }" });
+if (variant === "inline") await page.addStyleTag({ content: "h1 span span { display: inline !important }" });
+if (variant === "nowill") await page.addStyleTag({ content: "[data-label] { will-change: auto !important }" });
+await page.waitForTimeout(300);
+await page.screenshot({ path: `cap/fp4-a.png`, clip: { x: 0, y: 0, width, height: 400 } });
+await page.screenshot({ path: `cap/fp4-b.png`, fullPage: true });
+await page.screenshot({ path: `cap/fp4-c.png`, clip: { x: 0, y: 0, width, height: 400 } });
+const st = await page.evaluate(() => JSON.stringify(document.querySelector("h1").getBoundingClientRect()));
+console.log(variant, st);
+await browser.close();

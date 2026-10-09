@@ -1,0 +1,7 @@
+radiogroup "Commits applied" <div tabindex=-1>
+radio "base Clean structure, entropy 0.22" checked=true focusable <button tabindex=0>
+radio "+1 Send order confirmations from the user repository, entropy +0.23" focusable <button tabindex=-1>
+radio "+2 Check permissions before charging, entropy +0.07" focusable <button tabindex=-1>
+radio "+3 Recalculate invoices from orders, entropy +0.05" focusable <button tabindex=-1>
+radio "+4 Show unpaid invoices on profiles, entropy +0.03" focusable <button tabindex=-1>
+radio "+5 Audit order access from auth, entropy +0.03" focusable <button tabindex=-1>

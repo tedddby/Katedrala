@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import type { ActPayload } from "./acts/payload";
 import { decideFilmMode, probeWebGL2 } from "./mode";
 import styles from "./film.module.css";
 
@@ -16,7 +17,7 @@ export function FilmClient({
   children,
 }: {
   rest: readonly number[];
-  payload: unknown;
+  payload: ActPayload;
   children: ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -31,7 +32,7 @@ export function FilmClient({
     if (root === null) return;
     const html = document.documentElement;
     // Arrived by client-side navigation (or remounted): the inline script that decides the mode has not run for it.
-    if (html.dataset.kfilm === undefined) decideFilmMode();
+    if (html.dataset.kfilm === undefined) decideFilmMode(true);
     let film: { dispose(): void } | null = null;
     let cancelled = false;
     // The API alone does not promise a context: without one, the still layout takes over now, before anything else

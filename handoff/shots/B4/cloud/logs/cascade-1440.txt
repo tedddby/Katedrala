@@ -1,0 +1,36 @@
+1440 motion pointer: PaymentService edges lit at 444 ms
+    y 62 ApiGateway@177
+    y 124 CheckoutController@227
+    y 186 CheckoutService@294 OrderController@294
+    y 248 OrderService@344
+    y 310 InvoiceService@410
+    y 372 PaymentService@477
+1440 motion pointer: Database edges lit at 555 ms
+    y 62 ApiGateway@172
+    y 124 CheckoutController@222
+    y 186 CheckoutService@289 OrderController@289
+    y 248 OrderService@339
+    y 310 InvoiceService@405
+    y 372 PaymentService@472 UserService@472 AuthService@472
+    y 434 PaymentRepository@522 OrderRepository@522 UserRepository@522 SessionStore@522
+    y 496 Database@589
+1440 motion keyboard: ArrowRight to PaymentService edges lit at 7 ms
+    y 62 ApiGateway@7
+    y 124 CheckoutController@7
+    y 186 CheckoutService@7 OrderController@7
+    y 248 OrderService@7
+    y 310 InvoiceService@7
+    y 372 PaymentService@7
+1440 motion pointer: toggle fan-in (crossfade) edges lit at 0 ms
+    y 186 CheckoutService@0
+    y 248 OrderService@0
+    y 310 InvoiceService@0
+    y 372 PaymentService@0
+1440 motion keyboard: toggle reach (Enter) edges lit at 1 ms
+    y 62 ApiGateway@1
+    y 124 CheckoutController@1
+    y 186 CheckoutService@1 OrderController@1
+    y 248 OrderService@1
+    y 310 InvoiceService@1
+    y 372 PaymentService@1
+messages []

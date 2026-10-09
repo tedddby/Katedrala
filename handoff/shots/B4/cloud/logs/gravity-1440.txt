@@ -1,0 +1,23 @@
+1440 Database reach lit 13/13 edges 21/21 ok | Database: gravity 0.64. Reach lights 13 members: ApiGateway, AuthService, CheckoutController, CheckoutService, InvoiceService, OrderController, OrderRepository, OrderService, PaymentRepository, PaymentService, SessionStore, UserRepository and UserService.
+1440 Database fan-in lit 4/4 edges 4/4 ok | Database: gravity 0.64. Fan-in lights 4 members: OrderRepository, PaymentRepository, SessionStore and UserRepository.
+1440 Database spread lit 4/4 edges 4/4 ok | Database: gravity 0.64. Cross-module spread lights 4 members: OrderRepository, PaymentRepository, SessionStore and UserRepository.
+1440 Database brokerage lit 0/0 edges 0/0 ok | Database: gravity 0.64. Brokerage lights no other member.
+1440 PaymentService reach lit 6/6 edges 9/9 ok | PaymentService: gravity 0.58. Reach lights 6 members: ApiGateway, CheckoutController, CheckoutService, InvoiceService, OrderController and OrderService.
+1440 PaymentService fan-in lit 3/3 edges 3/3 ok | PaymentService: gravity 0.58. Fan-in lights 3 members: CheckoutService, InvoiceService and OrderService.
+1440 PaymentService spread lit 3/3 edges 3/3 ok | PaymentService: gravity 0.58. Cross-module spread lights 3 members: CheckoutService, InvoiceService and OrderService.
+1440 PaymentService brokerage lit 9/9 edges 10/10 ok | PaymentService: gravity 0.58. Brokerage lights 9 members: ApiGateway, CheckoutController, CheckoutService, Database, InvoiceService, OrderController, OrderService, PaymentRepository and StripeClient.
+1440 OrderService reach lit 4/4 edges 5/5 ok | OrderService: gravity 0.46. Reach lights 4 members: ApiGateway, CheckoutController, CheckoutService and OrderController.
+1440 OrderService fan-in lit 2/2 edges 2/2 ok | OrderService: gravity 0.46. Fan-in lights 2 members: CheckoutService and OrderController.
+1440 OrderService spread lit 1/1 edges 1/1 ok | OrderService: gravity 0.46. Cross-module spread lights 1 member: CheckoutService.
+1440 OrderService brokerage lit 13/13 edges 13/13 ok | OrderService: gravity 0.46. Brokerage lights 13 members: ApiGateway, CheckoutController, CheckoutService, Database, EventBus, InvoiceService, OrderController, OrderRepository, PaymentRepository, PaymentService, StripeClient, UserRepository and UserService.
+1440 CheckoutController reach lit 1/1 edges 1/1 ok | CheckoutController: gravity 0.25. Reach lights 1 member: ApiGateway.
+1440 CheckoutController fan-in lit 1/1 edges 1/1 ok | CheckoutController: gravity 0.25. Fan-in lights 1 member: ApiGateway.
+1440 CheckoutController spread lit 1/1 edges 1/1 ok | CheckoutController: gravity 0.25. Cross-module spread lights 1 member: ApiGateway.
+1440 CheckoutController brokerage lit 6/6 edges 6/6 ok | CheckoutController: gravity 0.25. Brokerage lights 6 members: ApiGateway, CheckoutService, PaymentRepository, PaymentService, StripeClient and UserService.
+1440 ApiGateway reach lit 0/0 edges 0/0 ok | ApiGateway: gravity 0.00. Reach lights no other member.
+1440 ApiGateway fan-in lit 0/0 edges 0/0 ok | ApiGateway: gravity 0.00. Fan-in lights no other member.
+1440 ApiGateway spread lit 0/0 edges 0/0 ok | ApiGateway: gravity 0.00. Cross-module spread lights no other member.
+1440 ApiGateway brokerage lit 0/0 edges 0/0 ok | ApiGateway: gravity 0.00. Brokerage lights no other member.
+1440 released: {"selected":"ApiGateway0.00","status":"ApiGateway: gravity 0.00. Nothing is lit besides ApiGateway.","pressed":[],"litMembers":[],"active":["ApiGateway"],"litEdges":0,"schedule":[],"drawingShown":false}
+FAILS 0 []
+messages []

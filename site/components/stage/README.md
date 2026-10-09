@@ -62,8 +62,10 @@ and the clock lays them end to end:
 `clock.at(P)` is contiguous and monotone over [0, 1] (spans are half open; P 1 is the landing's t 1) and
 `progressOf(at(P))` returns P exactly. The server writes both framings' lengths on the track (`--k-track-wide`,
 `--k-track-tall`) and every act's anchor and start (`--k-at-*`, `--k-from-*`); the stylesheet picks one with the
-same aspect split the camera uses (0.95). Act I's local t is exactly the prototype's progress, so its beats (below)
-are unchanged.
+same aspect split the camera uses (0.95). The framing is always the window's, `timeline.ts TALL_MEDIA`
+(`(max-aspect-ratio: 949/1000)`), in the stylesheet, the director and the still controller alike, so words and drawing
+are composed for the same framing (the still layout's frame is capped at 64rem, so its own aspect is not the
+measure). Act I's local t is exactly the prototype's progress, so its beats (below) are unchanged.
 
 The camera is one monotone cubic track over every act's keys in global P. Each act's first key is the previous
 act's last (the director passes it as `from` and enforces it), so the camera never cuts, and the curve stays smooth
@@ -102,6 +104,21 @@ the act's local t at once: focus reveal) and `invalidate()`.
 Act modules never import three.js, GSAP or `stage.ts`: what they need comes through the context, so the still layout
 runs every act without downloading either.
 
+For an act's builder:
+
+- The camera: `standingOf(model, framing, v)` gives a file's place in the standing structure (world space);
+  `cameraFrom(values, out)` turns a key's values into a camera (the still figure's `camera()` can use it).
+  `holdKeys(from)` holds the previous act's last shot.
+- Labels step aside while a file is traced (`ctx.traced() >= 0`), as Act I's do; otherwise the traced file can carry
+  two labels. Words over the frame carry `data-obstacle` so labels keep clear of them.
+- A block pinned over the frame from outside it (the landing's, `.slotPinned`) paints over every layer of the frame:
+  the pinned stage is its own stacking context. On tall framings it keeps the band `--k-foot` at the frame's foot
+  free for the title block, as the captions do.
+- In the still layout an act's figure is a `<StillFigure act="...">` placed in its block; it is drawn when it comes
+  within a viewport of the window (at most two figures hold pixels) and its overlay is updated with `still.t`, and
+  again after every trace.
+- The plan's z-index scale (`base.css`): the frame's layers are `--z-film-drawing` 0 to `--z-film-words` 4.
+
 ## The page around the film (DOM contract)
 
 - `html[data-kfilm="film" | "still"]` (the mode script, before first paint), `html[data-kfilm-under]` (the frame
@@ -120,6 +137,10 @@ runs every act without downloading either.
 - `[data-obstacle]` (with `data-on` when shown, or `="always"`; `data-obstacle-pad`, `[data-obstacle-box]` for the
   measured parts): words labels keep clear of.
 - `a[data-film-skip]` anywhere on the page: "Skip the film", an instant jump.
+- `sessionStorage["kfilm-under:<path>"]`: the film's note of whether its frame lies under the bar, kept current with
+  `data-kfilm-under`. On a reload, back or forward the mode script reads it, so the bar has the right ground from the
+  first frame at the restored position (without the note it decides on the first animation frame).
+- `--k-foot` (on the film): on tall framings, the band at the frame's foot the title block holds.
 - Performance marks: `kfilm:start`, `kfilm:model`, `kfilm:stage-ready`, `kfilm:first-frame` (both paths),
   `kfilm:act-<id>`. `window.__kfilm` is the director or the still controller outside production.
 
@@ -156,6 +177,22 @@ structure in 2D with the crown named, Act I's narration is the article under it,
 figure. "Drawn without WebGL" is added to the title block only when WebGL is the reason. Without JavaScript the words
 are all there and no empty canvas shows.
 
+## Drawing the structure elsewhere (the key plan)
+
+`fallback.ts` draws the standing structure in Canvas 2D anywhere, without three.js or GSAP:
+
+1. On the server, `codeverse()` (`codeverse.ts`, server only) gives the model; pass `restOf(model)` (1,212 numbers,
+   about 7 KB of JSON) to the client island. Building the model with them takes about 5 ms; without them the layout
+   runs in the browser (about 110 ms in Node on the cloud session's CPU).
+2. In the browser, fetch `DATA_URL` (the page preloads it; the HTTP cache serves it again) and `buildModel(data, rest)`.
+3. `new Fallback(canvas, model, framing)`, with the window's framing (`matchMedia(TALL_MEDIA)`), so the structure is
+   turned over the way the film turned it on that screen.
+4. `resize(width, height, dpr, framing)` with the pixel ratio capped at 2, `setCamera(planCamera(model))`, then
+   `draw(null)` (or `draw(mask)` with a `LitMask`). `release()` gives the pixels back.
+
+`planCamera` sees the standing structure steeply from above, the plan's long axis across about 70 percent of a 16:10
+frame; narrower frames keep that width.
+
 ## Honest labels
 
 - From Katedrala's document of CodeVerse (`tedddby/CodeVerse` at `6b942bc`, katedrala 0.1.0, IR schema 1.0.0): the
@@ -169,8 +206,9 @@ are all there and no empty canvas shows.
 
 ## Measurements
 
-Headless Microsoft Edge on this machine (Intel UHD Graphics through ANGLE D3D11, requestAnimationFrame at about
-144 Hz), against the Next dev server, while other work ran on the machine: indicative.
+On the user's Windows machine before the cloud handoff (2026-10-09): headless Microsoft Edge, Intel UHD Graphics
+through ANGLE D3D11, requestAnimationFrame at about 144 Hz, against the Next dev server, while other work ran on the
+machine: indicative.
 
 Act I scrubbed in 14 s on the preview route (the same scroll as the prototype's whole film):
 
@@ -190,12 +228,25 @@ GSAP. Idle: 0 frames over 2 s at the hero after its opening, at the crown hold, 
 film; 0 rAF callbacks with the film off screen. The hanging model breathes (and draws) while it hangs free, and calms
 14 s after the last input, as before.
 
+In the cloud session (2026-10-09, Linux, no GPU: WebGL through SwiftShader, Edge headless, dev server) appearance and
+behaviour were checked again; GPU-bound figures from there are not real ones. Act I scrubbed in 14 s at 1440 x 900
+drew at a median of 117 ms per frame (software rendering) while the film's own work per tick stayed at a median of
+1.1 ms (p95 5.9 ms). Marks on load, median of five: film `kfilm:first-frame` 1,429 ms after navigation (first
+contentful paint 532 ms); reduced motion 1,090 ms; WebGL disabled 1,432 ms; the dev server's hydration of the whole
+route dominates them. The frame budgets of the plan are to be measured again on a machine with a GPU.
+
+Full-page captures that render beyond the viewport (Chromium's `captureBeyondViewport`, used by Playwright's
+`fullPage`) lay the page out in a window as tall as the page, which can turn the film to its tall framing
+mid-capture; there (under SwiftShader) some of them also lost the hero's headline, which the page itself never did.
+Stitch full-page captures by scrolling the window, and look at every one.
+
 ## Known weaknesses
 
 - GSAP ScrollTrigger keeps an empty requestAnimationFrame loop alive while it is registered (its repaint workaround).
 - Every number above is from one machine against the dev server; real phones, Safari and Firefox are unmeasured.
 - A browser with the WebGL 2 API but no usable context switches to the still layout on mount, after hydration.
-- The film creates two WebGL contexts at start (the probe, released at once, and the renderer's).
+- The film creates two WebGL contexts at start (the probe, released at once, and the renderer's): one is alive at a
+  time.
 - The word-drop spring is a deliberate overshoot that Impeccable's detector reports as bounce easing.
 - On wider-than-16:10 windows the camera's orbit carries the lowest weight under the narration for part of its beat;
   its label waits for the file to come out.

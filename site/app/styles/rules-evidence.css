@@ -147,7 +147,8 @@
   }
   /* A change made from the keyboard lands at once. */
   .rules-layout[data-motion="instant"]
-    :is(.rules-break, .rules-label, .code-line-number, .rules-leader path, .rules-leader circle) {
+    :is(.rules-break, .rules-label, .rules-leader path, .rules-leader circle),
+  .rules-layout[data-motion="instant"] .code-block-body [data-line]::before {
     transition: none;
   }
 

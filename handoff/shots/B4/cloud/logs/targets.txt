@@ -1,0 +1,3 @@
+reduced motion: moving chains (entropy, rules, explorer) 0 0 0 gravity animations 2
+390 controls under 44px: rules button "Copy katedrala.config.yaml" 51x28
+320 controls under 44px: rules button "Copy katedrala.config.yaml" 51x28

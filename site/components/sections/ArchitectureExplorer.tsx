@@ -16,11 +16,11 @@ import {
 } from "react";
 import {
   BAYS,
+  EDGE_GAP,
   EDGE_KINDS,
   edgeControl,
   LABEL_ALIGN_INSET,
   MEMBER_JOINT_RADIUS,
-  MEMBER_LABELS,
   MODULE_JOINTS,
   MODULE_NAME_GAP,
   PLAN,
@@ -28,6 +28,8 @@ import {
   PLAN_HEIGHT,
   PLAN_MEMBERS,
   PLAN_MODULE_EDGES,
+  planLabels,
+  type MemberLabel,
 } from "@/lib/demo/plan";
 import { ChainPath, fromKeyboard, type ChainMotion } from "@/components/drawing/chain-motion";
 import { measurementOf, moduleMeasurementOf } from "@/lib/demo/metrics";
@@ -78,8 +80,6 @@ const PAN_THRESHOLD = 6;
 const TARGET_RADIUS = 22;
 /** Space kept between a focused item and the sheet's edge when the plan pans to show it, in CSS pixels. */
 const REVEAL_MARGIN = 12;
-/** Space between a joint and the end of every dependency that meets it, in CSS pixels. */
-const EDGE_GAP = 6;
 
 const memberById = new Map(PLAN_MEMBERS.map((m) => [m.id, m]));
 const jointById = new Map(MODULE_JOINTS.map((j) => [j.id, j]));
@@ -182,6 +182,8 @@ export function ArchitectureExplorer() {
   // Plan units per CSS pixel where each scale opens: labels and targets are sized in these to stay legible.
   const memberUnit = 1 / (k * fitScale("members", k));
   const moduleUnit = 1 / k;
+  // Where the names go at the size they are set at here: every dependency clear of every name.
+  const labels = planLabels(memberUnit);
 
   const items = mode === "members" ? MEMBER_ORDER : MODULE_ORDER;
   const activeId =
@@ -540,68 +542,96 @@ export function ArchitectureExplorer() {
   return (
     <div className="grid-12 gap-y-6">
       <div className="explorer col-span-12 lg:col-span-9">
-        <div className="explorer-toolbar">
-          <div
-            role="radiogroup"
-            aria-label="Scale"
-            className="segmented"
-            onKeyDown={(event) => {
-              const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
-              if (step === undefined) return;
-              event.preventDefault();
-              const next = MODES[(MODES.indexOf(mode) + step + MODES.length) % MODES.length]!;
-              changeMode(next);
-              event.currentTarget
-                .querySelector<HTMLButtonElement>(`[data-mode="${next}"]`)
-                ?.focus();
-            }}
-          >
-            {MODES.map((m) => (
-              <button
-                key={m}
-                type="button"
-                role="radio"
-                data-mode={m}
-                aria-checked={mode === m}
-                tabIndex={mode === m ? 0 : -1}
-                onClick={() => changeMode(m)}
-              >
-                {m === "members" ? "Members" : "Modules"}
-              </button>
-            ))}
-          </div>
-          <div role="group" aria-label="Zoom" className="ml-auto flex gap-1">
-            <button
-              type="button"
-              className="zoom-button"
-              aria-label="Zoom in"
-              aria-disabled={atMax}
-              onClick={() => zoomAt(ZOOM_STEP)}
-            >
-              +
-            </button>
-            <button
-              type="button"
-              className="zoom-button"
-              aria-label="Zoom out"
-              aria-disabled={atFit}
-              onClick={() => zoomAt(1 / ZOOM_STEP)}
-            >
-              −
-            </button>
-            <button
-              type="button"
-              className="zoom-button px-3"
-              aria-label="Fit the plan"
-              aria-disabled={atHome}
-              onClick={() => setView(home)}
-            >
-              Fit
-            </button>
-          </div>
-        </div>
-
         <div ref={sheetRef} className="explorer-sheet">
+          {/* The instruments run along the sheet's top edge: the scale, the relationship kinds drawn at member
+              scale (each control is also its line's legend), and the zoom. */}
+          <div className="explorer-strip">
+            <div
+              role="radiogroup"
+              aria-label="Scale"
+              className="segmented"
+              onKeyDown={(event) => {
+                const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+                if (step === undefined) return;
+                event.preventDefault();
+                const next = MODES[(MODES.indexOf(mode) + step + MODES.length) % MODES.length]!;
+                changeMode(next);
+                event.currentTarget
+                  .querySelector<HTMLButtonElement>(`[data-mode="${next}"]`)
+                  ?.focus();
+              }}
+            >
+              {MODES.map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  role="radio"
+                  data-mode={m}
+                  aria-checked={mode === m}
+                  tabIndex={mode === m ? 0 : -1}
+                  onClick={() => changeMode(m)}
+                >
+                  {m === "members" ? "Members" : "Modules"}
+                </button>
+              ))}
+            </div>
+            {mode === "members" && (
+              <div role="group" aria-label="Relationship kinds" className="explorer-kinds">
+                {EDGE_KINDS.map(({ kind, label }) => (
+                  <button
+                    key={kind}
+                    type="button"
+                    className="kind-toggle"
+                    aria-pressed={kinds.has(kind)}
+                    onClick={(event) =>
+                      toggleKind(kind, fromKeyboard(event) ? "instant" : "animate")
+                    }
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 28 8" className="h-2 w-7">
+                      <line
+                        x1="1"
+                        y1="4"
+                        x2="27"
+                        y2="4"
+                        className={`plan-edge-sample kind-${kind}`}
+                      />
+                    </svg>
+                    {label}
+                  </button>
+                ))}
+              </div>
+            )}
+            <div role="group" aria-label="Zoom" className="explorer-zoom">
+              <button
+                type="button"
+                className="zoom-button"
+                aria-label="Zoom in"
+                aria-disabled={atMax}
+                onClick={() => zoomAt(ZOOM_STEP)}
+              >
+                +
+              </button>
+              <button
+                type="button"
+                className="zoom-button"
+                aria-label="Zoom out"
+                aria-disabled={atFit}
+                onClick={() => zoomAt(1 / ZOOM_STEP)}
+              >
+                −
+              </button>
+              <button
+                type="button"
+                className="zoom-button px-3"
+                aria-label="Fit the plan"
+                aria-disabled={atHome}
+                onClick={() => setView(home)}
+              >
+                Fit
+              </button>
+            </div>
+          </div>
+
           <svg
             ref={svgRef}
             viewBox={`0 0 ${PLAN.width} ${height}`}
@@ -742,27 +772,30 @@ export function ArchitectureExplorer() {
                  * (a top corner wherever one is), and above the edges, so a line that still meets a name passes
                  * behind its halo.
                  */}
-                {BAYS.map((bay) => (
-                  <g key={`label-${bay.id}`} className="plan-bay" data-mode={mode}>
-                    <text
-                      x={
-                        bay.label === "start"
-                          ? bay.x + PLAN.labelInset
-                          : bay.x + bay.width - PLAN.labelInset
-                      }
-                      y={
-                        bay.labelRow === "top"
-                          ? bay.y + PLAN.labelTop
-                          : bay.y + bay.height - PLAN.labelTop
-                      }
-                      dy={bay.labelRow === "top" ? "0.8em" : "-0.2em"}
-                      textAnchor={bay.label}
-                      className="plan-bay-label"
-                    >
-                      {bay.name}
-                    </text>
-                  </g>
-                ))}
+                {BAYS.map((bay) => {
+                  const corner = labels.bays.get(bay.id) ?? { x: "start", row: "top" };
+                  return (
+                    <g key={`label-${bay.id}`} className="plan-bay" data-mode={mode}>
+                      <text
+                        x={
+                          corner.x === "start"
+                            ? bay.x + PLAN.labelInset
+                            : bay.x + bay.width - PLAN.labelInset
+                        }
+                        y={
+                          corner.row === "top"
+                            ? bay.y + PLAN.labelTop
+                            : bay.y + bay.height - PLAN.labelTop
+                        }
+                        dy={corner.row === "top" ? "0.8em" : "-0.2em"}
+                        textAnchor={corner.x}
+                        className="plan-bay-label"
+                      >
+                        {bay.name}
+                      </text>
+                    </g>
+                  );
+                })}
               </g>
 
               {PLAN_MEMBERS.map((member) => {
@@ -788,7 +821,10 @@ export function ArchitectureExplorer() {
                     <circle r={memberHit} className="plan-hit" />
                     <circle r={MEMBER_JOINT_RADIUS + 4 * memberUnit} className="plan-ring" />
                     <circle r={MEMBER_JOINT_RADIUS} className="plan-joint" />
-                    <MemberName id={member.id} />
+                    <MemberName
+                      id={member.id}
+                      label={labels.members.get(member.id) ?? { side: "below", align: "middle" }}
+                    />
                   </g>
                 );
               })}
@@ -829,24 +865,6 @@ export function ArchitectureExplorer() {
           </svg>
         </div>
 
-        {mode === "members" && (
-          <div role="group" aria-label="Relationship kinds" className="explorer-legend">
-            {EDGE_KINDS.map(({ kind, label }) => (
-              <button
-                key={kind}
-                type="button"
-                className="kind-toggle"
-                aria-pressed={kinds.has(kind)}
-                onClick={(event) => toggleKind(kind, fromKeyboard(event) ? "instant" : "animate")}
-              >
-                <svg aria-hidden="true" viewBox="0 0 28 8" className="h-2 w-7">
-                  <line x1="1" y1="4" x2="27" y2="4" className={`plan-edge-sample kind-${kind}`} />
-                </svg>
-                {label}
-              </button>
-            ))}
-          </div>
-        )}
         <p className="footnote mt-3">
           <span className="hint-pointer hint-mouse">
             Hold Ctrl or Cmd and scroll to zoom, then drag to pan.
@@ -875,11 +893,24 @@ export function ArchitectureExplorer() {
 }
 
 /**
- * A member's name where the plan sets it (MEMBER_LABELS): under or over its joint, centered or hanging to one
- * side, wherever the plan's lines leave it clear.
+ * A member's name where the plan sets it (`planLabels`): under or over its joint, centered or hanging to one side,
+ * or beside it, wherever the plan's lines leave it clear.
  */
-function MemberName({ id }: { id: string }) {
-  const label = MEMBER_LABELS.get(id) ?? { side: "below", align: "middle" };
+function MemberName({ id, label }: { id: string; label: MemberLabel }) {
+  if (label.side === "right" || label.side === "left") {
+    const side = label.side === "right" ? 1 : -1;
+    return (
+      <text
+        x={side * MEMBER_JOINT_RADIUS}
+        dx={`${side * 0.5}em`}
+        dy="0.34em"
+        textAnchor={label.align}
+        className="plan-label"
+      >
+        {id}
+      </text>
+    );
+  }
   return (
     <text
       x={

@@ -5,22 +5,64 @@
  * at first paint (<html data-kfilm-under>), which the film then keeps current.
  *
  * Kept free of imports and closures: the layout inlines its source in <head> as FILM_MODE_SCRIPT, and the client
- * calls it when the page arrives by client-side navigation (where that script never runs). It decides once per load:
+ * calls it (clientSide true) when the page arrives by client-side navigation, where that script never runs. It decides
+ * once per load:
  * a second copy of the script does nothing. On a page without the film it takes back what it set as soon as the
  * document is parsed. A browser whose WebGL 2 API exists but cannot make a context is found out on mount
  * (probeWebGL2, before three.js is fetched) and switches to the still drawing; in the first window nothing moves when
  * it does (the hero keeps its place, only the content below the frame changes).
  */
-export function decideFilmMode(): void {
+export function decideFilmMode(clientSide = false): void {
   try {
     const root = document.documentElement;
     if (root.dataset.kfilm !== undefined) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const film = !reduce && "WebGL2RenderingContext" in window;
     root.dataset.kfilm = film ? "film" : "still";
-    // At first paint the page is at its top, under which the film's frame lies. The film corrects this as soon as
-    // it runs (a page reloaded further down, for instance).
-    if (window.scrollY < window.innerHeight * 0.5) root.dataset.kfilmUnder = "";
+    // At first paint the page is at its top, under which the film's frame lies, unless the browser puts it somewhere
+    // else: at an anchor outside the frame, or back at an earlier scroll position (a reload, back or forward). There
+    // the film left a note of whether its frame was under the bar (bindNavigationMark), which holds for the restored
+    // position; without one the mark waits for the first animation frame, when the position is known. Wherever the
+    // frame is not under the bar the navigation keeps its ground. The film keeps the mark current once it runs.
+    const entry = (performance.getEntriesByType?.("navigation") ?? [])[0] as
+      PerformanceNavigationTiming | undefined;
+    // A client-side navigation is not the document's: the router puts the page where it goes.
+    const restoring =
+      !clientSide &&
+      entry !== undefined &&
+      entry.type !== "navigate" &&
+      history.scrollRestoration !== "manual";
+    const hash = location.hash;
+    const onFrame =
+      restoring ||
+      hash === "" ||
+      hash === "#top" ||
+      hash === "#main" ||
+      (film &&
+        (hash === "#film-start" ||
+          hash === "#evidence" ||
+          hash === "#impact" ||
+          hash === "#trace"));
+    const mark = () => {
+      // Not once the film runs (it marks the frame itself), nor on a page found to have no film (below).
+      const decided = root.dataset.kfilmReady !== undefined || root.dataset.kfilm === undefined;
+      if (onFrame && !decided && window.scrollY < window.innerHeight * 0.5) {
+        root.dataset.kfilmUnder = "";
+      }
+    };
+    let note: string | null = null;
+    if (restoring) {
+      try {
+        note = sessionStorage.getItem(`kfilm-under:${location.pathname}`);
+      } catch {
+        // Storage refused (a private window, blocked site data): wait for the first frame instead.
+      }
+    }
+    if (note === "1") root.dataset.kfilmUnder = "";
+    else if (note === null) {
+      if (restoring) requestAnimationFrame(mark);
+      else mark();
+    }
     const filmHere = () => document.querySelector("[data-film-track]") !== null;
     if (document.readyState === "loading") {
       // Placed in <head>, before the page exists: a page without the film keeps no trace of it.

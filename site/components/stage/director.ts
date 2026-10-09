@@ -35,6 +35,7 @@ import {
   clamp01,
   clockOf,
   emptyCamera,
+  TALL_MEDIA,
   Track,
   type ActPosition,
   type CameraState,
@@ -55,8 +56,6 @@ type ScrollTriggerClass = typeof import("gsap/ScrollTrigger").ScrollTrigger;
 const CALM_AFTER = 14;
 /** A jump longer than this, in viewports of pinned scroll, moves the camera at once rather than with its mass. */
 const SNAP = 1.32;
-/** Windows framed tall (phones and tablets in portrait): the same split as the stylesheet's track lengths. */
-const TALL = "(max-aspect-ratio: 949/1000)";
 /** Controls that keep Space and the page keys for themselves. */
 const CONTROLS =
   "input, textarea, select, button, summary, [contenteditable]:not([contenteditable='false']), [role='button'], [role='textbox'], [role='slider'], [role='listbox'], [role='option'], [role='radio'], [role='radiogroup'], [role='tab'], [role='combobox']";
@@ -118,7 +117,8 @@ export class Director {
   private data: GraphData | null = null;
   private stage: Stage | null = null;
   private trigger: Trigger | null = null;
-  private readonly tall = window.matchMedia(TALL);
+  /** Windows framed tall (phones and tablets in portrait): the stylesheet's split, which sets the track's length. */
+  private readonly tall = window.matchMedia(TALL_MEDIA);
   private framing: Framing;
   private clock: Clock;
   private camTrack: Track | null = null;

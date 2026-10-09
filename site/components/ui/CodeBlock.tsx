@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 
 interface CodeBlockProps {
   readonly code: string;
@@ -8,7 +8,7 @@ interface CodeBlockProps {
   readonly label: string;
   readonly language?: "yaml" | "shell" | "json" | "typescript" | "text";
   readonly className?: string;
-  /** Number the lines, as an editor does; the numbers are never copied or read out. */
+  /** Number the lines, as an editor does; the numbers are never selected, copied or read out. */
   readonly lineNumbers?: boolean;
   /** Lines to mark (1-based, inclusive): their numbers take the load color, as active architecture does. */
   readonly highlight?: { readonly from: number; readonly to: number } | undefined;
@@ -103,16 +103,26 @@ export function CodeBlock({
         className="code-block-body"
         {...(scrolls ? { tabIndex: 0, role: "region", "aria-label": label } : {})}
       >
-        <code>{highlight(code, language, { lineNumbers, highlight: marked, lineId })}</code>
+        <code
+          style={
+            lineNumbers
+              ? ({ "--line-digits": String(code.split("\n").length).length } as CSSProperties)
+              : undefined
+          }
+        >
+          {highlight(code, language, { lineNumbers, highlight: marked, lineId })}
+        </code>
       </pre>
     </figure>
   );
 }
 
+/**
+ * The code, one block per line. Line numbers are drawn by the stylesheet from `data-line` (code.css), so they are
+ * never part of the text: not selected, copied, read out or counted as content.
+ */
 function highlight(code: string, language: CodeBlockProps["language"], options: LineOptions) {
-  const lines = code.split("\n");
-  const digits = String(lines.length).length;
-  return lines.map((line, i) => {
+  return code.split("\n").map((line, i) => {
     const n = i + 1;
     const marked =
       options.highlight !== undefined && n >= options.highlight.from && n <= options.highlight.to;
@@ -124,11 +134,6 @@ function highlight(code: string, language: CodeBlockProps["language"], options: 
         data-line={options.lineNumbers ? n : undefined}
         data-marked={marked ? "" : undefined}
       >
-        {options.lineNumbers && (
-          <span className="code-line-number" aria-hidden="true" style={{ width: `${digits}ch` }}>
-            {n}
-          </span>
-        )}
         {renderLine(line, language)}
         {"\n"}
       </span>

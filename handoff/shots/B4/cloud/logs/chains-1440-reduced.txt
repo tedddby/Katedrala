@@ -1,0 +1,16 @@
+1440 reduced explorer calls off (pointer) {"inputs":1,"settleAfterLastInputMs":51,"chainsMoved":18,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":79,"inlineLeft":0}
+1440 reduced explorer calls on (pointer) {"inputs":2,"settleAfterLastInputMs":55,"chainsMoved":18,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":79,"inlineLeft":0}
+1440 reduced explorer calls off/on 80 ms apart (pointer) {"inputs":6,"settleAfterLastInputMs":41,"chainsMoved":18,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":87,"inlineLeft":0}
+1440 reduced explorer calls off/on/off 60 ms apart (pointer) {"inputs":12,"settleAfterLastInputMs":38,"chainsMoved":18,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":96,"inlineLeft":0}
+1440 reduced explorer calls on (keyboard) {"inputs":10,"settleAfterLastInputMs":47,"chainsMoved":18,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":77,"inlineLeft":0}
+1440 reduced entropy +5 (pointer) {"inputs":1,"settleAfterLastInputMs":69,"chainsMoved":5,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":76,"inlineLeft":0}
+1440 reduced entropy base (pointer, lift out) {"inputs":2,"settleAfterLastInputMs":48,"chainsMoved":5,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":79,"inlineLeft":0}
+1440 reduced entropy +3 then base 100 ms apart {"inputs":6,"settleAfterLastInputMs":40,"chainsMoved":3,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":88,"inlineLeft":0}
+1440 reduced entropy +1 (keyboard arrow) {"inputs":4,"settleAfterLastInputMs":63,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":77,"inlineLeft":0}
+1440 reduced entropy base (keyboard arrow) {"inputs":5,"settleAfterLastInputMs":26,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":75,"inlineLeft":0}
+1440 reduced rules remove (pointer) {"inputs":1,"settleAfterLastInputMs":37,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":80,"inlineLeft":0}
+1440 reduced rules add (pointer) {"inputs":2,"settleAfterLastInputMs":23,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":77,"inlineLeft":0}
+1440 reduced rules remove/add 90 ms apart {"inputs":6,"settleAfterLastInputMs":37,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":88,"inlineLeft":0}
+1440 reduced rules remove (keyboard) {"inputs":8,"settleAfterLastInputMs":34,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":75,"inlineLeft":0}
+1440 reduced rules add (keyboard space) {"inputs":10,"settleAfterLastInputMs":35,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":74,"inlineLeft":0}
+messages []

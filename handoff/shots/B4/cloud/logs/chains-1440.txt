@@ -1,0 +1,16 @@
+1440 motion explorer calls off (pointer) {"inputs":1,"settleAfterLastInputMs":231,"chainsMoved":18,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":81,"inlineLeft":0}
+1440 motion explorer calls on (pointer) {"inputs":2,"settleAfterLastInputMs":540,"chainsMoved":18,"maxBendUnits":72,"maxFrameStepUnits":72,"frames":78,"inlineLeft":0}
+1440 motion explorer calls off/on 80 ms apart (pointer) {"inputs":6,"settleAfterLastInputMs":334,"chainsMoved":18,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":90,"inlineLeft":0}
+1440 motion explorer calls off/on/off 60 ms apart (pointer) {"inputs":12,"settleAfterLastInputMs":236,"chainsMoved":18,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":95,"inlineLeft":0}
+1440 motion explorer calls on (keyboard) {"inputs":10,"settleAfterLastInputMs":2,"chainsMoved":18,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":75,"inlineLeft":0}
+1440 motion entropy +5 (pointer) {"inputs":1,"settleAfterLastInputMs":568,"chainsMoved":5,"maxBendUnits":72,"maxFrameStepUnits":72,"frames":79,"inlineLeft":0}
+1440 motion entropy base (pointer, lift out) {"inputs":2,"settleAfterLastInputMs":227,"chainsMoved":5,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":80,"inlineLeft":0}
+1440 motion entropy +3 then base 100 ms apart {"inputs":6,"settleAfterLastInputMs":220,"chainsMoved":3,"maxBendUnits":72,"maxFrameStepUnits":72,"frames":88,"inlineLeft":0}
+1440 motion entropy +1 (keyboard arrow) {"inputs":4,"settleAfterLastInputMs":14,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":75,"inlineLeft":0}
+1440 motion entropy base (keyboard arrow) {"inputs":5,"settleAfterLastInputMs":2,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":74,"inlineLeft":0}
+1440 motion rules remove (pointer) {"inputs":1,"settleAfterLastInputMs":218,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":79,"inlineLeft":0}
+1440 motion rules add (pointer) {"inputs":2,"settleAfterLastInputMs":484,"chainsMoved":1,"maxBendUnits":72,"maxFrameStepUnits":72,"frames":79,"inlineLeft":0}
+1440 motion rules remove/add 90 ms apart {"inputs":6,"settleAfterLastInputMs":304,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":89,"inlineLeft":0}
+1440 motion rules remove (keyboard) {"inputs":8,"settleAfterLastInputMs":8,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":74,"inlineLeft":0}
+1440 motion rules add (keyboard space) {"inputs":10,"settleAfterLastInputMs":4,"chainsMoved":1,"maxBendUnits":0,"maxFrameStepUnits":0,"frames":74,"inlineLeft":0}
+messages []

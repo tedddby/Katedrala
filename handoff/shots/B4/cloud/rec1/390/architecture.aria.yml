@@ -1,0 +1,25 @@
+- region "The whole structure, at every scale.":
+  - heading "The whole structure, at every scale." [level=2]
+  - paragraph: Katedrala links files and symbols into one typed graph today; inferring the modules within it is planned for v1.
+  - text: Typed graph, available today Module inference, planned for v1
+  - radiogroup "Scale":
+    - radio "Members"
+    - radio "Modules" [checked]
+  - group "Zoom":
+    - button "Zoom in": +
+    - button "Zoom out" [disabled]: −
+    - button "Fit the plan" [disabled]: Fit
+  - radiogroup "Architecture plan of the demonstration system, by module":
+    - radio "Gateway module, 1 member": Gateway
+    - radio "Checkout module, 2 members": Checkout
+    - radio "Orders module, 3 members": Orders
+    - radio "Auth module, 2 members": Auth
+    - radio "Billing module, 1 member": Billing
+    - radio "Payments module, 3 members": Payments
+    - radio "Users module, 2 members": Users
+    - radio "Platform module, 2 members": Platform
+  - paragraph: Pinch or use + and − to zoom, then drag to pan. Demonstration system.
+  - complementary:
+    - paragraph: 8 modules
+    - paragraph: 15 dependencies between modules. Line weight and the numbers show how many member dependencies each one aggregates. Select a module to see its members.
+  - group: Read the graph as a table

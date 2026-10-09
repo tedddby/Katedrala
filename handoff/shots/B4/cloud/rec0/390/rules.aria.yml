@@ -1,0 +1,24 @@
+- region "Write down the architecture you intend.":
+  - heading "Write down the architecture you intend." [level=2]
+  - paragraph: Rules in katedrala.config.yaml will check every change for forbidden dependencies, layering, isolation, cycles and fan-out.
+  - text: Planned for v1
+  - figure "katedrala.config.yaml":
+    - text: katedrala.config.yaml
+    - button "Copy katedrala.config.yaml"
+    - status
+    - region "katedrala.config.yaml":
+      - code: "groups: controllers: [\"src/**/*.controller.ts\"] repositories: [\"src/**/*.repository.ts\"] modules: payments: [\"src/payments/**\"] analytics: [\"src/analytics/**\"] rules: - id: controllers-no-database severity: error from: controllers cannot_depend_on: [repositories] - id: payments-isolation severity: error module: payments cannot_depend_on: [analytics]"
+  - figure "error controllers-no-database, lines 10 to 13 of katedrala.config.yaml OrderController now depends on OrderRepository. Controllers cannot depend on repositories. The path through OrderService is allowed; the new import skips it. src/orders/order.controller.ts 1 error, 2 rules checked":
+    - text: hypothetical change + OrderController → OrderRepository
+    - button "Remove the hypothetical import"
+    - 'img "Hypothetical change to the demonstration system: OrderController reaches OrderRepository through OrderService, which is allowed; a new direct import from OrderController to OrderRepository breaks the rule controllers-no-database. Controllers cannot depend on repositories."'
+    - paragraph:
+      - text: error
+      - link "controllers-no-database, lines 10 to 13 of katedrala.config.yaml":
+        - /url: "#rules-config-10"
+        - text: controllers-no-database
+    - paragraph: OrderController now depends on OrderRepository.
+    - paragraph: Controllers cannot depend on repositories. The path through OrderService is allowed; the new import skips it.
+    - paragraph: src/orders/order.controller.ts
+    - status: 1 error, 2 rules checked
+  - paragraph: Demonstration system, with one hypothetical import added. The configuration syntax is the one Katedrala's rule fixtures use today; the report layout is a preview.

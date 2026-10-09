@@ -16,6 +16,7 @@
  * Act modules never import three.js, GSAP or stage.ts: everything they need from the drawing comes through
  * ActContext, so the still mode (reduced motion, no usable WebGL 2) runs every act without downloading either.
  */
+import type { ActPayload } from "./acts/payload";
 import type { GraphData, HangingModel } from "./model";
 import type { CameraState, Framing } from "./timeline";
 
@@ -122,7 +123,7 @@ export interface ActContext {
   /** The analysis as public/data/codeverse-graph.json gives it (tests and type-only dependencies included). */
   readonly data: GraphData;
   /** What the server computed for the acts (acts/payload.ts), passed to the browser with the page. */
-  readonly payload: unknown;
+  readonly payload: ActPayload;
   readonly framing: Framing;
   /** The frame's size, CSS px. */
   size(): { readonly width: number; readonly height: number };

@@ -1,0 +1,10 @@
+320 plain scrollWidth 320 overflowing 0 
+320 text-spacing scrollWidth 320 overflowing 0 
+360 plain scrollWidth 360 overflowing 0 
+360 text-spacing scrollWidth 360 overflowing 0 
+390 plain scrollWidth 390 overflowing 0 
+390 text-spacing scrollWidth 390 overflowing 0 
+414 plain scrollWidth 414 overflowing 0 
+414 text-spacing scrollWidth 414 overflowing 0 
+430 plain scrollWidth 430 overflowing 0 
+430 text-spacing scrollWidth 430 overflowing 0 

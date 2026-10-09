@@ -1,0 +1,216 @@
+{
+ "1440x900": {
+  "length": 11.2,
+  "track": 12.2,
+  "spans": [
+   {
+    "id": "hang",
+    "from": 0,
+    "to": 6.6,
+    "P": [
+     0,
+     0.5893
+    ]
+   },
+   {
+    "id": "evidence",
+    "from": 6.6,
+    "to": 8.6,
+    "P": [
+     0.5893,
+     0.7679
+    ]
+   },
+   {
+    "id": "change",
+    "from": 8.6,
+    "to": 10.4,
+    "P": [
+     0.7679,
+     0.9286
+    ]
+   },
+   {
+    "id": "trace",
+    "from": 10.4,
+    "to": 11.2,
+    "P": [
+     0.9286,
+     1
+    ]
+   }
+  ],
+  "anchors": [
+   {
+    "id": "hang",
+    "viewports": 0.561
+   },
+   {
+    "id": "evidence",
+    "viewports": 6.84
+   },
+   {
+    "id": "change",
+    "viewports": 8.744
+   },
+   {
+    "id": "trace",
+    "viewports": 10.56
+   }
+  ],
+  "stops": [
+   0,
+   0.0501,
+   0.0972,
+   0.1473,
+   0.2033,
+   0.2829,
+   0.4019,
+   0.4319,
+   0.4649,
+   0.5274,
+   0.5687,
+   0.5893,
+   0.7679,
+   0.9286,
+   1
+  ],
+  "monotone": true,
+  "contiguous": true,
+  "maxRoundTrip": 1.1102230246251565e-16,
+  "boundaries": [
+   {
+    "P": 0.5893,
+    "from": "hang 0.99994",
+    "to": "evidence 0.00008"
+   },
+   {
+    "P": 0.7679,
+    "from": "evidence 0.99996",
+    "to": "change 0.00027"
+   },
+   {
+    "P": 0.9286,
+    "from": "change 0.99987",
+    "to": "trace 0.00040"
+   }
+  ],
+  "end": {
+   "index": 3,
+   "id": "trace",
+   "t": 1
+  },
+  "start": {
+   "index": 0,
+   "id": "hang",
+   "t": 0
+  }
+ },
+ "390x844": {
+  "length": 10.3,
+  "track": 11.3,
+  "spans": [
+   {
+    "id": "hang",
+    "from": 0,
+    "to": 5.8,
+    "P": [
+     0,
+     0.5631
+    ]
+   },
+   {
+    "id": "evidence",
+    "from": 5.8,
+    "to": 7.7,
+    "P": [
+     0.5631,
+     0.7476
+    ]
+   },
+   {
+    "id": "change",
+    "from": 7.7,
+    "to": 9.5,
+    "P": [
+     0.7476,
+     0.9223
+    ]
+   },
+   {
+    "id": "trace",
+    "from": 9.5,
+    "to": 10.3,
+    "P": [
+     0.9223,
+     1
+    ]
+   }
+  ],
+  "anchors": [
+   {
+    "id": "hang",
+    "viewports": 0.493
+   },
+   {
+    "id": "evidence",
+    "viewports": 6.028
+   },
+   {
+    "id": "change",
+    "viewports": 7.844
+   },
+   {
+    "id": "trace",
+    "viewports": 9.66
+   }
+  ],
+  "stops": [
+   0,
+   0.0479,
+   0.0929,
+   0.1408,
+   0.1943,
+   0.2703,
+   0.384,
+   0.4128,
+   0.4443,
+   0.504,
+   0.5434,
+   0.5631,
+   0.7476,
+   0.9223,
+   1
+  ],
+  "monotone": true,
+  "contiguous": true,
+  "maxRoundTrip": 1.1102230246251565e-16,
+  "boundaries": [
+   {
+    "P": 0.56315,
+    "from": "hang 0.99999",
+    "to": "evidence 0.00023"
+   },
+   {
+    "P": 0.7476,
+    "from": "evidence 0.99988",
+    "to": "change 0.00016"
+   },
+   {
+    "P": 0.92235,
+    "from": "change 0.99983",
+    "to": "trace 0.00026"
+   }
+  ],
+  "end": {
+   "index": 3,
+   "id": "trace",
+   "t": 1
+  },
+  "start": {
+   "index": 0,
+   "id": "hang",
+   "t": 0
+  }
+ }
+}

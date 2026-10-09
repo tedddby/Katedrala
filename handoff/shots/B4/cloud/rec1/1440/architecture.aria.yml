@@ -1,0 +1,37 @@
+- region "The whole structure, at every scale.":
+  - heading "The whole structure, at every scale." [level=2]
+  - paragraph: Katedrala links files and symbols into one typed graph today; inferring the modules within it is planned for v1.
+  - text: Typed graph, available today Module inference, planned for v1
+  - radiogroup "Scale":
+    - radio "Members" [checked]
+    - radio "Modules"
+  - group "Relationship kinds":
+    - button "calls" [pressed]
+    - button "instantiates" [pressed]
+    - button "accesses data" [pressed]
+  - group "Zoom":
+    - button "Zoom in": +
+    - button "Zoom out" [disabled]: −
+    - button "Fit the plan" [disabled]: Fit
+  - radiogroup "Architecture plan of the demonstration system, by member":
+    - radio "ApiGateway, Gateway module": ApiGateway
+    - radio "CheckoutService, Checkout module": CheckoutService
+    - radio "CheckoutController, Checkout module": CheckoutController
+    - radio "OrderController, Orders module": OrderController
+    - radio "OrderService, Orders module": OrderService
+    - radio "OrderRepository, Orders module": OrderRepository
+    - radio "SessionStore, Auth module": SessionStore
+    - radio "AuthService, Auth module": AuthService
+    - radio "InvoiceService, Billing module": InvoiceService
+    - radio "StripeClient, Payments module": StripeClient
+    - radio "PaymentService, Payments module": PaymentService
+    - radio "PaymentRepository, Payments module": PaymentRepository
+    - radio "UserService, Users module": UserService
+    - radio "UserRepository, Users module": UserRepository
+    - radio "Database, Platform module": Database
+    - radio "EventBus, Platform module": EventBus
+  - paragraph: Hold Ctrl or Cmd and scroll to zoom, then drag to pan. Demonstration system.
+  - complementary:
+    - paragraph: 16 members, 8 modules
+    - paragraph: 23 dependencies, 16 of them across a module boundary. Select a member to see what it depends on and what depends on it.
+  - group: Read the graph as a table

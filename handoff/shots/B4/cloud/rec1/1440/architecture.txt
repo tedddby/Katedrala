@@ -1,0 +1,55 @@
+The whole structure, at every scale.
+
+Katedrala links files and symbols into one typed graph today; inferring the modules within it is planned for v1.
+
+Typed graph, available today
+Module inference, planned for v1
+Members
+Modules
+calls
+instantiates
+accesses data
++
+−
+Fit
+2
+GATEWAY
+CHECKOUT
+ORDERS
+AUTH
+BILLING
+PAYMENTS
+USERS
+PLATFORM
+ApiGateway
+CheckoutService
+CheckoutController
+OrderController
+OrderService
+OrderRepository
+SessionStore
+AuthService
+InvoiceService
+StripeClient
+PaymentService
+PaymentRepository
+UserService
+UserRepository
+Database
+EventBus
+Gateway
+Checkout
+Orders
+Auth
+Billing
+Payments
+Users
+Platform
+
+Hold Ctrl or Cmd and scroll to zoom, then drag to pan. Demonstration system.
+
+16 members, 8 modules
+
+23 dependencies, 16 of them across a module boundary. Select a member to see what it depends on and what depends on it.
+
+Read the graph as a table

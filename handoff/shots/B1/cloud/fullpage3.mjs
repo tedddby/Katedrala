@@ -1,0 +1,24 @@
+import { chromium } from "playwright-core";
+const browser = await chromium.launch({ channel: "msedge", headless: true });
+const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: "reduce", colorScheme: "dark" });
+const page = await context.newPage();
+await page.goto("http://localhost:3100/lab/cinematic/", { waitUntil: "networkidle" });
+await page.waitForTimeout(1600);
+const probe = () => page.evaluate(() => {
+  const h1 = document.querySelector("h1");
+  const w = h1.querySelector("span[aria-hidden] span");
+  const r = h1.getBoundingClientRect();
+  const sk = [...document.querySelectorAll(".skip-link")].map((a) => { const q = a.getBoundingClientRect(); return `${a.textContent}@${Math.round(q.y)} ${getComputedStyle(a).transform}`; });
+  return { ih: innerHeight, h1: [r.y, r.height].map(Math.round), fs: getComputedStyle(h1).fontSize, wOpacity: getComputedStyle(w).opacity, wAnim: getComputedStyle(w).animationName, wTransform: getComputedStyle(w).transform, wVis: getComputedStyle(w).visibility, sk, focus: document.activeElement?.tagName + "." + document.activeElement?.className };
+});
+console.log("before", JSON.stringify(await probe()));
+const cdp = await context.newCDPSession(page);
+await cdp.send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 2080, deviceScaleFactor: 1, mobile: false });
+await page.waitForTimeout(600);
+console.log("metrics 2080", JSON.stringify(await probe()));
+await page.screenshot({ path: "cap/fp3-a.png", clip: { x: 0, y: 0, width: 1440, height: 700 } });
+await cdp.send("Emulation.clearDeviceMetricsOverride");
+await page.waitForTimeout(600);
+console.log("cleared", JSON.stringify(await probe()));
+await page.screenshot({ path: "cap/fp3-b.png", clip: { x: 0, y: 0, width: 1440, height: 700 } });
+await browser.close();

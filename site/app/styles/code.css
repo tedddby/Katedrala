@@ -76,24 +76,28 @@
   }
 
   /*
-   * Line numbers: an editor's gutter in the faintest ink, never selected or copied with the code. A marked line's
-   * number takes the load color: the line is architecture that is active right now (a rule a change breaks).
+   * Line numbers: an editor's gutter in the faintest ink, drawn from data-line (CodeBlock), so they are never
+   * selected, copied or read out (the empty alternative text keeps them out of the accessibility tree). A marked
+   * line's number takes the load color: the line is architecture that is active right now (a rule a change
+   * breaks).
    */
-  .code-line-number {
+  .code-block-body [data-line]::before {
+    content: attr(data-line);
+    content: attr(data-line) / "";
     display: inline-block;
+    width: calc(var(--line-digits, 2) * 1ch);
     margin-right: 1.5ch;
     text-align: right;
     color: var(--color-ink-faint);
-    user-select: none;
     transition: color 150ms ease;
   }
-  [data-marked] > .code-line-number {
+  .code-block-body [data-marked]::before {
     color: var(--color-load);
   }
 }
 
 @media (forced-colors: active) {
-  [data-marked] > .code-line-number {
+  .code-block-body [data-marked]::before {
     color: Highlight;
   }
 }
@@ -105,7 +109,7 @@
       font-size: 0.75rem;
       padding-inline: 0.875rem;
     }
-    .code-line-number {
+    .code-block-body [data-line]::before {
       margin-right: 1ch;
     }
   }

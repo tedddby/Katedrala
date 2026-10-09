@@ -2,12 +2,37 @@
  * Architecture explorer: a plan view with module bays.
  * ---------------------------------------------------------------------------------------------- */
 @layer components {
-  .explorer-toolbar {
+  /*
+   * The instrument strip along the sheet's top edge: the scale on the left, the zoom on the right, and between
+   * them, at member scale, the relationship kinds (each toggle is also its line's legend). Where the three do
+   * not fit one row, the kinds take a row of their own under the other two.
+   */
+  .explorer {
+    container-type: inline-size;
+  }
+  .explorer-strip {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.75rem 1.25rem;
-    margin-bottom: 1rem;
+    gap: 0.5rem 0.75rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .explorer-kinds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+  .explorer-zoom {
+    display: flex;
+    gap: 0.25rem;
+    margin-left: auto;
+  }
+  @container (max-width: 47.99rem) {
+    .explorer-kinds {
+      order: 1;
+      flex-basis: 100%;
+    }
   }
   .segmented {
     display: inline-flex;
@@ -30,12 +55,6 @@
     .segmented > button[aria-checked="false"]:hover {
       color: var(--color-ink);
     }
-  }
-  .explorer-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
   }
   .kind-toggle {
     display: inline-flex;
@@ -278,23 +297,12 @@
   }
 
   /*
-   * The inspector: the selected member's or module's schedule. Its subject stands on a rule level with the sheet's
-   * top edge; its entries are groups divided by hairlines (between groups only), names in mono.
+   * The inspector: the selected member's or module's schedule. Beside the sheet, its subject stands on a rule level
+   * with the sheet's top edge; its entries are groups divided by hairlines (between groups only), names in mono.
    */
   .inspector {
     border-top: 1px solid var(--color-rule-strong);
     padding-top: 0.875rem;
-  }
-  /* Beside the sheet, the inspector starts where the sheet does, under the toolbar's height and gap. */
-  @media (min-width: 1024px) {
-    .explorer-aside {
-      padding-top: 3.25rem;
-    }
-  }
-  @media (min-width: 1024px) and (pointer: coarse) {
-    .explorer-aside {
-      padding-top: 3.75rem;
-    }
   }
   .inspector-subject {
     font-size: 0.9375rem;
@@ -417,10 +425,10 @@
       display: none;
     }
   }
-  .explorer:has(.explorer-sheet :focus-visible) .hint-keyboard {
+  .explorer:has(.explorer-sheet > svg :focus-visible) .hint-keyboard {
     display: inline;
   }
-  .explorer:has(.explorer-sheet :focus-visible) .hint-pointer {
+  .explorer:has(.explorer-sheet > svg :focus-visible) .hint-pointer {
     display: none;
   }
 
@@ -438,16 +446,14 @@
       padding-block: 0.75rem;
     }
   }
+  /* Phones: the three kinds share one row of the strip from about 380 px. */
   @media (max-width: 479px) {
-    .explorer-toolbar {
-      column-gap: 0.75rem;
-    }
     .segmented > button {
       padding-inline: 0.75rem;
     }
     .kind-toggle {
-      gap: 0.375rem;
-      padding-inline: 0.6rem;
+      gap: 0.3rem;
+      padding-inline: 0.4rem;
     }
     .kind-toggle svg {
       width: 1.25rem;
@@ -478,7 +484,7 @@
   }
   .explorer-sheet :is(.plan-edge, .plan-arrow),
   .explorer-sheet :is(.plan-edge[data-state="dependent"], .plan-arrow-dependent),
-  .explorer-legend .plan-edge-sample {
+  .explorer-kinds .plan-edge-sample {
     stroke: CanvasText;
   }
   .explorer-sheet :is(.plan-edge[data-state="dependency"], .plan-arrow-dependency) {

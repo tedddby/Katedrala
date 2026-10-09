@@ -51,11 +51,19 @@ export function bindNavigationMark(frame: HTMLElement): () => void {
   mark.setAttribute("aria-hidden", "true");
   mark.style.cssText = "position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none";
   frame.prepend(mark);
+  // A note for the mode script: a reload, back or forward restores this scroll position, and the bar's ground is
+  // right from the first frame (mode.ts reads it).
+  const key = `kfilm-under:${location.pathname}`;
   const io = new IntersectionObserver(
     (entries) => {
       const under = entries.some((e) => e.isIntersecting);
       if (under) html.dataset.kfilmUnder = "";
       else delete html.dataset.kfilmUnder;
+      try {
+        sessionStorage.setItem(key, under ? "1" : "0");
+      } catch {
+        // Storage refused: the mode script waits for the first frame instead.
+      }
     },
     // The band: about as deep as the bar.
     { rootMargin: "0px 0px -92% 0px" },
