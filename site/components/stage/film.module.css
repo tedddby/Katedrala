@@ -335,8 +335,9 @@
 
 /*
  * Once the film runs the hero steps out of the picture, but stays in the page: the h1 and the actions remain in
- * the accessibility tree and in the tab order wherever the film is, and a control that takes focus brings the
- * hero back over the drawing (so nothing focused is ever invisible).
+ * the accessibility tree and in the tab order wherever the film is. An action that takes focus brings the film back
+ * to the hero frame (the director's focus reveal), so nothing focused is ever invisible; that jump is
+ * keyboard-initiated, so the hero is simply there ([data-instant] on the film for the frame that shows it).
  */
 .hero[data-off] {
   opacity: 0;
@@ -347,13 +348,8 @@
     transform 420ms var(--k-ease-out);
 }
 
-.hero[data-off]:focus-within {
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
-  transition:
-    opacity 200ms var(--k-ease-out),
-    transform 260ms var(--k-ease-out);
+.film[data-instant] .hero {
+  transition: none;
 }
 
 .headline {

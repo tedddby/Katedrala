@@ -4,7 +4,8 @@
  * The film's two in-page links, followed natively (the hash, the focus starting point and the history stay the
  * browser's) with the scroll they need:
  * - "Explore Katedrala" (href #film-start) plays the film: a short smooth scroll to its first caption while the film
- *   runs, an instant jump in the still layout.
+ *   runs and a pointer pressed it, an instant jump from the keyboard (a keyboard-initiated change is never animated)
+ *   and in the still layout.
  * - "Skip the film" ([data-film-skip], wherever it is on the page) jumps past it at once: a smooth scroll through a
  *   pinned film would play the whole film at speed.
  * The root's scroll behaviour is set for the one navigation and restored on the next frame (a smooth scroll that
@@ -22,7 +23,8 @@ export function bindFilmLinks(root: HTMLElement, mode: () => "film" | "still"): 
     let behavior: "smooth" | "auto" | null = null;
     if (link.hasAttribute("data-film-skip")) behavior = "auto";
     else if (href === "#film-start" && root.contains(link))
-      behavior = mode() === "film" ? "smooth" : "auto";
+      // A click from Enter (or assistive technology) has no pointer behind it: detail 0.
+      behavior = mode() === "film" && e.detail > 0 ? "smooth" : "auto";
     if (behavior === null) return;
     html.style.scrollBehavior = behavior;
     cancelAnimationFrame(restore);
